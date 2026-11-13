@@ -1,0 +1,11 @@
+# Büyük ham veri asla repoya girmez
+*.h5
+*.nc
+raw/
+cache/
+*.zip
+__pycache__/
+.venv/
+.env
+.netrc
+node_modules/
