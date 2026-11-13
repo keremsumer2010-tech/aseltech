@@ -1,18 +1,15 @@
 # PC4 — Web uygulaması (klasör: web/)
 
 ## Görev 1 — Sahte veriyle çalışan iskelet
-1. Saf HTML/JS (build aracı yok), MapLibre GL JS veya Leaflet (CDN, sabit sürüm). Giriş: `web/index.html`.
-2. `web/mock/central_valley/` altına CLAUDE.md'deki **veri sözleşmesine** uyan sahte veri üret
-   (meta.json, 5 tarihlik disp/<date>.png gradyan, 10 noktalı points.json).
-3. Özellikler:
-   - Uydu altlık haritası + çökme katmanı (image overlay, bbox'a oturur), opaklık ayarı
-   - Zaman kaydırıcısı + oynat butonu (animasyon)
-   - Renk lejantı (cm)
-   - Noktaya tıkla → Chart.js ile yer değiştirme grafiği + sade İngilizce cümle
-     ("This spot sank X cm in N months — about the height of ...")
-   - Site seçici: central_valley / konya / fens
-4. Veri yolu tek bir değişkende olsun (`DATA_ROOT`), sonra `../data/` ile değiştireceğiz.
-5. Mobilde de düzgün görünsün.
+1. Saf HTML/JS, MapLibre GL JS veya Leaflet + Chart.js (CDN, SABİT sürüm). Giriş `web/index.html`.
+2. `web/mock/` altında CLAUDE.md veri sözleşmesine uyan sahte veri: `catalog.json`, `central_valley/{meta,points,decomp,drivers,assets}.json`, 5 tarihlik `disp/*.png`.
+3. Arayüz:
+   - Site seçici (`catalog.json`'dan otomatik)
+   - Katmanlar: Çökme (zaman kaydırıcı + oynat), Kalıcı kayıp, Mevsimsel genlik, Altyapı riski
+   - Renk lejantı (cm), opaklık
+   - Tıkla → Chart.js grafik (çökme + nem + sulama aynı eksende) + sade İngilizce cümle ve insan ölçeği
+   - "How we know" paneli: kaynak, belirsizlik, LOS notu
+4. `DATA_ROOT` tek değişken (sonra `../data/`). Mobil uyumlu.
 
 ## Kabul
-- `web/index.html` tarayıcıda hatasız açılıyor (konsol temiz), status'ta ekran görüntüsü yolu: `docs/web_v1.png`.
+Konsol temiz; `docs/web_v1.png` ekran görüntüsü; status'ta nasıl test ettiğin.

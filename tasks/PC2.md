@@ -1,14 +1,18 @@
 # PC2 — Veri hattı (klasör: pipeline/)
 
-## Görev 1 — KONTROL NOKTASI (öncelik en yüksek, hedef 2 saat)
-1. Earthdata hesabı aç (urs.earthdata.nasa.gov) ve `asf_search` kur: `pip install asf_search h5py numpy matplotlib rasterio`.
-2. `pipeline/search.py`: central_valley bbox'ı için `platform=NISAR`, `processingLevel=GUNW`, path 34 ürünlerini listele;
-   `pipeline/central_valley_gunw.csv` yaz (granule adı, başlangıç/bitiş tarihi, URL, boyut).
-3. EN KISA zaman aralıklı TEK bir GUNW indir (`raw/` altına).
-4. `pipeline/inspect.py`: HDF5 ağacını (grup/dataset adı, shape, dtype, attrs) çıkar → `docs/gunw_structure.md`.
-   Özellikle: unwrapped phase, coherence, koordinat (x/y veya lon/lat), CRS/EPSG, dalga boyu/merkez frekans attr'ı.
-5. Tek bir unwrapped phase PNG'si üret: `docs/checkpoint_phase.png`.
+## Görev 1 — KONTROL NOKTASI (en yüksek öncelik, hedef 2 saat)
+1. Earthdata hesabı aç; `pip install asf_search h5py numpy matplotlib rasterio pyyaml`.
+2. `pipeline/sites.yaml`: CLAUDE.md'deki 3 bölge (bbox, GUNW path'leri, tarih aralığı).
+3. `pipeline/search.py <site>`: `platform=NISAR`, `processingLevel=GUNW` (ve GCOV, SME2) listesi → `pipeline/<site>_<ürün>.csv`.
+   Central Valley için path 34.
+4. En kısa aralıklı TEK GUNW'yi `raw/` altına indir.
+5. Resmi hazırlık notebook'unu incele: https://github.com/nisar-solid/ATBD/blob/main/prep/NISAR_prep.ipynb
+   GUNW HDF5 ağacını çıkar → `docs/gunw_structure.md` (unwrapped phase, coherence, x/y, EPSG, dalga boyu, LOS cube yolları).
+6. `docs/checkpoint_phase.png` (unwrapped phase, bbox kesilmiş).
+
+## Görev 2 (Görev 1 bitince)
+Central Valley path 34 TÜM GUNW'lerini sırayla indir → sadece bbox'ı kes (`pipeline/subset.py`, çıktı `raw/subset/*.h5` veya GeoTIFF) → orijinali sil.
+Paralel: aynı bölge için 6–8 tarihlik GCOV ve tüm SME2'yi kes.
 
 ## Kabul
-- `docs/gunw_structure.md` ve `docs/checkpoint_phase.png` push edildi; status'ta dosya boyutu ve indirme süresi yazıyor.
-- İndirme giriş istiyor/başarısızsa: hatayı aynen status'a yaz (BLOCKED).
+`docs/gunw_structure.md` + PNG push edildi; status'ta dosya boyutu, indirme süresi, giriş gerekip gerekmediği. Hata → BLOCKED + hata metni.

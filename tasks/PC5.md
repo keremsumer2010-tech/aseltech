@@ -1,16 +1,18 @@
-# PC5 — Oyun + hikâye (klasör: game/ ve docs/story/)
+# PC5 — Neden + doğrulama + hikâye (klasör: game/, docs/story/, analysis/drivers/)
 
-## Görev 1a — Kaynak listesi (Gemini veya Claude ile, ama HER linki aç ve doğrula)
-`docs/story/sources.md`: Central Valley çökmesi (NASA/JPL, USGS), Konya çökmesi/obruk (hakemli makale),
-NISAR görevi (nasa.gov / jpl.nasa.gov), yeraltı suyu ve sulama ilişkisi. Her kaynak: başlık, link, 1 cümlelik bulgu, sayı varsa sayı.
-Doğrulamadığın link YAZMA.
+## Görev 1a — Doğrulanmış kaynaklar (her linki AÇ)
+`docs/story/sources.md`: Central Valley çökmesi (NASA/JPL, USGS), Sacramento Delta setleri, Konya çökme/obruk (hakemli),
+UK kil şişme-büzülme (BGS), Holme Fen direği (kaç m alçaldı — kaynaklı), NISAR görevi. Başlık, link, 1 cümle bulgu + sayı.
 
-## Görev 1b — "Aquifer Manager" prototipi
-`game/index.html` (saf HTML/JS, tek dosya olabilir):
-- Oyuncu pompalama seviyesini (%0–150) ve yağışlı/kurak yıl senaryosunu seçer.
-- Basit model: yıllık çökme = ölçülen_hız × pompalama_oranı × senaryo_katsayısı (şimdilik ölçülen_hız = 10 cm/yıl, "placeholder" yaz).
-- 10 yıllık animasyon: kesit görünümde toprak katmanı iner, kanal/yol ikonları hasar görür.
-- Sonuç ekranı: toplam çökme + "what this means" cümlesi. Katsayılar tek bir CONFIG nesnesinde.
+## Görev 1b — GNSS istasyonları
+Central Valley bbox'ındaki GNSS istasyonlarını ve açık zaman serisi kaynağını bul (ör. Nevada Geodetic Laboratory / EarthScope).
+`analysis/drivers/gnss_stations.csv` (ad, lon, lat, URL) + 3 istasyonun Kas 2025–Eki 2026 dikey serisini indir → `analysis/drivers/gnss/*.csv`.
+
+## Görev 2 — Toprak nemi zaman serisi
+PC2'nin SME2 kesitlerinden bölge ortalaması/nokta serisi → `data/central_valley/drivers.json` (soil_moisture alanı).
+
+## Görev 3 (bonus) — Aquifer Manager
+`game/index.html`: pompalama %0–150 + yağışlı/kurak yıl → 10 yıllık çökme animasyonu. Hızlar CONFIG'de, sonra PC3'ün ölçtüğü değerle değişecek.
 
 ## Kabul
-- sources.md'de en az 6 doğrulanmış kaynak; oyun tarayıcıda hatasız açılıyor; status'ta ekran görüntüsü `docs/game_v1.png`.
+En az 6 doğrulanmış kaynak; 3 GNSS serisi; status'ta indirme yöntemi.
