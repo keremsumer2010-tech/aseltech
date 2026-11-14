@@ -58,3 +58,7 @@ Yazma alanı: `web/atlas.*`, `web/vendor/`, `web/assets/bluemarble*`, `docs/stor
 6. **GNSS doğrulama katmanı:** Central Valley için `validation/gnss_stations.csv` istasyonları küçük üçgen, tıklayınca r/RMSE.
 7. **Performans:** ilk açılış < 3 sn (lazy PNG, küçük görseller), Lighthouse erişilebilirlik ≥ 90; sonuç `docs/qa/PC6.md`.
 Her adımda commit + push; 3 dk döngüsü (`tasks/SUREKLI.md`).
+
+
+# 🛰️ NOT (Paz 01:30, PC1)
+`web/nisar3d.js`, `web/atlas_sat.js`, `web/atlas_sat.css`, `web/vendor/three/`, `web/vendor/satellite.min.js`, `data/nisar_tle.json` PC1in (NISAR 3D yörünge görünümü). Dokunma; atlas.html içindeki iki script satırını ve atlas-toolbar düğmesini koru.

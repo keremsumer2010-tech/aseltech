@@ -1,11 +1,38 @@
-/* NISAR satellite + radar overlay for the atlas globe (PC1) */
-.sat-layer{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:4}
-.sat-layer svg{position:absolute;inset:0;width:100%;height:100%}
-.sat-craft{position:absolute;left:0;top:0;width:160px;height:114px;margin:-57px 0 0 -80px;will-change:transform;transition:opacity .4s ease;filter:drop-shadow(0 6px 10px rgba(0,0,0,.55))}
-.sat-craft svg{position:static;width:100%;height:100%}
-.sat-tag{position:absolute;left:0;top:0;transform:translate(-50%,0);white-space:nowrap;font:600 11px/1.2 system-ui,-apple-system,"Segoe UI",sans-serif;letter-spacing:.04em;color:#e8eef7;background:rgba(9,20,38,.78);border:1px solid rgba(148,197,255,.35);border-radius:3px;padding:3px 7px;transition:opacity .4s ease}
-.sat-tag b{color:#7dd3fc;font-weight:700}
-.sat-beam{transition:opacity .35s ease}
-.sat-ring{fill:none;stroke:#7dd3fc;stroke-width:2}
-.sat-chirp{fill:none;stroke:#bae6fd;stroke-width:2;stroke-linecap:round}
-@media (prefers-reduced-motion: reduce){.sat-craft,.sat-tag,.sat-beam{transition:none}}
+/* NISAR 3D orbit view (PC1) */
+.n3d-open-btn{display:inline-flex;align-items:center;gap:6px;margin-left:6px;padding:6px 12px;border:1px solid #1e3a8a;background:#0b1f4d;color:#e0f2fe;font:600 13px/1.2 system-ui,-apple-system,"Segoe UI",sans-serif;border-radius:4px;cursor:pointer}
+.n3d-open-btn:hover,.n3d-open-btn:focus-visible{background:#12306f;outline:2px solid #7dd3fc;outline-offset:1px}
+.n3d-open-btn .dot{width:8px;height:8px;border-radius:50%;background:#fbbf24;box-shadow:0 0 8px #fbbf24}
+
+.n3d{position:absolute;inset:0;z-index:20;background:#01030a;color:#e2e8f0;font:13px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif;overflow:hidden}
+.n3d[hidden]{display:none}
+.n3d:fullscreen{width:100vw;height:100vh}
+.n3d-canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.n3d-hud{position:absolute;left:14px;top:14px;width:290px;max-width:calc(100% - 28px);background:rgba(4,12,28,.78);border:1px solid rgba(125,211,252,.22);border-radius:6px;padding:12px 14px;backdrop-filter:blur(4px)}
+.n3d-title{font-weight:700;letter-spacing:.06em;font-size:15px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.n3d-title small{font-weight:500;letter-spacing:.02em;color:#94a3b8;font-size:11px}
+.n3d-dot{width:9px;height:9px;border-radius:50%;background:#fbbf24;box-shadow:0 0 10px #fbbf24}
+.n3d-hud dl{display:grid;grid-template-columns:72px 1fr;gap:3px 8px;margin:10px 0 6px}
+.n3d-hud dt{color:#7dd3fc;font-size:11px;text-transform:uppercase;letter-spacing:.06em;padding-top:1px}
+.n3d-hud dd{margin:0;font-variant-numeric:tabular-nums;color:#f1f5f9}
+.n3d-src{margin:6px 0 0;font-size:11px;color:#94a3b8}
+.n3d-pass{position:absolute;right:14px;top:14px;max-width:min(420px,calc(100% - 330px));background:rgba(4,12,28,.78);border:1px solid rgba(251,191,36,.35);border-radius:6px;padding:9px 12px;font-size:12.5px}
+.n3d-pass:empty{display:none}
+.n3d-pass b{color:#fde68a}
+.n3d-caption{position:absolute;left:50%;bottom:64px;transform:translateX(-50%);width:min(760px,calc(100% - 28px));background:rgba(4,12,28,.84);border-left:3px solid #38bdf8;border-radius:4px;padding:10px 14px;font-size:13.5px}
+.n3d-caption[hidden]{display:none}
+.n3d-q{display:inline-block;margin-left:6px;padding:1px 6px;border:1px solid #f59e0b;color:#fbbf24;border-radius:3px;font-size:10.5px;letter-spacing:.06em}
+.n3d-bar{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);display:flex;align-items:center;gap:4px;flex-wrap:wrap;justify-content:center;background:rgba(4,12,28,.84);border:1px solid rgba(125,211,252,.22);border-radius:6px;padding:5px;max-width:calc(100% - 28px)}
+.n3d-bar button{background:transparent;color:#cbd5e1;border:1px solid transparent;border-radius:4px;padding:6px 10px;font:600 12.5px/1 system-ui,-apple-system,"Segoe UI",sans-serif;cursor:pointer;min-height:32px}
+.n3d-bar button:hover,.n3d-bar button:focus-visible{color:#fff;border-color:rgba(125,211,252,.45);outline:none}
+.n3d-bar button.is-on{background:#0e7490;color:#fff}
+.n3d-sep{width:1px;height:20px;background:rgba(148,163,184,.35);margin:0 4px}
+.n3d-label{position:absolute;left:0;top:0;pointer-events:none;font:700 11px/1 system-ui,-apple-system,"Segoe UI",sans-serif;letter-spacing:.08em;color:#fde68a;text-shadow:0 1px 3px #000;margin:-22px 0 0 10px;transition:opacity .2s}
+.n3d-city{color:#fff;letter-spacing:.02em;font-weight:600;font-size:12px}
+.n3d-note{position:absolute;right:14px;bottom:70px;max-width:260px;margin:0;font-size:10.5px;color:#64748b;text-align:right}
+@media (max-width:720px){
+  .n3d-hud{width:auto;right:14px;padding:8px 10px}
+  .n3d-hud dl{grid-template-columns:64px 1fr;font-size:12px}
+  .n3d-pass{left:14px;right:14px;top:auto;bottom:118px;max-width:none}
+  .n3d-caption{bottom:170px;font-size:12.5px}
+  .n3d-note{display:none}
+}

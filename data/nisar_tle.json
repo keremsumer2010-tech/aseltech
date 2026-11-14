@@ -1,0 +1,26 @@
+{
+  "name": "NISAR",
+  "norad_id": 65053,
+  "intl_designator": "2025-163A",
+  "line1": "1 65053U 25163A   26318.33841497  .00000208  00000+0  76025-4 0  9998",
+  "line2": "2 65053  98.4060 143.8397 0001241  89.6085 270.5247 14.42502322 68036",
+  "source": "CelesTrak GP data (https://celestrak.org/NORAD/elements/gp.php?NAME=NISAR&FORMAT=TLE)",
+  "fetched_utc": "2026-11-14T20:53:53Z",
+  "instrument_facts": {
+    "look_direction": "Left",
+    "center_frequency_hz": 1239000000.0,
+    "range_bandwidth_hz": 40000000.0,
+    "repeat_days": 12,
+    "source": "NISAR L2 GUNW metadata (science/LSAR/GUNW, Central Valley 2026-09-08/2026-09-20, docs/gunw_structure.md)"
+  },
+  "geometry_assumptions": {
+    "incidence_deg": [
+      33,
+      47
+    ],
+    "swath_km_nominal": 242,
+    "reflector_diameter_m": 12,
+    "boom_length_m": 9,
+    "source": "NISAR mission description (NASA-JPL / ISRO, NISAR Science Users' Handbook); model drawn for illustration"
+  }
+}
