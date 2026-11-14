@@ -102,3 +102,38 @@ Yazma alanı ek: `pipeline/pc7/atlas_robustness.py`, `pipeline/pc7/tests/`, `dat
 2. **Robustness'i tamamla:** her yeni tam kutulu şehirde (senin 3 şehrin + PC11'in Tahran/Cakarta/Pekin yeniden hesapları + PC2/PC9/PC10 şehirleri) `atlas_robustness.py`'yi yeniden çalıştır. Hedef: en az 5 şehirde 27/27 geçerli varyant ve ilk 3 için kesin "stable / not stable" sonucu. Referans adayı seçiminde PC5'in `docs/qa/PC5.md` §4 bulgularını kullan.
 3. Sonra ek şehirler (kuru iklim, yayımlanmış çökme): **Aguascalientes, Meksika** −102.29, 21.88 · **Kashmar, İran** 58.46, 35.24 (önce kapsama). Sonra ASLA BOŞ KALMA.
 Yazma alanı ek: `data/global/{xian,taiyuan,queretaro,aguascalientes,kashmar}/`, `pipeline/subset/global_<bu şehirler>/`.
+
+# 🧭 PC7 UZUN GÖREV PLANI (Cmt 23:25 → Paz 20:00) — tek liste, sırayla, SORMADAN ilerle
+Bu bölüm önceki 22:25 / 23:00 / 23:15 bölümlerinin hepsini kapsar ve geçerli olan TEK listedir.
+
+## ⚙️ GIT KURALI (bu engel 3 kez oldu — bundan sonra böyle yap)
+Her döngü başında ve her push'tan önce aynen şu sıra:
+`git add <sadece kendi dosyaların>` → `git commit -m "[PC7] ..."` → `git pull --rebase origin main` → `git push origin main`.
+Commit edilmemiş KENDİ değişikliğin varken asla pull yapma; önce commit et. Bu kuralla "unstaged changes" hatası bir engel DEĞİLDİR, BLOCKED yazma. Sadece başka birinin dosyasında çakışma çıkarsa BLOCKED yaz.
+
+## FAZ 1 — Yeni atlas şehirleri (Cmt 23:30 → Paz 03:00)
+NISAR Pulse, kalite standardı: ±0.25° TAM kutu, havza dışı referans, `p2_cm`, `rate_cm_per_100d`. Her şehirde önce `--dry-run` (ASF kapsaması); kapsama yoksa `docs/qa/PC7.md`'ye "no coverage: <şehir>" yaz, sıradakine geç.
+1. Xi'an 108.95, 34.27  2. Taiyuan 112.55, 37.85  3. Querétaro −100.39, 20.59  4. Aguascalientes −102.29, 21.88  5. Kashmar 58.46, 35.24
+Her şehirde: `summary.json` + `meta.json` + `points.json` (`data/global/<şehir>/`), literatür büyüklük kıyası (kaynak linkiyle) `docs/qa/PC7.md`'ye, "hazır: <şehir>" satırı (PC10 atlasa ekler, PC5 karar verir), commit + push.
+İndirme: Kerem izin verdi. `python` (3.12). Aynı anda 1 indirme, ham dosyayı kestikten sonra sil, boş disk < 20 GB ise dur.
+
+## FAZ 2 — Sağlamlık testini kesinleştir (her yeni tam kutulu şehirde, döngü)
+`atlas_robustness.py`'yi her yeni şehirde yeniden çalıştır (senin 5 şehrin + PC11 Tahran/Cakarta/Pekin + PC2/PC9/PC10 şehirleri). Referans adaylarında PC5 `docs/qa/PC5.md` §4'ü kullan. Hedef: ≥5 şehirde 27/27 geçerli varyant, ilk 3 için kesin "stable / not stable", Kendall tau. Grafik `pc7_atlas_robustness.png` güncel kalsın. `docs/qa/PC7.md`'ye tek cümle sonuç: jüriye söylenecek cümle bu.
+
+## FAZ 3 — O2 Küresel: atlas şehirlerinde altyapı riski (Paz 03:00 → 10:00) ★ özgün katkı
+Neden: Mexico City Metro Line 12 çöküşü (2021) bağımsız incelemelerde yapısal kusurlarla açıklandı; zemin çökmesinin hattaki rolü literatürde tartışılıyor. NISAR verisiyle "hangi raylı hat segmentleri bugün mühendislik eşiğini aşıyor" sorusunu küresel ölçekte cevaplamak güçlü bir mesaj. İddiayı kaynakla sınırla; nedensellik yazma.
+1. OSM'den (Overpass API, açık veri) raylı sistem / metro / ana kanal hatları: Mexico City, Tahran, Cakarta, sonra atlasın ilk 5'indeki diğer şehirler. `risk/global/<şehir>_infra.geojson`.
+2. Mevcut `risk/probabilistic_risk.py` yöntemini değiştirmeden uygula: 1 km segment, β, Monte Carlo (PC5 σ haritası `data/global/<şehir>/uncertainty/`), P(β > 1/500), P(Δ > 10 cm). Çıktı `data/risk_global/<şehir>.json` + `docs/story/media/pc7_risk_<şehir>.png`.
+3. `docs/story/global_risk.md` (≤1 sayfa, REVIEW_1500): şehir başına eşiği aşan km, en riskli 3 segment, belirsizlik, sınırlamalar (LOS, 108 gün, provisional, hat geometrisi OSM). PC4 ve PC6'ya "hazır" notu `docs/qa/PC7.md`'de.
+
+## FAZ 4 — Atlas kalite bekçisi (her saat, Paz 20:00'a kadar)
+- `tools/validate_atlas.py` + `pipeline/pc7/validate_json.py` → `docs/qa/PC7.md` son tablo (hata sayısı düşüyor mu?).
+- Atlas.json'daki her şehir için: summary ↔ atlas değeri tutarlı mı, kutu ±0.25° mi, referans havza dışında mı, confidence ↔ robustness ↔ detectability uyumlu mu. Uyumsuzluğu sahibine yaz (PC10 atlas, PC5 karar).
+- PC5'in `docs/qa/PC5.md` §10 sayı uyumsuzluklarında SENİN dosyalarına düşenleri düzelt.
+
+## FAZ 5 — Son QA (Paz 18:00 → 20:00)
+Tüm site sayfaları çevrimdışı link/JSON/sayı taraması, oyun testi, `python -m pytest -q` tamamı, `docs/qa/PC7.md` "FINAL QA" bölümü. 20:00'den sonra sadece hata düzeltme.
+
+## Yazma alanın (tamamı)
+`pipeline/pc7/`, `risk/global/`, `data/risk_global/`, `data/global/{xian,taiyuan,queretaro,aguascalientes,kashmar}/`, `pipeline/subset/global_<bu şehirler>/`, `data/global/robustness.json`, `docs/story/global_risk.md`, `docs/story/engineering_risk.md`, `docs/story/media/pc7_*.png`, `docs/qa/PC7.md`, `status/PC7.md`. Tahran/Pekin/Cakarta PC11'in — dokunma.
+Liste biterse: ASLA BOŞ KALMA (`docs/CALISMA_HARITASI.md` sonu). "Bitti" deyip durma; status'a o an ne yaptığını yaz.
