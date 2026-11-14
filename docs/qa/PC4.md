@@ -298,3 +298,7 @@ Kapsam: `web/index.html` (`1–163`). Genel İngilizce tonu akıcı ve tutarlı 
   - `tools/bulletin.py` çalıştırılarak atlas.json'daki 11 bölgenin tamamı için güncel HTML bültenleri (`konya_plain.html`, `central_valley.html`, `jakarta.html`, `bangkok.html`, `mexico_city.html`, `karapinar.html`, `ho_chi_minh.html`, `tehran.html`, `isfahan.html`, `beijing.html`, `delta.html`) ve `index.html` (11 bültenlik liste) üretildi.
 - **Kalite Standartları ve Hata Ayıklama:**
   - `data/numbers_registry.json` içine eksik `"quality": "provisional"` alanı eklenerek `pipeline/pc7/validate_json.py` testinin 106 dosyanın tamamında 0 hata ile geçmesi sağlandı.
+
+### 27. Bilimsel Tutarlılık & Sayı Senkronu Bulguları (Paz 03:05 Ataması — Başkalarının Dosyaları)
+- `docs/story/global_atlas.md:32` (Sahip: **PC10**): `analysis/pc5/numbers_registry.py` çıktısı hâlâ eski Mexico City havza-içi referans değerini (`-4.4 cm`) raporluyor; güncel `data/global/mexico_city/summary.json` (volkanik kayaç ref.) **`-7.0 cm` LOS (`-5.8 cm/100d`)** ile güncellenmeli.
+- `docs/story/atlas_validation.md` (Sahip: **PC5**): Önceki 9–13 şehirlik tabloyu içeriyor; `docs/story/atlas_top5_check.md` (PC1) ve `data/global/atlas.json` (20 bölge, QC sonrası Top 5: Konya Plain, Mashhad, Central Valley, Eloy, Mexico City) ile senkronize edilmeli.

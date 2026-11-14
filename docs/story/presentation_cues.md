@@ -81,7 +81,7 @@
   1. Scroll smoothly through **`#who`** (*"One measurement, five kinds of users"*: Scientists, Water & canal managers, Educators, Decision-makers, Everyone) and **`#next`** (*"Looking ahead — What NISAR can do next"*).
   2. Stop cleanly on **`#how`** (*"Method & honesty — How we know"*) showing `.qlegend` (`PROVISIONAL` / `PRE-CALIBRATION BETA` / `PREVIEW`) and `.disclaimer`, hovering **`Science`** (`science.html`) and **`Data`** (`data.html`).
 - **Kerem Says:**
-  > Every dataset, GPS check, 40-minute classroom lesson, and test lives openly under an MIT licence for scientists, canal managers, educators, policymakers, and farming communities—ready to scale into 12-day global NISAR canal warnings and aquifer accounting. All NISAR science products used here are provisional, with calibration and validation performed by NASA–JPL and ISRO, not by our team—thank you, and we welcome your questions.
+  > Before trusting any global ranking, our automated time-series quality control caught our own pipeline errors—flagging a 12-centimetre single-step unwrapping jump in Semarang and noisy dates in Delhi, Beijing, and Bangkok as indicative only, keeping Konya Plain, Mashhad, Central Valley, Eloy, and Mexico City in the verified Top 5. Every dataset, GPS check, 40-minute classroom lesson, and test lives openly under an MIT licence for scientists, canal managers, educators, policymakers, and farming communities—ready to scale into 12-day global NISAR canal warnings and aquifer accounting. All NISAR science products used here are provisional, with calibration and validation performed by NASA–JPL and ISRO, not by our team—thank you, and we welcome your questions.
 - **Offline Fallback Cue (`Tab 5`):** `Slide 7` (`docs/story/slides.html`).
 
 ---
