@@ -1,16 +1,52 @@
 {
   "title": "Global Atlas Population and Area Exposure on Sinking Ground (108-day equivalent)",
-  "generated_utc": "2026-11-14T20:39:10Z",
+  "generated_utc": "2026-11-14T20:46:15Z",
   "source": "GHSL GHS-POP E2025 R2023A 3-arcsecond (~100 m, WGS84, European Commission JRC) intersected with provisional NISAR L2 GUNW cumulative LOS displacement scaled to 108 days, excluding pixels with |disp| < 2*sigma (data/global/detectability.json)",
   "quality": "provisional",
   "quality_note": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.",
   "notes": "karapinar is reported separately as a local subset inside konya_plain; totals exclude karapinar to prevent double-counting.",
   "totals_excluding_nested_karapinar": {
-    "people_lt_minus2cm": 7151872,
-    "people_lt_minus5cm": 1434355,
-    "area_km2_lt_minus5cm": 474.26
+    "people_lt_minus2cm": 7744238,
+    "people_lt_minus5cm": 1501493,
+    "area_km2_lt_minus5cm": 575.13
   },
   "cities": [
+    {
+      "id": "semarang",
+      "name": "Semarang",
+      "country": "Indonesia",
+      "people_lt_minus2cm": 592366,
+      "people_lt_minus5cm": 67138,
+      "area_km2_lt_minus5cm": 100.87,
+      "area_km2_lt_minus2cm": 506.53,
+      "bbox_population_ghsl": 3840570,
+      "two_sigma_threshold_cm": 0.742,
+      "two_sigma_source": "Cramer-Rao 2*sigma computed from pipeline/subset",
+      "days_measured": 108,
+      "normalized_window_days": 108,
+      "top_subsiding_areas": [
+        {
+          "lon": 110.2874,
+          "lat": -7.1577,
+          "cum_cm_los": -12.05,
+          "rate_cm_per_100d": -11.16
+        },
+        {
+          "lon": 110.6079,
+          "lat": -6.81,
+          "cum_cm_los": -7.02,
+          "rate_cm_per_100d": -6.5
+        },
+        {
+          "lon": 110.4004,
+          "lat": -7.1672,
+          "cum_cm_los": -6.2,
+          "rate_cm_per_100d": -5.74
+        }
+      ],
+      "source": "GHSL GHS-POP E2025 R2023A 3-arcsecond (~100 m, WGS84, European Commission JRC) intersected with provisional NISAR L2 GUNW cumulative LOS displacement scaled to 108 days, excluding pixels with |disp| < 2*sigma (data/global/detectability.json)",
+      "quality": "provisional"
+    },
     {
       "id": "konya_plain",
       "name": "Konya Plain",

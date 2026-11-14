@@ -1,4 +1,3 @@
 # PC8 durum
 
-- Durum: bitti (ATLAS FİNAL Maddeler 1–5 tamamlandı; 3 dakikalık yeni şehir/görev kontrol döngüsünde)
-- Tamamlandı: BUGFIX (B01–B14, B33, B34), ORTAK İŞLER (C01, C02, C04), ATLAS FİNAL (exposure_atlas.json, vital_signs.json, Bulletin v2.0, submission_form.md, pytest 83 passed)
+- Durum: sürekli döngüde — 14 bölge (semarang dahil) exposure_atlas, vital_signs, 14 Bulletin v2.0 ve submission_form.md güncellendi; sonraki adım: 3 dk sonra yeni şehir/görev kontrolü.

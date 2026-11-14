@@ -343,3 +343,6 @@
 - **Madde 5 (Doğrulama):**
   - `python -m pytest -q`: **`83 passed, 1 warning in 26.34s`**.
   - `docs/bulletins/*.html` (`14` HTML): **`0` kırık link**.
+- **SÜREKLİ Döngü (`semarang` eklendi, 14 bölge):**
+  - `data/global/atlas.json` içinde `semarang` (`-11.2 cm/100d`) tespit edilince `exposure_atlas.json` (`semarang`: `592,366` `< -2 cm`, `67,138` `< -5 cm`, `100.87 km²`, `2*sigma = 0.742 cm`), `vital_signs.json` (`cities_measured: 14`, `fastest: semarang -11.2 cm/100d`, `area_km2_lt_minus5cm: 575.13`, `people_on_sinking_ground: 1501493`), `docs/bulletins/semarang.html` + tüm `14` bülten ve `index.html`, `docs/story/exposure.md`, `docs/story/submission_form.md` yeniden üretildi.
+  - `python -m pytest analysis/pc8/test_bulletin.py -q`: `1 passed`.
