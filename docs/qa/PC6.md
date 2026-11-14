@@ -272,3 +272,10 @@ Komut: `python analysis/pc6/test_20_strategies.py --self-test`
 - `git pull`: `823cd0c` çekildi (`CALISMA_HARITASI.md` / `tasks/PC6.md` değişmedi; yeni `storage_loss.json`, `nisarpulse`, `web/index.html` kartları geldi).
 - **`python -m pytest -q`:** **70 passed**, 1 uyarı (`22.03 s`).
 - **`data/` JSON/GeoJSON Taraması:** **62/62** dosya geçerli, 0 `NaN`/`Infinity`, 0 boş nesne.
+
+## 13. ASLA BOŞ KALMA — Tur 5 (`20:28 TR`)
+- `git pull`: `61b558d` çekildi (`CALISMA_HARITASI.md` / `tasks/PC6.md` değişmedi).
+- **`analysis/pc6/test_20_strategies.py --self-test`:** **40/40 PASS** (`0 NaN/Infinity`).
+- **Tarayıcı Hata Ayıklaması (`1280×800`):**
+  - `/web/index.html`: **0 konsol hatası**, **0 kırık görsel** (`3/3` yüklü). Not (`PC3/PC4/PC7` için): yeni eklenen kartlardaki `HEAD /docs/story/engineering_risk.md` ve `HEAD /docs/story/technical_note.md` dosyalar henüz eklenmediği için `404` dönüyor (`storage_loss.md` ve `engine.md` `200 OK`).
+  - `/docs/story/slides.html`: **0 konsol hatası**, **0 kırık görsel**; yalnızca henüz eklenmemiş `HEAD /docs/story/technical_note.md` `404` dönüyor.
