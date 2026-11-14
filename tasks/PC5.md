@@ -74,3 +74,11 @@ b) Sitedeki (`web/*.html`, `docs/story/*.md`) her bilimsel sayıyı veri dosyala
 c) `literature_comparison.md` ve `sources.md` linklerini tekrar aç (HTTP 200); kırık olanı raporla.
 d) Yapacak şey kalmadıysa: yöntem metnini (Science sayfası `web/science.html`) bilimsel doğruluk açısından oku, düzeltme önerilerini `docs/qa/PC5.md`'ye yaz.
 Asla "görev bekleniyor" deme; status'a o an ne yaptığını yaz.
+
+---
+# 16:15 CHALLENGE UYUMU — B1 "farklı frekans, diğer sensör" (mevcut döngüden önce)
+**L-band (NISAR) vs C-band (Sentinel-1) çökme karşılaştırması** → `analysis/pc5/cross_sensor.py` + `docs/story/cross_sensor.md` + `docs/story/media/pc5_cross_sensor.png`.
+- Kaynak: NASA OPERA **DISP-S1** (Sentinel-1 yer değiştirme ürünü, Kuzey Amerika) — ASF'de arama (`asf_search`, shortName/dataset OPERA DISP-S1); Central Valley için 2026-06-28 → 2026-10-14 aralığına en yakın kümülatif değişim. Bu bilgisayarda büyük indirmeyi tek sen yap (PC3 artık indirmiyor); en fazla 1 dosya aynı anda, ham dosyayı kesince sil.
+- Ürün bulunamazsa/erişilemezse: Sentinel-1 kapsamasını ve neden yapılamadığını dürüstçe yaz; alternatif olarak koherens karşılaştırması (L-band'in tarım alanında koherensi C-band'den iyi koruması) literatürden kaynaklı anlat.
+- Çıktı: aynı noktalarda NISAR vs Sentinel-1 (r, RMSE, eğim), 3–4 cümle sade İngilizce: "two satellites, two radar frequencies, same subsidence".
+Yazma alanına eklendi: `pipeline/subset/opera_disp/`, `data/central_valley_s1/`.

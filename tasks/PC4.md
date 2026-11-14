@@ -97,3 +97,12 @@ Doğrulanmış kaynak. Jüri tek bir uydurma sayı yakalarsa tüm projenin Valid
 2. Aynı kuralları kendi dosyalarına uygula: `pitch.md`, `project_page.md`, `judge_faq.md`, `slides.html` (FAQ sitede birebir gösteriliyor — iç not/"Usage" blokları kaldır, sadece soru-cevap kalsın).
 3. `slides.html`: PC6'nın `docs/story/media/` gerçek veri görselleri geldikçe slaytlara yerleştir; AI görseli kullanma; her görselde kaynak satırı.
 4. `video_shotlist.md`: yeni site bölümlerine (Story 1–6, Simulator, Science) göre güncelle.
+
+---
+# 16:15 CHALLENGE UYUMU (docs/CHALLENGE_UYUM.md) — acil sunum kartlarından SONRA, sırayla
+1. **A5** `docs/story/audiences.md`: 5 kitle (scientists, water & canal managers, educators, decision-makers, public) için her biri 2 cümle: ne bulur, ne yapabilir. Somut ve kaynaklı.
+2. **A13** `docs/story/future_applications.md`: NISAR'ın gelecekteki uygulamaları — kanal/set erken uyarısı, obruk izleme, yeraltı suyu yönetimi (California SGMA gibi), tam yıllık seriyle kalıcı kaybın izlenmesi, küresel şehirler. Kaynak: NISAR Applications White Papers (https://nisar.jpl.nasa.gov/applications/societal-benefit/), Handbook §2.4. 6–8 madde, sade.
+3. **A7/B6** `docs/story/team_story.md`: "Why Konya matters to us" taslağı (Ankara'daki ekip, Konya Ovası'nın Türkiye tarımındaki yeri, obrukların haberlerde olması — kaynaklı). En üste: "TASLAK — ekip kendi cümleleriyle düzeltecek". Uydurma kişisel anı YAZMA.
+4. **A5** `docs/story/lesson_plan.md`: eğitimciler için 40 dk ders planı (lise): hedefler, simülatörle etkinlik, 5 soru, cevap anahtarı.
+5. **C** `sources.md` + "Learn more" listesi: challenge Resources sekmesindeki bağlantıların hepsi (NISAR Data User Guide, Intro to SAR, ARSET, NISAR StoryMaps, Applications White Papers, UAVSAR Postcards, Earthdata Search, Vertex) — her biri 1 cümle açıklama, linkler açılarak doğrulanmış.
+6. `project_page.md` ve `pitch.md`'yi challenge metnindeki anahtar ifadelere göre hizala: "interactive application", "track and visualize surface change", "actionable insights", "patterns and rhythms", "physical drivers", "future applications".

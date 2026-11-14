@@ -14,3 +14,5 @@ PC3'ün `analysis/*.py`, `analysis/decomp/*` dosyalarını ÇALIŞTIR, DEĞİŞT
 
 ## Yapma listesi
 Provisional ve beta'yı etiketsiz karıştırma (sadece `*_fullyear` klasöründe, `mixed`) · PC3 dosyalarını değiştirme · sayı uydurma · `git add -A`.
+
+> **16:15 CHALLENGE UYUMU (A6 "patterns and rhythms at different time steps"):** fullyear.md'de bu ifadeyi açıkça karşıla: aylık adımlarla kış yükselişi / yaz çöküşü, 12 günlük ve aylık zaman adımlarında iki grafik. Mümkünse Karapınar tam yılı (PC2 hazırlarsa) için de aynı.

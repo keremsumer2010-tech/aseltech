@@ -26,3 +26,11 @@ M3hmeT1888 · Antigravity · klasör `aseltech-gemini3` · commit öneki `[PC8]`
 4. **Sürekli:** her 30 dk `git pull`; PC2'nin yeni UK alt kümeleri gelirse yeniden çalıştır; `docs/qa/*.md` içinde uk_clay hakkındaki bulguları düzelt. Bitince QUEUE'da atanmamış iş veya PC1'e status'ta "boştayım" yaz — ama önce kendi çıktını test et ve iyileştir.
 
 Kurallar: `git add data/uk_clay/ analysis/pc8/ docs/qa/PC8.md status/PC8.md`; `git add -A` yasak; git hatasında silme yok, BLOCKED yaz.
+
+---
+# 16:15 CHALLENGE UYUMU — B3 "nüfus ve bitki örtüsü/ürün türü" (A/B metin işlerinden sonra)
+**Kim ve ne risk altında?** → `analysis/pc8/exposure.py` + `data/central_valley/exposure.json` + `data/karapinar/exposure.json` + `docs/story/exposure.md`:
+- Nüfus: açık veri WorldPop (100 m, girişsiz) veya NASA SEDAC GPWv4 (Earthdata ister — bu durumda WorldPop kullan). Çökme > 2 cm ve > 5 cm alanlarda yaşayan kişi sayısı (tahmin; yöntem ve yıl yazılı).
+- Ürün türü: Central Valley için USDA Cropland Data Layer (CropScape, açık), Türkiye için ESA WorldCover 10 m (açık). Çöken alanların hangi ürün/arazi türünde olduğu (ilk 5, km²).
+- Küçük indirme (bölge kesiti), ham dosyayı commit etme, < 20 MB. Kaynak + lisans satırı. 3–4 cümle sade İngilizce.
+Yazma alanına eklendi: `data/*/exposure.json`, `docs/story/exposure.md`, `analysis/pc8/`.

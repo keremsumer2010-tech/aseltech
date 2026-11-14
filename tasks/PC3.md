@@ -106,3 +106,14 @@ Kalıcı/geri dönen ayrımı orada (trend + mevsimsel genlik) → `decomp.json`
 2. Q22 dikey/doğu-batı.
 3. PC2 Q07 npz'leri geldikçe: `data/central_valley_fullyear/` (mixed) kümülatif + Q08 kalıcı/geri dönen (`analysis/decomp/run_decomp.py`). beta ve provisional ayrı etiketli.
 4. PC2 path 172 gelince Karapınar çapraz kontrolü (Q21'in Konya versiyonu).
+
+---
+# 16:15 CHALLENGE UYUMU (docs/CHALLENGE_UYUM.md) — site için yeni işler (sırayla)
+1. **A3 Explorer/dashboard sayfası** → `web/explorer.html`: bölge seç (Central Valley, Karapınar, Konya Ovası, Delta, UK, küresel şehirler — `data/catalog.json`'dan), katman seç (çökme, belirsizlik, risk, GCOV HV), tarih kaydırıcı, haritaya tıkla → o noktanın zaman serisi + o tarihteki değer. Menüye "Explore" ekle.
+2. **A5 "Who can use this"** bölümü (ana sayfa, simülatörden önce): 5 kart — Scientists (veri + yöntem indir), Water & canal managers (risk listesi), Educators (simülatör + ders planı `docs/story/lesson_plan.md`), Decision-makers (anahtar bulgular), Public (hikâye). Metinler PC4'ten.
+3. **A13 "What NISAR can do next"** bölümü (sona doğru): PC4'ün `docs/story/future_applications.md` dosyasından.
+4. **A7/B6 "Why Konya matters to us"** kutusu (Konya bölümünde): PC4'ün `docs/story/team_story.md` taslağından (ekip onaylayınca).
+5. **A12 polarizasyon paneli**: PC7'nin `data/fens/crops.json` ve `docs/story/polarization.md` sonuçlarıyla UK bölümüne "HH vs HV" küçük grafik + 1 cümle (pürüzlülük/dielektrik).
+6. **B1/B3 kutuları**: PC5'in Sentinel-1 (C-band) karşılaştırması ve PC8'in nüfus/ürün maruziyeti sonuçlarını ilgili bölümlere bağla.
+7. **C. Learn more**: Science sayfası sonuna challenge Resources bağlantıları (PC4 listesi).
+8. Yeni veriler: PC2 Delta/Konya Ovası, PC9 tam yıl, PC10 küresel şehirler geldikçe bağla.

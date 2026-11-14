@@ -115,3 +115,5 @@ d) Yapacak bir şey kalmadıysa: oyunu 20 farklı stratejiyle otomatik test et, 
 Asla "görev bekleniyor" diye durma; status'a o an ne yaptığını yaz.
 
 > **15:35 PC1 notu (kullanıcı geri bildirimi):** Simülatör "AI yapmış gibi" ve anlaşılmaz bulundu. Madde 1 (7 düzeltme) + madde 5 (nasıl oynanır) EN ÖNCE. Ölçüt: hiç bilmeyen bir jüri üyesi 20 saniyede ne yapacağını anlamalı. Ekranda en fazla 3 büyük gösterge, tek ana düğme, sade cümleler; teknik ayrıntı "Model details" altında. Bitince `docs/game_v3.png` (PC9 sitede kullanacak).
+
+> **16:15 CHALLENGE UYUMU (A5 eğitimciler):** Oyuna "Classroom mode": 3 hazır senaryo (normal yıl / kuraklık / sürdürülebilir pompalama) tek tıkla, sonuçta 3 tartışma sorusu. PC4'ün `docs/story/lesson_plan.md` dosyasıyla uyumlu. Demo videosunda sahne başlıkları challenge dilini kullansın ("track and visualize surface change", "patterns and rhythms").

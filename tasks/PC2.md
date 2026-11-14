@@ -113,3 +113,5 @@ Aynı bilgisayarda PC10 da indiriyor: aynı anda en fazla 1 dosya, ham dosyayı 
 4. **Karapınar sebep verisi** — SME2 toprak nemi + GCOV HV (provisional tarihler) → `data/karapinar/drivers.json` (Central Valley'deki biçimin aynısı).
 5. **Sürekli:** her 30 dk `git pull`; `docs/qa/*.md` içinde veri dosyaların hakkındaki bulguları düzelt; boş kalırsa Delta için ikinci path ile çapraz kontrol.
 Her dosyada push; status/PC2.md'yi `[PC2]` önekli commit'lerle güncelle.
+
+> **16:15 CHALLENGE UYUMU:** Delta ve Konya Ovası metinlerinde "physical drivers" (A11) ve "actionable insight" (A5) birer cümleyle açık olsun: kim ne yapmalı (set bakımı önceliği, kuyu izni/izleme).
