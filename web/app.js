@@ -203,7 +203,7 @@ function cvControls(){
   if (!D.cvMeta) return;
   const m = D.cvMeta, s = document.getElementById('slider'), lbl = document.getElementById('dateLbl'), btn = document.getElementById('cvPlay');
   s.max = m.dates.length - 1; s.value = m.dates.length - 1; lbl.textContent = fmtDate(m.dates.at(-1));
-  const go = i => { cvIdx = i; s.value = i; lbl.textContent = fmtDate(m.dates[i]); const src = map?.getSource('cv'); if (src){ src.updateImage({url: ROOT + `data/central_valley/${dispFolder()}/${m.dates[i]}.png`, coordinates: corners(m.bbox)}); const nxt = new Image(); nxt.src = ROOT + `data/central_valley/${dispFolder()}/${m.dates[(i + 1) % m.dates.length]}.png`; } };
+  const go = i => { cvIdx = i; s.value = i; lbl.textContent = fmtDate(m.dates[i]); const src = map?.getSource('cv'); if (src){ src.updateImage({url: ROOT + `data/central_valley/${dispFolder()}/${m.dates[i]}.png`, coordinates: corners(m.bbox)}); const nxt = new Image(); nxt.src = ROOT + `data/central_valley/${dispFolder()}/${m.dates[(i + 1) % m.dates.length]}.png`; } if (chartP) chartP.update('none'); };
   const modeBtn = document.getElementById('dispModeBtn');
   if (modeBtn && !modeBtn.dataset.bound){
     modeBtn.dataset.bound = '1';
@@ -232,7 +232,8 @@ function pickPoint(id){
       ? `<b>${p.name}</b>: small change, close to the noise (${minus(v)} cm) · ${span}.`
       : `<b>${p.name}</b> ${v < 0 ? 'sank' : 'rose'} about <b>${Math.abs(v).toFixed(1)} cm</b> as seen by the satellite · ${span} — about ${human(v)}.`);
   const data = {labels: p.dates.map(fmtShort), datasets: [{label: 'Ground motion seen by NISAR (cm)', data: p.disp_cm, borderColor: '#ff5a47', backgroundColor: 'rgba(255,90,71,.12)', fill: true, tension: .25, pointRadius: 3}]};
-  if (chartP){ chartP.data = data; chartP.update(); } else chartP = new Chart(document.getElementById('pointChart'), {type: 'line', data, options: chartOpts('cm')});
+  const cvLine = {id: 'cvDateLine', afterDatasetsDraw(ch){ const x = ch.scales.x?.getPixelForValue(cvIdx); if (x == null || !ch.chartArea) return; const {ctx, chartArea: {top, bottom}} = ch; ctx.save(); ctx.strokeStyle = '#0b3d91'; ctx.lineWidth = 1.5; ctx.setLineDash([4, 3]); ctx.beginPath(); ctx.moveTo(x, top); ctx.lineTo(x, bottom); ctx.stroke(); ctx.restore(); }};
+  if (chartP){ chartP.data = data; chartP.update(); } else chartP = new Chart(document.getElementById('pointChart'), {type: 'line', data, options: chartOpts('cm'), plugins: [cvLine]});
 }
 
 /* ---------- Chapter 4: GNSS ---------- */
