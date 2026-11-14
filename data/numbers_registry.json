@@ -1,6 +1,6 @@
 {
   "quality": "provisional",
-  "generated_at": "2026-11-14T20:30:32Z",
+  "generated_at": "2026-11-14T20:40:18Z",
   "quality_notice": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.",
   "summary": {
     "total": 29,
@@ -21,6 +21,7 @@
       "verdict": "approved",
       "used_in": [
         "web/index.html:7",
+        "docs/story/atlas_feature.md:10",
         "docs/story/game_model.md:69",
         "docs/story/game_model.md:79",
         "docs/story/judge_faq.md:5",
@@ -72,7 +73,7 @@
         "docs/story/slides.html:313",
         "docs/story/slides.html:319",
         "docs/story/slides.html:466",
-        "docs/story/slides.html:503",
+        "docs/story/slides.html:504",
         "docs/story/technical_note.html:215"
       ],
       "note": "Reference range: [-7.8, -4.7] cm."
@@ -87,6 +88,7 @@
       "quality": "provisional",
       "verdict": "approved",
       "used_in": [
+        "docs/story/atlas_feature.md:10",
         "docs/story/game_model.md:69",
         "docs/story/game_model.md:78",
         "docs/story/game_sensitivity.md:30",
@@ -225,6 +227,8 @@
       "quality": "provisional",
       "verdict": "approved",
       "used_in": [
+        "web/atlas.js:107",
+        "docs/story/atlas_feature.md:10",
         "docs/story/atlas_validation.md:22",
         "docs/story/audiences.md:19",
         "docs/story/judge_faq.md:23",
@@ -512,7 +516,6 @@
         "docs/story/slides.html:248",
         "docs/story/slides.html:393",
         "docs/story/slides.html:399",
-        "docs/story/slides.html:506",
         "docs/story/technical_note.html:215"
       ],
       "note": ""
@@ -616,6 +619,7 @@
       "quality": "provisional",
       "verdict": "approved",
       "used_in": [
+        "docs/story/atlas_feature.md:12",
         "docs/story/judge_faq.md:53",
         "docs/story/judge_faq.md:68",
         "docs/story/konya_plain.md:5",
@@ -648,8 +652,10 @@
       "quality": "provisional",
       "verdict": "approved",
       "used_in": [
+        "docs/story/atlas_feature.md:12",
         "docs/story/press_summary.md:11",
-        "docs/story/technical_note.md:81"
+        "docs/story/technical_note.md:81",
+        "docs/story/slides.html:503"
       ],
       "note": "Confidence=medium; rate_cm_per_100d=-7.2."
     },
@@ -684,7 +690,7 @@
         "docs/story/technical_note.md:81",
         "docs/story/slides.html:319",
         "docs/story/slides.html:429",
-        "docs/story/slides.html:504",
+        "docs/story/slides.html:505",
         "docs/story/technical_note.html:258"
       ],
       "note": "Confidence=low; rate_cm_per_100d=-6.3."
@@ -715,6 +721,7 @@
       "quality": "provisional",
       "verdict": "approved",
       "used_in": [
+        "docs/story/atlas_feature.md:12",
         "docs/story/cross_sensor.md:40",
         "docs/story/fullyear.md:33",
         "docs/story/global_showcase.md:27",
@@ -741,7 +748,7 @@
         "docs/story/technical_note.md:77",
         "docs/story/technical_note.md:81",
         "docs/story/slides.html:429",
-        "docs/story/slides.html:505",
+        "docs/story/slides.html:506",
         "docs/story/technical_note.html:281"
       ],
       "note": "Confidence=medium; rate_cm_per_100d=-5.8."
@@ -756,6 +763,7 @@
       "quality": "provisional",
       "verdict": "approved",
       "used_in": [
+        "docs/story/atlas_feature.md:12",
         "docs/story/fullyear.md:16",
         "docs/story/fullyear.md:24",
         "docs/story/global_showcase.md:27",
@@ -816,6 +824,8 @@
       "quality": "provisional",
       "verdict": "preliminary",
       "used_in": [
+        "web/atlas.js:108",
+        "web/atlas.js:109",
         "docs/story/judge_faq.md:53",
         "docs/story/judge_faq.md:68",
         "docs/story/press_summary.md:11",
