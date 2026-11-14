@@ -40,6 +40,8 @@ def build_parser() -> argparse.ArgumentParser:
     run_p.add_argument("--data-dir", type=Path, default=None, help="Output data dir (default: data/<name>).")
     run_p.add_argument("--title", default=None, help="Optional human title for catalog.json.")
     run_p.add_argument("--no-catalog", action="store_true", help="Skip updating data/catalog.json.")
+    run_p.add_argument("--qc", dest="qc", action="store_true", default=True, help="Enable pixel-level QC (default).")
+    run_p.add_argument("--no-qc", dest="qc", action="store_false", help="Disable pixel-level QC.")
     return parser
 
 
@@ -152,7 +154,7 @@ def main(argv: list[str] | None = None) -> int:
     try:
         fetch_subsets(args.name, bbox, chain, resume=args.resume)
         data_dir, meta, summary = run_cumulative(
-            args.name, bbox, data_dir=target_data_dir, quality_mode=args.quality, ref_lonlat=ref_lonlat
+            args.name, bbox, data_dir=target_data_dir, quality_mode=args.quality, ref_lonlat=ref_lonlat, qc=args.qc
         )
         write_coverage_report(
             data_dir / "coverage.json", args.name, bbox, args.quality, rows, chain, gaps, total_mb

@@ -110,6 +110,7 @@ def run_cumulative(
     data_dir: Path | None = None,
     quality_mode: str = "provisional",
     ref_lonlat: tuple[float, float] | None = None,
+    qc: bool = True,
 ) -> tuple[Path, dict, dict]:
     """Register site bbox at runtime, invoke analysis/cumulative.py, and add quality metrics."""
     analysis_dir = str(ROOT / "analysis")
@@ -126,6 +127,8 @@ def run_cumulative(
         sys.argv = ["cumulative.py", name, "--data-dir", str(out_dir)]
         if quality_mode == "mixed":
             sys.argv.append("--mixed")
+        if not qc:
+            sys.argv.append("--no-qc")
         cumulative.main()
     finally:
         sys.argv = argv_backup

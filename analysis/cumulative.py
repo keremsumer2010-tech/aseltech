@@ -201,6 +201,7 @@ def main():
     ap.add_argument("--deramp", type=int, default=1, choices=[0, 1, 2],
                     help="per-pair ramp removal: 0 none, 1 plane (default), 2 quadratic")
     ap.add_argument("--no-ion", dest="ion", action="store_false", help="do not subtract the product ionosphere screen")
+    ap.add_argument("--no-qc", dest="qc", action="store_false", help="disable pixel-level QC before summation")
     a = ap.parse_args()
     site, bbox = a.site, BBOX[a.site]
     QUALITY = "mixed" if a.mixed else "provisional"
@@ -266,6 +267,17 @@ def main():
     print(f"reference row={r} col={c} lon={lon_r:.4f} lat={lat_r:.4f} mean_coh={mcoh:.2f}")
 
     dates = [used[0][0]] + [p[1] for p in used]
+    pair_cm = [reference(cm, (r, c), a.ref_radius) for cm in pair_cm]
+    qc_report = None
+    if a.qc:
+        if str(ROOT) not in sys.path:
+            sys.path.insert(0, str(ROOT))
+        from pipeline.nisarpulse.qc import qc_stack, write_qc_report  # noqa: E402
+        cc_list = [d["conncomp"] if "conncomp" in d and d["conncomp"].size else None for _, _, _, d in used]
+        pair_cm, dates, qc_report = qc_stack(pair_cm, dates, cc_list)
+        valid_all = np.logical_and.reduce([np.isfinite(cm) for cm in pair_cm])
+        print(f"qc: corrected={len(qc_report['corrected_pairs'])}, dropped={len(qc_report['dropped_dates'])}, affected={qc_report['affected_pixel_pct']}%")
+
     cum = [np.zeros_like(pair_cm[0])]
     cum[0][~valid_all] = np.nan
     n_out = 0
@@ -274,7 +286,8 @@ def main():
         bad = np.abs(cm) > PAIR_OUTLIER_CM
         n_out += int(bad.sum())
         cm[bad] = np.nan
-        stats[i]["p2_p50_p98_cm"] = [round(float(v), 2) for v in np.nanpercentile(cm, [2, 50, 98])]
+        if i < len(stats):
+            stats[i]["p2_p50_p98_cm"] = [round(float(v), 2) for v in np.nanpercentile(cm, [2, 50, 98])]
         cum.append(cum[-1] + cm)
     for k in range(len(cum)):
         cum[k][~valid_all] = np.nan
@@ -326,6 +339,10 @@ def main():
     # ---- outputs -------------------------------------------------------------------------------
     ddir = Path(a.data_dir) if a.data_dir else ROOT / "data" / tag
     (ddir / "disp").mkdir(parents=True, exist_ok=True)
+    if qc_report is not None:
+        write_qc_report(ddir, qc_report, quality=QUALITY)
+        for dd in qc_report.get("dropped_dates", []):
+            (ddir / "disp" / f"{dd['date']}.png").unlink(missing_ok=True)
     for dt, g in zip(dates, cum):
         save_png(to_latlon_grid(g, x, y, epsg, bbox), ddir / "disp" / f"{dt}.png", vmin, vmax)
 

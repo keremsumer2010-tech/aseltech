@@ -1,12 +1,12 @@
 {
- "max_subsidence_cm": -4.3,
+ "max_subsidence_cm": -22.3,
  "max_subsidence_range_cm": [
-  -13.5,
-  -1.5
+  -22.3,
+  -1.6
  ],
  "range_cm": [
-  -13.5,
-  -1.5
+  -22.3,
+  -1.6
  ],
  "n_references": 3,
  "reference_sensitivity": {
@@ -14,7 +14,7 @@
    "lon": 76.87093,
    "lat": 28.75141
   },
-  "max_subsidence_cm_at_same_location": -13.5
+  "max_subsidence_cm_at_same_location": -18.3
  },
  "reference_sensitivity_all": [
   {
@@ -22,21 +22,21 @@
     "lon": 76.87093,
     "lat": 28.75141
    },
-   "max_subsidence_cm_at_same_location": -13.5
+   "max_subsidence_cm_at_same_location": -18.3
   },
   {
    "alt_reference": {
     "lon": 77.32624,
     "lat": 28.33725
    },
-   "max_subsidence_cm_at_same_location": -1.5
+   "max_subsidence_cm_at_same_location": -1.6
   }
  ],
  "period": [
   "2026-06-21",
   "2026-10-19"
  ],
- "rate_cm_per_yr_estimate": -13.2,
+ "rate_cm_per_yr_estimate": -67.9,
  "reference_point": {
   "lon": 77.21057,
   "lat": 28.65967
@@ -45,19 +45,19 @@
  "quality_note": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.",
  "component": "LOS",
  "max_subsidence_location": {
-  "lon": 77.1718,
-  "lat": 28.52531
+  "lon": 77.27224,
+  "lat": 28.74887
  },
- "max_subsidence_vertical_cm_estimate": -5.4,
- "incidence_deg_at_max": 37.2,
+ "max_subsidence_vertical_cm_estimate": -28.1,
+ "incidence_deg_at_max": 37.4,
  "n_pairs": 8,
  "method_note": "Headline value = most negative median of ~1 km blocks (13x13 px, >= 50 % valid pixels, within-block std <= 2 cm) of the cumulative LOS map. Rate = linear extrapolation of 120 days (2026-06-21 to 2026-10-19, summer season) to one year: an ESTIMATE that likely overstates the annual net rate because part of summer subsidence recovers in winter. Vertical value assumes purely vertical motion (LOS / cos(incidence)). range_cm = spread of the headline value when the whole chain is re-referenced to up to two other stable windows >= 30 km away.",
- "p2_cm": -4.45,
- "rate_cm_per_100d": -3.58,
- "valid_fraction": 0.053,
- "confidence": "low",
+ "p2_cm": -6.77,
+ "rate_cm_per_100d": -18.58,
+ "valid_fraction": 0.283,
+ "confidence": "medium",
  "ref_range_cm": [
-  -13.5,
-  -1.5
+  -22.3,
+  -1.6
  ]
 }
