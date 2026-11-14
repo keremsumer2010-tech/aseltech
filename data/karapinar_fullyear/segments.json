@@ -1,0 +1,37 @@
+{
+  "site": "karapinar_fullyear",
+  "path": 7,
+  "frame": 69,
+  "quality": "mixed",
+  "asf_gap": {
+    "start": "2026-01-09",
+    "end": "2026-06-26",
+    "note": "No NISAR L2 GUNW granules exist in ASF archive over Karapinar during 2026-01-09 to 2026-06-26."
+  },
+  "segments": [
+    {
+      "name": "winter_beta_precal",
+      "quality": "beta-precal",
+      "period": ["2025-10-17", "2026-01-09"],
+      "days": 84,
+      "n_pairs": 6,
+      "max_subsidence_cm": -4.7,
+      "range_cm": [-5.5, -4.7],
+      "max_subsidence_vertical_cm_estimate": -6.4,
+      "data_dir": "data/karapinar_fullyear",
+      "note": "Pre-calibration BETA products (CRID X05009/X05010); treat amplitudes with extra caution."
+    },
+    {
+      "name": "summer_provisional",
+      "quality": "provisional",
+      "period": ["2026-06-26", "2026-10-12"],
+      "days": 108,
+      "n_pairs": 8,
+      "max_subsidence_cm": -5.9,
+      "range_cm": null,
+      "max_subsidence_vertical_cm_estimate": -8.0,
+      "data_dir": "data/karapinar",
+      "note": "Provisional products (CRID P05023); subset copies also stored in pipeline/subset/karapinar_fullyear/."
+    }
+  ]
+}

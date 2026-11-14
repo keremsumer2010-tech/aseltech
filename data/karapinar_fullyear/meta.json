@@ -1,0 +1,39 @@
+{
+  "site": "karapinar_fullyear",
+  "bbox": [
+    33.3,
+    37.6,
+    33.8,
+    37.9
+  ],
+  "dates": [
+    "2025-10-17",
+    "2025-10-29",
+    "2025-11-22",
+    "2025-12-04",
+    "2025-12-16",
+    "2025-12-28",
+    "2026-01-09"
+  ],
+  "units": "cm",
+  "vmin": -5.0,
+  "vmax": 5.0,
+  "component": "LOS (line of sight); negative = away from satellite = subsidence",
+  "colormap": "RdBu (red = subsidence, blue = uplift/toward satellite)",
+  "source": "NISAR L2 GUNW (PROVISIONAL, CRID P05023) via ASF DAAC, track 7 descending frame 69; https://nisar-docs.asf.alaska.edu/gunw",
+  "granules": [
+    "NISAR_L2_PR_GUNW_003_007_D_069_004_2000_SH_20251017T164008_20251017T164043_20251029T164008_20251029T164043_X05009_N_F_J_001",
+    "NISAR_L2_PR_GUNW_004_007_D_069_006_2000_SH_20251029T164008_20251029T164043_20251122T164009_20251122T164044_X05010_N_F_J_001",
+    "NISAR_L2_PR_GUNW_006_007_D_069_007_2000_SH_20251122T164009_20251122T164044_20251204T164010_20251204T164044_X05010_N_F_J_001",
+    "NISAR_L2_PR_GUNW_007_007_D_069_008_2000_SH_20251204T164010_20251204T164044_20251216T164010_20251216T164045_X05010_N_F_J_001",
+    "NISAR_L2_PR_GUNW_008_007_D_069_009_2000_SH_20251216T164010_20251216T164045_20251228T164011_20251228T164046_X05010_N_F_J_001",
+    "NISAR_L2_PR_GUNW_009_007_D_069_010_2000_SH_20251228T164011_20251228T164046_20260109T164011_20260109T164046_X05010_N_F_J_001"
+  ],
+  "notes": "Cumulative LOS displacement relative to 2025-10-17, sum of 6 consecutive pairs (2025-10-17_2025-10-29, 2025-10-29_2025-11-22, 2025-11-22_2025-12-04, 2025-12-04_2025-12-16, 2025-12-16_2025-12-28, 2025-12-28_2026-01-09). Phase to cm with -lambda/(4*pi), lambda from each file's centerFrequency. Masks: coherence >= 0.3, connectedComponents != 0, isolated patches < 200 px (1.3 km2) removed (unwrapping-error guard), pixels deviating > lambda/4 (half a phase cycle) from their 720 m tile median removed, |pair| > 15.0 cm removed; pixel shown only if valid in every pair. All pairs referenced to the same window at 33.7271E 37.7626N. The ionosphere phase screen shipped in each GUNW was subtracted. A best-fit plane was removed from each pair (long-wavelength atmospheric residual; this can also remove part of any valley-wide tilt). Troposphere and solid-earth-tide layers were NOT applied; residual atmospheric noise of a few cm per pair is expected. chain gap 2026-01-09 -> 2026-06-26: stopped at 2026-01-09",
+  "reference_point": {
+    "lon": 33.72706,
+    "lat": 37.76256
+  },
+  "quality": "mixed",
+  "quality_note": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team. This series MIXES provisional products with pre-calibration BETA products (dates before 2026-06-17); treat amplitudes before that date with extra caution."
+}
