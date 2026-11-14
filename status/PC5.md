@@ -1,8 +1,18 @@
 # PC5 Durum Raporu
 
-- **Durum:** çalışıyor — 15:30 paketi Görev 4 (`drivers_analysis.md` + `pc5_drivers.png`) tamamlandı, Görev 5 (`Q08` bağımsız kontrol) ve `SONSUZ DÖNGÜ` Tur 1 başlıyor
+- **Durum:** çalışıyor — 15:30 paketi Görev 1–5 ve `SONSUZ DÖNGÜ` Tur 1 tamamlandı, 30 dk periyodik QA döngüsü devrede
 - **Kimlik:** M3hmeT1888 · Antigravity (Gemini) · PC5
-- **Güncelleme:** 2026-11-14 15:40 TR
+- **Güncelleme:** 2026-11-14 15:44 TR
+
+## 15:30 Paketi Görev 5 & `SONSUZ DÖNGÜ` Tur 1 — Bağımsız Kontrol ve QA Denetimi (`docs/qa/PC5.md`)
+- `Q08` tam yıl (`data/central_valley_fullyear/`) henüz üretilmemiş; ancak `pipeline/subset/central_valley_beta/` içinde `15` adet `beta-precal` `.npz` çifti (`2025-11-24 → 2026-05-23`) indiği ve provisional zincirle (`2026-06-28`) arada **36 günlük boşluk** olduğu tespit edilip `docs/qa/PC5.md` §4'e işlendi. Yeni `central_valley_p114_cum.npz` (`vertical.json`) ve `uk_clay/` (`9` çift, `below_detection`, `3.62 cm` eşik) doğrulandı.
+- `SONSUZ DÖNGÜ` Tur 1 (`a–d`):
+  - `a)` `analysis/out/{central_valley,karapinar}_cum.npz` sabit, `uncertainty` + `area_stats.json` güncel.
+  - `b)` `web/index.html` tüm sayılarla tutarlı; `web/science.html` içinde 3 tutarsızlık (`-6.2..-7.8 cm` yerine `-4.7..-7.8 cm`, `12-day` yerine `12–24 day`, `SME2 (in progress)`) ve `web/data.html` eksik indirme bağlantıları `docs/qa/PC5.md` §5'te listelendi.
+  - `c)` `literature_comparison.md` + `sources.md` içindeki **29 / 29** benzersiz URL HTTP `200 OK`.
+  - `d)` `web/science.html` için 4 bilimsel yöntem geliştirme önerisi eklendi.
+- `C:\Users\celik\AppData\Local\Programs\Python\Python312\python.exe -m pytest analysis/pc5 -q` → `19 passed`.
+- **AI:** Gemini → `docs/qa/PC5.md` §4–§5
 
 ## 15:30 Paketi Görev 4 — Hidro-Tarımsal Sürücü ve Gecikmeli Korelasyon Analizi (`drivers_analysis.md`, `pc5_drivers.png`)
 - `analysis/pc5/drivers_analysis.py` ve `analysis/pc5/test_drivers_analysis.py` ile `data/central_valley/drivers.json` (`2026-06-28 – 2026-10-14`, `N = 8` epok) üzerinde `lag 0` (`n=8`), `lag 1` (`12–24 g`, `n=7`) ve `lag 2` (`24–36 g`, `n=6`) Pearson `r`, Spearman `rho`, Fisher-`z` %95 GA, Student-`t` `p` ve tüm `n!` permütasyonlar üzerinden kesin permütasyon `p` değerleri hesaplandı.

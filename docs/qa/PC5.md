@@ -136,3 +136,40 @@ PC2 **Q07** kapsamında tam yıl Central Valley zincirini (`2025-11-24 → 2026-
 ### 3.3 Bilinen Açıklar ve Geri Dönüş (Rollback) Notları
 - `analysis/decomp/run_decomp.py` içinde `valid < 100` veya zaman aralığı `< 0.75 yıl` kalırsa script otomatik olarak `status: "insufficient_data"` yazar ve PNG üretmez — site bozulmaz.
 - `game/model.js` kalibrasyon verisi tam yıl gelirse yalnız `data/central_valley/summary.json` (108-günlük yaz hedefi) ile uyumlu olduğu için oyun modeli `k_cal = 0.6232` katsayısı aynı yaz penceresi hedefine bağlı kalmaya devam eder; yıllık net oran oyunu etkilemek üzere değiştirilecekse `game_sensitivity.py` yeniden çalıştırılmalıdır.
+
+---
+
+## 4. 15:30 Paketi Görev 5 — `Q08` Tam Yıl Çıktısı ve Yeni Veri Bağımsız Kontrolü
+
+- **Denetim zamanı:** 2026-11-14 15:43 TR (`git pull` sonrası `main` durumu)
+- **`data/central_valley_fullyear/` durumu:** **Henüz mevcut değil** (tam yıl ayrıştırma çıktısı henüz üretilmedi).
+- **`pipeline/subset/central_valley_beta/` incelemesi (YENİ):** **`15`** adet `beta-precal` `.npz` çifti (`2025-11-24_2025-12-06.npz` → `2026-05-11_2026-05-23.npz`, ızgara `(1473, 1438)`, beklenen 15 anahtarlı şema tam) repoya inmiş durumda.
+- **KRİTİK KÖPRÜ BOŞLUĞU UYARISI (PC2/PC3 için):** `central_valley_beta` zinciri **`2026-05-23`** tarihinde biterken provisional `pipeline/subset/central_valley/` zinciri **`2026-06-28`** tarihinde başlıyor; arada **36 günlük boşluk (`2026-05-23 → 2026-06-28`, üç 12-günlük çift: `05-23..06-04`, `06-04..06-16`, `06-16..06-28`)** var. `analysis/cumulative.py` boşluklu zinciri birleştirmeyeceği için tam yıl birleştirmede bu ara çiftlerin tamamlanması veya `analysis/decomp/decompose.py` için iki parçalı referans hizalaması gerekir.
+- **Yeni eklenen diğer veri setleri bağımsız kontrolü:**
+  - `analysis/out/central_valley_p114_cum.npz`: Track 114 alçalan yörünge (`2026-06-22 → 2026-10-20`, 9 tarih, `1,137,804 / 2,118,174 = %53.7` geçerli piksel, `min = -28.81 cm`, `max = +14.65 cm`) ve `data/central_valley/vertical.json` (`p2 = -5.98 cm`, `p50 = -1.25 cm`, `p98 = +2.35 cm` dikey bileşen).
+  - `pipeline/subset/uk_clay/*.npz` (`9` çift, `2026-06-21 → 2026-10-19`, `(630, 679)`, `%93.9–%96.4` geçerli piksel) + `data/uk_clay/{summary,detection}.json`: `status: "below_detection"`, zincir gürültüsü `chain_sigma_cm = 1.21 cm`, 3σ eşiği `3.62 cm`, kuadratik düzlem sonrası ekstrem `-3.57 cm` (kenardan `5.1 km`), blokların `%97.7`'si `±1.5 cm` içinde.
+- **Mevcut test durumu:** `analysis/pc5` **`19/19 passed`**, `analysis/decomp` `16 passed, 2 failed` (`test_run_decomp_end_to_end` & `test_run_decomp_insufficient` yerel ortamda `pyproj` eksikliği nedeniyle `ModuleNotFoundError: No module named 'pyproj'`; `decompose.py` çekirdek fonksiyonları `16/16` geçiyor).
+
+---
+
+## 5. `SONSUZ DÖNGÜ` — Tur 1 Denetimi (`a–d`)
+
+### a) `data/*` Değişiklik ve Yeniden Çalıştırma Kontrolü
+- `analysis/out/central_valley_cum.npz` (`2026-06-28..2026-10-14`, `1,332,149` geçerli piksel, tepe `-7.8 cm`) ve `analysis/out/karapinar_cum.npz` (`2026-06-26..2026-10-12`, `40,194` geçerli piksel, tepe `-5.9 cm`) yığınları değişmediği doğrulandı; `data/*/uncertainty/` (`0.294 cm` CV, `0.326 cm` KP medyan) ve `data/*/area_stats.json` (`239.5 km²` CV `< -5 cm`, `28.7 km²` KP `< -2 cm`) günceldir.
+
+### b) `web/*.html` vs. `data/*` Sayı ve Tutarlılık Denetimi
+- **`web/index.html` — TUTARLI:** `-7.8 cm`, `240 km²` (`area_stats.json` `239.54 km²` tam sayıya yuvarlatması), `1.0 cm` GPS medyan RMSE (`validation.json` 10 istasyon medyanı `1.004 cm`), `81 / 645` yüksek riskli altyapı, Londra kili `± 3.6 cm` (`uk_clay/detection.json` `3.62 cm`), Karapınar `-5.9 cm`, `4.2 cm` vs `0.6 cm` (`0–1 km` `-4.152` vs `>5 km` `-0.647 cm`, `10 / 29` obruk) değerlerinin tamamı `data/*` ile örtüşmektedir.
+- **`web/science.html` — 3 TUTARSIZLIK TESPİT EDİLDİ (PC9 için aksiyon listesi):**
+  1. **`web/science.html` satır 37 (eski referans yayılımı):** *"Changing the reference area moves the Central Valley maximum between −6.2 and −7.8 cm"* yazıyor; oysa güncel `data/central_valley/summary.json` 3 referans penceresiyle `range_cm: [-7.8, -4.7]` (`alt_ref 2 = -4.7 cm`) bildiriyor → **`−4.7 and −7.8 cm`** olarak güncellenmeli.
+  2. **`web/science.html` satır 37 (çift aralığı):** *"Consecutive 12-day pairs"* ifadesi geçiyor; oysa zincirde `07-22→08-15` ve `09-20→10-14` (**24 günlük**) çiftler de var (`web/index.html` doğru biçimde `"12 to 24 days apart"` yazıyor).
+  3. **`web/science.html` satır 28 (`SME2` durumu):** Tabloda `SME2 (L3)` için hâlâ **`Cause-and-effect panel (in progress)`** yazıyor; oysa `data/central_valley/drivers.json` ve `docs/story/drivers_analysis.md` tamamlandı (`N = 8` güç sınırı nedeniyle nedensellik için henüz erken).
+- **`web/data.html` — EKSİK İNDİRME SATIRLARI (PC9 için öneri):** Tablo şu an `area_stats.json`, `drivers.json`, `vertical.json`, `uncertainty/meta.json`, `karapinar/assets.json` ve `uk_clay/{summary,detection,points}.json` dosyalarını listelemiyor; `"Every number, downloadable"` başlığıyla tam uyum için bu JSON'lar eklenebilir.
+
+### c) `docs/story/literature_comparison.md` ve `docs/story/sources.md` HTTP Link Kontrolü
+- İki dosyadaki **29 / 29** benzersiz HTTP/HTTPS URL'sinin tamamı canlı `HEAD/GET` sorgusunda **`200 OK`** döndürdü (sıfır kırık/404 bağlantı: NASA Earth Observatory, ASF NISAR User Guide [4 sayfa], ASF GCOV Browse PNG, NASA GIBS Worldview API, USGS SIR 2018-5144 & FS 005-00 [HTML+PDF], PMC8047915 / PMC6559157 / PMC7865528, NHESS 2010, ISPRS 2015, DergiPark PDF 3454 & 227372, BGS [2 sayfa], CEH UK Peat PDF, Great Fen, Wikipedia, KVPR).
+
+### d) `web/science.html` ve `web/index.html` Bilimsel Yöntem Geliştirme Önerileri (PC9 için)
+1. **Çift-yörünge dikey/doğu ayrıştırmasını belgeleme:** `web/science.html` §2–§3 şu an yalnızca tek yörünge `d_vert ≈ d_LOS / cos θ_inc` varsayımını açıklıyor; repoda artık track 34 (çıkan) + track 114 (alçalan) ortak `d_k = E·e_k + U·u_k` ayrıştırması (`data/central_valley/vertical.json`, dikey p2 `-5.98 cm`, doğu bileşeni `vertical_east.png`) var ve eklenirse yatay hareket belirsizliği şeffaf biçimde kapatılır.
+2. **GPS medyan RMSE kapsamını hizalama:** `web/index.html` tüm 10 istasyonun medyanını (`1.0 cm`) yazarken `web/science.html` JS kodu (satır 87) yalnızca `r ≥ 0.4` olan 6 istasyonun medyanını (`0.8 cm`) yazdırıyor; her iki değerin hangi alt küme olduğu açıkça ayrılmalı.
+3. **Troposfer / gelgit ve düzlemsel eğim (planar ramp) ayrımı:** `web/science.html` §2'de GUNW trofosfer LUT ve katı yer gelgitlerinin varsayılan olarak uygulanmadığı (ASF `gunw` belgesi) ve düzlemsel eğim çıkarmanın geniş ölçekli çökme kasesinin bir kısmını yutabileceği (`range_cm [-7.8, -4.7]`) kısaca belirtilirse yöntem bölümü jürinin olası faz-ekranı sorularını doğrudan karşılar.
+4. **İstatistiksel doğrulama bağlantıları:** `web/science.html` sonundaki dökümantasyon listesine yeni üretilen [`sinkhole_stats.md`](../story/sinkhole_stats.md) (Karapınar katı küme kaydırma testi $p = 0.021$) ve [`drivers_analysis.md`](../story/drivers_analysis.md) (`N = 8` güç sınırı) belgeleri eklenebilir.
