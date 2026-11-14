@@ -10,11 +10,11 @@ from __future__ import annotations
 import json
 import math
 import sys
+import warnings
 from datetime import date
 from pathlib import Path
 
 import numpy as np
-from scipy.ndimage import median_filter
 
 try:
     from pyproj import Transformer
@@ -97,6 +97,9 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "analysis"))
 
 from cumulative import (  # noqa: E402
+    BLOCK_MAX_STD,
+    BLOCK_MIN_VALID,
+    BLOCK_PX,
     DISCLAIMER,
     ISLAND_MIN_PX,
     PAIR_OUTLIER_CM,
@@ -133,6 +136,30 @@ def process_pair(d: np.lib.npyio.NpzFile, thr: float = 0.3, deramp_order: int = 
         cm = deramp(cm, order=deramp_order)
     cm = cycle_outliers(cm, thr_cm=float(d["wavelength"]) / 4.0 * 100.0)
     return cm, bool(ion_used)
+
+
+def nan_tile_median(
+    arr: np.ndarray,
+    block: int = BLOCK_PX,
+    min_valid: float = BLOCK_MIN_VALID,
+    max_std: float | None = BLOCK_MAX_STD,
+) -> np.ndarray:
+    """13x13 (~1 km) NaN-aware tile median matching analysis/cumulative.py block_median criteria."""
+    H, W = arr.shape
+    Hp, Wp = -(-H // block) * block, -(-W // block) * block
+    pad = np.full((Hp, Wp), np.nan, np.float32)
+    pad[:H, :W] = arr
+    t = pad.reshape(Hp // block, block, Wp // block, block)
+    frac = np.isfinite(t).mean(axis=(1, 3))
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore", RuntimeWarning)
+        med = np.nanmedian(t, axis=(1, 3))
+        sd = np.nanstd(t, axis=(1, 3))
+    med[frac < min_valid] = np.nan
+    if max_std is not None:
+        med[~(sd <= max_std)] = np.nan
+    full = np.repeat(np.repeat(med, block, 0), block, 1)[:H, :W]
+    return np.where(np.isfinite(arr), full, np.nan).astype(np.float32)
 
 
 def grid_to_flat_list(grid: np.ndarray) -> list[float | None]:
@@ -185,8 +212,7 @@ def build_region_payload(
 
     final = cum[-1]
     valid = np.isfinite(final)
-    sm = median_filter(np.where(valid, final, np.nan), size=5, mode="nearest")
-    sm = np.where(valid & np.isfinite(sm), sm, np.nan)
+    sm = nan_tile_median(final)
     rmin, cmin = np.unravel_index(np.nanargmin(sm), sm.shape)
     max_sub = float(sm[rmin, cmin])
     lon_m, lat_m = tr_to_ll.transform(x[cmin], y[rmin])
@@ -201,10 +227,10 @@ def build_region_payload(
     lats = np.arange(n - step_deg / 2.0, s, -step_deg)
     nrows, ncols = len(lats), len(lons)
 
-    # Light spatial median pass at coarse step so sparse single invalid pixels don't punch holes
+    # Apply NaN-aware 1 km tile median so 3D terrain matches headline block statistics without single-pixel spikes
     grids = []
     for k, g in enumerate(cum):
-        g_smooth = median_filter(np.where(np.isfinite(g), g, np.nan), size=5, mode="nearest") if k > 0 else g
+        g_smooth = nan_tile_median(g) if k > 0 else np.where(valid, g, np.nan)
         g_smooth = np.where(valid, g_smooth, np.nan)
         ll = to_latlon_grid(g_smooth, x, y, epsg, bbox, step=step_deg)
         assert ll.shape == (nrows, ncols), (ll.shape, (nrows, ncols))
@@ -324,7 +350,7 @@ def build_precomputed_stack_payload(
     grids = []
     for k in range(cum_stack.shape[0]):
         g = cum_stack[k]
-        g_smooth = median_filter(np.where(np.isfinite(g), g, np.nan), size=5, mode="nearest") if k > 0 else g
+        g_smooth = nan_tile_median(g) if k > 0 else np.where(valid, g, np.nan)
         g_smooth = np.where(valid, g_smooth, np.nan)
         ll = to_latlon_grid(g_smooth, x, y, epsg, bbox, step=step_deg)
         assert ll.shape == (nrows, ncols), (ll.shape, (nrows, ncols))

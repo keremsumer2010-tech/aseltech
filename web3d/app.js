@@ -230,6 +230,7 @@ function buildSurfaceForSite(siteKey) {
       const colMesh = new THREE.Mesh(cylGeo, cylMat);
       colMesh.position.set(wp.x, 0.35 - colHeight * 0.5, wp.z);
       colMesh.userData.sinkhole = sk;
+      colMesh.userData.anchor = { lon: sk.lon, lat: sk.lat, offsetY: 0.35 - colHeight * 0.5 };
       sinkholeGroup.add(colMesh);
     });
   }
@@ -267,12 +268,42 @@ function addPin(lon, lat, colorHex, info) {
   );
   sphere.position.set(wp.x, 0.38, wp.z);
   sphere.userData.pinInfo = info;
+  sphere.userData.anchor = { lon, lat, offsetY: 0.38 };
   const stem = new THREE.Mesh(
     new THREE.CylinderGeometry(0.02, 0.02, 0.4, 8),
     new THREE.MeshBasicMaterial({ color: colorHex })
   );
   stem.position.set(wp.x, 0.18, wp.z);
+  stem.userData.anchor = { lon, lat, offsetY: 0.18 };
   beaconGroup.add(sphere, stem);
+}
+
+function sampleSurfaceWorldY(lon, lat, region, epochFloat) {
+  const [w, s, e, n] = region.bbox;
+  const { rows, cols } = region;
+  const c0 = Math.max(0, Math.min(cols - 1, Math.round(((lon - w) / (e - w || 1)) * cols - 0.5)));
+  const r0 = Math.max(0, Math.min(rows - 1, Math.round(((n - lat) / (n - s || 1)) * rows - 0.5)));
+  for (let rad = 0; rad <= 2; rad++) {
+    let bestDist = Infinity;
+    let bestVal = null;
+    for (let dr = -rad; dr <= rad; dr++) {
+      for (let dc = -rad; dc <= rad; dc++) {
+        const rr = r0 + dr;
+        const cc = c0 + dc;
+        if (rr < 0 || rr >= rows || cc < 0 || cc >= cols) continue;
+        const val = interpolateValue(region, rr * cols + cc, epochFloat);
+        if (val !== null) {
+          const d2 = dr * dr + dc * dc;
+          if (d2 < bestDist) {
+            bestDist = d2;
+            bestVal = val;
+          }
+        }
+      }
+    }
+    if (bestVal !== null) return cmToWorldY(bestVal, region);
+  }
+  return 0;
 }
 
 function interpolateValue(region, idx, epochFloat) {
@@ -301,6 +332,15 @@ function updateSurfaceEpoch(epochFloat) {
   pos.needsUpdate = true;
   col.needsUpdate = true;
   surfaceMesh.geometry.computeVertexNormals();
+
+  for (const group of [beaconGroup, sinkholeGroup]) {
+    for (const obj of group.children) {
+      const a = obj.userData.anchor;
+      if (!a) continue;
+      const surfY = sampleSurfaceWorldY(a.lon, a.lat, region, epochFloat);
+      obj.position.y = surfY + a.offsetY;
+    }
+  }
 
   const i0 = Math.floor(epochFloat);
   const i1 = Math.min(region.dates.length - 1, i0 + 1);
