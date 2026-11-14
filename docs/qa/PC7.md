@@ -456,3 +456,11 @@ Bu sonuçlar yalnızca ASF/CMR kapsamasını ve tarih zincirini doğrular; anali
 ## 19. Xi'an üretim hattı hazırlığı
 
 `pipeline/pc7/run_atlas_city.py` eklendi ve Python 3.12 ile derleme + bbox/ref koordinat yardımcıları için smoke check geçti. Hat, ASF aramasını hedef ±0.25° kutuda yapar; ham GUNW'yi tek tek indirip genişletilmiş kesit alır, her ham dosyayı kesitten sonra siler ve cumulative motorunu geçici dizinde çalıştırır (PC3 `analysis/out/` dosyalarına yazmaz). Referans koordinatı, kaynakta adı geçen sabit Xingping bölgesindeki yerleşim merkezi yakınıdır: ([Xi'an referans çalışması](https://www.tandfonline.com/doi/full/10.1080/19475705.2018.1542350), [UNGEGN şehir koordinatı](https://ungegn.un.org/dashboard/cities/details?id=2459)). Gerçek 7×7 referans piksel penceresi NISAR gridinden seçilip koordinatı çıktıya yazılır. Üretim analizi henüz başlatılmadı; dosyalar ve indirme logu olmadan `hazır` denmeyecek.
+
+## 20. Atlas kalite bekçisi — Xi'an indirmesi öncesi taban çizgisi
+
+`python tools/validate_atlas.py` salt-okunur çalıştırmasında **11 atlas kaydı, 12 şehir klasörü, 157 bulgu (145 hata, 12 uyarı)** bulundu. Bulguların çoğu eski kayıtların bbox ±0.25° olmaması, summary/atlas metrik eksikleri, boş note/country değerleri ve referans kanıtı eksikleridir. Bu turda atlas veya başka PC'lerin şehir verileri değiştirilmedi; Tahran, Pekin ve Cakarta'ya dokunulmadı. Yeni Xi'an çıktısı tamamlandığında denetim tekrar çalıştırılıp fark raporlanacak.
+
+Robustness çıktısı güncellendi ve ağsız regresyonu `python -m pytest -q pipeline/pc7/tests/test_atlas_robustness.py` ile **4/4 PASS** oldu. Şu anki girişlerde 10 şehirden sadece Central Valley 27/27 varyant üretiyor; diğer şehirler 27 varyantın tamamını sağlayamadığı için ilk üç sıra kararı **sonuçlandırılamadı** (`n_variant_rankings=0`). `data/global/robustness.json` ve `docs/story/media/pc7_atlas_robustness.png` yenilendi; atlas.json'a dokunulmadı.
+
+Xi'an üretim denemesinde `pipeline/subset/global_xian/` altında bir kesit oluştu ancak arka plan süreci artık çalışmıyor ve tamamlanma özeti yok; dolayısıyla şehir hazır değil. Kesiti koruyup `--resume` ile kalan çiftleri tamamlayacağım. `tools/validate_atlas.py` tekrar çalıştı: hâlâ **157 bulgu (145 hata, 12 uyarı)**; şehir özeti oluşmadığından taban çizgisi değişmedi.

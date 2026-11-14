@@ -18,7 +18,7 @@
     "box_coverage_rule": "A requested box is only scored when the local subset covers at least 98% of its lon/lat extent; incomplete boxes remain explicit invalid variants.",
     "reference_limit": "Corner candidates are selected from high-coherence, low-relative-motion windows. No geological basin polygon or independent GNSS/stable-ground evidence is available to prove they lie outside each basin."
   },
-  "n_cities": 8,
+  "n_cities": 10,
   "n_common_cities_with_27_variants": 1,
   "top3_all_variants_stable": null,
   "top3_conclusion": "inconclusive: fewer than three cities have all 27 complete variants",
@@ -32,6 +32,39 @@
     "max": null
   },
   "cities": [
+    {
+      "id": "bangkok",
+      "base_rate_cm_per_100d": -6.2,
+      "min": null,
+      "max": null,
+      "spread_cm": null,
+      "min_rate_cm_per_100d": null,
+      "max_rate_cm_per_100d": null,
+      "rank_min": null,
+      "rank_max": null,
+      "n_variants": 0,
+      "n_variants_attempted": 0,
+      "bbox_center_lonlat": [
+        100.55,
+        13.7
+      ],
+      "reference_candidates": [
+        {
+          "id": "southwest",
+          "lon": 100.380853,
+          "lat": 13.578735,
+          "mean_coherence": 0.8608,
+          "relative_motion_cm": -1.951,
+          "evidence": "corner low-motion proxy; geology/GNSS stability not independently verified"
+        }
+      ],
+      "reference_selection": {
+        "coverage_fraction": 1.0,
+        "reference_candidates_found": 1,
+        "reference_selection": "three separated corners in +/-0.20 degree box; highest coherence and lowest relative motion"
+      },
+      "variants": []
+    },
     {
       "id": "beijing",
       "base_rate_cm_per_100d": -1.2,
@@ -692,6 +725,47 @@
       "reference_selection": {
         "reason": "local subset does not cover the full +/-0.20 degree test box",
         "coverage_fraction": 0.7244
+      },
+      "variants": []
+    },
+    {
+      "id": "ho_chi_minh",
+      "base_rate_cm_per_100d": -3.5,
+      "min": null,
+      "max": null,
+      "spread_cm": null,
+      "min_rate_cm_per_100d": null,
+      "max_rate_cm_per_100d": null,
+      "rank_min": null,
+      "rank_max": null,
+      "n_variants": 0,
+      "n_variants_attempted": 0,
+      "bbox_center_lonlat": [
+        106.7,
+        10.78
+      ],
+      "reference_candidates": [
+        {
+          "id": "northwest",
+          "lon": 106.503457,
+          "lat": 10.965728,
+          "mean_coherence": 0.8946,
+          "relative_motion_cm": 1.076,
+          "evidence": "corner low-motion proxy; geology/GNSS stability not independently verified"
+        },
+        {
+          "id": "northeast",
+          "lon": 106.886299,
+          "lat": 10.973,
+          "mean_coherence": 0.9163,
+          "relative_motion_cm": 1.082,
+          "evidence": "corner low-motion proxy; geology/GNSS stability not independently verified"
+        }
+      ],
+      "reference_selection": {
+        "coverage_fraction": 1.0,
+        "reference_candidates_found": 2,
+        "reference_selection": "three separated corners in +/-0.20 degree box; highest coherence and lowest relative motion"
       },
       "variants": []
     },
