@@ -164,14 +164,18 @@ def pick_points(cum_s, valid, ref_rc, x, y, epsg, min_sep_px=60):
         pts.append(("most_subsiding", r, c))
         work[max(r - min_sep_px, 0): r + min_sep_px, max(c - min_sep_px, 0): c + min_sep_px] = np.inf
     med = np.nanmedian(cum_s[valid])
-    cand = np.argwhere(valid & (np.abs(cum_s - med) < 0.25))
-    rng = np.random.default_rng(42)
-    rng.shuffle(cand)
-    for r, c in cand:
+    # widen the tolerance (and then the spacing) only if fewer than 5 typical points are found (sparse scenes)
+    for tol, sep in ((0.25, min_sep_px), (0.5, min_sep_px), (1.0, min_sep_px), (1.0, min_sep_px // 2)):
+        cand = np.argwhere(valid & (np.abs(cum_s - med) < tol))
+        rng = np.random.default_rng(42)
+        rng.shuffle(cand)
+        for r, c in cand:
+            if len([p for p in pts if p[0] == "median"]) >= 5:
+                break
+            if all(abs(r - p[1]) > sep or abs(c - p[2]) > sep for p in pts):
+                pts.append(("median", int(r), int(c)))
         if len([p for p in pts if p[0] == "median"]) >= 5:
             break
-        if all(abs(r - p[1]) > min_sep_px or abs(c - p[2]) > min_sep_px for p in pts):
-            pts.append(("median", int(r), int(c)))
     rr, rc = ref_rc
     cand = np.argwhere(valid)
     dist = (cand[:, 0] - rr) ** 2 + (cand[:, 1] - rc) ** 2
