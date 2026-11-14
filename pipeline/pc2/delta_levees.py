@@ -18,6 +18,8 @@ BBOX = (-121.85, 37.95, -121.45, 38.20)  # w, s, e, n
 
 OVERPASS_URLS = [
     "https://overpass-api.de/api/interpreter",
+    "https://maps.mail.ru/osm/tools/overpass/api/interpreter",
+    "https://overpass.openstreetmap.fr/api/interpreter",
     "https://overpass.kumi.systems/api/interpreter",
 ]
 
@@ -35,14 +37,16 @@ def fetch_levees(cache_path: Path) -> dict:
 out body geom;
 """
     last_err = None
+    headers = {"User-Agent": "NISAR-Pulse-SpaceApps2026/1.0"}
     for url in OVERPASS_URLS:
         try:
-            r = requests.post(url, data={"data": query}, timeout=70)
+            r = requests.post(url, data={"data": query}, headers=headers, timeout=70)
             r.raise_for_status()
             data = r.json()
-            cache_path.parent.mkdir(parents=True, exist_ok=True)
-            cache_path.write_text(json.dumps(data), encoding="utf-8")
-            return data
+            if data.get("elements"):
+                cache_path.parent.mkdir(parents=True, exist_ok=True)
+                cache_path.write_text(json.dumps(data), encoding="utf-8")
+                return data
         except Exception as exc:
             last_err = exc
     raise RuntimeError(f"Overpass failed: {last_err}")
