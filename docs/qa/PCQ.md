@@ -65,3 +65,25 @@ Not (şeffaflık): PCQ bu oturumda daha önce PC3 rolünde `analysis/` ve `data/
 ### Ek · GNSS doğrulaması (`data/central_valley/validation.json`, PC6)
 - OK: 10 istasyon, 8 tarih (06-28→10-14, CV ile aynı). Vadi tabanında güçlü uyum: CAHA r=0.90 RMSE 0.75 cm, HANF r=0.90/0.83, QCAP 0.82/0.77, TLBN 0.79/1.17, P056 0.66/0.79.
 - BİLGİ: Vadi kenarı / etek istasyonları (CAD1, P564, P565, CAFP) zayıf veya negatif korelasyon (r −0.41…0.07), RMSE 1.6–2.8 cm; bunlar az hareketli yerler, sinyal gürültü düzeyinde. Sunumda "valley-floor stations agree to within ~1 cm" denebilir; tüm istasyonların ortalaması verilirse kenar istasyonları da belirtilmeli.
+
+## Tur 2 · 2026-11-14 14:55 TR (HEAD b3bfb26, d1bb6ed'den bu yana 34 yeni commit)
+
+### Tur 1 bulgularının durumu
+- OK (düzeldi): `docs/story/pitch.md` → yanlış "south-southeast of Tulare Lake" hotspot ifadesi kaldırıldı (PC4, 0bc348f).
+- OK (düzeldi): `docs/story/sources.md` → Terra Bella / Friant-Kern kaynağı eklendi (3 eşleşme).
+- OK (düzeldi): `.github/workflows/pages.yml` → `web3d/` ve `docs/story/` artık yayına kopyalanıyor (PC1, 669b7e8).
+- OK (düzeldi): `game/game.js:927` → `../risk/...geojson` sadece yerelde çekiliyor, Pages'te `assets.json` kullanılıyor; hatada `console.warn` (PC6).
+- OK (düzeldi): oyun kutusu artık "Model check against NISAR"; `S_y` 0.10 (kaynaklı); `S_ske` ve su yılı olasılıkları `illustrative: true` (PC6, `docs/story/game_model.md` ile uyumlu).
+- OK (kısmen): `pipeline/download.py` → `.netrc` artık `urs.earthdata.nasa.gov` makinesine göre okunuyor + `EARTHDATA_TOKEN` desteği. Hâlâ `Authorization: Bearer <password>` gönderiyor: `.netrc`'de gerçek parola varsa 401 alır; README/E-07 ile çelişki sürüyor → token kullanılıyorsa README'ye "EARTHDATA_TOKEN" satırı eklenmeli. (Sahip: PC2)
+- OK (düzeldi): Konya haritası artık lejantlı (`web/app.js:56` `kp: legend: true`).
+- HATA (sürüyor): `web/app.js:15-16,151` → site v2 cümlesi hâlâ (a) en küçük ölçek banka kartı (0.2 cm → "bank card"), (b) gürültü eşiği yok (±1 cm'de de "sank/rose"), (c) "sank" diyor ama değer LOS, (d) `Math.round(108 gün / 30.4)` = "4 months" (gerçek 3.5). → küçük ölçekler (≈1 cm "a fingernail", ≈2.4 cm "a coin") + |v| < 1 cm için "no clear change (within noise)" + "moved … away from the satellite" + "3½ months". (Sahip: PC1)
+- HATA (sürüyor): `web/app.js:117` lejant `−6` / `+6` → başlık değeri −7.8 cm kesiliyor; "≤ −6" yazılmalı. (Sahip: PC1)
+- HATA (sürüyor): `data/catalog.json` → `karapinar` ve `uk` hâlâ `quality: "pending"`, `layers: []`; Karapınar'da artık meta/points/summary/disp + `assets.json` + sinkholes, UK'de `meta.json` var. (Sahip: PC1)
+- BİLGİ (sürüyor): `game/model.js:138` yorum "Deep Corcoran Clay lacustrine member" ama `clayThicknessM: 82` > USGS'te Corcoran Kili için verilen en büyük ~61 m (`docs/story/game_model.md` §2). Yorum "total compressible interbeds" olmalı. (Sahip: PC6)
+
+### Yeni içerik kontrolü
+- OK: `python -m pytest analysis -q` → 36 passed; `python -m pytest analysis/decomp -q` → 18 passed (PC5'in `error_budget`, `point_quality` testleri dahil).
+- OK: `data/central_valley/drivers.json` (PC2, Q04) ve `data/karapinar/assets.json` (PC6, 64 öğe) → `quality: provisional` var.
+- OK: `docs/story/uncertainty.md` (PC5) çapraz kontrol: zincir gürültüsü 1.7–2.9 cm (σ_çift·√7) ↔ Q21 iki yörünge RMSE 2.6 cm (iki bağımsız zincirin farkı için beklenen ≈ √2 × 1.9 ≈ 2.7 cm) → **tutarlı**. GNSS medyan RMSE 1.00 cm ↔ `validation.json` (0.64–2.79) ✔.
+- OK: `data/central_valley/vertical.json` (Q22) `quality`, `quality_note`, renk anlamı ve yöntem alanları var; Alpaugh çanağı −7.2 cm dikey, en uç blok −9.8 cm (güven notuyla).
+- BİLGİ: Q21 sonucu (r 0.49, yerel 0.60, işaret uyumu %85) PC4 tarafından hikâye belgelerine işlenmiş (efb9350); sayılar `analysis/out/cv_p34_vs_p114.json` ile eşleşmeli — sonraki turda satır satır kontrol.
