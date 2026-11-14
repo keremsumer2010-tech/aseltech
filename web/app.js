@@ -64,7 +64,12 @@ async function initUSA(){
     show(+slider.value);
     if (pts.length) select(pts[0]);
   });
-  function show(i){ label.textContent = fmtDate(m.dates[i]); const s = map.getSource('disp'); if (s) s.updateImage({url: base + `disp/${m.dates[i]}.png`, coordinates: corners(m.bbox)}); }
+  let shown = base + `disp/${m.dates.at(-1)}.png`;
+  function show(i){
+    label.textContent = fmtDate(m.dates[i]);
+    const url = base + `disp/${m.dates[i]}.png`, s = map.getSource('disp');
+    if (s && url !== shown){ shown = url; s.updateImage({url, coordinates: corners(m.bbox)}); }
+  }
   slider.addEventListener('input', () => show(+slider.value));
   let timer = null; const btn = document.getElementById('cvPlay');
   btn.addEventListener('click', () => {
@@ -114,7 +119,7 @@ async function initKonya(){
 async function initGame(){
   const url = ROOT + 'game/index.html';
   if (await exists(url)){
-    const f = document.getElementById('gameFrame'); f.src = url; f.hidden = false;
+    const f = document.getElementById('gameFrame'); f.src = url; f.hidden = false; document.getElementById('gamePoster').hidden = true;
     document.getElementById('gameLink').href = url; document.getElementById('gameNote').hidden = true;
   } else { document.getElementById('gameLink').hidden = true; }
 }
