@@ -132,25 +132,37 @@
             <span class="pill illustrative">Well &amp; Revenue curves illustrative</span>
           </div>
           <div class="kpi-grid">
-            <div class="kpi-box">
-              <div class="kpi-label">Subsidence (Total)</div>
+            <div class="kpi-box kpi-primary">
+              <div class="kpi-label">Total Subsidence</div>
               <div class="kpi-value color-perm" id="kpiTotalCm">0.00 cm</div>
-              <div class="kpi-sub" id="kpiSplitCm">Elast 0.00 · Perm 0.00 cm</div>
+              <div class="kpi-sub" id="kpiSplitCm">Elastic: 0.00 cm</div>
             </div>
-            <div class="kpi-box">
-              <div class="kpi-label">Water Table vs h<sub>pc</sub></div>
-              <div class="kpi-value" id="kpiHeadM">-48.0 m</div>
-              <div class="kpi-sub" id="kpiHpcM">h_pc: -48.3 m (Safe)</div>
+            <div class="kpi-box kpi-primary">
+              <div class="kpi-label">Permanent Collapse</div>
+              <div class="kpi-value color-perm" id="kpiPermCm">0.00 cm</div>
+              <div class="kpi-sub" id="kpiRegimeSub">Elastic Safe</div>
             </div>
-            <div class="kpi-box">
-              <div class="kpi-label">Canal Conveyance Loss</div>
-              <div class="kpi-value color-warn" id="kpiCanalLoss">0.0%</div>
-              <div class="kpi-sub" id="kpiGradient">Grad: 6.9 mm/km</div>
-            </div>
-            <div class="kpi-box">
-              <div class="kpi-label">Crop Revenue &amp; Wells</div>
+            <div class="kpi-box kpi-primary">
+              <div class="kpi-label">Cumulative Revenue</div>
               <div class="kpi-value color-ok" id="kpiRevenue">$0.0M</div>
-              <div class="kpi-sub" id="kpiWells">Dry wells: 0 / 8</div>
+              <div class="kpi-sub" id="kpiRevSub">100% cropped area</div>
+            </div>
+          </div>
+          <div class="kpi-secondary-strip">
+            <div class="kpi-mini">
+              <span class="kpi-mini-label">Water Level vs Low</span>
+              <span class="kpi-mini-val mono" id="kpiHeadM">-48.0 m</span>
+              <span class="kpi-mini-sub" id="kpiHpcM">Low: -48.3 m</span>
+            </div>
+            <div class="kpi-mini">
+              <span class="kpi-mini-label">Canal Capacity Loss</span>
+              <span class="kpi-mini-val mono color-warn" id="kpiCanalLoss">0.0%</span>
+              <span class="kpi-mini-sub" id="kpiGradient">6.9 mm/km</span>
+            </div>
+            <div class="kpi-mini">
+              <span class="kpi-mini-label">Dry Shallow Wells</span>
+              <span class="kpi-mini-val mono" id="kpiWells">0 / 8</span>
+              <span class="kpi-mini-sub">Tracked depths</span>
             </div>
           </div>
         </div>

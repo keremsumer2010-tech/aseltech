@@ -702,18 +702,23 @@
     $('fallowSlider').value = d.controls.fallowPct;
     $('fallowVal').textContent = `${d.controls.fallowPct}%`;
 
-    // District KPIs
+    // District KPIs: 3 primary readouts + quiet secondary strip
+    const isVirgin = d.headM <= d.preconsolidationHeadM + 0.05;
     $('kpiDistrictTitle').textContent = `Readout: ${d.shortName} (${d.canalCorridor})`;
     $('kpiTotalCm').textContent = `${d.totalCm.toFixed(2)} cm`;
-    $('kpiSplitCm').textContent = `Elast ${d.elasticCm.toFixed(2)} · Perm ${d.inelasticCm.toFixed(2)} cm`;
-    $('kpiHeadM').textContent = `${d.headM.toFixed(1)} m`;
-    const isVirgin = d.headM <= d.preconsolidationHeadM + 0.05;
-    $('kpiHpcM').textContent = `h_pc: ${d.preconsolidationHeadM.toFixed(1)} m (${isVirgin ? 'Collapsing' : 'Elastic Safe'})`;
-    $('kpiHpcM').style.color = isVirgin ? '#ff6b57' : '#3ddc97';
-    $('kpiCanalLoss').textContent = `${d.canalCapacityLossPct.toFixed(1)}%`;
-    $('kpiGradient').textContent = `Grad: ${d.currentGradientMmKm.toFixed(1)} mm/km`;
+    $('kpiSplitCm').textContent = `Elastic: ${d.elasticCm.toFixed(2)} cm`;
+    $('kpiPermCm').textContent = `${d.inelasticCm.toFixed(2)} cm`;
+    $('kpiRegimeSub').textContent = isVirgin ? 'Virgin collapse' : 'Elastic Safe';
+    $('kpiRegimeSub').style.color = isVirgin ? '#ff6b57' : '#3ddc97';
     $('kpiRevenue').textContent = `$${d.cumulativeRevenueMUsd.toFixed(1)}M`;
-    $('kpiWells').textContent = `Dry wells: ${d.dryWells} / ${d.wellDepthsM.length}`;
+    $('kpiRevSub').textContent = `${100 - d.controls.fallowPct}% cropped`;
+
+    $('kpiHeadM').textContent = `${d.headM.toFixed(1)} m`;
+    $('kpiHpcM').textContent = `Low: ${d.preconsolidationHeadM.toFixed(1)} m`;
+    $('kpiHpcM').style.color = isVirgin ? '#ff6b57' : 'var(--muted)';
+    $('kpiCanalLoss').textContent = `${d.canalCapacityLossPct.toFixed(1)}%`;
+    $('kpiGradient').textContent = `${d.currentGradientMmKm.toFixed(1)} mm/km`;
+    $('kpiWells').textContent = `${d.dryWells} / ${d.wellDepthsM.length}`;
 
     // Events
     if (simState.events.length > 0) {
