@@ -18,7 +18,7 @@
     "box_coverage_rule": "A requested box is only scored when the local subset covers at least 98% of its lon/lat extent; incomplete boxes remain explicit invalid variants.",
     "reference_limit": "Corner candidates are selected from high-coherence, low-relative-motion windows. No geological basin polygon or independent GNSS/stable-ground evidence is available to prove they lie outside each basin."
   },
-  "n_cities": 13,
+  "n_cities": 14,
   "n_common_cities_with_27_variants": 1,
   "top3_all_variants_stable": null,
   "top3_conclusion": "inconclusive: fewer than three cities have all 27 complete variants",
@@ -955,7 +955,7 @@
     },
     {
       "id": "tehran",
-      "base_rate_cm_per_100d": -2.9,
+      "base_rate_cm_per_100d": -6.2,
       "min": null,
       "max": null,
       "spread_cm": null,
@@ -969,16 +969,34 @@
         51.3,
         35.55
       ],
-      "reference_candidates": [],
+      "reference_candidates": [
+        {
+          "id": "northeast",
+          "lon": 51.452066,
+          "lat": 35.655919,
+          "mean_coherence": 0.8728,
+          "relative_motion_cm": 0.34,
+          "evidence": "corner low-motion proxy; geology/GNSS stability not independently verified"
+        },
+        {
+          "id": "southwest",
+          "lon": 51.173216,
+          "lat": 35.446015,
+          "mean_coherence": 0.885,
+          "relative_motion_cm": 0.326,
+          "evidence": "corner low-motion proxy; geology/GNSS stability not independently verified"
+        }
+      ],
       "reference_selection": {
-        "reason": "local subset does not cover the full +/-0.20 degree test box",
-        "coverage_fraction": 0.7954
+        "coverage_fraction": 1.0,
+        "reference_candidates_found": 2,
+        "reference_selection": "three separated corners in +/-0.20 degree box; highest coherence and lowest relative motion"
       },
       "variants": []
     },
     {
       "id": "xian",
-      "base_rate_cm_per_100d": -1.25,
+      "base_rate_cm_per_100d": -1.2,
       "min": null,
       "max": null,
       "spread_cm": null,
@@ -1007,6 +1025,47 @@
           "lat": 34.391736,
           "mean_coherence": 0.8144,
           "relative_motion_cm": 0.083,
+          "evidence": "corner low-motion proxy; geology/GNSS stability not independently verified"
+        }
+      ],
+      "reference_selection": {
+        "coverage_fraction": 1.0,
+        "reference_candidates_found": 2,
+        "reference_selection": "three separated corners in +/-0.20 degree box; highest coherence and lowest relative motion"
+      },
+      "variants": []
+    },
+    {
+      "id": "yunlin",
+      "base_rate_cm_per_100d": -2.5,
+      "min": null,
+      "max": null,
+      "spread_cm": null,
+      "min_rate_cm_per_100d": null,
+      "max_rate_cm_per_100d": null,
+      "rank_min": null,
+      "rank_max": null,
+      "n_variants": 0,
+      "n_variants_attempted": 0,
+      "bbox_center_lonlat": [
+        120.35,
+        23.7
+      ],
+      "reference_candidates": [
+        {
+          "id": "northwest",
+          "lon": 120.195142,
+          "lat": 23.800825,
+          "mean_coherence": 0.8431,
+          "relative_motion_cm": -1.509,
+          "evidence": "corner low-motion proxy; geology/GNSS stability not independently verified"
+        },
+        {
+          "id": "northeast",
+          "lon": 120.524148,
+          "lat": 23.873618,
+          "mean_coherence": 0.9152,
+          "relative_motion_cm": 0.75,
           "evidence": "corner low-motion proxy; geology/GNSS stability not independently verified"
         }
       ],
