@@ -30,6 +30,6 @@
 - Uzun plan FAZ 1 kapsamı: Python 3.12.10 NISAR Pulse dry-run ile Xi'an, Taiyuan, Querétaro, Aguascalientes, Kashmar'ın her birinde 9 ardışık provisional çift ve sıfır boşluk doğrulandı. Ham veri indirmedim; ayrıntılar `docs/qa/PC7.md` §18.
 - `pipeline/pc7/run_atlas_city.py` eklendi; py_compile ve bbox/reference yardımcıları smoke check geçti. Ham veri henüz indirilmedi, yeni şehir `ready` değil. Ayrıntı `docs/qa/PC7.md` §19.
 - Devam: Xi'an için NISAR Pulse arama/kesme ve kaynaklı Xingping referans yerleşimi yakınında ortak-geçerli 7×7 yüksek koherens penceresi seçimi.
-- Xi'an: bir provisional kesit mevcut; arka plan denemesi sonlandı, kalan çiftler `--resume` ile sürdürülüyor; şehir henüz hazır değil.
+- Xi'an: `--resume` üretimi tekrar başlatıldı; bir ham GUNW indiriliyor, aynı anda başka indirme yok; şehir henüz hazır değil.
 - AI: Codex → CMR dry-run, kaynak incelemesi ve PC7 QA kaydı.
 - BLOCKED: yok
