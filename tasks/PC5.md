@@ -1,35 +1,73 @@
-# PC5 — Oyun + sunum metni
+---
+type: gorev
+id: PC5
+owner: Mehmet (M3hmeT1888)
+tool: Antigravity (Gemini)
+folder: aseltech-gemini
+status: acik
+date: 2026-11-14
+depends_on: [PC3 (summary.json, sonradan)]
+feeds: [PC1]
+---
+
+# PC5 · Aquifer Manager oyunu ve sunum metni
 
 ## Kimlik
-M3hmeT1888 · Antigravity (Gemini) · klasör `aseltech-gemini`
+Mehmet'in bilgisayarı, **`aseltech-gemini`** klasörü, Antigravity. Aynı bilgisayarda PC3 (`aseltech-claude`) ve PC6 (`aseltech-gemini2`) var; onların klasörlerine dokunma.
 
-## Yazma alanı
-`game/`, `docs/story/pitch.md`, `docs/game_v1.png`, `status/PC5.md`
+## Yazma alanın
+`game/` · `docs/story/pitch.md` · `docs/game_v1.png` · `status/PC5.md`
+
+## Başlamadan
+- [ ] `rules/RULES.md` (K-2, K-11, K-14) okundu
+- [ ] Oyun bağımsız: ana hattı beklemeden başla.
+
+---
+
+## Görev 1 · Aquifer Manager (12:00-16:00)
+
+`game/index.html`: saf HTML/CSS/JS, tek dosya olabilir; CDN kullanırsan **sabit sürüm**. Metinler İngilizce.
+
+- Oyuncu her yıl pompalama seviyesini seçer (%0-150); yıl tipi rastgele: wet / normal / drought.
+- Model ve katsayılar tek `CONFIG` nesnesinde:
+  ```js
+  const CONFIG = {
+    base_rate_cm_per_yr: 10,      // PLACEHOLDER: will be replaced by our NISAR measurement
+    rate_source: "illustrative",  // "nisar" olunca data/central_valley/summary.json'dan
+    year_factor: { wet: 0.5, normal: 1.0, drought: 1.6 },  // illustrative
+  };
+  subsidence_cm = base_rate_cm_per_yr * (pumping / 100) * year_factor[yearType];
+  ```
+- Görsel: yan kesit (yüzey, tarlalar, kanal, yol; altında akifer). Çökme arttıkça yüzey iner, kanal eğilir, çatlak ikonları çıkar.
+- 10 yıl sonunda sonuç ekranı: toplam çökme, basit çiftçi geliri, "what this means" cümlesi, tekrar oyna.
+- Alt bilgi: *"Rates are illustrative until replaced with NISAR-derived values. NISAR data are provisional; calibration is done by the NISAR project (NASA-JPL/ISRO), not by our team."*
+- Mobil uyumlu, konsol temiz.
+
+**Bitti sayılır eğer:** telefonda ve masaüstünde 10 yıl oynanıyor, konsolda hata yok, `docs/game_v1.png` ekran görüntüsü push edildi.
+
+## Görev 1b · Ölçülmüş hıza bağla (PC3 `summary.json` gelince)
+`data/central_valley/summary.json` → `rate_cm_per_yr_estimate` → `CONFIG.base_rate_cm_per_yr`, `rate_source: "nisar"`.
+Alt bilgi metnini "Rate based on NISAR provisional data, {period}" olarak güncelle. Sayıyı elle yazma, dosyadan oku.
+
+## Görev 2 · Sunum metni (16:00-17:30)
+
+`docs/story/pitch.md`, `docs/TODAY_PLAN.md` sahnelerine göre:
+1. **Lincoln 3 dk konuşma** (`docs/MASTER_PLAN.md` §7 akışı): kanca → sorun → canlı demo adımları → oyun 15 sn → how we know.
+2. **30 sn video senaryosu:** sahne sahne, saniye aralığı, İngilizce altyazı.
+3. **≤ 7 slayt:** başlık ve madde metni.
+
+Sayı yazma; yer tutucu bırak: `{CV_MAX_CM}`, `{CV_PERIOD}`, `{N_SINKHOLES}` (PC1 doldurur, kaynak `summary.json` / `sinkholes.geojson`).
+
+**Bitti sayılır eğer:** üç bölüm var, video senaryosu 30 sn'yi aşmıyor, slayt ≤ 7, metinde tek bir uydurma sayı yok.
+
+---
 
 ## En kritik iş
-16:00 TR'ye kadar oynanabilir `game/index.html`.
+Oyundaki hızın etiketli olması. Etiketsiz bir 10 cm/yıl, jüriye "ölçtük" gibi görünür.
 
-## Görevler  (faz planı ve saatler: docs/GOREV_DAGILIMI.md §3b — 16:30 özellik dondurma, 17:00–17:30 QA görevin orada)
-1. **(12:00–16:00) Aquifer Manager** — `game/index.html`, saf HTML/CSS/JS (CDN kullanırsan sabit sürüm), İngilizce.
-   - 10 yıl; her yıl pompalama %0–150 seçilir; yıl tipi rastgele: wet / normal / drought.
-   - Model tek `CONFIG` nesnesinde: `subsidence_cm = base_rate_cm_per_yr * (pumping/100) * year_factor`;
-     `base_rate_cm_per_yr = 10` → ekranda "placeholder — will be replaced by our NISAR measurement".
-   - Yan kesit görsel: yüzey, tarlalar, kanal, yol, altında akifer. Çökme arttıkça yüzey iner, kanal eğilir, çatlaklar çıkar.
-   - Sonuç ekranı: toplam çökme, basit çiftçi geliri, "what this means" cümlesi, tekrar oyna.
-   - Alt bilgi: "Rates are illustrative until replaced with NISAR-derived values. NISAR data are provisional; calibration is done by the NISAR project (NASA-JPL/ISRO), not by our team."
-   - Mobil uyumlu, konsol temiz; ekran görüntüsü `docs/game_v1.png`.
-2. **(16:00–17:30) Sunum metni** — `docs/story/pitch.md`: 30 sn video senaryosu (sahne sahne, İngilizce altyazı) + en fazla 7 slayt metni,
-   `docs/MASTER_PLAN.md` §3 ve §7'ye göre. Sayı yazma → `{CV_MAX_CM}`, `{HOLME_FEN_DROP_M}` gibi yer tutucu.
-3. **(17:30 sonrası)** QUEUE Q13/Q15.
+## Yapma
+- PC3'ün dosyalarına yazma (sadece oku).
+- AI görselini veri gibi gösterme.
 
-## Bitti sayılır eğer
-Oyun baştan sona oynanıyor, 10. yılda sonuç ekranı çıkıyor · CONFIG tek yerde · konsolda hata yok · telefonda düzgün · pitch.md'de sayı yok, yer tutucu var.
-
-## B planı
-Kesit animasyonu yetişmezse: basit çubuk/grafik görünümüyle oyunu bitir, animasyonu sonra ekle.
-
-## Yapma listesi
-Gerçek veri gibi görünen sayı uydurma · yapay zekâ görselini etiketsiz koyma · `web/`'e yazma.
-
-## Rapor (`status/PC5.md`)
-Ne bitti, nasıl test edildi (tarayıcı, telefon), bilinen eksikler.
+## Rapor
+`status/PC5.md`: ne bitti, nasıl test edildi (hangi tarayıcı/cihaz), ekran görüntüsü yolu, `AI:` satırı.

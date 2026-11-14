@@ -39,8 +39,12 @@ Hedef ödüller: Lincoln yerel birincilik → Global Nominee; global kategoriler
 | Mehmet | Antigravity | PC5 | Aquifer Manager oyunu + sunum metni |
 | Memir | Antigravity | PC2 | NISAR GUNW indirme/kesme |
 | İbrahim | Antigravity | PC4 | UK sahnesi görselleri, Karapınar obruk koordinatları, kaynak listesi |
+| Mehmet | Antigravity (2.) | PC6 | GNSS istasyonları + OSM altyapı hatları (Pazar: doğrulama ve risk indeksi) |
 
 ## 6. BUGÜN — saat saat (TR)
+
+PC6 bu tabloda yok; saatleri `tasks/PC6.md` içinde (12:30-15:00 GNSS, 15:00-17:30 altyapı). Kurallar `rules/RULES.md`, sahiplik `docs/GOREV_DAGILIMI.md`.
+
 | Saat | PC1 | PC2 | PC3 | PC4 | PC5 |
 |---|---|---|---|---|---|
 | 12:00–13:30 | Site iskeleti + sahte veri; Higgsfield açılış videosu | Earthdata, liste, ilk GUNW, yapı dosyası | insar.py + testler | UK görsel çifti | Oyun |

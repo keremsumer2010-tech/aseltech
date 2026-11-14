@@ -1,34 +1,85 @@
-# PC3 — Çökme analizi
+---
+type: gorev
+id: PC3
+owner: Mehmet (M3hmeT1888)
+tool: Claude Code
+folder: aseltech-claude
+status: acik
+date: 2026-11-14
+depends_on: [PC2]
+feeds: [PC1, PC5, PC6]
+---
+
+# PC3 · Çökme analizi: faz → santim
 
 ## Kimlik
-M3hmeT1888 · Claude Code · klasör `aseltech-claude`
+Mehmet'in bilgisayarı, **`aseltech-claude`** klasörü, Claude Code. Aynı bilgisayarda PC5 ve PC6 da çalışıyor;
+onların klasörlerine (`aseltech-gemini`, `aseltech-gemini2`) dokunma.
 
-## Yazma alanı
-`analysis/`, `data/central_valley/` (meta, disp, points), `data/karapinar/` (sinkholes.geojson HARİÇ), `docs/*_checkpoint_*.png`, `status/PC3.md`
+## Yazma alanın
+`analysis/` (kod, test, `out/`) · `data/<site>/{meta,points,summary,decomp}.json` · `data/<site>/disp/` ·
+`data/*_fullyear/` · `docs/karapinar_checkpoint_cm.png` · `status/PC3.md`
+
+**Dikkat:** `data/karapinar/sinkholes.geojson` PC4'ün. Script'in `data/karapinar/` klasörünü silmez, temizlemez.
+
+## Başlamadan
+- [ ] `rules/RULES.md` (özellikle §5 bilimsel doğruluk) ve `rules/VERI_SOZLESMESI.md` tamamı okundu
+- [ ] PC2 ile aynı anda büyük indirme yapma (aynı internet değil ama aynı bilgisayarda PC6 da indirebilir; sırayla)
+
+---
+
+## Görev 1 · Dönüşüm modülü ve kontrol haritası (12:00-14:00)
+
+1. Earthdata hesabı (şifreyi insan girer), `.netrc`. `pip install asf_search h5py numpy matplotlib pytest`
+2. `analysis/insar.py`:
+   - `phase_to_cm(unw, wavelength_m)` → LOS cm
+   - `mask_coherence(arr, coh, thr=0.3)` → düşük koherens NaN
+   - `reference(arr, ref_rc, radius=3)` → referans penceresinin medyanını çıkar
+   - `los_to_vertical(cm, incidence_deg)` → yaklaşım: `cm / cos(incidence)`
+   - İşaret konvansiyonunu ürün dokümanından veya https://github.com/nisar-solid/ATBD kodundan **doğrula**, satır ve link yorum olarak yaz.
+3. `analysis/test_insar.py`: bilinen girdi → bilinen çıktı (örn. 2π faz = λ/2 = 11.92 cm büyüklük; işaret testi; NaN maskesi; referans sonrası referans pikseli 0).
+   `pytest -q` geçmeli; **çıktı status'a yapıştırılır** (K-1).
+4. Karapınar: GUNW path 7, **2026-09-18 → 09-30** çifti → `docs/karapinar_checkpoint_cm.png` (renk çubuğu, cm, başlıkta tarih ve `PROVISIONAL`).
+
+**Bitti sayılır eğer:** pytest çıktısı status'ta; kontrol haritası makul aralıkta (tek çiftte genelde birkaç cm altı) ve push edildi.
+
+## Görev 2 · Central Valley kümülatif (PC2 npz geldikçe, 14:00-17:00)
+
+`analysis/cumulative.py central_valley`:
+1. `pipeline/subset/central_valley/*.npz` → tarih sırası; **zincirde boşluk varsa dur ve status'a yaz.**
+2. Her çift: cm'e çevir → koherens maskesi → **aynı referans penceresine göre sıfırla** → topla.
+3. Referans bölgesi: az hareketli, yüksek koherensli (örn. vadi kenarındaki sert kaya / tepe eteği). Seçimi ve gerekçesini status'a yaz.
+4. Çıktılar (`rules/VERI_SOZLESMESI.md` §4):
+   - `data/central_valley/meta.json` (`quality: "provisional"`, `quality_note`)
+   - `data/central_valley/disp/<date>.png`: şeffaf arka plan, bbox'a oturur, **vmin/vmax tüm tarihlerde sabit**
+   - `data/central_valley/points.json`: 10-15 nokta (en çok çöken 5, orta 5, referans yakını 2; isimleri yakın yer adından)
+   - `data/central_valley/summary.json`: maks çökme, dönem, yıllık hız tahmini (`estimate`), referans
+   - `analysis/out/central_valley_cum.npz` (PC6 için sayısal ızgara)
+5. **Literatür kıyası:** USGS/JPL'nin Central Valley çökme hızlarıyla mertebe kontrolü, kaynak linkiyle status'a. Mertebe tutmuyorsa yayınlama, BLOCKED.
+
+"Kalibre ettik" deme; ürünü NISAR projesinin işlediği hâliyle kullandığımızı yaz.
+
+**Bitti sayılır eğer:** PNG'ler açılıp gözle kontrol edildi (işaret: çöken yer çöken renkte), JSON'lar parse ediliyor, literatür kıyası status'ta, push edildi.
+
+## Görev 3 · Karapınar (zaman kalırsa bugün, yoksa Pazar)
+Aynı hat → `data/karapinar/{meta,points,summary}.json`, `disp/`.
+
+## Pazar
+Tam yıl (`beta-precal` dahil) → **ayrı** `data/central_valley_fullyear/` + `quality: "mixed"`.
+Kalıcı/geri dönen ayrımı orada (trend + mevsimsel genlik) → `decomp.json`. Kış verisi yetersizse dürüstçe yaz.
+
+---
 
 ## En kritik iş
-16:30 TR'ye kadar `data/central_valley/` (meta.json + disp/*.png + points.json) push edilmiş olmalı. Demonun kalbi bu.
-
-## Görevler  (faz planı ve saatler: docs/GOREV_DAGILIMI.md §3b — 16:30 özellik dondurma, 17:00–17:30 QA görevin orada)
-1. **(12:00–14:00) Modül + Karapınar kontrol haritası**
-   - İnsan Earthdata/`.netrc`'yi kendisi kurar. `pip install asf_search h5py numpy matplotlib pytest`
-   - `analysis/insar.py`: `phase_to_cm(unw, wavelength_m)`, `mask_coherence(arr, coh, thr=0.3)`, `reference(arr, (row,col))`, `los_to_vertical(cm, incidence_deg)`.
-     İşaret yönünü ATBD/ürün dokümanından doğrula; kaynağı yoruma yaz. `analysis/test_insar.py` → pytest geçmeli.
-   - Karapınar GUNW path 7, 2026-09-18→09-30 → `docs/karapinar_checkpoint_cm.png` (renk çubuğu cm).
-2. **(14:00–16:30) Central Valley kümülatif** — `analysis/cumulative.py central_valley`:
-   npz'leri tarih sırasıyla topla, coherence maskesi, sabit referans bölgesi (az hareketli + yüksek koherens), LOS→dikey →
-   `data/central_valley/meta.json` (`quality:"provisional"`, `quality_note`, `method`, `reference_point`), `disp/<date>.png` (sabit vmin/vmax), `points.json` (10–15 nokta: çökme merkezleri + 2–3 sabit kontrol noktası).
-3. **(16:30 sonrası)** Karapınar için aynısı → `data/karapinar/`; sonra QUEUE Q02/Q08.
-
-## Bitti sayılır eğer
-pytest geçti · PNG'ler bbox'a oturuyor ve şeffaf · değerler makul (Central Valley birkaç cm–onlarca cm çökme beklenir; literatürle kıyasla, aşırıysa işaret/referansı kontrol et) · meta.json sözleşmeye uygun · status'ta maks çökme, referans, çift sayısı.
+İşaret ve referans. Yanlış işaret = "yer yükseliyor" diyen harita. Farklı referanslı çiftleri toplamak = anlamsız kümülatif.
 
 ## B planı
-- PC2'den npz gelmezse: kendin 1–2 çift indirip tek interferogram haritası üret (tarih aralığını açıkça yaz).
-- Zincirde boşluk varsa: sadece ardışık kısmı kullan, `notes`'a yaz.
+- PC2 npz'leri 15:30'a kadar gelmezse: Karapınar kontrol çiftini tek başına `data/karapinar/` olarak yayınla (tek tarih).
+- Unwrapping sıçramaları çoksa: koherens eşiğini 0.4'e çıkar, maskelenen oranı status'a yaz.
 
-## Yapma listesi
-"Kalibre ettik" deme · beta veriyi provisional ile toplama · `pipeline/` veya `web/`'e yazma · sayıyı yuvarlayıp abartma.
+## Yapma
+- Beta ile provisional'ı aynı toplamda kullanma.
+- Sayı uydurma; ölçemediğini `estimate` diye işaretle.
 
-## Rapor (`status/PC3.md`)
-Maks çökme (cm, nerede), referans noktası, kullanılan çiftler, test sonucu, sınırlamalar.
+## Rapor
+`status/PC3.md`: maks çökme (cm, hangi nokta), referans noktası ve gerekçesi, kullanılan çift sayısı, pytest çıktısı, literatür kıyası, `AI:` satırı.

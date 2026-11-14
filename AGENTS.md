@@ -1,17 +1,13 @@
-# Agent entry (Antigravity / Gemini / any agent)
+# Agent entry (Antigravity / Gemini / other agents)
 
 Read **CLAUDE.md** first and follow its reading order exactly:
-`CLAUDE.md` → `rules/RULES.md` → `rules/VERI_SOZLESMESI.md` → `docs/GOREV_DAGILIMI.md` → `tasks/PCx.md`.
-All rules there bind you. After every `git pull`, re-read only the files that changed (RULES.md K-1).
+`rules/RULES.md` → `docs/GOREV_DAGILIMI.md` (find your PC number) → `tasks/PCx.md` → `rules/VERI_SOZLESMESI.md` → `docs/TODAY_PLAN.md`.
 
-## Which worker are you?
-| Computer / clone folder | You are | Task file |
-|---|---|---|
-| memir-erdogmus / `aseltech` | PC2 (data) | `tasks/PC2.md` |
-| M3hmeT1888 / `aseltech-claude` | PC3 (Claude Code — not you if you are Antigravity) | `tasks/PC3.md` |
-| acikgozibrahim032-hub / `aseltech` | PC4 (UK visuals, sinkholes, sources) | `tasks/PC4.md` |
-| M3hmeT1888 / `aseltech-gemini` | PC5 (game + pitch text) | `tasks/PC5.md` |
-| M3hmeT1888 / `aseltech-gemini2` | PC6 (GNSS + infrastructure data) | `tasks/PC6.md` |
-If unsure, ask the human once.
-
-Never idle (RULES.md K-7). Never ask for passwords (K-12). Never invent numbers, coordinates or links (K-10).
+Every rule in `rules/RULES.md` applies to you. The most important ones:
+- Write only inside the paths listed as yours in `docs/GOREV_DAGILIMI.md` §2.
+- `git add <your paths>` only. Never `git add -A` / `git add .`.
+- Never run `git reset --hard`, `git push --force`, `git clean`, `git checkout -- .`, `git rebase -i`, `git stash drop`.
+  On any git conflict or error: write `BLOCKED:` in your status file and stop.
+- NEVER IDLE: when a task is done, do not stop or ask. Follow `rules/RULES.md` §7.1: next task in your file → `tasks/QUEUE.md` (claim one line only, push immediately) → QA notes in `docs/qa/PCx.md`. `git pull` every 30–45 min.
+- Never ask for, store or print passwords or tokens.
+- Never invent numbers, coordinates or sources.

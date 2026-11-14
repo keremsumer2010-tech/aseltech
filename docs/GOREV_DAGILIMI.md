@@ -1,71 +1,174 @@
-# GÖREV DAĞILIMI — kim, ne, nereye yazar
+---
+type: karar
+status: acik
+date: 2026-11-14
+owner: PC1
+evidence: "docs/MASTER_PLAN.md · docs/TODAY_PLAN.md · tasks/PC1-PC6.md"
+---
 
-## 1. Ekip
-| ID | Kişi | Araç | Bilgisayar / klasör | Rol |
+# Görev dağılımı: 14-15 Kasım
+
+4 kişi, 3 bilgisayar, 6 ajan. Bugün Lincoln yerel sunumu (demo **17:30 TR**), yarın global teslim
+(**Pzt 02:59 TR**, iç hedef Paz 22:00 TR).
+
+## Karar
+
+İş, veri akışının katmanlarına göre bölünüyor: **veri indirme (PC2) → çökme analizi (PC3) → web (PC1)**
+ana hat; yanında bağımsız üç hat: **hikâye ve kaynaklar (PC4)**, **oyun ve sunum metni (PC5)**,
+**doğrulama ve altyapı verisi (PC6)**. PC1 yönetmen: görev yazar, birleştirir, siteyi yayınlar.
+
+## Neden bu bölünme
+
+Projenin darboğazı tek: **ilk gerçek santim haritası**. Her şey (site, oyun sayısı, sunum, risk,
+doğrulama) ona bağlı. Ana hat (PC2 → PC3 → PC1) bu yüzden en kısa tutuldu ve kimseye başka iş
+verilmedi. Geri kalan üç hat ana hatta hiç dokunmadan ilerleyebilecek işlerden seçildi; ana hat
+gecikirse onlar boşta kalmaz.
+
+---
+
+## 1. Kim kim
+
+| ID | Kişi (GitHub) | Bilgisayar · klon klasörü | Araç | Rol |
 |---|---|---|---|---|
-| PC1 | Kerem (keremsumer2010-tech) | Claude | Kerem / `aseltech` | Yönetmen: görev, denetim, web sitesi, Higgsfield medya, birleştirme, yayın, sunum |
-| PC2 | Memir (memir-erdogmus) | Antigravity | Memir / `aseltech` | Veri: NISAR indirme, bölge kesme |
-| PC3 | Mehmet (M3hmeT1888) | Claude Code | Mehmet / `aseltech-claude` | Çökme analizi: faz→cm, kümülatif harita |
-| PC4 | İbrahim (acikgozibrahim032-hub) | Antigravity | İbrahim / `aseltech` | UK görsel çifti, Karapınar obrukları, kaynaklar, kalibrasyon notu |
-| PC5 | Mehmet (M3hmeT1888) | Antigravity | Mehmet / `aseltech-gemini` | Aquifer Manager oyunu, sunum metni |
-| PC6 | Mehmet (M3hmeT1888) | Antigravity | Mehmet / `aseltech-gemini2` | GNSS doğrulama verisi, OSM altyapı hatları |
+| **PC1** | Kerem (keremsumer2010-tech) | Kerem'in PC | Claude | Yönetmen + web + yayın + sunum |
+| **PC2** | Memir (memir-erdogmus) | Memir'in PC | Antigravity | Veri indirme ve kesme |
+| **PC3** | Mehmet (M3hmeT1888) | Mehmet'in PC · `aseltech-claude` | Claude Code | Çökme analizi (cm) |
+| **PC4** | İbrahim (acikgozibrahim032-hub) | İbrahim'in PC | Antigravity | UK görselleri, obruklar, kaynaklar |
+| **PC5** | Mehmet (M3hmeT1888) | Mehmet'in PC · `aseltech-gemini` | Antigravity | Aquifer Manager oyunu + sunum metni |
+| **PC6** | Mehmet (M3hmeT1888) | Mehmet'in PC · `aseltech-gemini2` | Antigravity | GNSS doğrulama + altyapı verisi |
 
-## 2. Sahiplik (yazma alanları)
-| Yol | Sahip |
+Mehmet'in bilgisayarında 3 ajan var: **klasör adın kim olduğunu söyler.** İnsan sorumluluğu:
+Mehmet üçünü de izler; PC5 ve PC6 ajan işidir, kararları Mehmet verir.
+
+---
+
+## 2. Sahiplik: kim nereye yazar
+
+Her yolun tek sahibi var (`rules/RULES.md` K-7). Burada olmayan bir yere yazman gerekiyorsa: BLOCKED, PC1'e sor.
+
+| Sahip | Yazma izni olan yollar |
 |---|---|
-| `CLAUDE.md`, `AGENTS.md`, `GEMINI.md`, `rules/`, `tasks/` (QUEUE sahiplenme satırı hariç), `docs/MASTER_PLAN.md`, `docs/TODAY_PLAN.md`, `docs/GOREV_DAGILIMI.md`, `docs/URUN_TANIMI.md`, `docs/DEPO_HARITASI.md`, `docs/SOZLUK.md` | PC1 |
-| `web/`, `index.html` (kök), `data/catalog.json` | PC1 |
-| `pipeline/`, `docs/gunw_structure.md` | PC2 |
-| `analysis/`, `data/central_valley/` (meta, disp, points), `data/karapinar/` (sinkholes.geojson HARİÇ), `docs/*_checkpoint_*.png` | PC3 |
-| `data/uk/`, `data/karapinar/sinkholes.geojson`, `docs/story/sources.md`, `docs/story/calibration_note.md` | PC4 |
-| `game/`, `docs/story/pitch.md` | PC5 |
-| `validation/`, `risk/` | PC6 |
-| `status/PCx.md` | ilgili PC |
-| `docs/qa_report.md` | herkes (sadece ekleme) |
-| QUEUE işleri | sahiplenen PC, işin satırında yazan klasör |
+| **PC1** | `web/` · `data/catalog.json` · `CLAUDE.md` `AGENTS.md` `GEMINI.md` `README.md` `LICENSE` `.gitignore` `.gitattributes` · `.github/` · `rules/` · `tasks/` · `docs/*.md` (kök seviye) · `status/PC1.md` |
+| **PC2** | `pipeline/` (script, csv, `subset/`) · `docs/gunw_structure.md` · `data/<site>/drivers.json` (Pazar) · `status/PC2.md` |
+| **PC3** | `analysis/` (kod, test, `out/`) · `data/<site>/meta.json` · `data/<site>/disp/` · `data/<site>/points.json` · `data/<site>/summary.json` · `data/<site>/decomp.json` · `data/*_fullyear/` · `docs/karapinar_checkpoint_cm.png` · `status/PC3.md` |
+| **PC4** | `data/uk/` · `data/karapinar/sinkholes.geojson` · `docs/story/sources.md` · `docs/story/calibration_note.md` · `status/PC4.md` |
+| **PC5** | `game/` · `docs/story/pitch.md` · `docs/game_v1.png` · `status/PC5.md` |
+| **PC6** | `validation/` · `risk/` · `data/<site>/validation.json` · `data/<site>/assets.json` (Pazar) · `status/PC6.md` |
+| **Herkes** | `tasks/QUEUE.md` içinde **sadece sahiplendiği satır** · sahiplendiği QUEUE işinin "Klasör" sütunundaki yollar · `docs/qa/PCx.md` (kendi QA notları) |
 
-## 3. Bağımlılık şeması
+Dikkat: `data/karapinar/` klasörüne hem PC3 hem PC4 yazar; `docs/story/`'ye PC4 ve PC5 yazar.
+**Klasörü temizleyen script yasak** (K-7).
+
+---
+
+## 3. Roller
+
+### PC1 · Yönetmen, web, yayın
+Sahip olduğu alan: `web/`, katalog, kural ve görev dosyaları, yayın.
+
+Bugünkü çıktı: kaydırmalı hikâye sitesi GitHub Pages'te canlı (17:30 TR), PC2-PC5 çıktıları bağlı,
+sunum provası yapılmış.
+
+En kritik iki iş: **(1)** Pages yayınının `data/` ve `game/` klasörlerini de içermesi (workflow hazır:
+`.github/workflows/pages.yml`, ayarlardan "Source: GitHub Actions" seçilmeli), **(2)** saat 13:30 ve
+15:30 kontrol noktalarında B planı kararını zamanında vermek.
+
+### PC2 · Veri
+Sahip olduğu alan: `pipeline/`.
+
+Bugünkü çıktı: Central Valley için 6 provisional GUNW çiftinin kesilmiş alt kümeleri ve GUNW dosya yapısı belgesi.
+
+En kritik iş: **ilk dosyanın yapısını (`docs/gunw_structure.md`) 13:30'dan önce push etmek.** PC3 buna bağlı.
+
+### PC3 · Çökme analizi
+Sahip olduğu alan: `analysis/`, `data/<site>/` içindeki çökme dosyaları.
+
+Bugünkü çıktı: test edilmiş faz→cm dönüşümü, Karapınar kontrol haritası, Central Valley kümülatif
+çökme haritaları + noktalar + `summary.json`.
+
+En kritik iş: **işaret konvansiyonu ve referans noktası.** Yanlış işaret = "yer yükseliyor" diyen bir
+harita. Her çift aynı referansa göre sıfırlanmadan toplanmaz.
+
+### PC4 · Hikâye, obruklar, kaynaklar
+Sahip olduğu alan: `data/uk/`, obruk noktaları, `docs/story/` içindeki kaynak dosyaları.
+
+Bugünkü çıktı: UK "bulutun altı" görsel çifti, kaynaklı Karapınar obruk noktaları, doğrulanmış kaynak listesi.
+
+En kritik iş: **uydurma koordinat ve link olmaması.** Her nokta ve her sayı açılıp doğrulanmış bir kaynaktan.
+
+### PC5 · Oyun ve sunum metni
+Sahip olduğu alan: `game/`, `docs/story/pitch.md`.
+
+Bugünkü çıktı: çalışan Aquifer Manager oyunu (tek HTML), 3 dk sunum + 30 sn video senaryosu + 7 slayt metni.
+
+En kritik iş: **oyundaki hızın "illustrative" etiketli olması**; PC3'ün `summary.json` değeri gelince ona bağlanması.
+
+### PC6 · Doğrulama ve altyapı
+Sahip olduğu alan: `validation/`, `risk/`.
+
+Bugünkü çıktı: Central Valley GNSS istasyon listesi + en az 3 istasyonun dikey zaman serisi;
+OSM kanal/yol/demiryolu hatları.
+
+En kritik iş: **istasyonların NISAR dönemini kapsaması.** Kapsamayan istasyon doğrulamada işe yaramaz.
+
+---
+
+## 4. Bağımlılıklar
+
 ```
-PC2 ──npz──▶ PC3 ──data/central_valley, data/karapinar──▶ PC1 (web) ──▶ GitHub Pages
-PC4 ──data/uk, sinkholes.geojson, sources──────────────▶ PC1
-PC5 ──game/, pitch.md──────────────────────────────────▶ PC1
-PC6 ──validation/, risk/──▶ Q05 (GNSS karşılaştırma), Q06 (risk indeksi) ──▶ PC1
+PC2 gunw_structure.md ──► PC3 insar.py
+PC2 subset/*.npz ────────► PC3 cumulative.py ──► data/central_valley/* ──► PC1 site
+                                              ├─► summary.json ──► PC5 oyun hızı, PC5 pitch sayıları
+                                              └─► analysis/out/*_cum.npz ──► PC6 risk indeksi (Pazar)
+PC4 data/uk, sinkholes ──► PC1 site
+PC5 game/ ───────────────► PC1 site (iframe/link)
+PC6 validation/, risk/ ──► (Pazar) validation.json, assets.json ──► PC1 site
 ```
-Kritik yol: **PC2 ilk GUNW → PC3 cm haritası → PC1 site**. Bu zinciri hiçbir iş geciktiremez.
-Yedek: PC1 kendi bilgisayarında aynı ilk GUNW'yi arka planda indirir/açar (Kerem Earthdata `.netrc`'yi kendisi kurar). PC2 takılırsa zincir PC1'den devam eder.
 
-## 3b. FAZ PLANI (TR saati) — "veri yokken ne yapılır?" cevabı
-İlke: **Sözleşme önce.** Formatlar `rules/VERI_SOZLESMESI.md`'de sabit; herkes sahte/örnek veriyle hemen başlar, gerçek veri gelince sadece dosya değişir.
-| Faz | Saat | PC1 | PC2 | PC3 | PC4 | PC5 | PC6 |
-|---|---|---|---|---|---|---|---|
-| 0 Hazırlık | 12:00–12:20 | Repo/denetim; Kerem Earthdata açar | Earthdata + `.netrc` + paketler | Earthdata + `.netrc` + paketler | Kurulum | Kurulum | Kurulum |
-| 1 Bağımsız | 12:20–13:30 | Site iskeleti SAHTE veriyle (`web/mock/`), Higgsfield açılış; arka planda yedek GUNW indirme | İlk GUNW + `gunw_structure.md` | `insar.py` + SENTETİK testler; Karapınar kendi indirmesi | UK bulut/radar çifti (girişsiz) | Oyun | GNSS istasyonları (girişsiz) |
-| ✔ 13:30 | | **GUNW açıldı mı?** Evet → Faz 2. Hayır → B planı (browse PNG) | | | | | |
-| 2 Gerçek veri | 13:30–16:00 | UK çiftini siteye bağla, veri okuyucuyu gerçek yollara hazırla | 6 provisional çift, her biri gelince push | İlk 2 npz gelir gelmez kümülatif hattı çalıştır, her yeni npz'de yeniden üret | Obruk koordinatları | Oyun cilası | OSM altyapı |
-| ✔ 15:30 | | **İlk gerçek cm haritası sitede mi?** | | | | | |
-| 3 Birleştirme | 16:00–17:00 | Tüm veriyi bağla, oyunu göm | QUEUE Q01 | Karapınar haritası | Kaynaklar + Holme Fen | Sunum metni | QUEUE Q05 |
-| 🔒 16:30 | | **ÖZELLİK DONDURMA:** yeni özellik yok, sadece hata düzeltme ve QA | | | | | |
-| 4 Yayın + QA | 17:00–17:30 | GitHub Pages yayını | Siteyi telefonda test → `docs/qa_report.md` | Sitedeki sayıları kendi çıktısıyla karşılaştır | Sitedeki kaynak linklerini test et | Oyunu sitede test et | Sitedeki metinlerde yazım/İngilizce kontrolü |
-| 5 Prova | 17:30+ | Sunum akışı | Demo sürücüsü provası | Soru-cevap: veri/yöntem | Soru-cevap: kaynaklar | — | — |
-Gerçek veri geldikçe siteye girer; PC1 hiçbir zaman "veri bekleyerek" durmaz.
+Zincir: PC2 13:30'u kaçırırsa PC3 kayar, PC3 15:30'u kaçırırsa PC1 B planına geçer
+(browse PNG'ler, `preview` rozetli). Diğer hatlar ana hattı beklemez.
 
-## 4. İki tarafı olan işler (teslim noktası)
-| Veren → Alan | Teslim | Ne zaman | Alan taraf beklerken ne yapar |
-|---|---|---|---|
-| PC2 → PC3 | `docs/gunw_structure.md` | ~13:30 TR | PC3: insar.py + testler + Karapınar kendi indirmesi |
-| PC2 → PC3 | `pipeline/subset/central_valley/*.npz` | 13:30–16:00, geldikçe | PC3: Karapınar haritası |
-| PC3 → PC1 | `data/central_valley/*` | ~16:30 TR | PC1: sahte veriyle site |
-| PC4 → PC1 | `data/uk/*`, `sinkholes.geojson` | 13:30 / 15:30 | PC1: yer tutucu |
-| PC5 → PC1 | `game/index.html` | ~16:00 | PC1: oyun butonu yer tutucu |
-| PC6 → Q05/Q06 | `validation/`, `risk/` | ~15:00 / 17:30 | — |
+## 5. İki tarafı olan işler
 
-## 5. Elenen alternatifler (tekrar açma)
-| Fikir | Neden elendi |
+Ana sahip kararı verir ve dosyayı yazar; ikinci taraf kendi ucunu ona göre bağlar.
+
+| İş | Ana sahip | İkinci taraf |
+|---|---|---|
+| Oyun ve sunumdaki ölçülmüş çökme sayısı | **PC3** (`summary.json`) | **PC5** (CONFIG ve pitch'teki yer tutucular) |
+| GUNW alanlarının adı ve birimi | **PC2** (`gunw_structure.md`) | **PC3** (okuma kodu) |
+| `catalog.json` yeni bölge/katman | **PC1** | PC3, PC4 status'ta "yeni katman hazır" yazar |
+| GNSS doğrulaması | **PC6** (`validation.json`) | **PC3** (`points.json` + `_cum.npz`'den istasyon pikseli) |
+| Altyapı risk indeksi | **PC6** (`assets.json`) | **PC3** (`_cum.npz`) |
+| Toprak nemi / sebep grafiği | **PC2** (`drivers.json`) | **PC3** (çökme zaman serisi) |
+
+## 6. Ortak kurallar
+
+- Bir iş kod yazılınca değil, `rules/RULES.md` §7 "bitti" tanımı sağlanınca biter.
+- Blokaj varsa saat beklenmez: hemen `BLOCKED:` + push.
+- Saatlik kontrol: PC1 her saat başı `status/*.md` dosyalarını okur.
+- Görevi biten **sormadan** `tasks/QUEUE.md`'den iş alır (`rules/RULES.md` §7.1). `tasks/BACKLOG.md` (bonus) için PC1'e sorar.
+
+## 7. Takvim
+
+| Saat (TR) | Kontrol |
 |---|---|
-| Bangladeş seli / Monsoon Command | Kullanıcı ABD/UK bağlantısı istedi |
-| SARlock (radar dedektif oyunu) | Kullanıcı reddetti; oyun öğesi Aquifer Manager'da |
-| Orbit Operator | Bir güne sığmaz |
-| Sadece iklim analizi | NISAR verisi ~1 yıl; iklim için kısa, jüri geçerlilik puanı düşer |
-| Higgsfield site oluşturucu | Gerçek veri bağlamak zor, açık kaynak değil; Higgsfield sadece medya için |
-| Bugün MintPy ile zaman serisi | Windows kurulum riski; bugün basit zincir toplamı, MintPy/ATBD Pazar |
-| Haziran öncesi veriyi bugünkü demoya katmak | Beta (kalibrasyon öncesi); Pazar ayrı katman |
+| Cmt 12:00 | Başla |
+| Cmt 13:30 | İlk GUNW açıldı mı? (Hayır → B planı: browse PNG) |
+| Cmt 15:30 | İlk gerçek cm haritası var mı? |
+| Cmt 17:30 | Demo canlı, sonra prova |
+| Cmt akşam | Lincoln sunumu |
+| Paz | Tam yıl, kalıcı/geri dönen, GNSS, risk, toprak nemi; video, proje sayfası |
+| Paz 22:00 | **İç teslim hedefi** |
+| Pzt 02:59 | Resmi kapanış (Paz 23:59 UK) |
+
+Ayrıntı: `docs/TODAY_PLAN.md` ve `docs/MASTER_PLAN.md` §6, §8.
+
+## Elenen alternatifler
+
+- **Herkes her şeye yardım etsin:** elendi. 6 ajan aynı dosyalara dokunursa çakışma ve kayıp kaçınılmaz.
+- **Analizi (PC3) iki ajana bölmek:** elendi. Referans noktası ve işaret tek elden seçilmeli; iki ajan iki farklı referans seçerse haritalar birbirini tutmaz.
+- **Oyunu Pazar'a bırakmak:** elendi. Ana hatta hiç bağımlılığı olmayan, bugün paralel yürüyebilen tek yaratıcı iş; Lincoln jürisi için güçlü bir an.
+
+## Geri alınabilir mi
+
+Evet. PC1 rolleri saat başı kontrolde değiştirebilir; değişiklik önce bu dosyaya, sonra görev dosyasına yazılır.

@@ -1,77 +1,176 @@
-# RULES — tüm ajanlar için bağlayıcı kurallar (K-1 … K-14)
+---
+type: kural
+status: kapali
+date: 2026-11-14
+owner: PC1
+---
 
-## K-1 Okuma ve yeniden okuma
-- Başlarken okuma sırası: `CLAUDE.md` → `rules/RULES.md` → `rules/VERI_SOZLESMESI.md` → `docs/GOREV_DAGILIMI.md` → `tasks/PCx.md`.
-- Gerektiğinde: `docs/URUN_TANIMI.md`, `docs/DEPO_HARITASI.md`, `docs/SOZLUK.md`, `docs/MASTER_PLAN.md`, `tasks/QUEUE.md`.
-- **Her `git pull` sonrası** şunu çalıştır: `git diff --stat HEAD@{1} HEAD -- rules tasks docs CLAUDE.md`
-  Değişen dosya varsa SADECE onu yeniden oku. Değişmeyeni tekrar okuma (token israfı).
-- Her iş başlamadan önce kendi `tasks/PCx.md` dosyanı yeniden oku (kısa, ucuz).
+# Çalışma kuralları
 
-## K-2 Yazma alanı ve sahiplik
-- Sadece `tasks/PCx.md` içindeki "Yazma alanı"na veya sahiplendiğin QUEUE işinin klasörüne yaz.
-- Başkasının dosyasını DEĞİŞTİRME. Hata görürsen `docs/qa_report.md`'ye not yaz (bu dosya herkese açık, sadece ekleme yap).
-- Sahiplik tablosu: `docs/GOREV_DAGILIMI.md`. Formatlar: `rules/VERI_SOZLESMESI.md`.
+Bu dosyadaki kurallar hackathon boyunca değişmez. Aynı repoda aynı anda **6 ajan** (4 kişi,
+3 bilgisayar, Claude Code + Antigravity) çalışıyor. Kuralların çoğu bu yüzden var: bir ajanın
+"sorunu çözmek" için attığı tek yanlış adım, başka birinin saatlerce işini silebilir.
 
-## K-3 Git akışı
-1. `git pull --rebase`
-2. İşini yap, test et.
-3. `git add <sadece kendi yolların>`
-4. `git commit -m "[PCx] kısa açıklama"`
-5. `git pull --rebase` → `git push`
-- Küçük ve sık commit at (en az her tamamlanan alt adımda). Başkası senin çıktını bekliyorsa İLK çıktıyı hemen push et.
+Yeni bir hata yapıldığında §9'a eklenir, silinmez.
 
-## K-4 Yasak komutlar
-`git add -A` / `git add .` · `git push --force` · `git reset --hard` · `git rebase -i` · `git checkout -- <başkasının dosyası>` ·
-`git clean -fd` · `rm -rf` (sadece kendi `raw/` alt klasörün hariç) · `.h5`, `.netrc`, şifre, token commit etmek ·
-başka branch açıp main dışında çalışmak · `tasks/`, `rules/`, `CLAUDE.md` dosyalarını değiştirmek (sadece PC1; QUEUE.md sahiplenme satırı hariç).
+---
 
-## K-5 Çakışmada ne yapılır
-- `git pull --rebase` çakışırsa ve çakışan dosya SENİN dosyan değilse: `git rebase --abort`, status'a `BLOCKED: conflict <dosya>` yaz, PC1'e bırak, başka iş al.
-- `tasks/QUEUE.md` çakışması: uzaktaki hâli al (`git rebase --abort` → `git pull` → satırı tekrar kontrol et); iş başkasınınsa bir sonrakini sahiplen.
-- Kendi dosyanda çakışma: iki tarafı birleştir, test et, devam et.
+## 1. Değişmez kurallar
 
-## K-6 "Bitti" tanımı
-Bir iş ancak şunların HEPSİ doğruysa bitmiştir:
-1. Kod çalıştı, hata yok; test varsa geçti.
-2. Çıktı `rules/VERI_SOZLESMESI.md` formatında ve doğru yolda.
-3. Çıktıya en az bir kez gözle baktın (PNG açıldı, JSON geçerli, değerler makul aralıkta).
-4. `status/PCx.md` güncellendi: ne yapıldı, nasıl doğrulandı, sınırlamalar.
-5. Push edildi.
+| # | Kural |
+|---|---|
+| K-1 | Çalıştırılmamış kod "çalışıyor", koşulmamış test "geçti" diye raporlanmaz |
+| K-2 | Ölçülmemiş sayı ölçülmüş gibi sunulmaz. Bilimsel her cümlenin kaynağı (link) olur. Tahmin "estimate", örnek değer "illustrative" diye etiketlenir |
+| K-3 | Hangi veri sınıfından konuşulduğu (`provisional` / `beta-precal` / `preview`) her zaman yazılır; sınıflar aynı hesapta birleşmez |
+| K-4 | `git add -A` ve `git add .` yok. Dosyalar tek tek, sadece kendi yollarından eklenir |
+| K-5 | Yıkıcı git komutu yok (liste §2.3). Git hata verirse çözmeye çalışma: BLOCKED yaz, dur |
+| K-6 | Tek dal: `main`. Dal açılmaz, yeni remote eklenmez. Push hedefi her zaman `origin main` |
+| K-7 | Sadece kendi alanına yaz (`docs/GOREV_DAGILIMI.md` §2). Script'ler klasör silmez veya yeniden oluşturmaz; sadece kendi dosya adlarını yazar/üzerine yazar |
+| K-8 | İş, `status/PCx.md` güncellenip push edilmeden bitmiş sayılmaz |
+| K-9 | Şifre, token, `.netrc` içeriği asla repoya, status dosyasına, commit mesajına veya sohbete yazılmaz |
+| K-10 | Görevde belirsizlik varsa tahmin yok: `BLOCKED:` yaz, push et, **o işi bırak ve sıradaki işe geç** (§7.1). Git hatasında ise git'e hiç dokunma, insana haber ver (§2.4) |
+| K-11 | AI ile üretilen görsel/video asla veri gibi gösterilmez; üzerinde "AI-generated illustration" yazar |
+| K-12 | Repoya giren tek dosya ≤ 20 MB. `.h5` ve ham veri asla girmez |
+| K-13 | Başkasının beklediği bir çıktı bittiği anda push edilir (bağımlılıklar: `docs/GOREV_DAGILIMI.md` §4) |
+| K-14 | Ürün metni (site, oyun, sunum, teslim) İngilizce. İç belgeler Türkçe olabilir |
+| K-15 | **Hiç boş kalma:** iş bitince sormadan sıradakine geç (§7.1). Her 30-45 dakikada bir `git pull` |
 
-## K-7 Hiç boş kalma
-Bir iş bitince SORMADAN: (1) `tasks/PCx.md`'deki sonraki görev → (2) `tasks/QUEUE.md`'den en üstteki boş iş (sahiplen → hemen push) →
-(3) kendi çıktını test et/iyileştir, başkalarını kontrol et (`docs/qa_report.md`), kaynak doğrula. Her 30–45 dk `git pull`.
-Engellenirsen: `BLOCKED` yaz, push et, engelden bağımsız başka işe geç.
+---
 
-## K-8 Veri kalitesi ve kalibrasyon
-- Kalibrasyon ve doğrulama NISAR projesinin (NASA-JPL, ISRO) işidir. Biz ürünleri yayınlandığı hâliyle kullanırız; "kalibre ettik/düzelttik" denmez.
-- Kalite sınıfları (`provisional` / `beta-precal` / `preview` / `mixed`) ve kuralları: `rules/VERI_SOZLESMESI.md`. Sınıflar aynı hesapta karıştırılmaz.
+## 2. Git: tek doğru akış
 
-## K-9 Yapay zekâ medyası
-Higgsfield/Gemini vb. ile üretilen görsel/video sadece anlatım içindir, veri gibi gösterilmez; görünür "AI-generated illustration" etiketi zorunlu. NASA logosu yok.
+### 2.1 Her görevin başında
+```bash
+git status                 # temiz olmalı; değilse önce kendi dosyalarını commit et
+git pull --rebase origin main
+```
 
-## K-10 Uydurma yok
-Sayı, koordinat, istasyon, link, alıntı uydurma. Her bilimsel cümleye kaynak. Ölçmediğin değer "illustrative/estimate" diye işaretlenir.
-Doğrulayamadığını status'a "doğrulanmadı" diye yaz.
+### 2.2 Her bitmiş çıktıda
+```bash
+git add <kendi/yolun/dosya1> <kendi/yolun/dosya2> status/PCx.md
+git commit -m "[PCx] kısa açıklama"
+git pull --rebase origin main
+git push origin main
+```
+Push reddedilirse (`rejected`, `non-fast-forward`): bir kez daha `git pull --rebase origin main`, sonra push.
+İkinci denemede de olmazsa → §2.4.
 
-## K-11 Disk kuralları
-- Ham veri sadece `raw/` (git dışı). `.h5` kesildikten sonra SİL. Diskte en az 10 GB boş yer bırak.
-- Bir bilgisayarda aynı anda tek büyük indirme. Repoya giren dosya < 20 MB.
+### 2.3 Yasak komutlar (K-5)
+`git reset --hard` · `git push --force` / `-f` / `--force-with-lease` · `git clean` ·
+`git checkout -- .` / `git restore .` · `git rebase -i` · `git stash drop` / `git stash clear` ·
+`git branch -D` · `git filter-branch` · `git commit --amend` (push edilmiş commit'te) · `rm -rf` (kendi klasörün dışında)
 
-## K-12 Kimlik bilgisi
-Ajan şifre/token istemez, görmez, yazdırmaz. Earthdata şifresini insan `~/.netrc` dosyasına kendisi yazar. `.netrc` asla repoya girmez.
+### 2.4 Çakışma veya beklenmeyen git hatası olursa
+1. Hiçbir şeyi silme, geri alma, zorlama.
+2. `git rebase --abort` (rebase ortasındaysan; bu güvenli, işini geri getirir).
+3. `status/PCx.md` dosyasına: `BLOCKED: git <komut> → <hata metninin ilk 3 satırı>`.
+4. Dur ve insana haber ver. PC1 çözer.
 
-## K-13 Dil
-Sitede, verilerde, sunumda görünen her metin İNGİLİZCE. `status/` ve iç notlar Türkçe olabilir.
+### 2.5 Ne sıklıkla push?
+- Başkası seni bekliyorsa (PC2 → PC3, PC3 → PC1/PC5/PC6): **her çıktıda hemen** (K-13).
+- Bekleyen yoksa: her bitmiş alt görevde, en geç **saatte bir**.
+- Yarım, çalışmayan kod push edilmez. Çalışan küçük adım > yarım büyük adım.
 
-## K-14 Hata kaydı
-Bilinen hatalar aşağıda (E-NN). Yeni bir hatayı çözersen `status/PCx.md`'ye "E-YENİ: belirti → çözüm" yaz; PC1 buraya taşır.
-| Kod | Belirti | Çözüm |
-|---|---|---|
-| E-01 | ASF araması `dataset=NISAR` ile boş/502 | `platform=NISAR` kullan |
-| E-02 | `.h5` indirirken "HTTP Basic: Access denied" | Earthdata hesabı + `~/.netrc` (insan yazar) |
-| E-03 | git commit: "Author identity unknown" | Repo içinde `git config user.name/user.email` (GitHub noreply e-postası) |
-| E-04 | ASF sonucunda `bytes` alanı sözlük | Boyut = iç `bytes` değerlerinin toplamı |
-| E-05 | Browse PNG'yi veri gibi kullanma isteği | Browse = `preview`, nicel değil; rozetle göster |
-| E-06 | Windows Git Bash'te heredoc/tırnak içinde backtick hatası | Dosyayı editör/Write aracıyla yaz, komut satırında backtick kullanma |
-| E-07 | spaceappschallenge.org sayfaları boş geliyor | Sayfa JS ile yükleniyor; tarayıcıda 5–10 sn bekleyip oku |
+Herkes farklı dosyaya yazdığı sürece `pull --rebase` değişiklikleri kendiliğinden birleştirir;
+çakışma ancak iki kişi **aynı dosyaya** yazınca olur. Dosya sahipliği (K-7) bu yüzden en önemli kural.
+
+### 2.6 Satır sonları
+Repoda `.gitattributes` var (`* text=auto eol=lf`). Windows editörünün dosyayı CRLF'e çevirmesi
+sahte "tüm dosya değişti" diff'i üretmez. Bu dosyayı değiştirme.
+
+---
+
+## 3. Dosya sahipliği
+
+- Her yolun tek sahibi var. Tablo: `docs/GOREV_DAGILIMI.md` §2.
+- Başkasının dosyasında hata görürsen **düzeltme**; kendi status dosyana `NOT: <dosya> içinde <sorun>` yaz.
+- Ortak klasörlerde (`data/<site>/`, `docs/story/`) birden çok kişi yazar ama **her dosyanın tek sahibi** var.
+  Script'in o klasörü temizlerse başkasının dosyasını silersin (K-7).
+- Aynı bilgisayarda birden çok ajan: her biri **ayrı klon klasöründe** çalışır.
+
+---
+
+## 4. Veri kalitesi ve kalibrasyon (zorunlu)
+
+- **Kalibrasyon bizim işimiz değil.** Kalibrasyon ve doğrulamayı NISAR projesi (NASA-JPL ve ISRO) yapar.
+  Ürünleri yayınlandığı hâliyle kullanırız; "kalibre ettik" ya da "düzelttik" demeyiz.
+- Her katman/dosya `quality` etiketi taşır. Sınıflar ve kuralları: `rules/VERI_SOZLESMESI.md` §3.
+- Web'de her veri katmanında rozet ve sabit dipnot:
+  *"NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team."*
+
+## 5. Bilimsel doğruluk
+
+- Algoritma yeniden icat edilmez: resmi kaynaktan uyarlanır, kaynak yorum satırına yazılır
+  (NISAR Science Users' Handbook, https://github.com/nisar-solid/ATBD, https://github.com/ASFOpenSARlab/NISAR_ATBD_Cookbook).
+- İşaret konvansiyonu (çökme negatif mi pozitif mi) ürün dokümanından doğrulanır, kaynağı yazılır.
+- Sonuç literatürle kıyaslanır (Central Valley için USGS/JPL çökme hızları). Bir büyüklük mertebesi fark varsa yayınlanmaz, BLOCKED.
+- Sade İngilizce cümleler **kuralla** üretilir (şablon + ölçülmüş sayı). LLM sayı üretmez.
+
+## 6. Yapay zekâ ile üretilen medya
+
+- Higgsfield/Gemini vb. görsel ve videolar sadece süs ve anlatım içindir.
+- Her birinde görünür "AI-generated illustration" etiketi. Haritalarda sadece gerçek veri. NASA logosu kullanılmaz.
+- Kullanılan tüm AI araçları teslimde açıklanır: her PC kendi status dosyasına `AI: <araç> → <ne için>` satırı ekler.
+
+## 7. "Bitti" tanımı
+
+Bir görev ancak şunların hepsi doğruysa bitmiştir:
+1. Çıktı dosyaları görev dosyasındaki yolda ve formatta (`rules/VERI_SOZLESMESI.md`).
+2. Kod çalıştırıldı, çıktı açılıp gözle kontrol edildi (PNG açıldı, JSON parse edildi, sayfa tarayıcıda açıldı).
+3. `status/PCx.md` güncellendi: ne bitti, **nasıl doğrulandı**, sayılar ve kaynakları.
+4. Push edildi.
+
+### 7.1 Bittikten sonra: hiç boş kalma protokolü
+
+Hedef: teslime kadar hiçbir ajan boşta durmaz. Bir görev bitince **sormadan** sıradakine geç:
+1. Kendi `tasks/PCx.md` dosyandaki bitmemiş bir sonraki görev.
+2. Yoksa `tasks/QUEUE.md`'den en üstteki sahiplenilmemiş iş:
+   - Satırı `- [ ]` → `- [~PCx]` yap, **sadece o satırı** değiştir, hemen commit + push (başkası almasın).
+   - Push çakışırsa `git pull --rebase origin main`; satırı başkası almışsa bir sonrakini seç.
+   - Sahiplendiğin işte yazma iznin, o satırdaki **Klasör** sütunuyla sınırlı.
+   - Bitince `- [x PCx]` + commit + push.
+3. Kuyruk boşsa: kendi çıktılarını test et/iyileştir; başkalarının çıktısını kontrol et ve notunu
+   **`docs/qa/PCx.md`** (kendi dosyan) içine yaz, onların dosyasına dokunma; kaynak doğrulama.
+
+Ayrıca:
+- Her iş bitince: status → `git pull --rebase origin main` → commit → push → **hemen** sonraki iş.
+- Her 30-45 dakikada bir `git pull`: PC1 `tasks/` altına yeni görev yazabilir.
+- Verimlilik: büyük dosyayı baştan sona okuma, `grep`/özet kullan; aynı araştırmayı tekrarlama, önce `docs/` ve `status/`'a bak.
+
+## 8. Disk ve indirme
+
+- Ham veri `raw/` altına iner (git dışı). İş bitince ham dosya silinir; sadece kesilmiş alt küme kalır.
+- Aynı anda diskte en fazla 5 ham GUNW/GCOV dosyası tut. (Bir GUNW ≈ 2-3 GB; plan: 6 dosya ≈ 14 GB.)
+- Aynı bilgisayarda iki ajan aynı anda büyük indirme yapmaz; sırayla. Status'a indirme hızını yaz.
+- Boş alan 20 GB'ın altına düşerse indirme durdurulur, BLOCKED.
+
+---
+
+## 9. Hata kaydı
+
+Her madde gerçekten yaşanmış bir hatadan çıkar. Şablon:
+
+```
+### E-NN · kısa başlık
+**Ne oldu:** ...
+**Sonuç:** ...
+**Düzeltme:** ...
+**Ders →** hangi K kuralı (yoksa yeni K eklenir)
+```
+
+*(Henüz kayıt yok.)*
+
+---
+
+## Elenen alternatifler
+
+- **Herkes kendi dalında çalışsın, PC1 PR'larla birleştirsin:** elendi. 48 saatte 6 ajanın PR'ını
+  incelemek PC1'in tüm zamanını yer; klasör sahipliği aynı güvenliği daha ucuza sağlıyor.
+- **Kuralları CLAUDE.md'ye yazalım:** elendi. CLAUDE.md giriş noktası olarak kısa kalmalı; kurallar ayrı
+  dosyada olunca değiştirilmesi ve izlenmesi kolay.
+- **Ajanlar git hatalarını kendileri çözsün:** elendi. Bir ajanın "düzeltmek" için çalıştırdığı
+  `reset --hard` geri getirilemez. Durup haber vermek her zaman daha ucuz.
+
+## Geri alınabilir mi
+
+Hayır. Bunlar kısıt, tercih değil.

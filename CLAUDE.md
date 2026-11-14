@@ -1,24 +1,36 @@
-# aseltech — NISAR Pulse: Follow the Water (TÜM ajanlar önce bunu okur)
+# aseltech: giriş noktası (tüm ajanlar ve insanlar önce bunu okur)
 
-NASA Space Apps 2026 · Challenge "Dancing with the SARs" · Team Taykut · Local event: Lincoln (UK).
-NISAR radar verisinden yer çökmesini (Central Valley ABD, Karapınar TR) ve bulutlar altındaki İngiltere'yi gösteren,
-herkesin okuyabileceği açık kaynak web hikâyesi + Aquifer Manager oyunu.
-**Lincoln sunumu BUGÜN (Cmt 14 Kas), demo 17:30 TR. Küresel teslim Paz 23:59 UK = Pzt 02:59 TR.**
+NASA Space Apps 2026 · Challenge: **Dancing with the SARs** · Ürün: **NISAR Pulse: Follow the Water**
+Takım Taykut · Local Event: Lincoln (UK) · Global teslim: **Paz 15 Kas 23:59 UK = Pzt 02:59 TR** (iç hedef Paz 22:00 TR)
 
-## Okuma sırası (başlarken bir kez, sonra sadece değişeni — rules/RULES.md K-1)
-1. `rules/RULES.md` — K-1…K-14: git akışı, yasaklar, çakışma, "bitti" tanımı, hiç boş kalma, kalibrasyon, hata kaydı
-2. `rules/VERI_SOZLESMESI.md` — bölgeler, kalite sınıfları, tüm dosya formatları ve sahipleri
-3. `docs/GOREV_DAGILIMI.md` — kim kim, sahiplik, bağımlılıklar
-4. `tasks/PCx.md` — SENİN görevlerin (kimliğini bilmiyorsan: AGENTS.md veya klasör adına bak, yoksa insana sor)
-5. Gerektiğinde: `docs/URUN_TANIMI.md`, `docs/DEPO_HARITASI.md`, `docs/SOZLUK.md`, `docs/MASTER_PLAN.md`, `tasks/QUEUE.md`
+## Proje tek paragrafta
 
-## Asla unutma (özet — ayrıntı RULES.md)
-- Sadece kendi yazma alanın; `git add <yol>`, asla `git add -A`. Push öncesi `git pull --rebase`.
-- İş bitince SORMADAN sıradakine geç: kendi görev → QUEUE → QA. Engel → `BLOCKED` yaz, başka işe geç.
-- Uydurma sayı/koordinat/link yok. Kalibrasyon NISAR projesinin işi; kalite etiketi zorunlu. AI görseli = etiketli, veri değil.
-- Şifre isteme/görme. Sitede görünen her metin İngilizce.
+NASA-ISRO uydusu NISAR'ın radar verisiyle (GUNW: yer hareketi, GCOV: radar görüntüsü, SME2: toprak nemi)
+tarım bölgelerinde yeraltı suyu pompalandıkça yerin nasıl çöktüğünü ölçüyor, bunu herkesin okuyabileceği
+bir web hikâyesine çeviriyoruz: santim haritası, zaman kaydırıcısı, tıkla-grafik, sade İngilizce cümle,
+altyapı riski ve GPS doğrulaması. Bölgeler: California Central Valley (ana), Konya/Karapınar, UK (Fens).
+Ayrıntı: `docs/URUN_TANIMI.md`.
 
-## Resmi kaynaklar
-- NISAR Science Users' Handbook 2. baskı (Ekim 2025): §2.4 uygulamalar, §5 ürünler, §6 algoritmalar, §7 hata kaynakları
-- Solid Earth ATBD: https://github.com/nisar-solid/ATBD · L3 Cookbook: https://github.com/ASFOpenSARlab/NISAR_ATBD_Cookbook
-- Veri: ASF (`platform=NISAR`); `.h5` Earthdata girişi ister, browse PNG girişsiz.
+## Okuma sırası: bu sırayla, eksiksiz oku, sonra işe başla
+
+| # | Dosya | Neden |
+|---|---|---|
+| 1 | `rules/RULES.md` | Değişmez kurallar. **İlk komuttan önce.** Git güvenliği, dosya sahipliği, veri kalitesi |
+| 2 | `docs/GOREV_DAGILIMI.md` | Kim kim, kim neyin sahibi, kim kimi bekliyor. **Burada kendi PC numaranı bul** |
+| 3 | `tasks/PCx.md` | Senin görev dosyan (x = kendi numaran) |
+| 4 | `rules/VERI_SOZLESMESI.md` | Dosya formatları, bölge sınırları, kalite etiketleri. Veri üreten/okuyan herkes |
+| 5 | `docs/TODAY_PLAN.md` | Bugünün saat saat hedefi (Lincoln sunumu bugün, demo 17:30 TR) |
+
+**Görevin bitince durma:** `rules/RULES.md` §7.1 hiç boş kalma protokolü → kendi sonraki görevin → `tasks/QUEUE.md` → QA. Her 30-45 dakikada `git pull`.
+
+Gerektiğinde: `docs/MASTER_PLAN.md` (iki günlük ana plan) · `docs/DEPO_HARITASI.md` (hangi klasör ne) ·
+`docs/SOZLUK.md` (GUNW, LOS, coherence gibi terimler) · `tasks/QUEUE.md` (ortak iş kuyruğu) · `tasks/BACKLOG.md` (bonus işler).
+
+## Hangi PC'sin?
+
+Klasör adın ve bilgisayarın söyler. Tablo: `docs/GOREV_DAGILIMI.md` §1. Emin değilsen insana sor, tahmin etme.
+
+## Bu dosyanın bakımı
+
+Sadece PC1 (Kerem) değiştirir. Kural değişikliği `rules/`, görev değişikliği `tasks/` altında yapılır;
+bu dosya yalnızca giriş noktasıdır, kısa kalır.
