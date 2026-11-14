@@ -261,7 +261,7 @@ Atlasın yeni kalite alanlarında kalan eksikler: Konya ve Delta için `p2_cm` i
 
 Hiçbir şehirde açık `reference_outside_basin` kanıt alanı yok. Bu yüzden havza dışı referansın coğrafi/jeolojik konumu kesin doğrulanamıyor; ref aralığı proxy'si dokuz şehir için de 3 alternatif ve `<30%` ölçütünü karşılamadı veya gerekli aralık bulunmadı. Atlas JSON'unda 16 boş `note` alanı var (8 `regions`, 5 `reliable`, 3 `indicative`). Güven sınıfı/geçerli alan uyumunda high sınıfına ait bir ihlal bulunmadı; ancak Konya ve Delta'nın atlas `valid_fraction` değeri boş olduğu için güven koşulu doğrulanamıyor.
 
-`python pipeline/pc7/validate_json.py`: **82 JSON**, parse/non-standard constant hatası 0, non-finite sayı 0, **4 quality alanı eksiği** (`data/global/{central_valley,delta,karapinar,konya_plain}/validation_note.json`); 19 `points.json` kaliteyi kardeş meta'dan alıyor. PC5'in kaynak dosyalarına dokunulmadı.
+`python pipeline/pc7/validate_json.py`: **83 JSON**, parse/non-standard constant hatası 0, non-finite sayı 0, **4 quality alanı eksiği** (`data/global/{central_valley,delta,karapinar,konya_plain}/validation_note.json`); 20 `points.json`/not dosyası kaliteyi kardeş meta'dan alıyor. PC5'in kaynak dosyalarına dokunulmadı.
 
 O2 yeniden kontrolü: olasılıksal risk kodu/verisi/raporu/grafiği mevcut; `technical_note.md/html` ve `project_page.md` sonuçları içeriyor. `python -m pytest -q risk/test_probabilistic_risk.py`: **2 passed**. Eşik kaynaklarının tam bibliyografisi yerel kaynak kaydında hâlâ yok; O2 raporunda eşikler yalnız tarama/sensitivity değeri olarak sunuluyor.
 
