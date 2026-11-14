@@ -1,8 +1,8 @@
 # NISAR Pulse — Follow the Water: Pitch, Video Script & Slide Deck
 
-> **Verified Data Policy (Rule K-2 · Updated for Q30):** All site measurements below are resolved directly from committed repository datasets (`data/central_valley/summary.json`, `data/karapinar/summary.json`, `data/central_valley/validation.json`, `data/central_valley/assets.json`, `data/karapinar/sinkholes.geojson`, `docs/story/sources.md`, and `web3d/surfaces.json`). Zero synthetic or extrapolated claim numbers appear unlabelled.
+> **Verified Data Policy (`K-2`, `Q30`):** All site measurements below resolve directly from committed repository datasets (`data/central_valley/*.json`, `data/karapinar/*.json`, `data/uk/meta.json`, `data/uk_clay/detection.json`, `docs/story/sources.md`, and `web3d/surfaces.json`). Zero synthetic or unlabelled estimates appear in any metric.
 
-## Verified Repository Data Map (Resolved from `{PLACEHOLDER}` Tokens)
+## Verified Repository Data Map
 
 | Token | Verified Source File | Resolved Value (`quality: provisional` unless noted) |
 |---|---|---|
@@ -44,7 +44,7 @@
   Our project, **NISAR Pulse — Follow the Water**, turns NASA–ISRO NISAR L-band interferograms into plain-language maps, a Three.js 3D surface explorer, and a 24-month water-policy simulator (**Valley Under Pressure**) — all running live in any browser."
 
 ### 0:45 – 1:45 · Live Demo: Central Valley & Karapınar
-- **[ON SCREEN — Story Chapter 3 (`[data-step="cv"]`, `#play`, `#slider`, `#readout`, `#pointChart`)]:** Press `#play` on the date slider (**`28 Jun – 14 Oct 2026`**, **`7` provisional NISAR GUNW pairs**). Tap `p01` (`6 km N of Terra Bella`, `max_subsidence_location`) and show `#readout` + `#pointChart` + Chapter 4 GPS comparison.
+- **[ON SCREEN — Story Chapter 3 (`[data-step="cv"]`, `#cvPlay`, `#slider`, `#readout`, `#pointChart`)]:** Press `#cvPlay` on the date slider (**`28 Jun – 14 Oct 2026`**, **`7` provisional NISAR GUNW pairs**). Tap `p01` (`6 km N of Terra Bella`, `max_subsidence_location`) and show `#readout` + `#pointChart` + Chapter 4 GPS comparison.
 - **[SPEAKER]:**
   "Step one: California's San Joaquin Valley. Across **108 summer days (`2026-06-28` to `2026-10-14`)**, cumulative NISAR line-of-sight measurements over **7 provisional pairs** show the valley floor dropping by up to **`−7.8 centimetres` LOS** — roughly **`−10.1 centimetres`** vertical equivalent — near **Terra Bella**.
   Tap any point on the map and the chart strips away radar jargon into one plain sentence for water managers. And when underground clay compacts irreversibly, surface canals tilt: evaluating **645 OpenStreetMap corridors** reveals **81 high-risk segments**, with differential slopes reaching **`57.01 mm/km`** on the **Tulare Irrigation District Canal** and **`49.12 mm/km`** along **102.8 km of the California Aqueduct**—and **`±25%`** threshold sensitivity tests (`72–115` high-risk segments) leave our top-10 priority ranking **100% invariant**."
@@ -76,6 +76,7 @@
 ## 2. 30-Second Video Script & English `.srt` Subtitles
 
 **Target length:** `30.0 seconds` (`00:00:00,000` to `00:00:30,000`).  
+**Rendered video deliverable:** [`docs/story/media/demo_30s.mp4`](media/demo_30s.mp4) (`29.62 s`, `1080p`, `24 fps`, burned English subtitles, logoless, generated via `analysis/pc6/make_demo_video.py`).  
 **Visual rhythm:** Fast-cut web capture + clean overlay captions; every cited statistic matches `data/*/summary.json`, `validation.json`, and `assets.json`.
 
 | Time | Visual Cue | Spoken Narration (English) |
@@ -151,4 +152,4 @@ NISAR Pulse: Follow the Water. Provisional NISAR L2 GUNW data (NASA-JPL / ISRO c
 ### Slide 7 · Scientific Integrity, Provenance & AI Disclosure
 - **Calibration Notice:** NISAR data used here are **provisional** (`CRID P05023`); sensor calibration and validation are performed by the NISAR project (NASA–JPL / ISRO), not by our team.
 - **Open & Reproducible:** Pure Python/NumPy pipeline (`pytest`-verified phase-to-cm tests) + interactive MapLibre & Three.js (`web3d/`) hosted statically.
-- **AI Transparency:** Site editorial artwork in `web/assets/` uses tagged `"AI-generated illustration"` badges. All maps, charts, and simulator panels display measured satellite, GPS, and field-survey data. Coding & QA assistance provided by Claude and Gemini/Antigravity.
+- **AI Transparency:** **Zero AI-generated images** appear in the live website, slide deck, simulator, 3D explorer, or `demo_30s.mp4` (`38b774f`); all maps, charts, and simulator panels display measured satellite, GPS, and field-survey data. Coding & documentation assistance provided by Claude and Gemini/Antigravity.
