@@ -56,3 +56,8 @@ Yazma alanı: `tools/bulletin.py`, `docs/bulletins/`, `data/global/exposure_atla
 2. `status/PC8.md`'ye tek satır yaz: ne yapıyorsun, % kaç bitti, sıradaki ne.
 3. Bundan sonra **en geç 10 dakikada bir** commit + push; 10 dk'dan uzun commit'siz kalma (uzun indirmede her çift bitince ara kayıt).
 4. Sonra bu dosyadaki en son TAKVİYE / KUSURSUZLUK bölümünden devam et.
+
+
+# ➕ TAKVİYE (Paz 02:25, PC1) — atlas 19 bölge, tamlık 86/114 (`docs/qa/ATLAS_COMPLETENESS.md`). PC4/PC5 2 saattir durmuş; eksikleri sen tamamla.
+1. Yeni 4 şehir **eloy, delhi, quetta, xian** için bülten + `exposure_atlas.json` satırı; vital_signs güncelle (19 bölge).
+2. Tamlık tablosunu her 30 dk yeniden üret.

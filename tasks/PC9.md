@@ -71,3 +71,8 @@ Kapsam hedefi Paz 14:00'te ≥20 şehir. Her yeni şehirde 6'lı paketin 1. par�
 2. `status/PC9.md`'ye tek satır yaz: ne yapıyorsun, % kaç bitti, sıradaki ne.
 3. Bundan sonra **en geç 10 dakikada bir** commit + push; 10 dk'dan uzun commit'siz kalma (uzun indirmede her çift bitince ara kayıt).
 4. Sonra bu dosyadaki en son TAKVİYE / KUSURSUZLUK bölümünden devam et.
+
+
+# ➕ TAKVİYE (Paz 02:25, PC1) — atlas 19 bölge, tamlık 86/114 (`docs/qa/ATLAS_COMPLETENESS.md`). PC4/PC5 2 saattir durmuş; eksikleri sen tamamla.
+1. Kendi işlediğin **eloy** → `python analysis/pc5/uncertainty_map.py` (PC5'in aracı; `--meta-file` ile, `python -m pytest -q analysis/pc5` geçmeli) → `data/global/<id>/uncertainty/{sigma_cm.png,meta.json}`; ardından PC5 biçiminde `data/global/<id>/validation_note.json` (literatür hızı + DOI, uyum notu, önerilen güven sınıfı, `"reviewed_by": "pending PC5"`). Uydurma yok; kaynak yoksa "no published rate found".
+2. Cangzhou'ya devam; bitince "hazır" notu.

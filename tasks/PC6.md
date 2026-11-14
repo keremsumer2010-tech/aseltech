@@ -87,3 +87,8 @@ Atlas işlerin bitti; yeni iş (NISAR 3D dosyalarına dokunma):
 2. **"Updated" rozeti:** atlas.json'da `note` "recomputed" içeren şehirlerde (Tahran) yan panelde "Recomputed with off-basin reference — old value −3.5 cm" satırı.
 3. **Ana sayfa "Key numbers":** `data/global/vital_signs.json`'dan (şehir sayısı, en hızlı, alan, nüfus) canlı oku; sabit sayı kalmasın.
 4. Site geneli kırık link + konsol taraması (cache-bust sonrası `?v=` linkleri dahil), sonuç `docs/qa/PC6.md`.
+
+
+# ➕ TAKVİYE (Paz 02:25, PC1) — atlas 19 bölge, tamlık 86/114 (`docs/qa/ATLAS_COMPLETENESS.md`). PC4/PC5 2 saattir durmuş; eksikleri sen tamamla.
+1. **Şehir kartları (PC4 durdu, sana geçti):** `docs/story/atlas_cities/{semarang,eloy,delhi,quetta,hanoi,xian}.md` — mevcut kartların biçiminde (örn. `konya_plain.md`), ≤150 kelime: neden çöküyor (kaynaklı), kim etkileniyor, yayımlanmış hız (kaynak+yıl), bizim değerimiz (cm/100d, dönem, güven, atlas.json'dan), NISAR'ın kattığı. Uydurma yok.
+2. Atlas sayfasında yeni 4 şehrin (eloy, delhi, quetta, xian) panel/animasyon/filtrede doğru göründüğünü test et.
