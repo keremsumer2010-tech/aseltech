@@ -14,4 +14,5 @@
 - Kaynak: https://api.daac.asf.alaska.edu/services/search/param (ASF SearchAPI)
 - AI: Codex → yerel GCOV analizi, kaynak sentezi, offline QA scriptleri ve Node test sürücüsü.
 - 20:00 hata ayıklama 1: `web/index.html` boş görsel `src` niteliği kaldırıldı; `ROOT + data-src` yükleyicisi korundu. `docs/qa/PC7.md` §8.
+- 20:00 hata ayıklama 2: `web/explorer.html`'e sabit NISAR provisional/kalibrasyon uyarısı eklendi; mevcut `.disclaimer` stili kullanıldı. `docs/qa/PC7.md` §9.
 - BLOCKED: yok
