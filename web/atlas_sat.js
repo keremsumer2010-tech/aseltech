@@ -1,5 +1,6 @@
 // Atlas <-> NISAR 3D orbit view bridge (PC1). Uses the globals atlasData, activeId and
-// selectRegion from atlas.js (loaded before this file). The 3D module loads on first use.
+// selectRegion from atlas.js (loaded before this file). The 3D view opens by default;
+// "2D map" in its toolbar returns to the flat atlas map, this button brings it back.
 (function(){
   const bar = document.querySelector('.atlas-toolbar');
   const wrap = document.querySelector('.atlas-mapwrap');
@@ -13,28 +14,38 @@
   bar.appendChild(btn);
 
   let mod = null;
+  const regions = () => (typeof atlasData !== 'undefined' && atlasData?.regions) || [];
   const current = () => {
-    const regs = (typeof atlasData !== 'undefined' && atlasData?.regions) || [];
-    const id = (typeof activeId !== 'undefined' && activeId) || regs[0]?.id;
-    return regs.find(r => r.id === id) || null;
+    const id = (typeof activeId !== 'undefined' && activeId) || regions()[0]?.id;
+    return regions().find(r => r.id === id) || null;
   };
+  const load = async () => (mod = mod || await import('./nisar3d.js?v=14'));
 
-  btn.addEventListener('click', async () => {
+  async function openView(opts){
     btn.disabled = true;
-    try{
-      mod = mod || await import('./nisar3d.js?v=13');
-      await mod.open(wrap, current());
-    }catch(e){ console.error('NISAR 3D failed to load', e); }
+    try{ await load(); await mod.open(wrap, current(), opts); }
+    catch(e){ console.error('NISAR 3D failed to load', e); }
     btn.disabled = false;
-  });
+  }
+  btn.addEventListener('click', () => openView({}));
 
+  // Open by default once the atlas data is in (WebGL required; otherwise the 2D map stays).
+  const hasGL = (() => { try{ const c = document.createElement('canvas'); return !!(c.getContext('webgl2') || c.getContext('webgl')); }catch(e){ return false; } })();
+  if (hasGL){
+    let tries = 0;
+    const wait = setInterval(() => {
+      if (regions().length || ++tries > 60){ clearInterval(wait); if (regions().length) openView({}); }
+    }, 250);
+  }
+
+  // Picking a region while the 3D view is open plays NISAR's next real pass over it.
   if (typeof selectRegion === 'function'){
     const orig = selectRegion;
     selectRegion = async function(id){
       const res = orig.apply(this, arguments);
       if (mod && mod.isOpen()){
-        const r = (atlasData?.regions || []).find(x => x.id === id);
-        if (r) mod.selectRegion(r);
+        const r = regions().find(x => x.id === id);
+        if (r) mod.selectRegion(r, {autoplay: true});
       }
       return res;
     };

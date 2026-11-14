@@ -55,17 +55,20 @@ let pass = null, region = null, regionMeta = null, revealState = null, stripBuf 
 let sweepPhase = 0, snapFollow = false, snapCraft = false, lastSatPos = null, frameDt = 0.016;
 
 // ---------- public API ----------
-export async function open(container, reg){
-  if (!root) await build(container);
+export async function open(container, reg, opts = {}){
+  const first = !root;
+  if (first) await build(container);
   root.hidden = false;
+  const wasRunning = running;
   running = true; lastT = performance.now();
   resize();
-  if (reg) await selectRegion(reg);
-  requestAnimationFrame(loop);
+  if (first) setCam('follow');                 // start next to the spacecraft so NISAR is visible at once
+  if (reg) await selectRegion(reg, opts);
+  if (!wasRunning) requestAnimationFrame(loop);
 }
 export function close(){ running = false; if (root) root.hidden = true; if (document.fullscreenElement) document.exitFullscreen?.(); }
 export function isOpen(){ return running; }
-export async function selectRegion(reg){
+export async function selectRegion(reg, opts = {}){
   region = reg; regionMeta = null; pass = null; revealState = null;
   setCaption(`Computing NISAR's next real pass over ${reg.name}…`);
   try{ const r = await fetch(ROOT + (reg.path || `data/global/${reg.id}/`) + 'meta.json'); regionMeta = r.ok ? await r.json() : null; }catch(e){}
@@ -76,6 +79,7 @@ export async function selectRegion(reg){
       hud.pass.innerHTML = `Next imaging pass over <b>${esc(reg.name)}</b>: ${fmtUTC(new Date(pass.t))} · ${pass.asc ? 'ascending' : 'descending'} · incidence ${pass.inc.toFixed(1)}°`;
       const hrs = pass.leadMin / 60, lead = hrs >= 24 ? `${Math.floor(hrs / 24)} d ${Math.round(hrs % 24)} h` : `${Math.floor(hrs)} h ${Math.round(pass.leadMin % 60)} min`;
       setCaption(`NISAR will next image ${esc(reg.name)} in ${lead}. Press <b>Play next pass</b> to fly that real orbit and watch the radar swath record it.`);
+      if (opts.autoplay) playPass(root.querySelector('[data-act="pass"]'));
     } else {
       hud.pass.textContent = `No pass with ${reg.name} inside the 33–47° swath found in the next 12.5 days.`;
       setCaption('');
@@ -117,7 +121,7 @@ async function build(container){
       <button type="button" data-cam="craft">Spacecraft</button>
       <span class="n3d-sep"></span>
       <button type="button" data-act="fs" title="Full screen">⛶</button>
-      <button type="button" data-act="close" title="Back to atlas map">✕ Map</button>
+      <button type="button" data-act="close" title="Switch to the flat atlas map">2D map</button>
     </div>
     <div class="n3d-label" id="lbl-sat">NISAR</div>
     <div class="n3d-label n3d-city" id="lbl-city"></div>
