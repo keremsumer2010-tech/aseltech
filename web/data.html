@@ -40,12 +40,32 @@ asf.search(platform="NISAR", processingLevel="GUNW",
 <script>
 // file list comes from data/catalog.json (analysis/build_catalog.py): new datasets appear here automatically
 const CLS = {provisional: 'provisional', preview: 'preview', 'beta-precal': 'beta', mixed: 'beta'};
-J('data/catalog.json').then(cat => {
-  if (!cat) return;
+Promise.all([J('data/catalog.json'), J('data/results_registry.json')]).then(([cat, reg]) => {
   const rows = [];
-  for (const s of cat) for (const l of s.layers) rows.push(`<tr><td>${l.title}</td><td>${s.title}</td><td>${CLS[l.quality] ? `<span class="qbadge ${CLS[l.quality]}">${String(l.quality).toUpperCase()}</span>` : (l.quality || '—')}</td><td><a class="mono" href="${ROOT + l.file}" download>${l.file.split('/').slice(-2).join('/')}</a></td></tr>`);
-  rows.push(`<tr><td>Global subsidence atlas (all measured regions)</td><td>Global</td><td><span class="qbadge provisional">PROVISIONAL</span></td><td><a class="mono" href="${ROOT}data/global/atlas.json" download>global/atlas.json</a></td></tr>`);
-  rows.push(`<tr><td>Data catalogue (everything above)</td><td>All</td><td>—</td><td><a class="mono" href="${ROOT}data/catalog.json" download>data/catalog.json</a></td></tr>`);
+  const seen = new Set();
+  const addRow = (title, region, qHtml, file) => {
+    if (!file || seen.has(file)) return;
+    seen.add(file);
+    rows.push(`<tr><td>${title}</td><td>${region}</td><td>${qHtml}</td><td><a class="mono" href="${ROOT + file}" download>${file.split('/').slice(-2).join('/')}</a></td></tr>`);
+  };
+  if (Array.isArray(cat)) {
+    for (const s of cat) for (const l of s.layers) {
+      const qHtml = CLS[l.quality] ? `<span class="qbadge ${CLS[l.quality]}">${String(l.quality).toUpperCase()}</span>` : (l.quality || '—');
+      addRow(l.title, s.title, qHtml, l.file);
+    }
+  }
+  if (reg && Array.isArray(reg.items)) {
+    for (const it of reg.items) {
+      if (it && it.data) addRow(it.title, it.group || 'Derived', '<span class="qbadge provisional">PROVISIONAL</span>', it.data);
+    }
+  }
+  addRow('Global subsidence atlas (all measured regions)', 'Global', '<span class="qbadge provisional">PROVISIONAL</span>', 'data/global/atlas.json');
+  addRow('Global subsidence atlas (GeoJSON)', 'Global', '<span class="qbadge provisional">PROVISIONAL</span>', 'data/global/atlas.geojson');
+  addRow('Global subsidence atlas (CSV table)', 'Global', '<span class="qbadge provisional">PROVISIONAL</span>', 'data/global/atlas.csv');
+  addRow('Atlas time-series QC flags', 'Global', '<span class="qbadge provisional">PROVISIONAL</span>', 'data/global/qc_flags.json');
+  addRow('Verified numbers registry', 'All', '—', 'data/numbers_registry.json');
+  addRow('Results registry', 'All', '—', 'data/results_registry.json');
+  addRow('Data catalogue (everything above)', 'All', '—', 'data/catalog.json');
   document.querySelector('#files tbody').innerHTML = rows.join('');
 });
 (async () => {

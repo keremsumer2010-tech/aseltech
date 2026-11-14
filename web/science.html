@@ -16,6 +16,10 @@
   <p class="kicker">Science &amp; method</p>
   <h1>From radar phase to centimetres</h1>
   <p class="lede">Everything we show is computed from NASA-ISRO NISAR Level-2 products with open, tested code. This page explains each step, the corrections we apply, how we checked the result, and what it cannot tell you.</p>
+  <section id="resultsSec" class="results-sec" aria-label="Results registry" hidden>
+    <h2>Results</h2>
+    <div id="resultsBody"></div>
+  </section>
   <section class="inshort" aria-label="In short">
     <h2>In short</h2>
     <ol>
@@ -115,6 +119,42 @@ md('uncMd', 'docs/story/uncertainty.md', true);
 md('vrMd', 'docs/story/validation_report.md', true);
 md('rdMd', 'docs/story/risk_dossier.md', true);
 md('aqcMd', 'docs/story/atlas_top5_check.md', true);
+J('data/results_registry.json').then(reg => {
+  const sec = document.getElementById('resultsSec');
+  const body = document.getElementById('resultsBody');
+  if (!sec || !body || !reg || !Array.isArray(reg.items)) return;
+  const order = ['Global atlas', 'Central Valley', 'Türkiye', 'United Kingdom', 'Methods'];
+  const groups = new Map();
+  for (const g of order) groups.set(g, []);
+  for (const it of reg.items) {
+    if (!it || it.status === 'hidden') continue;
+    const g = it.group || 'Other';
+    if (!groups.has(g)) groups.set(g, []);
+    groups.get(g).push(it);
+  }
+  const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
+  const parts = [];
+  for (const [g, items] of groups.entries()) {
+    if (!items.length) continue;
+    const cards = items.map(it => {
+      const links = [];
+      if (it.doc) links.push(`<a href="${ROOT + esc(it.doc)}" target="_blank" rel="noopener">Read →</a>`);
+      if (it.data) links.push(`<a href="${ROOT + esc(it.data)}" download>Data</a>`);
+      return `<article class="rcard">
+        <h4>${esc(it.title)}</h4>
+        ${it.key_number ? `<div class="rcard-key"><span>${esc(it.key_number)}</span><span class="qbadge provisional">PROVISIONAL</span></div>` : ''}
+        ${it.summary ? `<p class="rcard-sum">${esc(it.summary)}</p>` : ''}
+        ${it.figure ? `<img class="rcard-fig" src="${ROOT + esc(it.figure)}" alt="${esc(it.title)}" loading="lazy">` : ''}
+        ${links.length ? `<div class="rcard-links">${links.join('')}</div>` : ''}
+      </article>`;
+    }).join('');
+    parts.push(`<div class="results-grp"><h3>${esc(g)}</h3><div class="results-grid">${cards}</div></div>`);
+  }
+  if (parts.length) {
+    body.innerHTML = parts.join('');
+    sec.hidden = false;
+  }
+});
 J('data/central_valley/summary.json').then(sm => {
   if (!sm) return; const f = x => (x < 0 ? '−' : '+') + Math.abs(x).toFixed(1);
   document.querySelectorAll('[data-k="cv.max"]').forEach(e => e.textContent = f(sm.max_subsidence_cm));

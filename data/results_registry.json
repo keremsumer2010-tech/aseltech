@@ -126,10 +126,10 @@
       "id": "validation_report",
       "group": "Central Valley",
       "title": "GNSS validation",
-      "summary": "",
-      "key_number": "",
+      "summary": "Across 10 Nevada Geodetic Laboratory GPS stations in the San Joaquin Valley, 6 stations agree with NISAR vertical estimates (r >= 0.4, median RMSE 0.8 cm; all-10 median RMSE 1.0 cm, peak CAHA r = 0.90).",
+      "key_number": "1.0 cm median RMSE (10 GPS, provisional)",
       "doc": "docs/story/validation_report.md",
-      "figure": null,
+      "figure": "docs/story/media/validation_scatter.png",
       "data": "data/central_valley/validation.json",
       "owner": "PC6",
       "status": "ready"

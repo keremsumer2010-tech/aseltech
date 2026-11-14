@@ -223,3 +223,14 @@ details.fold>summary:focus-visible{outline:3px solid #9cc3ff;outline-offset:2px}
 
 .newlink{font-size:.88rem;font-weight:600;color:var(--acc)}
 .newcard h3{margin:0 0 .4em;font-size:1.02rem}
+.results-sec{margin:24px 0 32px}
+.results-grp{margin:18px 0 24px}
+.results-grp h3{margin:0 0 10px;font-size:.92rem;text-transform:uppercase;letter-spacing:.06em;color:var(--mut);border-bottom:1px solid var(--line);padding-bottom:6px}
+.results-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.rcard{display:flex;flex-direction:column;gap:8px;padding:14px 16px;background:var(--bg2);border:1px solid var(--line);border-radius:4px}
+.rcard h4{margin:0;font-size:.98rem;line-height:1.3}
+.rcard-key{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:1.05rem;font-weight:700;color:#0b3d91;font-family:var(--mono)}
+.rcard-sum{margin:0;font-size:.86rem;line-height:1.45;color:#2d3748}
+.rcard-fig{width:100%;max-height:132px;object-fit:cover;border:1px solid var(--line);border-radius:3px;background:#fff}
+.rcard-links{display:flex;flex-wrap:wrap;gap:12px;margin-top:auto;font-size:.84rem;font-weight:600}
+@media (max-width:720px){.results-grid{grid-template-columns:1fr}}

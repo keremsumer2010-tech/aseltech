@@ -26,10 +26,15 @@ const fmtInt = v => (typeof v === 'number' && Number.isFinite(v)) ? Math.round(v
 const fmtDate = d => d ? new Date(d + 'T00:00:00Z').toLocaleDateString('en-GB', {day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC'}) : '—';
 const fmtShort = d => d ? new Date(d + 'T00:00:00Z').toLocaleDateString('en-GB', {day: 'numeric', month: 'short', timeZone: 'UTC'}) : '—';
 async function J(p){ try{ const r = await fetch(ROOT + p); return r.ok ? await r.json() : null; }catch(e){ return null; } }
-const KNOWN_CARDS = new Set(['bangkok','beijing','central_valley','delhi','delta','eloy','hanoi','ho_chi_minh','isfahan','jakarta','karapinar','konya_plain','mashhad','mexico_city','quetta','rafsanjan','semarang','tehran','xian']);
-const KNOWN_SIGMA = new Set(['bangkok','beijing','central_valley','delta','ho_chi_minh','isfahan','jakarta','karapinar','konya_plain','mexico_city','rafsanjan','tehran']);
+const KNOWN_CARDS = new Set(['bangkok','beijing','central_valley','delhi','delta','eloy','hanoi','ho_chi_minh','isfahan','jakarta','karapinar','konya_plain','mashhad','mexico_city','quetta','rafsanjan','semarang','tehran','xian','yunlin']);
+const KNOWN_SIGMA = new Set(['bangkok','beijing','central_valley','delta','hanoi','ho_chi_minh','isfahan','jakarta','karapinar','konya_plain','mashhad','mexico_city','rafsanjan','semarang','tehran']);
+const KNOWN_VALNOTE = new Set(['bangkok','delhi','delta','eloy','hanoi','ho_chi_minh','isfahan','jakarta','konya_plain','mashhad','mexico_city','quetta','rafsanjan','semarang','tehran','xian']);
 let bulletinIds = new Set();
 let qcFlags = null;
+let detMap = new Map();
+let robMap = new Map();
+let operaMap = new Map();
+let expMap = new Map();
 
 async function initBulletins(){
   try{
@@ -412,8 +417,20 @@ async function loadGnssLayer(){
 async function initAtlas(){
   initVitalSigns();
   await initBulletins();
-  atlasData = await J('data/global/atlas.json');
-  qcFlags = await J('data/global/qc_flags.json');
+  const [ad, qf, dt, rb, op, ex] = await Promise.all([
+    J('data/global/atlas.json'),
+    J('data/global/qc_flags.json'),
+    J('data/global/detectability.json'),
+    J('data/global/robustness.json'),
+    J('data/global/opera_check.json'),
+    J('data/global/exposure_atlas.json')
+  ]);
+  atlasData = ad;
+  qcFlags = qf;
+  if (Array.isArray(dt?.cities)) dt.cities.forEach(c => detMap.set(c.id, c));
+  if (Array.isArray(rb?.cities)) rb.cities.forEach(c => robMap.set(c.id, c));
+  if (Array.isArray(op)) op.forEach(c => operaMap.set(c.id, c));
+  if (Array.isArray(ex?.cities)) ex.cities.forEach(c => expMap.set(c.id, c));
   initDataBox();
   if (!atlasData || !Array.isArray(atlasData.regions)){
     document.getElementById('atlasList').innerHTML = '<p class="small">Could not load data/global/atlas.json.</p>';
@@ -576,9 +593,10 @@ async function selectRegion(id, fly, updateHash){
 
   const base = r.path ? (r.path.endsWith('/') ? r.path : r.path + '/') : `data/global/${r.id}/`;
   activeBase = base;
-  const [meta, pts] = await Promise.all([
+  const [meta, pts, valNote] = await Promise.all([
     J(base + 'meta.json'),
-    J(base + 'points.json')
+    J(base + 'points.json'),
+    KNOWN_VALNOTE.has(r.id) ? J(base + 'validation_note.json') : Promise.resolve(null)
   ]);
   const hasBul = Boolean(r.bulletin || bulletinIds.has(r.id));
   const hasCard = Boolean(r.city_card || KNOWN_CARDS.has(r.id));
@@ -603,19 +621,32 @@ async function selectRegion(id, fly, updateHash){
   const chartSvg = buildPointsSvg(pts, null, r.name, null);
 
   const extraCards = [];
-  if (r.detectable !== undefined && r.detectable !== null){
-    const detVal = typeof r.detectable === 'boolean' ? (r.detectable ? 'Yes (above noise)' : 'No (below noise)') : String(r.detectable);
+  const detInfo = detMap.get(r.id);
+  const detFlag = r.detectable !== undefined && r.detectable !== null ? r.detectable : detInfo?.detectable;
+  if (detFlag !== undefined && detFlag !== null){
+    const snrTxt = (typeof detInfo?.snr === 'number' && Number.isFinite(detInfo.snr)) ? ` (SNR ${detInfo.snr.toFixed(1)})` : '';
+    const detVal = typeof detFlag === 'boolean' ? ((detFlag ? 'Yes' : 'No') + snrTxt) : String(detFlag);
     extraCards.push(`<div><dt>Detectable</dt><dd>${esc(detVal)}</dd></div>`);
   }
-  if (typeof r.robustness_spread === 'number' && Number.isFinite(r.robustness_spread)){
-    extraCards.push(`<div><dt>Robustness spread</dt><dd>${esc(fmtUnit(r.robustness_spread, 'cm'))}</dd></div>`);
+  const robInfo = robMap.get(r.id);
+  const robSpread = (typeof r.robustness_spread === 'number' && Number.isFinite(r.robustness_spread)) ? r.robustness_spread : robInfo?.spread_cm;
+  if (typeof robSpread === 'number' && Number.isFinite(robSpread)){
+    const rngTxt = (typeof robInfo?.min_rate_cm_per_100d === 'number' && typeof robInfo?.max_rate_cm_per_100d === 'number')
+      ? `${fmtNum(robInfo.min_rate_cm_per_100d)} to ${fmtNum(robInfo.max_rate_cm_per_100d)} cm/100d`
+      : fmtUnit(robSpread, 'cm');
+    extraCards.push(`<div><dt>Robustness</dt><dd style="font-size:.76rem">${esc(rngTxt)}</dd></div>`);
   }
-  if (typeof r.people_exposed === 'number' && Number.isFinite(r.people_exposed)){
-    extraCards.push(`<div><dt>People exposed</dt><dd>${esc(fmtInt(r.people_exposed))}</dd></div>`);
+  const expInfo = expMap.get(r.id);
+  const expPop = (typeof r.people_exposed === 'number' && Number.isFinite(r.people_exposed)) ? r.people_exposed : expInfo?.people_lt_minus5cm;
+  if (typeof expPop === 'number' && Number.isFinite(expPop)){
+    extraCards.push(`<div><dt>People (&lt;&minus;5 cm)</dt><dd>${esc(fmtInt(expPop))}</dd></div>`);
   }
+  const opInfo = operaMap.get(r.id);
   if (r.opera_check !== undefined && r.opera_check !== null){
     const opTxt = typeof r.opera_check === 'object' ? (r.opera_check.summary || r.opera_check.status || JSON.stringify(r.opera_check)) : String(r.opera_check);
     extraCards.push(`<div><dt>OPERA cross-check</dt><dd style="font-size:.76rem">${esc(opTxt)}</dd></div>`);
+  } else if (opInfo){
+    extraCards.push(`<div><dt>OPERA DISP-S1</dt><dd style="font-size:.76rem">r=${opInfo.r.toFixed(2)}, RMSE ${opInfo.rmse_cm.toFixed(1)} cm</dd></div>`);
   }
 
   const mainVal = unitMode === 'vert' ? r.max_cm_vertical_est : r.max_cm_los;
@@ -629,6 +660,8 @@ async function selectRegion(id, fly, updateHash){
     ? `<br>Without flagged step(s): <b>${esc(fmtUnit(qcEntry.headline_without_flagged_steps_cm, 'cm'))}</b>` : '';
   const qcBoxHtml = (qcEntry || /^QC:/i.test(r.note || ''))
     ? `<div class="atlas-qc-box">${qcTags}<b>Time-series QC:</b> ${esc(qcDetailTxt)}${qcCleanTxt}</div>` : '';
+  const valBoxHtml = valNote?.agreement_note
+    ? `<div class="atlas-val-box"><b>Validation note${valNote.literature_vertical_cm_per_yr ? ` (lit. ${esc(valNote.literature_vertical_cm_per_yr)} cm/yr)` : ''}:</b> ${esc(valNote.agreement_note)}</div>` : '';
   const detail = document.getElementById('atlasDetail');
   detail.hidden = false;
   detail.innerHTML = `
@@ -636,6 +669,7 @@ async function selectRegion(id, fly, updateHash){
     <p style="margin:0 0 8px">${confBadge(r)} <span class="qbadge provisional">${esc((r.quality || 'provisional').toUpperCase())}</span>${isRecomputed ? ' <span class="cbadge updated">Updated</span>' : ''}</p>
     ${isRecomputed ? `<p class="atlas-updated"><b>Updated:</b> Recomputed with off-basin reference — old value &minus;3.5 cm</p>` : ''}
     ${qcBoxHtml}
+    ${valBoxHtml}
     <dl class="atlas-kv">
       <div><dt>Rate (LOS)</dt><dd>${esc(fmtUnit(r.rate_cm_per_100d, 'cm/100d'))}</dd></div>
       <div><dt>${esc(mainLbl)}</dt><dd>${esc(fmtUnit(mainVal, 'cm'))}</dd></div>
