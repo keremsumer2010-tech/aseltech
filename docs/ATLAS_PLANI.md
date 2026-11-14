@@ -89,3 +89,9 @@ Mevcut: Mexico City, Tahran, Cakarta, Pekin (PC10), Central Valley, Karapınar, 
 2. `slides.html`: 1 atlas slaytı (küre görseli + ilk 5 sıralama).
 3. **`docs/story/press_summary.md`**: tek sayfalık basın bülteni tarzı özet (başlık, 3 paragraf, 3 sayı, görsel, iletişim: repo/site).
 4. `project_page.md` ve `judge_faq.md`'ye atlas.
+**PC4 ikinci tur (22:15) — 1–4 BİTTİ, sıradakiler:**
+5. **Şehir kartları** `docs/story/atlas_cities/<id>.md` (id = atlas.json'daki id): her şehir için ≤150 kelime — neden çöküyor (yeraltı suyu/kil, kaynaklı), kim etkileniyor, yayımlanmış hız (kaynak + yıl), bizim değerimiz (cm/100d, dönem, güven), NISAR'ın kattığı. Uydurma yok; kaynak bulunamazsa "no published rate found" yaz. Önce mevcut 9 bölge, sonra yeni şehirler geldikçe. PC6 atlas panelinden bağlar.
+6. **`docs/story/atlas_methods.md`**: tek sayfa yöntem ve sınırlar — aynı kutu (±0.25°), havza dışı referans, cm/100d neden, güven sınıfı kuralları, LOS→dikey uyarısı, provisional/kalibrasyon cümlesi, her şehri yeniden üreten `python -m pipeline.nisarpulse run ...` komutu (summary.json'daki değerlerle). NASA mühendisinin "nasıl yaptınız" sorusunun cevabı.
+7. **`docs/story/atlas_data_dictionary.md`**: atlas.json'daki her alanın adı, birimi, anlamı, örnek değer; Data sayfası için (PC6 bağlar).
+8. `judge_faq.md`'ye atlas zor soruları: "sıralamanız literatürden neden farklı?", "108 gün yıllık hızı temsil eder mi?", "tropik şehirlerde koherens?", "referansı nasıl seçtiniz?", "bu şehri ilk siz mi ölçtünüz?" — PC5'in `atlas_validation.md`'sine dayanarak.
+9. Yeni şehir her geldiğinde: press_summary, slides, technical_note, şehir kartı senkronu.

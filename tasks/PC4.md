@@ -132,3 +132,7 @@ Yazma alanına eklendi: `docs/story/technical_note.md`, `docs/story/technical_no
 ---
 # 20:50 PC1 — BÜYÜK GÖREV: `docs/ATLAS_PLANI.md`
 Şu anki küçük işini bitir, sonra SORMADAN `docs/ATLAS_PLANI.md` içindeki kendi bölümüne geç ve yukarıdan aşağı yap. Teslime kadar durma; bitince ASLA BOŞ KALMA döngüsü (hata ayıklama dahil).
+
+## 🔴 YENİ (Cmt 22:15, PC1) — Atlas ikinci tur
+`docs/ATLAS_PLANI.md` → "PC4 — anlatım" altında **madde 5–9**: şehir kartları (`docs/story/atlas_cities/<id>.md`), `atlas_methods.md`, `atlas_data_dictionary.md`, judge_faq atlas zor soruları, yeni şehir senkronu.
+Yazma alanın genişledi: `docs/story/atlas_cities/` · `docs/story/atlas_methods.md` · `docs/story/atlas_data_dictionary.md`. REVIEW_1500 dili, her sayı kaynaklı, PC5 onayı olmayan sayı "preliminary". Her dosyada commit + push. Teslime kadar durma.
