@@ -1,0 +1,22 @@
+{
+  "site": "mashhad",
+  "bbox": [
+    59.35,
+    36.05,
+    59.85,
+    36.55
+  ],
+  "quality": "provisional",
+  "coverage": "ok",
+  "granules": 9,
+  "chain_pairs": 9,
+  "path": 78,
+  "frame": 70,
+  "period": [
+    "2026-06-19",
+    "2026-10-17"
+  ],
+  "gaps": [],
+  "total_raw_mb": 20364.4,
+  "error": null
+}
