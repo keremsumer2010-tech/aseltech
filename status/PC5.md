@@ -1,8 +1,12 @@
 # PC5 Durum Raporu
 
-- **Durum:** çalışıyor — Görev 3 & 4 (Q26/Q27 + `key_findings.md`) tamamlandı, Görev 5'e geçiliyor
+- **Durum:** çalışıyor — Görev 5 (`risk_sensitivity`) tamamlandı, Görev 6'ya (`game_sensitivity` Monte Carlo) geçiliyor
 - **Kimlik:** M3hmeT1888 · Antigravity (Gemini) · PC5
-- **Güncelleme:** 2026-11-14 15:07 TR
+- **Güncelleme:** 2026-11-14 15:09 TR
+
+## Görev 5 — Altyapı Risk Eşiği Duyarlılığı (`analysis/pc5/risk_sensitivity.py`, `docs/story/risk_sensitivity.md`)
+- `risk/compute_risk.py` değişmeden doğrudan yeniden kullanıldı; 645 segmentin tamamı baz eşiklerde (`10.0 mm/km`, `10.0 cm`) `81` yüksek / `131` orta / `433` düşük risk ile `data/central_valley/assets.json` özetini birebir doğruladı.
+- ±25% taramasında (`7.5 / 10.0 / 12.5 mm/km` × `7.5 / 10.0 / 12.5 cm`) yüksek riskli segment sayısı `72–115` arasında değişirken ilk 10 koridor ve sırası (`Tulare Irrigation District Canal` `57.01 mm/km` ... `CA 65` `42.34 mm/km`) tüm 9 eşik kombinasyonunda **%100 sabit** kaldı. `pytest analysis/pc5/test_risk_sensitivity.py -q` → **3 passed**.
 
 ## Görev 3 & 4 — Q26 + Q27 + `docs/story/key_findings.md`
 - **Q26:** `python -m analysis.decomp.point_quality` çalıştırılarak `docs/qa/PC5.md` §2 tabloları doğrulandı (`suspect_ids=[]`, `elevated_ids=["p03", "p08"]`, `watch_ids=["p01", "p02", "p04", "p05"]`).
