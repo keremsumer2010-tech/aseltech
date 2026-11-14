@@ -48,7 +48,10 @@
   let activeBasinId = 'tulare';
   let simState = null;
   let selectedDistrictId = 'p01';
-  let applyAll = false;
+  let applyAll = true; // sliders set the whole basin; the readout follows the district clicked on the map
+  let activePreset = 'baseline';
+  let chartStart = null; // first month shown in the panned timeline (null = follow the current month)
+  const CHART_WINDOW = 12;
   let overlayMode = 'sim'; // 'sim' | 'blend' | 'nisar'
   let audioEnabled = false;
   let audioCtx = null;
@@ -222,9 +225,9 @@
     simState.districts.forEach((d) => {
       const el = document.createElement('button');
       el.type = 'button';
-      el.style.cssText =
-        'background:rgba(11,15,20,0.88);border:1px solid #2f4259;color:#e6edf3;padding:3px 7px;border-radius:4px;font-size:11px;font-weight:600;cursor:pointer;white-space:nowrap;font-family:inherit;box-shadow:0 2px 8px rgba(0,0,0,0.5);';
-      el.innerHTML = `<span>${d.shortName}</span> <span class="mval mono" style="color:#ff6b57;">0.0 cm</span>`;
+      el.className = 'dmark';
+      el.setAttribute('aria-label', `Show readout for ${d.shortName}`);
+      el.innerHTML = `<span>${d.shortName}</span> <span class="mval">0.0 cm</span>`;
       el.addEventListener('click', () => selectDistrict(d.id, false));
       const mk = new maplibregl.Marker({ element: el, anchor: 'bottom' })
         .setLngLat([d.lon, d.lat])
@@ -237,9 +240,8 @@
       const refPt = pointsData.find((p) => p.kind === 'near_reference');
       if (refPt) {
         const refEl = document.createElement('div');
-        refEl.style.cssText =
-          'background:rgba(15,21,29,0.82);border:1px dashed #3ddc97;color:#3ddc97;padding:2px 6px;border-radius:4px;font-size:10px;font-family:ui-monospace,monospace;';
-        refEl.textContent = `REF: ${refPt.name}`;
+        refEl.className = 'refmark';
+        refEl.textContent = `Reference: ${refPt.name}`;
         refMarker = new maplibregl.Marker({ element: refEl, anchor: 'top' })
           .setLngLat([refPt.lon, refPt.lat])
           .addTo(map);
@@ -258,7 +260,7 @@
       zoom: ui.zoom,
       minZoom: 7.0,
       maxZoom: 14,
-      attributionControl: true,
+      attributionControl: { compact: true },
       style: {
         version: 8,
         sources: {
@@ -430,10 +432,9 @@
       const valSpan = m.el.querySelector('.mval');
       if (valSpan) {
         valSpan.textContent = `${d.totalCm.toFixed(1)} cm`;
-        valSpan.style.color = d.totalCm < -4 ? '#f06938' : d.totalCm < -1 ? '#e69f00' : '#009e73';
+        valSpan.style.color = d.totalCm < -4 ? '#c8321f' : d.totalCm < -1 ? '#a86b00' : '#1f7a35';
       }
-      m.el.style.borderColor = d.id === selectedDistrictId ? '#56b4e9' : '#2f4259';
-      m.el.style.background = d.id === selectedDistrictId ? 'rgba(19, 36, 56, 0.94)' : 'rgba(11,15,20,0.88)';
+      m.el.classList.toggle('sel', d.id === selectedDistrictId);
     });
   }
 
@@ -477,7 +478,7 @@
     const dpr = Math.min(window.devicePixelRatio || 1, maxDpr);
     const rect = canvas.getBoundingClientRect();
     const w = Math.max(260, Math.round(rect.width || 360));
-    const h = 132;
+    const h = Math.max(110, Math.round(rect.height || 150));
     if (canvas.width !== w * dpr || canvas.height !== h * dpr) {
       canvas.width = w * dpr;
       canvas.height = h * dpr;
@@ -486,136 +487,130 @@
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ctx.clearRect(0, 0, w, h);
 
-    // Sky / Surface Datum
-    ctx.fillStyle = '#090d12';
+    // Light palette matching the site: sky, sand, water, clay
+    ctx.fillStyle = '#f3f5f8';
     ctx.fillRect(0, 0, w, h);
 
-    const datumY = 20;
-    // Exaggerate visual sag linearly so 0..30 cm is clearly legible
-    const sagPx = Math.min(18, Math.max(-2, -d.totalCm * 0.65));
-    const permPx = Math.min(16, Math.max(0, -d.inelasticCm * 0.65));
+    const datumY = 24;
+    // Exaggerate visual sag so 0..30 cm is clearly legible
+    const sagPx = Math.min(20, Math.max(-2, -d.totalCm * 0.7));
+    const permPx = Math.min(18, Math.max(0, -d.inelasticCm * 0.7));
     const elastPx = Math.max(0, sagPx - permPx);
+    const sandBot = 86;
 
-    // Dashed original ground datum
+    // Sand above the clay, with a sagging surface
+    const sagMidY = datumY + sagPx;
+    ctx.fillStyle = '#efe6d2';
+    ctx.beginPath();
+    ctx.moveTo(0, datumY + 2);
+    ctx.quadraticCurveTo(w * 0.5, sagMidY + 6, w, datumY + 2);
+    ctx.lineTo(w, h);
+    ctx.lineTo(0, h);
+    ctx.closePath();
+    ctx.fill();
+
+    // Water depth mapped between 25 m and 95 m below the surface
+    const mapDepthY = (headM) => {
+      const depth = -headM;
+      return Math.max(datumY + 6, Math.min(h - 8, datumY + 8 + ((depth - 25) / 70) * (h - datumY - 20)));
+    };
+    const wtY = mapDepthY(d.headM);
+    const hpcY = mapDepthY(d.preconsolidationHeadM);
+
+    // Wet sand below the water level
+    ctx.fillStyle = '#d3e3f3';
+    ctx.fillRect(0, wtY, w, h - wtY);
+
+    // Clay layer (thinner where squeezed)
+    const clayTop = sandBot + sagPx * 0.3;
+    const baseClayPx = Math.max(14, Math.min(34, d.clayThicknessM * 0.4));
+    const currentClayPx = Math.max(8, baseClayPx - sagPx * 0.55);
+    ctx.fillStyle = '#b9926a';
+    ctx.fillRect(0, clayTop, w, currentClayPx);
+    if (elastPx > 0.3) {
+      ctx.fillStyle = 'rgba(47, 127, 209, 0.45)';
+      ctx.fillRect(0, clayTop, w, Math.min(10, elastPx + 1.5));
+    }
+    if (permPx > 0.3) {
+      ctx.fillStyle = 'rgba(200, 50, 31, 0.85)';
+      ctx.fillRect(0, clayTop + currentClayPx - Math.min(14, permPx), w, Math.min(14, permPx));
+    }
+
+    // Original ground level
     ctx.save();
-    ctx.setLineDash([4, 3]);
-    ctx.strokeStyle = '#3b4f68';
+    ctx.setLineDash([4, 4]);
+    ctx.strokeStyle = '#9aa6b8';
     ctx.beginPath();
     ctx.moveTo(0, datumY);
     ctx.lineTo(w, datumY);
     ctx.stroke();
     ctx.restore();
 
-    // Unconfined alluvium layer (sagging surface)
-    const sagMidY = datumY + sagPx;
-    ctx.fillStyle = '#202b38';
-    ctx.beginPath();
-    ctx.moveTo(0, datumY + 2);
-    ctx.quadraticCurveTo(w * 0.5, sagMidY + 6, w, datumY + 2);
-    ctx.lineTo(w, 74);
-    ctx.lineTo(0, 74);
-    ctx.closePath();
-    ctx.fill();
-
-    // Ground surface crest stroke
-    ctx.strokeStyle = '#8b9bb0';
-    ctx.lineWidth = 1.6;
+    // Ground surface
+    ctx.strokeStyle = '#6b5a3e';
+    ctx.lineWidth = 2;
     ctx.beginPath();
     ctx.moveTo(0, datumY + 2);
     ctx.quadraticCurveTo(w * 0.5, sagMidY + 6, w, datumY + 2);
     ctx.stroke();
 
-    // Water table depth line mapped cleanly between -25m and -90m
-    const mapDepthY = (headM) => {
-      const depth = -headM;
-      return Math.max(24, Math.min(100, 26 + ((depth - 25) / 70) * 70));
-    };
-    const wtY = mapDepthY(d.headM);
-    const hpcY = mapDepthY(d.preconsolidationHeadM);
-
-    // Saturated water zone tint below water table
-    ctx.fillStyle = 'rgba(86, 180, 233, 0.14)';
-    ctx.fillRect(0, wtY, w, 108 - wtY);
-
-    // Corcoran Clay Aquitard Layer (visual thickness scales with district b0)
-    const clayTop = 74 + sagPx * 0.3;
-    const baseClayPx = Math.max(12, Math.min(34, d.clayThicknessM * 0.4));
-    const currentClayPx = Math.max(7, baseClayPx - sagPx * 0.55);
-
-    // Remaining uncompacted clay
-    ctx.fillStyle = '#37302a';
-    ctx.fillRect(0, clayTop, w, currentClayPx);
-    // Elastic reversible compression zone (Okabe-Ito sky blue)
-    if (elastPx > 0.3) {
-      ctx.fillStyle = 'rgba(86, 180, 233, 0.65)';
-      ctx.fillRect(0, clayTop, w, Math.min(10, elastPx + 1.5));
-    }
-    // Irreversible permanent compaction scar (Okabe-Ito vermilion)
-    if (permPx > 0.3) {
-      ctx.fillStyle = 'rgba(240, 105, 56, 0.85)';
-      ctx.fillRect(0, clayTop + currentClayPx - Math.min(14, permPx), w, Math.min(14, permPx));
-    }
-
-    // Bedrock / Lower Sand
-    ctx.fillStyle = '#121821';
-    ctx.fillRect(0, clayTop + currentClayPx, w, h - (clayTop + currentClayPx));
-
-    // Preconsolidation Head h_pc dashed line
+    // Lowest level ever (h_pc)
     ctx.save();
-    ctx.setLineDash([5, 4]);
+    ctx.setLineDash([6, 4]);
     ctx.strokeStyle = '#e69f00';
-    ctx.lineWidth = 1.4;
+    ctx.lineWidth = 1.6;
     ctx.beginPath();
     ctx.moveTo(0, hpcY);
     ctx.lineTo(w, hpcY);
     ctx.stroke();
     ctx.restore();
 
-    // Current Water Table h line
-    ctx.strokeStyle = '#56b4e9';
-    ctx.lineWidth = 2;
+    // Water level
+    ctx.strokeStyle = '#0b3d91';
+    ctx.lineWidth = 2.2;
     ctx.beginPath();
     ctx.moveTo(0, wtY);
     ctx.lineTo(w, wtY);
     ctx.stroke();
 
-    // Draw up to 5 representative wells along transect
+    // Up to 5 representative wells
     const sampleWells = d.wellDepthsM.slice(0, 5);
     sampleWells.forEach((wd, idx) => {
-      const wx = 42 + idx * ((w - 84) / Math.max(1, sampleWells.length - 1));
+      const wx = 46 + idx * ((w - 92) / Math.max(1, sampleWells.length - 1));
       const wellBotY = mapDepthY(-wd);
       const isDry = -d.headM >= wd;
-      ctx.strokeStyle = isDry ? '#f06938' : '#009e73';
-      ctx.lineWidth = 2.2;
+      ctx.strokeStyle = isDry ? '#c8321f' : '#3f4a5a';
+      ctx.lineWidth = 2.4;
       ctx.beginPath();
       ctx.moveTo(wx, datumY + 2);
       ctx.lineTo(wx, wellBotY);
       ctx.stroke();
-
-      ctx.fillStyle = isDry ? '#f06938' : '#009e73';
-      ctx.fillRect(wx - 3, datumY - 2, 6, 4);
+      ctx.fillStyle = isDry ? '#c8321f' : '#3f4a5a';
+      ctx.fillRect(wx - 4, datumY - 4, 8, 6);
     });
 
-    // Crisp Mono Telemetry Annotations
-    ctx.font = '10px ui-monospace, SFMono-Regular, Menlo, monospace';
-    ctx.fillStyle = '#8b9bb0';
-    ctx.fillText('Datum 0 cm', 6, 12);
-    ctx.fillStyle = '#e6edf3';
-    ctx.fillText(`Surface ${d.totalCm.toFixed(1)} cm`, w - 118, 12);
-
-    ctx.fillStyle = '#56b4e9';
-    ctx.fillText(`Water Table ${d.headM.toFixed(1)} m`, 6, Math.max(36, wtY - 4));
-    ctx.fillStyle = '#e69f00';
-    ctx.fillText(`h_pc ${d.preconsolidationHeadM.toFixed(1)} m`, w - 98, Math.max(46, hpcY + 11));
-    ctx.fillStyle = '#c4b5a5';
-    ctx.fillText(`Compressible clay interbeds (b0=${d.clayThicknessM}m, illustr.)`, 6, Math.min(h - 6, clayTop + currentClayPx + 12));
+    // Labels
+    ctx.font = '600 11.5px Inter, system-ui, sans-serif';
+    ctx.fillStyle = '#4a5568';
+    ctx.fillText('Ground', 8, 15);
+    ctx.textAlign = 'right';
+    ctx.fillStyle = d.totalCm < -0.05 ? '#c8321f' : '#1a1f29';
+    ctx.fillText(`${d.totalCm.toFixed(1)} cm`, w - 8, 15);
+    ctx.textAlign = 'left';
+    ctx.fillStyle = '#0b3d91';
+    ctx.fillText(`Water ${d.headM.toFixed(1)} m`, 8, Math.max(datumY + 18, wtY - 5));
+    ctx.textAlign = 'right';
+    ctx.fillStyle = '#8a5a00';
+    ctx.fillText(`Lowest ${d.preconsolidationHeadM.toFixed(1)} m`, w - 8, Math.min(h - 6, hpcY + 14));
+    ctx.textAlign = 'left';
 
     const pill = $('stratRegimePill');
     if (pill) {
       const inVirgin = d.headM <= d.preconsolidationHeadM + 0.05;
-      pill.textContent = inVirgin ? 'PERMANENT COLLAPSE (< h_pc)' : 'ELASTIC RECOVERABLE (> h_pc)';
-      pill.style.color = inVirgin ? '#f06938' : '#56b4e9';
-      pill.style.borderColor = inVirgin ? 'rgba(240,105,56,0.5)' : 'rgba(86,180,233,0.45)';
+      pill.textContent = inVirgin ? 'Permanent squeeze' : 'Springs back';
+      pill.style.color = inVirgin ? '#c8321f' : '#1f7a35';
+      pill.style.background = inVirgin ? '#fbe9e6' : '#e7f4ec';
+      pill.style.borderColor = inVirgin ? '#f0c2ba' : '#b9dcc5';
     }
   }
 
@@ -646,28 +641,30 @@
           labels: labels,
           datasets: [
             {
-              label: 'Total Subsidence (cm)',
+              label: 'Total sinking',
               data: totalSeries,
-              borderColor: '#56b4e9',
-              backgroundColor: 'rgba(86, 180, 233, 0.14)',
-              borderWidth: 2.2,
+              borderColor: '#0b3d91',
+              backgroundColor: 'rgba(11, 61, 145, 0.08)',
+              borderWidth: 2.4,
+              tension: 0.25,
+              pointRadius: 3,
+              pointBackgroundColor: '#0b3d91',
+            },
+            {
+              label: 'Permanent',
+              data: permSeries,
+              borderColor: '#c8321f',
+              backgroundColor: 'rgba(200, 50, 31, 0.14)',
+              fill: true,
+              borderWidth: 2.4,
               tension: 0.25,
               pointRadius: 2.5,
+              pointBackgroundColor: '#c8321f',
             },
             {
-              label: 'Permanent Clay Collapse (cm)',
-              data: permSeries,
-              borderColor: '#f06938',
-              backgroundColor: 'rgba(240, 105, 56, 0.24)',
-              fill: true,
-              borderWidth: 2.2,
-              tension: 0.25,
-              pointRadius: 2,
-            },
-            {
-              label: '2026 NISAR Ref (-10.1 cm)',
+              label: 'NISAR 2026',
               data: nisarRefLine,
-              borderColor: '#e69f00',
+              borderColor: '#a86b00',
               borderDash: [6, 4],
               borderWidth: 1.8,
               pointRadius: 0,
@@ -681,20 +678,24 @@
           interaction: { mode: 'index', intersect: false },
           plugins: {
             legend: {
-              display: true,
-              position: window.innerWidth < 760 ? 'bottom' : 'right',
-              labels: { color: '#8b9bb0', boxWidth: 11, font: { size: 10 }, padding: 8 },
+              display: false,
+              position: 'top',
+              align: 'start',
+              labels: { color: '#4a5568', boxWidth: 12, boxHeight: 3, font: { size: 12, family: 'Inter' }, padding: 12 },
             },
+            tooltip: { titleFont: { family: 'Inter' }, bodyFont: { family: 'Inter' } },
           },
           scales: {
             x: {
-              ticks: { color: '#8b9bb0', maxTicksLimit: 13, font: { size: 10 } },
-              grid: { color: 'rgba(34, 48, 65, 0.5)' },
+              min: 0,
+              max: CHART_WINDOW,
+              ticks: { color: '#4a5568', font: { size: 11.5, family: 'Inter' }, autoSkip: true, maxRotation: 0 },
+              grid: { color: '#eef1f5' },
             },
             y: {
-              title: { display: true, text: 'cm', color: '#8b9bb0', font: { size: 10 } },
-              ticks: { color: '#8b9bb0', font: { size: 10 } },
-              grid: { color: 'rgba(34, 48, 65, 0.5)' },
+              title: { display: true, text: 'cm', color: '#6b7687', font: { size: 11.5, family: 'Inter' } },
+              ticks: { color: '#4a5568', font: { size: 11.5, family: 'IBM Plex Mono' } },
+              grid: { color: '#eef1f5' },
               suggestedMin: -16,
               suggestedMax: 1,
             },
@@ -705,12 +706,50 @@
       timelineChart.data.datasets[0].data = totalSeries;
       timelineChart.data.datasets[1].data = permSeries;
       timelineChart.data.datasets[2].data = nisarRefLine;
-      timelineChart.data.datasets[2].label = `2026 NISAR (${nisarVertRef} cm vert)`;
-      timelineChart.options.plugins.legend.position = window.innerWidth < 760 ? 'bottom' : 'right';
-      timelineChart.update('none');
+      timelineChart.data.datasets[2].label = `NISAR 2026 (${nisarVertRef} cm vertical)`;
     }
+    // show a 12-month window that follows the current month unless the user has dragged it
+    const last = labels.length - 1;
+    const follow = Math.min(Math.max(0, hist.length - CHART_WINDOW + 2), last - CHART_WINDOW);
+    const start = chartStart === null ? follow : Math.max(0, Math.min(chartStart, last - CHART_WINDOW));
+    timelineChart.options.scales.x.min = start;
+    timelineChart.options.scales.x.max = start + CHART_WINDOW;
+    timelineChart.update('none');
 
-    $('chartTitle').textContent = `District Trajectory: ${d.name} vs 2026 NISAR`;
+    $('chartTitle').textContent = `${d.shortName} vs NISAR 2026`;
+  }
+
+  // drag or scroll the timeline to move through the 24 months
+  function wireChartPan() {
+    const wrap = document.querySelector('.timeline-canvas-wrap');
+    if (!wrap) return;
+    const total = ValleyModel.CONFIG.totalMonths;
+    const current = () => (timelineChart ? timelineChart.options.scales.x.min : 0);
+    const setStart = (v) => {
+      chartStart = Math.max(0, Math.min(Math.round(v), total - CHART_WINDOW));
+      const d = simState && (simState.districts.find((x) => x.id === selectedDistrictId) || simState.districts[0]);
+      if (d) updateTimelineChart(d);
+    };
+    let drag = null;
+    wrap.addEventListener('pointerdown', (e) => {
+      drag = { x: e.clientX, start: current(), w: wrap.clientWidth };
+      wrap.classList.add('dragging');
+      wrap.setPointerCapture(e.pointerId);
+    });
+    wrap.addEventListener('pointermove', (e) => {
+      if (!drag) return;
+      const perMonth = drag.w / CHART_WINDOW;
+      setStart(drag.start - (e.clientX - drag.x) / perMonth);
+    });
+    const end = () => { drag = null; wrap.classList.remove('dragging'); };
+    wrap.addEventListener('pointerup', end);
+    wrap.addEventListener('pointercancel', end);
+    wrap.addEventListener('wheel', (e) => {
+      const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+      if (!delta) return;
+      e.preventDefault();
+      setStart(current() + Math.sign(delta));
+    }, { passive: false });
   }
 
   function selectDistrict(districtId, flyTo) {
@@ -737,7 +776,8 @@
       : /^(Jun|Jul|Aug)/.test(calLabel)
       ? 'Summer · peak pumping'
       : 'Autumn · early year';
-    $('monthPill').textContent = `Month ${moIdx} of ${simState.totalMonths} · ${calLabel} · ${seasonTag}`;
+    $('monthPill').textContent = `Month ${moIdx} of ${simState.totalMonths} · ${seasonTag}`;
+    $('stampDate').textContent = calLabel.toUpperCase();
 
     const wyYearNum = moIdx < 12 ? 1 : 2;
     const wyPill = $('wyPill');
@@ -749,49 +789,8 @@
       wySpec.id === 'Critical' ? 'wy-critical' : 'wy-below'
     );
 
-    // Basin HUD
-    const worst = [...simState.districts].sort((a, b) => a.totalCm - b.totalCm)[0];
-    const totalDry = simState.districts.reduce((s, x) => s + x.dryWells, 0);
-    $('valleyHeadlineHud').innerHTML =
-      `Peak Subsidence: <strong class="color-perm">${worst.totalCm.toFixed(1)} cm</strong> (${worst.shortName}) · Dry Wells: <strong>${totalDry}</strong>`;
-
-    // District Tabs (with keyboard 1-7 labels and aria-pressed state)
-    const tabsEl = $('districtTabs');
-    tabsEl.innerHTML = simState.districts
-      .map((dist, idx) => {
-        const activeCls = dist.id === d.id ? 'active' : '';
-        return `<button type="button" class="district-chip ${activeCls}" data-did="${dist.id}" aria-pressed="${dist.id === d.id}">
-          <span><span class="mono" style="color:var(--muted);">${idx + 1}.</span> ${dist.shortName}</span>
-          <span class="val">${dist.totalCm.toFixed(1)} cm</span>
-        </button>`;
-      })
-      .join('');
-    tabsEl.querySelectorAll('.district-chip').forEach((btn) => {
-      btn.addEventListener('click', () => selectDistrict(btn.dataset.did, true));
-    });
-
-    $('districtCoordsPill').textContent = `${d.lat.toFixed(2)}°N, ${Math.abs(d.lon).toFixed(2)}°${d.lon >= 0 ? 'E' : 'W'}`;
-    const ui = BASIN_UI[activeBasinId] || BASIN_UI.tulare;
-    $('districtSelectTitle').textContent = `Select District (${ui.shortLabel})`;
-    $('applyAllLabel').textContent = `Apply slider changes to all ${simState.districts.length} districts`;
     $('sinkholeLegendItem').hidden = activeBasinId !== 'konya';
 
-    const sinkBanner = $('sinkholeStatusBanner');
-    if (sinkBanner) {
-      if (activeBasinId === 'konya') {
-        sinkBanner.hidden = false;
-        const hitList = simState.districts.filter((x) => x.sinkholeRiskIndicator).map((x) => x.shortName);
-        if (hitList.length > 0) {
-          sinkBanner.className = 'sinkhole-banner elevated';
-          sinkBanner.innerHTML = `<strong>Sinkhole risk indicator: Elevated</strong> (${hitList.join(', ')}) — indicator only; does not predict collapse of individual obruks.`;
-        } else {
-          sinkBanner.className = 'sinkhole-banner';
-          sinkBanner.innerHTML = `<strong>Sinkhole risk indicator: Baseline</strong> (0/6 zones past 4 cm karst threshold; indicator only, not predictive).`;
-        }
-      } else {
-        sinkBanner.hidden = true;
-      }
-    }
 
     // Sliders, ARIA valuetext & Dynamic Surface Cap
     $('pumpSlider').value = d.controls.pumpingPct;
@@ -802,28 +801,21 @@
     $('surfaceSlider').value = cappedSurface;
     $('surfaceSlider').setAttribute('aria-valuetext', `${cappedSurface} percent canal and recharge allocation`);
     $('surfaceVal').textContent = `${cappedSurface}%`;
-    $('surfaceCapHint').textContent = `Max ${wySpec.maxSurfacePct}% in ${wySpec.label} water year.`;
     $('fallowSlider').value = d.controls.fallowPct;
     $('fallowSlider').setAttribute('aria-valuetext', `${d.controls.fallowPct} percent land fallowed`);
     $('fallowVal').textContent = `${d.controls.fallowPct}%`;
 
     // District KPIs: 3 primary readouts + quiet secondary strip (Okabe-Ito + text tags)
     const isVirgin = d.headM <= d.preconsolidationHeadM + 0.05;
-    $('kpiDistrictTitle').textContent = `Readout: ${d.shortName} (${d.canalCorridor})`;
+    $('kpiDistrictTitle').textContent = `Readout: ${d.shortName}`;
     $('kpiTotalCm').textContent = `${d.totalCm.toFixed(2)} cm`;
     $('kpiSplitCm').textContent = `Elastic: ${d.elasticCm.toFixed(2)} cm`;
     $('kpiPermCm').textContent = `${d.inelasticCm.toFixed(2)} cm`;
-    $('kpiRegimeSub').textContent = isVirgin ? '[COLLAPSING] Virgin clay' : '[SAFE] Elastic range';
-    $('kpiRegimeSub').style.color = isVirgin ? '#f06938' : '#009e73';
+    $('kpiRegimeSub').textContent = isVirgin ? 'Collapsing' : 'Springs back';
+    $('kpiRegimeSub').style.color = isVirgin ? '#c8321f' : '#1f7a35';
+
     $('kpiRevenue').textContent = `$${d.cumulativeRevenueMUsd.toFixed(1)}M`;
     $('kpiRevSub').textContent = `${100 - d.controls.fallowPct}% cropped`;
-
-    $('kpiHeadM').textContent = `${d.headM.toFixed(1)} m`;
-    $('kpiHpcM').textContent = `Low: ${d.preconsolidationHeadM.toFixed(1)} m`;
-    $('kpiHpcM').style.color = isVirgin ? '#f06938' : 'var(--muted)';
-    $('kpiCanalLoss').textContent = `${d.canalCapacityLossPct.toFixed(1)}%`;
-    $('kpiGradient').textContent = `${d.currentGradientMmKm.toFixed(1)} mm/km`;
-    $('kpiWells').textContent = `${d.dryWells} / ${d.wellDepthsM.length}`;
 
     // Events
     if (simState.events.length > 0) {
@@ -846,6 +838,148 @@
     renderStratigraphy(d);
     updateTimelineChart(d);
     refreshMapDynamicLayers();
+    refreshVSliders();
+    setSeg($('presetSeg'), activePreset);
+  }
+
+  /* ---------- sliding segmented controls ---------- */
+  function setSeg(seg, value) {
+    if (!seg) return;
+    const btns = [...seg.querySelectorAll('.seg-btn')];
+    const key = (b) => b.dataset.preset || b.dataset.basin || b.dataset.tab;
+    btns.forEach((b) => b.classList.toggle('active', key(b) === value));
+    const on = btns.find((b) => key(b) === value);
+    const thumb = seg.querySelector('.seg-thumb');
+    seg.classList.toggle('none', !on);
+    if (!on || !thumb) return;
+    // the dark bar is a little shorter than the button it sits under
+    const inset = 4;
+    const first = !seg.dataset.placed && on.offsetWidth > 0;
+    if (first) thumb.style.transition = 'none'; // first placement jumps; later changes slide
+    thumb.style.width = `${on.offsetWidth - inset * 2}px`;
+    thumb.style.transform = `translateX(${on.offsetLeft + inset}px)`;
+    if (first) { void thumb.offsetWidth; thumb.style.transition = ''; seg.dataset.placed = '1'; }
+  }
+
+  /* ---------- vertical sliders (the hidden range inputs stay the source of truth) ---------- */
+  const vsliders = [];
+  function initVSliders() {
+    document.querySelectorAll('.vs').forEach((wrap) => {
+      const input = $(wrap.dataset.for);
+      const track = wrap.querySelector('.vs-track');
+      const handle = wrap.querySelector('.vs-handle');
+      const fill = wrap.querySelector('.vs-fill');
+      const cap = wrap.querySelector('.vs-cap');
+      const canvas = wrap.querySelector('.vs-water');
+      const full = Number(input.getAttribute('max')); // scale stays fixed even when the water-year cap lowers input.max
+      const vs = { wrap, input, track, handle, fill, cap, canvas, full, level: Number(input.value) / full, cols: null };
+      const setFromY = (clientY) => {
+        const r = track.getBoundingClientRect();
+        const frac = 1 - (clientY - r.top) / r.height;
+        const step = Number(input.step) || 1;
+        let v = Math.round((frac * full) / step) * step;
+        v = Math.max(Number(input.min), Math.min(Number(input.max), v));
+        if (String(v) !== input.value) {
+          input.value = v;
+          input.dispatchEvent(new Event('input', { bubbles: true }));
+        }
+        draw(vs);
+      };
+      track.addEventListener('pointerdown', (e) => { track.setPointerCapture(e.pointerId); vs.drag = true; setFromY(e.clientY); });
+      track.addEventListener('pointermove', (e) => { if (vs.drag) setFromY(e.clientY); });
+      track.addEventListener('pointerup', () => { vs.drag = false; });
+      track.addEventListener('pointercancel', () => { vs.drag = false; });
+      track.addEventListener('keydown', (e) => {
+        const step = Number(input.step) || 1;
+        const map = { ArrowUp: step, ArrowRight: step, ArrowDown: -step, ArrowLeft: -step, PageUp: step * 4, PageDown: -step * 4 };
+        let v = Number(input.value);
+        if (e.key in map) v += map[e.key];
+        else if (e.key === 'Home') v = Number(input.min);
+        else if (e.key === 'End') v = Number(input.max);
+        else return;
+        e.preventDefault();
+        v = Math.max(Number(input.min), Math.min(Number(input.max), v));
+        input.value = v;
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+        draw(vs);
+      });
+      vsliders.push(vs);
+    });
+    requestAnimationFrame(waterLoop);
+  }
+  function draw(vs) {
+    const v = Number(vs.input.value);
+    const frac = Math.max(0, Math.min(1, v / vs.full));
+    vs.target = frac;
+    vs.handle.style.top = `${(1 - frac) * 100}%`;
+    if (vs.fill) vs.fill.style.height = `${frac * 100}%`;
+    if (vs.cap) vs.cap.style.height = `${(1 - Number(vs.input.max) / vs.full) * 100}%`;
+    vs.track.setAttribute('aria-valuemin', vs.input.min);
+    vs.track.setAttribute('aria-valuemax', vs.input.max);
+    vs.track.setAttribute('aria-valuenow', String(v));
+    vs.track.setAttribute('aria-valuetext', vs.input.getAttribute('aria-valuetext') || `${v} percent`);
+  }
+  function refreshVSliders() { vsliders.forEach(draw); }
+
+  // a few dozen springs make the water surface slosh when the level changes
+  const still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function waterLoop() {
+    vsliders.forEach((vs) => {
+      if (!vs.canvas) return;
+      const c = vs.canvas;
+      const w = c.clientWidth, h = c.clientHeight;
+      if (!w || !h) return;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      if (c.width !== Math.round(w * dpr)) { c.width = Math.round(w * dpr); c.height = Math.round(h * dpr); }
+      const N = 18;
+      if (!vs.cols) vs.cols = Array.from({ length: N }, () => ({ y: 0, v: 0 }));
+      const target = vs.target ?? vs.level;
+      const prev = vs.level;
+      vs.level += (target - vs.level) * (still ? 1 : 0.18);
+      const push = (vs.level - prev) * h * 0.9;
+      if (!still && Math.abs(push) > 0.01) {
+        vs.cols[0].v += push; vs.cols[N - 1].v -= push * 0.6; vs.cols[Math.floor(N / 2)].v += push * 0.3;
+      }
+      for (let k = 0; k < 2; k++) {
+        vs.cols.forEach((col) => { col.v += -0.06 * col.y; col.v *= 0.94; col.y += col.v; });
+        for (let i = 0; i < N; i++) {
+          const l = vs.cols[i - 1], r = vs.cols[i + 1];
+          if (l) vs.cols[i].v += 0.12 * (l.y - vs.cols[i].y);
+          if (r) vs.cols[i].v += 0.12 * (r.y - vs.cols[i].y);
+        }
+      }
+      if (still) vs.cols.forEach((col) => { col.y = 0; col.v = 0; });
+      const ctx = c.getContext('2d');
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.clearRect(0, 0, w, h);
+      const top = (1 - vs.level) * h;
+      const t = performance.now() / 900;
+      ctx.beginPath();
+      ctx.moveTo(0, h);
+      for (let i = 0; i < N; i++) {
+        const x = (i / (N - 1)) * w;
+        const ripple = still ? 0 : Math.sin(t + i * 0.7) * 1.2;
+        ctx.lineTo(x, Math.max(0, top + vs.cols[i].y + ripple));
+      }
+      ctx.lineTo(w, h);
+      ctx.closePath();
+      const g = ctx.createLinearGradient(0, top, 0, h);
+      g.addColorStop(0, '#5aa2e6');
+      g.addColorStop(1, '#0b3d91');
+      ctx.fillStyle = g;
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(255,255,255,.65)';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      for (let i = 0; i < N; i++) {
+        const x = (i / (N - 1)) * w;
+        const ripple = still ? 0 : Math.sin(t + i * 0.7) * 1.2;
+        const y = Math.max(0, top + vs.cols[i].y + ripple);
+        if (i) ctx.lineTo(x, y); else ctx.moveTo(x, y);
+      }
+      ctx.stroke();
+    });
+    requestAnimationFrame(waterLoop);
   }
 
   function showEndModal() {
@@ -909,22 +1043,22 @@
           {
             label: 'Your 24-Mo Total Sink (cm)',
             data: simTotal,
-            backgroundColor: 'rgba(86, 180, 233, 0.80)',
-            borderColor: '#56b4e9',
+            backgroundColor: 'rgba(11, 61, 145, 0.85)',
+            borderColor: '#0b3d91',
             borderWidth: 1,
           },
           {
             label: 'Your Permanent Collapse (cm)',
             data: simPerm,
-            backgroundColor: 'rgba(240, 105, 56, 0.86)',
-            borderColor: '#f06938',
+            backgroundColor: 'rgba(200, 50, 31, 0.85)',
+            borderColor: '#c8321f',
             borderWidth: 1,
           },
           {
             label: '2026 NISAR 108-Day Est. (cm)',
             data: nisarVert,
-            backgroundColor: 'rgba(230, 159, 0, 0.85)',
-            borderColor: '#e69f00',
+            backgroundColor: 'rgba(232, 168, 56, 0.85)',
+            borderColor: '#a86b00',
             borderWidth: 1,
           },
         ],
@@ -936,19 +1070,19 @@
         plugins: {
           legend: {
             position: 'top',
-            labels: { color: '#e6edf3', boxWidth: 11, font: { size: 10.5 }, padding: 8 },
+            labels: { color: '#4a5568', boxWidth: 11, font: { size: 10.5 }, padding: 8 },
           },
         },
         scales: {
           x: {
-            ticks: { color: '#8b9bb0', font: { size: 10.5 } },
+            ticks: { color: '#4a5568', font: { size: 10.5 } },
             grid: { display: false },
           },
           y: {
             beginAtZero: true,
-            title: { display: true, text: 'Subsidence magnitude (cm)', color: '#8b9bb0', font: { size: 10.5 } },
-            ticks: { color: '#8b9bb0', font: { size: 10 } },
-            grid: { color: 'rgba(34, 48, 65, 0.5)' },
+            title: { display: true, text: 'Subsidence magnitude (cm)', color: '#4a5568', font: { size: 10.5 } },
+            ticks: { color: '#4a5568', font: { size: 10 } },
+            grid: { color: '#eef1f5' },
           },
         },
       },
@@ -957,6 +1091,7 @@
 
   function advanceMonths(count) {
     if (!simState || simState.finished) return;
+    chartStart = null;
     let damagedDistrict = null;
     let hadWarn = false;
     for (let i = 0; i < count && !simState.finished; i++) {
@@ -1104,10 +1239,14 @@
       year1WaterYear: 'Below Normal',
     });
     selectedDistrictId = simState.districts[0].id;
+    chartStart = null;
+    // start from the 2026 baseline scenario (the same settings the NISAR calibration uses)
+    activePreset = 'baseline';
+    ValleyModel.setDistrictControls(simState, 'ALL', presetPatch('baseline'));
     if (keepModalHidden) $('endModal').hidden = true;
     $('eventList').innerHTML = `<div class="event-item">
-      <div class="event-title">Simulation Ready — ${ui.shortLabel} (Oct 2026)</div>
-      <div>Calibrated to NASA-ISRO NISAR provisional measurements (${ui.windowLabel}).</div>
+      <div class="event-title">Simulation ready — ${ui.shortLabel}, October 2026</div>
+      <div>Starting point tuned to match NASA-ISRO NISAR provisional measurements (${ui.windowLabel}).</div>
       <div class="event-src">Source: ${ui.summaryUrl}</div>
     </div>`;
     syncUI();
@@ -1163,7 +1302,9 @@
     activeBasinId = basinId;
     document.querySelectorAll('.basin-btn').forEach((b) => {
       b.classList.toggle('active', b.dataset.basin === basinId);
+      if (b.getAttribute('role') === 'radio') b.setAttribute('aria-checked', String(b.dataset.basin === basinId));
     });
+    setSeg($('basinSeg'), basinId);
     const ui = BASIN_UI[basinId];
     const bundle = await loadBasinData(basinId);
     summaryData = bundle.summary;
@@ -1211,28 +1352,27 @@
       playTone('click');
     });
 
-    $('audioToggleBtn').addEventListener('click', () => {
-      audioEnabled = !audioEnabled;
-      const btn = $('audioToggleBtn');
-      btn.setAttribute('aria-pressed', String(audioEnabled));
-      btn.textContent = audioEnabled ? 'Audio: On' : 'Audio: Off';
-      if (audioEnabled) playTone('click');
-    });
-
+    const showTab = (tab) => {
+      setSeg($('infoSeg'), tab);
+      document.querySelectorAll('#infoSeg .seg-btn').forEach((b) => b.setAttribute('aria-selected', String(b.dataset.tab === tab)));
+      $('paramsTableWrap').hidden = tab !== 'sources';
+      $('testsWrap').hidden = tab !== 'tests';
+      if (tab === 'tests') renderTests();
+    };
     $('paramsBtn').addEventListener('click', () => {
       $('paramsTableWrap').innerHTML = buildParamsTableHtml();
       $('paramsModal').hidden = false;
+      requestAnimationFrame(() => showTab('sources'));
     });
+    document.querySelectorAll('#infoSeg .seg-btn').forEach((b) => b.addEventListener('click', () => showTab(b.dataset.tab)));
     $('closeParamsBtn').addEventListener('click', () => {
       $('paramsModal').hidden = true;
     });
-
-    $('applyAllChk').addEventListener('change', (e) => {
-      applyAll = e.target.checked;
-    });
+    $('paramsModal').addEventListener('click', (e) => { if (e.target === $('paramsModal')) $('paramsModal').hidden = true; });
 
     let syncRafPending = false;
     const handleSlider = (key, val, labelId) => {
+      activePreset = null; // a hand-set value is no longer one of the three scenarios
       const target = applyAll ? 'ALL' : selectedDistrictId;
       ValleyModel.setDistrictControls(simState, target, { [key]: Number(val) });
       if (labelId && $(labelId)) $(labelId).textContent = `${Number(val)}%`;
@@ -1280,16 +1420,10 @@
 
     document.querySelectorAll('.preset-btn').forEach((btn) => {
       btn.addEventListener('click', () => {
-        const wyMax = ValleyModel.getWaterYearSpec(simState.currentWaterYear).maxSurfacePct;
-        const presets = {
-          baseline: { pumpingPct: 100, surfaceAllocPct: Math.min(60, wyMax), fallowPct: 0 },
-          overpump: { pumpingPct: 145, surfaceAllocPct: Math.min(20, wyMax), fallowPct: 0 },
-          balance: { pumpingPct: 55, surfaceAllocPct: wyMax, fallowPct: 25 },
-        };
-        const patch = presets[btn.dataset.preset];
+        const patch = presetPatch(btn.dataset.preset);
         if (patch) {
+          activePreset = btn.dataset.preset;
           ValleyModel.setDistrictControls(simState, applyAll ? 'ALL' : selectedDistrictId, patch);
-          playTone('click');
           syncUI();
         }
       });
@@ -1334,47 +1468,51 @@
       });
     });
 
-    const guideCard = $('howToPlayGuide');
-    const howBtn = $('howToPlayBtn');
-    const dismissGuideBtn = $('dismissGuideBtn');
-    const setGuideVisible = (show) => {
-      if (guideCard) guideCard.hidden = !show;
-      if (howBtn) howBtn.setAttribute('aria-expanded', String(show));
-    };
-    if (dismissGuideBtn) {
-      dismissGuideBtn.addEventListener('click', () => setGuideVisible(false));
-    }
-    if (howBtn) {
-      howBtn.addEventListener('click', () => {
-        const willShow = guideCard ? guideCard.hidden : false;
-        setGuideVisible(willShow);
-        if (willShow) {
-          const panel = document.querySelector('.control-panel');
-          if (panel) panel.scrollTop = 0;
-        }
-      });
-    }
+  }
 
-    const classroomCard = $('classroomCard');
-    const classroomBtn = $('classroomModeBtn');
-    if (classroomBtn && classroomCard) {
-      classroomBtn.addEventListener('click', () => {
-        const willShow = classroomCard.hidden;
-        classroomCard.hidden = !willShow;
-        classroomBtn.setAttribute('aria-expanded', String(willShow));
-        if (willShow) {
-          classroomCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }
-      });
-    }
+  function presetPatch(name) {
+    const wyMax = ValleyModel.getWaterYearSpec(simState.currentWaterYear).maxSurfacePct;
+    return {
+      baseline: { pumpingPct: 100, surfaceAllocPct: Math.min(60, wyMax), fallowPct: 0 },
+      overpump: { pumpingPct: 145, surfaceAllocPct: Math.min(20, wyMax), fallowPct: 0 },
+      balance: { pumpingPct: 55, surfaceAllocPct: wyMax, fallowPct: 25 },
+    }[name];
+  }
 
-    document.querySelectorAll('.classroom-scen-btn').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        if (btn.dataset.classroom) {
-          runClassroomScenario(btn.dataset.classroom);
-        }
-      });
-    });
+  /* ---------- model verification report ---------- */
+  let testsCache = null;
+  async function renderTests() {
+    const box = $('testsWrap');
+    if (!window.ValleyTests) { box.innerHTML = '<p class="test-note">Test suite not loaded.</p>'; return; }
+    if (!testsCache) {
+      box.innerHTML = '<p class="test-note">Running the model checks in your browser…</p>';
+      testsCache = await window.ValleyTests.run('..');
+    }
+    const r = testsCache;
+    const esc = (s) => String(s).replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
+    let group = '';
+    const rows = r.cases.map((c) => {
+      const head = c.group !== group ? `<tr class="test-group"><td colspan="4">${esc(c.group)}</td></tr>` : '';
+      group = c.group;
+      return `${head}<tr>
+        <td class="test-id">${c.id}</td>
+        <td><strong>${esc(c.name)}</strong><div class="test-crit">${esc(c.criterion)}</div></td>
+        <td class="test-res">${esc(c.result)}</td>
+        <td><span class="badge ${c.pass ? 'pass' : 'fail'}">${c.pass ? 'PASS' : 'FAIL'}</span></td>
+      </tr>`;
+    }).join('');
+    box.innerHTML = `
+      <div class="test-head">
+        <div><span>Result</span><b class="${r.passed === r.total ? 'color-ok' : 'color-perm'}">${r.passed} / ${r.total} passed</b></div>
+        <div><span>Model</span><b>model.js v2</b></div>
+        <div><span>Reference data</span><b>NISAR 2026</b></div>
+        <div><span>Run</span><b>${r.ranAt.toISOString().slice(0, 16).replace('T', ' ')} UTC</b></div>
+      </div>
+      <table class="test-table">
+        <thead><tr><th>ID</th><th>Check and pass criterion</th><th>Measured result</th><th>Status</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+      <p class="test-note">Each check runs the simulation model live in this browser against the repository's NISAR data files (data/central_valley, data/karapinar). Results are computed now, not stored.</p>`;
   }
 
   async function boot() {
@@ -1390,13 +1528,30 @@
     updateBasinCalibrationCard();
 
     wireControls();
+    initVSliders();
+    wireChartPan();
     initMap();
+    const placeSegs = () => {
+      setSeg($('basinSeg'), activeBasinId);
+      setSeg($('presetSeg'), activePreset);
+      if (!$('paramsModal').hidden) setSeg($('infoSeg'), $('testsWrap').hidden ? 'sources' : 'tests');
+    };
+    syncUI();
+    placeSegs();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(placeSegs);
+    // re-place the sliding bars whenever a control changes size (fonts, layout, modal opening)
+    if (window.ResizeObserver) {
+      const ro = new ResizeObserver(() => placeSegs());
+      document.querySelectorAll('.seg').forEach((s) => ro.observe(s));
+    }
+    $('startBtn').addEventListener('click', () => requestAnimationFrame(placeSegs));
     let resizeRafPending = false;
     window.addEventListener('resize', () => {
       if (resizeRafPending) return;
       resizeRafPending = true;
       requestAnimationFrame(() => {
         resizeRafPending = false;
+        placeSegs();
         const d = simState && simState.districts.find((x) => x.id === selectedDistrictId);
         if (d) renderStratigraphy(d);
       });
