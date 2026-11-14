@@ -1,8 +1,8 @@
 // NISAR on the atlas (PC1). The atlas map stays the main view; this file adds
 //  1) a light "NISAR now" layer on the atlas globe: real position, ground track and the
 //     left-looking 33–47° swath, computed from the CelesTrak TLE with SGP4 (satellite.js);
-//  2) an optional "NISAR 3D orbit" view (nisar3d.js) opened by the toolbar button.
-// Uses globals from atlas.js: map, mapReady, atlasData, activeId, selectRegion.
+// Uses globals from atlas.js: map, mapReady. (web/nisar3d.js, the full 3D orbit view, is kept
+// in the repo but not linked from the atlas, so the atlas stays focused on the measurements.)
 (function(){
   const bar = document.querySelector('.atlas-toolbar');
   const wrap = document.querySelector('.atlas-mapwrap');
@@ -17,35 +17,13 @@
   live.innerHTML = '<input type="checkbox" checked> <span class="dot"></span>NISAR now';
   live.title = "NISAR's real position, ground track and radar swath (SGP4 from CelesTrak TLE)";
   bar.appendChild(live);
-  const btn = document.createElement('button');
-  btn.type = 'button';
-  btn.className = 'n3d-open-btn';
-  btn.textContent = 'NISAR 3D orbit';
-  btn.title = 'Fly the real NISAR orbit and watch the radar swath image the selected region';
-  bar.appendChild(btn);
-
-  const regions = () => (typeof atlasData !== 'undefined' && atlasData?.regions) || [];
-  const current = () => {
-    const id = (typeof activeId !== 'undefined' && activeId) || regions()[0]?.id;
-    return regions().find(r => r.id === id) || null;
-  };
-
-  // ---------- optional 3D view ----------
-  let mod = null;
-  btn.addEventListener('click', async () => {
-    btn.disabled = true;
-    try{ mod = mod || await import('./nisar3d.js?v=17'); await mod.open(wrap, current(), {}); }
-    catch(e){ console.error('NISAR 3D failed to load', e); }
-    btn.disabled = false;
-  });
-  if (typeof selectRegion === 'function'){
-    const orig = selectRegion;
-    selectRegion = async function(id){
-      const res = orig.apply(this, arguments);
-      if (mod && mod.isOpen()){ const r = regions().find(x => x.id === id); if (r) mod.selectRegion(r, {autoplay: true}); }
-      return res;
-    };
-  }
+  const key = document.createElement('div');
+  key.className = 'nisar-key';
+  key.innerHTML = '<b>NISAR now</b> · real orbit (SGP4, CelesTrak TLE)'
+    + '<div><span class="k-sat"></span>spacecraft position</div>'
+    + '<div><span class="k-track"></span>ground track (±50 min)</div>'
+    + '<div><span class="k-swath"></span>radar swath, last 12 min (left-looking, ≈242 km)</div>';
+  wrap.appendChild(key);
 
   // ---------- live layer on the atlas map ----------
   if (!SAT) return;
@@ -111,7 +89,7 @@
     map.addSource('nisar-track', {type: 'geojson', data: empty});
     map.addSource('nisar-swath', {type: 'geojson', data: empty});
     const before = map.getLayer('atlas-pts') ? 'atlas-pts' : undefined;
-    map.addLayer({id: 'nisar-swath', type: 'fill', source: 'nisar-swath', paint: {'fill-color': '#38bdf8', 'fill-opacity': 0.22}}, before);
+    map.addLayer({id: 'nisar-swath', type: 'fill', source: 'nisar-swath', paint: {'fill-color': '#38bdf8', 'fill-opacity': 0.32}}, before);
     map.addLayer({id: 'nisar-track', type: 'line', source: 'nisar-track', paint: {'line-color': '#fbbf24', 'line-width': 1.4, 'line-opacity': 0.8, 'line-dasharray': [2, 2]}}, before);
     const el = document.createElement('div');
     el.className = 'nisar-marker';
@@ -134,7 +112,7 @@
     ['nisar-track', 'nisar-swath'].forEach(id => map.setLayoutProperty(id, 'visibility', on ? 'visible' : 'none'));
     if (on) update(); else if (marker) marker.remove();
   }
-  live.querySelector('input').addEventListener('change', e => setVisible(e.target.checked));
+  live.querySelector('input').addEventListener('change', e => { setVisible(e.target.checked); key.hidden = !e.target.checked; });
   setInterval(update, 3000);
   setTimeout(update, 1500);
   document.addEventListener('visibilitychange', update);
