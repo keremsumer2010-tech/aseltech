@@ -68,17 +68,18 @@ def main() -> None:
 
     # --- Panel B: Signal amplitude vs single-season noise & multi-year stacking ---
     ax2.set_facecolor("#fafafa")
+    three_yr_rate = det_thr / 3.0
     categories = [
         "London Clay\nseasonal shrink-swell\n(expected: 0.5–2.0 cm)",
         "Holme Fen peat\nongoing loss\n(1.0–2.0 cm/yr)",
         "London 1 km blocks\n98% observed spread\n(|disp| ≤ 1.5 cm)",
         "1-season chain σ\n(9 pairs, 120 d:\n1.21 cm)",
         "1-season 3σ\ndetection limit\n(3.62 cm)",
-        "3-year NISAR\n3σ rate limit\n(~1.1 cm/yr est.)",
+        f"3-year NISAR\n3σ rate limit\n({three_yr_rate:.2f} cm/yr est.)",
     ]
     y_pos = np.arange(len(categories))
     lows = np.array([0.5, 1.0, 0.0, 0.0, 0.0, 0.0])
-    highs = np.array([2.0, 2.0, 1.50, chain_sigma, det_thr, det_thr / np.sqrt(9.0)])
+    highs = np.array([2.0, 2.0, 1.50, chain_sigma, det_thr, three_yr_rate])
     colors = ["#0284c7", "#0d9488", "#64748b", "#f59e0b", "#dc2626", "#16a34a"]
 
     for i in range(len(categories)):
@@ -94,15 +95,15 @@ def main() -> None:
         ax2.text(highs[i] + 0.08, y_pos[i], val_txt, va="center", ha="left", fontsize=8.5, fontweight="bold", color="#0f172a")
 
     ax2.axvline(det_thr, color="#dc2626", lw=1.3, ls="--", label=f"1-season 3σ threshold ({det_thr:.2f} cm)")
-    ax2.axvline(det_thr / np.sqrt(9.0), color="#16a34a", lw=1.3, ls=":", label="3-year stacked 3σ threshold (~1.2 cm/yr)")
+    ax2.axvline(three_yr_rate, color="#16a34a", lw=1.3, ls=":", label=f"3-year stacked 3σ limit ({three_yr_rate:.2f} cm/yr est.)")
     ax2.set_yticks(y_pos)
     ax2.set_yticklabels(categories, fontsize=8.2)
     ax2.invert_yaxis()
-    ax2.set_xlim(0, 6.3)
+    ax2.set_xlim(0, 6.8)
     ax2.set_xlabel("Displacement / detection threshold magnitude (cm or cm/yr)")
     ax2.set_title("B. UK ground motion vs. detection limits", fontweight="bold", loc="left")
     ax2.grid(True, axis="x", linestyle=":", alpha=0.6)
-    ax2.legend(loc="lower right", fontsize=7.5, frameon=True, facecolor="#ffffff", edgecolor="#e2e8f0")
+    ax2.legend(loc="center right", fontsize=7.5, frameon=True, facecolor="#ffffff", edgecolor="#e2e8f0")
 
     fig.suptitle(
         "Greater London (Track 101, 9 Provisional GUNW Pairs): Why 1-Season Clay Motion Is Below Detection (3σ = 3.6 cm)",
