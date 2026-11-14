@@ -257,3 +257,25 @@ Kapsam: `web/index.html` (`1–163`). Genel İngilizce tonu akıcı ve tutarlı 
   - **`A12` (`docs/story/polarization.md`, `data/fens/crops.json`) & `B3` (`docs/story/exposure.md`):** Birleşik Krallık Fens'te `4` tarlada `HH`'nin `HV`'den `~7 dB` parlak oluşu (`4.27` vs `3.49 dB` zaman aralığı) ile WorldPop/USDA CDL/ESA WorldCover kesişimi (`> 2 cm` LOS alanda **`83,273` sakin** — `71,701` CV + `11,572` Karapınar — ve CV `> 2 cm` alanının **`%79.2`'si / `1,251.37 km²`'si tarım arazisi**) [`judge_faq.md`](../story/judge_faq.md) Soru 11, [`slides.html`](../story/slides.html) Slayt 2, [`project_page.md`](../story/project_page.md) ve [`pitch.md`](../story/pitch.md) içine eklendi.
   - **`A2` Meksiko (`data/global/mexico_city/summary.json`):** `8` provisional çift (`2026-06-22 → 2026-10-20`), `−4.4 cm` LOS zirve / `−6.2 cm` dikey kestirim verisi 4. bölge ölçeklenebilirlik örneği olarak [`judge_faq.md`](../story/judge_faq.md) Soru 6, [`project_page.md`](../story/project_page.md) ve [`pitch.md`](../story/pitch.md) dosyalarına eklendi.
   - **Kaynak & Hijyen Doğrulaması:** [`docs/story/sources.md`](../story/sources.md) sonuna NASA SERVIR `SAR Handbook Ch. 2` (`https://earthdata.nasa.gov/s3fs-public/2025-04/SARHB_CH2_Content.pdf`) ve USDA NASS CDL (`https://www.nass.usda.gov/Research_and_Science/Cropland/SARS1a.php`) eklendi; `sources.md` içindeki **`43/43` benzersiz HTTPS bağlantısının tamamı canlı `HTTP 200`** verdi ve yasaklı kelime/doğruluk şerhi taramaları temiz geçti (`judge_faq.md` Soru 15 ve `slides.html` Slayt 7 güncellendi).
+
+---
+
+## 23. `20:00` + `20:10` (`OZGUN_KATKILAR.md` §T) + `REVIEW_1500` Hijyen Taraması & `O1` Entegrasyonu
+
+- **`20:00` Çıktıları (`project_page.md`, `slides.html`, `judge_faq.md`):**
+  - [`docs/story/project_page.md`](../story/project_page.md) `−20.3 cm` / `mixed` tam yıl (`2025-10-20 → 2026-10-21`), Sacramento–San Joaquin Delta (`−1.8 cm`), Konya Kapalı Havzası (`−4.5 cm`), `4` küresel şehir (`Tokyo −2.2`, `Jakarta −2.9`, `Venice −1.0`, `Mexico City −4.4 cm`), `B1` C-band vs L-band (`%80.4`), `B3` nüfus/tarım maruziyeti (`141,555` sakin, `%79.2` tarım), `Q09` Londra kil `below_detection` ve `6` Challenge anahtar ifadesiyle son haline getirildi.
+  - [`docs/story/slides.html`](../story/slides.html) tam `7` slayt + `@media print` A4 PDF CSS + canlı site & GitHub depo bağlantıları + `O1` (`0.317 km³/yr`) dahil özgün katkı özetiyle güncellendi.
+  - [`docs/story/judge_faq.md`](../story/judge_faq.md) Soru 11 `141,555` sakin olarak güncellendi; **Soru 16–20** (`mixed` beta tam yıl şerhi, Delta, 4 küresel şehir, C-band vs L-band, maruziyet sınırları) eklendi.
+  - [`docs/story/team_story.md`](../story/team_story.md) en üstündeki `TASLAK — ekip kendi cümleleriyle düzeltecek` uyarısı korundu.
+- **`20:10` (`OZGUN_KATKILAR.md` §T) Teknik Not:** [`docs/story/technical_note.md`](../story/technical_note.md) ve yazdırılabilir A4 [`docs/story/technical_note.html`](../story/technical_note.html) oluşturuldu (`Abstract`, `1 Data`, `2 Methods`, `3 Validation`, `4 Uncertainty`, `5 Results`, `6 Original Contributions O1–O3`, `7 Limitations`, `Verified References`).
+- **`O1` Entegrasyonu (PC8):** `data/central_valley_fullyear/storage_loss.json` ve `docs/story/storage_loss.md` yayına alındıktan hemen sonra **`0.3174 km³/yr`** (`317.41 million m³/yr`, duyarlılık `0.0664–0.3198 km³/yr`, `4,508.29 km²`, ortalama `7.04 cm/yr`, `~0.49×` Millerton Gölü `0.642 km³`, `quality: mixed`) gerçek değerleri `technical_note.md`, `technical_note.html`, `project_page.md` ve `slides.html` içine işlendi (`O2` ve `O3` üst akışları bekleniyor).
+- **`REVIEW_1500` Hijyen Taraması (PC4 vs. Diğer PC Dosyaları):**
+  - **PC4 dosyaları düzeltildi:** `team_story.md` (L24–25 `validated` → `compared` / kaldırıldı), `future_applications.md` (L6, L18 `validated` → `operational`), `pitch.md` (L61/L152 `calibrated` → `matched`, L142 `Ground Truth` → `GPS Comparison`), `sources.md` (L118 `confirming` → `showing`), `project_page.md` (L50 `calibrated` → `matched`, L102 `ground-truth` → `GPS-reference`).
+  - **Kardeş PC dosyalarında tespit edilen ifadeler (kapsam gereği dokunulmadı; sahiplerinin düzeltmesi için not edildi):**
+    - `docs/story/cross_sensor.md` L21: `ground truth`
+    - `docs/story/fullyear.md` L63: `calibrated`
+    - `docs/story/key_findings.md` L15: `calibrated`
+    - `docs/story/game_sensitivity.md` L10, L35: `calibrated`, `proves`
+    - `docs/story/narration_script.md` L28, L41: `confirming`, `validated`
+    - `docs/story/slides_notes.md` L25, L33, L48, L54: `proven`, `confirming`, `calibrated`
+    - `docs/story/submission_form.md` L33: `validated`

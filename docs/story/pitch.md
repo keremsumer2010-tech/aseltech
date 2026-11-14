@@ -58,7 +58,7 @@
 ### 1:45 – 2:05 · Interactive Decision Tool: Simulator (`#play`, `#gameFrame`) (15–20 sec)
 - **[ON SCREEN — Simulator (`#play`, `game/index.html` embedded in `#gameFrame`)]:** Pilot selects **Terra Bella**, triggers **Over-Pump** (`#pumpSlider` up toward `150%`), steps across the **24-month** timeline, and points to permanent coral clay compaction and canal conveyance warnings; then resets to `SGMA Balance`.
 - **[SPEAKER]:**
-  "Maps tell you what happened; our **Valley Under Pressure** simulator — calibrated directly against NISAR's Terra Bella summer subsidence (`−7.8 cm` LOS / `−10.1 cm` vertical, `k = 0.6232`, `N = 1,000` Monte Carlo uncertainty `−18.69 cm` nominal / `p10–p90 −27.10` to `−6.23 cm` over 24 months) across seven Tulare Basin districts — lets growers and water boards test the **24-month** trade-off. Over-pumping boosts short-term revenue, but drops groundwater head past the preconsolidation threshold, permanently crushes deep clay, and bends canals toward Friant-Kern-scale flow losses."
+  "Maps tell you what happened; our **Valley Under Pressure** simulator — matched directly against NISAR's Terra Bella summer subsidence (`−7.8 cm` LOS / `−10.1 cm` vertical, `k = 0.6232`, `N = 1,000` Monte Carlo uncertainty `−18.69 cm` nominal / `p10–p90 −27.10` to `−6.23 cm` over 24 months) across seven Tulare Basin districts — lets growers and water boards test the **24-month** trade-off. Over-pumping boosts short-term revenue, but drops groundwater head past the preconsolidation threshold, permanently crushes deep clay, and bends canals toward Friant-Kern-scale flow losses."
 
 ### 2:05 – 2:40 · How We Know (Physics, GNSS Validation & Scientific Honesty)
 - **[ON SCREEN — Story Chapter 4 (`[data-step="gnss"]`, `#gnssChart`, `#gnssTable`) & Method (`#how` / `science.html`)]:** Show real daily vertical GNSS station traces from Nevada Geodetic Laboratory alongside NISAR pixel extractions.
@@ -139,7 +139,7 @@ NISAR Pulse: Follow the Water. Provisional NISAR L2 GUNW data (NASA-JPL / ISRO c
 - **Interactive UX:** Click any valley coordinate for cumulative displacement history in plain language (`web/` & 3D `web3d/`).
 
 ### Slide 4 · How We Know: Independent GNSS & Dual-Orbit Validation
-- **Ground Truth:** Daily `IGS20/NA` vertical time series from **10 Nevada Geodetic Laboratory stations** inside the NISAR frame.
+- **GPS Comparison:** Daily `IGS20/NA` vertical time series from **10 Nevada Geodetic Laboratory stations** inside the NISAR frame.
 - **Method & Agreement:** `3×3 px` pixel extraction projected via `LOS / cos(θ)` achieves **1.00 cm median RMSE** (`1.33 cm` mean TS RMSE; **`r = 0.924` cross-station final fit**, `1.37 cm` final RMSE across 10 stations; `0.76 cm` final RMSE across the `4` sites moving `> 2 cm`; `r = 0.90` at `CAHA` & `HANF`; Cramér-Rao pixel phase sigma median `0.294 cm` CV).
 - **Dual-Orbit & Vertical Inversion (`Q21` + `Q22`):** **Track 34 Asc. ↔ Track 114 Desc.** (`6,719` 1 km blocks, `2026-06-28 → 2026-10-14`) reach **`85%` sign agreement** across `|d| > 3 cm` zones (**`r = 0.489`** overall / `0.60` local `< 15 km`, **`RMSE = 2.65 cm`**, **`median diff = −1.29 cm`**, slope `0.514`, `−5.7 cm` T114 median where T34 `< −6 cm`), while two-orbit vector inversion recovers **`−7.2 cm` vertically with `−0.1 cm` east-west motion** in the **Alpaugh / Earlimart bowl** (max `−9.8 cm` vertical block).
 
@@ -149,7 +149,7 @@ NISAR Pulse: Follow the Water. Provisional NISAR L2 GUNW data (NASA-JPL / ISRO c
 - **Honesty Guard:** Explicitly shows regional groundwater drawdown context without claiming InSAR predicts exact sudden roof-collapse dates.
 
 ### Slide 6 · Decision Tool: Valley Under Pressure (Physical Simulator)
-- **Interactive Policy Model:** Browser simulator (`game/index.html`) calibrated directly against `data/central_valley/summary.json` (`−7.8 cm` LOS / `−10.1 cm` vertical target across `108` summer days, `28 Jun–14 Oct 2026`).
+- **Interactive Policy Model:** Browser simulator (`game/index.html`) matched directly against `data/central_valley/summary.json` (`−7.8 cm` LOS / `−10.1 cm` vertical target across `108` summer days, `28 Jun–14 Oct 2026`).
 - **24-Month Trade-Off & Monte Carlo Check (`game_sensitivity.md`):** 1D Terzaghi consolidation model (`k = 0.6232`, `b0 · S_skv ≈ 0.02356`) letting users test `0%–150%` pumping across `7` Tulare Basin districts (`−18.69 cm` 24-month nominal vertical, `N = 1,000` stochastic `p10–p90` `−27.10` to `−6.23 cm`).
 
 ### Slide 7 · Scientific Integrity, Provenance & AI Disclosure

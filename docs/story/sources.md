@@ -115,7 +115,7 @@ All sources listed below were opened and verified directly against primary scien
 
 - **NASA GIBS / Worldview Snapshots API (`VIIRS_SNPP_CorrectedReflectance_TrueColor`, 2026-10-20)**  
   URL: https://wvs.earthdata.nasa.gov/api/v1/snapshot?REQUEST=GetSnapshot&TIME=2026-10-20&BBOX=52.4,-0.3,52.9,0.4&CRS=EPSG:4326&LAYERS=VIIRS_SNPP_CorrectedReflectance_TrueColor&FORMAT=image/jpeg&WIDTH=700&HEIGHT=500  
-  Key finding: Unauthenticated NASA GIBS true-color snapshot confirming dense cloud cover over the UK Fens on `2026-10-20`.
+  Key finding: Unauthenticated NASA GIBS true-color snapshot showing dense cloud cover over the UK Fens on `2026-10-20`.
 
 - **ASF NISAR L2 GCOV Browse PNG (`2026-10-20`, CRID `P05023`)**  
   URL: https://nisar.asf.earthdatacloud.nasa.gov/BROWSE/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_033_124_D_062_2005_DHDH_A_20261020T192237_20261020T192312_P05023_N_F_J_001/NISAR_L2_PR_GCOV_033_124_D_062_2005_DHDH_A_20261020T192237_20261020T192312_P05023_N_F_J_001_LATLON.png  
