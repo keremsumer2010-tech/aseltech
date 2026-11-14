@@ -2,7 +2,7 @@
 
 ## Question and data
 
-This is an offline, provisional screening comparison for the ten infrastructure features already listed in `data/central_valley/assets.json`. Their OSM IDs were matched to `risk/central_valley_infra.geojson`; that source contains 3,238 lines, but this run does **not** claim to score all of them. The displacement grid is `analysis/out/central_valley_cum.npz` (`2026-06-28` to `2026-10-14`, seven provisional pairs). The numerical pixel uncertainty was recomputed in memory from the seven local `pipeline/subset/central_valley/*.npz` pairs with PC5's Cramér–Rao function. The recomputed bbox median is `0.2943 cm` LOS, consistent with the rounded `0.294 cm` in `data/central_valley/uncertainty/meta.json`. No files under PC5's output folder were changed.
+This is an offline, provisional screen of `risk/central_valley_infra.geojson`: all `3,238` source lines were considered and `2,082` had at least two usable samples within the valid raster footprint. The other `1,156` had no scoreable continuous profile under those criteria. `data/central_valley/assets.json` is used only to compare its existing deterministic top ten with the probabilistic ranking. The displacement grid is `analysis/out/central_valley_cum.npz` (`2026-06-28` to `2026-10-14`, seven provisional pairs). The numerical pixel uncertainty was recomputed in memory from the seven local `pipeline/subset/central_valley/*.npz` pairs with PC5's Cramér–Rao function. The recomputed bbox median is `0.2943 cm` LOS, consistent with the rounded `0.294 cm` in `data/central_valley/uncertainty/meta.json`. No files under PC5's output folder were changed.
 
 ## Method
 
@@ -18,24 +18,24 @@ The California Aqueduct context is supported by the locally registered [USGS Sci
 
 ## Results
 
-All ten candidates had `p(β > 1/500) = 0/1,000` and `p(β > 1/1000) = 0/1,000`. The largest deterministic beta was `0.00050014`, below `1/1000 = 0.001`. Zero observed exceedances means the Monte Carlo estimate is zero at `0.001` resolution; it does not establish zero real-world risk. One feature, Exeter Subdivision (`OSM 196530229`), had a maximum sampled differential of `12.564 cm` and `p(Δ > 10 cm) = 1.0` under this model. This is a local vertical-differential screen, not a damage finding.
+All `2,082` scoreable lines had `p(β > 1/500) = 0/1,000` and `p(β > 1/1000) = 0/1,000`; the largest deterministic beta was `0.00072276`, below `1/1000 = 0.001`. Zero observed exceedances means the Monte Carlo estimate is zero at `0.001` resolution; it does not establish zero real-world risk. Five lines had nonzero `p(Δ > 10 cm)`. Exeter Subdivision (`OSM 196530229`) had a maximum sampled differential of `12.564 cm` and `p(Δ > 10 cm) = 1.0` under this model. This is a local vertical-differential screen, not a damage finding. The ranking below sorts by maximum beta-exceedance probability, then `p(Δ > 10 cm)`, then `beta_max`.
 
 | Probabilistic rank | Feature | OSM ID | Existing gradient rank | β max | P(β > 1/500) | P(β > 1/1000) | P(Δ > 10 cm) | Max differential (cm) |
 |---:|---|---:|---:|---:|---:|---:|---:|---:|
 | 1 | Exeter Subdivision | 196530229 | 3 | 0.00050014 | 0/1000 | 0/1000 | 1.000 | 12.564 |
-| 2 | Friant-Kern Canal | 1226257286 | 7 | 0.00044642 | 0/1000 | 0/1000 | 0/1000 | 7.059 |
-| 3 | California Aqueduct | 24016778 | 4 | 0.00036111 | 0/1000 | 0/1000 | 0/1000 | 4.557 |
-| 4 | Porterville Subdivision | 196158173 | 6 | 0.00035850 | 0/1000 | 0/1000 | 0/1000 | 7.039 |
-| 5 | Unnamed canal (OSM 75230703) | 75230703 | 8 | 0.00035148 | 0/1000 | 0/1000 | 0/1000 | 5.131 |
-| 6 | CA 65 | 211929583 | 10 | 0.00034200 | 0/1000 | 0/1000 | 0/1000 | 6.562 |
-| 7 | Exeter Subdivision | 196474322 | 2 | 0.00033865 | 0/1000 | 0/1000 | 0/1000 | 6.479 |
-| 8 | Alta East Branch Canal | 202390442 | 5 | 0.00029106 | 0/1000 | 0/1000 | 0/1000 | 4.406 |
-| 9 | Friant-Kern Canal | 79593586 | 9 | 0.00025481 | 0/1000 | 0/1000 | 0/1000 | 2.548 |
-| 10 | Tulare Irrigation District Canal | 79592963 | 1 | 0.00021374 | 0/1000 | 0/1000 | 0/1000 | 4.688 |
+| 2 | Goshen Subdivision | 198727101 | — | 0.00059202 | 0/1000 | 0/1000 | 0.600 | 9.780 |
+| 3 | Friant-Kern Canal | 79497672 | — | 0.00072276 | 0/1000 | 0/1000 | 0.563 | 9.880 |
+| 4 | CA 65 | 1028307714 | — | 0.00045730 | 0/1000 | 0/1000 | 0.031 | 8.740 |
+| 5 | Alta East Branch Canal | 79591895 | — | 0.00036723 | 0/1000 | 0/1000 | 0.005 | 8.480 |
+| 6 | BNSF Bakersfield Subdivision | 641059314 | — | 0.00067052 | 0/1000 | 0/1000 | 0/1000 | 6.710 |
+| 7 | UP Fresno Subdivision | 198739870 | — | 0.00061442 | 0/1000 | 0/1000 | 0/1000 | 6.600 |
+| 8 | Unnamed canal (OSM 75228277) | 75228277 | — | 0.00057504 | 0/1000 | 0/1000 | 0/1000 | 5.750 |
+| 9 | Exeter Subdivision | 196530220 | — | 0.00052884 | 0/1000 | 0/1000 | 0/1000 | 6.740 |
+| 10 | Unnamed canal (OSM 1418672707) | 1418672707 | — | 0.00050116 | 0/1000 | 0/1000 | 0/1000 | 5.010 |
 
-The ten-feature membership is unchanged by construction because the probabilistic analysis uses the existing deterministic top-ten file. Its ordering changes: Exeter Subdivision OSM `196530229` moves from deterministic rank 3 to probability-screen rank 1; the California Aqueduct moves from rank 4 to rank 3. For the aqueduct, the sampled segment differential is `4.557 cm`, `p(Δ > 10 cm) = 0/1,000`, and `p(β > 1/500) = 0/1,000`; the existing gradient index is `49.12 mm/km`. The different rank reflects different metrics, not a measured change in canal capacity.
+Only one OSM ID (`196530229`, Exeter Subdivision) overlaps between the probabilistic inventory's top ten and the existing deterministic shortlist of ten; the latter is a separate, preselected comparison set. The California Aqueduct line in the existing shortlist (OSM `24016778`) ranks 39th across scoreable lines by this screen, versus rank 4 in the existing gradient list. Its sampled differential is `4.557 cm`, `p(Δ > 10 cm) = 0/1,000`, and `p(β > 1/500) = 0/1,000`; its existing gradient index is `49.12 mm/km`. The different rank reflects different metrics, not a measured change in canal capacity.
 
-![Probabilistic screen of the ten selected assets](media/pc7_risk_prob.png)
+![Probabilistic screen of the highest-ranked scoreable infrastructure lines](media/pc7_risk_prob.png)
 
 ## Limitations and interpretation
 
@@ -43,7 +43,7 @@ The ten-feature membership is unchanged by construction because the probabilisti
 - Samples are treated as independent Gaussian errors, although nearby raster samples can be spatially correlated. The reported probabilities are not calibrated engineering failure probabilities.
 - The displacement period is one provisional summer chain, not a long-term rate or seasonal cycle. LOS-to-vertical conversion assumes negligible horizontal motion.
 - The canal calculation has no surveyed cross-section, water level, or freeboard observations. Differential settlement is only a freeboard-relevant proxy; actual freeboard loss and flow-capacity impact are not estimated.
-- OSM line geometry and the ten-feature shortlist constrain coverage. Results do not certify safety, damage, serviceability, or intervention priority.
+- `1,156` of `3,238` source lines could not be scored because two valid profile samples were unavailable within the masked raster footprint. Results do not certify safety, damage, serviceability, or intervention priority.
 
 ## Reproduction
 

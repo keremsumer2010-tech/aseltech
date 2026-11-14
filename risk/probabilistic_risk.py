@@ -1,4 +1,4 @@
-"""Probabilistic vertical-settlement screening for the current Central Valley top ten.
+"""Probabilistic vertical-settlement screening for Central Valley infrastructure lines.
 
 This is an offline, provisional screening calculation. It reuses the local PC5
 formal phase-noise model and never downloads data or writes into PC5's outputs.
@@ -232,11 +232,7 @@ def run(output_path: Path | None = None, chart_path: Path | None = None) -> dict
     by_id = {f.get("properties", {}).get("osm_id"): f for f in infra.get("features", [])}
     transformer = Transformer.from_crs(4326, epsg, always_xy=True)
     results = []
-    for i, asset in enumerate(current.get("features", [])):
-        osm_id = asset.get("properties", {}).get("osm_id")
-        source = by_id.get(osm_id)
-        if source is None:
-            continue
+    for i, source in enumerate(infra.get("features", [])):
         analyzed = _analyze_feature(source, cum, sigma_los, x, y, incidence, transformer, SEED + i * N_TRIALS)
         if analyzed:
             results.append(analyzed)
@@ -244,7 +240,11 @@ def run(output_path: Path | None = None, chart_path: Path | None = None) -> dict
         raise ValueError("No current indexed asset had a valid sampled raster profile")
 
     deterministic = sorted(current["features"], key=lambda f: f.get("properties", {}).get("gradient_mm_per_km", -np.inf), reverse=True)
-    probabilistic = sorted(results, key=lambda f: (f["properties"]["p_beta_exceed"]["1/500"], f["properties"]["beta_max"]), reverse=True)
+    probabilistic = sorted(results, key=lambda f: (
+        max(f["properties"]["p_beta_exceed"].values()),
+        f["properties"]["p_diff_gt_10cm"],
+        f["properties"]["beta_max"],
+    ), reverse=True)
     old_top = [f["properties"].get("osm_id") for f in deterministic[:10]]
     new_top = [f["properties"].get("osm_id") for f in probabilistic[:10]]
     output = {
@@ -262,9 +262,10 @@ def run(output_path: Path | None = None, chart_path: Path | None = None) -> dict
             "trials": N_TRIALS,
             "seed": SEED,
             "sample_sigma_assumption": "independent Gaussian formal phase-noise samples; spatial covariance and atmospheric/unwrapping errors are not modeled",
-            "scope": "The ten IDs in data/central_valley/assets.json, matched to risk/central_valley_infra.geojson; 3,238-source corridor file is not exhaustively scored.",
+            "scope": "Every scoreable LineString in risk/central_valley_infra.geojson; existing data/central_valley/assets.json is used only as the deterministic comparison shortlist.",
         },
         "summary": {
+            "source_line_count": len(infra.get("features", [])),
             "analyzed_assets": len(results),
             "deterministic_top10_osm_ids": old_top,
             "probabilistic_top10_osm_ids": new_top,
@@ -282,7 +283,11 @@ def run(output_path: Path | None = None, chart_path: Path | None = None) -> dict
 
 
 def _plot(features: list[dict], path: Path) -> None:
-    ranked = sorted(features, key=lambda f: (f["properties"]["p_beta_exceed"]["1/500"], f["properties"]["beta_max"]), reverse=True)[:10]
+    ranked = sorted(features, key=lambda f: (
+        max(f["properties"]["p_beta_exceed"].values()),
+        f["properties"]["p_diff_gt_10cm"],
+        f["properties"]["beta_max"],
+    ), reverse=True)[:10]
     labels = [textwrap.fill(f["properties"]["name"], width=24) for f in ranked][::-1]
     probs = [f["properties"]["p_diff_gt_10cm"] for f in ranked][::-1]
     beta = [f["properties"]["beta_max"] for f in ranked][::-1]
@@ -301,7 +306,7 @@ def _plot(features: list[dict], path: Path) -> None:
     handles2, labels2 = ax2.get_legend_handles_labels()
     ax.legend(handles1 + handles2, labels1 + labels2, loc="lower right", fontsize=8)
     fig.subplots_adjust(left=0.32, right=0.95, bottom=0.18, top=0.87)
-    fig.text(0.32, 0.025, "P(β > 1/500) = 0/1,000 for all ten assets. Formal phase-noise lower bound only; not a safety rating.", fontsize=8)
+    fig.text(0.32, 0.025, f"P(β > 1/500) = 0/1,000 for all {len(features):,} scored lines. Formal phase-noise lower bound only; not a safety rating.", fontsize=8)
     path.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(path, dpi=180)
     plt.close(fig)
