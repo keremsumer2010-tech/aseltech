@@ -77,7 +77,7 @@ Our multi-page web platform (`web/`: Story Map, `science.html`, `data.html`, `fa
 
 ---
 
-## Hackathon Journey
+## Development Process and Technical Challenges
 
 Working as a coordinated multi-workstation team, we split ownership cleanly into orbital search & HDF5 subsetting, InSAR phase inversion & testing, literature & ground-truth curation, frontend storytelling, and quality assurance. One key challenge was handling early NISAR product maturity differences safely: pre-`2026-06-17` BETA acquisitions carry mask-offset and radiometric-banding caveats, so we strictly excluded `beta-precal` scenes from quantitative claims and anchored every quantitative chart to uniform `2026-06-17+` Provisional collections while communicating NISAR project provenance clearly.
 
@@ -86,14 +86,14 @@ Working as a coordinated multi-workstation team, we split ownership cleanly into
 ## AI & Tool Disclosure
 
 In line with open scientific transparency and competition integrity rules:
-- **Visual Media:** Seven illustrative scene graphics created earlier in `web/assets/` (Higgsfield AI, tagged `"AI-generated illustration"`) remain archived in the repository while Site v2 uses a live NISAR MapLibre displacement map for its hero background alongside custom physics SVG schematics; our 7-slide presentation (`docs/story/slides.html`) and v2 simulator (`game/index.html`) contain **zero AI artwork**.
+- **Visual Media:** Seven illustrative scene graphics created earlier in `web/assets/` (Higgsfield AI, tagged `"AI-generated illustration"`) remain archived in the repository while Site v2 uses a live NISAR MapLibre displacement map for its hero background alongside custom physics SVG schematics; every map, profile, and simulator curve is plotted directly from measured NISAR, GPS, and survey datasets.
 - **Software & Documentation Support:** AI coding and research assistants (Claude Code, Gemini / Antigravity) assisted with Python InSAR utility scaffolding, unit tests, coordinate extraction verification from published tables, and documentation drafting (`docs/story/judge_faq.md`, `docs/story/sources.md`). Every numerical claim, URL, coordinate, and unit conversion was independently verified by team members against primary source PDFs, ASF API responses, and automated tests.
 
 ---
 
 ## Companion Submission Package (`docs/story/`)
 
-- [`docs/story/slides.html`](slides.html) — Interactive `7`-slide browser deck using real NISAR/VIIRS maps and inline SVG charts (zero AI art).
+- [`docs/story/slides.html`](slides.html) — Interactive `7`-slide browser deck using real NISAR/VIIRS maps and inline data charts.
 - [`docs/story/video_shotlist.md`](video_shotlist.md) — `30.0`-second capture shotlist (`Shot 1–6`) and line-verified `video_30s.srt` subtitles.
 - [`docs/story/judge_faq.md`](judge_faq.md) — `15`-question technical Jury Q&A card rendered live in [`web/faq.html`](../../web/faq.html).
 - [`docs/story/sinkhole_timeline.md`](sinkhole_timeline.md) — Chronology and groundwater-driver synthesis across all `29` verified Karapınar sinkholes (`1972–2013`).

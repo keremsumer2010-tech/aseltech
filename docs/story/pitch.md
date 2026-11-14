@@ -33,32 +33,32 @@
 - **Data Q&A Lead:** Mehmet (handles technical questions on NISAR GUNW math, GNSS validation, and limitations)
 
 ### 0:00 – 0:20 · Hook (The Iron Post)
-- **[ON SCREEN — Hero & Holme Fen Card]:** Slow orbital/radar hero background; cursor settles on Scene 1 card (*"Britain under clouds"*).
+- **[ON SCREEN — Hero & Story Chapter 2 (`[data-step="uk"]`, `#holmeText`)]:** Slow orbital/radar hero background; scroll into Chapter 2 Holme Fen benchmark card (`1851` post, `~4 m`).
 - **[SPEAKER]:**
   "In **1851**, drainage engineers in the English Fens hammered a cast-iron post flush with the surface of the peatlands. Today, that same iron post stands **nearly 4 metres** above the ground — leaving Holme Fen **2.75 metres below sea level**, Britain's lowest land point — not because the iron grew, but because draining the peat caused the ground beneath Britain's richest farmland to collapse."
 
 ### 0:20 – 0:45 · Problem & Solution
-- **[ON SCREEN — Drag Cloud Slider in Scene 1]:** Slide optical cloudy **VIIRS SNPP (`2026-10-20`)** view across to reveal the same-day **NISAR L-band GCOV radar preview** underneath, showing The Wash coastline crystal-clear under **98%+ cloud cover**.
+- **[ON SCREEN — Story Chapter 2 (`#compare`, `#compareRange`)]:** Slide optical cloudy **VIIRS SNPP (`20 Oct 2026`)** view across to reveal the same-day **NISAR L-band GCOV radar preview** underneath, showing The Wash coastline clearly resolved under **98%+ cloud cover**.
 - **[SPEAKER]:**
   "The same crisis is happening silently over every major pumped aquifer on Earth. Optical satellites are blind under cloud and struggle inside vegetated valleys, while raw radar interferometry lives inside multi-gigabyte HDF5 files only specialists can open.
   Our project, **NISAR Pulse — Follow the Water**, turns NASA–ISRO NISAR L-band interferograms into plain-language maps, a Three.js 3D surface explorer, and a 24-month water-policy simulator (**Valley Under Pressure**) — all running live in any browser."
 
 ### 0:45 – 1:45 · Live Demo: Central Valley & Karapınar
-- **[ON SCREEN — Scene 2 (`The dancing ground · USA`)]:** Press Play on the date slider (**`2026-06-28` → `2026-10-14`**, **`7` provisional NISAR GUNW pairs**). Click `p01` (`6 km N of Terra Bella`, `max_subsidence_location`) and show `#cvSentence` + sparkline + GNSS comparison.
+- **[ON SCREEN — Story Chapter 3 (`[data-step="cv"]`, `#play`, `#slider`, `#readout`, `#pointChart`)]:** Press `#play` on the date slider (**`28 Jun – 14 Oct 2026`**, **`7` provisional NISAR GUNW pairs**). Tap `p01` (`6 km N of Terra Bella`, `max_subsidence_location`) and show `#readout` + `#pointChart` + Chapter 4 GPS comparison.
 - **[SPEAKER]:**
   "Step one: California's San Joaquin Valley. Across **108 summer days (`2026-06-28` to `2026-10-14`)**, cumulative NISAR line-of-sight measurements over **7 provisional pairs** show the valley floor dropping by up to **`−7.8 centimetres` LOS** — roughly **`−10.1 centimetres`** vertical equivalent — near **Terra Bella**.
   Tap any point on the map and the chart strips away radar jargon into one plain sentence for water managers. And when underground clay compacts irreversibly, surface canals tilt: evaluating **645 OpenStreetMap corridors** reveals **81 high-risk segments**, with differential slopes reaching **`57.01 mm/km`** on the **Tulare Irrigation District Canal** and **`49.12 mm/km`** along **102.8 km of the California Aqueduct**."
-- **[ON SCREEN — Scene 3 (`Konya's sinkholes · TR`)]:** Scroll to Karapınar; toggle sinkhole pins (**`29` field-verified locations**) over the **`8`-pair (`2026-06-26` → `2026-10-12`)** L-band displacement map.
+- **[ON SCREEN — Story Chapter 6 (`[data-step="kp"]`, `#sinkList`)]:** Scroll to Karapınar; highlight documented sinkhole markers (**`29` field-verified locations**) over the **`8`-pair (`26 Jun – 12 Oct 2026`)** L-band displacement map.
 - **[SPEAKER]:**
   "Step two: our home basin — **Karapınar in Konya, Türkiye** — where **8 provisional pairs** over the same **108-day** irrigation window reveal up to **`−5.9 centimetres` LOS** (`~−8.0 centimetres` vertical) just **2 kilometres west of Karapınar**, overlaid with **29 peer-reviewed karst sinkholes**—and valid pixels within 1 km of those sinkholes sink **6.4 times faster (`−4.15 cm`)** than the far-field plateau (`−0.65 cm`)."
 
-### 1:45 – 2:05 · Interactive Decision Tool: Valley Under Pressure (15–20 sec)
-- **[ON SCREEN — Scene 5 (`game/index.html` embedded in `#gameFrame`)]:** Pilot selects **Terra Bella**, triggers **Over-Pump** (`#pumpSlider` up toward `150%`), steps across the **24-month** timeline, and points to permanent coral clay compaction and canal conveyance warnings; then resets to `SGMA Balance`.
+### 1:45 – 2:05 · Interactive Decision Tool: Simulator (`#play`, `#gameFrame`) (15–20 sec)
+- **[ON SCREEN — Simulator (`#play`, `game/index.html` embedded in `#gameFrame`)]:** Pilot selects **Terra Bella**, triggers **Over-Pump** (`#pumpSlider` up toward `150%`), steps across the **24-month** timeline, and points to permanent coral clay compaction and canal conveyance warnings; then resets to `SGMA Balance`.
 - **[SPEAKER]:**
   "Maps tell you what happened; our **Valley Under Pressure** simulator — calibrated directly against NISAR's Terra Bella summer subsidence (`−7.8 cm` LOS / `−10.1 cm` vertical) across seven Tulare Basin districts — lets growers and water boards test the **24-month** trade-off. Over-pumping boosts short-term revenue, but drops groundwater head past the preconsolidation threshold, permanently crushes deep clay, and bends canals toward Friant-Kern-scale flow losses."
 
 ### 2:05 – 2:40 · How We Know (Physics, GNSS Validation & Scientific Honesty)
-- **[ON SCREEN — Scene 4 (`GNSS vs NISAR` summary & Scene 6 `How we built it` SVG diagram)]:** Show real daily vertical GNSS station traces from Nevada Geodetic Laboratory alongside NISAR pixel extractions.
+- **[ON SCREEN — Story Chapter 4 (`[data-step="gnss"]`, `#gnssChart`, `#gnssTable`) & Method (`#how` / `science.html`)]:** Show real daily vertical GNSS station traces from Nevada Geodetic Laboratory alongside NISAR pixel extractions.
 - **[SPEAKER]:**
   "Every step follows open physical principles: L-band 24-centimetre radar penetrates canopy cover; our pipeline converts unwrapped phase via `−λ / 4π` using each granule's exact center wavelength (`0.294 cm` CV / `0.326 cm` Karapınar Cramér-Rao median phase sigma), masks decoherent water (`coherence >= 0.3`), strips unwrapping glitches, removes the ionospheric screen and topographic plane, and verifies itself two independent ways: first against **10 continuous GNSS stations** across the valley (`r = 0.924` cross-station final fit, `1.00 cm` median RMSE, **`r = 0.90`** at **`CAHA`** and **`HANF`**), and second across **two independent NISAR orbits** (**Track 34 ascending ↔ Track 114 descending**): across `6,719` 1 km blocks (`r = 0.489`, `RMSE = 2.65 cm`, `median diff = −1.29 cm`), where one orbit sees more than 6 cm of sinking the other sees `−5.7 cm` median (`85%` sign agreement on `|d| > 3 cm`), and two-geometry inversion confirms the **Alpaugh bowl sank `−7.2 cm` vertically with `−0.1 cm` sideways motion**.
   And we are explicit about limits: NISAR science data are currently marked **provisional** — sensor calibration is performed by NASA–JPL and ISRO, not our team."
@@ -145,10 +145,10 @@ NISAR Pulse: Follow the Water. Provisional NISAR L2 GUNW data (NASA-JPL / ISRO c
 - **Honesty Guard:** Explicitly shows regional groundwater drawdown context without claiming InSAR predicts exact sudden roof-collapse dates.
 
 ### Slide 6 · Decision Tool: Valley Under Pressure (Physical Simulator)
-- **Empowering Non-Experts:** Browser simulator (`game/index.html`) calibrated directly against `data/central_valley/summary.json` (`−7.8 cm` LOS / `−10.1 cm` vertical target across `108` summer days).
-- **24-Month Trade-Off:** Pure physics model (zero AI illustrations) letting users test `0%–150%` pumping and surface water allocations across `7` Tulare Basin districts to weigh revenue against permanent clay collapse and canal loss.
+- **Interactive Policy Model:** Browser simulator (`game/index.html`) calibrated directly against `data/central_valley/summary.json` (`−7.8 cm` LOS / `−10.1 cm` vertical target across `108` summer days, `28 Jun–14 Oct 2026`).
+- **24-Month Trade-Off:** 1D Terzaghi consolidation model letting users test `0%–150%` pumping and surface water allocations across `7` Tulare Basin districts to weigh revenue against permanent clay collapse and canal loss.
 
 ### Slide 7 · Scientific Integrity, Provenance & AI Disclosure
 - **Calibration Notice:** NISAR data used here are **provisional** (`CRID P05023`); sensor calibration and validation are performed by the NISAR project (NASA–JPL / ISRO), not by our team.
 - **Open & Reproducible:** Pure Python/NumPy pipeline (`pytest`-verified phase-to-cm tests) + interactive MapLibre & Three.js (`web3d/`) hosted statically.
-- **AI Transparency:** Site hero/editorial artwork uses tagged `"AI-generated illustration"` badges (zero in `docs/story/slides.html` or `game/`); zero measurement data are AI-generated. Coding & QA assistance provided by Claude and Gemini/Antigravity.
+- **AI Transparency:** Site editorial artwork in `web/assets/` uses tagged `"AI-generated illustration"` badges. All maps, charts, and simulator panels display measured satellite, GPS, and field-survey data. Coding & QA assistance provided by Claude and Gemini/Antigravity.

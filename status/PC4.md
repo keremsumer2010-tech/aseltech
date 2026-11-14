@@ -1,8 +1,8 @@
 # PC4 durum
 
-- Görev: 1, 2, 3 + Queue `Q11`, `Q12`, `Q16`, `Q30`, `Q31` + 14:10 Paketi (1–6) + `ZAMAN_CIZELGESI` Pazar #1–4 (`sinkhole_timeline.md`, `video_shotlist.md`, Site v2/sözleşme QA, `project_page.md` + tüm depo link kontrolü)
-- Durum: çalışıyor (tüm Cmt/Pazar PC4 görevleri tamamlandı; sürekli izleme nöbetinde `git pull` / `QUEUE.md` takip ediliyor)
-- Güncelleme: 2026-11-14 14:58 TR
+- Görev: 1, 2, 3 + Queue `Q11`, `Q12`, `Q16`, `Q30`, `Q31` + 14:10 Paketi (1–6) + `ZAMAN_CIZELGESI` Pazar #1–5 + **15:00 Paketi (#1–2 tamamlandı, #3–4 devam ediyor)**
+- Durum: çalışıyor (15:00 NASA Earth Observatory dili & site satır-satır QA önerileri eklendi; slides.html ve video_shotlist.md güncelleniyor)
+- Güncelleme: 2026-11-14 15:05 TR
 - Çıktılar:
   - Görev 1: `data/uk/optical_2026-10-20.jpg` (`700x500`, `19,490 B`), `data/uk/radar_2026-10-20.png` (`700x500`, `631,556 B`), `data/uk/meta.json` (`preview`, `optical_image`/`radar_image` yerel adları eklendi — `Q14` uyumu)
   - Görev 2: `data/karapinar/sinkholes.geojson` (`18,638 B`, `29` doğrulanmış Karapınar obruğu, tümü `bbox = [33.3, 37.6, 33.8, 37.9]` içinde; Tapur & Bozyiğit 2015)
