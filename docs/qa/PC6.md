@@ -267,3 +267,8 @@ Komut: `python analysis/pc6/test_20_strategies.py --self-test`
 - `git pull`: `7f3abad` çekildi (`docs/CALISMA_HARITASI.md` / `tasks/PC6.md` değişmedi).
 - **PC6 Öz-Testleri:** `analysis/pc6/test_20_strategies.py --self-test` (`40/40 PASS`), `validation/compare.py --self-test` (PASS), `risk/compute_risk.py --self-test` (PASS), `risk/karapinar_risk.py --self-test` (PASS).
 - **Kırık Bağıl Link Taraması (`docs/**/*.md` + `README.md`):** **0** kırık bağıl link.
+
+## 12. ASLA BOŞ KALMA — Tur 4 (`20:18 TR`)
+- `git pull`: `823cd0c` çekildi (`CALISMA_HARITASI.md` / `tasks/PC6.md` değişmedi; yeni `storage_loss.json`, `nisarpulse`, `web/index.html` kartları geldi).
+- **`python -m pytest -q`:** **70 passed**, 1 uyarı (`22.03 s`).
+- **`data/` JSON/GeoJSON Taraması:** **62/62** dosya geçerli, 0 `NaN`/`Infinity`, 0 boş nesne.
