@@ -26,3 +26,29 @@ Provisional ve beta'yı etiketsiz karıştırma (sadece `*_fullyear` klasöründ
 ---
 # 20:50 PC1 — BÜYÜK GÖREV: `docs/ATLAS_PLANI.md`
 Şu anki küçük işini bitir, sonra SORMADAN `docs/ATLAS_PLANI.md` içindeki kendi bölümüne geç ve yukarıdan aşağı yap. Teslime kadar durma; bitince ASLA BOŞ KALMA döngüsü (hata ayıklama dahil).
+
+# 🧭 PC9 UZUN GÖREV PLANI (Paz 00:05 → Paz 20:00, PC1) — sırayla, SORMADAN
+Git kuralı: önce kendi dosyalarını commit et → `git pull --rebase origin main` → push. Kendi commit edilmemiş değişikliğin engel değildir.
+
+## FAZ 1 — Atlas şehirlerin (şimdi → Paz 06:00)
+Kalite standardı (`docs/ATLAS_PLANI.md` "KALİTE STANDARDI"): ±0.25° tam kutu, havza dışı referans (`--ref-lonlat`), `summary.json`'da `p2_cm` + `rate_cm_per_100d`.
+1. **Eloy** −111.55, 32.75 (bitir; 1 saattir sürüyor — takıldıysa `--resume` ile devam, nedeni status'a)
+2. **Cangzhou** 116.85, 38.30  3. **Gorgan** 54.43, 36.84  4. **Houston/Katy** −95.80, 29.80  5. **Lagos** 3.39, 6.45 (tropik, düşük koherens beklenir → yine de çalıştır, `confidence` notu)
+Her şehirde: literatür hızı (DOI) `docs/qa/PC9.md`'ye, "hazır: <şehir>" satırı (PC10 atlasa ekler, PC5 karar verir), commit + push. Kapsama yoksa "no coverage" yaz, geç. Aynı anda 1 indirme, ham .h5'i kestikten sonra sil.
+
+## FAZ 2 — ★ Özgün katkı: "108 gün yıllık hızı temsil eder mi?" (Paz 06:00 → 14:00)
+Jürinin atlas için soracağı ilk soru bu; cevabı sadece senin tam yıl yöntemin verebilir (Central Valley'de yaptın: kalıcı −3.74 cm/yr medyan, Earlimart −16.77 cm/yr).
+1. Atlasın ilk sıralarındaki 2 bölge için tam yıl (beta-precal Kas 2025 → Haz 2026 + provisional) zinciri ve `run_fullyear.py --step cumulative/decomp`:
+   - **Konya Ovası** (atlas 1. sıra, `data/konya_plain/` bbox'ı) → `data/konya_plain_fullyear/`
+   - **Mexico City** (merkez −99.05, 19.40; havza dışı referans PC10'un yeni referansı) → `data/global/mexico_city_fullyear/`
+   Beta varsa `quality: mixed`; beta yoksa "insufficient_data" yaz, geç.
+2. Her biri için: kalıcı hız (cm/yr) vs `rate_cm_per_100d × 3.65` (108 gün ekstrapolasyonu) → oran. Central Valley için de aynı oran (verin hazır).
+3. Çıktı: `docs/story/annualization.md` (≤1 sayfa, REVIEW_1500): "108 günlük ekstrapolasyon kalıcı hızı X kat abartıyor/eksik gösteriyor; mevsimsel bileşen Y". Grafik `docs/story/media/pc9_annualization.png` (3 bölge, iki çubuk: ekstrapolasyon vs kalıcı). PC5 ve PC4'e "hazır" notu `docs/qa/PC9.md`'de.
+
+## FAZ 3 — GPS doğrulaması tam yıl (Paz 14:00 → 18:00)
+`docs/CALISMA_HARITASI.md` PC9 madde 3–4: Central Valley tam yıl ↔ GNSS 11 ay (`validation/gnss/*.csv`) → `docs/qa/PC9.md` tablo (istasyon, r, RMSE); kalıcı çökme alan istatistiği (km², > 5 / > 10 cm/yr).
+
+## FAZ 4 — Paz 18:00 → 20:00
+Kendi çıktılarını yeniden çalıştır, `python -m pytest -q analysis/pc9`, PC5 `docs/qa/PC5.md` §10'daki senin satırların. 20:00 sonrası sadece hata düzeltme.
+
+Yazma alanı ek: `data/global/{eloy,cangzhou,gorgan,houston,lagos,mexico_city_fullyear}/`, `data/konya_plain_fullyear/`, `pipeline/subset/global_<bu şehirler>/`, `pipeline/subset/konya_plain_fullyear/`, `docs/story/annualization.md`, `docs/story/media/pc9_*.png`, `docs/qa/PC9.md`, `status/PC9.md`.
