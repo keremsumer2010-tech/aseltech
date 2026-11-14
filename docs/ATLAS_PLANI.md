@@ -31,7 +31,7 @@ PC1 planı inceledi; 4 zayıflık düzeltildi. Bu bölüm diğer her şeyin ön�
 | PC5 | **Güven sınıfı girdileri (§4)**: her şehir için literatür hızı + uyum notu → `data/global/<şehir>/validation_note.json` (PC10 birleştirir); mevcut 8 bölge + "ilk mi?" taraması. **Öncelik: Mexico City −4.4 cm (108 gün) yayımlanmış hızlara göre düşük görünüyor — neden (koherens, bbox, referans) incele, PC10'a not** | yeni şehirler |
 | PC4 | Basın özeti + atlas slaytı + teknik not bölümü, **tohum atlas.json ile** | yeni şehirlerle güncelle |
 | PC7 | O2 olasılıksal risk | `validate_atlas.py` |
-| PC11 (23:00 güncel) | **İndirmesiz: atlas sağlamlık testi** → `data/global/robustness.json` (PC7'den devir) | yeni şehirlerde yeniden çalıştır |
+| PC11 (21:40, yeni) | **Tahran, Cakarta, Pekin'i kalite standardıyla yeniden hesapla** (PC10'dan devredildi) → Celaya, Tianjin, Kerman, Bulacan (`tasks/PC11.md`) | PC10'a "hazır" notu |
 Çakışma kuralı: `data/global/atlas.json` dosyasını SADECE PC10 (build_atlas.py) yazar; diğerleri okur.
 
 ## Bölgeler (merkez lon, lat — bbox'ı ±0.25–0.35° olarak sen kur, önce ASF'de provisional GUNW kapsamasını kontrol et; kapsama yoksa "no coverage" diye atlasa yaz ve sıradakine geç)
@@ -77,8 +77,8 @@ Mevcut: Mexico City, Tahran, Cakarta, Pekin (PC10), Central Valley, Karapınar, 
 ## PC7 — O2 + atlas kalite kontrolü
 1. O2 olasılıksal mühendislik riskini bitir (`docs/OZGUN_KATKILAR.md` §O2).
 2. `pipeline/pc7/validate_atlas.py`: her `data/global/<şehir>/` sözleşmeye uygun mu, `atlas.json` sıralaması summary'lerle tutarlı mı, NaN yok mu → `docs/qa/PC7.md`; her yeni şehirde yeniden çalıştır.
-3. **(23:00: PC11'e geçti)** Sağlamlık testi: referans × koherens × kutu varyantları → `data/global/robustness.json` (spread, rank_min/max, Kendall tau) + grafik. **PC10:** `confidence`'a robustness spread'i ekle (spread > |değer|/2 → low).
-4. **(23:00)** İndirme işleri PC7'de: önce Tahran/Pekin/Cakarta yeniden hesap (taze subset, havza dışı referans), sonra Xi'an, Taiyuan, Querétaro, Celaya, Kerman, Tianjin, Bulacan (`tasks/PC7.md`).
+3. **(22:25)** Sağlamlık testi: referans × koherens × kutu varyantları → `data/global/robustness.json` (spread, rank_min/max, Kendall tau) + grafik. **PC10:** `confidence`'a robustness spread'i ekle (spread > |değer|/2 → low).
+4. **(22:25)** Yeni şehirler: Xi'an, Taiyuan, Querétaro (`tasks/PC7.md`).
 
 ## PC5 — atlas bilimsel doğrulaması
 1. **Literatür kontrolü:** NISAR verisiyle yayımlanmış küresel çökme sıralaması var mı? Sonuca göre "to our knowledge, the first …" cümlesi kullanılabilir mi — `docs/story/atlas_validation.md`.

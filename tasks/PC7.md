@@ -96,11 +96,3 @@ NISAR Pulse ile kalite standardında (±0.25°, havza dışı referans, p2, cm/1
 
 **C.** Her yeni şehirde `tools/validate_atlas.py` + robustness yeniden çalıştır. Sonra ASLA BOŞ KALMA.
 Yazma alanı ek: `pipeline/pc7/atlas_robustness.py`, `pipeline/pc7/tests/`, `data/global/robustness.json`, `data/global/{xian,taiyuan,queretaro}/`, `pipeline/subset/global_{xian,taiyuan,queretaro}/`, `docs/story/media/pc7_atlas_robustness.png`.
-
-## 🔁 DEĞİŞİKLİK (Cmt 23:00, PC1) — A görevi PC11'e geçti, sen İNDİRME işlerine odaklan
-PC11'in ortamı indirme yapamıyor; senin bilgisayarında netrc + paketler hazır. **Sağlamlık testini (A) YAPMA — PC11 yapıyor** (`data/global/robustness.json`). Senin sıran:
-1. **Tahran, Pekin, Cakarta'yı kalite standardıyla yeniden hesapla** (PC11'den devir; atlas sıralamasındaki en büyük hata burada: PC5 §4 → Pekin −1.4 cm referans değişince −7.6 cm, Tahran −3.5 → −7.3). Tam ±0.25° kutu için TAZE subset indir (eski yığınlar kutuyu kapsamıyor, `docs/qa/PC11.md`). Referans havza dışında: Tahran güney Shahr-e Rey konisinin DIŞI, Pekin Tongzhou çanağının DIŞI. Merkezler: Tahran 51.30, 35.55 · Pekin 116.60, 39.95 · Cakarta 106.83, −6.15. Eski/yeni değeri `docs/qa/PC7.md`'ye yaz.
-2. Xi'an, Taiyuan, Querétaro (önceki B).
-3. Celaya −100.81, 20.52 · Kerman 57.07, 30.28 · Tianjin 117.20, 39.10 · Bulacan 120.90, 14.85 (PC11'den devir; kuru iklimliler önce).
-Her şehirde `docs/qa/PC7.md`'ye "hazır: <şehir>" (PC10 atlasa ekler), commit + push. Aynı anda 1 indirme, ham dosyayı kestikten sonra sil, boş disk < 20 GB ise dur. `python` (3.12) kullan.
-Yazma alanı ek: `data/global/{tehran,jakarta,beijing,xian,taiyuan,queretaro,celaya,kerman,tianjin,bulacan}/`, `pipeline/subset/global_<bu şehirler>/`.
