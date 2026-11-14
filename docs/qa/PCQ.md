@@ -115,3 +115,8 @@ Yöntem: tüm testler + tüm veri dosyaları + site gerçek tarayıcıda (yerel 
 - BİLGİ (PC1): `.gitignore` → `analysis/out/subset/` (yerel alt kümeler, dosya başı 21–23 MB) listede yok; biri yanlışlıkla `git add` yaparsa K-12 ihlali olur → satır eklenmesi önerilir.
 
 **Sonuç: proje uçtan uca çalışıyor; yayını bozacak (kırık link, JS hatası, eksik dosya) bir sorun bulunmadı.** Kalanlar metin/tutarlılık düzeltmeleri.
+
+## Tur 4 · 2026-11-14 15:23 TR (HEAD 86cdaa2)
+- Yeni commit'ler: PC9 açıldı (site sahipliği PC1 → **PC9**; site bulgularının yeni muhatabı PC9), PC2 Q09 Londra alt kümeleri (9/9), PC6 önceliği.
+- OK: `python -m pytest analysis -q` → 49 passed; değişen JSON'lar parse ediliyor.
+- Sürüyor (PC9 / PC6 / PC5): eski referans aralığı `game/game.js:942`, `docs/story/uncertainty.md`, `docs/story/key_findings.md:7`; `web/app.js:150` "4 months"; `data/catalog.json` karapinar/uk `pending`; `.gitignore`'da `analysis/out/subset/` yok.
