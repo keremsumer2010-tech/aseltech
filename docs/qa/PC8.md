@@ -368,3 +368,8 @@
 - **ENTEGRASYON 03:20 & Semarang Düzeltmesi:**
   - `semarang` faz atlaması düzeltmesi sonrası `exposure_atlas.json`, `vital_signs.json` (`548.49 km²`, `1,479,410` `< -5 cm`, `8,235,174` `< -2 cm`), 20 bülten (`semarang.html` üzerindeki `"Under revision"` bayrağı kaldırıldı) ve `ATLAS_COMPLETENESS.md` (`PC8: 0 eksik`, `PC4: 0 eksik`) güncellendi (`pytest` → `6 passed`).
   - `data/results_registry.json` içinde PC8 satırları (`exposure`, `storage_loss`, `uk_findings`) `summary`, `key_number` ve `status: ready` ile dolduruldu; `docs/story/exposure.md`, `docs/story/submission_form.md`, `docs/story/slides_notes.md` senkronize edildi.
+
+- **`cangzhou` (21 bölge) & Delhi QC köprüleme:**
+  - `cangzhou` (`16,737` `< -2 cm`, `434` `< -5 cm`, `0.96 km²`, GHSL `R6_C30`) eklendi; `build_exposure_atlas.py` QC tarih atlamalarını (Delhi `2026-07-27 -> 2026-09-13`) kesintisiz `.npz` zinciriyle köprüleyecek biçimde güncellendi.
+  - Toplam (**21 bölge**, `karapinar` hariç): `549.45 km²`, `1,479,844` kişi (`< -5 cm`), `8,251,911` kişi (`< -2 cm`). **21 bülten + `index.html`** (`cangzhou.html` dahil) ve `ATLAS_COMPLETENESS.md` (`PC8: 0 eksik`) güncellendi (`pytest` → `6 passed`).
+  - `data/results_registry.json`, `docs/story/exposure.md`, `docs/story/submission_form.md`, `docs/story/slides_notes.md` 21 bölge toplamlarıyla güncellendi.

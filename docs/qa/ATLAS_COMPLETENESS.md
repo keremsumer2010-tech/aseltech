@@ -1,6 +1,6 @@
 # Atlas 6-Piece Completeness Matrix (`docs/ATLAS_MUKEMMEL.md`)
 
-**Generated:** 2026-11-14 22:33 UTC · **Regions in `data/global/atlas.json`:** 21 · **Complete cells:** 120/126
+**Generated:** 2026-11-14 22:35 UTC · **Regions in `data/global/atlas.json`:** 21 · **Complete cells:** 122/126
 
 | # | City ID | Name | 1. Summary/Disp (`PC2/7/9/10/11`) | 2. `sigma_cm.png` (`PC5`) | 3. `validation_note.json` (`PC5`) | 4. `atlas_cities/<id>.md` (`PC4`) | 5. `bulletins/<id>.html` (`PC8`) | 6. `exposure_atlas.json` (`PC8`) | Score |
 |---:|---|---|---:|---:|---:|---:|---:|---:|---:|
@@ -10,7 +10,7 @@
 | 4 | `mexico_city` | Mexico City | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 6/6 |
 | 5 | `semarang` | Semarang | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 6/6 |
 | 6 | `rafsanjan` | Rafsanjan | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 6/6 |
-| 7 | `cangzhou` | Cangzhou | ✓ | ✗ (PC5) | ✓ | ✓ | ✗ (PC8) | ✗ (PC8) | 3/6 |
+| 7 | `cangzhou` | Cangzhou | ✓ | ✗ (PC5) | ✓ | ✓ | ✓ | ✓ | 5/6 |
 | 8 | `delta` | Sacramento–San Joaquin Delta | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 6/6 |
 | 9 | `quetta` | Quetta | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 6/6 |
 | 10 | `bangkok` | Bangkok | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 6/6 |
@@ -31,4 +31,4 @@
 - **PC2/7/9/10/11 (Summary/Disp):** 0 missing
 - **PC5 (`sigma_cm.png` + `validation_note.json`):** 4 missing
 - **PC4 (`docs/story/atlas_cities/<id>.md`):** 0 missing
-- **PC8 (`docs/bulletins/<id>.html` + `exposure_atlas.json`):** 2 missing
+- **PC8 (`docs/bulletins/<id>.html` + `exposure_atlas.json`):** 0 missing
