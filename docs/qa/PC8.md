@@ -5,13 +5,16 @@
 
 ---
 
-## 1. Q09 — UK Kil (`uk_clay`, Greater London) Kümülatif InSAR Analizi ve Algılama Sınırı (`tasks/PC8.md` Madde 1–2)
+## 1. 15:35 Madde 1 & Q09 — UK Kil (`uk_clay`, Greater London) Kümülatif InSAR Analizi ve Algılama Sınırı
 
-### 1.1 Honest Scientific Finding (3 Sentences, English — Also in `data/uk_clay/summary.json` `method_note`)
+- **Hikaye Metni ve HTML Taslağı:** `docs/story/uk_findings.md` (PC9'un `web/index.html` `#ukClay` veya `web/science.html` `#limits` bölümüne doğrudan yapıştırabileceği 6 cümlelik `docs/REVIEW_1500.md` uyumlu sade İngilizce metin, `Figure 4` açıklaması ve kaynak izlenebilirlik tablosu).
+- **Görsel:** `docs/story/media/pc8_uk_detection.png` (190.0 KB, 2 panelli NASA Earth Observatory tarzı grafik — görsel olarak incelendi, sıfır metin çakışması).
 
-> Across 9 consecutive provisional NISAR GUNW pairs over Greater London (`2026-06-21` to `2026-10-19`, 120 days), the scene-wide 1 km block median is **-0.68 cm LOS** (`p2–p98` spread **-2.95 to -0.07 cm**; local southern-edge extreme **-5.3 cm LOS** or **-7.1 cm** vertical *estimate* at **41.6°** incidence), whereas expected seasonal London Clay shrink-swell motion is only a few millimetres to **1–2 cm**. While formal Cramér-Rao multilook pixel uncertainty ($L=208$) is **0.10 cm per pair** and **0.31 cm** across the 9-pair chain (matching PC5's **~0.3 cm** pixel uncertainty floor), uncompensated tropospheric delay (**1–3 cm/pair** typical wet delay; up to **2.87 cm** single-pair `p2–p98` spread and **0.50 cm/pair** post-deramp RMS) propagates to **1.50 cm** chain noise (**1.22 cm** cumulative scene std). Because this **1.50 cm** cumulative atmospheric noise floor and pair-to-pair weather oscillation exceed the **0.5–2.0 cm** seasonal clay amplitude, London Clay shrink-swell deformation is **below detection limit for one season** and requires multi-year InSAR stacking or weather-model tropospheric correction to resolve.
+### 1.1 Honest Scientific Finding (English — `docs/story/uk_findings.md` & `data/uk_clay/summary.json`)
 
-### 1.2 Özet Metrikler ve Gürültü Bütçesi Karşılaştırması (`data/uk_clay/summary.json`)
+> Across 9 consecutive provisional NISAR GUNW pairs over Greater London (`2026-06-21` to `2026-10-19`, 120 days), the scene-wide 1 km block median is **-0.68 cm LOS** (`p2–p98` spread **-2.95 to -0.07 cm**; local southern-edge extreme **-5.3 cm LOS** or **-7.1 cm** vertical *estimate* at **41.6°** incidence), whereas expected seasonal London Clay shrink-swell motion is only a few millimetres to **1–2 cm**. While formal Cramér-Rao multilook pixel uncertainty ($L=208$) is **0.10 cm per pair** and **0.31 cm** across the 9-pair chain (matching PC5's **~0.3 cm** pixel uncertainty floor), uncompensated tropospheric delay (**1–3 cm/pair** typical wet delay; up to **2.87 cm** single-pair `p2–p98` spread and **0.50 cm/pair** post-deramp RMS) propagates to **1.50 cm** chain noise (**1.21 cm** cumulative 1 km block $\sigma$, **3.62 cm** $3\sigma$ single-season detection threshold in `data/uk_clay/detection.json`). Because this **1.21 cm** ($1\sigma$) / **3.62 cm** ($3\sigma$) single-season atmospheric noise floor exceeds both the **0.5–2.0 cm** seasonal London Clay amplitude and the **1–2 cm/yr** modern Holme Fen peat loss (`docs/story/holme_fen.md`), UK clay and peat deformation are **below detection limit for one season** and require multi-year (~3-year) InSAR stacking or weather-model tropospheric correction to resolve.
+
+### 1.2 Özet Metrikler ve Gürültü Bütçesi Karşılaştırması (`data/uk_clay/detection.json` & `summary.json`)
 
 | Metrik / Bileşen | Değer | Birim / Not | Yorum |
 |---|---|---|---|
@@ -22,66 +25,111 @@
 | **Sahne Geneli 1 km Blok Dağılımı (`p2 / p50 / p98`)** | **`-2.95 / -0.68 / -0.07 cm`** | LOS | Londra genelinde medyan değişim `-0.68 cm` |
 | **Yerel 1 km Blok Uç Değeri (`max_subsidence_cm`)** | **`-5.3 cm` LOS** (`-7.1 cm` dikey *estimate*) | `[-0.31835, 51.32444]` (`4 km W of Epsom`) | Güney kenar atmosferik gradyan + orman/banliyö sınırı |
 | **PC5 Cramér–Rao Piksel Belirsizliği ($L=208$)** | **0.099 cm/çift** → **0.308 cm** (9 çift zincir) | `p10–p90`: `0.186 – 0.509 cm` | PC5'in `~0.3 cm` teorik çoklu-bakış faz sınırı ile tam uyumlu |
-| **Düzlem Çıkarımı Sonrası Çift Başına Saçılım** | **0.50 cm RMS/çift** (`0.41–0.60 cm`) | Tek çift `p2–p98` yayılımı **2.87 cm**'ye kadar | Modellememiş ıslak troposfer (`1–3 cm/çift`) baskın |
-| **Yayılan Zincir Atmosfer Gürültüsü ($\sigma_{\text{pair}}\sqrt{9}$)** | **1.50 cm LOS** (sahne std **1.22 cm**) | — | Beklenen **0.5–2.0 cm** kil büzülme sinyalini örtüyor |
-| **Algılama Kararı (`detection_status`)** | **`below detection limit for one season`** | Tek yaz-sonbahar sezonu | Çok yıllı (multi-year) istifleme veya GACOS/ERA5 troposfer düzeltmesi gerekli |
+| **1 km Blok Çift Başına Saçılım (`pair_block_std_cm`)** | **0.31 – 0.47 cm** (medyan **0.38 cm/çift**) | Tek çift `p2–p98` yayılımı **2.87 cm**'ye kadar | Modellememiş ıslak troposfer (`1–3 cm/çift`) baskın |
+| **Kümülatif 1 km Blok Gürültüsü ($\sigma$ / $3\sigma$)** | **1.21 cm LOS ($1\sigma$)** / **3.62 cm LOS ($3\sigma$)** | `data/uk_clay/detection.json` | Beklenen **0.5–2.0 cm** kil ve **1–2 cm/yıl** turba sinyalini örtüyor |
+| **3 Yıllık Yığın Eşiği (~90 çift, $\sigma/\sqrt{N}$)** | **~0.2–0.5 cm/yıl ($1\sigma$)** / **~0.6–1.2 cm/yıl ($3\sigma$)** | Çok yıllı zaman serisi | Hem Londra kili (`0.5–2.0 cm`) hem Holme Fen (`1–2 cm/yıl`) ölçülebilir hale gelir |
+| **Algılama Kararı (`detection_status`)** | **`below_single_season_detection_limit`** | Tek yaz-sonbahar sezonu | Çok yıllı (~3 yıl) istifleme veya GACOS/ERA5 troposfer düzeltmesi gerekli |
 
-### 1.3 Çift Bazında İyonosfer ve Atmosfer Saçılım Tablosu (`analysis/pc8/uk_clay_pair_stats.json`)
+---
 
-| # | Çift (`date1` → `date2`) | Geçerli Piksel (%) | İyonosfer `p1 → p99` (cm LOS) | İyonosfer Yayılımı (cm) | Ham Std (cm) | İyonosfer Sonrası Std (cm) | Düzlem Sonrası Std (cm) | Referanslı `p2 / p50 / p98` (cm) |
+## 2. 15:35 Madde 2 — Karapınar İkinci Geçiş (`path 172` Ascending vs. `path 7` Descending) Çapraz Kontrolü
+
+**Girdiler:**
+- **Birincil Yörünge (`path 7`):** `pipeline/subset/karapinar/*.npz` (`data/karapinar/`, `analysis/out/karapinar_cum.npz`) — Track 7 Descending, Frame 69 (`16:40 UTC`, sağa bakan, geliş açısı **42.1°**).
+- **İkincil Yörünge (`path 172`):** `pipeline/subset/karapinar_p172/*.npz` (`data/karapinar_p172/`, `analysis/pc8/karapinar_p172_cum.npz`) — Track 172 Ascending, Frame 21 (`02:53 UTC`, sağa bakan, geliş açısı **41.9°**).
+- **Üretilen Veri ve Görseller:**
+  - `data/karapinar_p172/meta.json`, `data/karapinar_p172/points.json`, `data/karapinar_p172/summary.json`, `data/karapinar_p172/disp/2026-06-26.png` .. `2026-10-12.png` (9 PNG)
+  - `analysis/pc8/karapinar_p172_check.py`, `analysis/pc8/karapinar_p172_cum.npz`, `analysis/pc8/karapinar_p172_cum_stack.npz`, `analysis/pc8/karapinar_p172_pair_stats.json`, `analysis/pc8/kp_p7_vs_p172.json`
+  - `docs/story/media/pc8_kp_p7_vs_p172.png` (264.3 KB, 3 panelli karşılaştırma grafiği: `p01` zaman serisi + 12 nokta ve 220 blok saçılımı + çift başına blok saçılımı)
+
+### 2.1 İki Bağımsız Yörünge Özeti (`2026-06-26` → `2026-10-12`, 8 Ardışık Çift, 108 Gün)
+
+| Özellik | Track 7 Descending (`data/karapinar/`) | Track 172 Ascending (`data/karapinar_p172/`) | Karşılaştırma / Yorum |
+|---|---|---|---|
+| **Geçiş Saati & Bakış Yönü** | `16:40 UTC` (Batı-Güneybatı'ya bakış) | `02:53 UTC` (Doğu-Kuzeydoğu'ya bakış) | Zıt doğu-batı yatay bakış vektörü; gece (`02:53 UTC`) atmosferi daha sakin |
+| **Ortak Tarih Dizisi (9 Tarih)** | `2026-06-26` .. `2026-10-12` (8 çift) | `2026-06-26` .. `2026-10-12` (8 çift) | **Aynı 9 tarih** (`06-26`, `07-08`, `07-20`, `08-01`, `08-25`, `09-06`, `09-18`, `09-30`, `10-12`) |
+| **Grid & Çözünürlük** | `470 × 603` px (`EPSG:32636`, 80 m) | `470 × 603` px (`EPSG:32636`, 80 m) | Birebir aynı UTM grid (`33.3°–33.8°E, 37.6°–37.9°N`) |
+| **Tam Zincir Geçerli Piksel** | **14.18%** (`40,194 / 283,410` px) | **39.00%** (`110,530 / 283,410` px) | Track 172 gece geçişi **2.75 kat** daha geniş tam zincir koherens alanı sağlıyor |
+| **Ortak Geçerli Alan** | `39,242` piksel / `220` adet 1 km blok | `39,242` piksel / `220` adet 1 km blok | Her iki yörüngede $\ge 50\%$ geçerli pikseli olan `220` adet 1 km blok |
+| **Referans Noktası** | `[33.7661, 37.7580]` (Yeşilyurt, coh `0.941`) | `[33.7652, 37.7580]` (Yeşilyurt, coh `0.935`) | Aynı kireçtaşı sırtında (`< 80 m` mesafe) ortak referans |
+| **Sahne Maksimum Çökme (1 km Blok)** | **`-6.0 cm` LOS** (`-8.1 cm` dikey *estimate*) | **`-6.5 cm` LOS** (`-8.8 cm` dikey *estimate*) | Her iki yörünge de sezon sonu maksimum çökmeyi `-6.0` ile `-6.5 cm` LOS olarak ölçüyor |
+| **Aktif Karapınar Çanağı (`p01`, 2 km W of Karapınar)** | **`-5.93 cm` LOS** (`-7.97 cm` dikey *estimate*) | **`-4.73 cm` LOS** (`-6.42 cm` dikey *estimate*) | 9 tarihli zaman serisi korelasyonu **`r = 0.798`**, **`RMSE = 1.25 cm` LOS** |
+
+### 2.2 `tasks/PC8.md` Madde 2 İstenen Çapraz Kontrol Metrikleri (`r`, `RMSE`, `maks fark`)
+
+| Karşılaştırma Kümesi | Örneklem (`n`) | Pearson `r` (LOS) | Pearson `r` (Dikey *Estimate*) | `RMSE` (LOS) | `RMSE` (Dikey *Estimate*) | Medyan Fark (`P172 − P7` LOS) | **Maks Mutlak Fark (`maks fark`, LOS)** | **Maks Mutlak Fark (Dikey *Estimate*)** |
 |---|---|---|---|---|---|---|---|---|
-| 1 | `2026-06-21` → `2026-07-03` | 92.3% | `+29.26 → +39.19` | 9.93 | 2.583 | 0.749 | 0.529 | `-1.30 / +0.20 / +1.21` |
-| 2 | `2026-07-03` → `2026-07-15` | 85.1% | `+4.27 → +14.66` | 10.39 | **4.899** | **4.205** | **0.595** | **`-2.64 / -0.92 / +0.23`** |
-| 3 | `2026-07-15` → `2026-07-27` | 87.8% | `-21.85 → -16.91` | 4.95 | 1.025 | 0.641 | 0.443 | `-0.57 / +0.31 / +1.51` |
-| 4 | `2026-07-27` → `2026-08-20` | 89.6% | `-16.63 → -10.48` | 6.15 | 1.553 | 0.729 | 0.553 | `-1.10 / +0.26 / +1.66` |
-| 5 | `2026-08-20` → `2026-09-01` | 89.9% | `-34.59 → -27.14` | 7.45 | 1.966 | 0.632 | 0.501 | `-1.43 / -0.13 / +0.94` |
-| 6 | `2026-09-01` → `2026-09-13` | 89.4% | `-2.27 → +1.59` | 3.86 | 0.866 | 0.778 | 0.408 | `-1.13 / -0.01 / +0.94` |
-| 7 | `2026-09-13` → `2026-09-25` | 86.7% | `-8.68 → -6.54` | 2.14 | 1.266 | 0.883 | 0.438 | `-1.64 / -0.51 / +0.54` |
-| 8 | `2026-09-25` → `2026-10-07` | 91.9% | `-25.33 → -21.87` | 3.46 | 1.565 | 1.241 | 0.430 | `-0.45 / +0.45 / +1.51` |
-| 9 | `2026-10-07` → `2026-10-19` | 87.5% | `+16.80 → +19.69` | 2.89 | 1.666 | 1.264 | **0.560** | **`-2.27 / -0.84 / +0.30`** |
+| **Aktif Karapınar Çanağı (`p01`) Zaman Serisi** | `9` tarih (`2026-06-26`..`10-12`) | **0.798** | **0.798** | **1.25 cm** | **1.69 cm** | `-0.18 cm` | **1.68 cm** (ara tarih `09-18`) / **1.20 cm** (sezon sonu) | **2.23 cm** (ara tarih) / **1.55 cm** (sezon sonu) |
+| **12 Resmi Benchmark Noktası (`data/karapinar/points.json`)** | `12` nokta (`p01`–`p12`) | **0.767** | **0.766** | **1.12 cm** | **1.51 cm** | `-0.34 cm` | **2.34 cm** (`p02`, 3 km W of Oymalı) | **3.20 cm** (`p02`) |
+| **Ortak 1 km Bloklar (Tümü, $\ge 50\%$ geçerli)** | `220` blok (1 km $\times$ 1 km) | **0.238** | **0.237** | **1.42 cm** | **1.93 cm** | **`-0.19 cm`** (`-0.24 cm` dikey) | **3.82 cm** | **5.17 cm** |
+| **Çöken 1 km Bloklar ($\|\text{Track 7 Dikey}\| > 2\text{ cm}$)** | `76` blok | **0.328** | **0.328** | **1.78 cm** | **2.42 cm** | `-0.84 cm` | **3.82 cm** | **5.17 cm** |
+| **Tüm Ortak Geçerli Pikseller (`80 m`)** | `39,242` piksel | **0.337** | **0.335** | **1.53 cm** | **2.07 cm** | `-0.21 cm` | **8.37 cm** | **11.25 cm** |
 
-**Neden "Below Detection Limit for One Season"?**
-1. `2026-07-15` ve `2026-10-19` tarihli sahnelerde Croydon referansına göre tüm havza medyanı sırasıyla `-0.92 cm` ve `-0.84 cm` kaymakta, `2026-10-07` sahnesinde ise `+0.45 cm` ters yönde zıplamaktadır.
-2. `2026-07-15` ile `2026-09-13` arasındaki 60 günlük en sıcak yaz döneminde (`p01` Epsom: `-2.93 → -3.00 cm`, `p04` Romford: `-1.97 → -2.25 cm`) net kümülatif değişim `< 0.3 cm` olup, toplam `-5.3 cm` uç değerin neredeyse tamamı iki tekil tarihteki (`2026-07-15` ve `2026-10-19`) doğrusal olmayan troposferik dalgalanmadan kaynaklanmaktadır.
-3. Londra merkezindeki tipik noktalar (`p06` Sutton `-0.62 cm`, `p07` Hackney `-0.64 cm`, `p08` Greenwich `-0.82 cm`, `p09` Islington `-0.93 cm`, `p10` Camden `-0.69 cm`) `1.50 cm` zincir atmosfer gürültüsü bandının tamamen içinde kalmaktadır.
+- **İşaret Uyumu (Sign Agreement):** Track 7'de dikey tahmini `> 2 cm` çöken `76` adet 1 km bloğun **%76.3'ü** (`> 3 cm` çöken blokların **%72.7'si**) Track 172'de de aynı yönlü (negatif/çökme) işaret göstermektedir.
+- **Neden 12 Benchmark Noktasında `r = 0.77` iken 220 Blokta `r = 0.24`?**
+  1. Ortak geçerli `220` bloğun büyük bölümü, tarım parsellerinin dekorrelasyona uğradığı merkez ovada değil, **doğu kenardaki (`33.70°–33.80°E`) Yeşilyurt–Oymalı kireçtaşı sırtında** kümelenmiştir; bu sırtta gerçek yer hareketi küçük (`0` ile `-2 cm` arası) olduğundan, her iki yörüngenin `~1.0–1.5 cm` atmosferik gürültüsü korelasyonu düşürmektedir.
+  2. Zıt yörünge geometrisi (Track 7 alçalan batıya bakış vs. Track 172 yükselen doğuya bakış) doğu-batı yatay hareket bileşenini ve doğu kenar topoğrafik/troposferik rampasını zıt işaretle görmektedir (`p02` 3 km W of Oymalı'da `-2.57 cm` vs `-0.23 cm`, fark `2.34 cm` LOS).
+  3. Buna karşılık ana çökme merkezinde (`p01` 2 km W of Karapınar: `-5.93 cm` vs `-4.73 cm` LOS, zaman serisi `r = 0.798`) ve güney havzada (`p04` 6 km SE of Gazi Osman Paşa: `-1.74 cm` vs `-1.69 cm` LOS, fark yalnızca **`0.05 cm`**) iki bağımsız yörünge yüksek uyum göstermektedir.
+
+### 2.3 12 Benchmark Noktası (`data/karapinar/points.json`) Nokta Bazlı Karşılaştırma Tablosu
+
+| Nokta ID | Konum (`name`) | Sınıf (`kind`) | Boylam, Enlem | Track 7 LOS (cm) | Track 172 LOS (cm) | Fark (`P172 − P7`, cm LOS) | Track 7 Dikey *Est.* (cm) | Track 172 Dikey *Est.* (cm) | 9 Tarih Zaman Serisi `r` | Zaman Serisi `RMSE` (cm LOS) |
+|---|---|---|---|---|---|---|---|---|---|---|
+| **`p01`** | **2 km W of Karapınar** | `most_subsiding` | `33.5306, 37.7182` | **`-5.93`** | **`-4.73`** | `+1.20` | `-7.97` | `-6.42` | **0.798** | **1.25** |
+| **`p02`** | 3 km W of Oymalı | `most_subsiding` | `33.7905, 37.7449` | `-2.57` | `-0.23` | `+2.34` *(maks fark)* | `-3.51` | `-0.31` | 0.251 | 1.05 |
+| **`p03`** | 5 km NW of Akören | `most_subsiding` | `33.7781, 37.6887` | `-1.82` | `-0.86` | `+0.96` | `-2.49` | `-1.16` | 0.474 | 0.80 |
+| **`p04`** | **6 km SE of Gazi Osman Paşa** | `most_subsiding` | `33.5183, 37.6526` | **`-1.74`** | **`-1.69`** | **`+0.05`** *(en yakın)* | `-2.34` | `-2.30` | 0.205 | 1.38 |
+| **`p05`** | 2 km S of Ekizli | `most_subsiding` | `33.7910, 37.7917` | `-0.88` | `-0.29` | `+0.59` | `-1.20` | `-0.39` | 0.154 | 0.47 |
+| **`p06`** | 7 km N of Kesmez | `median` | `33.7075, 37.7079` | `-0.35` | `-0.94` | `-0.59` | `-0.48` | `-1.26` | -0.114 | 1.47 |
+| **`p07`** | 2 km SE of Işıklar | `median` | `33.7796, 37.8387` | `-0.42` | `-0.74` | `-0.32` | `-0.57` | `-0.98` | 0.019 | 1.30 |
+| **`p08`** | Meşeli | `median` | `33.7918, 37.8667` | `-0.41` | `-0.97` | `-0.56` | `-0.56` | `-1.29` | -0.151 | 1.19 |
+| **`p09`** | 2 km W of Öbektaş | `median` | `33.7440, 37.8201` | `+0.47` | `-1.39` | `-1.86` | `+0.64` | `-1.85` | -0.105 | 1.37 |
+| **`p10`** | 3 km E of Yeşilyurt | `median` | `33.7552, 37.7638` | `+0.05` | `+0.31` | `+0.26` | `+0.07` | `+0.41` | **0.521** | **0.26** |
+| **`p11`** | 2 km SE of Yeşilyurt | `near_reference` | `33.7433, 37.7545` | `+0.47` | `+0.11` | `-0.36` | `+0.65` | `+0.15` | 0.111 | 0.39 |
+| **`p12`** | 4 km SE of Yeşilyurt | `near_reference` | `33.7550, 37.7451` | `-1.30` | `+0.23` | `+1.53` | `-1.77` | `+0.31` | -0.169 | 0.64 |
 
 ---
 
-## 2. Madde 3 — Fens (`pipeline/subset/fens`) Kontrolü
+## 3. 15:35 Madde 3 — PC9 Yapılacaklar (`docs/qa/*.md` Açık Site Bulguları Özeti)
 
-- `pipeline/subset/` klasörü kontrol edildi: mevcut alt kümeler yalnızca `central_valley`, `karapinar` ve `uk_clay` klasörleridir.
-- `fens` için kesilmiş GUNW alt kümesi (`pipeline/subset/fens/`) bulunmadığından (`tasks/PC8.md` Madde 3: *"pipeline/subset/ altında Fens GUNW varsa; yoksa bu adımı atla ve status'a yaz"*), bu adım atlanmış ve `status/PC8.md` içine kaydedilmiştir.
+> **Amaç (`tasks/PC8.md` Madde 3):** `docs/qa/*.md` (`PC1.md`, `PC3.md`, `PC4.md`, `PC5.md`, `PC6.md`, `PC7.md`, `PCQ.md`, `PC8.md`) içindeki tüm site (`web/`, `data/catalog.json`) bulguları taranmış, daha önce PC1/PC3 tarafından kapatılan maddeler ayıklanmış ve **PC9'un tek seferde çakışmasız uygulayabileceği açık maddeler** aşağıda öncelik sırasıyla listelenmiştir.
+
+### 3.1 Önceden Kapatılmış Maddeler (PC9'un Tekrar Dokunmasına Gerek Olmayanlar)
+- **[KAPANDI — `653b5f2` / `4d98f3a`]** `web/app.js` içindeki `< 2 cm` cetvel öğeleri (`grain of rice 0.2 cm`, `pea 0.6 cm`, `AAA battery 1.0 cm`) kaldırıldı; cetvel `2.4 cm` (`£1 coin / US quarter`) ile başlıyor ve `NOISE_CM = 1.0` gri gürültü bandı eklendi (`PCQ.md` #3).
+- **[KAPANDI — `653b5f2`]** `"four months"` ve `"two tectonic plates"` ifadeleri `web/index.html` ve `web/science.html` içinde `"3½ months"` / `"one summer"` ve `"a major tectonic boundary"` olarak düzeltildi (`PCQ.md` #4–5).
+- **[KAPANDI — `653b5f2`]** Renk çubuğu uç etiketleri `≤ −6` ve `≥ +6` olarak güncellendi (`PCQ.md` #8).
+- **[KAPANDI — `4d98f3a`]** `data/catalog.json` içine `karapinar`, `uk` ve `uk_clay` bölgeleri eklendi (`PC6.md`).
+
+### 3.2 PC9 Yapılacaklar — Açık Site (`web/` & `data/catalog.json`) Maddeleri
+
+1. **[YÜKSEK — `web/index.html` `#ukClay` & `web/science.html` `#limits`] PC8 UK Algılama Sınırı Metni ve `pc8_uk_detection.png` Entegrasyonu (`docs/story/uk_findings.md` & `tasks/PC8.md` Madde 1):**
+   - **Durum:** `web/index.html` `#ukClay` bölümü (satır 211–239) şu anda `data/uk_clay/detection.json` verisini metin olarak okuyor ancak `docs/story/media/pc8_uk_detection.png` (`Figure 4`) görselini göstermiyor.
+   - **PC9 Aksiyonu:** `docs/story/uk_findings.md` §3 içindeki hazır `<figure class="story-media">` bloğunu (`../docs/story/media/pc8_uk_detection.png`) ve 6 cümlelik sade İngilizce açıklamayı `web/index.html` `#ukClay` içine (veya `web/science.html` `#limits` içine) ekle.
+
+2. **[YÜKSEK — `data/catalog.json` & `web/science.html` `#valid`] Karapınar İkinci Yörünge (`data/karapinar_p172/`) ve `pc8_kp_p7_vs_p172.png` Entegrasyonu (`tasks/PC8.md` Madde 2):**
+   - **Durum:** `data/karapinar_p172/` (Track 172 Ascending çapraz kontrol veri seti) ve `docs/story/media/pc8_kp_p7_vs_p172.png` üretildi, ancak `data/catalog.json` ve `web/science.html` `#valid` bölümünde henüz yer almıyor.
+   - **PC9 Aksiyonu:**
+     - İsteğe bağlı/katalog bütünlüğü için `data/catalog.json` içine `karapinar_p172` girdisini (`path: "karapinar_p172"`, `title: "Karapınar, Türkiye — Ascending Track 172 Cross-Check"`) ekle veya `web/science.html` `#valid` ("1. Two-orbit cross-check") bölümüne Karapınar iki yörünge sonucunu (`12 nokta r = 0.77, RMSE = 1.12 cm LOS; aktif çanak p01 zaman serisi r = 0.80, -5.9 cm vs -4.7 cm LOS`) ve `../docs/story/media/pc8_kp_p7_vs_p172.png` görselini ekle.
+
+3. **[ORTA — `web/style.css` / `web/index.html`] Mobil Görünümde (`390×844`) Yatay Taşma (`docs/qa/PC6.md` satır 100):**
+   - **Kaynak Bulgu (`PC6.md`):** Mobil (`390×844`) görünümde `document.documentElement.scrollWidth = 569 px > 390 px` yatay taşma tespit edildi. Taşmaya neden olan iki eleman: Chapter 4 GNSS doğrulama tablosu (`#gnssTable`, `487 px` genişlik) ve oyun kutusu (`#gameBox`, `535 px` genişlik).
+   - **PC9 Aksiyonu:** `web/style.css` içinde `#gnssTable` tablosunu saran kapsayıcıya `overflow-x: auto; max-width: 100%; display: block;` ekle ve `#gameBox` / `.game-box` için `@media (max-width: 640px)` altında `max-width: 100%; box-sizing: border-box;` tanımla.
+
+4. **[ORTA — `web/index.html` `#holmeText` & `web/app.js`] Holme Fen Birincil Kaynak Linki ve Yıllık Hız Vurgusu (`docs/qa/PCQ.md` satır 17 & `docs/story/holme_fen.md`):**
+   - **Kaynak Bulgu (`PCQ.md` & `PC4` `docs/story/holme_fen.md`):** `web/index.html` satır 228–232'deki `#holmeText` statik metni doğru (`~4 metres since 1848`, `1 to 2 cm per year`), ancak PC4'ün doğruladığı birincil kaynak bağlantıları (`Great Fen Project — Holme Fen Posts` `https://www.greatfen.org.uk/about-great-fen/heritage/holme-fen-posts` ve `UKCEH / Defra Fens Peatland Isotope Project WP2`) tıklanabilir kaynak linki olarak `#ukClay` / `#holmeText` altında yer almıyor.
+   - **PC9 Aksiyonu:** `#holmeText` sonuna `docs/story/holme_fen.md` içindeki doğrulanmış kaynak linkini (`Great Fen Project / Wildlife Trust BCN` ve `UKCEH`) ekle; `web/app.js` `renderUkClay()` fonksiyonunun `#holmeText` içindeki bu linki ezmediğinden emin ol.
+
+5. **[DÜŞÜK — `web/science.html` satır 47] Çevrimdışı QA Tarayıcısı İçin Birimsiz Sayı Düzeltmesi (`docs/qa/PC7.md` §3 satır 118):**
+   - **Kaynak Bulgu (`PC7.md`):** `web/science.html` satır 47'de `<span data-k="cv.range">−4.7 and −7.8</span> cm` ifadesinde statik HTML içinde `−4.7` sayısından hemen sonra birim yazmadığı için `pipeline/pc7/offline_site_qa.py` statik tarayıcısı `science.html:1` uyarısı veriyor (`app.js` çalışma zamanında `−4.7 cm and −7.8` olarak düzeltiyor).
+   - **PC9 Aksiyonu:** `web/science.html` satır 47'deki statik metni `<span data-k="cv.range">−4.7 cm and −7.8</span> cm` olarak güncelle (`offline_site_qa.py` uyarısını `0`'a indirir).
+
+6. **[DÜŞÜK — `web/data.html`] Yeni Üretilen JSON Veri Dosyalarının İndirme Tablosuna Eklenmesi (`docs/qa/PC7.md` & Katalog Tutarlılığı):**
+   - **Durum:** `web/data.html` şu anda yalnızca ilk faz dosyalarını (`central_valley`, `karapinar`, `uk` `meta/summary/points.json`) listeliyor; yeni eklenen `data/uk_clay/detection.json`, `data/uk_clay/summary.json`, `data/central_valley/area_stats.json`, `data/karapinar/area_stats.json` ve `data/karapinar_p172/summary.json` dosyaları tabloda yok.
+   - **PC9 Aksiyonu:** `web/data.html` içindeki "Processed web data" tablosuna `uk_clay/detection.json`, `uk_clay/summary.json`, `central_valley/area_stats.json`, `karapinar/area_stats.json` ve `karapinar_p172/summary.json` satırlarını ekle.
 
 ---
 
-## 3. Test Görevi — `docs/story/media/` Dosya Listesi ve Boyut Kontrolü (K-12)
+## 4. Önceki Kontroller — Fens (`pipeline/subset/fens`) ve `docs/story/media/` Boyut Kontrolü (K-12)
 
-Toplam **25 dosya** kontrol edildi. Hiçbir dosya **0 bayt** veya **20 MB (20,480 KB)** sınırının üzerinde değildir.
-
-| # | Dosya Adı | Boyut (Bayt) | Boyut (KB) | Durum (0 B / >20 MB Kontrolü) |
-|---|---|---|---|---|
-| 1 | `cv_subsidence.gif` | 4,437,162 | 4333.17 | OK |
-| 2 | `cv_subsidence.mp4` | 3,221,104 | 3145.61 | OK |
-| 3 | `gnss_CAD1.png` | 99,539 | 97.21 | OK |
-| 4 | `gnss_CAFP.png` | 100,163 | 97.82 | OK |
-| 5 | `gnss_CAHA.png` | 102,724 | 100.32 | OK |
-| 6 | `gnss_HANF.png` | 103,025 | 100.61 | OK |
-| 7 | `gnss_P056.png` | 100,937 | 98.57 | OK |
-| 8 | `gnss_P564.png` | 98,895 | 96.58 | OK |
-| 9 | `gnss_P565.png` | 99,363 | 97.03 | OK |
-| 10 | `gnss_P566.png` | 96,457 | 94.20 | OK |
-| 11 | `gnss_QCAP.png` | 103,639 | 101.21 | OK |
-| 12 | `gnss_TLBN.png` | 106,226 | 103.74 | OK |
-| 13 | `kp_subsidence.gif` | 1,422,183 | 1388.85 | OK |
-| 14 | `kp_subsidence.mp4` | 917,889 | 896.38 | OK |
-| 15 | `risk_1.png` | 106,894 | 104.39 | OK |
-| 16 | `risk_10.png` | 108,038 | 105.51 | OK |
-| 17 | `risk_2.png` | 110,445 | 107.86 | OK |
-| 18 | `risk_3.png` | 113,421 | 110.76 | OK |
-| 19 | `risk_4.png` | 107,879 | 105.35 | OK |
-| 20 | `risk_5.png` | 111,968 | 109.34 | OK |
-| 21 | `risk_6.png` | 103,455 | 101.03 | OK |
-| 22 | `risk_7.png` | 106,056 | 103.57 | OK |
-| 23 | `risk_8.png` | 113,695 | 111.03 | OK |
-| 24 | `risk_9.png` | 109,243 | 106.68 | OK |
-| 25 | `validation_scatter.png` | 215,829 | 210.77 | OK |
+- **Fens (`pipeline/subset/fens`) Kontrolü:** `pipeline/subset/` altında yalnızca `central_valley`, `karapinar`, `karapinar_p172` ve `uk_clay` alt kümeleri bulunmaktadır; `fens` GUNW alt kümesi yoktur. Holme Fen karşılaştırması `docs/story/holme_fen.md` literatür hızı (`1–2 cm/yıl`) üzerinden `docs/story/uk_findings.md` ve `docs/story/media/pc8_uk_detection.png` içine dahil edilmiştir.
+- **`docs/story/media/` Boyut Kontrolü (K-12):** Orijinal 25 medya dosyası + PC8 tarafından üretilen 2 yeni PNG (`pc8_uk_detection.png` `190.0 KB`, `pc8_kp_p7_vs_p172.png` `264.3 KB`) dahil toplam **27 dosya** kontrol edildi; hiçbir dosya **0 bayt** veya **20 MB** sınırının üzerinde değildir.

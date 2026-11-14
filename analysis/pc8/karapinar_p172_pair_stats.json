@@ -1,0 +1,144 @@
+{
+  "pairs": [
+    {
+      "pair": [
+        "2026-06-26",
+        "2026-07-08"
+      ],
+      "file": "pipeline/subset/karapinar_p172/2026-06-26_2026-07-08.npz",
+      "lambda_m": 0.24393202441008952,
+      "ionosphere_applied": true,
+      "cycle_outlier_px": 0,
+      "elev_coef_cm_per_km": null,
+      "valid_frac_after_masks": 0.6965385836773579,
+      "p2_p50_p98_cm": [
+        -2.12,
+        -0.52,
+        0.65
+      ]
+    },
+    {
+      "pair": [
+        "2026-07-08",
+        "2026-07-20"
+      ],
+      "file": "pipeline/subset/karapinar_p172/2026-07-08_2026-07-20.npz",
+      "lambda_m": 0.24393202441008952,
+      "ionosphere_applied": true,
+      "cycle_outlier_px": 0,
+      "elev_coef_cm_per_km": null,
+      "valid_frac_after_masks": 0.6880879291485833,
+      "p2_p50_p98_cm": [
+        -0.43,
+        0.98,
+        1.94
+      ]
+    },
+    {
+      "pair": [
+        "2026-07-20",
+        "2026-08-13"
+      ],
+      "file": "pipeline/subset/karapinar_p172/2026-07-20_2026-08-13.npz",
+      "lambda_m": 0.24393202441008952,
+      "ionosphere_applied": true,
+      "cycle_outlier_px": 0,
+      "elev_coef_cm_per_km": null,
+      "valid_frac_after_masks": 0.6061324582759959,
+      "p2_p50_p98_cm": [
+        -3.37,
+        -1.59,
+        0.06
+      ]
+    },
+    {
+      "pair": [
+        "2026-08-13",
+        "2026-08-25"
+      ],
+      "file": "pipeline/subset/karapinar_p172/2026-08-13_2026-08-25.npz",
+      "lambda_m": 0.24393202441008952,
+      "ionosphere_applied": true,
+      "cycle_outlier_px": 0,
+      "elev_coef_cm_per_km": null,
+      "valid_frac_after_masks": 0.7926572809710314,
+      "p2_p50_p98_cm": [
+        -0.25,
+        1.54,
+        2.81
+      ]
+    },
+    {
+      "pair": [
+        "2026-08-25",
+        "2026-09-06"
+      ],
+      "file": "pipeline/subset/karapinar_p172/2026-08-25_2026-09-06.npz",
+      "lambda_m": 0.24393202441008952,
+      "ionosphere_applied": true,
+      "cycle_outlier_px": 1,
+      "elev_coef_cm_per_km": null,
+      "valid_frac_after_masks": 0.7987967961610388,
+      "p2_p50_p98_cm": [
+        -1.2,
+        0.17,
+        1.37
+      ]
+    },
+    {
+      "pair": [
+        "2026-09-06",
+        "2026-09-18"
+      ],
+      "file": "pipeline/subset/karapinar_p172/2026-09-06_2026-09-18.npz",
+      "lambda_m": 0.24393202441008952,
+      "ionosphere_applied": true,
+      "cycle_outlier_px": 0,
+      "elev_coef_cm_per_km": null,
+      "valid_frac_after_masks": 0.6314526657492678,
+      "p2_p50_p98_cm": [
+        -4.22,
+        -2.41,
+        -0.23
+      ]
+    },
+    {
+      "pair": [
+        "2026-09-18",
+        "2026-09-30"
+      ],
+      "file": "pipeline/subset/karapinar_p172/2026-09-18_2026-09-30.npz",
+      "lambda_m": 0.24393202441008952,
+      "ionosphere_applied": true,
+      "cycle_outlier_px": 0,
+      "elev_coef_cm_per_km": null,
+      "valid_frac_after_masks": 0.796637380473519,
+      "p2_p50_p98_cm": [
+        -1.86,
+        -0.45,
+        0.7
+      ]
+    },
+    {
+      "pair": [
+        "2026-09-30",
+        "2026-10-12"
+      ],
+      "file": "pipeline/subset/karapinar_p172/2026-09-30_2026-10-12.npz",
+      "lambda_m": 0.24393202441008952,
+      "ionosphere_applied": true,
+      "cycle_outlier_px": 0,
+      "elev_coef_cm_per_km": null,
+      "valid_frac_after_masks": 0.799347235453936,
+      "p2_p50_p98_cm": [
+        -0.58,
+        0.59,
+        1.76
+      ]
+    }
+  ],
+  "notes": [],
+  "reference_mean_coh": 0.926130473613739,
+  "valid_frac_full_chain": 0.39039201157333897,
+  "outlier_px_removed": 0
+}

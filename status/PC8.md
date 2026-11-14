@@ -1,13 +1,21 @@
 # PC8 durum
 
 - Görev: 15:35 PC1 yeni görev listesi (`tasks/PC8.md`: 1. `docs/story/uk_findings.md` + `docs/story/media/pc8_uk_detection.png`, 2. Karapınar path 172 çapraz kontrol, 3. PC9 yapılacaklar QA özeti)
-- Durum: Madde 1 (`uk_findings.md` + `pc8_uk_detection.png`) **TAMAMLANDI**; Madde 2 (`karapinar_p172` kontrolü) ve Madde 3 (PC9 yapılacaklar QA özeti) üzerinde çalışılıyor
+- Durum: **TAMAMLANDI** (Madde 1, 2 ve 3 tamamlandı; sürekli QA / izleme adımında)
 - Çıktılar:
-  - `docs/story/uk_findings.md` (PC9 için `REVIEW_1500.md` uyumlu 6 cümlelik sade İngilizce metin, hazır `<section>` HTML bloğu ve kaynak izlenebilirlik tablosu)
-  - `docs/story/media/pc8_uk_detection.png` (190.0 KB, 2 panelli NASA EO tarzı grafik: 9 çiftin `0.31–0.47 cm` 1 km blok std ve `p2–p98` yayılımı + `0.5–2.0 cm` Londra kili ve `1–2 cm/yıl` Holme Fen hızlarının `1.21 cm` $1\sigma$, `3.62 cm` $3\sigma$ tek sezon eşiği ve 3 yıllık yığın eşiği ile karşılaştırması)
-  - `analysis/pc8/plot_uk_detection.py` (`pc8_uk_detection.png` üretim scripti)
-  - `analysis/pc8/uk_clay_cumulative.py`, `analysis/pc8/uk_clay_cum.npz`, `analysis/pc8/uk_clay_pair_stats.json`, `docs/qa/PC8.md`
+  - **Madde 1 (`uk_findings` + algılama grafiği):**
+    - `docs/story/uk_findings.md` (PC9 için `REVIEW_1500.md` uyumlu 6 cümlelik sade İngilizce metin, hazır `<section>` HTML bloğu ve kaynak izlenebilirlik tablosu)
+    - `docs/story/media/pc8_uk_detection.png` (190.0 KB, 2 panelli grafik: 9 çiftin `0.31–0.47 cm` 1 km blok std ve `p2–p98` yayılımı + `0.5–2.0 cm` Londra kili ve `1–2 cm/yıl` Holme Fen hızlarının `1.21 cm` $1\sigma$, `3.62 cm` $3\sigma$ tek sezon eşiği ve 3 yıllık yığın eşiği ile karşılaştırması)
+    - `analysis/pc8/plot_uk_detection.py`
+  - **Madde 2 (`karapinar_p172` ikinci geçiş çapraz kontrolü):**
+    - `data/karapinar_p172/meta.json`, `data/karapinar_p172/points.json`, `data/karapinar_p172/summary.json`, `data/karapinar_p172/disp/2026-06-26.png` .. `2026-10-12.png` (9 tarih, 8 ardışık `provisional` çift, Track 172 Ascending Frame 21, %39.0 tam zincir geçerli piksel)
+    - `docs/story/media/pc8_kp_p7_vs_p172.png` (264.3 KB, 3 panelli karşılaştırma grafiği)
+    - `analysis/pc8/karapinar_p172_check.py`, `analysis/pc8/karapinar_p172_cum.npz`, `analysis/pc8/karapinar_p172_cum_stack.npz`, `analysis/pc8/karapinar_p172_pair_stats.json`, `analysis/pc8/kp_p7_vs_p172.json`
+    - Çapraz kontrol sonuçları (`docs/qa/PC8.md` §2): Aktif Karapınar çanağı (`p01`) 9 tarih zaman serisi **`r = 0.798`**, **`RMSE = 1.25 cm` LOS** (`-5.93 cm` vs `-4.73 cm` LOS); 12 benchmark noktası **`r = 0.767` LOS**, **`RMSE = 1.12 cm` LOS**, **`maks fark = 2.34 cm` LOS**; 220 ortak 1 km blok **`r = 0.238` LOS** (`> 2 cm` çöken bloklarda `r = 0.328`, **%76.3** işaret uyumu), **`RMSE = 1.42 cm` LOS**, medyan fark **`-0.19 cm` LOS**, **`maks fark = 3.82 cm` LOS**.
+  - **Madde 3 (`PC9 yapılacaklar` tek liste özeti):**
+    - `docs/qa/PC8.md` §3 altında tüm `docs/qa/*.md` dosyalarındaki açık site (`web/`, `data/catalog.json`) bulguları öncelik sırasıyla 6 maddelik `"PC9 Yapılacaklar"` listesinde birleştirildi.
 - Doğrulama:
-  - `docs/story/media/pc8_uk_detection.png` görsel olarak açılıp kontrol edildi (190 KB ≤ 20 MB, metin çakışması yok, tüm sayılar `data/uk_clay/detection.json`, `analysis/out/uk_clay_pair_stats.json` ve `docs/story/holme_fen.md` ile birebir aynı).
-- AI: Antigravity (Gemini) → `analysis/pc8/*.py`, `docs/story/uk_findings.md`, `docs/story/media/pc8_uk_detection.png` ve `docs/qa/PC8.md`
+  - `docs/story/media/pc8_uk_detection.png` (190.0 KB) ve `docs/story/media/pc8_kp_p7_vs_p172.png` (264.3 KB) görsel olarak açılıp kontrol edildi (sıfır metin çakışması/taşması, tüm dosya boyutları > 0 B ve ≤ 20 MB).
+  - Tüm JSON ve NPZ çıktıları `data/DATA_CONTRACT.md` şemasına uygun olarak doğrulandı.
+- AI: Antigravity (Gemini) → `analysis/pc8/*.py`, `data/karapinar_p172/*`, `docs/story/uk_findings.md`, `docs/story/media/pc8_*.png`, `docs/qa/PC8.md` ve `status/PC8.md`
 - BLOCKED: yok
