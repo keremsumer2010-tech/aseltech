@@ -76,3 +76,35 @@ Yayımlama eşlemesi: `web/` site kökü; `data/`, `game/`, `web3d/` ve `docs/st
 
 Kontrol edilen yerel yol: 67. Eksik: 0.
 Eksik yerel yol bulunmadı.
+
+## 2. Veri sözleşmesi (offline)
+
+| Dosya | Parse | quality alanı | quality_note alanı | Sözleşme şeması |
+|---|---|---|---|---|
+| `data/catalog.json` | OK | records | records | OK |
+| `data/central_valley/assets.json` | OK | root | root | OK |
+| `data/central_valley/drivers.json` | OK | root | root | OK |
+| `data/central_valley/gcov/meta.json` | OK | root | root | OK |
+| `data/central_valley/meta.json` | OK | root | root | OK |
+| `data/central_valley/points.json` | OK | missing | missing | OK |
+| `data/central_valley/summary.json` | OK | root | root | OK |
+| `data/central_valley/uncertainty/meta.json` | OK | root | root | not specified |
+| `data/central_valley/validation.json` | OK | records | records | OK |
+| `data/central_valley/vertical.json` | OK | root | root | not specified |
+| `data/karapinar/assets.json` | OK | root | root | OK |
+| `data/karapinar/meta.json` | OK | root | root | OK |
+| `data/karapinar/points.json` | OK | missing | missing | OK |
+| `data/karapinar/sinkholes.geojson` | OK | missing | missing | OK |
+| `data/karapinar/summary.json` | OK | root | root | OK |
+| `data/karapinar/uncertainty/meta.json` | OK | root | root | not specified |
+| `data/uk/meta.json` | OK | root | root | OK |
+
+### Bulgular
+- `data/central_valley/points.json`: dataset-level `quality` missing
+- `data/central_valley/points.json`: dataset-level `quality_note` missing
+- `data/karapinar/points.json`: dataset-level `quality` missing
+- `data/karapinar/points.json`: dataset-level `quality_note` missing
+- `data/karapinar/sinkholes.geojson`: dataset-level `quality` missing
+- `data/karapinar/sinkholes.geojson`: dataset-level `quality_note` missing
+
+JSON/GeoJSON dosyası: 17; parse hatası: 0; tarih dizisi: 40; points/meta tarih karşılaştırması: 24, uyumsuzluk: 0; bulgu satırı: 6.
