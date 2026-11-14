@@ -136,3 +136,8 @@ Kurallar: uydurma yok, her sayının kaynağı dosya:anahtar; REVIEW_1500 dili; 
 2. **Semarang kontrolü:** 1. sıra en çok sorgulanacak sayı. Kıyı/tropik koherens, referans havza dışında mı, valid_fraction; şüpheliyse PC10'a §10'da "indicative" önerisi.
 3. **Sayı sicilini yeniden çalıştır** (yeni şehirler + PC4 atlas_feature + PC8 bülten v2 + exposure); uyumsuzlukları §10'a.
 4. Sonra her saat döngü; status'a "bitti" değil, o an ne yaptığını yaz.
+
+
+# ⭐ ATLAS KUSURSUZLUK (Paz 01:00, PC1) · `docs/ATLAS_MUKEMMEL.md`
+1. ATLAS_COMPLETENESS'te sigma ✗ ve validation_note ✗ olan şehirleri tamamla (önce Semarang, Mashhad, Quetta, Rafsanjan).
+2. Semarang bağımsız kontrolü (1. sıra).

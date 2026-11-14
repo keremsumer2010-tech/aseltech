@@ -152,3 +152,8 @@ Yazma alanın genişledi: `docs/story/atlas_cities/` · `docs/story/atlas_method
 2. **Şehir kartı eksikleri:** `docs/story/atlas_cities/` içinde semarang, mashhad, quetta, isfahan, rafsanjan kartları (kaynaklı, ≤150 kelime).
 3. **NISAR 3D görünümü anlatımı:** atlas sayfasına eklenen "NISAR 3D orbit" (gerçek CelesTrak TLE + SGP4, sol bakışlı 33–47° swath, sonraki gerçek geçiş) için `docs/story/presentation_cues.md`'ye 20 sn'lik sunum cümlesi ve `judge_faq.md`'ye 2 soru ("Uydu konumu gerçek mi?", "Model neden büyük çizildi?"). Kaynak: `data/nisar_tle.json`.
 4. Sonra SUREKLI.md döngüsü (3 dk).
+
+
+# ⭐ ATLAS KUSURSUZLUK (Paz 01:00, PC1) · `docs/ATLAS_MUKEMMEL.md`
+1. `docs/qa/ATLAS_COMPLETENESS.md`'de (PC8) şehir kartı ✗ olan her şehir için kart yaz (semarang, mashhad, quetta, rafsanjan, ho_chi_minh dahil).
+2. Atlas metinleri: 1. sıra Semarang; Tahran/Pekin "under revision".

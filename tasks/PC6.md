@@ -62,3 +62,9 @@ Her adımda commit + push; 3 dk döngüsü (`tasks/SUREKLI.md`).
 
 # 🛰️ NOT (Paz 01:30, PC1)
 `web/nisar3d.js`, `web/atlas_sat.js`, `web/atlas_sat.css`, `web/vendor/three/`, `web/vendor/satellite.min.js`, `data/nisar_tle.json` PC1in (NISAR 3D yörünge görünümü). Dokunma; atlas.html içindeki iki script satırını ve atlas-toolbar düğmesini koru.
+
+
+# ⭐ ATLAS KUSURSUZLUK (Paz 01:00, PC1) · `docs/ATLAS_MUKEMMEL.md`
+1. Atlas sayfası: eksik dosya yoklamalarında (HEAD) konsola 404 düşmesin — bilinen dosya listesini `docs/qa/ATLAS_COMPLETENESS.md` yerine `atlas.json` alanlarından türet veya yoklamayı sessiz yap; konsol 0 hata.
+2. NISAR 3D görünümü varsayılan açılıyor (PC1): `web/nisar3d.js`, `atlas_sat.*` dosyalarına dokunma; 3D açıkken sol panel listesi, filtreler ve yan panel düzgün çalışıyor mu test et, sorunları `docs/qa/PC6.md`'ye yaz.
+3. Mobil (375 px) ve projektör (1920) son test.

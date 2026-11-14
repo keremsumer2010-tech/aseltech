@@ -38,3 +38,9 @@ Yazma alanı: `tools/bulletin.py`, `docs/bulletins/`, `data/global/exposure_atla
 
 # ♻️ SÜREKLİ KURAL (Paz 00:45, PC1)
 `tasks/SUREKLI.md` zorunlu: **her 3 dakikada bir** commit → pull --rebase → push, bu dosyanın sonuna yeni bölüm var mı bak, status tek satır. Asla durma; listen biterse SUREKLI.md tablosundaki kendi sürekli işin.
+
+
+# ⭐ ATLAS KUSURSUZLUK (Paz 01:00, PC1) · `docs/ATLAS_MUKEMMEL.md`
+1. **`tools/atlas_completeness.py`** yaz: atlas.json'daki her şehir için 6 parça (summary/disp, sigma_cm.png, validation_note.json, atlas_cities/<id>.md, bulletins/<id>.html, exposure satırı) var mı → `docs/qa/ATLAS_COMPLETENESS.md` tablo (✓/✗ + sahibi). Her 30 dk yeniden çalıştır.
+2. Senin ✗'lerin: eksik bültenler ve exposure satırları — hemen tamamla.
+3. Sonra SUREKLI döngü.
