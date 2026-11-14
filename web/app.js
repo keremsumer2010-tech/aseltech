@@ -82,6 +82,9 @@ const ALL = ['sites', 'uk-opt', 'uk-radar', 'cv-disp', 'cv-pts', 'gnss', 'risk',
 const fc = feats => ({type: 'FeatureCollection', features: feats});
 const pt = (props, c) => ({type: 'Feature', properties: props, geometry: {type: 'Point', coordinates: c}});
 
+let dispSmooth = false;
+const dispFolder = () => (dispSmooth ? 'disp_smooth' : 'disp');
+
 function storyMap(){
   const el = document.getElementById('map');
   if (!el) return;
@@ -102,8 +105,8 @@ function storyMap(){
       }
       if (D.cvMeta){
         const m = D.cvMeta; cvIdx = m.dates.length - 1;
-        map.addSource('cv', {type: 'image', url: ROOT + `data/central_valley/disp/${m.dates[cvIdx]}.png`, coordinates: corners(m.bbox)});
-        map.addLayer({id: 'cv-disp', type: 'raster', source: 'cv', paint: {'raster-opacity': 0.85, 'raster-fade-duration': 0}});
+        map.addSource('cv', {type: 'image', url: ROOT + `data/central_valley/${dispFolder()}/${m.dates[cvIdx]}.png`, coordinates: corners(m.bbox)});
+        map.addLayer({id: 'cv-disp', type: 'raster', source: 'cv', paint: {'raster-opacity': 0.65, 'raster-fade-duration': 0}});
       }
       if (D.cvPts){
         map.addSource('cvp', {type: 'geojson', data: fc(D.cvPts.map(p => pt({id: p.id}, [p.lon, p.lat])))});
@@ -123,8 +126,8 @@ function storyMap(){
       }
       if (D.kpMeta){
         const m = D.kpMeta;
-        map.addSource('kp', {type: 'image', url: ROOT + `data/karapinar/disp/${m.dates.at(-1)}.png`, coordinates: corners(m.bbox)});
-        map.addLayer({id: 'kp-disp', type: 'raster', source: 'kp', paint: {'raster-opacity': 0.8}});
+        map.addSource('kp', {type: 'image', url: ROOT + `data/karapinar/${dispFolder()}/${m.dates.at(-1)}.png`, coordinates: corners(m.bbox)});
+        map.addLayer({id: 'kp-disp', type: 'raster', source: 'kp', paint: {'raster-opacity': 0.65}});
       }
       if (D.sinks){
         map.addSource('sinks', {type: 'geojson', data: D.sinks});
@@ -150,7 +153,7 @@ function show(step, force){
   current = step;
   for (const id of ALL) if (map.getLayer(id)) map.setLayoutProperty(id, 'visibility', v.layers.includes(id) ? 'visible' : 'none');
   if (map.getLayer('sat')) map.setPaintProperty('sat', 'raster-opacity', step === 'uk' ? 0.14 : 1);
-  if (map.getLayer('cv-disp')) map.setPaintProperty('cv-disp', 'raster-opacity', v.dim ? 0.45 : 0.85);
+  if (map.getLayer('cv-disp')) map.setPaintProperty('cv-disp', 'raster-opacity', v.dim ? 0.45 : 0.65);
   if (v.bbox) map.fitBounds([[v.bbox[0], v.bbox[1]], [v.bbox[2], v.bbox[3]]], {padding: 40, duration: 1800, essential: true});
   else map.flyTo({center: v.center, zoom: v.zoom, duration: 1800, essential: true});
   document.getElementById('mapLegend').style.display = v.legend ? '' : 'none';
@@ -180,7 +183,18 @@ function cvControls(){
   if (!D.cvMeta) return;
   const m = D.cvMeta, s = document.getElementById('slider'), lbl = document.getElementById('dateLbl'), btn = document.getElementById('cvPlay');
   s.max = m.dates.length - 1; s.value = m.dates.length - 1; lbl.textContent = fmtDate(m.dates.at(-1));
-  const go = i => { cvIdx = i; s.value = i; lbl.textContent = fmtDate(m.dates[i]); const src = map?.getSource('cv'); if (src){ src.updateImage({url: ROOT + `data/central_valley/disp/${m.dates[i]}.png`, coordinates: corners(m.bbox)}); const nxt = new Image(); nxt.src = ROOT + `data/central_valley/disp/${m.dates[(i + 1) % m.dates.length]}.png`; } };
+  const go = i => { cvIdx = i; s.value = i; lbl.textContent = fmtDate(m.dates[i]); const src = map?.getSource('cv'); if (src){ src.updateImage({url: ROOT + `data/central_valley/${dispFolder()}/${m.dates[i]}.png`, coordinates: corners(m.bbox)}); const nxt = new Image(); nxt.src = ROOT + `data/central_valley/${dispFolder()}/${m.dates[(i + 1) % m.dates.length]}.png`; } };
+  const modeBtn = document.getElementById('dispModeBtn');
+  if (modeBtn && !modeBtn.dataset.bound){
+    modeBtn.dataset.bound = '1';
+    modeBtn.addEventListener('click', () => {
+      dispSmooth = !dispSmooth;
+      modeBtn.textContent = dispSmooth ? 'View: Smoothed' : 'View: Detailed';
+      go(cvIdx);
+      const kpSrc = map?.getSource('kp');
+      if (kpSrc && D.kpMeta) kpSrc.updateImage({url: ROOT + `data/karapinar/${dispFolder()}/${D.kpMeta.dates.at(-1)}.png`, coordinates: corners(D.kpMeta.bbox)});
+    });
+  }
   s.addEventListener('input', () => go(+s.value));
   btn.addEventListener('click', () => { if (timer){ clearInterval(timer); timer = null; btn.textContent = '▶'; return; } btn.textContent = '❚❚'; timer = setInterval(() => go((cvIdx + 1) % m.dates.length), 900); });
   if (D.cvPts?.length){ const worst = D.cvPts.reduce((a, b) => (b.disp_cm.at(-1) ?? 0) < (a.disp_cm.at(-1) ?? 0) ? b : a); pickPoint(worst.id); }
