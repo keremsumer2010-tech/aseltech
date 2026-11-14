@@ -183,3 +183,6 @@ details.fold>summary::before{content:"+";font:700 1.2rem/1 var(--mono);color:var
 details.fold[open]>summary::before{content:"−"}
 details.fold>summary h2{margin:0;font-size:1.35rem}
 details.fold>summary:focus-visible{outline:3px solid #9cc3ff;outline-offset:2px}
+/* long file names / URLs in docs must wrap; wide tables scroll inside themselves on phones */
+.doc code,.doc a,.doc td,.doc li{overflow-wrap:anywhere}
+@media (max-width:860px){.doc .md table,.doc table.data{display:block;overflow-x:auto;max-width:100%}.doc .md pre,.doc .eq{max-width:100%}}
