@@ -32,7 +32,7 @@
 
 ![Karapınar obruk kuşağı permütasyon ve blok-bootstrap grafiği](media/pc5_sinkhole_perm.png)
 
-*Figure 1. Karapınar sinkhole belt (`0–2 km`) versus background (`>5 km`) cumulative LOS subsidence significance over 108 days (`2026-06-26` to `2026-10-12`), comparing `10,000`-iteration `1.04 km` block permutations, `10,000` bootstrap intervals, and `3,423` rigid constellation shifts across the valid interferogram footprint. Data: NASA-ISRO NISAR, ASF DAAC. Analysis: Team Taykut.*
+*Figure 1. Karapınar sinkhole belt (`0–2 km`) versus background (`>5 km`) cumulative LOS subsidence significance over 108 days (`2026-06-26` to `2026-10-12`), comparing `10,000`-iteration `1.04 km` block permutations, `10,000` bootstrap intervals, and `3,423` rigid constellation shifts across the valid interferogram footprint. Data: NASA-ISRO NISAR, ASF DAAC. Analysis: Team Aseltech.*
 
 ---
 

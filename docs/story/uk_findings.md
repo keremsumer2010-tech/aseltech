@@ -17,7 +17,7 @@ Over Greater London, nine consecutive provisional NISAR radar pairs from 21 June
 
 ![Greater London 1-Season InSAR Detection Limit vs UK Ground Motion](media/pc8_uk_detection.png)
 
-**Figure 4.** (A) Per-pair line-of-sight (LOS) atmospheric scatter (`p2` to `p98` range and 1 km block standard deviation of 0.31–0.47 cm) across nine consecutive provisional NISAR interferograms over Greater London (21 Jun–19 Oct 2026), plotted against the 1-sigma chain noise band (`±1.21 cm`). (B) Comparison of expected seasonal London Clay shrink-swell motion (0.5–2.0 cm) and ongoing Holme Fen peat loss (1.0–2.0 cm/yr) against the 98% observed London block spread (`≤ 1.50 cm`), the one-season 3-sigma detection threshold (`3.62 cm`), and the projected three-year NISAR 3-sigma rate threshold (`~1.2 cm/yr`, estimate). Data: NASA-ISRO NISAR (provisional L2 GUNW, track 101 frame 28) via ASF DAAC; UKCEH / Defra WP2; The Great Fen. Analysis: Team Taykut.
+**Figure 4.** (A) Per-pair line-of-sight (LOS) atmospheric scatter (`p2` to `p98` range and 1 km block standard deviation of 0.31–0.47 cm) across nine consecutive provisional NISAR interferograms over Greater London (21 Jun–19 Oct 2026), plotted against the 1-sigma chain noise band (`±1.21 cm`). (B) Comparison of expected seasonal London Clay shrink-swell motion (0.5–2.0 cm) and ongoing Holme Fen peat loss (1.0–2.0 cm/yr) against the 98% observed London block spread (`≤ 1.50 cm`), the one-season 3-sigma detection threshold (`3.62 cm`), and the projected three-year NISAR 3-sigma rate threshold (`~1.2 cm/yr`, estimate). Data: NASA-ISRO NISAR (provisional L2 GUNW, track 101 frame 28) via ASF DAAC; UKCEH / Defra WP2; The Great Fen. Analysis: Team Aseltech.
 
 ---
 
@@ -32,7 +32,7 @@ Over Greater London, nine consecutive provisional NISAR radar pairs from 21 June
   <figure>
     <img src="../docs/story/media/pc8_uk_detection.png" alt="Greater London per-pair atmospheric scatter and 3.6 cm one-season detection threshold compared with UK clay and Holme Fen ground motion" loading="lazy" />
     <figcaption>
-      Figure 4. (A) Per-pair line-of-sight atmospheric scatter (0.31&ndash;0.47 cm 1 km block std) across nine provisional NISAR pairs over Greater London (21 Jun&ndash;19 Oct 2026). (B) Expected London Clay shrink-swell (0.5&ndash;2.0 cm) and Holme Fen peat subsidence (1&ndash;2 cm/yr) compared with the one-season 3&sigma; detection limit (3.62 cm) and a multi-year stacked threshold (~1.2 cm/yr, estimate). Data: NASA-ISRO NISAR, ASF DAAC; UKCEH / Defra WP2; The Great Fen. Analysis: Team Taykut.
+      Figure 4. (A) Per-pair line-of-sight atmospheric scatter (0.31&ndash;0.47 cm 1 km block std) across nine provisional NISAR pairs over Greater London (21 Jun&ndash;19 Oct 2026). (B) Expected London Clay shrink-swell (0.5&ndash;2.0 cm) and Holme Fen peat subsidence (1&ndash;2 cm/yr) compared with the one-season 3&sigma; detection limit (3.62 cm) and a multi-year stacked threshold (~1.2 cm/yr, estimate). Data: NASA-ISRO NISAR, ASF DAAC; UKCEH / Defra WP2; The Great Fen. Analysis: Team Aseltech.
     </figcaption>
   </figure>
 </section>

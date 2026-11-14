@@ -55,7 +55,7 @@ Kümülatif `subsidence_cm` eğrisi yaz boyunca tekdüze aşağı doğru birikti
 
 ![Central Valley hidro-tarımsal sürücü zaman serisi ve gecikmeli korelasyonlar](media/pc5_drivers.png)
 
-*Figure 1. Central Valley provisional NISAR cumulative LOS subsidence alongside SME2 soil moisture and irrigation proxy over 8 acquisitions (`2026-06-28` to `2026-10-14`), with exact Fisher-$z$ 95% confidence intervals across lags 0–2 showing why $|r|$ stays below two-sided significance thresholds at `N = 8`. Data: NASA-ISRO NISAR, ASF DAAC. Analysis: Team Taykut.*
+*Figure 1. Central Valley provisional NISAR cumulative LOS subsidence alongside SME2 soil moisture and irrigation proxy over 8 acquisitions (`2026-06-28` to `2026-10-14`), with exact Fisher-$z$ 95% confidence intervals across lags 0–2 showing why $|r|$ stays below two-sided significance thresholds at `N = 8`. Data: NASA-ISRO NISAR, ASF DAAC. Analysis: Team Aseltech.*
 
 ---
 

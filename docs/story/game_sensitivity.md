@@ -27,7 +27,7 @@ This analysis ports the exact hydrological water-balance and Terzaghi skeletal-c
 
 ![Monte Carlo Sensitivity of ValleyModel](game_sensitivity.png)
 
-*Figure 1. Two-panel Monte Carlo sensitivity diagnostic (`N = 1,000` trials) for Terra Bella (`p01`) in `game/model.js` (`28 Jun–14 Oct 2026` calibration target and 24-month projections): (A) 24-month cumulative vertical subsidence distribution with `p10/p50/p90` quantiles; (B) clay thickness `b0` vs. inelastic specific storage `S_skv` showing the `-10.1 cm / 108-day` NISAR iso-subsidence contour (`b0 · S_skv = 0.02356`) and nominal model parameters. Data: NASA-ISRO NISAR, ASF DAAC. Analysis: Team Taykut.*
+*Figure 1. Two-panel Monte Carlo sensitivity diagnostic (`N = 1,000` trials) for Terra Bella (`p01`) in `game/model.js` (`28 Jun–14 Oct 2026` calibration target and 24-month projections): (A) 24-month cumulative vertical subsidence distribution with `p10/p50/p90` quantiles; (B) clay thickness `b0` vs. inelastic specific storage `S_skv` showing the `-10.1 cm / 108-day` NISAR iso-subsidence contour (`b0 · S_skv = 0.02356`) and nominal model parameters. Data: NASA-ISRO NISAR, ASF DAAC. Analysis: Team Aseltech.*
 
 ## 3. Where Does the `-10.1 cm / 108-Day` Target Sit in Parameter Space?
 
