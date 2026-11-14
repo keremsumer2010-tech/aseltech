@@ -26,7 +26,8 @@
 - PC7'ye atlas şehri atanmadığından PC11 şehirlerini veya PC11 status/görev dosyalarını değiştirmedim.
 - A tamamlandı: `pipeline/pc7/atlas_robustness.py` üç test boyutunu yerel provisional GUNW zincirlerinde taradı. Sekiz atlas şehrinin ikisinde 3 referans adayı bulundu; Central Valley 27/27, Beijing 9/27 tam varyant verdi. Diğer şehirlerde kutu kapsaması veya üç ortak-geçerli referans adayı yetersiz; ilk üç sıra ve Kendall tau bu verilerle sonuçlandırılamadı. Referansların jeolojik sabitliği bağımsız doğrulanmadı.
 - A çıktıları: `data/global/robustness.json`, `docs/story/media/pc7_atlas_robustness.png`; ağsız testler 4/4, tüm pytest 79/79 geçti (bir deprecation uyarısı); 93 JSON'da parse/non-finite/eksik-quality bulgusu 0. `atlas.json` değişmedi. Ayrıntı `docs/qa/PC7.md` §16.
-- BLOCKED: `git add docs/qa/PC7.md status/PC7.md` → `fatal: Unable to create 'C:/Users/Kerem/Documents/ChatGPT/aseltech-pc7/.git/index.lock': Permission denied`. Repo K-5 uyarınca Git işlemlerini durdurdum; QA/kapsama notları yerelde commit edilmemiş durumda.
+- Önceki Git index izni engeli yükseltilmiş erişimle çözüldü; kapsam raporu commit/push edildi.
 - Uzun plan FAZ 1 kapsamı: Python 3.12.10 NISAR Pulse dry-run ile Xi'an, Taiyuan, Querétaro, Aguascalientes, Kashmar'ın her birinde 9 ardışık provisional çift ve sıfır boşluk doğrulandı. Ham veri indirmedim; ayrıntılar `docs/qa/PC7.md` §18.
 - Devam: Xi'an üretim analizi için Xingping literatür referansı üzerinde koordinat/kapsam doğrulaması; ardından diğer şehirler sırasıyla. Henüz hiçbir yeni şehir `ready` değil.
 - AI: Codex → CMR dry-run, kaynak incelemesi ve PC7 QA kaydı.
+- BLOCKED: yok
