@@ -79,3 +79,12 @@ Sırayla (her biri bittikçe push, K-13):
 
 ## Rapor
 `status/PC2.md`: kaç dosya bitti, indirme hızı, her npz'nin boyutu ve NaN oranı, hata varsa `BLOCKED:` + hata metni, `AI:` satırı.
+
+---
+# 14:10 YENİ PAKET (öncelik sırası; harika gidiyor)
+1. **Q01 Karapınar** kalan provisional çiftler (iyonosferli) → bitince PC3'e status'ta haber.
+2. **Q04 SME2 toprak nemi** → `data/central_valley/drivers.json` (sitenin "Why it happens" grafiği bunu bekliyor).
+3. **Q03 GCOV** 6 provisional tarih HV dB → `data/central_valley/gcov/` + meta.json.
+4. **path 114 desteği**: PC3 Q21 için kendi indirmesini yapıyor; isterse `pipeline/central_valley_p114_gunw.csv` listesini sen üret (status'ta sor).
+5. **Q07 tam yıl zinciri** — 22:00'de başlat, gece sürsün (`pipeline/subset/central_valley_beta/`, `quality: beta-precal` / provisional ayrı). Bilgisayar uykuya geçmesin.
+6. **Q10 Fens ekin ritmi** (zaman kalırsa).

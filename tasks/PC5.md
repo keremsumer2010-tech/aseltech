@@ -36,3 +36,12 @@ PC3'ün dosyalarını değiştirme · sayı uydurma · beta ile provisional'ı a
 
 ## Rapor (`status/PC5.md`)
 Ne bitti, test sonucu, σ değerleri ve yöntemi.
+
+---
+# 14:10 YENİ PAKET (öncelik sırası)
+0. **ÖNCE: 10 dk içinde ilk commit** (status/PC5.md "çalışıyor" + yapılacaklar listesi). Saat 14:10 itibarıyla hiç commit yok.
+1. **OYUN MODELİ PARAMETRELERİ** (14:10–15:00, PC6'nın oyunu buna bağlı) → `docs/story/game_model.md`:
+   San Joaquin Valley için kaynaklı değerler: özgül verim S_y, elastik ve inelastik iskelet depolama katsayıları (S_ke, S_kv) veya eşdeğerleri, tipik sıkışabilir kil kalınlığı b0, tipik kuyu derinlikleri, yıllık beslenme, California Water Year Index sınıfları (wet/above/below/dry/critical) ve olasılıkları, kanal kapasite kaybı örnekleri (Friant-Kern, Delta-Mendota). Her değer: sayı, birim, kaynak linki (USGS/DWR/hakemli). Bulamadığın değer "illustrative" + mantıklı aralık. Sonra **kalibrasyon**: "normal yıl, mevcut pompalama" 108 günde −10 cm dikey (summary.json) verecek ölçek katsayısını hesapla ve formülüyle yaz. Bitince PC6'ya status'ta "game_model hazır" yaz.
+2. **Ayrıştırma modülü** (`analysis/decomp/decompose.py` + testler) — tasks/PC5.md Görev 1.
+3. **Belirsizlik bütçesi** — Görev 2.
+4. **Q26, Q27**.

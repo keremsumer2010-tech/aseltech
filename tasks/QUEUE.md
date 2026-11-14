@@ -14,7 +14,7 @@ Saatler: `docs/ZAMAN_CIZELGESI.md`. "[atandı: PCx]" işi sadece o PC alır; ata
 
 - [x PC1] Q18 · [14:00 site PC1'e döndü; PC6 web/ dosyalarına YAZMAZ] · SİTE ENTEGRASYONU (PC1'den devir, 13:20): PC3'ün `data/central_valley/`, `data/karapinar/` ve PC4'ün `data/uk/`, `sinkholes.geojson`, PC5'in `game/` dosyaları geldikçe sitede yerel test (`python -m http.server` → /web/), placeholder rozeti kalkıyor mu, konsol temiz mi; `data/catalog.json` yaz; Holme Fen metnini PC4'ün kaynaklı rakamıyla güncelle; `docs/URUN_TANIMI.md` §4 tablosunu işaretle · web/app.js, web/index.html, data/catalog.json, docs/URUN_TANIMI.md
 
-- [x PC6] Q19 · Aquifer Manager oyunu (eski PC5 görevi; ayrıntı: tek dosya `game/index.html`, 10 yıl, pompalama %0–150, CONFIG'de hız = `data/central_valley/summary.json`, "illustrative" etiketi, AI görseli varsa etiketli) · game/
+- [ ] Q19 · [atandı: PC6 — v2 SIFIRDAN, bkz. docs/OYUN_SPEC.md] · Aquifer Manager oyunu (eski PC5 görevi; ayrıntı: tek dosya `game/index.html`, 10 yıl, pompalama %0–150, CONFIG'de hız = `data/central_valley/summary.json`, "illustrative" etiketi, AI görseli varsa etiketli) · game/
 - [x PC6] Q20 · Sunum metni: 3 dk konuşma + 30 sn video senaryosu (İngilizce altyazı) + ≤7 slayt, sayılar yer tutucu → `docs/story/pitch.md` · docs/story/pitch.md
 
 ## 14:00 EK İŞLER (Mehmet'in ajanları boş kalmasın — sırayla)
@@ -26,7 +26,7 @@ Saatler: `docs/ZAMAN_CIZELGESI.md`. "[atandı: PCx]" işi sadece o PC alır; ata
 - [ ] Q26 · [atandı: PC5] · Nokta bazında zaman serisi kalitesi: `points.json` her nokta için doğrusal uyum, artık std, en büyük sıçrama (unwrapping şüphesi) → `docs/qa/PC5.md` tablo · analysis/decomp/
 - [ ] Q27 · [atandı: PC5] · GNSS doğrulama sonucunun (`data/central_valley/validation.json`) istatistiksel yorumu: RMSE, korelasyon, eğilim farkı; 3 cümle İngilizce → `docs/story/uncertainty.md` · docs/story/uncertainty.md
 - [ ] Q28 · [atandı: PC6] · Karapınar risk: obruk noktaları (`sinkholes.geojson`) ile PC3 çökme haritası (`data/karapinar/`) ilişkisi — obruk çevresi 1/2/5 km halkalarda ortalama çökme vs bölge geneli; OSM yol/kanal hatlarının obruklara uzaklığı → `data/karapinar/assets.json` + `docs/qa/PC6.md` özet · risk/, data/karapinar/assets.json
-- [ ] Q29 · [atandı: PC6] · `game/index.html` (PC6'nın Q19 oyunu) — PC1 geri yükledi; telefonda test, `data/central_valley/summary.json` hızını okuyor mu kontrol, küçük hata düzelt (sadece game/) · game/
+- [x PC1] Q29 · İPTAL (oyun v2 ile değişti); telefonda test, `data/central_valley/summary.json` hızını okuyor mu kontrol, küçük hata düzelt (sadece game/) · game/
 - [ ] Q30 · [atandı: PC4] · `docs/story/pitch.md` ile `project_page.md` sayılarını `data/*/summary.json` ile eşle (CV −7.8 cm LOS / ~−10 cm dikey, Karapınar −5.9 cm LOS); tutarsızlık varsa düzelt · docs/story/
 - [ ] Q31 · [atandı: PC4] · Holme Fen kartı için tek cümle İngilizce metin + kaynak linki → `docs/story/holme_fen.md` (PC1 siteye koyacak) · docs/story/holme_fen.md
 

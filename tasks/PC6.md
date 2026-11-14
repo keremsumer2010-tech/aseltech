@@ -64,3 +64,12 @@ OpenStreetMap Overpass API (girişsiz), Central Valley bbox:
 
 ## Rapor
 `status/PC6.md`: istasyon adları ve dönemleri, dosya boyutları, doğrulanamayanlar, `AI:` satırı.
+
+---
+# 14:10 YENİ PAKET (öncelik sırası; bitince sormadan sıradakine)
+1. **OYUN v2 — sıfırdan "Valley Under Pressure"** (14:10–17:00, en kritik iş). Tam şartname: `docs/OYUN_SPEC.md`. Eski `game/index.html`'i sil ve yeniden yaz (sadece `game/`). AI görseli YOK; gerçek uydu altlığı + NISAR katmanı + OSM kanallar + gerçek yer adları. Fizik modeli `game/model.js` (elastik/kalıcı çökme, preconsolidation head). Parametreleri PC5'in `docs/story/game_model.md` dosyasından al; o gelene kadar CONFIG'de "illustrative" yer tutucu. Her 30–45 dk çalışan bir ara sürüm push et.
+   Kabul: OYUN_SPEC "Kabul" bölümündeki her madde + `docs/game_v2.png`.
+2. **Q28 Karapınar risk** (oyun ara sürümü push edildikten sonra paralel değil, oyun bitince).
+3. **Q13 README** — kurulum, veri hattının adım adım çalıştırılması (pipeline → analysis → data → site), lisans, kaynaklar, ekip.
+4. **Q15 kod gözden geçirme** → `docs/code_review.md`.
+5. **Q17 göl/baraj** (zaman kalırsa).

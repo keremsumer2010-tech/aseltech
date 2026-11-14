@@ -85,3 +85,11 @@ Kalıcı/geri dönen ayrımı orada (trend + mevsimsel genlik) → `decomp.json`
 
 ## Rapor
 `status/PC3.md`: maks çökme (cm, hangi nokta), referans noktası ve gerekçesi, kullanılan çift sayısı, pytest çıktısı, literatür kıyası, `AI:` satırı.
+
+---
+# 14:10 YENİ PAKET (öncelik sırası)
+1. **Q21 ikinci geçiş (path 114) doğrulaması** — en güçlü kanıt. Provisional ardışık çiftler, aynı hat, aynı referans bölgesi mantığı; path 34 ile ortak tarih aralığında nokta nokta fark + korelasyon + saçılım grafiği PNG (`docs/cv_p34_vs_p114.png`). Sonuç ve yorum `docs/qa/PC3.md`.
+2. **Q22 dikey/doğu-batı ayrıştırması** (iki geçiş farklı bakış yönündeyse) → `data/central_valley/vertical.json` + PNG. Değilse neden yapılamadığını yaz.
+3. **Referans duyarlılığı raporu**: 3 farklı referans bölgesiyle maks çökme aralığı (−6.2…−7.8 bulmuşsun) → summary.json'a `range_cm` ve `method_note`'a ekle.
+4. **Karapınar ↔ obruk**: PC6'nın Q28'ine girdi olacak `analysis/out/karapinar_cum.npz` (sözleşme §5 biçimi) hazır mı kontrol et, değilse üret.
+5. **Pazar hazırlığı**: Q08 için `analysis/decomp` (PC5) arayüzünü oku, tam yıl zinciri gelince tek komutla çalışacak `analysis/run_fullyear.py` iskeletini yaz (beta/mixed ayrı klasör kuralıyla).
