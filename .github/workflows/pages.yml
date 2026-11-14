@@ -71,6 +71,30 @@ jobs:
                   print(f"skip {p}: {exc}")
           PY
 
+      - name: Atlas open-data exports (GeoJSON + CSV)
+        run: |
+          if [ -f _site/data/global/atlas.json ] && [ ! -f data/global/atlas.geojson ]; then python3 tools/atlas_exports.py _site/data/global/atlas.json; fi
+
+      - name: Cache-bust local JS/CSS (Pages caches files for 10 min)
+        run: |
+          python3 - <<'PY'
+          import os, re
+          from pathlib import Path
+          v = os.environ.get("GITHUB_SHA", "dev")[:8]
+          pat = re.compile(r'((?:src|href)=")((?!https?:|//|data:|#|mailto:)[^"?#]+\.(?:js|css))(\?[^"#]*)?(")')
+          for p in Path("_site").rglob("*.html"):
+              t = p.read_text(encoding="utf-8")
+              n = pat.sub(lambda m: f"{m.group(1)}{m.group(2)}?v={v}{m.group(4)}", t)
+              if n != t:
+                  p.write_text(n, encoding="utf-8")
+          for p in Path("_site").rglob("*.js"):
+              t = p.read_text(encoding="utf-8", errors="ignore")
+              n = re.sub(r"import\('\./nisar3d\.js(\?v=[^']*)?'\)", f"import('./nisar3d.js?v={v}')", t)
+              if n != t:
+                  p.write_text(n, encoding="utf-8")
+          print("cache-bust version", v)
+          PY
+
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site

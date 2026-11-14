@@ -52,7 +52,7 @@ let cityGroup, cityDecal = null, cityMarker = null, cityDots;
 let hud = {}, labelSat, labelCity;
 let simMs = Date.now(), speed = 1, mode = 'live', camMode = 'orbit', running = false, lastT = 0;
 let pass = null, region = null, regionMeta = null, revealState = null, stripBuf = [], lastStripMs = 0, orbitStamp = 0;
-let sweepPhase = 0, snapFollow = false, snapCraft = false, lastSatPos = null, frameDt = 0.016;
+let inView = true, sweepPhase = 0, snapFollow = false, snapCraft = false, lastSatPos = null, frameDt = 0.016;
 
 // ---------- public API ----------
 export async function open(container, reg, opts = {}){
@@ -73,8 +73,9 @@ export async function selectRegion(reg, opts = {}){
   setCaption(`Computing NISAR's next real pass over ${reg.name}…`);
   try{ const r = await fetch(ROOT + (reg.path || `data/global/${reg.id}/`) + 'meta.json'); regionMeta = r.ok ? await r.json() : null; }catch(e){}
   placeCity();
-  setTimeout(() => {
-    pass = findNextPass(reg.lat, reg.lon, Date.now());
+  findNextPassAsync(reg.lat, reg.lon, Date.now()).then(p => {
+    if (region !== reg) return;
+    pass = p;
     if (pass){
       hud.pass.innerHTML = `Next imaging pass over <b>${esc(reg.name)}</b>: ${fmtUTC(new Date(pass.t))} · ${pass.asc ? 'ascending' : 'descending'} · incidence ${pass.inc.toFixed(1)}°`;
       const hrs = pass.leadMin / 60, lead = hrs >= 24 ? `${Math.floor(hrs / 24)} d ${Math.round(hrs % 24)} h` : `${Math.floor(hrs)} h ${Math.round(pass.leadMin % 60)} min`;
@@ -84,7 +85,7 @@ export async function selectRegion(reg, opts = {}){
       hud.pass.textContent = `No pass with ${reg.name} inside the 33–47° swath found in the next 12.5 days.`;
       setCaption('');
     }
-  }, 30);
+  });
 }
 
 // ---------- build ----------
@@ -144,7 +145,7 @@ async function build(container){
   // renderer + scene
   const canvas = root.querySelector('canvas');
   renderer = new THREE.WebGLRenderer({canvas, antialias: true, alpha: false});
-  renderer.setPixelRatio(Math.min(2, window.devicePixelRatio || 1));
+  renderer.setPixelRatio(Math.min(1.5, window.devicePixelRatio || 1));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   scene = new THREE.Scene();
   scene.background = new THREE.Color(0x01030a);
@@ -161,6 +162,8 @@ async function build(container){
   buildStars(); buildEarth(); buildSat(); buildBeam();
   window.addEventListener('resize', resize);
   new ResizeObserver(resize).observe(root);
+  new IntersectionObserver(es => { inView = es[0].isIntersecting; }, {threshold: 0.05}).observe(root);
+  document.addEventListener('visibilitychange', () => { lastT = performance.now(); });
 }
 
 function tleEpoch(line1){
@@ -400,11 +403,22 @@ function swathQuad(s, L, f0 = 0, f1 = 1){
   return [groundAt(back, left, g0, R_E + 3), groundAt(back, left, g1, R_E + 3), groundAt(ahead, left, g1, R_E + 3), groundAt(ahead, left, g0, R_E + 3)];
 }
 
+// Same search, yielding to the browser every ~2.5 h of orbit so the page never freezes.
+async function findNextPassAsync(lat, lon, fromMs){
+  const step = 2.5 * 3600000;
+  for (let t0 = fromMs; t0 < fromMs + 12.5 * 86400000; t0 += step){
+    const p = findNextPass(lat, lon, t0, t0 + step + 30000);
+    if (p) return {...p, leadMin: (p.t - fromMs) / 60000};
+    await new Promise(r => setTimeout(r, 0));
+  }
+  return null;
+}
+
 // Next time the city sits inside the left-looking 33-47° swath (closest approach on track).
-function findNextPass(lat, lon, fromMs){
+function findNextPass(lat, lon, fromMs, toMs = fromMs + 12.5 * 86400000){
   const cityE = unitFromLatLon(lat, lon);
   let prev = null;
-  for (let t = fromMs; t < fromMs + 12.5 * 86400000; t += 15000){
+  for (let t = fromMs; t < toMs; t += 15000){
     const s = stateAt(t); if (!s) continue;
     const c = rotY(cityE, s.gmst);                 // city in inertial frame
     const fwd = s.v.clone().normalize(), up = s.r.clone().normalize();
@@ -493,6 +507,7 @@ function updateReveal(s){
 function loop(now){
   if (!running) return;
   requestAnimationFrame(loop);
+  if (document.hidden || !inView){ lastT = now; return; }     // save GPU/battery when nobody is looking
   const dt = Math.min(0.1, (now - lastT) / 1000); lastT = now; frameDt = dt;
   simMs += dt * 1000 * speed;
   if (mode === 'live' && speed === 1 && Math.abs(simMs - Date.now()) > 2000) simMs = Date.now();
