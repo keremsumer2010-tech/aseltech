@@ -1,76 +1,86 @@
-# Lincoln Live Rehearsal & Failsafe Checklist (`17:30 TR`)
+# NISAR Pulse — 17:30 Lincoln Rehearsal & Failsafe Checklist (`docs/story/rehearsal_checklist.md`)
 
-> **Target Site:** https://keremsumer2010-tech.github.io/aseltech/  
-> **Total Presentation Budget:** `3:00` (`180 seconds` across `6 × 30 s` blocks) + Jury Q&A  
+> **Target Session:** `17:30 TR` Full Dry-Run (`3:00` live pitch + `2:00` Jury Q&A drill)  
+> **Live Web App:** https://keremsumer2010-tech.github.io/aseltech/ · **Companion Cue Sheet:** [`docs/story/presentation_cues.md`](presentation_cues.md)  
 > **Mandatory Calibration Notice:** *NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.*
 
 ---
 
-## 1. Offline & Internet-Drop Backup Protocol (`< 2-Second Switch Rule`)
+## 1. Team Roles & Responsibilities (`T − 15 min` through Q&A)
 
-Prepare all four local fallbacks **15 minutes before the rehearsal** so a Wi-Fi drop, GitHub Pages stall, or MapLibre CDN timeout never breaks Kerem's speech:
+| Role | Member | Live `0:00 – 3:00` Responsibility | Jury Q&A & Failsafe Responsibility |
+|---|---|---|---|
+| **Lead Speaker** | **Kerem** | Delivers `Blocks 1–6` from [`presentation_cues.md`](presentation_cues.md) without reading verbatim off slides; pauses 1 s smoothly if Memir switches tabs | Routes deep math/science vs. data/risk questions to Mehmet & İbrahim; delivers closing summary |
+| **Live Demo Pilot** | **Memir** | Owns screen sharing (`1920×1080`, `100%` zoom). Drives `Tabs 1–4` one click ahead of Kerem's cue (`#compareRange`, `#cvPlay`, `p01`, `#fyBox`, `CAHA`, `#riskList`, `#ringChart`, `#gamePlay`, `web3d`) | Executes **`< 2-second` offline tab switch** to local mirror / `Tab 5` (`slides.html`) or `demo_30s.mp4` without stopping Kerem |
+| **Technical Q&A & Timekeeper** | **Mehmet** | Runs silent visible stopwatch from Kerem's first word; flashes **`0:30`**, **`1:00`**, **`1:30`**, **`2:00`**, **`2:30` (`SIMULATOR JUMP`)**, **`2:50 WRAP NOW`**, **`3:00 STOP`** cards | Answers technical Q&A on GUNW `−λ/4π` math, ionosphere/DEM deramp, `mixed` full-year chain (`fullyear.md`), L-vs-C coherence (`cross_sensor.md`), GNSS `r = 0.924`, and dual-orbit Track 34/114 (`vertical.json`); speaker backup if Kerem drops |
+| **Data, Impact & Source Q&A Lead** | **İbrahim** | Verifies pre-flight local server, zero console errors, video mute states, and `Tab 1–6` readiness (`T − 15 min`) | Answers jury Q&A on UK Fens `HH`/`HV` (`crops.json`), London clay `below_detection` (`±3.6 cm`), Karapınar 29 sinkholes & permutation tests (`sinkhole_stats.md`), WorldPop/USDA exposure (`83,273` residents), Mexico City (`-4.4 cm`), simulator (`Valley Under Pressure`), and HTTP-200 verified citations (`sources.md`) |
 
-1. **Start Local Static Web Server (zero internet dependency):**
+*(If presenting solo at any practice table: presenter drives pre-set Tabs `1–5` directly, skipping `Tab 2` optional detour if behind at `1:15`.)*
+
+---
+
+## 2. Exact Pre-Loaded Browser Tab Order (Single Fullscreen Window `F11`)
+
+Open one clean incognito/distraction-free browser window at **`1920×1080`**, **`100%` browser zoom**, bookmarks bar hidden (`Ctrl+Shift+B`), DevTools closed:
+
+| Tab # | URL / Local Target | Pre-Pitch Ready State Before `0:00` | Used In |
+|---|---|---|---|
+| **Tab 1** | `https://keremsumer2010-tech.github.io/aseltech/` *(or `http://localhost:8000/web/index.html` if venue Wi-Fi is unstable)* | Scrolled to very top Hero (`#heroMap`); `.stats` rendered; `#cvVideo` pre-buffered muted | `Blocks 1, 2, 3, 4, 6` |
+| **Tab 2** | `https://keremsumer2010-tech.github.io/aseltech/explorer.html#central_valley_fullyear` | Pre-set to **Central Valley, California — full year (Nov 2025 – Oct 2026)** (`mixed` badge visible), `7 km W of Earlimart` point pre-clicked | `Block 3` (optional `3 s` full-year view) |
+| **Tab 3** | `https://keremsumer2010-tech.github.io/aseltech/game/index.html` | Past intro overlay onto 7-district Tulare Basin map (`Month 0 of 24`), **Classroom Mode** drawer open (`2. Multi-Year Drought` visible) | `Block 5` (`0:15`, or instant fallback if `#gamePlay` iframe lags) |
+| **Tab 4** | `https://keremsumer2010-tech.github.io/aseltech/web3d/index.html` | Three.js `0.160.0` basin mesh loaded (`quality: provisional · CRID P05023`, `2026-10-14` epoch) so orbiting responds immediately | `Block 5` (`5–8 s`) + Q&A |
+| **Tab 5 (Offline Deck)** | `http://localhost:8000/docs/story/slides.html` *(zero-CDN local HTML deck)* | Loaded to **Slide 1 / 7**, keyboard arrows (`→` / `←`) verified working | `< 2 s` primary offline fallback |
+| **Tab 6 (Data & FAQ Backup)** | `http://localhost:8000/web/faq.html` *(plus header link to `science.html` & `data.html`)* | Scrolled to top FAQ cards | Visual Q&A backup after `3:00` |
+
+---
+
+## 3. Offline Fallback Plan (Zero-Internet Resilience & `< 2-Second Switch Rule`)
+
+Because basemaps (`Esri World Imagery`) and `maplibre-gl` / `Chart.js` CDN bundles require network access unless cached in open tabs, start the local mirror **15 minutes before pitching**:
+
+1. **Local HTTP Server (Zero-Dependency Repository Mirror):**
    ```bash
    cd /home/ibrahim/İndirilenler/aseltech-gemini
    python3 -m http.server 8000
    ```
-   Verify `http://localhost:8000/web/index.html`, `http://localhost:8000/game/index.html`, `http://localhost:8000/web3d/index.html`, and `http://localhost:8000/docs/story/slides.html` all load HTTP `200`.
-2. **Pre-Buffer Local MP4 Video Backups (open in VLC / system media player or dedicated browser tab, muted):**
-   - `docs/story/media/demo_30s.mp4` (`29.62 s`, `1080p`, `24 fps` full end-to-end site + simulator capture with burned English subtitles — instant 30-second fallback if live clicking stalls)
-   - `docs/story/media/cv_subsidence.mp4` (Central Valley 8-epoch 1080p subsidence animation, matches `Figure 0`)
-   - `docs/story/media/kp_subsidence.mp4` (Karapınar 9-epoch 1080p subsidence + 29-sinkhole animation)
-3. **Self-Contained Offline 7-Slide Deck:**
-   - Open `docs/story/slides.html` (works locally via `http://localhost:8000/docs/story/slides.html` or `file:///home/ibrahim/İndirilenler/aseltech-gemini/docs/story/slides.html` with zero external CDN requests, using embedded local PNG charts in `docs/story/media/`).
-4. **The `< 2-Second Switch Rule` (Memir):**
-   - If the live GitHub Pages site (`https://keremsumer2010-tech.github.io/aseltech/`) or any interactive canvas stalls for **more than 2 seconds**, Memir presses **`Ctrl+Tab`** immediately to **Tab 2** (`http://localhost:8000/web/index.html`) — or **Tab 5** (`docs/story/slides.html`) if WebGL/MapLibre stalls — while **Kerem keeps speaking without pausing or apologizing**.
+   *(If port `8000` is occupied, run `python3 -m http.server 8765` and update the localhost URLs accordingly.)*  
+   Verify `http://localhost:8000/web/index.html`, `http://localhost:8000/docs/story/slides.html`, `http://localhost:8000/game/index.html`, and `http://localhost:8000/web3d/index.html` all return `HTTP 200`.
+2. **Primary Zero-CDN Backup — `docs/story/slides.html` (`7`-Slide Self-Contained Deck):**
+   - Zero external CSS/JS/CDN requests: all PNG maps (`data/central_valley/disp/2026-10-14.png`, `data/karapinar/disp/2026-10-12.png`, `data/uk/`) and verification charts (`docs/story/media/validation_scatter.png`, `gnss_CAHA.png`, `risk_1.png`, `game_sensitivity.png`) render straight from disk via `http://localhost:8000/docs/story/slides.html` or `file://...`.
+   - Memir advances `Slides 1 → 7` using `→` / `←` (~25 s per slide) matching `Blocks 1–6`.
+3. **Secondary Local Video Safety Net (Paused in VLC behind Browser, `Alt+Tab` ready):**
+   - `docs/story/media/demo_30s.mp4` (`29.62 s`, `1080p`, `24 fps`, `~3.5 MB`, burned-in English subtitles matching [`docs/story/video_30s.srt`](video_shotlist.md) / [`video_subtitles.srt`](video_subtitles.srt) + mandatory provisional notice).
+   - Optional local regional animations ready on disk: `docs/story/media/cv_subsidence.mp4`, `docs/story/media/cv_fullyear.mp4`, and `docs/story/media/kp_subsidence.mp4`.
+4. **`< 2-Second Switch Rule` (Memir):**
+   - If any live tile, iframe (`#gameBox`), or WebGL scene freezes for **`> 2 seconds`**, switch immediately (`Ctrl+Tab` to **Tab 5 `slides.html`** or **`Tab 3`**, or `Alt+Tab` to `demo_30s.mp4`) while **Kerem keeps talking smoothly without pausing or apologizing**.
 
 ---
 
-## 2. Exact Browser Tab Order (Single Fullscreen Window `F11`)
+## 4. Screen Sharing, Display & Audio Checks (`T − 15 min`)
 
-Open these **6 tabs in exact left-to-right order** in a clean, distraction-free browser window (`1920×1080`, `100%` zoom, bookmarks bar hidden):
-
-| Tab # | URL / Local Path | Pre-Set Scroll / State Before `0:00` | Purpose |
-|---|---|---|---|
-| **Tab 1** | `https://keremsumer2010-tech.github.io/aseltech/` | Scrolled to top Hero (`#heroMap`); `#cvVideo` pre-buffered | Primary live demo site (`Blocks 1–6`) |
-| **Tab 2** | `http://localhost:8000/web/index.html` | Loaded locally & ready at Chapter 3 (`[data-step="cv"]`) | Instant `< 2 s` offline mirror if GitHub Pages drops |
-| **Tab 3** | `http://localhost:8000/game/index.html` | **Terra Bella** district pre-selected | Instant fallback for Block 6 if `#gameBox` iframe takes `> 1 s` |
-| **Tab 4** | `http://localhost:8000/web3d/index.html` | Central Valley 3D displacement mesh loaded | Visual backup for Q&A (3D exaggeration / Karapınar 3D sinkhole depth) |
-| **Tab 5** | `http://localhost:8000/docs/story/slides.html` | Slide 1 active (advance with `→` key) | Zero-dependency offline slide deck backup |
-| **Tab 6** | `http://localhost:8000/web/faq.html` (plus `web/science.html` link in header) | Top of FAQ cards visible | Rapid jury Q&A visual proof (`GNSS r = 0.924`, dual-orbit `85%`, `Q09 below_detection`) |
+- [ ] **Git Sync & Clean Worktree:** Run `git pull --rebase origin main` on the presentation laptop and start `python3 -m http.server 8000` in `/home/ibrahim/İndirilenler/aseltech-gemini`.
+- [ ] **Share Full Browser Window / Entire Screen (never a single tab):** Guarantees `Ctrl+Tab` across `Tabs 1–6` and `Alt+Tab` to `demo_30s.mp4` stay visible without breaking screen share.
+- [ ] **Display Resolution & Zero-Crop Layout:** `1920×1080` at `100%` OS scale and `100%` browser zoom; close bookmarks bar (`Ctrl+Shift+B`), terminal/chat overlays, and enable OS **Do Not Disturb**; confirm `PROVISIONAL` badges and `#how` disclaimer stay unclipped.
+- [ ] **Zero Console Errors Check:** Quickly open & close `Ctrl+Shift+I` on `Tabs 1–4` to confirm clean rendering before pitching.
+- [ ] **Video Mute & 4-Person Mic Check:** Confirm `#cvVideo` and `demo_30s.mp4` are **muted** during live narration; test **Kerem** active throughout `0:00–3:00`, **Mehmet** & **İbrahim** clean unmute for Q&A, **Memir** muted unless audio clip needed.
 
 ---
 
-## 3. Screen Sharing, Display & Audio Checks (`T − 15 min`)
+## 5. Timekeeping Protocol & Cut-Cord Checkpoints (Target `2:45` → Hard Stop `3:00`)
 
-- [ ] **Share Full Browser Window (not a single tab):** Sharing the browser window guarantees `Ctrl+Tab` switches (Tabs 1–6) are visible to the jury without stopping screen share.
-- [ ] **Display Resolution & Zoom:** Set screen to `1920×1080` (`100%` OS scale, `100%` browser zoom) so `.stats`, `#compare`, `#pointChart`, and `#ringChart` fit without awkward wrapping or cut-off axes.
-- [ ] **Suppress Notifications & Popups:** Turn on OS Do Not Disturb; close terminal/editor windows or move them to another workspace; hide browser bookmarks bar (`Ctrl+Shift+B`) and press `F11`.
-- [ ] **Video Mute Check:** Verify `#cvVideo` (`Figure 0`) and local `demo_30s.mp4` are **muted** during the live talk so audio tracks never talk over Kerem.
-- [ ] **4-Person Microphone Check:** Test audio clarity and mute/unmute discipline for **Kerem** (active throughout `0:00–3:00`), **Mehmet** (unmuted for Q&A), and **İbrahim** (unmuted for Q&A); **Memir** stays muted unless sharing screen audio/tech note.
-- [ ] **Offline File Size & Verification (`< 20 MB` check):** Confirm `demo_30s.mp4`, `cv_subsidence.mp4`, `kp_subsidence.mp4`, and `slides.html` load locally with zero broken `src` paths.
-
----
-
-## 4. Timekeeping & Pacing Discipline (`3:00` Strict Limit)
-
-- **Stopwatch Trigger:** **İbrahim** starts a silent visible stopwatch on Kerem's very first word (not on slide/screen load).
-- **30-Second Checkpoint Targets (from `docs/story/presentation_cues.md`):**
-  - **`0:30`:** Memir enters `#story` Chapter 2 (`[data-step="uk"]`, `#compare`).
-  - **`1:00`:** Memir triggers `#cvPlay` in Chapter 3 (`[data-step="cv"]`, Central Valley).
-  - **`1:30`:** Memir reaches Chapter 4 (`[data-step="gnss"]`, `CAHA`) and moves to Chapter 5 (`.riskbars`).
-  - **`2:00`:** Memir reaches Chapter 6 (`[data-step="kp"]`, Karapınar `#ringChart`).
-  - **`2:30` (`30s` Warning Signal):** **İbrahim holds up the `30s` cue / hand signal.** Regardless of exact sentence position, Kerem transitions immediately to **Block 6** and Memir jumps straight to **`#play` (`Valley Under Pressure`)**.
-  - **`2:55`:** Kerem finishes the closing sentence (`"All provisional NISAR processing code, 3D surfaces, and verified sources are open on GitHub—thank you, and we welcome your questions."`) with a `5-second` buffer before the `3:00` bell.
+| Elapsed | Checkpoint | Required On-Screen State | Mehmet Cue to Kerem & Memir | Cut-Cord Shortcut if `> 8 s` Late |
+|---|---|---|---|---|
+| `0:30` | End Block 1 | Hero `.stats` + `#watch` (`#cvVideo`) complete; entering `#story` Chapter 2 | `1` finger / proceed | Cut `#cvVideo` dwell to `2 s` |
+| `1:00` | End Block 2 | `#compareRange` dragged, `#polChart` & `#ukClay` shown; entering Chapter 3 | `2` fingers / move to CV | Skip verbal mention of Fens `4`-field `dB` spread; keep cloud + `±3.6 cm` |
+| `1:30` | End Block 3 | `#cvPlay`, `p01`, `#fyBox`, `CAHA` & `Tulare Canal` (`57 mm/km`) shown | `3` fingers / move to Karapınar | Skip `Tab 2` (`explorer.html`) switch; stay on `#fyBox` card in `Tab 1` |
+| `2:00` | End Block 4 | `#ringChart` (`4.2` vs `0.6 cm`), `sinkList` & `#why` diagram shown | **`1:00 LEFT`** card — switch to Simulator | Mention Mexico City in 1 clause; switch straight to `Tab 3` (`game/index.html`) |
+| `2:30` | **HARD SIMULATOR / CLOSE TRIGGER** | Finish `2. Multi-Year Drought` + `web3d/` orbit; jump immediately to `#how` | **`0:30 LEFT · WRAP TO #how`** card | Cut `Tab 4` (`web3d/`) early regardless of sentence position; land on `#how` |
+| `2:50` | Closing Attribution | `#how` (`.qlegend` + `.disclaimer`) on screen cleanly | **`WRAP NOW`** | Deliver mandatory NASA–JPL/ISRO provisional sentence & stop by `2:55` |
 
 ---
 
-## 5. Team Responsibility Matrix (`tasks/PC4.md`)
+## 6. Pre-17:30 Lincoln Dry-Run Gate (3 Structured Runs)
 
-| Team Member | Before Start (`T − 15 min`) | Live 3-Minute Pitch (`0:00 – 3:00`) | Jury Q&A Session |
-|---|---|---|---|
-| **Kerem** *(Speaker)* | Warm up Blocks `1–6` aloud; check mic levels; mute desktop notifications | Speaks Blocks `1–6` cleanly in English following `presentation_cues.md` | Routes deep technical/source questions to Mehmet & İbrahim; delivers final summary |
-| **Memir** *(Demo Driver)* | Start `python3 -m http.server 8000`; load Tabs `1–6` in fullscreen window; verify `Ctrl+Tab` speed | Executes synchronized clicks (`#watch`, `#compareRange`, `#cvPlay`, `p01`, `CAHA`, `#ringChart`, `#gamePlay`, `150%` Over-Pump) and `< 2 s` fallback | Pulls up Tab 4 (`web3d/`), Tab 5 (`slides.html`), or Tab 6 (`faq.html` / `science.html`) visually as Mehmet/İbrahim answer |
-| **Mehmet** *(Tech Q&A)* | Keep `validation_report.md`, `uncertainty.md`, and `fullyear.md` key numbers open on secondary screen | Monitors technical chart transitions (`#gnssChart`, `#why`) | Answers Q2 (LOS/vertical & Dual-Orbit Track 34/114), Q3 (ionosphere/DEM/Cramér-Rao/`1.00 cm` GNSS RMSE), Q5 (108-day vs. 11-month Earlimart decomposition), and simulator Terzaghi physics |
-| **İbrahim** *(Data Q&A & Timer)* | Verify Tab `1–6` HTTP 200 & local video buffers; set stopwatch ready | Calls visual `30 s` pacing splits and **`2:30` simulator jump signal** | Answers Q1 (Provisional `P05023` vs. beta/preview maturity policy), Q4 (Karapınar 29 sinkholes & `p = 0.0001` permutation limits), UK Fens / London clay `below_detection`, and literature sources (`sources.md`) |
+1. **`17:05–17:15` · Tech & Asset Gate:** Start `python3 -m http.server 8000`, open `Tabs 1–6` + paused `demo_30s.mp4`, confirm zero missing images (`data/uk/`, `docs/story/media/pc9_fullyear_point.png`), zero JS console errors, and exact tab order.
+2. **`17:15–17:25` · Synchronized Walkthrough + Full Timed Run (`3:00` + `2:00` Q&A):** Memir rehearses clicks one cue ahead of Kerem; target `2:40–2:50` finish; Mehmet & İbrahim drill all `5` flash FAQ answers (`presentation_cues.md §3`) at `<= 15 s` each.
+3. **`17:25–17:30` · Disconnect & Wording Sign-Off Drill:** Toggle Wi-Fi off mid-`Block 2` and require `< 2 s` transition to `Tab 5` (`slides.html`) without breaking Kerem's speech. Verify team members strictly state NISAR calibration and validation are performed by NASA–JPL and ISRO rather than our team, label vertical and yearly rates as *estimates*, and never claim InSAR predicts sinkhole collapse dates. Note any UI findings in [`docs/qa/PC4.md`](../qa/PC4.md) or [`docs/qa/PC9.md`](../qa/PC9.md) before pushing.
