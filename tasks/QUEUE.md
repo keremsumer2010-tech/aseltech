@@ -17,6 +17,16 @@ Saatler: `docs/ZAMAN_CIZELGESI.md`. "[atandı: PCx]" işi sadece o PC alır; ata
 - [ ] Q19 · Aquifer Manager oyunu (eski PC5 görevi; ayrıntı: tek dosya `game/index.html`, 10 yıl, pompalama %0–150, CONFIG'de hız = `data/central_valley/summary.json`, "illustrative" etiketi, AI görseli varsa etiketli) · game/
 - [x PC6] Q20 · Sunum metni: 3 dk konuşma + 30 sn video senaryosu (İngilizce altyazı) + ≤7 slayt, sayılar yer tutucu → `docs/story/pitch.md` · docs/story/pitch.md
 
+## 14:00 EK İŞLER (Mehmet'in ajanları boş kalmasın — sırayla)
+- [ ] Q21 · [atandı: PC3] · İKİNCİ GEÇİŞLE DOĞRULAMA: Central Valley GUNW **path 114** provisional ardışık çiftleri (kendi fetch_subset ile) → kümülatif → path 34 sonucuyla aynı noktalarda karşılaştır (fark, korelasyon) → `data/central_valley_p114/` + `docs/qa/PC3.md`. İki bağımsız geometri aynı çökmeyi gösteriyorsa en güçlü kanıtımız bu · analysis/, data/central_valley_p114/
+- [ ] Q22 · [atandı: PC3] · Q21 yükselen/alçalan geçişse: iki LOS'tan dikey + doğu-batı ayrıştırması (ortak tarih aralığında) → `data/central_valley/vertical.json` + 1 PNG · analysis/
+- [ ] Q23 · [atandı: PC6] · (PC4 sessiz) UK bulut/radar görsel çifti — tasks/PC4.md Görev 1'in aynısı → `data/uk/` · data/uk/
+- [ ] Q24 · [atandı: PC6] · (PC4 sessiz) Karapınar obruk noktaları, her biri kaynaklı — tasks/PC4.md Görev 2 → `data/karapinar/sinkholes.geojson` · data/karapinar/sinkholes.geojson
+- [ ] Q25 · [atandı: PC6] · (PC4 sessiz) Kaynak listesi + Holme Fen rakamı + kalibrasyon notu — tasks/PC4.md Görev 3 → `docs/story/` · docs/story/sources.md, docs/story/calibration_note.md
+- [ ] Q26 · [atandı: PC5] · Nokta bazında zaman serisi kalitesi: `points.json` her nokta için doğrusal uyum, artık std, en büyük sıçrama (unwrapping şüphesi) → `docs/qa/PC5.md` tablo · analysis/decomp/
+- [ ] Q27 · [atandı: PC5] · GNSS doğrulama sonucunun (`data/central_valley/validation.json`) istatistiksel yorumu: RMSE, korelasyon, eğilim farkı; 3 cümle İngilizce → `docs/story/uncertainty.md` · docs/story/uncertainty.md
+Not: PC4 başlarsa Q23–Q25 satırını ÖNCE sahiplenen yapar (satır kuralı).
+
 ## Öncelik 2 — Pazar katkıları
 - [ ] Q07 · [atandı: PC2] · Central Valley tam yıl zinciri (2025-11-24→2026-10-14, P05023) indir/kes → `pipeline/subset/central_valley_beta/` (beta-precal ayrı!) · E · pipeline/
 - [ ] Q08 · [atandı: PC3] · Kalıcı vs geri dönen ayrımı (trend + yıllık sinüs) → `data/central_valley_fullyear/decomp.json` + 2 PNG, `quality: mixed` · analysis/
@@ -26,9 +36,9 @@ Saatler: `docs/ZAMAN_CIZELGESI.md`. "[atandı: PCx]" işi sadece o PC alır; ata
 ## Öncelik 3 — teslim ve kalite
 - [x PC4] Q11 · [atandı: PC4] · Space Apps proje sayfası metni taslağı (İngilizce; özet, nasıl çalışır, faydalar, araçlar, NASA verisi, AI kullanımı) → `docs/story/project_page.md`
 - [x PC4] Q12 · [atandı: PC4] · Space Apps 2026 kurallarında AI kullanım açıklaması ve demo şartları — resmi sayfadan doğrula → `docs/story/submission_rules.md`
-- [ ] Q13 · [atandı: PC5] · README.md: kurulum, veri hattı nasıl çalıştırılır, lisans, kaynaklar (sadece README.md)
+- [ ] Q13 · [atandı: PC6] · README.md: kurulum, veri hattı nasıl çalıştırılır, lisans, kaynaklar (sadece README.md)
 - [~PC6] Q14 · [atandı: PC6] · Tüm data/*/meta.json'ları kontrol et: quality alanı, vmin/vmax, bbox tutarlı mı → `docs/qa/PCx.md` (her PC kendi dosyası; düzeltme gerekirse sahibinin status'una değil, kendi QA dosyana not)
-- [ ] Q15 · [atandı: PC5] · Repo kodlarını gözden geçir: testler çalışıyor mu, hardcoded yol var mı → `docs/code_review.md`
+- [ ] Q15 · [atandı: PC6] · Repo kodlarını gözden geçir: testler çalışıyor mu, hardcoded yol var mı → `docs/code_review.md`
 
 ## Öncelik 4 — vitrin (sadece her şey bittiyse)
 - [x PC4] Q16 · 3D "yerin nefesi" görünümü (deck.gl/Three.js, abartılı dikey ölçek) → `web3d/` (PC1 siteye bağlar)
