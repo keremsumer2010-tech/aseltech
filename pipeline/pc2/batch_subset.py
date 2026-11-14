@@ -26,8 +26,8 @@ EXTRA_SITES: dict[str, dict] = {
     },
     "konya_plain": {
         "bbox": (32.4, 37.4, 33.9, 38.1),
-        "path": 108,
-        "frame": None,
+        "path": 7,
+        "frame": 69,
     },
     "karapinar_fullyear": {
         "bbox": (33.3, 37.6, 33.8, 37.9),
