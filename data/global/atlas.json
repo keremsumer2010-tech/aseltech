@@ -4,9 +4,9 @@
   "quality": "provisional",
   "quality_note": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team. Regions are ranked by rate_cm_per_100d (LOS).",
   "ranking_metric": "rate_cm_per_100d",
-  "n_regions": 10,
+  "n_regions": 11,
   "n_reliable": 6,
-  "n_indicative": 4,
+  "n_indicative": 5,
   "regions": [
     {
       "id": "konya_plain",
@@ -183,6 +183,36 @@
       "rank": 6
     },
     {
+      "id": "ho_chi_minh",
+      "name": "Ho Chi Minh City",
+      "country": "Vietnam",
+      "lon": 106.91207,
+      "lat": 10.9967,
+      "max_cm_los": -4.2,
+      "p2_cm": -1.8,
+      "rate_cm_per_100d": -3.5,
+      "max_cm_vertical_est": -5.8,
+      "period": [
+        "2026-06-17",
+        "2026-10-15"
+      ],
+      "days": 120,
+      "n_pairs": 9,
+      "quality": "provisional",
+      "rate_cm_per_yr_estimate": -12.8,
+      "valid_fraction": 0.321,
+      "ref_range_cm": [
+        -9.9,
+        -4.2
+      ],
+      "confidence": "low",
+      "indicative_only": true,
+      "coverage": "ok",
+      "path": "data/global/ho_chi_minh/",
+      "note": "",
+      "rank": 7
+    },
+    {
       "id": "tehran",
       "name": "Tehran",
       "country": "Iran",
@@ -210,7 +240,7 @@
       "coverage": "ok",
       "path": "data/global/tehran/",
       "note": "",
-      "rank": 7
+      "rank": 8
     },
     {
       "id": "isfahan",
@@ -240,7 +270,7 @@
       "coverage": "ok",
       "path": "data/global/isfahan/",
       "note": "",
-      "rank": 8
+      "rank": 9
     },
     {
       "id": "beijing",
@@ -270,7 +300,7 @@
       "coverage": "ok",
       "path": "data/global/beijing/",
       "note": "",
-      "rank": 9
+      "rank": 10
     },
     {
       "id": "delta",
@@ -300,7 +330,7 @@
       "coverage": "ok",
       "path": "data/delta/",
       "note": "",
-      "rank": 10
+      "rank": 11
     }
   ],
   "reliable": [
@@ -456,7 +486,7 @@
       "coverage": "ok",
       "path": "data/global/beijing/",
       "note": "",
-      "rank": 9,
+      "rank": 10,
       "rank_reliable": 5
     },
     {
@@ -487,7 +517,7 @@
       "coverage": "ok",
       "path": "data/delta/",
       "note": "",
-      "rank": 10,
+      "rank": 11,
       "rank_reliable": 6
     }
   ],
@@ -549,6 +579,37 @@
       "rank_indicative": 2
     },
     {
+      "id": "ho_chi_minh",
+      "name": "Ho Chi Minh City",
+      "country": "Vietnam",
+      "lon": 106.91207,
+      "lat": 10.9967,
+      "max_cm_los": -4.2,
+      "p2_cm": -1.8,
+      "rate_cm_per_100d": -3.5,
+      "max_cm_vertical_est": -5.8,
+      "period": [
+        "2026-06-17",
+        "2026-10-15"
+      ],
+      "days": 120,
+      "n_pairs": 9,
+      "quality": "provisional",
+      "rate_cm_per_yr_estimate": -12.8,
+      "valid_fraction": 0.321,
+      "ref_range_cm": [
+        -9.9,
+        -4.2
+      ],
+      "confidence": "low",
+      "indicative_only": true,
+      "coverage": "ok",
+      "path": "data/global/ho_chi_minh/",
+      "note": "",
+      "rank": 7,
+      "rank_indicative": 3
+    },
+    {
       "id": "tehran",
       "name": "Tehran",
       "country": "Iran",
@@ -576,8 +637,8 @@
       "coverage": "ok",
       "path": "data/global/tehran/",
       "note": "",
-      "rank": 7,
-      "rank_indicative": 3
+      "rank": 8,
+      "rank_indicative": 4
     },
     {
       "id": "isfahan",
@@ -607,8 +668,8 @@
       "coverage": "ok",
       "path": "data/global/isfahan/",
       "note": "",
-      "rank": 8,
-      "rank_indicative": 4
+      "rank": 9,
+      "rank_indicative": 5
     }
   ]
 }
