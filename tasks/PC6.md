@@ -94,3 +94,22 @@ Yazma alanı bu paket için: `game/` · `analysis/pc6/` · `docs/story/media/` �
 # 15:00 ÖNCELİK DEĞİŞİKLİĞİ — ÖNCE OYUN CİLASI (sonra 14:45 paketine dön)
 `docs/REVIEW_1500.md` "Oyun" bölümündeki 7 maddeyi `game/` içinde uygula (sırayla, her madde ayrı commit). Ardından canlı sitede iframe ve tam ekran testi, `docs/game_v3.png`. Bitince 14:45 paketinin 1. maddesine (animasyon) geç.
 Kural: sade, olgusal İngilizce; emoji/ünlem/abartı yok; "Zero AI" vb. rozetleri kaldır.
+
+---
+# 15:25 SÜREKLİ PAKET — PC6 HİÇ DURMAZ (sırayla; liste bitince en alttaki "sonsuz döngü"ye geç)
+Yazma alanı: `game/` · `analysis/pc6/` · `docs/story/media/` · `docs/qa/PC6.md` · `status/PC6.md` · `risk/` · `validation/`. İndirme yapma.
+
+1. **Oyun cilası — 7 madde** (`docs/REVIEW_1500.md` "Oyun" bölümü). HENÜZ YAPILMADI, ilk iş bu. Her madde ayrı commit. Bitince `docs/game_v3.png`.
+2. **30 saniyelik demo videosu** → `analysis/pc6/make_demo_video.py` + `docs/story/media/demo_30s.mp4` (1080p, ffmpeg):
+   gerçek veri sahneleri: (a) başlık kartı "NISAR Pulse — Team Taykut" 2 sn, (b) `cv_subsidence.mp4` 8 sn, (c) `validation_scatter.png` 4 sn, (d) `risk_4.png` (California Aqueduct) 4 sn, (e) `kp_subsidence.mp4` 6 sn, (f) oyun ekran görüntüsü 3 sn, (g) kapanış kartı (site linki, "Data: NASA-ISRO NISAR, provisional") 3 sn.
+   Altyazı: `docs/story/video_subtitles.srt` varsa (PCQ yazıyor) göm; yoksa `docs/story/video_shotlist.md` metinleriyle sade İngilizce altyazı. AI görseli yok, AI ses yok.
+3. **Oyuna ikinci vadi: Konya** — başlangıç ekranında "Tulare Basin, USA / Konya Closed Basin, Türkiye" seçimi. Konya için: Karapınar haritası (`data/karapinar/`), bölgeler `data/karapinar/points.json`, kalibrasyon `data/karapinar/summary.json` (−5.9 cm LOS / ~−8 cm dikey, 108 gün), parametreler `docs/story/game_model.md`'deki aralıklar + literatür (kaynaksızsa "illustrative"). Obruklar haritada; çökme eşiği aşılan bölgelerde "sinkhole risk" uyarısı (sadece gösterge, tahmin iddiası yok).
+4. **Oyun erişilebilirlik ve performans**: klavye ile oynanabilirlik (Tab/Enter, kısayol), ekran okuyucu etiketleri, renk körü güvenli palet kontrolü, düşük güçlü telefonda akıcılık.
+5. **Kısa "nasıl oynanır" katmanı**: ilk açılışta 3 adımlı, atlanabilir rehber (metinler sade İngilizce).
+
+## SONSUZ DÖNGÜ (liste bitince, teslime kadar her 30 dk)
+a) `git pull`; `docs/qa/*.md` dosyalarında `game/`, `risk/`, `validation/` veya `docs/story/media/` hakkındaki her bulguyu oku ve düzelt (düzelttiğini `docs/qa/PC6.md`'ye yaz).
+b) `data/*/summary.json`, `validation.json`, `assets.json` veya `disp/` değiştiyse: oyun kalibrasyonunu, animasyonları, doğrulama ve risk grafiklerini yeniden üret.
+c) PC2/PC3 tam yıl verisini (`data/central_valley_fullyear/`) üretince: tam yıl animasyonu (`docs/story/media/cv_fullyear.mp4`) + risk ve doğrulamayı `--data-dir` ile ayrı klasöre yeniden çalıştır (quality: mixed, ayrı etiket).
+d) Yapacak bir şey kalmadıysa: oyunu 20 farklı stratejiyle otomatik test et, sonuçları ve bulduğun hataları `docs/qa/PC6.md`'ye yaz, düzelt.
+Asla "görev bekleniyor" diye durma; status'a o an ne yaptığını yaz.
