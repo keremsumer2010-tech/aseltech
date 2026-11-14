@@ -24,7 +24,7 @@ Ayrıntılar: `docs/SORUN_KAYDI.md` (her maddenin "Nerede / Sorun / Öneri" kıs
 Her PC sadece kendi `[atandı]` satırlarını yukarıdan aşağı yapar: `- [ ]` → `- [~PCx]` (commit+push) → bitince satırı kuyruktan **SİL** ve yaptığını `docs/qa/PCx.md`'ye yaz. Madde zaten düzeltilmişse satırı sil, qa'ya "zaten düzeltilmiş" yaz, sıradakine geç.
 
 ### PC8 — site (web/index.html, web/app.js, web/science.html, web/style.css, .github/workflows/pages.yml)
-- [ ] B06 · [atandı: PC8] · S-03 Yüksek · Mavi alanların anlamı: göstergeye ve video altyazısına tek cümle
+- [~PC8] B06 · [atandı: PC8] · S-03 Yüksek · Mavi alanların anlamı: göstergeye ve video altyazısına tek cümle
 - [ ] B07 · [atandı: PC8] · S-25 Yüksek · science.html "12 to 36 days" → "12 to 24 days" (track 114 aralıklarını da kontrol et)
 - [ ] B08 · [atandı: PC8] · S-07 Orta · `web/app.js` `NOISE_CM` eşiği: 1–3 cm arası için "small change, close to the noise"
 - [ ] B09 · [atandı: PC8] · S-12 Orta · UK Figure 1: çizgi ortada başlasın, etiketler okunur olsun
