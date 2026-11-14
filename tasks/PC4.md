@@ -1,28 +1,35 @@
-# PC4 — acikgozibrahim032-hub (Antigravity) — Görseller, obruklar, kaynaklar  ·  BUGÜN: docs/TODAY_PLAN.md
-Klasörlerin: `data/uk/`, `data/karapinar/sinkholes.geojson`, `docs/story/`. Başka yere yazma.
-Önce CLAUDE.md'deki "Veri kalitesi ve kalibrasyon" kuralını oku. Uydurma koordinat, sayı veya link YASAK.
+# PC4 — UK görselleri, obruklar, kaynaklar
 
-## Görev 1 — UK "bulutun altı" görsel çifti (12:00–13:30 TR)
-1. Fens/Lincolnshire (bbox CLAUDE.md'de `fens`) için NISAR GCOV tarihlerini ASF'den listele (`platform=NISAR`, `processingLevel=GCOV`).
-2. Bu tarihlerden **optik görüntüde bulutlu olan** bir gün seç: NASA Worldview Snapshots / GIBS (girişsiz) ile
-   o günün MODIS veya VIIRS true color görüntüsünü bbox için indir. Birkaç günü dene, en bulutlusunu seç.
-3. Aynı günün NISAR GCOV **browse PNG**'sini indir (girişsiz iner).
-4. Çıktılar:
-   - `data/uk/optical_<YYYY-MM-DD>.jpg`, `data/uk/radar_<YYYY-MM-DD>.png` (aynı bbox'a kırp/hizala)
-   - `data/uk/meta.json`: `{date, bbox, optical_source_url, optical_product, radar_granule, radar_browse_url, quality:"preview", note}`
-   - radar görüntüsü kalite sınıfı `preview` (nicel değil).
+## Kimlik
+acikgozibrahim032-hub · Antigravity (Gemini) · klasör `aseltech`
 
-## Görev 2 — Karapınar obruk noktaları (13:30–15:30 TR)
-`data/karapinar/sinkholes.geojson` — sadece bir KAYNAKTA koordinatı verilen veya adı ve yeri net tanımlanmış obruklar.
-Her nokta properties: `name`, `lon`, `lat`, `year_formed` (varsa), `source_title`, `source_url`, `coord_source` ("paper table" / "official" / "wikipedia" vb.).
-Koordinatı tahmin etme. En az 5, ideal 10+ nokta. Hakemli makale veya resmi kurum (AFAD, MTA, üniversite) öncelikli.
+## Yazma alanı
+`data/uk/`, `data/karapinar/sinkholes.geojson`, `docs/story/sources.md`, `docs/story/calibration_note.md`, `status/PC4.md`
 
-## Görev 3 — Kaynak listesi + Holme Fen (15:30–17:00 TR)
-`docs/story/sources.md` — her linki AÇ, doğrula. Başlık, link, 1 cümle bulgu, sayı varsa sayı:
-- Holme Fen direği: ne zaman dikildi, zemin ne kadar alçaldı (kaynaklı)
-- Central Valley çökmesi (NASA/JPL, USGS) · Sacramento Delta setleri · Karapınar/Konya çökme ve obruklar
-- UK kil şişme-büzülme (BGS) · NISAR görevi (nasa.gov / jpl.nasa.gov) · NISAR veri sürümleri ve kalibrasyon durumu
-`docs/story/calibration_note.md`: ASF/JPL ürün notlarına göre 2026-06-17 öncesi ürünlerin durumu (beta / pre-calibration mi?) — kaynaklı, kısa.
+## En kritik iş
+13:30 TR'ye kadar `data/uk/` görsel çifti (sitenin açılış sahnesi).
 
-## Rapor
-status/PC4.md: ne bitti, hangi kaynaklar, doğrulanamayanlar.
+## Görevler
+1. **(12:00–13:30) UK "bulutun altı" çifti**
+   - ASF'den `fens` bbox'ı için NISAR GCOV tarihlerini listele.
+   - Bu tarihlerden optikte BULUTLU bir gün seç: NASA Worldview Snapshots / GIBS (girişsiz) MODIS veya VIIRS true color; birkaç günü dene.
+   - Aynı günün GCOV browse PNG'sini indir (girişsiz). İkisini aynı bbox'a hizala.
+   - → `data/uk/optical_<date>.jpg`, `data/uk/radar_<date>.png`, `data/uk/meta.json` (format: `rules/VERI_SOZLESMESI.md` §4, `quality:"preview"`).
+2. **(13:30–15:30) Karapınar obrukları** → `data/karapinar/sinkholes.geojson`
+   Sadece kaynakta koordinatı verilen veya yeri net tanımlanmış obruklar; her noktada `name, year_formed, source_title, source_url, coord_source`. En az 5, ideal 10+. Hakemli makale/resmi kurum öncelikli.
+3. **(15:30–17:00) Kaynaklar** → `docs/story/sources.md` (her linki aç): Holme Fen (dikiliş tarihi, alçalma miktarı), Central Valley çökmesi (NASA/JPL, USGS), Sacramento Delta setleri, Karapınar/Konya, BGS kil şişme-büzülme, NISAR görevi.
+   `docs/story/calibration_note.md`: ASF/JPL ürün notlarına göre 2026-06-17 öncesi ürünlerin kalibrasyon durumu (kaynaklı, kısa).
+4. **(17:00 sonrası)** QUEUE Q11/Q12.
+
+## Bitti sayılır eğer
+İki görsel aynı bbox'ta ve açılıyor · optik gerçekten bulutlu · meta.json geçerli · geojson geçerli (bir doğrulayıcıyla kontrol) ve her noktada kaynak var · sources.md'deki her link açıldı.
+
+## B planı
+- Aynı günde bulutlu optik + radar bulunamazsa: ±1 gün kabul et, meta'da `note`'a yaz.
+- Obruk koordinatı az bulunursa: bulunanları koy, kalanları "doğrulanmadı" diye status'a yaz; tahmin etme.
+
+## Yapma listesi
+Koordinat/sayı tahmin etme · radar önizlemeyi nicel veri gibi tanımlama · yapay zekâ görseli koyma · başka klasöre yazma.
+
+## Rapor (`status/PC4.md`)
+Seçilen tarih ve neden, obruk sayısı ve kaynakları, doğrulanamayanlar.

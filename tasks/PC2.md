@@ -1,25 +1,34 @@
-# PC2 — memir-erdogmus — Veri (klasör: pipeline/)  ·  BUGÜN: docs/TODAY_PLAN.md
-Önce CLAUDE.md'deki "Veri kalitesi ve kalibrasyon" kuralını oku.
+# PC2 — Veri
 
-## Görev 1 — HEMEN (12:00–13:30 TR)
-1. https://urs.earthdata.nasa.gov adresinden hesap aç. Şifreyi SEN gir, Claude'a verme.
-   Claude'a `~/.netrc` şablonunu hazırlat; kullanıcı adı ve şifreyi o dosyaya SEN yaz. `.netrc` asla repoya girmez.
-2. `pip install asf_search h5py numpy matplotlib`
-3. `pipeline/search.py`: Central Valley GUNW path 34 listesi → `pipeline/central_valley_gunw.csv`
-   (granule, iki tarih, sürüm kodu, URL, boyut, `quality` sütunu: her iki tarih ≥ 2026-06-17 ise "provisional", değilse "beta-precal").
-4. İLK dosya: 2026-09-08 → 2026-09-20 çifti. İndir, HDF5 ağacını `docs/gunw_structure.md`'ye yaz
-   (unwrapped phase, coherence, x/y, EPSG, dalga boyu, incidence yolları; dosya içindeki kalite/sürüm/kalibrasyon attr'ları da).
-   HEMEN push et → PC3 bunu bekliyor.
+## Kimlik
+memir-erdogmus · Antigravity (Gemini) · klasör `aseltech`
 
-## Görev 2 — (13:30–16:00 TR) — SADECE provisional çiftler
-Şu 6 ardışık çifti sırayla indir, `pipeline/subset.py` ile central_valley bbox'ını kes, orijinali sil (sadece "P05023"):
-2026-06-28→07-10, 07-10→07-22, 07-22→08-15, 08-15→08-27, 08-27→09-08, 09-08→09-20
+## Yazma alanı
+`pipeline/`, `docs/gunw_structure.md`, `status/PC2.md` (ham veri: `raw/`, git dışı)
 
-Her alt küme: `pipeline/subset/central_valley/<t1>_<t2>.npz` içinde `unw`, `coh`, `x`, `y`, `epsg`, `wavelength`, `incidence` (varsa), `quality`.
-Her dosya bitince push et.
+## En kritik iş
+`docs/gunw_structure.md`'yi ~13:30 TR'ye kadar push etmek. PC3 ve tüm demo buna bağlı.
 
-## Görev 3 — (Pazar) beta-precal dahil tam yıl zinciri (2025-11-24 → 2026-10-14) — AYRI klasör:
-`pipeline/subset/central_valley_beta/` ; + SME2 → `data/central_valley/drivers.json`
+## Görevler
+1. **(12:00–13:30) İlk dosya ve yapı**
+   - İnsan Earthdata hesabını açar ve `~/.netrc`'ye kendisi yazar; sen sadece şablon hazırlarsın.
+   - `pip install asf_search h5py numpy matplotlib`
+   - `pipeline/search.py <site>` → `pipeline/central_valley_gunw.csv` (granule, t1, t2, sürüm kodu, url, boyut, quality).
+   - 2026-09-08 → 2026-09-20 çiftini `raw/`'a indir; HDF5 ağacını `docs/gunw_structure.md`'ye yaz
+     (unwrapped phase, coherence, x/y, EPSG, wavelength, incidence/LOS cube yolları, kalite/sürüm attr'ları). HEMEN push.
+2. **(13:30–16:00) 6 provisional çift** — `rules/VERI_SOZLESMESI.md` §1'deki liste, sadece P05023.
+   `pipeline/subset.py` ile central_valley bbox'ını kes → `pipeline/subset/central_valley/<t1>_<t2>.npz` (format §3), orijinal `.h5`'i sil. Her dosyada push.
+3. **(16:00 sonrası)** `tasks/QUEUE.md` → Q01 (Karapınar indirme), sonra Q03/Q04/Q07.
 
-## Rapor
-status/PC2.md: kaç dosya bitti, indirme hızı, hata varsa BLOCKED + hata metni.
+## Bitti sayılır eğer
+csv var · `gunw_structure.md` var · 6 npz push edildi, her biri < 20 MB, `unw` ve `coh` aynı boyutta, `quality="provisional"` · `raw/`'da gereksiz `.h5` yok · status güncel.
+
+## B planı
+- İndirme giriş hatası (E-02): insana `.netrc`'yi kontrol ettir; olmazsa `BLOCKED` yaz, browse PNG'leri (`preview`) `pipeline/browse/central_valley/` altına indir.
+- Kesme yavaşsa: önce tek çift kesip push et, sonra diğerleri.
+
+## Yapma listesi
+Beta (2026-06-17 öncesi) çifti bugünkü klasöre koyma · `.h5`/`.netrc` commit etme · `analysis/` veya `data/`'ya yazma · şifre isteme.
+
+## Rapor (`status/PC2.md`)
+Kaç dosya bitti, indirme hızı, dosya boyutları, hatalar (E-kodu veya E-YENİ).

@@ -23,3 +23,7 @@ Push çakışırsa `git pull --rebase`; satırı başkası almışsa bir sonraki
 - [ ] Q13 · README.md: kurulum, veri hattı nasıl çalıştırılır, lisans, kaynaklar (sadece README.md)
 - [ ] Q14 · Tüm data/*/meta.json'ları kontrol et: quality alanı, vmin/vmax, bbox tutarlı mı → `docs/qa_report.md` (düzeltme gerekirse sahibine BLOCKED notu)
 - [ ] Q15 · Repo kodlarını gözden geçir: testler çalışıyor mu, hardcoded yol var mı → `docs/code_review.md`
+
+## Öncelik 4 — vitrin (sadece her şey bittiyse)
+- [ ] Q16 · 3D "yerin nefesi" görünümü (deck.gl/Three.js, abartılı dikey ölçek) → `web3d/` (PC1 siteye bağlar)
+- [ ] Q17 · Göl/baraj su alanı değişimi (GCOV, Cookbook inundation yöntemi) bir bölge için → `data/water/`
