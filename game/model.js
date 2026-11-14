@@ -747,7 +747,7 @@
       // Konya Closed Basin factual sinkhole risk indicator (indicator only, never predictive)
       if (state.basinId === 'konya' && (d.sinkholesWithin5km || 0) > 0) {
         const wasActive = d.sinkholeRiskIndicator;
-        const breached = d.headM <= d.preconsolidationHeadM - 0.15 && Math.abs(d.totalCm) >= CONFIG.thresholds.sinkholeAlertCm;
+        const breached = d.headM <= d.preconsolidationHeadM + 0.05 && Math.abs(d.totalCm) >= CONFIG.thresholds.sinkholeAlertCm;
         if (breached) {
           d.sinkholeRiskIndicator = true;
           state.sinkholeRiskActive = true;

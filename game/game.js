@@ -388,8 +388,8 @@
         },
         paint: {
           'circle-radius': 5.5,
-          'circle-color': 'rgba(245, 185, 66, 0.22)',
-          'circle-stroke-color': '#f5b942',
+          'circle-color': 'rgba(230, 159, 0, 0.24)',
+          'circle-stroke-color': '#e69f00',
           'circle-stroke-width': 1.6,
         },
       });
@@ -1032,11 +1032,15 @@
   function updateBasinCalibrationCard() {
     const ui = BASIN_UI[activeBasinId] || BASIN_UI.tulare;
     const cal = ValleyModel.runCalibrationCheck(summaryData, activeBasinId);
+    const rng = summaryData && (summaryData.range_cm || summaryData.max_subsidence_range_cm);
+    const calNote = Array.isArray(rng) && rng.length === 2
+      ? `ref range ${Math.max(rng[0], rng[1])}…${Math.min(rng[0], rng[1])} cm LOS`
+      : ui.calNote;
     $('startCalibrationBox').innerHTML =
       `<strong>Model check against NISAR (${cal.within10Pct ? 'PASS ±10%' : 'CHECK'} · ${ui.shortLabel}):</strong>
       Under baseline summer pumping for the 108-day NISAR window (${ui.windowLabel}), the model simulates
       <span class="mono color-ok">${cal.simulatedVertCm} cm</span> vertical (<span class="mono">${cal.simulatedLosCm} cm</span> LOS) at ${cal.district} vs
-      <span class="mono">${cal.measuredVertCm} cm</span> vertical (<span class="mono">${cal.measuredLosCm} cm</span> LOS; ${ui.calNote}) measured by NISAR
+      <span class="mono">${cal.measuredVertCm} cm</span> vertical (<span class="mono">${cal.measuredLosCm} cm</span> LOS; ${calNote}) measured by NISAR
       (<span class="mono">error: ${cal.errorPct}%</span>, extraction scale factor <span class="mono">k=${cal.calibrationFactor}</span>).`;
   }
 
@@ -1245,6 +1249,27 @@
         }
       });
     });
+
+    const guideCard = $('howToPlayGuide');
+    const howBtn = $('howToPlayBtn');
+    const dismissGuideBtn = $('dismissGuideBtn');
+    const setGuideVisible = (show) => {
+      if (guideCard) guideCard.hidden = !show;
+      if (howBtn) howBtn.setAttribute('aria-expanded', String(show));
+    };
+    if (dismissGuideBtn) {
+      dismissGuideBtn.addEventListener('click', () => setGuideVisible(false));
+    }
+    if (howBtn) {
+      howBtn.addEventListener('click', () => {
+        const willShow = guideCard ? guideCard.hidden : false;
+        setGuideVisible(willShow);
+        if (willShow) {
+          const panel = document.querySelector('.control-panel');
+          if (panel) panel.scrollTop = 0;
+        }
+      });
+    }
   }
 
   async function boot() {

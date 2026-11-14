@@ -1,7 +1,7 @@
 # PC6 durum
 
-- Görev: 15:25 SÜREKLİ PAKET (`tasks/PC6.md`) — Adım 4/5 TAMAMLANDI (Erişilebilirlik & Performans). Adım 5/5 (3 adımlı "How to play" rehberi + canlı doğrulama + `docs/game_v3.png`) başlıyor.
-- Durum: Oyuna klavye kısayolları (`Space`/`N`, `1–7`, `R`, `Esc`), `:focus-visible`, `aria-live="polite"`, `aria-valuetext`, Okabe-Ito renk-körü paleti + metin etiketleri ve `requestAnimationFrame` sürgü/mobil DPR performansı eklendi. Şimdi 3 adımlı atlanabilir rehber ekleniyor ve tüm sistem test ediliyor. Önceki 14:45 paketi (5/5) tamamlanmıştı.
+- Görev: `15:25 SÜREKLİ PAKET` (`tasks/PC6.md`) — Tüm `5/5` adım TAMAMLANDI; **SONSUZ DÖNGÜ (Tur 1 — her 30 dk denetim, İngiltere/QA kontrolü ve 20 strateji testi)** aktif olarak yürütülüyor.
+- Durum: Oyun cilası (7/7), `demo_30s.mp4` (29.62 s, 1080p), Konya Kapalı Havzası + obruk eşiği düzeltmesi (`6/6 tests passed`), erişilebilirlik & performans ve 3 adımlı atlanabilir "How to play" rehberi + dinamik `range_cm` + yapışkan `.turn-actions` alt çubuğu ve güncel `docs/game_v3.png` / `demo_30s.mp4` tamamlandı. Şimdi `SONSUZ DÖNGÜ` kapsamında UK analiz denetimi, QA mutabakatı ve `20` strateji × `2` havza (`40` koşu) testi çalıştırılıyor. Önceki 14:45 paketi (5/5) tamamlanmıştı.
   - Adım 1 (`analysis/pc6/make_animation.py`): `docs/story/media/cv_subsidence.{mp4,gif}` (`3.07 MB` / `4.23 MB`, 8 epok, 1080p) ve `docs/story/media/kp_subsidence.{mp4,gif}` (`0.88 MB` / `1.36 MB`, 9 epok, 1080p) pushlandı (`7369686`).
   - Adım 2 (`analysis/pc6/make_validation_plots.py`): `docs/story/validation_report.md`, `validation_scatter.png` (`r=0.924`, `RMSE=1.37 cm`) ve 10 `gnss_<station>.png` grafiği pushlandı (`823cb74`).
   - Adım 3 (`analysis/pc6/make_risk_profiles.py`): `docs/story/risk_dossier.md` ve `risk_1..10.png` profilleri (California Aqueduct #4, Tulare ID Canal #1, Alta East Branch Canal #5, Friant-Kern Canal #7/#9 vurgulu + `game_model.md` kaynaklı 2 cümlelik özet) pushlandı (`5248279`).
@@ -13,15 +13,16 @@
   - Q05: `validation/compare.py`, `data/central_valley/validation.json` (10/10 istasyon, CAHA `r=0.8957, rmse=0.752 cm`, HANF `r=0.8955`)
   - Q06: `risk/compute_risk.py`, `data/central_valley/assets.json` (645 segment: 81 high, 131 medium, 433 low)
   - Q20: `docs/story/pitch.md`
-  - Q19 v2 ("Valley Under Pressure"): `game/model.js`, `game/test_model.html`, `game/style.css`, `game/index.html`, `game/game.js`, `docs/game_v2.png` (sıfır AI görseli, `game_model.md` ve `code_review.md` bulgularıyla uyumlu `S_y=0.10`, `k=0.623`, Pages uyumlu `../data/central_valley/assets.json`)
+  - Q19 v3 ("Valley Under Pressure"): `game/model.js` (Tulare 7 bölge + Konya 6 bölge + obruk göstergesi), `game/test_model.html` (`6/6`), `game/style.css`, `game/index.html`, `game/game.js`, `docs/game_v3.png` (masaüstü `1280x850` doğrulandı)
+  - Demo Videosu (`analysis/pc6/make_demo_video.py`): `docs/story/media/demo_30s.mp4` (`1920x1080`, `h264`, `yuv420p`, `29.62 s`, `3.32 MB`, gömülü İngilizce altyazılı, NASA/ISRO logosuz)
   - Q28: `risk/karapinar_risk.py`, `data/karapinar/assets.json` (64 OSM segmenti + 29 obruk halkası; `0-1 km` ort. `-4.152 cm` vs `>5 km` `-0.647 cm`), `docs/qa/PC6.md`
   - Q14: `docs/qa/PC6.md` (`data/{central_valley,karapinar,uk}/meta.json` ve 12 JSON/GeoJSON dosyası, 0 `NaN`)
 - Doğrulama:
-  - `python -m pytest analysis -q` PASS (`42 passed, 1 warning`)
+  - `python -m pytest analysis -q` PASS (`56 passed, 1 warning`)
   - `python validation/compare.py --self-test` PASS (`--data-dir --quality mixed` doğrulandı)
   - `python risk/compute_risk.py --self-test` PASS (`--data-dir --quality mixed` doğrulandı)
   - `python risk/karapinar_risk.py --self-test` PASS (`--data-dir --quality mixed` doğrulandı)
-  - `game/test_model.html`: `5/5 tests passed` (`0%` 108-gün baz hata, `-10.1 cm` dikey / `-7.84 cm` LOS, `k=0.623`)
-  - Canlı GitHub Pages testi (`https://keremsumer2010-tech.github.io/aseltech/game/` ve `#play`): masaüstü `1280x850` ve mobil `390x844` (`scrollWidth === 390`, `summary.json`/`assets.json`/`points.json` HTTP 200, 0 konsol hatası, 0 HTTP 4xx/5xx)
-- BLOCKED: yok. (14:45 YENİ PAKET + tüm PC6 görevleri tamamlandı.)
+  - `game/test_model.html`: `6/6 tests passed` (`0%` 108-gün baz hata: Tulare `-10.1 cm` dikey / `-7.84 cm` LOS, Konya `-8.0 cm` dikey / `-5.94 cm` LOS, `sinkholeRiskActive=true`)
+  - Tarayıcı canlı testi: Konya `Over-Pump` → `#sinkholeStatusBanner` (`Elevated`), 3 adımlı `How to play` + dinamik `range_cm` (`-4.7...-7.8`), masaüstü `1280x850` ve mobil `390x844` (`scrollWidth === 390`, `44 px` dokunma hedefleri) doğrulandı
+- BLOCKED: yok. (15:25 SÜREKLİ PAKET 5/5 tamamlandı; SONSUZ DÖNGÜ Tur 1 yürütülüyor.)
 - AI: Kod ve analiz üretimi + tarayıcı doğrulaması; ölçümler NASA-ISRO NISAR (provisional), NGL ve OpenStreetMap kaynaklıdır.

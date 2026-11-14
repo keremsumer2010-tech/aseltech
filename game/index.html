@@ -22,6 +22,7 @@
         <span id="wyPill" class="pill wy-below">WY1: Below Normal (70% Cap)</span>
       </div>
       <div class="topbar-meta">
+        <button id="howToPlayBtn" class="btn-ghost" type="button" aria-expanded="true" aria-controls="howToPlayGuide">How to play</button>
         <button id="audioToggleBtn" class="btn-ghost" type="button" aria-pressed="false" title="Toggle subtle synthesized UI click and warning tones">Audio: Off</button>
         <button id="paramsBtn" class="btn-ghost" type="button">Sources &amp; Parameters</button>
         <a class="btn-ghost" href="./test_model.html" target="_blank" rel="noopener">Model Tests</a>
@@ -79,6 +80,18 @@
 
       <!-- Right Hydrogeology Control & Stratigraphy Panel -->
       <aside class="control-panel" aria-label="Aquifer controls and stratigraphy">
+        <section id="howToPlayGuide" class="section-card guide-card" aria-label="Three-step how to play guide">
+          <div class="section-head">
+            <h2 class="section-title">How to play (3 steps)</h2>
+            <button id="dismissGuideBtn" type="button" class="btn-quiet-sm">Dismiss ✕</button>
+          </div>
+          <ol class="guide-steps">
+            <li><strong>Pick a valley &amp; district:</strong> Choose Tulare (USA) or Konya (Türkiye), then click a zone or press <code>1–7</code>.</li>
+            <li><strong>Set water balance:</strong> Adjust monthly groundwater pumping, canal deliveries, and temporary crop fallowing.</li>
+            <li><strong>Advance 1 month:</strong> Press <strong>Advance one month</strong> (<code>Space</code>) to compare clay collapse and canal slope against NISAR.</li>
+          </ol>
+        </section>
+
         <div class="section-card">
           <div class="section-head">
             <h2 class="section-title" id="districtSelectTitle">Select District (Tulare Basin)</h2>
