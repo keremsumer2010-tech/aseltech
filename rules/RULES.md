@@ -196,6 +196,12 @@ Her madde gerçekten yaşanmış bir hatadan çıkar. Şablon:
 **Düzeltme:** Tarayıcıda 5-10 sn bekleyip oku.
 **Ders →** K-2 (bilgi yoksa "bulunamadı" yaz, tahmin etme)
 
+### E-07 · `.netrc` içinde `login:` / `password:` (iki nokta) yazılmış
+**Ne oldu:** Dosya `login:kullanici` biçiminde yazıldı; curl kimliği göndermedi, "HTTP Basic: Access denied".
+**Sonuç:** Doğru şifreye rağmen indirme başarısız.
+**Düzeltme:** Biçim tam olarak: `machine urs.earthdata.nasa.gov` / `login KULLANICI` / `password SIFRE` (iki nokta yok, boşluk var). Windows'ta aynı dosyayı `_netrc` adıyla da kopyala. Yer tutucu kelimeleri sil.
+**Ders →** K-9 (ajan şifreyi görmez; sadece biçimi kontrol eder)
+
 ---
 
 ## Elenen alternatifler

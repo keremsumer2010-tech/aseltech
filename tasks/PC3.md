@@ -12,6 +12,8 @@ feeds: [PC1, PC5, PC6]
 
 # PC3 · Çökme analizi: faz → santim
 
+> **Saat saat sıra ve iş bitince sıradaki iş: `docs/ZAMAN_CIZELGESI.md`.** Atanmış QUEUE işlerin orada.
+
 ## Kimlik
 Mehmet'in bilgisayarı, **`aseltech-claude`** klasörü, Claude Code. Aynı bilgisayarda PC5 ve PC6 da çalışıyor;
 onların klasörlerine (`aseltech-gemini`, `aseltech-gemini2`) dokunma.

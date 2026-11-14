@@ -12,6 +12,8 @@ feeds: [PC1]
 
 # PC6 · Doğrulama (GNSS) ve altyapı verisi
 
+> **Saat saat sıra ve iş bitince sıradaki iş: `docs/ZAMAN_CIZELGESI.md`.** Atanmış QUEUE işlerin orada.
+
 ## Kimlik
 Mehmet'in bilgisayarı, **`aseltech-gemini2`** klasörü, ikinci Antigravity. Aynı bilgisayarda PC3 ve PC5 var; onların klasörlerine dokunma.
 Bugün Pazar'ın özgün katkıları (#3 risk indeksi, #4 GNSS doğrulama) için **veriyi hazırlıyorsun**.

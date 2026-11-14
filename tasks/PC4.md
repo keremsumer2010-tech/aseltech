@@ -11,6 +11,8 @@ feeds: [PC1, PC5]
 
 # PC4 · Hikâye: UK görselleri, obruklar, kaynaklar
 
+> **Saat saat sıra ve iş bitince sıradaki iş: `docs/ZAMAN_CIZELGESI.md`.** Atanmış QUEUE işlerin orada.
+
 ## Kimlik
 İbrahim'in bilgisayarı, Antigravity. Ana hattan bağımsız; bugün kimseyi beklemiyorsun.
 

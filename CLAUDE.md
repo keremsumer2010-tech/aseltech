@@ -19,7 +19,8 @@ Ayrıntı: `docs/URUN_TANIMI.md`.
 | 2 | `docs/GOREV_DAGILIMI.md` | Kim kim, kim neyin sahibi, kim kimi bekliyor. **Burada kendi PC numaranı bul** |
 | 3 | `tasks/PCx.md` | Senin görev dosyan (x = kendi numaran) |
 | 4 | `rules/VERI_SOZLESMESI.md` | Dosya formatları, bölge sınırları, kalite etiketleri. Veri üreten/okuyan herkes |
-| 5 | `docs/TODAY_PLAN.md` | Bugünün saat saat hedefi (Lincoln sunumu bugün, demo 17:30 TR) |
+| 5 | `docs/ZAMAN_CIZELGESI.md` | **Kim saat kaçta ne yapar, iş bitince sıradaki ne.** Her işten sonra buraya bak |
+| 6 | `docs/TODAY_PLAN.md` | Bugünün saat saat hedefi (Lincoln sunumu bugün, demo 17:30 TR) |
 
 **Görevin bitince durma:** `rules/RULES.md` §7.1 hiç boş kalma protokolü → kendi sonraki görevin → `tasks/QUEUE.md` → QA. Her 30-45 dakikada `git pull`.
 

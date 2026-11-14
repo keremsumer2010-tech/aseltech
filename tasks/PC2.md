@@ -11,6 +11,8 @@ feeds: [PC3]
 
 # PC2 · Veri: GUNW arama, indirme, kesme
 
+> **Saat saat sıra ve iş bitince sıradaki iş: `docs/ZAMAN_CIZELGESI.md`.** Atanmış QUEUE işlerin orada.
+
 ## Kimlik
 Memir'in bilgisayarı, Antigravity. Ana hattın ilk halkası: **PC3 senin dosyalarını bekliyor.**
 

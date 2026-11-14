@@ -12,6 +12,8 @@ feeds: [PC1]
 
 # PC5 · Aquifer Manager oyunu ve sunum metni
 
+> **Saat saat sıra ve iş bitince sıradaki iş: `docs/ZAMAN_CIZELGESI.md`.** Atanmış QUEUE işlerin orada.
+
 ## Kimlik
 Mehmet'in bilgisayarı, **`aseltech-gemini`** klasörü, Antigravity. Aynı bilgisayarda PC3 (`aseltech-claude`) ve PC6 (`aseltech-gemini2`) var; onların klasörlerine dokunma.
 
