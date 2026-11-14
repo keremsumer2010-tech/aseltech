@@ -2,7 +2,7 @@
 
 - Görev: 2 Central Valley — kod hazır (13 test geçti), path 34 frame 20 provisional zincir yedek olarak iniyor (PC2 npz yok)
 - Durum: çalışıyor
-- Güncelleme: 2026-11-14 13:40 TR
+- Güncelleme: 2026-11-14 13:15 TR
 
 ## Bitenler
 ### `analysis/insar.py` + `analysis/test_insar.py`
@@ -29,7 +29,7 @@ referans pikseli 0; boş referans → hata; LOS→dikey; sentetik −3 cm çanak
 https://nisar-docs.asf.alaska.edu/gunw : iyonosfer faz ekranı üründe var ama unwrappedPhase'e uygulanmamış;
 troposfer/gelgit katmanları da çıkarılmamış. İlk geçişte biz de uygulamıyoruz (meta.json notes'a yazılacak).
 
-### Karapınar kontrol haritası → `docs/karapinar_checkpoint_cm.png` (13:20 TR)
+### Karapınar kontrol haritası → `docs/karapinar_checkpoint_cm.png` (12:58 TR)
 - Granül: `NISAR_L2_PR_GUNW_031_007_D_069_032_2000_SH_20260918T164007_..._20260930T164042_P05023_N_F_J_001` (path 7, frame 069, bbox'u %100 kapsıyor; 2.38 GB, 95 sn indirme, ham dosya silindi)
 - quality: **provisional** (P05023, iki tarih de 2026-06-17 sonrası). Referans tarihi < ikincil tarih kontrol edildi.
 - λ = c / centerFrequency = **0.24393 m** (bu çerçevede; CV'deki 0.24196'dan farklı → λ her dosyadan okunuyor)
@@ -40,6 +40,11 @@ troposfer/gelgit katmanları da çıkarılmamış. İlk geçişte biz de uygulam
 - **Dürüst not:** haritadaki kuzey–güney geniş eğilim büyük olasılıkla atmosfer/iyonosfer. Üründeki iyonosfer ekranının bu kesitteki p1–p99 aralığı ≈ 6.5 cm LOS'a denk; uygulanmadı (ürün varsayılanı). Bu tek çift çökme kanıtı olarak sunulmamalı; işaret/ölçek kontrolüdür.
 - Kod: `analysis/gunw_io.py` (h5 → sözleşme npz + conncomp, ion, incidence), `analysis/checkpoint_map.py`. Alt küme: `analysis/out/karapinar_20260918_20260930.npz` (2.9 MB)
 - Testler: `10 passed` (yeni: `choose_reference`)
+
+## Literatür kıyası için kaynaklar (Central Valley, Tulare havzası)
+- NASA JPL (2015): Corcoran yakını 8 ayda ~33 cm (~4 cm/ay), kuraklık dönemi: https://www.jpl.nasa.gov/news/nasa-california-drought-causing-valley-land-to-sink/
+- LBNL 2023 çalışması (Kings/Tulare alt havzası): bölgesel yıllık hız ≈ −8.1 / −6.6 / −6.0 cm/yıl, 2020 sonrası Corcoran–Alpaugh çanağına yakın artış: https://wdwagsa.specialdistrict.org/files/f1e742610/2023_Lawrence-Berkeley-National-Laboratory-Study.pdf
+- Beklenen mertebe: yaz sulama sezonunda en çok çöken yerlerde ayda ~1–4 cm; ~3.5 ayda birkaç cm ile ~15 cm arası. 1 cm altı veya 50 cm üstü çıkarsa BLOCKED.
 
 ## AI
 - AI: Claude Code (Opus) → analysis kodu, testler, kaynak taraması
