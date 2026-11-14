@@ -82,10 +82,10 @@
   },
   {
     "id": "p04",
-    "name": "15 km W of Corcoran",
+    "name": "14 km W of Corcoran",
     "kind": "most_subsiding",
-    "lon": -119.72829,
-    "lat": 36.09092,
+    "lon": -119.71162,
+    "lat": 36.09707,
     "dates": [
       "2026-06-28",
       "2026-07-10",
@@ -98,14 +98,15 @@
     ],
     "disp_cm": [
       0.0,
-      -0.97,
-      -1.21,
-      -3.59,
-      -5.19,
-      -6.87,
-      -6.53,
-      -7.0
-    ]
+      -0.59,
+      -0.92,
+      -1.77,
+      -1.78,
+      -2.42,
+      -1.74,
+      -3.26
+    ],
+    "note": "Moved to >=90% valid 1 km block (91.7% valid); previous edge block had 50.3% valid pixels."
   },
   {
     "id": "p05",
