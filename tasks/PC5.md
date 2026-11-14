@@ -1,4 +1,4 @@
-# PCG — Gemini / Antigravity çalışanı (klasör: game/, docs/story/)  ·  BUGÜN: docs/TODAY_PLAN.md
+# PC5 — M3hmeT1888 bilgisayarında Antigravity (Gemini) — Oyun + sunum metni (klasör: game/, docs/story/)  ·  BUGÜN: docs/TODAY_PLAN.md
 
 ## Görev 1 — Aquifer Manager oyunu (12:00–16:00 TR)
 `game/index.html` — saf HTML/CSS/JS, tek dosya olabilir, CDN kütüphanesi kullanırsan SABİT sürüm. Metinler İngilizce.
@@ -15,4 +15,4 @@
 `docs/TODAY_PLAN.md` sahnelerine göre. Sayı yazma; sayı yerine `{CV_MAX_CM}` gibi yer tutucu bırak (PC1 dolduracak).
 
 ## Rapor
-status/PCG.md: ne bitti, nasıl test edildi, ekran görüntüsü `docs/game_v1.png`.
+status/PC5.md: ne bitti, nasıl test edildi, ekran görüntüsü `docs/game_v1.png`.

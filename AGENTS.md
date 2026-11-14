@@ -2,8 +2,12 @@
 
 This repo's single source of truth for rules is **CLAUDE.md**. Read it fully before doing anything; every rule there applies to you.
 
-- Antigravity worker on memir-erdogmus's computer = **PC2**. Task file: `tasks/PC2.md`, status: `status/PC2.md`.
-- Start: `git pull` → read `CLAUDE.md`, `docs/TODAY_PLAN.md`, your task file → do the task → update your status file → `git pull --rebase` → commit `[PC2] ...` → push.
-- Only write inside the folders listed in your task file.
+Which worker are you? Ask the human if unsure.
+- Antigravity on **memir-erdogmus**'s computer = **PC2** → task `tasks/PC2.md`, status `status/PC2.md`.
+- Antigravity on **M3hmeT1888**'s computer = **PC5** → task `tasks/PC5.md`, status `status/PC5.md`.
+  (M3hmeT1888's Claude Code is PC3 and works in a DIFFERENT clone folder; never touch `analysis/`.)
+
+- Start: `git pull` → read `CLAUDE.md`, `docs/TODAY_PLAN.md`, your task file → do the task → update your status file → `git pull --rebase` → commit `[PCx] ...` → push.
+- Only write inside the folders listed in your task file. Commit only your own files (`git add <paths>`, never `git add -A`).
 - Never ask for, store or print passwords. The human enters Earthdata credentials into `~/.netrc` themselves.
 - Never invent numbers or sources. Follow the "data quality and calibration" rule in CLAUDE.md.
