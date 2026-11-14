@@ -28,7 +28,7 @@ const fmtShort = d => d ? new Date(d + 'T00:00:00Z').toLocaleDateString('en-GB',
 async function J(p){ try{ const r = await fetch(ROOT + p); return r.ok ? await r.json() : null; }catch(e){ return null; } }
 const KNOWN_CARDS = new Set(['bangkok','beijing','cangzhou','central_valley','delhi','delta','eloy','hanoi','ho_chi_minh','isfahan','jakarta','karapinar','konya_plain','mashhad','mexico_city','quetta','rafsanjan','semarang','tehran','xian','yunlin']);
 const KNOWN_SIGMA = new Set(['bangkok','beijing','central_valley','delta','hanoi','ho_chi_minh','isfahan','jakarta','karapinar','konya_plain','mashhad','mexico_city','rafsanjan','semarang','tehran']);
-const KNOWN_VALNOTE = new Set(['bangkok','delhi','delta','eloy','hanoi','ho_chi_minh','isfahan','jakarta','konya_plain','mashhad','mexico_city','quetta','rafsanjan','semarang','tehran','xian']);
+const KNOWN_VALNOTE = new Set(['bangkok','cangzhou','delhi','delta','eloy','hanoi','ho_chi_minh','isfahan','jakarta','konya_plain','mashhad','mexico_city','quetta','rafsanjan','semarang','tehran','xian','yunlin']);
 let bulletinIds = new Set();
 let qcFlags = null;
 let detMap = new Map();
