@@ -1,0 +1,17 @@
+{
+  "site": "fens",
+  "date": "2026-10-20",
+  "bbox": [
+    -0.3,
+    52.4,
+    0.4,
+    52.9
+  ],
+  "optical_source_url": "https://wvs.earthdata.nasa.gov/api/v1/snapshot?REQUEST=GetSnapshot&TIME=2026-10-20&BBOX=52.4,-0.3,52.9,0.4&CRS=EPSG:4326&LAYERS=VIIRS_SNPP_CorrectedReflectance_TrueColor&FORMAT=image/jpeg&WIDTH=700&HEIGHT=500",
+  "optical_product": "VIIRS_SNPP_CorrectedReflectance_TrueColor (NASA GIBS / Worldview Snapshots)",
+  "radar_granule": "NISAR_L2_PR_GCOV_033_124_D_062_2005_DHDH_A_20261020T192237_20261020T192312_P05023_N_F_J_001",
+  "radar_browse_url": "https://nisar.asf.earthdatacloud.nasa.gov/BROWSE/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_033_124_D_062_2005_DHDH_A_20261020T192237_20261020T192312_P05023_N_F_J_001/NISAR_L2_PR_GCOV_033_124_D_062_2005_DHDH_A_20261020T192237_20261020T192312_P05023_N_F_J_001_LATLON.png",
+  "quality": "preview",
+  "quality_note": "NISAR GCOV browse PNG is a visual preview (not quantitative backscatter). Underlying granule is from the NISAR Provisional collection (CRID P05023). Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.",
+  "note": "Same-day comparison (2026-10-20) over The Fens and The Wash (Lincolnshire/Cambridgeshire, UK). Optical view is 98% obscured by cloud cover, whereas NISAR L-band SAR penetrates clouds to reveal the coastline of The Wash, drainage networks, and agricultural fields."
+}
