@@ -17,6 +17,7 @@ gunw_io.BBOX.update(
         "delta_p135": (-121.85, 37.95, -121.45, 38.20),
         "konya_plain": (32.4, 37.4, 33.9, 38.1),
         "karapinar_fullyear": (33.3, 37.6, 33.8, 37.9),
+        "central_valley_p114": (-120.2, 35.6, -119.0, 36.6),
     }
 )
 

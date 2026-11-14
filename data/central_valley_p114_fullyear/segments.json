@@ -1,0 +1,36 @@
+{
+  "site": "central_valley_p114_fullyear",
+  "path": 114,
+  "frame": 70,
+  "quality": "mixed",
+  "swath_gap": {
+    "date": "2026-05-17",
+    "note": "2026-05-05_2026-05-17 (97.72% NaN) and 2026-05-17_2026-05-29 (100.00% NaN) in Frame 70 lack valid unwrapped pixels for deramping; chain split into winter/spring and summer/fall segments."
+  },
+  "segments": [
+    {
+      "name": "winter_spring_beta_precal",
+      "quality": "mixed",
+      "period": ["2025-11-30", "2026-05-05"],
+      "days": 156,
+      "n_pairs": 10,
+      "max_subsidence_cm": -6.7,
+      "range_cm": [-7.3, -6.3],
+      "max_subsidence_vertical_cm_estimate": -8.7,
+      "incidence_deg_at_max": 40.1,
+      "data_dir": "data/central_valley_p114_fullyear/winter"
+    },
+    {
+      "name": "summer_fall_mixed",
+      "quality": "mixed",
+      "period": ["2026-05-29", "2026-10-20"],
+      "days": 144,
+      "n_pairs": 10,
+      "max_subsidence_cm": -9.8,
+      "range_cm": [-9.8, -5.4],
+      "max_subsidence_vertical_cm_estimate": -13.3,
+      "incidence_deg_at_max": 42.5,
+      "data_dir": "data/central_valley_p114_fullyear"
+    }
+  ]
+}

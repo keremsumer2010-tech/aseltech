@@ -93,7 +93,12 @@
   - **#3 Delta:** 9/9 `provisional` çift (`2026-06-17 → 2026-10-15`, Path 42 Frame 69) ve set profili (`pc2_delta.png`, `delta.md`) güncel ve tam.
   - **#4 Konya Ovası ikinci path çapraz kontrolü:** TAMAMLANDI → `docs/qa/PC2.md` (`konya_plain` Path 7 Descending vs `karapinar` Path 7 Descending vs `karapinar_p172` Path 172 Ascending; `2 km W of Karapınar`'da `-6.30`, `-5.93`, `-4.73 cm` LOS uyumlu).
   - **#6 `pipeline/README.md`:** TAMAMLANDI (tüm `pipeline/*.py` ve `pipeline/pc2/*.py` kullanım notları eklendi).
-  - **#5 Central Valley Path 114 tam yıl (`central_valley_p114_fullyear`):** DEVAM EDİYOR (22 çift `2025-11-30 → 2026-10-20` indiriliyor, 1–6/22 push edildi `71cef5f`).
+  - **#5 Central Valley Path 114 tam yıl (`central_valley_p114_fullyear`) — `p114_fullyear hazır`:**
+    - **22/22** çift (`2025-11-30 → 2026-10-20`) `pipeline/subset/central_valley_p114/` altına indirildi ve push edildi (`b2d7837`).
+    - `2026-05-17` geçişinde Frame 70 %97.7–100 NaN olduğu için zincir iki temiz 10'ar çiftlik segmentte `cumulative.py` ile işlendi (`quality: "mixed"`):
+      - Yaz/Sonbahar (`data/central_valley_p114_fullyear/`, `2026-05-29 → 2026-10-20`, 144 gün, 10 çift): tepe **`-9.8 cm` LOS** (`range_cm=[-9.8, -5.4]`, dikey `-13.3 cm` @ `42.5°`).
+      - Kış/İlkbahar (`data/central_valley_p114_fullyear/winter/`, `2025-11-30 → 2026-05-05`, 156 gün, 10 çift): tepe **`-6.7 cm` LOS** (`range_cm=[-7.3, -6.3]`, dikey `-8.7 cm` @ `40.1°`).
+    - Segment özeti `data/central_valley_p114_fullyear/segments.json` içinde; PC9 iki geçişli tam yıl kıyası yapabilir.
 - **Özgün Katkı O3 (`NISAR Pulse` CLI) — TAMAMLANDI:**
   - `pipeline/nisarpulse/` (`__main__.py`, `search.py`, `fetch.py`, `process.py`, `catalog.py`, `README.md`, `tests/test_nisarpulse.py`) oluşturuldu; mevcut `pipeline/*.py` ve `analysis/*.py` dosyaları değiştirilmeden sarmalandı.
   - Ağsız `6/6` birim testi geçti (`0.016s`); `.github/workflows/tests.yml` eklendi (`pages.yml`'e dokunulmadı).

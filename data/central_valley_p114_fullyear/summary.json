@@ -1,0 +1,55 @@
+{
+  "max_subsidence_cm": -9.8,
+  "max_subsidence_range_cm": [
+    -9.8,
+    -5.4
+  ],
+  "range_cm": [
+    -9.8,
+    -5.4
+  ],
+  "n_references": 3,
+  "reference_sensitivity": {
+    "alt_reference": {
+      "lon": -119.59791,
+      "lat": 35.79964
+    },
+    "max_subsidence_cm_at_same_location": -5.4
+  },
+  "reference_sensitivity_all": [
+    {
+      "alt_reference": {
+        "lon": -119.59791,
+        "lat": 35.79964
+      },
+      "max_subsidence_cm_at_same_location": -5.4
+    },
+    {
+      "alt_reference": {
+        "lon": -119.82809,
+        "lat": 36.14917
+      },
+      "max_subsidence_cm_at_same_location": -6.7
+    }
+  ],
+  "period": [
+    "2026-05-29",
+    "2026-10-20"
+  ],
+  "rate_cm_per_yr_estimate": -24.9,
+  "reference_point": {
+    "lon": -119.16179,
+    "lat": 36.45727
+  },
+  "quality": "mixed",
+  "quality_note": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team. This series MIXES provisional products with pre-calibration BETA products (dates before 2026-06-17); treat amplitudes before that date with extra caution.",
+  "component": "LOS",
+  "max_subsidence_location": {
+    "lon": -119.04908,
+    "lat": 35.72948
+  },
+  "max_subsidence_vertical_cm_estimate": -13.3,
+  "incidence_deg_at_max": 42.5,
+  "n_pairs": 10,
+  "method_note": "Headline value = most negative median of ~1 km blocks (13x13 px, >= 50 % valid pixels, within-block std <= 2 cm) of the cumulative LOS map. Rate = linear extrapolation of 144 days (2026-05-29 to 2026-10-20, summer season) to one year: an ESTIMATE that likely overstates the annual net rate because part of summer subsidence recovers in winter. Vertical value assumes purely vertical motion (LOS / cos(incidence)). range_cm = spread of the headline value when the whole chain is re-referenced to up to two other stable windows >= 30 km away."
+}
