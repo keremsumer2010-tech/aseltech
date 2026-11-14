@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Technical Note NP-TN-2026-01 — NISAR Pulse: Follow the Water</title>
+  <style>
+    :root {
+      --ink: #0f172a;
+      --muted: #475569;
+      --line: #cbd5e1;
+      --accent: #0b3d91;
+      --bg: #f1f5f9;
+      --paper: #ffffff;
+      --tint: #f8fafc;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 24px 16px 48px;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 10.5pt;
+      line-height: 1.48;
+    }
+    .toolbar {
+      max-width: 210mm;
+      margin: 0 auto 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 13px;
+    }
+    .toolbar a { color: var(--accent); text-decoration: none; font-weight: 600; }
+    .print-btn {
+      background: var(--accent);
+      color: #fff;
+      border: 0;
+      border-radius: 5px;
+      padding: 7px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .paper {
+      max-width: 210mm;
+      margin: 0 auto;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      padding: 18mm 18mm 20mm;
+      box-shadow: 0 4px 20px rgba(15, 23, 42, 0.08);
+    }
+    .doc-header {
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 10px;
+      margin-bottom: 14px;
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    .doc-kicker {
+      font-size: 9pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+    h1 {
+      margin: 0 0 6px;
+      font-size: 17pt;
+      line-height: 1.22;
+      color: var(--ink);
+    }
+    .meta {
+      font-size: 9pt;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+    .notice {
+      margin: 10px 0 14px;
+      padding: 8px 11px;
+      background: #fffbeb;
+      border-left: 3.5px solid #d97706;
+      font-size: 9.2pt;
+      color: #78350f;
+    }
+    .abstract {
+      background: var(--tint);
+      border: 1px solid var(--line);
+      padding: 10px 13px;
+      margin-bottom: 14px;
+      font-size: 9.8pt;
+    }
+    .abstract strong {
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--accent);
+      text-transform: uppercase;
+      font-size: 8.8pt;
+      letter-spacing: 0.06em;
+    }
+    h2 {
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 11.8pt;
+      color: var(--accent);
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 3px;
+      margin: 16px 0 7px;
+      break-after: avoid;
+      page-break-after: avoid;
+    }
+    p { margin: 0 0 7px; text-align: justify; }
+    ul, ol { margin: 4px 0 8px 18px; padding: 0; }
+    li { margin-bottom: 4px; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 8px 0 12px;
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 8.2pt;
+      line-height: 1.32;
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+    th, td {
+      border: 1px solid var(--line);
+      padding: 4.5px 6px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: #e2e8f0;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 8.6pt;
+      background: #f1f5f9;
+      padding: 1px 3px;
+      border-radius: 3px;
+    }
+    .eq {
+      text-align: center;
+      font-style: italic;
+      margin: 6px 0 8px;
+      font-size: 10.5pt;
+    }
+    .fig-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin: 10px 0 12px;
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+    figure {
+      margin: 0;
+      border: 1px solid var(--line);
+      padding: 6px;
+      background: #fff;
+    }
+    figure img {
+      width: 100%;
+      height: auto;
+      max-height: 52mm;
+      object-fit: contain;
+      display: block;
+    }
+    figcaption {
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 7.8pt;
+      color: var(--muted);
+      margin-top: 4px;
+      line-height: 1.3;
+    }
+    .refs li { font-size: 8.7pt; line-height: 1.38; margin-bottom: 3px; }
+    @page { size: A4 portrait; margin: 14mm 15mm; }
+    @media print {
+      body { background: #fff; padding: 0; }
+      .toolbar { display: none !important; }
+      .paper {
+        max-width: none;
+        border: 0;
+        box-shadow: none;
+        padding: 0;
+      }
+      a { color: var(--ink); text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <div><a href="../../web/index.html">← Back to NISAR Pulse</a> · <a href="technical_note.md">Markdown source</a></div>
+    <button class="print-btn" type="button" onclick="window.print()">Print / Save A4 PDF</button>
+  </div>
+
+  <article class="paper">
+    <header class="doc-header">
+      <div class="doc-kicker">Technical Note · NP-TN-2026-01 · NASA Space Apps Challenge 2026 (Lincoln, UK)</div>
+      <h1>Tracking Agricultural Ground Subsidence, Infrastructure Tilt, and Karst Stress with Provisional NASA–ISRO NISAR L-Band Interferometry</h1>
+      <div class="meta">
+        <strong>Team Taykut</strong> · ASELSAN Vocational and Technical Anatolian High School, Ankara, Türkiye · 14 November 2026<br>
+        Repository: <a href="https://github.com/keremsumer2010-tech/aseltech">github.com/keremsumer2010-tech/aseltech</a> ·
+        Live Application: <a href="https://keremsumer2010-tech.github.io/aseltech/">keremsumer2010-tech.github.io/aseltech/</a>
+      </div>
+    </header>
+
+    <div class="notice">
+      <strong>Mandatory Calibration Notice:</strong> <em>NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.</em> Pre-calibration <code>beta</code> granules (&lt; 2026-06-17) are isolated in explicit <code>mixed</code> full-year datasets and excluded from provisional summer headlines.
+    </div>
+
+    <div class="abstract">
+      <strong>Abstract — </strong>
+      Using open NASA–ISRO NISAR Level-2 Geocoded Unwrapped Interferograms (<code>GUNW</code>, <code>CRID P05023</code>) and Geocoded Polarimetric Covariance (<code>GCOV</code>) products, we built a reproducible processing and infrastructure-risk pipeline for pumped agricultural aquifers and sinking cities. After split-spectrum ionospheric subtraction, elevation-aware planar deramping, coherence masking (<code>&ge; 0.30</code>), and <code>1 km</code> (<code>13&times;13</code> pixel) block-median aggregation, provisional 108–120 day summer chains measure peak Line-of-Sight (LOS) sinking of <strong>&minus;7.8 cm</strong> in California's Central Valley (<code>239.54 km&sup2; &le; &minus;5 cm</code>), <strong>&minus;5.9 cm</strong> in Karapınar (<strong>&minus;9.6 cm</strong> across the full Konya Closed Basin), <strong>&minus;1.3 cm</strong> in the Sacramento–San Joaquin Delta, and <strong>&minus;4.4 to &minus;1.4 cm</strong> across Mexico City, Tehran, Jakarta, and Beijing. Cross-comparison against <code>10</code> continuous Nevada Geodetic Laboratory GPS stations gives a final cross-station correlation of <strong>r = 0.924</strong> (<strong>1.00 cm</strong> median time-series RMSE), while London clay returns <code>below_detection</code> (3&sigma; = 3.62 cm).
+    </div>
+
+    <h2>1. Data &amp; Product Maturity Taxonomy</h2>
+    <p>Every reported metric maps deterministically to versioned JSON contracts in <code>data/</code> and is tagged by NISAR maturity class (<code>provisional</code> from 2026-06-17 onward, <code>mixed</code> where winter <code>beta</code> pairs precede summer <code>provisional</code> pairs, <code>preview</code> for same-day GCOV browse imagery, and <code>reference</code> for peer-reviewed sinkhole coordinates).</p>
+    <table>
+      <thead>
+        <tr><th>Dataset</th><th>Sensor / Product</th><th>Period (Pairs)</th><th>Track / Frame</th><th>Quality</th><th>Role</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>data/central_valley/</code></td><td>NISAR L2 <code>GUNW</code> (P05023)</td><td>2026-06-28 &rarr; 2026-10-14 (7, 108 d)</td><td>T34 Asc., F20</td><td><code>provisional</code></td><td>Summer compaction &amp; canal tilt</td></tr>
+        <tr><td><code>data/central_valley/</code> (desc.)</td><td>NISAR L2 <code>GUNW</code> (P05023)</td><td>2026-06-28 &rarr; 2026-10-14</td><td>T114 Desc.</td><td><code>provisional</code></td><td>Dual-orbit check &amp; E+U inversion</td></tr>
+        <tr><td><code>data/central_valley_fullyear/</code></td><td>NISAR L2 <code>GUNW</code></td><td>2025-11-24 &rarr; 2026-10-14 (25, 324 d)</td><td>T34 Asc.</td><td><code>mixed</code></td><td>Seasonal vs. permanent decomposition</td></tr>
+        <tr><td><code>data/delta/</code></td><td>NISAR L2 <code>GUNW</code> (P05023)</td><td>2026-06-17 &rarr; 2026-10-15 (9, 120 d)</td><td>T42 Desc., F69</td><td><code>provisional</code></td><td>Handbook Fig. 2-4 Delta levees</td></tr>
+        <tr><td><code>data/karapinar/</code> &amp; <code>konya_plain/</code></td><td>NISAR L2 <code>GUNW</code> (P05023)</td><td>2026-06-26 &rarr; 2026-10-12 (8, 108 d)</td><td>T7 Desc., F69</td><td><code>provisional</code></td><td>Karapınar sinkholes &amp; full Konya Basin</td></tr>
+        <tr><td><code>data/karapinar_fullyear/</code></td><td>NISAR L2 <code>GUNW</code></td><td>2025-10-17 &rarr; 2026-01-09 (6)</td><td>T7 Desc.</td><td><code>mixed</code></td><td>Early winter pre-cal baseline</td></tr>
+        <tr><td><code>data/uk_clay/</code></td><td>NISAR L2 <code>GUNW</code> (P05023)</td><td>2026-06-21 &rarr; 2026-10-19 (9, 120 d)</td><td>T101 Asc., F28</td><td><code>provisional</code></td><td>London clay negative control</td></tr>
+        <tr><td><code>data/fens/crops.json</code> &amp; <code>uk/</code></td><td>NISAR L2 <code>GCOV</code> + VIIRS</td><td>2026-06-22 &rarr; 2026-10-20</td><td>UK Fens (4 fields)</td><td><code>provisional</code> / <code>preview</code></td><td>HH/HV crop curves &amp; cloud-free check</td></tr>
+        <tr><td><code>data/global/*</code> (4 cities)</td><td>NISAR L2 <code>GUNW</code> (P05023)</td><td>2026-06-17 &rarr; 2026-10-20 (8–9)</td><td>City frames</td><td><code>provisional</code></td><td>Mexico City, Tehran, Jakarta, Beijing</td></tr>
+        <tr><td><code>data/central_valley_s1/</code></td><td>OPERA <code>DISP-S1</code> + NGL + NISAR</td><td>S1 ends 2026-04-26 vs. summer</td><td>Tulare core</td><td><code>mixed</code></td><td>L-band vs. C-band cross-sensor test</td></tr>
+      </tbody>
+    </table>
+
+    <h2>2. Methods</h2>
+    <p>Each <code>80 m</code> <code>GUNW</code> <code>unwrappedPhase</code> grid (&Delta;&phi;) is converted to LOS displacement via the granule's exact center wavelength &lambda; = c / f<sub>0</sub> (&lambda; = 24.20 cm; full 2&pi; fringe 12.10 cm; half-cycle limit 6.05 cm):</p>
+    <div class="eq">&Delta;r<sub>LOS</sub> = &minus;(&lambda; / 4&pi;) &Delta;&phi;</div>
+    <p>Pixels with <code>coherenceMagnitude &lt; 0.30</code> or <code>connectedComponents == 0</code>, islands &lt; 200 pixels (~1.3 km&sup2;), and unwrapping outliers exceeding &lambda;/4 from the 720 m local median or &gt; 15.0 cm are masked (<code>analysis/insar.py</code>). Because default <code>GUNW</code> products do not subtract atmospheric screens, <code>analysis/cumulative.py</code> subtracts the shipped split-spectrum <code>ionospherePhaseScreen</code> (2.93–17.26 cm p1–p99 dispersion per pair) and fits a joint planar plus Copernicus DEM trend over stable reference patches. Cumulative chains use overlap-weighted stacking aggregated into <code>1 km</code> (<code>13&times;13</code> pixel) block medians (&ge; 50% valid, std &le; 2 cm). Pure vertical estimates scale by &Delta;z &approx; &Delta;r<sub>LOS</sub> / cos&thinsp;&theta;; where Track 34 Asc. and Track 114 Desc. overlap (49.6%), two-geometry least squares separates East and Up components (<code>vertical.json</code>). For the 25-pair Earlimart series, harmonic + linear regression separates permanent secular rate from seasonal amplitude (R&sup2; = 0.97).</p>
+
+    <h2>3. Validation &amp; Cross-Checks</h2>
+    <ul>
+      <li><strong>Continuous GPS (<code>NGL IGS20/NA</code>, n = 10):</strong> Projected NISAR 3&times;3 vertical estimates correlate at <strong>r = 0.924</strong> across final station offsets (1.37 cm final RMSE) with <strong>1.00 cm median time-series RMSE</strong> (best 0.64 cm at <code>P566</code>). Across the 4 fastest-sinking interior stations (|GPS| &gt; 2 cm: <code>TLBN, CAHA, QCAP, HANF</code>), final RMSE drops to <strong>0.76 cm</strong> (r = 0.90 at <code>CAHA</code> and <code>HANF</code>).</li>
+      <li><strong>Dual-Orbit Consistency (<code>Track 34 &harr; Track 114</code>):</strong> Across <code>6,719</code> common <code>1 km</code> blocks, both independent orbits reach <strong>r = 0.489</strong> (0.60 local &lt; 15 km, RMSE 2.65 cm) with <strong>85% sign agreement</strong> where |d| &gt; 3 cm. Two-orbit inversion at the Alpaugh/Earlimart bowl isolates <strong>&minus;7.2 cm vertical subsidence</strong> vs. only <strong>&minus;0.1 cm east-west motion</strong> (max &minus;9.8 cm vertical).</li>
+      <li><strong>L-Band vs. C-Band (<code>OPERA_L3_DISP-S1_V1</code>):</strong> In the Tulare agricultural core, NISAR L-band maintains <strong>80.4% valid pixels</strong> in summer (92.7% winter, 77.6% spring) and matches 5 core GPS stations at <strong>RMSE = 0.823 cm</strong> (r = 0.7462). Five single 12–24 d steps (&minus;2.89 to &minus;5.10 cm) exceed C-band's 2.77 cm fringe, and the OPERA archive (2,663 granules) ends 2026-04-26 (0 summer scenes).</li>
+      <li><strong>London Clay Negative Control (<code>data/uk_clay/detection.json</code>):</strong> Across 9 provisional Track 101 pairs (120 d), quadratic deramping leaves <strong>97.7% of 1 km blocks within &plusmn;1.5 cm</strong> and <strong>0 interior blocks</strong> above the 3&sigma; = 3.62 cm threshold (<code>status: below_detection</code>).</li>
+    </ul>
+
+    <div class="fig-grid">
+      <figure>
+        <img src="media/validation_scatter.png" alt="NISAR vs 10 NGL GPS stations scatter plot" />
+        <figcaption>Figure 1. Final-epoch NISAR vertical estimate vs. 10 NGL GPS stations (r = 0.924, final RMSE = 1.37 cm; median TS RMSE = 1.00 cm).</figcaption>
+      </figure>
+      <figure>
+        <img src="media/pc9_fullyear_point.png" alt="11-month Earlimart full-year decomposition" />
+        <figcaption>Figure 2. 25-pair mixed Earlimart chain (2025-11-24 to 2026-10-14): &minus;20.3 cm cumulative LOS split into &minus;16.8 cm/yr permanent trend vs. 11.7 cm seasonal swing.</figcaption>
+      </figure>
+    </div>
+
+    <h2>4. Uncertainty &amp; Sensitivity Budget</h2>
+    <p>Cramér-Rao formal phase-noise medians (<code>L = 208</code> looks) are <strong>0.294 cm LOS</strong> (Central Valley) and <strong>0.326 cm LOS</strong> (Karapınar). Post-deramp empirical single-pair RMS is 0.66 cm, propagating to 1.74 cm local (SNR 2.7&times;–4.5&times;) and 2.87 cm full-scene cumulative uncertainty, with zero half-cycle (&ge; 6.05 cm) jumps across 24 audited points. Multi-reference stability tests across 2–3 stable patches give `[−7.8, −4.7] cm` (CV summer), `[−20.3, −11.7] cm` (CV full-year), `[−14.0, −9.6] cm` (Konya Basin), `[−1.3, −1.1] cm` (Delta), `[−7.4, −4.4] cm` (Mexico City), `[−7.3, −3.5] cm` (Tehran), and `[−7.6, −1.4] cm` (Beijing).</p>
+
+    <h2>5. Multi-Region Results</h2>
+    <table>
+      <thead>
+        <tr><th>Region / Analysis</th><th>Peak LOS (cm)</th><th>Ref. Range (cm)</th><th>Vertical Est. (cm)</th><th>Key Secondary Metrics</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Central Valley (108 d, 7 pairs)</td><td>&minus;7.8</td><td>[&minus;7.8, &minus;4.7]</td><td>&minus;10.1 (39.1&deg;)</td><td>239.54 km&sup2; &le; &minus;5 cm; 81/645 high-risk segments (Tulare Canal 57.01, CA Aqueduct 49.12 mm/km; &plusmn;25% rank invariant)</td></tr>
+        <tr><td>Central Valley Full-Year (<code>mixed</code>)</td><td>&minus;20.3</td><td>[&minus;20.3, &minus;11.7]</td><td>&minus;26.9 (40.9&deg;)</td><td>Earlimart: &minus;16.8 &plusmn; 2.2 cm/yr permanent vs. 11.7 cm seasonal (R&sup2; = 0.97)</td></tr>
+        <tr><td>Sacramento–San Joaquin Delta</td><td>&minus;1.3</td><td>[&minus;1.3, &minus;1.1]</td><td>&minus;1.6 (35.8&deg;)</td><td>N = 87 OSM levee samples: p10 = &minus;3.48 cm, local reach &minus;11.36 cm (4.09 km)</td></tr>
+        <tr><td>Konya Closed Basin (108 d, 8 pairs)</td><td>&minus;9.6</td><td>[&minus;14.0, &minus;9.6]</td><td>&minus;12.1 (37.6&deg;)</td><td>South of Konya city; exposure CV+Konya &gt; 2 cm = 141,555 est. residents</td></tr>
+        <tr><td>Karapınar Sinkhole Belt (108 d)</td><td>&minus;5.9</td><td>—</td><td>&minus;8.0 (42.0&deg;)</td><td>29 verified sinkholes: 0–1 km &minus;4.15 cm (6.4&times; &gt;5 km &minus;0.65 cm); p = 0.0001 perm, p = 0.0207 shifts</td></tr>
+        <tr><td>4 Global Cities (108–120 d)</td><td>&minus;4.4 / &minus;3.5 / &minus;6.8 / &minus;1.4</td><td>City-wide spread</td><td>&minus;6.2 / &minus;4.7 / &minus;9.3 / &minus;2.1</td><td>Mexico City / Tehran / Jakarta (2.9% valid) / Beijing; unchanged code</td></tr>
+      </tbody>
+    </table>
+
+    <h2>6. Original Contributions (<code>docs/OZGUN_KATKILAR.md</code>)</h2>
+    <ol>
+      <li><strong>O1 — Permanent Aquifer Storage Loss (km&sup3;/yr):</strong> Integrates full-year inelastic compaction rates (<code>decomp.json</code>) into volumetric aquifer storage loss with error propagation and reference sensitivity (USGS Circular 1182 convention). <em>[pending PC8: <code>data/central_valley_fullyear/storage_loss.json</code> &amp; <code>docs/story/storage_loss.md</code>]</em></li>
+      <li><strong>O2 — Probabilistic Engineering Risk:</strong> Computes structural angular distortion &beta; = &Delta;s / L (Skempton &amp; MacDonald 1956; Boscardin &amp; Cording 1989) and canal freeboard differential settlement along 1 km samples, propagating pixel &sigma; via 1,000 Monte Carlo trials. <em>[pending PC7: <code>data/central_valley/assets_prob.json</code> &amp; <code>docs/story/engineering_risk.md</code>]</em></li>
+      <li><strong>O3 — <code>nisarpulse</code> CLI Engine:</strong> Wraps search, subset, phase-to-cm, deramping, cumulative chaining, and contract JSON outputs into a CI-tested (<code>pytest</code>) command-line tool already demonstrated across 7 basins and 4 cities. <em>[pending PC2: <code>nisarpulse/</code> &amp; <code>docs/story/engine.md</code>]</em></li>
+    </ol>
+
+    <h2>7. Limitations</h2>
+    <p>All core outputs depend on NASA–ISRO <code>provisional</code> products; full-year chains mix pre-calibration <code>beta</code> scenes (<code>quality: mixed</code>). Single-summer annualized rates overstate net annual compaction where winter recharge occurs. Moisture-driver correlation over <code>N = 8</code> summer acquisitions yields non-significant <code>p<sub>perm</sub> = 0.088/0.130</code> (<code>|r<sub>crit</sub>| = 0.707–0.754</code>). Unmodeled single-season troposphere adds ~1 cm uncertainty; tropical vegetation reduces Jakarta to 2.9% valid pixels; static 2020–2021 WorldPop/CDL/WorldCover overlays predate 2026 crops; and regional InSAR cannot predict collapse dates of brittle limestone sinkholes.</p>
+
+    <h2>References (All URLs Verified HTTP 200 in <code>docs/story/sources.md</code>)</h2>
+    <ol class="refs">
+      <li>Peacock, A., An, K., Pinto, N., &amp; Lou, Y. (2024). <em>NISAR Land Subsidence StoryMap</em>. https://storymaps.arcgis.com/stories/109e602e748346f3be8dc89124619828</li>
+      <li>NASA–JPL NISAR Societal Benefits White Papers (Subsidence, Drought, Levees, Sinkholes, Food Security, Soil Moisture). https://science.nasa.gov/mission/nisar/societal-benefits/</li>
+      <li>ASF NISAR L2 GUNW User Guide. https://nisar-docs.asf.alaska.edu/gunw</li>
+      <li>Neely et al. (2021), <em>Water Resour. Res.</em> 57(4). https://pmc.ncbi.nlm.nih.gov/articles/PMC8047915/ · Ojha et al. (2019), <em>JGR</em> 124. https://pmc.ncbi.nlm.nih.gov/articles/PMC6559157/</li>
+      <li>Orhan et al. (2021), <em>Sensors</em> 21(3):774. https://pmc.ncbi.nlm.nih.gov/articles/PMC7865528/ · Üstün et al. (2010), <em>NHESS</em> 10:1151. https://nhess.copernicus.org/articles/10/1151/2010/</li>
+      <li>Haghighi &amp; Motagh (2024). https://pmc.ncbi.nlm.nih.gov/articles/PMC11086625/ · Abidin et al. (2015), <em>PIAHS</em> 372. https://piahs.copernicus.org/articles/372/115/2015/</li>
+      <li>Tapur &amp; Bozyiğit (2015), <em>Marmara Coğ. Derg.</em> 31. https://dergipark.org.tr/tr/download/article-file/3454</li>
+      <li>NASA SERVIR (2019), <em>SAR Handbook Ch. 2</em>. https://earthdata.nasa.gov/s3fs-public/2025-04/SARHB_CH2_Content.pdf · USDA NASS CDL. https://www.nass.usda.gov/Research_and_Science/Cropland/SARS1a.php</li>
+    </ol>
+  </article>
+</body>
+</html>
