@@ -1,4 +1,4 @@
 # PC8 durum
 
-- Durum: çalışıyor: B04 (S-13 Kritik) — Central Valley harita göstergesine boşluk açıklaması ve Corcoran metnini güncelleme
-- Alan: BUGFIX (`tasks/QUEUE.md` B01–B15)
+- Tamamlandı: B04 (S-13 Kritik) — harita göstergesine boşluk açıklaması (`.lg-note#lgGapNote`) ve Chapter 3 Corcoran dürüstleştirme eklendi (`web/index.html`, `web/style.css`)
+- Sıradaki: B05 (S-08 Kritik)
