@@ -1,8 +1,15 @@
 # PC5 Durum Raporu
 
-- **Durum:** çalışıyor — 15:30 paketi Görev 3 (`sinkhole_stats.md` + `pc5_sinkhole_perm.png`) tamamlandı, Görev 4 (`drivers_analysis`) sonuçlandırılıyor
+- **Durum:** çalışıyor — 15:30 paketi Görev 4 (`drivers_analysis.md` + `pc5_drivers.png`) tamamlandı, Görev 5 (`Q08` bağımsız kontrol) ve `SONSUZ DÖNGÜ` Tur 1 başlıyor
 - **Kimlik:** M3hmeT1888 · Antigravity (Gemini) · PC5
-- **Güncelleme:** 2026-11-14 15:38 TR
+- **Güncelleme:** 2026-11-14 15:40 TR
+
+## 15:30 Paketi Görev 4 — Hidro-Tarımsal Sürücü ve Gecikmeli Korelasyon Analizi (`drivers_analysis.md`, `pc5_drivers.png`)
+- `analysis/pc5/drivers_analysis.py` ve `analysis/pc5/test_drivers_analysis.py` ile `data/central_valley/drivers.json` (`2026-06-28 – 2026-10-14`, `N = 8` epok) üzerinde `lag 0` (`n=8`), `lag 1` (`12–24 g`, `n=7`) ve `lag 2` (`24–36 g`, `n=6`) Pearson `r`, Spearman `rho`, Fisher-`z` %95 GA, Student-`t` `p` ve tüm `n!` permütasyonlar üzerinden kesin permütasyon `p` değerleri hesaplandı.
+- `drivers.json` ön korelasyonları (`soil_moisture` `lag 0`: `0,573`, `irrigation_index` `lag 0`: `0,654`, `soil_moisture` `lag 1`: `0,638`) doğrulandı; ancak `N = 8` kritik eşiği (`|r_krit| = 0,707`–`0,811`, %80 güç alt sınırı `|r| ≥ 0,849`) altında hiçbiri `alpha = 0,05` düzeyinde anlamlı çıkmadı ve trendden arındırılmış `7` aralık hızında (`cm/gün`) eşzamanlı korelasyon `0,01`–`0,17` (`p ≥ 0,75`) düzeyine indi.
+- `pc5_drivers.png` görsel kontrolü temiz.
+- `C:\Users\celik\AppData\Local\Programs\Python\Python312\python.exe -m pytest analysis/pc5/test_drivers_analysis.py -q` → `2 passed`.
+- **AI:** Gemini → `analysis/pc5/drivers_analysis.py`, `docs/story/drivers_analysis.md`, `docs/story/media/pc5_drivers.png`
 
 ## 15:30 Paketi Görev 3 — Obruk–Çökme İstatistiksel Testi (`sinkhole_stats.md`, `pc5_sinkhole_perm.png`)
 - `analysis/pc5/sinkhole_stats.py` ve `analysis/pc5/test_sinkhole_stats.py` ile Karapınar `40.194` geçerli `80 m` pikseli (`data/karapinar/sinkholes.geojson`, `29` obruğun `16`'sında `0–2 km` kapsama) üzerinde dört katmanlı anlamlılık testi çalıştırıldı:
