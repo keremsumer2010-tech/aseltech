@@ -356,3 +356,6 @@
   - `exposure_atlas.json` ve `vital_signs.json` 19 bölge için yeniden üretildi: `eloy` (`11,282` / `83` / `11.57 km²`), `delhi` (`230,452` / `3,020` / `0.49 km²`), `quetta` (`210` / `8` / `0.24 km²`), `xian` (`8,592` / `967` / `0.30 km²`). Toplam (yuvalanmış `karapinar` hariç): `588.96 km²`, `1,507,986` kişi (`< -5 cm`), `8,028,695` kişi (`< -2 cm`).
   - `tools/bulletin.py` içinde her bültenin alt notunda `CALIBRATION_NOTICE` cümlesinin daima yer alması sağlandı; tüm **19 bülten + `index.html`** üretildi (`python -m pytest analysis/pc8/test_bulletin.py -q` → `1 passed`).
   - `docs/qa/ATLAS_COMPLETENESS.md` (19 bölge): `PC8: 0 eksik`, `PC2/7/9/10/11: 0 eksik`, `PC5: 14 eksik`, `PC4: 6 eksik`.
+- **PC1 Bağımsız Kontrol (`docs/story/atlas_top5_check.md`, Paz 02:55):**
+  - `build_exposure_atlas.py` `vital_signs.json` `fastest` seçimi yalnızca güvenilir (`indicative_only=false` ve `qc_flags.json` dışı) bölgeler arasından (`konya_plain`, `-8.9 cm/100d`) seçecek biçimde güncellendi.
+  - `tools/bulletin.py` içine `data/global/qc_flags.json` okuması eklendi; QC işaretli şehirlere (`semarang`, `delhi`, `beijing`, `bangkok`) `"Under revision (...)"` uyarı satırı basıldı; `docs/story/submission_form.md` senkronize edildi (`test_bulletin.py` + `test_atlas_qc.py` geçti).

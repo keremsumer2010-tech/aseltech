@@ -21,6 +21,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 ATLAS_PATH = ROOT / "data" / "global" / "atlas.json"
 EXPOSURE_ATLAS_PATH = ROOT / "data" / "global" / "exposure_atlas.json"
+QC_FLAGS_PATH = ROOT / "data" / "global" / "qc_flags.json"
 OUT_DIR = ROOT / "docs" / "bulletins"
 BULLETIN_VERSION = "v2.0"
 
@@ -197,6 +198,14 @@ def _exposure_atlas_map() -> dict[str, dict[str, Any]]:
     return {c["id"]: c for c in data.get("cities", []) if isinstance(c, dict) and "id" in c}
 
 
+def _qc_flags_map() -> dict[str, dict[str, Any]]:
+    data = _read_json(QC_FLAGS_PATH)
+    if not isinstance(data, dict):
+        return {}
+    flags = data.get("flags")
+    return flags if isinstance(flags, dict) else {}
+
+
 def _what_this_means(
     title_loc: str,
     rate_100d: float | None,
@@ -286,6 +295,17 @@ def render_region_bulletin(region: dict[str, Any], out_dir: Path = OUT_DIR) -> P
     seg_kind, seg_source, top_segs = _top_segments(region_dir, limit=5)
     gnss = _gnss_summary(region_dir)
     exp_atlas = _exposure_atlas_map().get(rid)
+    qc_entry = _qc_flags_map().get(rid)
+    qc_flags = region.get("qc_flags") or (qc_entry.get("flags") if isinstance(qc_entry, dict) else None) or []
+    qc_detail = region.get("qc_note") or (qc_entry.get("detail") if isinstance(qc_entry, dict) else None) or ""
+    qc_banner = ""
+    if qc_flags or qc_detail:
+        flag_str = ", ".join(str(f) for f in qc_flags) if qc_flags else "qc_flagged"
+        detail_txt = f" — {qc_detail}" if qc_detail else ""
+        qc_banner = (
+            f"<div class='qc-rev'><strong>Under revision ({_esc(flag_str)}):</strong> "
+            f"Automated time-series QC flagged this headline series for independent review{_esc(detail_txt)}.</div>"
+        )
     product_id = f"NP-{rid.upper().replace('_', '-')}-2026-001"
     issue_utc = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
     sensor_label = "NISAR L-band GUNW, provisional"
@@ -467,6 +487,7 @@ def render_region_bulletin(region: dict[str, Any], out_dir: Path = OUT_DIR) -> P
   .pkg-bar div strong {{ font-weight:600; }}
   .wtm {{ background:#eff6ff; border:1px solid #bfdbfe; border-radius:8px; padding:10px 14px; margin-top:12px; }}
   .wtm h2 {{ margin-top:0; border-bottom-color:#bfdbfe; color:#1e3a8a; }}
+  .qc-rev {{ background:#fef2f2; border:1px solid #fca5a5; border-left:4px solid #dc2626; color:#7f1d1d; border-radius:6px; padding:8px 12px; margin-bottom:12px; font-size:.82rem; }}
   @page {{ size: A4 portrait; margin: 12mm; }}
   @media print {{
     body {{ background:#fff; padding:0; }}
@@ -501,6 +522,7 @@ def render_region_bulletin(region: dict[str, Any], out_dir: Path = OUT_DIR) -> P
     <div><span>Version</span><strong>{_esc(BULLETIN_VERSION)}</strong></div>
     <div><span>Format</span><strong>A4 Operational Map Package</strong></div>
   </div>
+  {qc_banner}
 
   <div class="grid">
     <div class="kpi"><div class="lbl">Peak Cumulative (LOS)</div><div class="val">{_esc(max_los)} cm</div></div>

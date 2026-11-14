@@ -43,6 +43,7 @@
   .pkg-bar div strong { font-weight:600; }
   .wtm { background:#eff6ff; border:1px solid #bfdbfe; border-radius:8px; padding:10px 14px; margin-top:12px; }
   .wtm h2 { margin-top:0; border-bottom-color:#bfdbfe; color:#1e3a8a; }
+  .qc-rev { background:#fef2f2; border:1px solid #fca5a5; border-left:4px solid #dc2626; color:#7f1d1d; border-radius:6px; padding:8px 12px; margin-bottom:12px; font-size:.82rem; }
   @page { size: A4 portrait; margin: 12mm; }
   @media print {
     body { background:#fff; padding:0; }
@@ -57,10 +58,10 @@
   <div class="topbar">
     <div>
       <h1>NISAR Pulse Bulletin &mdash; Semarang (Indonesia) &mdash; 2026-10-11</h1>
-      <div class="meta">Atlas Rank #1 &middot; Coverage: ok &middot; 8 pairs</div>
+      <div class="meta">Atlas Rank #9 &middot; Coverage: ok &middot; 8 pairs</div>
     </div>
     <div class="actions">
-      <span class="badge conf-medium">CONFIDENCE: MEDIUM</span>
+      <span class="badge conf-low">CONFIDENCE: LOW (indicative only)</span>
       <span class="badge">PROVISIONAL</span>
       <a class="btn" href="index.html">All Bulletins</a>
       <button class="btn btn-primary" onclick="window.print()">Print / PDF</button>
@@ -69,14 +70,15 @@
 
   <div class="pkg-bar">
     <div><span>Product ID</span><strong>NP-SEMARANG-2026-001</strong></div>
-    <div><span>Issue Time (UTC)</span><strong>2026-11-14 22:09 UTC</strong></div>
+    <div><span>Issue Time (UTC)</span><strong>2026-11-14 22:11 UTC</strong></div>
     <div><span>Data Window</span><strong>2026-06-25 to 2026-10-11</strong></div>
     <div><span>Sensor</span><strong>NISAR L-band GUNW, provisional</strong></div>
     <div><span>Quality Class</span><strong>PROVISIONAL</strong></div>
-    <div><span>Confidence</span><strong>MEDIUM</strong></div>
+    <div><span>Confidence</span><strong>LOW (indicative only)</strong></div>
     <div><span>Version</span><strong>v2.0</strong></div>
     <div><span>Format</span><strong>A4 Operational Map Package</strong></div>
   </div>
+  <div class='qc-rev'><strong>Under revision (phase_cycle_jump):</strong> Automated time-series QC flagged this headline series for independent review — step 8 (2026-09-29→2026-10-11) = -11.18 cm ≈ one phase cycle (12.1 cm).</div>
 
   <div class="grid">
     <div class="kpi"><div class="lbl">Peak Cumulative (LOS)</div><div class="val">-12.1 cm</div></div>
@@ -108,7 +110,7 @@
       <figure class='map'><img src='../../data/global/semarang/disp/2026-10-11.png' alt='Cumulative LOS displacement map for Semarang (Indonesia) ending 2026-10-11'><figcaption>Cumulative LOS displacement (2026-06-25 to 2026-10-11, 8 NISAR L2 GUNW pairs).</figcaption></figure>
       <div class="wtm">
         <h2>What This Means</h2>
-        <ul><li>Ground in Semarang (Indonesia) subsided up to -12.1 cm LOS (-11.2 cm/100d) between 2026-06-25 and 2026-10-11, consistent with active seasonal compaction.</li><li>About 592,366 residents live on ground sinking faster than 2 cm per 108 days (and 67,138 residents across 100.87 km2 faster than 5 cm per 108 days, above the 0.74 cm 2-sigma noise floor).</li><li>No local GNSS or canal-tilt overlay is bundled for this subset; field inspection and local piezometer records are needed to confirm infrastructure impacts.</li></ul>
+        <ul><li>Peak measured ground motion in Semarang (Indonesia) reached -12.1 cm LOS (-11.2 cm/100d) from 2026-06-25 to 2026-10-11, but low coverage or wide reference spread makes this an indicative estimate.</li><li>About 592,366 residents live on ground sinking faster than 2 cm per 108 days (and 67,138 residents across 100.87 km2 faster than 5 cm per 108 days, above the 0.74 cm 2-sigma noise floor).</li><li>No local GNSS or canal-tilt overlay is bundled for this subset; field inspection and local piezometer records are needed to confirm infrastructure impacts.</li></ul>
       </div>
     </div>
   </div>

@@ -43,6 +43,7 @@
   .pkg-bar div strong { font-weight:600; }
   .wtm { background:#eff6ff; border:1px solid #bfdbfe; border-radius:8px; padding:10px 14px; margin-top:12px; }
   .wtm h2 { margin-top:0; border-bottom-color:#bfdbfe; color:#1e3a8a; }
+  .qc-rev { background:#fef2f2; border:1px solid #fca5a5; border-left:4px solid #dc2626; color:#7f1d1d; border-radius:6px; padding:8px 12px; margin-bottom:12px; font-size:.82rem; }
   @page { size: A4 portrait; margin: 12mm; }
   @media print {
     body { background:#fff; padding:0; }
@@ -57,10 +58,10 @@
   <div class="topbar">
     <div>
       <h1>NISAR Pulse Bulletin &mdash; Bangkok (Thailand) &mdash; 2026-10-19</h1>
-      <div class="meta">Atlas Rank #7 &middot; Coverage: ok &middot; 8 pairs</div>
+      <div class="meta">Atlas Rank #11 &middot; Coverage: ok &middot; 8 pairs</div>
     </div>
     <div class="actions">
-      <span class="badge conf-medium">CONFIDENCE: MEDIUM</span>
+      <span class="badge conf-low">CONFIDENCE: LOW (indicative only)</span>
       <span class="badge">PROVISIONAL</span>
       <a class="btn" href="index.html">All Bulletins</a>
       <button class="btn btn-primary" onclick="window.print()">Print / PDF</button>
@@ -69,14 +70,15 @@
 
   <div class="pkg-bar">
     <div><span>Product ID</span><strong>NP-BANGKOK-2026-001</strong></div>
-    <div><span>Issue Time (UTC)</span><strong>2026-11-14 22:09 UTC</strong></div>
+    <div><span>Issue Time (UTC)</span><strong>2026-11-14 22:11 UTC</strong></div>
     <div><span>Data Window</span><strong>2026-06-21 to 2026-10-19</strong></div>
     <div><span>Sensor</span><strong>NISAR L-band GUNW, provisional</strong></div>
     <div><span>Quality Class</span><strong>PROVISIONAL</strong></div>
-    <div><span>Confidence</span><strong>MEDIUM</strong></div>
+    <div><span>Confidence</span><strong>LOW (indicative only)</strong></div>
     <div><span>Version</span><strong>v2.0</strong></div>
     <div><span>Format</span><strong>A4 Operational Map Package</strong></div>
   </div>
+  <div class='qc-rev'><strong>Under revision (literature_mismatch, noisy_series):</strong> Automated time-series QC flagged this headline series for independent review — Headline -7.5 cm LOS in 108 days implies roughly 10x the published recent rates (about 0.9 cm/yr on average, locally above 2 cm/yr, Sentinel-1 PS-InSAR 2016-2019; 1-3 cm/yr in 2005-2010 InSAR); the headline series has +/-4-5 cm steps in both directions, typical of tropical decorrelation..</div>
 
   <div class="grid">
     <div class="kpi"><div class="lbl">Peak Cumulative (LOS)</div><div class="val">-7.5 cm</div></div>
@@ -108,7 +110,7 @@
       <figure class='map'><img src='../../data/global/bangkok/disp/2026-10-19.png' alt='Cumulative LOS displacement map for Bangkok (Thailand) ending 2026-10-19'><figcaption>Cumulative LOS displacement (2026-06-21 to 2026-10-19, 8 NISAR L2 GUNW pairs).</figcaption></figure>
       <div class="wtm">
         <h2>What This Means</h2>
-        <ul><li>Ground in Bangkok (Thailand) subsided up to -7.5 cm LOS (-6.2 cm/100d) between 2026-06-21 and 2026-10-19, consistent with active seasonal compaction.</li><li>About 1,119,303 residents live on ground sinking faster than 2 cm per 108 days (and 261,087 residents across 48.85 km2 faster than 5 cm per 108 days, above the 0.65 cm 2-sigma noise floor).</li><li>No local GNSS or canal-tilt overlay is bundled for this subset; field inspection and local piezometer records are needed to confirm infrastructure impacts.</li></ul>
+        <ul><li>Peak measured ground motion in Bangkok (Thailand) reached -7.5 cm LOS (-6.2 cm/100d) from 2026-06-21 to 2026-10-19, but low coverage or wide reference spread makes this an indicative estimate.</li><li>About 1,119,303 residents live on ground sinking faster than 2 cm per 108 days (and 261,087 residents across 48.85 km2 faster than 5 cm per 108 days, above the 0.65 cm 2-sigma noise floor).</li><li>No local GNSS or canal-tilt overlay is bundled for this subset; field inspection and local piezometer records are needed to confirm infrastructure impacts.</li></ul>
       </div>
     </div>
   </div>
