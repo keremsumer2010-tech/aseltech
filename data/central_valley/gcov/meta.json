@@ -1,0 +1,48 @@
+{
+  "site": "central_valley",
+  "bbox": [
+    -120.2,
+    35.6,
+    -119.0,
+    36.6
+  ],
+  "dates": [
+    "2026-06-28",
+    "2026-07-10",
+    "2026-07-22",
+    "2026-08-15",
+    "2026-08-27",
+    "2026-09-08",
+    "2026-09-20",
+    "2026-10-14"
+  ],
+  "units": "dB",
+  "vmin": -28.0,
+  "vmax": -10.0,
+  "mean_hv_db": [
+    -19.44,
+    -19.44,
+    -19.47,
+    -19.09,
+    -19.41,
+    -19.59,
+    -19.7,
+    -19.8
+  ],
+  "component": "L-band cross-pol radar backscatter gamma0_HV (10*log10(HVHV), frequencyA)",
+  "colormap": "viridis (dark = bare/dry soil or open water, bright = irrigated crop canopy / vegetation volume)",
+  "source": "NISAR L2 GCOV (PROVISIONAL, CRID P05023) via ASF DAAC, track 34 ascending frame 20; https://nisar-docs.asf.alaska.edu/gcov",
+  "granules": [
+    "NISAR_L2_PR_GCOV_024_034_A_020_4005_DHDH_A_20260628T130859_20260628T130934_P05023_N_F_J_001",
+    "NISAR_L2_PR_GCOV_025_034_A_020_4005_DHDH_A_20260710T130859_20260710T130933_P05023_N_F_J_001",
+    "NISAR_L2_PR_GCOV_026_034_A_020_4005_DHDH_A_20260722T130858_20260722T130933_P05023_N_F_J_001",
+    "NISAR_L2_PR_GCOV_028_034_A_020_4005_DHDH_A_20260815T130857_20260815T130931_P05023_N_F_J_001",
+    "NISAR_L2_PR_GCOV_029_034_A_020_4005_DHDH_A_20260827T130856_20260827T130931_P05023_N_F_J_001",
+    "NISAR_L2_PR_GCOV_030_034_A_020_4005_DHDH_A_20260908T130856_20260908T130931_P05023_N_F_J_001",
+    "NISAR_L2_PR_GCOV_031_034_A_020_4005_DHDH_A_20260920T130856_20260920T130931_P05023_N_F_J_001",
+    "NISAR_L2_PR_GCOV_033_034_A_020_4005_DHDH_A_20261014T130856_20261014T130931_P05023_N_F_J_001"
+  ],
+  "notes": "Geocoded terrain-corrected cross-polarisation backscatter gamma0_HV in dB (10*log10(science/LSAR/GCOV/grids/frequencyA/HVHV)) resampled from UTM Zone 11N (EPSG:32611, 160 m stride) onto a regular 0.001 deg lon/lat grid covering [-120.2, 35.6, -119.0, 36.6]. All 8 provisional dates share a fixed colour scale [-28, -10] dB.",
+  "quality": "provisional",
+  "quality_note": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team."
+}

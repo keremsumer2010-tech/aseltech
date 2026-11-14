@@ -4,9 +4,11 @@
 - Görev: 2 (Central Valley provisional çiftleri) — **TAMAMLANDI (7/7 tam `ion` katmanıyla push edildi)**
 - Görev: Q01 (Karapınar GUNW Path 7 Frame 69 provisional zinciri) — **TAMAMLANDI (8/8 tam `ion` katmanıyla `pipeline/subset/karapinar/` altına push edildi — PC3 için hazır!)**
 - Görev: Q04 (Central Valley SME2 toprak nemi → `data/central_valley/drivers.json`) — **TAMAMLANDI** (8 provisional SME2 granülü, `lag_corr=0.654`)
-- Görev: Q03 (Central Valley GCOV 6 provisional tarih HV dB → `data/central_valley/gcov/`) — **DEVAM EDİYOR**
+- Görev: Q03 (Central Valley GCOV 6 provisional tarih HV dB → `data/central_valley/gcov/`) — **TAMAMLANDI (8 provisional tarih HV dB PNG + `meta.json` `data/central_valley/gcov/` altına push edildi)**
+- Görev: Q09 (UK kil bölgesi Londra GUNW provisional zinciri → `pipeline/subset/uk_clay/`) & Q07 (Central Valley tam yıl zinciri → `pipeline/subset/central_valley_beta/`) — **DEVAM EDİYOR**
 - Çıktılar:
-  - `pipeline/search.py`, `pipeline/download.py` (PCQ `docs/code_review.md` bulgusu düzeltildi: `netrc` üzerinden `urs.earthdata.nasa.gov` ve `EARTHDATA_TOKEN` desteği), `pipeline/inspect_gunw.py`, `pipeline/subset.py`, `pipeline/sme2_drivers.py`
+  - `pipeline/search.py`, `pipeline/download.py` (PCQ `docs/code_review.md` bulgusu düzeltildi: `netrc` üzerinden `urs.earthdata.nasa.gov` ve `EARTHDATA_TOKEN` desteği), `pipeline/inspect_gunw.py`, `pipeline/subset.py`, `pipeline/sme2_drivers.py`, `pipeline/gcov_subset.py`
+  - `data/central_valley/gcov/meta.json` + 8 adet `*.png` (`2026-06-28` → `2026-10-14`, `vmin=-28 dB`, `vmax=-10 dB`, `mean_dB=[-19.80..-19.09] dB`)
   - `data/central_valley/drivers.json` (Q04: 8 provisional `P05023` SME2 Path 34 Frame 20 tarihinin bölge ortalaması toprak nemi `[0.1555..0.1844] m³/m³`, HV dB `[-18.624..-18.169] dB`, `irrigation_index` ve `lag_corr=0.654`)
   - `pipeline/central_valley_p114_gunw.csv` (PC3 Q21 desteği: Central Valley Path 114 Frame 70 — 24 GUNW ürünü, 8 provisional `P05023` çifti `2026-06-22 → 2026-10-20` hazır; ek destek gerekirse bildirin)
   - `pipeline/central_valley_gunw.csv` (27 Path 34 Frame 20 ürünü; 7 provisional `P05023`, 20 beta-precal)
