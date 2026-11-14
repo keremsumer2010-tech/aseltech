@@ -1,0 +1,67 @@
+{
+  "site": "central_valley",
+  "dates": [
+    "2026-06-28",
+    "2026-07-10",
+    "2026-07-22",
+    "2026-08-15",
+    "2026-08-27",
+    "2026-09-08",
+    "2026-09-20",
+    "2026-10-14"
+  ],
+  "area_km2_lt_2cm": [
+    0.0,
+    51.87,
+    342.82,
+    1215.97,
+    1489.88,
+    1068.83,
+    1661.49,
+    1578.27
+  ],
+  "area_km2_lt_5cm": [
+    0.0,
+    0.05,
+    0.36,
+    11.9,
+    97.01,
+    49.68,
+    172.82,
+    239.54
+  ],
+  "max_subsidence_cm": [
+    0.0,
+    -2.89,
+    -3.57,
+    -4.75,
+    -6.37,
+    -6.87,
+    -7.24,
+    -7.8
+  ],
+  "median_cm": [
+    0.0,
+    -0.226,
+    0.047,
+    -0.667,
+    -0.48,
+    -0.174,
+    -0.774,
+    -0.512
+  ],
+  "pixel_area_km2": 0.0064,
+  "valid_pixels": 1203856,
+  "valid_area_km2": 7704.68,
+  "bbox": [
+    -120.2,
+    35.6,
+    -119.0,
+    36.6
+  ],
+  "unit_area": "km^2",
+  "unit_disp": "cm (LOS, negative = subsidence)",
+  "quality": "provisional",
+  "quality_note": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.",
+  "method": "Per-epoch pixel count within site bbox exceeding -2.0 cm and -5.0 cm LOS thresholds multiplied by pixel area (0.0064 km^2 for 80 m grid) over common valid pixels; max_subsidence_cm uses 13x13 pixel (~1 km) block-median matching analysis/cumulative.py."
+}

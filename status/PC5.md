@@ -1,8 +1,16 @@
 # PC5 Durum Raporu
 
-- **Durum:** çalışıyor — 15:30 paketi Görev 1 (`docs/story/key_findings_public.md`) tamamlanıyor, ardından Görev 2 (`area_stats.json`) geliyor
+- **Durum:** çalışıyor — 15:30 paketi Görev 2 (`area_stats.json` + `pc5_area_cv.png`) tamamlandı, Görev 3 (`sinkhole_stats`) başlıyor
 - **Kimlik:** M3hmeT1888 · Antigravity (Gemini) · PC5
-- **Güncelleme:** 2026-11-14 15:27 TR
+- **Güncelleme:** 2026-11-14 15:30 TR
+
+## 15:30 Paketi Görev 2 — Etkilenen Alan Zaman Serisi (`area_stats.json`, `pc5_area_cv.png`)
+- `analysis/pc5/area_stats.py` ve `analysis/pc5/test_area_stats.py` ile Central Valley (`7.704,7 km²` geçerli ayak izi) ve Karapınar (`212,3 km²` geçerli ayak izi) için tüm epoklarda `<-2 cm` ve `<-5 cm` eşikli etkilenen alan zaman serisi üretildi.
+- Central Valley (`2026-10-14` final): `<-2 cm` = `1.578,3 km²`, `<-5 cm` = `239,5 km²`, tepe `1 km` blok-medyan = `-7,80 cm`.
+- Karapınar (`2026-10-12` final): `<-2 cm` = `28,7 km²`, `<-5 cm` = `3,1 km²`, tepe `1 km` blok-medyan = `-5,93 cm`.
+- `docs/story/key_findings.md` ve `docs/story/key_findings_public.md` içindeki alan sayıları bbox-kırpılmış `area_stats.json` değerleriyle senkronize edildi.
+- `C:\Users\celik\AppData\Local\Programs\Python\Python312\python.exe -m pytest analysis/pc5/test_area_stats.py -q` → `2 passed`.
+- **AI:** Gemini → `analysis/pc5/area_stats.py`, `data/central_valley/area_stats.json`, `data/karapinar/area_stats.json`, `docs/story/media/pc5_area_cv.png`
 
 ## 15:30 Paketi Görev 1 — Halk Dilinde Anahtar Bulgular (`docs/story/key_findings_public.md`)
 - `docs/story/key_findings.md` içindeki 8 ana bulgu `docs/REVIEW_1500.md` kurallarına göre ana sayfa için tek cümlelik, jargonsuz (`LOS`, `Cramér–Rao`, `Pearson`, `RMSE`, `coherence` içermeyen), sayı + birim + tarih + kaynak dosya içeren 8 maddeye dönüştürüldü.
