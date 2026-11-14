@@ -72,3 +72,11 @@
   - `pipeline/pc2/run_cumulative.py delta --data-dir data/delta` ile `data/delta/` (`disp/*.png`, `meta.json`, `points.json`, `summary.json`) üretildi ve push edildi (`5b4b6dd`): 1 km blok medyan tepe çökmesi `-1.3 cm` LOS (`range_cm=[-1.3, -1.1]`, 120 gün, dikey tahmin `-1.6 cm`).
   - `pipeline/pc2/delta_levees.py` ile OSM set hatları boyunca profil çıkarıldı (`N=87` örnek, p10=`-3.48 cm`, en belirgin 4.09 km set hattında min `-11.36 cm`); `docs/story/media/pc2_delta.png` ve `docs/story/delta.md` (A5, A11, Levees and Dams + StoryMap atıflı) oluşturuldu.
 - **Sıradaki iş:** Madde 2 (**Konya Ovası'nın tamamı**, `konya_plain`, Path 7 Frame 69).
+
+## 18:39 Güncelleme — 15:50 BÜYÜK PAKET Madde 2 (Konya Ovası'nın Tamamı) TAMAMLANDI
+
+- **Konya Ovası GUNW (Path 7 Descending, Frame 69, provisional) — TAMAMLANDI (8/8):**
+  - `pipeline/konya_plain_gunw.csv` + `pipeline/subset/konya_plain/` altında `2026-06-26 → 2026-10-12` arası kesintisiz **8/8** `provisional` çift (`shape=(1025, 1710)`, `6.46–8.74 MB`, tam `ion` katmanlı) push edildi (`e3fedbb`, `f47fa63`, `2222966`).
+  - `pipeline/pc2/run_cumulative.py konya_plain --data-dir data/konya_plain` ile `data/konya_plain/` (`disp/*.png`, `meta.json`, `points.json`, `summary.json`) üretildi: 1 km blok medyan tepe çökmesi `-9.6 cm` LOS (`range_cm=[-14.0, -9.6]`, 108 gün, dikey tahmin `-12.1 cm` @ `37.6°`, konum `32.6278°E, 37.8161°N`).
+  - `pipeline/pc2/konya_plain_plot.py` ile `docs/story/media/pc2_konya_plain.png` ve `docs/story/konya_plain.md` (A5, A11, Sinkholes + StoryMap atıflı) oluşturuldu.
+- **Sıradaki iş:** Madde 3 (**Karapınar tam yıl**, `karapinar_fullyear`, Path 7 Frame 69, `2025-10-17 → 2026-10-12`).
