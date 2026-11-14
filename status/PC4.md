@@ -2,7 +2,7 @@
 
 - Görev: 1, 2, 3 + Queue `Q11`, `Q12`, `Q16`, `Q30`, `Q31` + 14:10 Paketi (1–6) + `ZAMAN_CIZELGESI` Pazar #1–5 + **15:00 Paketi (#1–4)** + **PC5 Duyarlılık/Literatür & `docs.js` Hijyen Senkronu (tamamlandı)**
 - Durum: çalışıyor (tüm 15:00 paketi, PC5 `key_findings` / `literature_comparison` / `risk_sensitivity` / `game_sensitivity` senkronu, `27/27` URL doğrulaması ve `docs.js` blok-alıntı temizliği tamamlandı; sürekli izleme nöbetinde `git pull` / `QUEUE.md` takip ediliyor)
-- Güncelleme: 2026-11-14 15:16 TR
+- Güncelleme: 2026-11-14 15:20 TR
 - Çıktılar:
   - Görev 1: `data/uk/optical_2026-10-20.jpg` (`700x500`, `19,490 B`), `data/uk/radar_2026-10-20.png` (`700x500`, `631,556 B`), `data/uk/meta.json` (`preview`, `optical_image`/`radar_image` yerel adları eklendi — `Q14` uyumu)
   - Görev 2: `data/karapinar/sinkholes.geojson` (`18,638 B`, `29` doğrulanmış Karapınar obruğu, tümü `bbox = [33.3, 37.6, 33.8, 37.9]` içinde; Tapur & Bozyiğit 2015)
@@ -16,7 +16,7 @@
   - UK görsel çifti (`700x500` RGB, `transparency` temiz), `meta.json` şeması ve `sinkholes.geojson` (`29/29` geçerli Point Feature, `NaN` yok) doğrulandı.
   - `web3d/surfaces.json` valid UTF-8 JSON (`508,115 B`, `NaN` yok), `node --check web3d/app.js` geçti, lokal HTTP sunucu `/web3d/` ve `/data/` yollarında HTTP 200 döndü; `Tapur & Bozyiğit (2015)` PDF'i üzerinden `29/29` obruk özelliği birebir doğrulandı, `slides.html` / `web3d/app.js` / `video_shotlist.md` koordinat yön/HTML hataları temizlendi ve `PC5_SYNC_AND_DOCS_HYGIENE_OK` doğrulaması geçti.
   - PC4 dokümanları, Three.js CDN, depo URL'si ve `literature_comparison.md`'den gelen 5 hakemli InSAR/GNSS makalesi dahil doğrulanan **27/27** benzersiz dış kaynak URL'si canlı **HTTP 200** döndü.
-  - `docs/qa/PCQ.md` (`Sahip: PC4`) ve `docs/code_review.md` (`web3d/generate_3d_data.py` `h5py` importu + `web3d/` `#backLink` Pages uyumu) bulguları giderildi.
+  - `docs/qa/PCQ.md` (`Sahip: PC4`), `docs/qa/PC7.md` (`sinkholes.geojson` kök `quality: "reference"` + `quality_note` eklendi) ve `docs/code_review.md` (`web3d/generate_3d_data.py` `h5py` importu + `web3d/` `#backLink` Pages uyumu) bulguları giderildi.
 - Doğrulanmadı (K-2):
   - `Küpbasan Yeni Obruk-I`: Tapur & Bozyiğit (2015) Tablo 1'deki `37° 43' 99"` saniye yazım hatası nedeniyle koordinatı doğrulanmadı; GeoJSON'a dahil edilmedi.
   - `https://www.spaceappschallenge.org/resources/participant-faq/`: Linux ortamında TLS `CERTIFICATE_VERIFY_FAILED` hatası nedeniyle doğrudan doğrulanmadı; resmi `Space_Apps_2022_Project_Submission_Guide.pdf` HTTP 200 ile doğrulandı (`submission_rules.md`).

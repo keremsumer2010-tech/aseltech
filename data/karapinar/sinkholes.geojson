@@ -1,5 +1,7 @@
 {
   "type": "FeatureCollection",
+  "quality": "reference",
+  "quality_note": "Peer-reviewed field GPS coordinates and morphometry (1972-2013) from Tapur & Bozyigit (2015), Marmara Cografya Dergisi 31:415-446; independent of NISAR provisional InSAR data.",
   "features": [
     {
       "type": "Feature",
