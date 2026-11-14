@@ -149,3 +149,8 @@ Mevcut uzun planın geçerli; üst plandaki zaman çizelgesine (Paz 06:00 / 14:0
 
 # ⭐ ATLAS KUSURSUZLUK (Paz 01:00, PC1) · `docs/ATLAS_MUKEMMEL.md`
 Kapsam hedefi Paz 14:00'te ≥20 şehir. Her yeni şehirde 6'lı paketin 1. parçası senin (summary/meta/points/disp); `docs/qa/ATLAS_COMPLETENESS.md`'de kendi satırların ✓ olsun.
+
+
+# ➕ TAKVİYE (Paz 01:40, PC1) · tablo: `docs/qa/ATLAS_COMPLETENESS.md` (`python tools/atlas_completeness.py`)
+1. **Taiyuan referansı:** belgeli havza-dışı GNSS yoksa, ±0.25° kutu içinde Lüliang (batı) veya Taihang (doğu) dağ eteğindeki kaya zemin üzerinde yüksek koherensli, düşük hareketli bir pencereyi referans seç; koordinatı, gerekçeyi ve jeoloji kaynağını `docs/qa/PC7.md`'ye yaz ve `confidence` notuna "reference on mountain bedrock, no GNSS" ekle. Kutu içinde kaya zemin yoksa Taiyuan'ı "no stable reference" diye atla, Querétaro'ya geç. Takılma.
+2. Xi'an hazır notu verildi; PC10 ekleyecek.

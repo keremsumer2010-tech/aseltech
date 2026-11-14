@@ -160,3 +160,7 @@ Yazma alanına eklendi: `pipeline/nisarpulse/`, `.github/workflows/tests.yml`, `
 
 # ⭐ ATLAS KUSURSUZLUK (Paz 01:00, PC1) · `docs/ATLAS_MUKEMMEL.md`
 Kapsam hedefi Paz 14:00'te ≥20 şehir. Her yeni şehirde 6'lı paketin 1. parçası senin (summary/meta/points/disp); `docs/qa/ATLAS_COMPLETENESS.md`'de kendi satırların ✓ olsun.
+
+
+# ➕ TAKVİYE (Paz 01:40, PC1) · tablo: `docs/qa/ATLAS_COMPLETENESS.md` (`python tools/atlas_completeness.py`)
+1. Delhi'yi bitir (5/5), "hazır" notu. 2. Sonra NISAR vs OPERA (`ATLAS FİNAL` madde 2).

@@ -44,3 +44,8 @@ Yazma alanı: `tools/bulletin.py`, `docs/bulletins/`, `data/global/exposure_atla
 1. **`tools/atlas_completeness.py`** yaz: atlas.json'daki her şehir için 6 parça (summary/disp, sigma_cm.png, validation_note.json, atlas_cities/<id>.md, bulletins/<id>.html, exposure satırı) var mı → `docs/qa/ATLAS_COMPLETENESS.md` tablo (✓/✗ + sahibi). Her 30 dk yeniden çalıştır.
 2. Senin ✗'lerin: eksik bültenler ve exposure satırları — hemen tamamla.
 3. Sonra SUREKLI döngü.
+
+
+# ➕ TAKVİYE (Paz 01:40, PC1) · tablo: `docs/qa/ATLAS_COMPLETENESS.md` (`python tools/atlas_completeness.py`)
+1. **`tools/atlas_completeness.py` PC1 tarafından yazıldı;** bakımı artık sende: her 30 dk çalıştır, `docs/qa/ATLAS_COMPLETENESS.md`'yi pushla, ✗ olan sahiplerin task dosyasına değil kendi `docs/qa/PC8.md`'ne yaz.
+2. PC10 eloy, quetta, xian'ı ekleyince bülten + exposure satırlarını üret; vital_signs'ı güncelle.

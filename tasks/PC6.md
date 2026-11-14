@@ -68,3 +68,7 @@ Her adımda commit + push; 3 dk döngüsü (`tasks/SUREKLI.md`).
 1. Atlas sayfası: eksik dosya yoklamalarında (HEAD) konsola 404 düşmesin — bilinen dosya listesini `docs/qa/ATLAS_COMPLETENESS.md` yerine `atlas.json` alanlarından türet veya yoklamayı sessiz yap; konsol 0 hata.
 2. NISAR 3D görünümü varsayılan açılıyor (PC1): `web/nisar3d.js`, `atlas_sat.*` dosyalarına dokunma; 3D açıkken sol panel listesi, filtreler ve yan panel düzgün çalışıyor mu test et, sorunları `docs/qa/PC6.md`'ye yaz.
 3. Mobil (375 px) ve projektör (1920) son test.
+
+
+# ➕ TAKVİYE (Paz 01:40, PC1) · tablo: `docs/qa/ATLAS_COMPLETENESS.md` (`python tools/atlas_completeness.py`)
+1. 45 dk commit yok: "TAKVİYE (00:55)" ve "ATLAS KUSURSUZLUK (01:00)" maddelerini yap (konsol 0 hata, 3D açıkken liste/filtre testi, mobil).

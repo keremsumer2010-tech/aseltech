@@ -157,3 +157,8 @@ Yazma alanın genişledi: `docs/story/atlas_cities/` · `docs/story/atlas_method
 # ⭐ ATLAS KUSURSUZLUK (Paz 01:00, PC1) · `docs/ATLAS_MUKEMMEL.md`
 1. `docs/qa/ATLAS_COMPLETENESS.md`'de (PC8) şehir kartı ✗ olan her şehir için kart yaz (semarang, mashhad, quetta, rafsanjan, ho_chi_minh dahil).
 2. Atlas metinleri: 1. sıra Semarang; Tahran/Pekin "under revision".
+
+
+# ➕ TAKVİYE (Paz 01:40, PC1) · tablo: `docs/qa/ATLAS_COMPLETENESS.md` (`python tools/atlas_completeness.py`)
+1. **Eksiklerin:** `docs/story/atlas_cities/semarang.md`, `hanoi.md`; ardından eloy, quetta, xian kartları (kaynaklı, ≤150 kelime).
+2. 82 dk commit yoktu — her 3 dk ara commit.

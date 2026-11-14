@@ -141,3 +141,9 @@ Kurallar: uydurma yok, her sayının kaynağı dosya:anahtar; REVIEW_1500 dili; 
 # ⭐ ATLAS KUSURSUZLUK (Paz 01:00, PC1) · `docs/ATLAS_MUKEMMEL.md`
 1. ATLAS_COMPLETENESS'te sigma ✗ ve validation_note ✗ olan şehirleri tamamla (önce Semarang, Mashhad, Quetta, Rafsanjan).
 2. Semarang bağımsız kontrolü (1. sıra).
+
+
+# ➕ TAKVİYE (Paz 01:40, PC1) · tablo: `docs/qa/ATLAS_COMPLETENESS.md` (`python tools/atlas_completeness.py`)
+1. **Eksiklerin:** semarang, mashhad, hanoi → `uncertainty/sigma_cm.png` + `validation_note.json` + karar (Semarang 1. sırada, önce o).
+2. PC10 eloy, quetta, xian'ı ekleyince aynılarını onlar için yap.
+3. Status'a "bitti" yazma; 74 dk commit yoktu — her 3 dk ara commit.
