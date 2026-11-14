@@ -1,5 +1,5 @@
 # PC8 durum
 
 - Görev: test
-- Durum: başlamadı
+- Durum: çalışıyor (test)
 - BLOCKED: yok
