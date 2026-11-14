@@ -35,7 +35,4 @@ Her PC sadece kendi `[atandı]` satırlarını yukarıdan aşağı yapar: `- [ ]
 - [ ] B15 · [atandı: PC8] · S-23 En son · TR/EN dil desteği — SADECE B01–B14 ve PC6 listesi bitince; önce PC3'e sor
 
 ### PC6 — veri, analiz, metin, video (data/, analysis/pc6/, risk/, validation/, docs/story/*.md, docs/story/media/)
-- [~PC6] B26 · [atandı: PC6] · S-02 Yüksek · Videoda siyah alanlar → açık gri + gösterge ("Grey = no reliable radar signal"), `analysis/pc6/make_animation.py`
-- [ ] B27 · [atandı: PC6] · S-01 Orta · Videodaki "Peak P01" etiketi → karedeki gerçek en derin nokta
-- [ ] B28 · [atandı: PC6] · S-04 Orta · Video başlığı "Central Valley (San Joaquin Valley), CA"
-- [ ] B29 · [atandı: PC6] · S-05 Orta · Videonun alt kaynak satırını yukarı al (kontrol çubuğunun altında kalmasın)
+*(BUGFIX listesi tamamlandı)*

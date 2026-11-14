@@ -21,6 +21,7 @@ import numpy as np
 from matplotlib.cm import ScalarMappable
 from matplotlib.colors import Normalize
 from matplotlib.lines import Line2D
+from matplotlib.patches import Patch
 from matplotlib.ticker import MultipleLocator
 from PIL import Image
 
@@ -32,7 +33,7 @@ MEDIA_ROOT = REPO_ROOT / "docs" / "story" / "media"
 SITE_CONFIGS = {
     "central_valley": {
         "out_prefix": "cv_subsidence",
-        "title": "San Joaquin Valley, CA — NISAR Cumulative LOS Subsidence",
+        "title": "Central Valley (San Joaquin Valley), CA — NISAR Cumulative LOS Subsidence",
         "subtitle": "NISAR L2 GUNW Track 34 Ascending · Frame 20 · Ref 2026-06-28",
         "infra_geojson": RISK_ROOT / "central_valley_infra.geojson",
         "highlight_ids": ["p01", "p02", "p03", "p04", "p06", "p11"],
@@ -53,7 +54,7 @@ SITE_CONFIGS = {
     },
     "central_valley_fullyear": {
         "out_prefix": "cv_fullyear",
-        "title": "San Joaquin Valley, CA — Full-Year Cumulative LOS (MIXED)",
+        "title": "Central Valley (San Joaquin Valley), CA — Full-Year Cumulative LOS (MIXED)",
         "subtitle": "NISAR L2 GUNW Track 34 Ascending · 25 Pairs (18 Beta-Precal + 7 Provisional) · Ref 2025-11-24",
         "badge_text": "NASA-ISRO NISAR · MIXED (BETA + PROVISIONAL)",
         "infra_geojson": RISK_ROOT / "central_valley_infra.geojson",
@@ -160,8 +161,9 @@ def render_epoch_frame(
 
     pt_by_id = {p["id"]: p for p in points}
     selected_pts = [pt_by_id[pid] for pid in cfg["highlight_ids"] if pid in pt_by_id]
-    p01 = selected_pts[0] if selected_pts else points[0]
-    p01_val = float(p01["disp_cm"][epoch_idx])
+    valid_pts = [p for p in points if p.get("disp_cm") and epoch_idx < len(p["disp_cm"]) and p["disp_cm"][epoch_idx] is not None]
+    peak_pt = min(valid_pts, key=lambda p: float(p["disp_cm"][epoch_idx])) if valid_pts else (selected_pts[0] if selected_pts else points[0])
+    peak_val = float(peak_pt["disp_cm"][epoch_idx])
 
     bg = "#080d14"
     panel_bg = "#0f1722"
@@ -213,7 +215,7 @@ def render_epoch_frame(
     fig.text(
         0.968,
         0.897,
-        f"EPOCH {epoch_idx + 1}/{len(dates)}:  {cur_date}  (Day +{days_elapsed}  ·  Peak {p01['id'].upper()}: {p01_val:+.2f} cm)",
+        f"EPOCH {epoch_idx + 1}/{len(dates)}:  {cur_date}  (Day +{days_elapsed}  ·  Peak {peak_pt['id'].upper()}: {peak_val:+.2f} cm)",
         color="#f8fafc",
         fontsize=11.0,
         fontweight="bold",
@@ -228,8 +230,8 @@ def render_epoch_frame(
         ),
     )
 
-    # Left axis: Map
-    ax_map = fig.add_axes([0.046, 0.145, 0.488, 0.715], facecolor=panel_bg)
+    # Left axis: Map (light grey background for masked / no-reliable-signal pixels)
+    ax_map = fig.add_axes([0.046, 0.175, 0.488, 0.685], facecolor="#a8b3c2")
     ax_map.set_xlim(w_min, e_max)
     ax_map.set_ylim(s_min, n_max)
     ax_map.set_aspect(1.0 / math.cos(math.radians(mean_lat)))
@@ -330,6 +332,7 @@ def render_epoch_frame(
         Line2D([0], [0], color="#fbbf24", lw=1.4, label="Rail corridors"),
         Line2D([0], [0], color="#64748b", lw=1.2, label="Major roads"),
         Line2D([0], [0], marker="*", color="none", markerfacecolor="#f8fafc", markersize=9, label="Reference window"),
+        Patch(facecolor="#a8b3c2", edgecolor="#475569", label="Grey = no reliable radar signal"),
     ]
     if bundle["sinkholes"]:
         legend_handles.append(
@@ -348,7 +351,7 @@ def render_epoch_frame(
     leg.set_zorder(11)
 
     # Colorbar separated clearly from right chart ylabel
-    cax = fig.add_axes([0.550, 0.21, 0.014, 0.58])
+    cax = fig.add_axes([0.550, 0.23, 0.014, 0.56])
     sm = ScalarMappable(norm=Normalize(vmin=vmin, vmax=vmax), cmap=plt.get_cmap("RdBu"))
     sm.set_array([])
     cbar = fig.colorbar(sm, cax=cax)
@@ -357,7 +360,7 @@ def render_epoch_frame(
     cbar.outline.set_edgecolor(border_col)
 
     # Right axis: Cumulative time-series progression (clear gap left of x=0.67)
-    ax_ts = fig.add_axes([0.668, 0.295, 0.300, 0.505], facecolor=panel_bg)
+    ax_ts = fig.add_axes([0.668, 0.315, 0.300, 0.485], facecolor=panel_bg)
     x_days = np.array([(datetime.strptime(d, "%Y-%m-%d") - d0).days for d in dates], dtype=float)
 
     ax_ts.axhline(0.0, color="#475569", linestyle="--", linewidth=0.9, zorder=1)
@@ -418,7 +421,7 @@ def render_epoch_frame(
     ts_leg.set_zorder(10)
 
     # Bottom-right Epoch Timeline Strip
-    ax_tl = fig.add_axes([0.668, 0.145, 0.300, 0.080], facecolor=panel_bg)
+    ax_tl = fig.add_axes([0.668, 0.175, 0.300, 0.075], facecolor=panel_bg)
     ax_tl.set_xlim(-0.5, len(dates) - 0.5)
     ax_tl.set_ylim(0, 1)
     ax_tl.set_xticks([])
@@ -459,7 +462,7 @@ def render_epoch_frame(
     is_multiline = "\n" in q_wrapped
     fig.text(
         0.032,
-        0.062 if is_multiline else 0.048,
+        0.118 if is_multiline else 0.106,
         f"Source: {meta.get('source', 'NASA-ISRO NISAR L2 GUNW')}  |  {cfg['extra_note']}",
         color="#cbd5e1",
         fontsize=8.5 if is_multiline else 8.8,
@@ -467,7 +470,7 @@ def render_epoch_frame(
     )
     fig.text(
         0.032,
-        0.045 if is_multiline else 0.022,
+        0.101 if is_multiline else 0.080,
         q_wrapped,
         color="#fbbf24",
         fontsize=8.3 if is_multiline else 8.8,
