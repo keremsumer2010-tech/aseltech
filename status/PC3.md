@@ -6,6 +6,9 @@
 - Sıradaki: 17:00 QA (sitedeki sayılar = çıktılarım mı) → Q08 hazırlığı
 - Güncelleme: 2026-11-14 13:55 TR
 
+## Bağımsız yeniden üretim (14:05)
+PC2 iyonosferli 7 npz'yi push etti; `cumulative.py` artık onları kullanıyor (`pair_stats.json` → `pipeline/...`). Sonuç birebir aynı: −7.8 cm, aralık −6.2…−7.8 → PC2 ve PC3 kesimleri tutarlı. Önceki NOT (PC2 npz'de `ion` boş) artık geçersiz.
+
 ## Referans duyarlılığı (YENİ, önemli)
 Mutlak değer referans seçimine bağlı. `summary.json`'a eklendi: `max_subsidence_range_cm` + `reference_sensitivity`
 (≥30 km uzaktaki en iyi ikinci referansla aynı nokta yeniden hesaplanıyor).

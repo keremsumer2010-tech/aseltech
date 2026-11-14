@@ -5,7 +5,7 @@
         "2026-06-28",
         "2026-07-10"
       ],
-      "file": "analysis/out/subset/central_valley/2026-06-28_2026-07-10.npz",
+      "file": "pipeline/subset/central_valley/2026-06-28_2026-07-10.npz",
       "lambda_m": 0.2419632429378531,
       "ionosphere_applied": true,
       "cycle_outlier_px": 20,
@@ -22,7 +22,7 @@
         "2026-07-10",
         "2026-07-22"
       ],
-      "file": "analysis/out/subset/central_valley/2026-07-10_2026-07-22.npz",
+      "file": "pipeline/subset/central_valley/2026-07-10_2026-07-22.npz",
       "lambda_m": 0.2419632429378531,
       "ionosphere_applied": true,
       "cycle_outlier_px": 25,
@@ -39,7 +39,7 @@
         "2026-07-22",
         "2026-08-15"
       ],
-      "file": "analysis/out/subset/central_valley/2026-07-22_2026-08-15.npz",
+      "file": "pipeline/subset/central_valley/2026-07-22_2026-08-15.npz",
       "lambda_m": 0.2419632429378531,
       "ionosphere_applied": true,
       "cycle_outlier_px": 11,
@@ -90,7 +90,7 @@
         "2026-09-08",
         "2026-09-20"
       ],
-      "file": "analysis/out/subset/central_valley/2026-09-08_2026-09-20.npz",
+      "file": "pipeline/subset/central_valley/2026-09-08_2026-09-20.npz",
       "lambda_m": 0.2419632429378531,
       "ionosphere_applied": true,
       "cycle_outlier_px": 4,
@@ -107,7 +107,7 @@
         "2026-09-20",
         "2026-10-14"
       ],
-      "file": "analysis/out/subset/central_valley/2026-09-20_2026-10-14.npz",
+      "file": "pipeline/subset/central_valley/2026-09-20_2026-10-14.npz",
       "lambda_m": 0.2419632429378531,
       "ionosphere_applied": true,
       "cycle_outlier_px": 1,
