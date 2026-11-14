@@ -1,14 +1,22 @@
 # PC6 durum
 
-- Görev: 14:10 paketi — `Q19` ✅ · `Q28` ✅ · `Q14` ✅ · sıradaki `Q13` (README.md) → `Q15` (code review) → `Q17` (`data/water/`)
-- Durum: `Q28` (Karapınar obruk halka + OSM yakınlık riski) ve `Q14` (`data/*/meta.json` tam denetimi) tamamlandı ve doğrulandı; şimdi `Q13` (`README.md`) başlıyor.
+- Görev: 14:10 yeni paketi (`tasks/PC6.md` + `tasks/QUEUE.md` PC6 satırları) TAMAMLANDI.
+- Durum: PC6'ya atanan tüm işler tamamlandı ve doğrulandı (`Q05`, `Q06`, `Q19` v2, `Q20`, `Q28`, `Q14`). (`Q13` ve `Q15` `PCQ` tarafından tamamlandı; `Q17` PC1 tarafından `PC7`'ye devredildi.)
 - Çıktılar:
-  - Görev 1–3, Q05, Q06, Q20: tamamlandı (`validation/`, `risk/`, `data/central_valley/{validation,assets}.json`, `docs/story/pitch.md`)
-  - Q19 v2: `game/` (`model.js`, `test_model.html`, `style.css`, `index.html`, `game.js`), `docs/game_v2.png`
-  - Q28: `risk/karapinar_risk.py`, `data/karapinar/assets.json` (`64` segment, `0 NaN`; `0–1 km` ort. `−4.152 cm` vs bölge arka planı `−0.647 cm` [6.4×]; `42-42` yolu obruğa `597.3 m`, `19.74 mm/km`), `docs/qa/PC6.md`
-  - Q14: `docs/qa/PC6.md` (`central_valley`, `karapinar`, `uk` meta.json tam denetim + 12 JSON sıfır NaN)
+  - Görev 1 (GNSS): `validation/gnss_stations.csv` (23 istasyon), `validation/gnss/*.csv` (10 istasyon, 2025-11 → 2026-11), `validation/README.md`
+  - Görev 2 & 3 (OSM): `risk/central_valley_infra.geojson` (3238 hat, 1.07 MB), `risk/karapinar_infra.geojson` (64 hat, 0.04 MB), `risk/README.md`
+  - Q05: `validation/compare.py`, `data/central_valley/validation.json` (10/10 istasyon, CAHA `r=0.8957, rmse=0.752 cm`, HANF `r=0.8955`)
+  - Q06: `risk/compute_risk.py`, `data/central_valley/assets.json` (645 segment: 81 high, 131 medium, 433 low)
+  - Q20: `docs/story/pitch.md`
+  - Q19 v2 ("Valley Under Pressure"): `game/model.js`, `game/test_model.html`, `game/style.css`, `game/index.html`, `game/game.js`, `docs/game_v2.png` (sıfır AI görseli, `game_model.md` ve `code_review.md` bulgularıyla uyumlu `S_y=0.10`, `k=0.623`, Pages uyumlu `../data/central_valley/assets.json`)
+  - Q28: `risk/karapinar_risk.py`, `data/karapinar/assets.json` (64 OSM segmenti + 29 obruk halkası; `0-1 km` ort. `-4.152 cm` vs `>5 km` `-0.647 cm`), `docs/qa/PC6.md`
+  - Q14: `docs/qa/PC6.md` (`data/{central_valley,karapinar,uk}/meta.json` ve 12 JSON/GeoJSON dosyası, 0 `NaN`)
 - Doğrulama:
-  - `python risk/karapinar_risk.py --self-test` PASS; `data/karapinar/assets.json` sıfır `NaN`/`Infinity` doğrulandı.
-  - `python -c ...` (Q14 taraması): 3 bölge `meta.json` ve 17/17 PNG görseli tam doğrulandı.
-- BLOCKED: yok.
-- AI: Kod ve analiz üretimi; veriler NASA-ISRO NISAR (provisional), NGL ve OpenStreetMap kaynaklıdır.
+  - `python -m pytest analysis -q` PASS
+  - `python validation/compare.py --self-test` PASS
+  - `python risk/compute_risk.py --self-test` PASS
+  - `python risk/karapinar_risk.py --self-test` PASS
+  - `game/test_model.html`: `5/5 tests passed` (`0%` 108-gün baz hata, `-10.1 cm` dikey / `-7.84 cm` LOS, `k=0.623`)
+  - Canlı tarayıcı testi: masaüstü `1280x850` ve mobil `390x844` (`scrollWidth === 390`, 0 konsol hatası, 0 HTTP 4xx/5xx)
+- BLOCKED: yok. (Yeni görev bekleniyor / tüm PC6 kuyruğu tamamlandı.)
+- AI: Kod ve analiz üretimi + tarayıcı doğrulaması; ölçümler NASA-ISRO NISAR (provisional), NGL ve OpenStreetMap kaynaklıdır.
