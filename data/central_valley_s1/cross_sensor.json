@@ -1,6 +1,7 @@
 {
   "title": "L-band NISAR vs. C-band Sentinel-1 (OPERA DISP-S1) & Continuous GPS Synthesis",
-  "quality_note": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.",
+  "quality": "mixed",
+  "quality_note": "Mixed product: Sentinel-1/OPERA L3 DISP-S1 V1 (NASA/JPL, operational), Nevada Geodetic Laboratory GNSS (station-level reference), and NASA-ISRO NISAR L2 GUNW (provisional). Calibration and validation of NISAR are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.",
   "cmr_opera_disp_s1": {
     "source": "live_cmr_earthdata",
     "opera_total_bbox_hits": 2663,

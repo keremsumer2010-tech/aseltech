@@ -60,7 +60,7 @@ https://keremsumer2010-tech.github.io/aseltech/docs/story/slides.html
 
 ---
 
-## 5. Detailed Project Description (`4,189 chars` / `626 words` — Source-Tagged)
+## 5. Detailed Project Description (`4,402 chars` / `662 words` — Source-Tagged)
 
 ```text
 WHAT WE BUILT AND WHY IT MATTERS
@@ -70,9 +70,9 @@ KEY QUANTITATIVE FINDINGS (DATES, UNITS & REPO SOURCES)
 1. UK Fens All-Weather & Polarization (28 Jul-20 Oct 2026, preview & provisional): A swipe comparison of cloudy VIIRS SNPP optical imagery (over 98% cloud on 20 Oct 2026) against a same-day NISAR L2 GCOV radar preview resolves The Wash coastline and Fens drainage [data/uk/meta.json], anchored by the Holme Fen iron post (~4 m peat loss since 1851; 1-2 cm/yr modern rate [docs/story/holme_fen.md]). Across 8 provisional GCOV epochs and 4 sample windows, mean temporal range is 4.27 dB in HH, 3.49 dB in HV, and 1.36 dB in HV/HH ratio, showing HV is the clearest vegetation-structure indicator [data/fens/polarizations.json; docs/story/polarization.md].
 2. California Central Valley & Delta (28 Jun-14 Oct 2026, 7 provisional pairs, 108 days): Peak 1-km block-median subsidence reaches -7.8 cm LOS (3-reference spread -7.8 to -4.7 cm; -10.1 cm vertical estimate at 39.1 deg, 6 km N of Terra Bella) [data/central_valley/summary.json], with 1,578.27 km2 sinking > 2 cm LOS and 239.54 km2 > 5 cm LOS [data/central_valley/area_stats.json]. An experimental 11-month mixed chain (24 Nov 2025-14 Oct 2026, 18 beta-precal + 7 provisional pairs) separates -16.77 +/- 2.24 cm/yr LOS permanent compaction from an 11.67 cm peak-to-peak seasonal rebound near Earlimart [data/central_valley_fullyear/decomp.json]. In the Sacramento-San Joaquin Delta (17 Jun-15 Oct 2026, 9 pairs), basin peak is -1.3 cm LOS (-1.6 cm vertical est.), while levee alignments reach -3.48 cm at the 10th percentile and -11.36 cm locally [data/delta/summary.json; docs/story/delta.md].
 3. Konya Closed Basin & Karapinar, Turkiye (26 Jun-12 Oct 2026, 8 provisional pairs, 108 days): Across the full Konya Plain, subsidence peaks at -9.6 cm LOS (-14.0 to -9.6 cm across 3 references; -12.1 cm vertical estimate at 37.6 deg) south of Konya city [data/konya_plain/summary.json]. In Karapinar, Track 7 peaks at -5.9 cm LOS (-8.0 cm vertical est.) [data/karapinar/summary.json], cross-checked by ascending Track 172 (-4.73 cm LOS at p01; 12-point r = 0.767, RMSE = 1.12 cm LOS) [analysis/pc8/kp_p7_vs_p172.json]. Valid pixels within 1 km of 29 verified sinkholes sink 6.4x faster (-4.15 cm LOS) than background plateau (> 5 km: -0.65 cm LOS) [data/karapinar/assets.json].
-4. Global Transferability (108-120 days, provisional): Running our exact pipeline unchanged measures -4.4 cm LOS (2-ref spread -7.4 to -4.4 cm) in Mexico City, -3.5 cm LOS (-7.3 to -3.5 cm) in Tehran, and -6.8 cm LOS in Jakarta (where 2.9% valid coverage is reported honestly) [data/global/*/summary.json; docs/story/global_showcase.md].
+4. Global Transferability (108-120 days, provisional): Running our exact pipeline unchanged measures -4.4 cm LOS (2-ref spread -7.4 to -4.4 cm) in Mexico City, -3.5 cm LOS (-7.3 to -3.5 cm) in Tehran, -6.8 cm LOS in Jakarta (where 2.9% valid coverage is reported honestly), and -1.4 cm LOS (3-ref spread -7.6 to -1.4 cm; -2.1 cm vertical estimate, 17 Jun-15 Oct 2026) in Beijing [data/global/*/summary.json; docs/story/global_showcase.md].
 5. UK London Clay Detection Limit (21 Jun-19 Oct 2026, 9 provisional pairs, 120 days): Single-season 1-km block noise (1.21 cm 1-sigma, 3.62 cm 3-sigma) exceeds expected 0.5-2.0 cm seasonal clay motion, placing London below single-season detection limit [data/uk_clay/detection.json; docs/story/uk_findings.md].
-6. Human & Crop Exposure: Using WorldPop 100 m (2020), an estimated 71,701 Central Valley residents and 11,572 Karapinar residents live on pixels subsiding > 2 cm LOS (3,407 and 2,214 on > 5 cm LOS) [data/*/exposure.json]. USDA CDL 30 m shows 79.2% (1,251.4 km2) of California's > 2 cm LOS zone is cultivated cropland, led by citrus (355.6 km2) and pistachios (230.9 km2); ESA WorldCover 10 m maps Karapinar's exposed grassland, built-up fabric, and irrigated cropland [docs/story/exposure.md].
+6. Human & Crop Exposure: Using WorldPop 100 m (2020), an estimated 71,701 Central Valley residents and 69,854 Konya Closed Basin residents (including 11,572 in Karapinar) live on pixels subsiding > 2 cm LOS (3,407 and 16,822 on > 5 cm LOS) [data/*/exposure.json]. USDA CDL 30 m shows 79.2% (1,251.4 km2) of California's > 2 cm LOS zone is cultivated cropland, led by citrus (355.6 km2) and pistachios (230.9 km2); ESA WorldCover 10 m maps Konya Closed Basin's exposed grassland (284.9 km2), cropland (173.1 km2 coherent; 1,167.7 km2 interpolated), and built-up fabric (40.7 km2) [docs/story/exposure.md].
 
 CALIBRATION NOTICE
 NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.
@@ -159,11 +159,11 @@ Three technical challenges shaped our design:
 
 ---
 
-## 12. AI Usage Disclosure (`793 chars` / `111 words`)
+## 12. AI Usage Disclosure (`669 chars` / `98 words`)
 
 ```text
-- Data Maps, Charts & Simulator: Zero generative AI images are used in our scientific maps, charts, or active Site v2 interface. Every displacement raster, GPS trace, infrastructure profile, and 3D surface is rendered directly from measured NISAR, NGL GPS, OpenStreetMap, and survey data. (Earlier illustrative concept graphics archived in web/assets/ carry explicit "AI-generated illustration" labels per project rules.)
-- Code & Documentation Assistance: Team members used Claude Code and Google Gemini / Antigravity to assist with Python InSAR script scaffolding, unit test generation, frontend layout refactoring, and English copy editing. Every formula, coordinate, numerical claim, and citation URL was verified against primary HDF5 granules, JSON outputs, and HTTP-200 source documents.
+- Visuals, Maps & Charts: Zero AI-generated images are used in our website or interactive game (early draft Higgsfield visuals were removed). Every displacement map, chart, GPS comparison, and infrastructure risk profile is rendered strictly from real satellite, GNSS, and open geospatial data.
+- Code & Writing Assistance: Code, analysis scripts, and documentation drafts were written with assistance from Anthropic Claude (Claude Code), Google Gemini (Antigravity, Gemini CLI), and OpenAI Codex, and reviewed and verified by the team. Every reported number comes directly from checked repository data files, and every scientific claim is linked to its primary source.
 ```
 
 ---

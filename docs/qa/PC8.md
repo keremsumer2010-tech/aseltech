@@ -212,3 +212,17 @@
 3. `python -m pytest -q` -> **`63 passed, 1 warning`** (`analysis/cumulative.py:127` `cmap.set_bad` PendingDeprecationWarning); `60` adet `data/**/*.json` dosyasında sözdizimi veya `NaN/Infinity` hatası yok (`BAD_JSON: 0`).
 4. **[DÜZELTİLDİ — `docs/qa/PC6.md` satır 179 bulgusu]** `analysis/pc8/plot_uk_detection.py` güncellenerek `docs/story/media/pc8_uk_detection.png` Panel B'deki lejant `loc="center right"` (`xlim(0, 6.8)`) konumuna alındı (sıfır metin çakışması görsel olarak doğrulandı) ve 3 yıllık `3σ` hız eşiği tüm etiketlerde **`1.21 cm/yr (est.)`** olarak tekilleştirildi.
 5. **PC8 `REVIEW_1500.md` Taraması (`14 Nov 19:55 TR`):** `docs/story/{submission_form,slides_notes,exposure,uk_findings,narration_script}.md` dosyalarının tamamında yasaklı pazarlama/abartı kelimesi ve ünlem işareti **`0` eşleşme**.
+
+---
+
+## 10. 20:00 PC1 Görevleri — Veri Düzeltmeleri ve `MASTER_PLAN.md` §9 Kapanış Yapılacaklar Listesi
+
+- **Madde 1 (`analysis/pc8/fix_nan_json.py`):** `data/**/*.json` üzerinde `NaN` / `Infinity` / `-Infinity` -> `null` dönüştüren idempotent temizleyici yazıldı ve çalıştırıldı (`60` JSON tarandı, `0` bozuk sabit kaldı).
+- **Madde 2 (`data/central_valley_s1/cross_sensor.json`):** Eksik `"quality": "mixed"` alanı ve OPERA L3 DISP-S1 + NGL GNSS + provisional NISAR kaynağını belirten `quality_note` eklendi.
+- **Madde 3–4 (`docs/story/submission_form.md` & `docs/story/slides_notes.md`):** AI beyanı PC1 metniyle (Claude Code, Gemini/Antigravity/Gemini CLI, Codex; sıfır AI görseli, erken Higgsfield taslakları kaldırıldı) kesinleştirildi; Beijing (`-1.4 cm` LOS) ve Konya Closed Basin maruziyeti (`69,854` kişi `> 2 cm` LOS) eklendi.
+- **Madde 5 — `MASTER_PLAN.md` §9 "KISMEN" ve "BEKLİYOR" Maddelerini Kapatma Yapılacaklar Listesi:**
+  - [ ] **Demo Slayt Güncellemesi (PC4):** `docs/story/slides.html` (7 slayt) içine `docs/story/slides_notes.md` tablosundaki Cumartesi akşamı bulgularını (`central_valley_fullyear`, `delta`, `konya_plain`, `karapinar_p172`, `global` 4 şehir, `exposure` + `storage_loss`) işle ve tarayıcıda PDF'e basarak 7 sayfa taşma kontrolü yap.
+  - [ ] **Canlı Site & Demo URL Doğrulaması (PC1 / PC3):** GitHub Pages / Vercel deploy URL'sini (`https://keremsumer2010-tech.github.io/aseltech/web/` ve `/docs/story/slides.html`) gizli sekmede `HTTP 200` olarak doğrula; `submission_form.md` §3–§4 içindeki bağlantılarla birebir eşleştir.
+  - [ ] **Web Hatalarının Kapatılması (PC3 / PC9):** `web/index.html:117` (`pc9_fullyear_point.png` boş `src=""` ve eksik `../` yolu) ile `web/explorer.html` eksik NISAR kalibrasyon/provisional notunu kapat.
+  - [ ] **AI Kullanım Beyanı Son Eşitleme (PC1):** `submission_form.md` §12 içindeki kesinleşmiş PC1 AI beyanını portal formuna birebir kopyala (site/oyun AI görseli = 0, kod/metin = Claude, Gemini, Codex).
+  - [ ] **Pazar 22:00 TR Ön-Teslim Son Kontrolü (PC8):** Tüm portaldaki alanlar doldurulduktan sonra son `pytest`, JSON temizliği ve link kontrolünü tekrar çalıştır.

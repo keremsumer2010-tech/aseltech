@@ -1,8 +1,4 @@
 # PC8 durum
 
-- Görev: `docs/CALISMA_HARITASI.md` PC8 sırası (1–4) TAMAMLANDI; "ASLA BOŞ KALMA" sürekli kontrol ve hata ayıklama döngüsünde
-- Son kontroller (`14 Nov 19:56 TR`, Tur 2):
-  - `docs/qa/PC6.md` satır 179 bulgusu kapatıldı: `analysis/pc8/plot_uk_detection.py` ile `docs/story/media/pc8_uk_detection.png` Panel B lejant çakışması giderildi ve 3 yıllık hız eşiği `1.21 cm/yr (est.)` olarak tekilleştirildi.
-  - PC8 `docs/story/*.md` dosyalarında `REVIEW_1500.md` taraması: `0` ihlal.
-  - `git pull` ile yeni görev kontrolü yapıldı (yeni görev yok).
-- Sonraki adım: 10 dakikalık zamanlayıcıda bir sonraki QA ve görev yenileme kontrolü.
+- Görev: `tasks/PC8.md` **20:00** maddeleri (`fix_nan_json.py`, `cross_sensor.json` quality, `submission_form.md` & `slides_notes.md` güncelleme, `MASTER_PLAN.md` §9 açık madde listesi) TAMAMLANDI
+- Sıradaki aktif görev: **20:10 ÖZGÜN KATKI O1** (`docs/OZGUN_KATKILAR.md` §O1) — Central Valley tam yıl kalıcı akifer depolama kaybı (`km³/yıl`) hesabı (`analysis/pc8/storage_loss.py`, `data/central_valley_fullyear/storage_loss.json`, `docs/story/storage_loss.md`, `docs/story/media/pc8_storage_loss.png`)
