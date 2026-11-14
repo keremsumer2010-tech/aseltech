@@ -278,19 +278,19 @@
     </table>
 
     <h3>5.1 Global Subsidence Atlas (2026 Provisional Benchmark)</h3>
-    <p>Running <code>pipeline/nisarpulse/</code> with identical <code>provisional</code>-only (<code>&ge; 2026-06-17</code>, <code>P05023</code>) thresholds and standardized <code>&plusmn;0.25&deg;</code> boxes ranks 8 seed regions in <code>data/global/atlas.json</code> by the period-independent <strong><code>rate_cm_per_100d</code> (cm / 100 days LOS)</strong> metric, tagging low-coverage scenes as <strong>indicative only</strong>:</p>
+    <p>Running <code>pipeline/nisarpulse/</code> with identical <code>provisional</code>-only (<code>&ge; 2026-06-17</code>, <code>P05023</code>) thresholds and standardized <code>&plusmn;0.25&deg;</code> boxes ranks 8 seed regions in <code>data/global/atlas.json</code> by the period-independent <strong><code>rate_cm_per_100d</code> (cm / 100 days LOS)</strong> metric. <em>LOS &amp; Period Caveat:</em> all figures are Line-of-Sight (not vertical) over 108–120 summer–autumn days; basins awaiting PC5 literature checks (including Konya Basin &minus;9.6 cm) are marked <strong>preliminary</strong>, and low-coverage frames are tagged <strong>indicative only</strong>:</p>
     <table>
       <thead>
         <tr><th>Rank</th><th>Region / City</th><th>Period (n pairs, d)</th><th>Rate (cm/100d LOS)</th><th>Peak LOS (cm)</th><th>Ref. Range (cm)</th><th>Vert. Est. (cm)</th><th>Confidence / Status</th></tr>
       </thead>
       <tbody>
-        <tr><td>1</td><td><strong>Konya Closed Basin, Türkiye</strong></td><td>2026-06-26 &rarr; 2026-10-12 (8, 108 d)</td><td><strong>&minus;8.89</strong></td><td>&minus;9.6</td><td>[&minus;14.0, &minus;9.6]</td><td>&minus;12.1</td><td>Pending PC5 lit. check</td></tr>
+        <tr><td>1</td><td><strong>Konya Closed Basin, Türkiye</strong></td><td>2026-06-26 &rarr; 2026-10-12 (8, 108 d)</td><td><strong>&minus;8.89</strong></td><td>&minus;9.6</td><td>[&minus;14.0, &minus;9.6]</td><td>&minus;12.1</td><td><strong>preliminary</strong> (pending PC5)</td></tr>
         <tr><td>2</td><td><strong>Central Valley, USA</strong></td><td>2026-06-28 &rarr; 2026-10-14 (7, 108 d)</td><td><strong>&minus;7.22</strong></td><td>&minus;7.8</td><td>[&minus;7.8, &minus;4.7]</td><td>&minus;10.1</td><td><strong>high</strong> (10-GPS r = 0.924)</td></tr>
-        <tr><td>3</td><td><strong>Jakarta, Indonesia</strong></td><td>2026-06-27 &rarr; 2026-10-13 (8, 108 d)</td><td><strong>&minus;6.30</strong></td><td>&minus;6.8</td><td>1 ref only</td><td>&minus;9.3</td><td><strong>low — indicative only</strong> (2.9% valid)</td></tr>
+        <tr><td>3</td><td><strong>Jakarta, Indonesia</strong></td><td>2026-06-27 &rarr; 2026-10-13 (8, 108 d)</td><td><strong>&minus;6.30</strong></td><td>&minus;6.8</td><td>1 ref only</td><td>&minus;9.3</td><td><strong>low — indicative only</strong> (2.9% valid; preliminary)</td></tr>
         <tr><td>4</td><td><strong>Karapınar, Türkiye</strong></td><td>2026-06-26 &rarr; 2026-10-12 (8, 108 d)</td><td><strong>&minus;5.46</strong></td><td>&minus;5.9</td><td>—</td><td>&minus;8.0</td><td><strong>medium</strong> (29 sinkholes, p = 0.0001)</td></tr>
-        <tr><td>5</td><td><strong>Mexico City, Mexico</strong></td><td>2026-06-22 &rarr; 2026-10-20 (8, 120 d)</td><td><strong>&minus;3.67</strong></td><td>&minus;4.4</td><td>[&minus;7.4, &minus;4.4]</td><td>&minus;6.2</td><td>Pending outside-basin ref. re-run</td></tr>
-        <tr><td>6</td><td><strong>Tehran, Iran</strong></td><td>2026-06-18 &rarr; 2026-10-16 (9, 120 d)</td><td><strong>&minus;2.92</strong></td><td>&minus;3.5</td><td>[&minus;7.3, &minus;3.5]</td><td>&minus;4.7</td><td>Pending PC5 lit. check</td></tr>
-        <tr><td>7</td><td><strong>Beijing, China</strong></td><td>2026-06-17 &rarr; 2026-10-15 (9, 120 d)</td><td><strong>&minus;1.17</strong></td><td>&minus;1.4</td><td>[&minus;7.6, &minus;1.4]</td><td>&minus;2.1</td><td>Pending PC5 (wide ref. spread)</td></tr>
+        <tr><td>5</td><td><strong>Mexico City, Mexico</strong></td><td>2026-06-22 &rarr; 2026-10-20 (8, 120 d)</td><td><strong>&minus;3.67</strong></td><td>&minus;4.4</td><td>[&minus;7.4, &minus;4.4]</td><td>&minus;6.2</td><td><strong>preliminary</strong> (outside-basin ref. re-run)</td></tr>
+        <tr><td>6</td><td><strong>Tehran, Iran</strong></td><td>2026-06-18 &rarr; 2026-10-16 (9, 120 d)</td><td><strong>&minus;2.92</strong></td><td>&minus;3.5</td><td>[&minus;7.3, &minus;3.5]</td><td>&minus;4.7</td><td><strong>preliminary</strong> (pending PC5)</td></tr>
+        <tr><td>7</td><td><strong>Beijing, China</strong></td><td>2026-06-17 &rarr; 2026-10-15 (9, 120 d)</td><td><strong>&minus;1.17</strong></td><td>&minus;1.4</td><td>[&minus;7.6, &minus;1.4]</td><td>&minus;2.1</td><td><strong>preliminary</strong> (wide ref. spread)</td></tr>
         <tr><td>8</td><td><strong>Sacramento–San Joaquin Delta, USA</strong></td><td>2026-06-17 &rarr; 2026-10-15 (9, 120 d)</td><td><strong>&minus;1.08</strong></td><td>&minus;1.3</td><td>[&minus;1.3, &minus;1.1]</td><td>&minus;1.6</td><td><strong>medium</strong> (levee reach &minus;11.36 cm)</td></tr>
       </tbody>
     </table>
