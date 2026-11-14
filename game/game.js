@@ -70,34 +70,34 @@
   }
 
   /**
-   * Build halo circular polygon GeoJSON around each simulated district so live RdBu colors
-   * update dynamically over the satellite imagery every month.
+   * Build crisp district boundary polygons around each simulated district so live RdBu fills
+   * and boundary lines update dynamically over the satellite imagery every month.
    */
   function buildDistrictZonesGeoJson() {
     const features = [];
-    const steps = 28;
+    const steps = 8;
     simState.districts.forEach((d) => {
-      // Inner hotspot ring (~8 km) and outer influence halo (~14 km)
-      const rings = [
-        { radLon: 0.085, radLat: 0.068, mult: 1.0, opacity: 0.65 },
-        { radLon: 0.145, radLat: 0.115, mult: 0.55, opacity: 0.30 },
-      ];
-      rings.forEach((r) => {
-        const coords = [];
-        for (let i = 0; i <= steps; i++) {
-          const ang = (i / steps) * Math.PI * 2;
-          coords.push([d.lon + Math.cos(ang) * r.radLon, d.lat + Math.sin(ang) * r.radLat]);
-        }
-        const effectiveCm = d.totalCm * r.mult;
-        features.push({
-          type: 'Feature',
-          properties: {
-            id: d.id,
-            color: rdBuColorForCm(effectiveCm),
-            opacity: r.opacity,
-          },
-          geometry: { type: 'Polygon', coordinates: [coords] },
-        });
+      const coords = [];
+      const radLon = 0.082;
+      const radLat = 0.064;
+      for (let i = 0; i <= steps; i++) {
+        const ang = (i / steps) * Math.PI * 2 + Math.PI / 8;
+        coords.push([d.lon + Math.cos(ang) * radLon, d.lat + Math.sin(ang) * radLat]);
+      }
+      const absCm = Math.abs(d.totalCm);
+      const isSelected = d.id === selectedDistrictId;
+      const rdColor = absCm < 0.25 ? '#94a3b8' : rdBuColorForCm(d.totalCm);
+      const fillOpacity = Number(Math.min(0.36, 0.05 + absCm * 0.025).toFixed(3));
+      features.push({
+        type: 'Feature',
+        properties: {
+          id: d.id,
+          color: rdColor,
+          opacity: fillOpacity,
+          strokeColor: isSelected ? '#4da3ff' : rdColor,
+          strokeWidth: isSelected ? 2.4 : 1.5,
+        },
+        geometry: { type: 'Polygon', coordinates: [coords] },
       });
     });
     return { type: 'FeatureCollection', features };
@@ -216,7 +216,7 @@
     map.on('load', () => {
       mapReady = true;
 
-      // Dynamic District Subsidence Halos
+      // Dynamic District Boundary Polygons (crisp outline + subtle RdBu fill)
       map.addSource('sim-zones', {
         type: 'geojson',
         data: buildDistrictZonesGeoJson(),
@@ -228,6 +228,16 @@
         paint: {
           'fill-color': ['get', 'color'],
           'fill-opacity': ['get', 'opacity'],
+        },
+      });
+      map.addLayer({
+        id: 'sim-zones-line',
+        type: 'line',
+        source: 'sim-zones',
+        paint: {
+          'line-color': ['get', 'strokeColor'],
+          'line-width': ['get', 'strokeWidth'],
+          'line-opacity': 0.92,
         },
       });
 
@@ -315,12 +325,15 @@
     if (overlayMode === 'sim') {
       map.setPaintProperty('nisar-raster', 'raster-opacity', 0.14);
       map.setLayoutProperty('sim-zones-fill', 'visibility', 'visible');
+      map.setLayoutProperty('sim-zones-line', 'visibility', 'visible');
     } else if (overlayMode === 'blend') {
       map.setPaintProperty('nisar-raster', 'raster-opacity', 0.56);
       map.setLayoutProperty('sim-zones-fill', 'visibility', 'visible');
+      map.setLayoutProperty('sim-zones-line', 'visibility', 'visible');
     } else {
       map.setPaintProperty('nisar-raster', 'raster-opacity', 0.86);
       map.setLayoutProperty('sim-zones-fill', 'visibility', 'none');
+      map.setLayoutProperty('sim-zones-line', 'visibility', 'none');
     }
   }
 
