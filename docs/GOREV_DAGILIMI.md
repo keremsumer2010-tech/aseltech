@@ -54,6 +54,7 @@ Her yolun tek sahibi var (`rules/RULES.md` K-7). Burada olmayan bir yere yazman 
 | **PC4** | `data/uk/` · `data/karapinar/sinkholes.geojson` · `docs/story/sources.md` · `docs/story/calibration_note.md` · `status/PC4.md` |
 | **PC5** | (13:30 yeniden atama) `analysis/decomp/` · `docs/story/uncertainty.md` · `status/PC5.md` |
 | **PC6** | (14:00: web/ PC1'e geri döndü) + Q23–Q25 yolları · `validation/` · `risk/` · `data/<site>/validation.json` · `data/<site>/assets.json` (Pazar) · `status/PC6.md` |
+| **PCQ** (14:20, bağımsız kontrol ajanı, ASF erişimi yok) | `docs/qa/PCQ.md` · `README.md` (Q13) · `docs/code_review.md` (Q15) · `status/PCQ.md` |
 | **Herkes** | `tasks/QUEUE.md` içinde **sadece sahiplendiği satır** · sahiplendiği QUEUE işinin "Klasör" sütunundaki yollar · `docs/qa/PCx.md` (kendi QA notları) |
 
 Dikkat: `data/karapinar/` klasörüne hem PC3 hem PC4 yazar; `docs/story/`'ye PC4 ve PC5 yazar.
