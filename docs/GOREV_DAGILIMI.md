@@ -206,3 +206,15 @@ Evet. PC1 rolleri saat başı kontrolde değiştirebilir; değişiklik önce bu 
 - PC7: `risk/probabilistic_risk.py`, `risk/test_probabilistic_risk.py`, `data/central_valley/assets_prob.json`, `docs/story/engineering_risk.md`, (20:00 hata ayıklama için) `web/index.html` görsel yolu ve `web/explorer.html` uyarısı, `requirements.txt`
 - PC8: `analysis/pc8/storage_loss.py`, `data/*_fullyear/storage_loss.json`, `docs/story/storage_loss.md`, (20:00) NaN temizliği `data/*/uncertainty/meta.json`, `data/central_valley_s1/cross_sensor.json` quality
 - PC4: `docs/story/technical_note.md|html`
+
+
+## 20:50 Atlas sahiplik ekleri
+- PC10: `data/global/<kendi şehirleri>/`, `data/global/atlas.json`, `pipeline/pc10/build_atlas.py`, `docs/story/global_atlas.md`
+- PC2: `data/global/<kendi şehirleri>/`, `pipeline/nisarpulse/`
+- PC9: `data/global/<kendi şehirleri>/`
+- PC3: `web/atlas.html` (+ web/ geneli)
+- PC6: `docs/story/media/demo_30s_v2.mp4`, `analysis/pc6/` (3D render)
+- PC8: `tools/bulletin.py`, `docs/bulletins/`
+- PC7: `pipeline/pc7/validate_atlas.py`
+- PC5: `docs/story/atlas_validation.md`, `data/global/*/uncertainty/`
+- PC4: `docs/story/press_summary.md`

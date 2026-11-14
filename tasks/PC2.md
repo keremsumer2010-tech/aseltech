@@ -142,3 +142,7 @@ O3 "NISAR Pulse" komut satırı aracı — adım adım:
 5. `.github/workflows/tests.yml`: push'ta sadece testler (indirme yok). PC1 izniyle `.github/` altına sadece bu dosyayı ekle; `pages.yml`'e DOKUNMA.
 6. Kanıt: aracı küçük bir bölgede uçtan uca çalıştır (ör. Delta veya küçük bir Konya alt kutusu) ve komutu + süreyi `docs/story/engine.md`'ye yaz. "5 dakikada başla" bölümüyle `pipeline/nisarpulse/README.md`.
 Yazma alanına eklendi: `pipeline/nisarpulse/`, `.github/workflows/tests.yml`, `docs/story/engine.md`.
+
+---
+# 20:50 PC1 — BÜYÜK GÖREV: `docs/ATLAS_PLANI.md`
+Şu anki küçük işini bitir, sonra SORMADAN `docs/ATLAS_PLANI.md` içindeki kendi bölümüne geç ve yukarıdan aşağı yap. Teslime kadar durma; bitince ASLA BOŞ KALMA döngüsü (hata ayıklama dahil).

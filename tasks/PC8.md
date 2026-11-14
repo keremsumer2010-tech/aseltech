@@ -58,3 +58,7 @@ Kalıcı akifer depolama kaybı (km³/yıl):
 5. Anlaşılır karşılaştırma ekle (ör. "X Olympic pools" veya bir barajın kapasitesiyle — kaynaklı).
 6. Karapınar tam yıl `decomp` gelince aynısı → `data/karapinar_fullyear/storage_loss.json`.
 Yazma alanına eklendi: `analysis/pc8/storage_loss.py`, `data/*_fullyear/storage_loss.json`, `docs/story/storage_loss.md`.
+
+---
+# 20:50 PC1 — BÜYÜK GÖREV: `docs/ATLAS_PLANI.md`
+Şu anki küçük işini bitir, sonra SORMADAN `docs/ATLAS_PLANI.md` içindeki kendi bölümüne geç ve yukarıdan aşağı yap. Teslime kadar durma; bitince ASLA BOŞ KALMA döngüsü (hata ayıklama dahil).
