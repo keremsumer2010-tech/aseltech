@@ -89,4 +89,8 @@
   - Yaz `provisional` (`2026-06-26 → 2026-10-12`): **8/8** `pipeline/subset/karapinar_fullyear/` altına push edildi (`f44435c`), her `.npz` içinde `quality="provisional"` etiketli.
   - ASF arşivinde `2026-01-09 → 2026-06-26` arası Karapınar için GUNW granülü bulunmuyor (zincir boşluğu).
   - `pipeline/pc2/run_cumulative.py karapinar_fullyear --mixed --data-dir data/karapinar_fullyear` ile `data/karapinar_fullyear/` (`quality: "mixed"`, `disp/*.png`, `meta.json`, `points.json`, `summary.json`) üretildi: kış `beta-precal` segmenti (6 çift, 84 gün) tepe `-4.7 cm` LOS (`range_cm=[-5.5, -4.7]`, dikey `-6.4 cm`), yaz `provisional` segmenti (`data/karapinar/`, 8 çift, 108 gün) `-5.9 cm` LOS (dikey `-8.0 cm`); iki segment `data/karapinar_fullyear/segments.json` içinde özetlendi.
-- **Sıradaki iş:** Madde 5 (sürekli döngü: `tasks/PC2.md`, `tasks/QUEUE.md`, `docs/qa/*.md` taraması ve gerekiyorsa Delta 2. path `delta_p135`).
+- **Sıradaki iş (`docs/CALISMA_HARITASI.md`):**
+  - **#3 Delta:** 9/9 `provisional` çift (`2026-06-17 → 2026-10-15`, Path 42 Frame 69) ve set profili (`pc2_delta.png`, `delta.md`) güncel ve tam.
+  - **#4 Konya Ovası ikinci path çapraz kontrolü:** TAMAMLANDI → `docs/qa/PC2.md` (`konya_plain` Path 7 Descending vs `karapinar` Path 7 Descending vs `karapinar_p172` Path 172 Ascending; `2 km W of Karapınar`'da `-6.30`, `-5.93`, `-4.73 cm` LOS uyumlu).
+  - **#6 `pipeline/README.md`:** TAMAMLANDI (tüm `pipeline/*.py` ve `pipeline/pc2/*.py` kullanım notları eklendi).
+  - **#5 Central Valley Path 114 tam yıl (`central_valley_p114_fullyear`):** DEVAM EDİYOR (22 çift `2025-11-30 → 2026-10-20` indiriliyor, 1/22 başladı).
