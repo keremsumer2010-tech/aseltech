@@ -24,12 +24,21 @@ Teslim: Paz 15 Kas 23:59 UK (= Pzt 02:59 TR). Tüm çıktı metni İNGİLİZCE.
 
 ## Rol sistemi
 - **PC1 = yönetmen** (Kerem'in Claude'u). Görev yazar, denetler, birleştirir.
-- **PC2–PC5 = işçi.** Aynı bilgisayarda iki ajan varsa AYRI klon klasörü kullanır; sadece kendi dosyalarını commit eder (`git add <kendi yolların>`, asla `git add -A`).
+- **PC2–PC6 = işçi.** Aynı bilgisayarda iki ajan varsa AYRI klon klasörü kullanır; sadece kendi dosyalarını commit eder (`git add <kendi yolların>`, asla `git add -A`).
 - **İşçiler:** Başlarken: `git pull` → `tasks/PCx.md` oku → yap → `status/PCx.md` güncelle → commit + push.
 - Ekip: PC1 keremsumer2010-tech · PC2 memir-erdogmus (veri, Antigravity/Gemini ile) · PC3 M3hmeT1888 (çökme analizi) · PC4 acikgozibrahim032-hub (UK görselleri, obruklar, kaynaklar; Antigravity/Gemini ile) · PC5 M3hmeT1888 bilgisayarında Antigravity (oyun + sunum metni) · PC6 M3hmeT1888 bilgisayarında 2. Antigravity (GNSS doğrulama + altyapı verisi).
-- Bonus işler `tasks/BACKLOG.md` içinde; görevi biten PC1'e sorup oradan alır.
-- Sadece KENDİ klasöründe yaz (tasks dosyasında yazar). Başkasının klasörüne dokunma.
-- Görevde belirsizlik varsa tahmin etme: `status/PCx.md` içine "BLOCKED: ..." yaz, push et, dur.
+- Sadece KENDİ klasöründe yaz (tasks dosyasında veya sahiplendiğin QUEUE işinde yazar). Başkasının klasörüne dokunma.
+- Görevde belirsizlik varsa tahmin etme: `status/PCx.md` içine "BLOCKED: ..." yaz, push et, başka bir işe geç.
+
+## ⚡ HİÇ BOŞ KALMA PROTOKOLÜ (herkes, her zaman)
+Hedef: teslime kadar hiçbir ajan boşta durmaz. Bir görev bitince SORMADAN sıradakine geç:
+1. Kendi `tasks/PCx.md` dosyandaki bitmemiş bir sonraki görev.
+2. Yoksa `tasks/QUEUE.md`'den en üstteki sahiplenilmemiş iş (kurallar dosyanın başında; sahiplen → hemen push).
+3. Kuyruk boşsa: kendi çıktılarını test et/iyileştir, başkalarının çıktısını kontrol et (`docs/qa_report.md`'ye not yaz,
+   onların dosyasına dokunma), dokümantasyon ve kaynak doğrulama.
+- Her iş bitince: status güncelle → `git pull --rebase` → commit → push → HEMEN sonraki işe başla.
+- Her 30–45 dakikada bir `git pull` yap; PC1 `tasks/` altına yeni görev yazabilir.
+- Verimlilik: büyük dosyayı baştan sona okuma, `grep`/özet kullan; aynı araştırmayı tekrarlama, önce `docs/` ve `status/`'a bak.
 - Commit mesajı: `[PCx] kısa açıklama`. Push öncesi `git pull --rebase`.
 
 ## BUGÜNKÜ ÖNCELİK: docs/TODAY_PLAN.md (Lincoln sunumu bugün, demo 17:30 TR)

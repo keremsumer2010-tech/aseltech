@@ -11,6 +11,8 @@ Which worker are you? Ask the human if unsure.
   On M3hmeT1888's computer: folder `aseltech-claude` = PC3 (Claude Code), `aseltech-gemini` = PC5, `aseltech-gemini2` = PC6. Your folder name tells you who you are.
 
 - Start: `git pull` → read `CLAUDE.md`, `docs/TODAY_PLAN.md`, your task file → do the task → update your status file → `git pull --rebase` → commit `[PCx] ...` → push.
-- Only write inside the folders listed in your task file. Commit only your own files (`git add <paths>`, never `git add -A`).
+- NEVER IDLE: when a task is done, do not stop or ask — follow the "HİÇ BOŞ KALMA PROTOKOLÜ" in CLAUDE.md
+  (next task in your file → `tasks/QUEUE.md` → QA/docs). `git pull` every 30–45 min.
+- Only write inside the folders listed in your task file (or in the queue item you claimed). Commit only your own files (`git add <paths>`, never `git add -A`).
 - Never ask for, store or print passwords. The human enters Earthdata credentials into `~/.netrc` themselves.
 - Never invent numbers or sources. Follow the "data quality and calibration" rule in CLAUDE.md.
