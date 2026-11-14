@@ -1,11 +1,28 @@
-# Büyük ham veri asla repoya girmez
+# Büyük ham veri asla repoya girmez (rules/RULES.md K-12)
 *.h5
 *.nc
+*.tif
+*.tiff
 raw/
 cache/
 *.zip
-__pycache__/
-.venv/
+
+# Kimlik bilgisi (K-9)
 .env
 .netrc
+_netrc
+
+# Yeniden üretilebilir
+__pycache__/
+.pytest_cache/
+.venv/
+venv/
 node_modules/
+dist/
+.vite/
+
+# İşletim sistemi / editör
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

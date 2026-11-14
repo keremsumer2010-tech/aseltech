@@ -22,6 +22,7 @@ Bugünkü demo sadece `provisional` veriyi kullanır. Browse PNG'ler `preview` r
 - **PC3 (Mehmet, Claude Code):** cm dönüşümü; Karapınar kontrol haritası; Central Valley kümülatif harita + noktalar.
 - **PC4 (İbrahim, Antigravity):** UK sahnesi görsel çifti, Karapınar obruk koordinatları (kaynaklı), kaynak listesi + Holme Fen.
 - **PC5 (Mehmet, Antigravity):** Aquifer Manager oyunu + sunum metni.
+- **PC6 (Mehmet, 2. Antigravity):** GNSS istasyonları + OSM altyapı hatları (Pazar'ın doğrulama ve risk işi için).
 
 ## Saatler (TR)
 - 12:00 başla

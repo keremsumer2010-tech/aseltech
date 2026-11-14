@@ -2,6 +2,7 @@
 Sahiplenme: satırı `- [ ]` → `- [~PCx]` yap, HEMEN commit + push (başkası almasın). Bitince `- [x PCx]`.
 Push çakışırsa `git pull --rebase`; satırı başkası almışsa bir sonrakini seç. Yukarıdan aşağı öncelik sırası.
 "Gerekli" sütunu: E = Earthdata hesabı gerekir. Klasör = sadece oraya yaz.
+Tam kurallar: `rules/RULES.md` §7.1. Sahiplenirken bu dosyada **sadece kendi satırını** değiştir.
 
 ## Öncelik 1 — demoyu güçlendiren
 - [ ] Q01 · Karapınar GUNW path 7, provisional 6–8 ardışık çift indir/kes → `pipeline/subset/karapinar/` · E · pipeline/
@@ -21,5 +22,5 @@ Push çakışırsa `git pull --rebase`; satırı başkası almışsa bir sonraki
 - [ ] Q11 · Space Apps proje sayfası metni taslağı (İngilizce; özet, nasıl çalışır, faydalar, araçlar, NASA verisi, AI kullanımı) → `docs/story/project_page.md`
 - [ ] Q12 · Space Apps 2026 kurallarında AI kullanım açıklaması ve demo şartları — resmi sayfadan doğrula → `docs/story/submission_rules.md`
 - [ ] Q13 · README.md: kurulum, veri hattı nasıl çalıştırılır, lisans, kaynaklar (sadece README.md)
-- [ ] Q14 · Tüm data/*/meta.json'ları kontrol et: quality alanı, vmin/vmax, bbox tutarlı mı → `docs/qa_report.md` (düzeltme gerekirse sahibine BLOCKED notu)
+- [ ] Q14 · Tüm data/*/meta.json'ları kontrol et: quality alanı, vmin/vmax, bbox tutarlı mı → `docs/qa/PCx.md` (her PC kendi dosyası; düzeltme gerekirse sahibinin status'una değil, kendi QA dosyana not)
 - [ ] Q15 · Repo kodlarını gözden geçir: testler çalışıyor mu, hardcoded yol var mı → `docs/code_review.md`
