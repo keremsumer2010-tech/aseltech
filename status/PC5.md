@@ -1,8 +1,8 @@
 # PC5 Durum Raporu
 
-- **Durum:** bitti — Chief Scientist paketi (§1 Sayı Sicili, §2 Detectability, §3 `bangkok` & `rafsanjan` belirsizlik + karar) tamamlandı; Pazar 19:00 `SCIENCE_SIGNOFF.md` ve saatlik döngü için hazır.
+- **Durum:** çalışıyor — `ho_chi_minh` belirsizlik haritası + bilimsel karar, `detectability.py` (12 şehir) & `numbers_registry.py` saatlik yeniden tarama
 - **Kimlik:** M3hmeT1888 · Antigravity (Gemini) · PC5
-- **Güncelleme:** 2026-11-14 22:32 TR
+- **Güncelleme:** 2026-11-14 23:17 TR
 
 ## Chief Scientist Paketi (§1–§3, `22:32 TR`)
 - **§1 Sayı Sicili (`numbers_registry.py`, `test_numbers_registry.py`):** `data/numbers_registry.json` (`26` metrik: `21` approved, `5` preliminary, `0` rejected) ve `docs/story/numbers_registry.md` üretildi; `docs/qa/PC5.md` §10'a **14** uyumsuzluk (1× `key_findings_public.md:5` CV referans aralığı `6.2`→`4.7`, 13× Mexico City eski `-4.4 cm`→`-7.0 cm`) yazıldı.
