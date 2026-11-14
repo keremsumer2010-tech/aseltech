@@ -190,6 +190,7 @@ function sinkList(){
 /* ---------- simulator + 3D ---------- */
 function extras(){
   const g = ROOT + 'game/index.html', v3 = ROOT + 'web3d/index.html';
+  const vid = document.getElementById('cvVideo'); if (vid) vid.src = ROOT + 'docs/story/media/cv_subsidence.mp4';
   document.getElementById('gameFrame').src = g; document.getElementById('gameOpen').href = g; document.getElementById('view3d').href = v3;
 }
 

@@ -8,6 +8,9 @@ async function md(el, path, strip){
     let t = await r.text();
     if (strip) t = t.replace(/^>.*\n(>.*\n)*/m, '');           // drop internal usage notes at top
     box.innerHTML = marked.parse(t);
+    const dir = path.slice(0, path.lastIndexOf('/') + 1);
+    box.querySelectorAll('img').forEach(im => { const a = im.getAttribute('src'); if (a && !/^(https?:|\/|data:)/.test(a)) im.src = ROOT + dir + a; im.style.maxWidth = '100%'; });
+    box.querySelectorAll('a[href]').forEach(a => { const h = a.getAttribute('href'); if (h && !/^(https?:|#|mailto:|\/)/.test(h)) a.href = ROOT + dir + h; });
     box.querySelectorAll('a[href^="http"]').forEach(a => { a.target = '_blank'; a.rel = 'noopener'; });
   }catch(e){ box.innerHTML = '<p class="small">This section is being prepared.</p>'; }
 }
