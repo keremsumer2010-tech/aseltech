@@ -487,6 +487,7 @@ def write_registry_outputs(
         "discrepancies": len(discrepancies),
     }
     payload = {
+        "quality": "provisional",
         "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "quality_notice": DISCLAIMER,
         "summary": counts,

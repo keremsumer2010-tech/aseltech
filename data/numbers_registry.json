@@ -1,12 +1,13 @@
 {
-  "generated_at": "2026-11-14T20:18:43Z",
+  "quality": "provisional",
+  "generated_at": "2026-11-14T20:26:33Z",
   "quality_notice": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.",
   "summary": {
     "total": 27,
     "approved": 21,
     "preliminary": 6,
     "rejected": 0,
-    "discrepancies": 5
+    "discrepancies": 0
   },
   "entries": [
     {
@@ -700,6 +701,7 @@
       "used_in": [
         "docs/story/cross_sensor.md:40",
         "docs/story/fullyear.md:33",
+        "docs/story/global_showcase.md:27",
         "docs/story/judge_faq.md:14",
         "docs/story/judge_faq.md:17",
         "docs/story/judge_faq.md:53",
@@ -708,6 +710,7 @@
         "docs/story/literature_comparison.md:28",
         "docs/story/literature_comparison.md:46",
         "docs/story/pitch.md:27",
+        "docs/story/presentation_cues.md:16",
         "docs/story/presentation_cues.md:100",
         "docs/story/presentation_cues.md:115",
         "docs/story/press_summary.md:11",
@@ -719,6 +722,7 @@
         "docs/story/sources.md:66",
         "docs/story/submission_form.md:73",
         "docs/story/team_story.md:19",
+        "docs/story/technical_note.md:77",
         "docs/story/technical_note.md:81",
         "docs/story/slides.html:429",
         "docs/story/slides.html:505",
@@ -756,7 +760,6 @@
       "verdict": "preliminary",
       "used_in": [
         "docs/story/fullyear.md:14",
-        "docs/story/global_showcase.md:27",
         "docs/story/global_showcase.md:30",
         "docs/story/judge_faq.md:53",
         "docs/story/project_page.md:72",
@@ -779,7 +782,6 @@
       "quality": "provisional",
       "verdict": "preliminary",
       "used_in": [
-        "docs/story/global_showcase.md:27",
         "docs/story/judge_faq.md:53",
         "docs/story/judge_faq.md:68",
         "docs/story/press_summary.md:11",
@@ -844,41 +846,5 @@
       "note": "Confidence=medium; rate_cm_per_100d=-1.1."
     }
   ],
-  "discrepancies": [
-    {
-      "location": "docs/story/global_showcase.md:27",
-      "written_value": "-4.4 cm (old Mexico City in-basin reference)",
-      "data_value": "-7.0 cm LOS (data/global/mexico_city/summary.json, SW volcanic ref)",
-      "owner": "check docs/GOREV_DAGILIMI.md",
-      "fix": "Update Mexico City headline to -7.0 cm LOS (-5.8 cm/100 d)."
-    },
-    {
-      "location": "docs/story/judge_faq.md:53",
-      "written_value": "-4.4 cm (old Mexico City in-basin reference)",
-      "data_value": "-7.0 cm LOS (data/global/mexico_city/summary.json, SW volcanic ref)",
-      "owner": "PC4",
-      "fix": "Update Mexico City headline to -7.0 cm LOS (-5.8 cm/100 d)."
-    },
-    {
-      "location": "docs/story/key_findings_public.md:5",
-      "written_value": "-6.2 to -7.8 cm (stale CV ref range)",
-      "data_value": "[-7.8, -4.7] cm (data/central_valley/summary.json:range_cm)",
-      "owner": "PC5 (Mehmet)",
-      "fix": "Update reference sensitivity range to -4.7 to -7.8 cm."
-    },
-    {
-      "location": "docs/story/presentation_cues.md:16",
-      "written_value": "-4.4 cm (old Mexico City in-basin reference)",
-      "data_value": "-7.0 cm LOS (data/global/mexico_city/summary.json, SW volcanic ref)",
-      "owner": "check docs/GOREV_DAGILIMI.md",
-      "fix": "Update Mexico City headline to -7.0 cm LOS (-5.8 cm/100 d)."
-    },
-    {
-      "location": "docs/story/technical_note.md:77",
-      "written_value": "-4.4 cm (old Mexico City in-basin reference)",
-      "data_value": "-7.0 cm LOS (data/global/mexico_city/summary.json, SW volcanic ref)",
-      "owner": "PC4",
-      "fix": "Update Mexico City headline to -7.0 cm LOS (-5.8 cm/100 d)."
-    }
-  ]
+  "discrepancies": []
 }

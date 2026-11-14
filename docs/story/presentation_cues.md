@@ -13,7 +13,7 @@
 | **Lead Speaker** | **Kerem** | Delivers the `6 × 30 s` plain-English narrative blocks (`0:00–3:00`) cleanly at ~135 wpm |
 | **Live Demo Pilot** | **Memir** | Drives `Tab 1` (`web/index.html`), `Tab 2` (`explorer.html#central_valley_fullyear`), `Tab 3` (`game/index.html`), `Tab 4` (`web3d/index.html`) and executes `< 2 s` offline fallbacks (`Tab 5` `slides.html`, `demo_30s.mp4`) |
 | **Technical Q&A & Timekeeper** | **Mehmet** | Runs silent stopwatch (`0:30` splits, **`2:30` simulator cue**, **`2:50 WRAP NOW`**) and answers jury questions on GUNW phase math, L-vs-C coherence, ionosphere/DEM deramp, 10-station GNSS agreement, dual-orbit Track 34/114, and 11-month decomposition |
-| **Data, Impact & Policy Q&A Lead** | **İbrahim** | Answers jury questions on UK Fens `HH`/`HV` polarization & London clay `below_detection`, Karapınar 29 sinkholes & permutation tests, WorldPop/USDA exposure (`141,555` CV+Konya residents / `79.2%` CV cropland), Mexico City (`-4.4 cm` LOS), simulator priors, and verified sources (`sources.md`) |
+| **Data, Impact & Policy Q&A Lead** | **İbrahim** | Answers jury questions on UK Fens `HH`/`HV` polarization & London clay `below_detection`, Karapınar 29 sinkholes & permutation tests, WorldPop/USDA exposure (`141,555` CV+Konya residents / `79.2%` CV cropland), Mexico City (`-7.0 cm` LOS off-basin rerun), simulator priors, and verified sources (`sources.md`) |
 
 ---
 

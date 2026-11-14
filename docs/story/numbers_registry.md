@@ -2,7 +2,7 @@
 
 > **Calibration Notice:** NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.
 
-Every headline number in the web portal and story documents is traced to its authoritative JSON source (`27` metrics: `21` approved, `6` preliminary, `0` rejected; `5` open discrepancies).
+Every headline number in the web portal and story documents is traced to its authoritative JSON source (`27` metrics: `21` approved, `6` preliminary, `0` rejected; `0` open discrepancies).
 
 | ID | Value | Unit | Quality | Verdict | Source (`file:key`) | Used In (count) |
 |---|---:|---|---|---|---|---:|
@@ -27,19 +27,9 @@ Every headline number in the web portal and story documents is traced to its aut
 | `atlas_konya_plain_los_cm` | `-9.6` | cm | `provisional` | **approved** | `data/global/atlas.json` (`regions[konya_plain].max_cm_los`) | 19 |
 | `atlas_jakarta_los_cm` | `-6.8` | cm | `provisional` | **preliminary** | `data/global/atlas.json` (`regions[jakarta].max_cm_los`) | 23 |
 | `atlas_bangkok_los_cm` | `-7.5` | cm | `provisional` | **approved** | `data/global/atlas.json` (`regions[bangkok].max_cm_los`) | 2 |
-| `atlas_mexico_city_los_cm` | `-7.0` | cm | `provisional` | **approved** | `data/global/atlas.json` (`regions[mexico_city].max_cm_los`) | 25 |
+| `atlas_mexico_city_los_cm` | `-7.0` | cm | `provisional` | **approved** | `data/global/atlas.json` (`regions[mexico_city].max_cm_los`) | 28 |
 | `atlas_ho_chi_minh_los_cm` | `-4.2` | cm | `provisional` | **preliminary** | `data/global/atlas.json` (`regions[ho_chi_minh].max_cm_los`) | 6 |
-| `atlas_tehran_los_cm` | `-3.5` | cm | `provisional` | **preliminary** | `data/global/atlas.json` (`regions[tehran].max_cm_los`) | 11 |
-| `atlas_isfahan_los_cm` | `-2.5` | cm | `provisional` | **preliminary** | `data/global/atlas.json` (`regions[isfahan].max_cm_los`) | 10 |
+| `atlas_tehran_los_cm` | `-3.5` | cm | `provisional` | **preliminary** | `data/global/atlas.json` (`regions[tehran].max_cm_los`) | 10 |
+| `atlas_isfahan_los_cm` | `-2.5` | cm | `provisional` | **preliminary** | `data/global/atlas.json` (`regions[isfahan].max_cm_los`) | 9 |
 | `atlas_beijing_los_cm` | `-1.4` | cm | `provisional` | **approved** | `data/global/atlas.json` (`regions[beijing].max_cm_los`) | 10 |
 | `atlas_delta_los_cm` | `-1.3` | cm | `provisional` | **approved** | `data/global/atlas.json` (`regions[delta].max_cm_los`) | 15 |
-
-## Open Discrepancies
-
-| Location | Written | Authoritative Data | Owner | Fix |
-|---|---|---|---|---|
-| `docs/story/global_showcase.md:27` | -4.4 cm (old Mexico City in-basin reference) | -7.0 cm LOS (data/global/mexico_city/summary.json, SW volcanic ref) | check docs/GOREV_DAGILIMI.md | Update Mexico City headline to -7.0 cm LOS (-5.8 cm/100 d). |
-| `docs/story/judge_faq.md:53` | -4.4 cm (old Mexico City in-basin reference) | -7.0 cm LOS (data/global/mexico_city/summary.json, SW volcanic ref) | PC4 | Update Mexico City headline to -7.0 cm LOS (-5.8 cm/100 d). |
-| `docs/story/key_findings_public.md:5` | -6.2 to -7.8 cm (stale CV ref range) | [-7.8, -4.7] cm (data/central_valley/summary.json:range_cm) | PC5 (Mehmet) | Update reference sensitivity range to -4.7 to -7.8 cm. |
-| `docs/story/presentation_cues.md:16` | -4.4 cm (old Mexico City in-basin reference) | -7.0 cm LOS (data/global/mexico_city/summary.json, SW volcanic ref) | check docs/GOREV_DAGILIMI.md | Update Mexico City headline to -7.0 cm LOS (-5.8 cm/100 d). |
-| `docs/story/technical_note.md:77` | -4.4 cm (old Mexico City in-basin reference) | -7.0 cm LOS (data/global/mexico_city/summary.json, SW volcanic ref) | PC4 | Update Mexico City headline to -7.0 cm LOS (-5.8 cm/100 d). |
