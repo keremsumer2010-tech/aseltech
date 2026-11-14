@@ -23,3 +23,29 @@ Tarih: 2026-11-14 · Yazar: PC2 (Memir) · Kapsam: `data/konya_plain/`, `data/ka
 1. **Geniş vs. dar kutu tutarlılığı (Path 7):** Aynı yörünge üzerinde geniş `konya_plain` (`-6.30 cm`) ve yerel `karapinar` (`-5.93 cm`) serileri `2 km W of Karapınar` noktasında **`0.37 cm`** farkla uyumludur.
 2. **Alçalan vs. yükselen yörünge tutarlılığı (Path 7 vs. Path 172):** Bağımsız yükselen yörünge (`karapinar_p172`), aynı noktada aynı işarette (**`-4.73 cm` LOS**, fark `1.20 cm` / ~%20) güçlü çökme doğrular; fark, alçalan/yükselen bakış açısı projeksiyonu ve bağımsız referans penceresi seçiminden kaynaklanmaktadır.
 3. **Veri kalitesi:** Tüm üç seri `provisional` etiketlidir; iyonosfer düzeltmesi tamdır (`ion=full`).
+
+---
+
+# Delhi `2026-09-01` QC İncelemesi (`data/global/delhi/`, Path 106 Frame 74)
+
+Tarih: 2026-11-15 · Yazar: PC2 (Memir) · İlgili görev: `tasks/PC2.md` (`PC1 BAĞIMSIZ KONTROL SONUCU` & `YENİ ATAMA`)
+
+## 1. İyonosfer ve Unwrapping Kontrolü
+
+`2026-09-01` tarihini içeren iki interferogram çifti komşu çiftlerle karşılaştırıldığında şiddetli iyonosferik bozulma ve unwrapping sıçraması doğrulanmıştır (`pipeline/subset/delhi/*.npz`):
+
+| Çift | Geçerli Piksel (`coh>=0.35 & cc>0`) | Medyan Koherans | İyonosfer Std (`rad`) | İyonosfer Aralığı (`rad`) | Aykırı (`|d|>15 cm`) |
+|---|---:|---:|---:|---|---:|
+| `2026-07-15 → 2026-07-27` | `0.719` | `0.467` | `2.325` | `[-17.58, -8.43]` | `3` |
+| `2026-07-27 → 2026-09-01` | `0.391` | `0.306` | `13.044` | `[-121.28, -70.50]` | `2517` |
+| `2026-09-01 → 2026-09-13` | `0.782` | `0.525` | `11.130` | `[+54.53, +97.74]` | `3849` |
+| `2026-09-13 → 2026-09-25` | `0.793` | `0.533` | `0.824` | `[+1.96, +6.10]` | `2652` |
+
+- `2026-07-27 → 2026-09-01` çiftinde iyonosfer fazı `[-121.28, -70.50]` radyan ile negatif yönde patlamış (`std=13.044 rad`), `2026-09-01 → 2026-09-13` çiftinde ise `[+54.53, +97.74]` radyan ile ters işarette telafi etmiştir (`std=11.130 rad`). Bu durum `p01` zaman serisindeki `-10.0 cm` düşüş ve `+8.1 cm` geri sıçramanın doğrudan nedenidir; 36 günlük `07-27 → 09-01` çiftindeki muson koherans düşüşü (`medyan=0.306`) unwrapping hatalarını (`2517`–`3849` aykırı piksel) tetiklemiştir.
+
+## 2. Köprü Granül Kontrolü ve Sonuç
+
+- NASA CMR (`NISAR_L2_GUNW_PROVISIONAL_V1`, Path 106 Frame 74) üzerinde `2026-09-01` tarihini atlayacak bir köprü granül arandı:
+  - `2026-07-27 → 2026-09-13` çifti CMR'da bulunmamaktadır.
+  - Mevcut tek `2026-07-15 → 2026-09-13` granülü (`NISAR_L2_PR_GUNW_025_106_D_074_030_4000_SH_20260715T133143_20260715T133206_20260913T133129_20260913T133143_P05023_N_P_J_001`, `800.8 MB`) kısmi çerçeve (`_N_P_J_001`) olup indirilen Delhi kutusu (`76.83..77.33°E, 28.3..28.8°N`) içinde tüm `unw` ve `coh` pikselleri sıfırdır (`%0` kapsama).
+- **Karar:** Köprü granül bulunamadığından `2026-09-01` çiftlerinin çıkarılması kümülatif zinciri `2026-07-27`'de koparmaktadır. Bu nedenle 8 çiftlik seri (`2026-06-21 → 2026-10-19`, `max_subsidence_cm=-4.3`, `valid_fraction=0.053`) korunmuş, `2026-09-01` tarihi QC uyarısıyla işaretlenmiş ve Delhi `confidence: "low"` sınıfında bırakılmıştır (`uncertainty/sigma_cm.png`, medyan `0.37 cm`).
