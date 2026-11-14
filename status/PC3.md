@@ -4,6 +4,7 @@
 - Görev 2: BİTTİ — **Central Valley kümülatif harita + points + summary + _cum.npz PUSH edildi** (13:30 TR)
 - Q02 Karapınar kümülatif: BİTTİ (13:55 TR) — aşağıda
 - Sıradaki: 17:00 QA (sitedeki sayılar = çıktılarım mı) → Q08 hazırlığı
+- **14:11 Mehmet talimatı:** PC3, PC5'in Görev 1'ini (`analysis/decomp/decompose.py` + testler) devraldı. PC5 bu işi TEKRARLAMASIN; PC5 game_model.md ve belirsizlik bütçesiyle devam edebilir.
 - Güncelleme: 2026-11-14 13:55 TR
 
 ## Bağımsız yeniden üretim (14:05)
