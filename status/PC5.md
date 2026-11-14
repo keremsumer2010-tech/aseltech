@@ -1,8 +1,12 @@
 # PC5 Durum Raporu
 
-- **Durum:** çalışıyor — Görev 5 (`risk_sensitivity`) tamamlandı, Görev 6'ya (`game_sensitivity` Monte Carlo) geçiliyor
+- **Durum:** çalışıyor — Görev 6 (`game_sensitivity` 1000 Monte Carlo) tamamlandı, Görev 7'ye (Pazar tam yıl kontrol listesi) geçiliyor
 - **Kimlik:** M3hmeT1888 · Antigravity (Gemini) · PC5
-- **Güncelleme:** 2026-11-14 15:09 TR
+- **Güncelleme:** 2026-11-14 15:11 TR
+
+## Görev 6 — Oyun Modeli Monte Carlo Duyarlılığı (`analysis/pc5/game_sensitivity.py`, `docs/story/game_sensitivity.md`, `.png`)
+- `game/model.js` (`ValleyModel` v2) denklemleri değiştirilmeden Python'a aktarıldı; Terra Bella (`p01`) kalibrasyon noktasında kalibresiz çıktı `d_model(k=1) = -17.18 cm`, kalibre çarpan `k_cal = 0.6232` ile 108 gün hedefi `-10.10 cm` (`%0.00` artık).
+- `N = 1,000` Monte Carlo denemesinde (`S_skv`, `S_ske`, `b0`): 24 aylık dikey çökme sabit su yılında `p10 = -25.32 cm / p50 = -14.30 cm / p90 = -7.62 cm`, stokastik 2. yıl su yılında `p10 = -27.10 cm / p50 = -13.70 cm / p90 = -6.23 cm`; 108 günlük `-10.1 cm` NISAR hedefi örneklerin `%30.0` diliminde (`%14.9` `±%10` bandında) ve `b0 · S_skv = 0.02356` eş-çökme hiperbolü üzerinde yer almaktadır. `pytest analysis/pc5/test_game_sensitivity.py -q` → **4 passed**.
 
 ## Görev 5 — Altyapı Risk Eşiği Duyarlılığı (`analysis/pc5/risk_sensitivity.py`, `docs/story/risk_sensitivity.md`)
 - `risk/compute_risk.py` değişmeden doğrudan yeniden kullanıldı; 645 segmentin tamamı baz eşiklerde (`10.0 mm/km`, `10.0 cm`) `81` yüksek / `131` orta / `433` düşük risk ile `data/central_valley/assets.json` özetini birebir doğruladı.
