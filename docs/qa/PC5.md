@@ -265,3 +265,12 @@ PC2 **Q07** kapsamında tam yıl Central Valley zincirini (`2025-11-24 → 2026-
   - 11 atlas bölgesinde Cramér–Rao `2-sigma` formal faz gürültüsü eşiği medyan **`0.578 cm/100 d`** (aralık `0.544–0.615 cm/100 d`). 11 bölgenin tamamı `detectable = true` (`SNR = 3.7–28.9`). Atmosferik gürültü hariçtir; saha ölçeğinde ampirik `3-sigma` eşiği `data/uk_clay/detection.json` ile **`3.62 cm`**'dir.
 - **`rafsanjan` (`data/global/rafsanjan/uncertainty/`, `validation_note.json`):** `9` çift, medyan `σ = 0.330 cm`, `%84.9` geçerli piksel, `SNR = 17.6`, `-5.8 cm` LOS (`-7.4 cm` dikey *est.*, `~22.5 cm/yr` yıllık *est.*) — Motagh et al. (`15–30+ cm/yr`) ile uyumlu → **`reliable` (`medium` confidence, basına onaylı)**.
 - **`bangkok` (`data/global/bangkok/uncertainty/`, `validation_note.json`):** `8` çift, medyan `σ = 0.327 cm`, `%34.6` geçerli piksel, `SNR = 22.9`, `-7.5 cm` LOS (`-9.0 cm` dikey *est.*). Modern Phien-wej et al. / Aobpaet et al. hızlarının (`1–3 cm/yr`) 7–10× üzerinde (muson troposferik gecikmesi + `n_ref=2`) → **`indicative` (`low` confidence, basından hariç)**.
+
+---
+
+## 12. `ho_chi_minh` Belirsizlik & Karar + Saatlik Sicil Yenilemesi (`23:20 TR`)
+
+- **`ho_chi_minh` (`data/global/ho_chi_minh/uncertainty/`, `validation_note.json`):** `9` çift (`2026-06-17..2026-10-15`, `120` gün), `L = 208`, medyan `σ = 0.364 cm` (`p90 = 0.562 cm`, `%35.1` geçerli piksel), `SNR = 11.5`, `-4.2 cm` LOS (`-5.8 cm` dikey *est.*, `range_cm = [-9.9, -4.2]`, `n_ref = 2`). Referans duyarlılığı `%136`, geçerli piksel `<%40`, muson troposferik etkisi nedeniyle Erban et al. / Minderhoud et al. (`0.8–1.6 cm/yr` ort., `4.6–7.0 cm/yr` odak) literatürünün ~2.5× üzerinde → **`indicative` (`low` confidence, basından hariç)** ([`atlas_validation.md`](../story/atlas_validation.md)).
+- **`detectability.py` (12 şehir):** `12/12` `detectable = true` (`SNR = 3.7–28.9`), medyan `2-sigma` eşiği `0.578 cm/100 d` (`pc5_detectability.png` güncellendi).
+- **`numbers_registry.py` (saatlik yenileme):** `27` metrik (`21` approved, `6` preliminary, `0` rejected). Önceki **14** uyumsuzluk **5**'e indi (`9` adet Mexico City `-4.4 cm` kaydı PC4 tarafından kapatıldı; kalanlar: `global_showcase.md:27`, `judge_faq.md:53`, `key_findings_public.md:5`, `presentation_cues.md:16`, `technical_note.md:77`).
+- **Doğrulama:** `pytest analysis/pc5 -q` → `26 passed in 24.21s`.

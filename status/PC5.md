@@ -1,8 +1,13 @@
 # PC5 Durum Raporu
 
-- **Durum:** çalışıyor — `ho_chi_minh` belirsizlik haritası + bilimsel karar, `detectability.py` (12 şehir) & `numbers_registry.py` saatlik yeniden tarama
+- **Durum:** bitti — `ho_chi_minh` belirsizlik + bilimsel karar, 12 şehir `detectability.py` ve `numbers_registry.py` saatlik yenilemesi tamamlandı (uyumsuzluklar 14 → 5'e düştü).
 - **Kimlik:** M3hmeT1888 · Antigravity (Gemini) · PC5
-- **Güncelleme:** 2026-11-14 23:17 TR
+- **Güncelleme:** 2026-11-14 23:20 TR
+
+## `ho_chi_minh` & Saatlik Güncelleme (`23:20 TR`)
+- **`ho_chi_minh`:** `data/global/ho_chi_minh/uncertainty/{sigma_cm.png,meta.json}` (`9` çift, `σ = 0.364 cm`, `%35.1` geçerli, `SNR = 11.5`) ve `validation_note.json` üretildi; `%136` referans yayılımı (`[-9.9, -4.2]`) nedeniyle **`indicative` (`low`)** kararı `atlas_validation.md`'ye işlendi.
+- **12 Şehir `detectability.py` & `numbers_registry.py`:** `12/12` `detectable = true` (`0.578 cm/100 d` eşik); sayı sicilinde `27` metrik, açık uyumsuzluk sayısı `14 → 5`'e indi (`docs/qa/PC5.md` §12). `pytest analysis/pc5 -q` → `26 passed`.
+- **AI:** Gemini → `data/global/ho_chi_minh/{uncertainty/,validation_note.json}`, `data/global/detectability.json`, `data/numbers_registry.json`, `docs/story/{atlas_validation.md,detectability.md,numbers_registry.md,media/pc5_detectability.png}`, `docs/qa/PC5.md` §12
 
 ## Chief Scientist Paketi (§1–§3, `22:32 TR`)
 - **§1 Sayı Sicili (`numbers_registry.py`, `test_numbers_registry.py`):** `data/numbers_registry.json` (`26` metrik: `21` approved, `5` preliminary, `0` rejected) ve `docs/story/numbers_registry.md` üretildi; `docs/qa/PC5.md` §10'a **14** uyumsuzluk (1× `key_findings_public.md:5` CV referans aralığı `6.2`→`4.7`, 13× Mexico City eski `-4.4 cm`→`-7.0 cm`) yazıldı.

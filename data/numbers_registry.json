@@ -1,13 +1,12 @@
 {
-  "generated_at": "2026-11-14T19:28:40Z",
-  "quality": "provisional",
+  "generated_at": "2026-11-14T20:18:43Z",
   "quality_notice": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.",
   "summary": {
-    "total": 26,
+    "total": 27,
     "approved": 21,
-    "preliminary": 5,
+    "preliminary": 6,
     "rejected": 0,
-    "discrepancies": 14
+    "discrepancies": 5
   },
   "entries": [
     {
@@ -26,6 +25,7 @@
         "docs/story/judge_faq.md:5",
         "docs/story/judge_faq.md:8",
         "docs/story/judge_faq.md:38",
+        "docs/story/judge_faq.md:68",
         "docs/story/key_findings.md:7",
         "docs/story/key_findings.md:11",
         "docs/story/key_findings.md:21",
@@ -138,6 +138,7 @@
         "docs/story/cross_sensor.md:40",
         "docs/story/fullyear.md:14",
         "docs/story/judge_faq.md:13",
+        "docs/story/judge_faq.md:68",
         "docs/story/key_findings.md:7",
         "docs/story/key_findings_public.md:5",
         "docs/story/literature_comparison.md:46",
@@ -145,7 +146,7 @@
         "docs/story/pitch.md:137",
         "docs/story/presentation_cues.md:92",
         "docs/story/project_page.md:59",
-        "docs/story/technical_note.md:108",
+        "docs/story/technical_note.md:111",
         "docs/story/slides.html:323"
       ],
       "note": "Summer-only extrapolation; overstates full-year permanent rate (-16.8 cm/yr). Must be labeled estimate."
@@ -253,7 +254,7 @@
         "docs/story/team_story.md:24",
         "docs/story/technical_note.md:11",
         "docs/story/technical_note.md:55",
-        "docs/story/technical_note.md:99",
+        "docs/story/technical_note.md:102",
         "docs/story/uncertainty.md:30",
         "docs/story/video_shotlist.md:21",
         "docs/story/video_shotlist.md:44",
@@ -262,7 +263,7 @@
         "docs/story/technical_note.html:215",
         "docs/story/technical_note.html:245",
         "docs/story/technical_note.html:254",
-        "docs/story/technical_note.html:301"
+        "docs/story/technical_note.html:304"
       ],
       "note": "All 10 stations median 1.004 cm; 6 stations with r>=0.4 have median 0.8 cm."
     },
@@ -460,7 +461,7 @@
         "docs/story/storage_loss.md:20",
         "docs/story/storage_loss.md:30",
         "docs/story/submission_form.md:71",
-        "docs/story/technical_note.md:99",
+        "docs/story/technical_note.md:102",
         "docs/story/slides.html:466"
       ],
       "note": "Reference sensitivity range: 0.0664 to 0.3198 km3/yr."
@@ -525,7 +526,7 @@
       "quality": "provisional",
       "verdict": "preliminary",
       "used_in": [
-        "docs/story/atlas_validation.md:25",
+        "docs/story/atlas_validation.md:28",
         "docs/story/judge_faq.md:13",
         "docs/story/key_findings.md:9",
         "docs/story/key_findings_public.md:6",
@@ -573,6 +574,7 @@
       "verdict": "approved",
       "used_in": [
         "web/science.html:61",
+        "docs/story/detectability.md:5",
         "docs/story/future_applications.md:27",
         "docs/story/judge_faq.md:17",
         "docs/story/lesson_plan.md:23",
@@ -587,7 +589,7 @@
         "docs/story/submission_form.md:74",
         "docs/story/technical_note.md:11",
         "docs/story/technical_note.md:58",
-        "docs/story/technical_note.md:110",
+        "docs/story/technical_note.md:113",
         "docs/story/uk_findings.md:10",
         "docs/story/uk_findings.md:12",
         "docs/story/uk_findings.md:20",
@@ -614,6 +616,7 @@
       "verdict": "approved",
       "used_in": [
         "docs/story/judge_faq.md:53",
+        "docs/story/judge_faq.md:68",
         "docs/story/konya_plain.md:5",
         "docs/story/project_page.md:71",
         "docs/story/project_page.md:72",
@@ -680,6 +683,7 @@
       "quality": "provisional",
       "verdict": "approved",
       "used_in": [
+        "docs/story/judge_faq.md:65",
         "docs/story/risk_sensitivity.md:44"
       ],
       "note": "Confidence=medium; rate_cm_per_100d=-6.2."
@@ -697,21 +701,49 @@
         "docs/story/cross_sensor.md:40",
         "docs/story/fullyear.md:33",
         "docs/story/judge_faq.md:14",
+        "docs/story/judge_faq.md:17",
         "docs/story/judge_faq.md:53",
         "docs/story/judge_faq.md:62",
         "docs/story/literature_comparison.md:15",
         "docs/story/literature_comparison.md:28",
         "docs/story/literature_comparison.md:46",
+        "docs/story/pitch.md:27",
+        "docs/story/presentation_cues.md:100",
+        "docs/story/presentation_cues.md:115",
         "docs/story/press_summary.md:11",
         "docs/story/project_page.md:72",
+        "docs/story/rehearsal_checklist.md:16",
+        "docs/story/slides_notes.md:54",
+        "docs/story/slides_notes.md:68",
         "docs/story/sources.md:45",
         "docs/story/sources.md:66",
+        "docs/story/submission_form.md:73",
         "docs/story/team_story.md:19",
         "docs/story/technical_note.md:81",
+        "docs/story/slides.html:429",
         "docs/story/slides.html:505",
         "docs/story/technical_note.html:281"
       ],
       "note": "Confidence=medium; rate_cm_per_100d=-5.8."
+    },
+    {
+      "id": "atlas_ho_chi_minh_los_cm",
+      "value": -4.2,
+      "unit": "cm",
+      "meaning": "Ho Chi Minh City peak LOS displacement (120 d)",
+      "source_file": "data/global/atlas.json",
+      "source_key": "regions[ho_chi_minh].max_cm_los",
+      "quality": "provisional",
+      "verdict": "preliminary",
+      "used_in": [
+        "docs/story/cross_sensor.md:65",
+        "docs/story/presentation_cues.md:62",
+        "docs/story/presentation_cues.md:98",
+        "docs/story/risk_dossier.md:30",
+        "docs/story/video_shotlist.md:21",
+        "docs/story/slides.html:301"
+      ],
+      "note": "Confidence=low; rate_cm_per_100d=-3.5."
     },
     {
       "id": "atlas_tehran_los_cm",
@@ -727,7 +759,6 @@
         "docs/story/global_showcase.md:27",
         "docs/story/global_showcase.md:30",
         "docs/story/judge_faq.md:53",
-        "docs/story/presentation_cues.md:100",
         "docs/story/project_page.md:72",
         "docs/story/slides_notes.md:54",
         "docs/story/slides_notes.md:68",
@@ -750,13 +781,14 @@
       "used_in": [
         "docs/story/global_showcase.md:27",
         "docs/story/judge_faq.md:53",
+        "docs/story/judge_faq.md:68",
         "docs/story/press_summary.md:11",
         "docs/story/project_page.md:71",
         "docs/story/project_page.md:72",
         "docs/story/risk_sensitivity.md:5",
         "docs/story/risk_sensitivity.md:44",
         "docs/story/technical_note.md:81",
-        "docs/story/technical_note.md:108"
+        "docs/story/technical_note.md:111"
       ],
       "note": "Confidence=low; rate_cm_per_100d=-2.1."
     },
@@ -804,10 +836,10 @@
         "docs/story/submission_form.md:73",
         "docs/story/technical_note.md:11",
         "docs/story/technical_note.md:74",
-        "docs/story/technical_note.md:101",
+        "docs/story/technical_note.md:104",
         "docs/story/slides.html:319",
         "docs/story/technical_note.html:215",
-        "docs/story/technical_note.html:303"
+        "docs/story/technical_note.html:306"
       ],
       "note": "Confidence=medium; rate_cm_per_100d=-1.1."
     }
@@ -818,13 +850,6 @@
       "written_value": "-4.4 cm (old Mexico City in-basin reference)",
       "data_value": "-7.0 cm LOS (data/global/mexico_city/summary.json, SW volcanic ref)",
       "owner": "check docs/GOREV_DAGILIMI.md",
-      "fix": "Update Mexico City headline to -7.0 cm LOS (-5.8 cm/100 d)."
-    },
-    {
-      "location": "docs/story/judge_faq.md:17",
-      "written_value": "-4.4 cm (old Mexico City in-basin reference)",
-      "data_value": "-7.0 cm LOS (data/global/mexico_city/summary.json, SW volcanic ref)",
-      "owner": "PC4",
       "fix": "Update Mexico City headline to -7.0 cm LOS (-5.8 cm/100 d)."
     },
     {
@@ -842,13 +867,6 @@
       "fix": "Update reference sensitivity range to -4.7 to -7.8 cm."
     },
     {
-      "location": "docs/story/pitch.md:27",
-      "written_value": "-4.4 cm (old Mexico City in-basin reference)",
-      "data_value": "-7.0 cm LOS (data/global/mexico_city/summary.json, SW volcanic ref)",
-      "owner": "check docs/GOREV_DAGILIMI.md",
-      "fix": "Update Mexico City headline to -7.0 cm LOS (-5.8 cm/100 d)."
-    },
-    {
       "location": "docs/story/presentation_cues.md:16",
       "written_value": "-4.4 cm (old Mexico City in-basin reference)",
       "data_value": "-7.0 cm LOS (data/global/mexico_city/summary.json, SW volcanic ref)",
@@ -856,56 +874,7 @@
       "fix": "Update Mexico City headline to -7.0 cm LOS (-5.8 cm/100 d)."
     },
     {
-      "location": "docs/story/presentation_cues.md:100",
-      "written_value": "-4.4 cm (old Mexico City in-basin reference)",
-      "data_value": "-7.0 cm LOS (data/global/mexico_city/summary.json, SW volcanic ref)",
-      "owner": "check docs/GOREV_DAGILIMI.md",
-      "fix": "Update Mexico City headline to -7.0 cm LOS (-5.8 cm/100 d)."
-    },
-    {
-      "location": "docs/story/presentation_cues.md:115",
-      "written_value": "-4.4 cm (old Mexico City in-basin reference)",
-      "data_value": "-7.0 cm LOS (data/global/mexico_city/summary.json, SW volcanic ref)",
-      "owner": "check docs/GOREV_DAGILIMI.md",
-      "fix": "Update Mexico City headline to -7.0 cm LOS (-5.8 cm/100 d)."
-    },
-    {
-      "location": "docs/story/rehearsal_checklist.md:16",
-      "written_value": "-4.4 cm (old Mexico City in-basin reference)",
-      "data_value": "-7.0 cm LOS (data/global/mexico_city/summary.json, SW volcanic ref)",
-      "owner": "check docs/GOREV_DAGILIMI.md",
-      "fix": "Update Mexico City headline to -7.0 cm LOS (-5.8 cm/100 d)."
-    },
-    {
-      "location": "docs/story/slides_notes.md:54",
-      "written_value": "-4.4 cm (old Mexico City in-basin reference)",
-      "data_value": "-7.0 cm LOS (data/global/mexico_city/summary.json, SW volcanic ref)",
-      "owner": "check docs/GOREV_DAGILIMI.md",
-      "fix": "Update Mexico City headline to -7.0 cm LOS (-5.8 cm/100 d)."
-    },
-    {
-      "location": "docs/story/slides_notes.md:68",
-      "written_value": "-4.4 cm (old Mexico City in-basin reference)",
-      "data_value": "-7.0 cm LOS (data/global/mexico_city/summary.json, SW volcanic ref)",
-      "owner": "check docs/GOREV_DAGILIMI.md",
-      "fix": "Update Mexico City headline to -7.0 cm LOS (-5.8 cm/100 d)."
-    },
-    {
-      "location": "docs/story/submission_form.md:73",
-      "written_value": "-4.4 cm (old Mexico City in-basin reference)",
-      "data_value": "-7.0 cm LOS (data/global/mexico_city/summary.json, SW volcanic ref)",
-      "owner": "PC8 / PC4",
-      "fix": "Update Mexico City headline to -7.0 cm LOS (-5.8 cm/100 d)."
-    },
-    {
       "location": "docs/story/technical_note.md:77",
-      "written_value": "-4.4 cm (old Mexico City in-basin reference)",
-      "data_value": "-7.0 cm LOS (data/global/mexico_city/summary.json, SW volcanic ref)",
-      "owner": "PC4",
-      "fix": "Update Mexico City headline to -7.0 cm LOS (-5.8 cm/100 d)."
-    },
-    {
-      "location": "docs/story/slides.html:429",
       "written_value": "-4.4 cm (old Mexico City in-basin reference)",
       "data_value": "-7.0 cm LOS (data/global/mexico_city/summary.json, SW volcanic ref)",
       "owner": "PC4",

@@ -1,0 +1,40 @@
+{
+  "id": "ho_chi_minh",
+  "name": "Ho Chi Minh City",
+  "data_path": "data/global/ho_chi_minh/",
+  "atlas_los_cm": -4.2,
+  "atlas_vertical_cm_est": -5.8,
+  "atlas_period": [
+    "2026-06-17",
+    "2026-10-15"
+  ],
+  "n_days": 120,
+  "rate_cm_per_100d_los": -3.5,
+  "rate_cm_per_yr_est_los": -12.8,
+  "valid_fraction": 0.351,
+  "ref_range_cm": [
+    -9.9,
+    -4.2
+  ],
+  "ref_sensitivity_ratio": 1.36,
+  "sigma_median_cm": 0.364,
+  "snr": 11.5,
+  "detectable": true,
+  "literature_vertical_cm_per_yr": "0.8 to 1.6 average across HCMC/Mekong fringe; localized hotspots 4.6 to 7.0",
+  "literature_sources": [
+    "Erban, L.E., Gorelick, S.M., & Zebker, H.A. (2014), Environmental Research Letters",
+    "Minderhoud, P.S.J. et al. (2017, 2018), Environmental Research Letters / Nature Communications",
+    "Le Ho Tong Minh et al., Ho Chi Minh City PSI InSAR subsidence studies"
+  ],
+  "agreement_note": "120-day monsoon-season LOS peak (-4.2 cm LOS; -5.8 cm vertical est., ~-17.6 cm/yr vertical est.) exceeds published HCMC hotspot rates (4.6-7.0 cm/yr) by ~2.5x, with 136% reference spread (range_cm [-9.9, -4.2], n_ref=2) and 35.1% valid pixels (<40% high-confidence gate).",
+  "recommended_confidence": "low",
+  "atlas_decision": "indicative",
+  "press_summary_approved": false,
+  "press_summary_gate_note": "Exclude from press headlines; retain as indicative-only due to 136% reference sensitivity, 35.1% valid pixels, and monsoon atmospheric turbulence.",
+  "first_nisar_measurement": {
+    "city_measured_by_nisar_before": false,
+    "evidence": "No peer-reviewed or official NASA/ISRO NISAR subsidence publication found for Ho Chi Minh City as of 2026-11-14."
+  },
+  "quality": "provisional",
+  "quality_note": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team."
+}
