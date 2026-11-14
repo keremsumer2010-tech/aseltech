@@ -13,5 +13,8 @@
 - Görev 3 (Metin + grafik + QA + test — **TAMAMLANDI**):
   - Komutlar: `python analysis/pc9/plot_fullyear_point.py` + `python -m pytest analysis/pc9 analysis/decomp analysis/test_insar.py analysis/test_cumulative.py -v` (`40 passed in 8.56s`).
   - Çıktılar: `docs/story/fullyear.md`, `docs/story/media/pc9_fullyear_point.png` (`465.4 KB`, `beta-precal` kesikli + `provisional` düz çizgi), `analysis/pc9/test_fullyear.py`, `docs/qa/PC9.md`.
+- **16:35 ACİL Sunum & Prova Paketi (PC4 yedek — TAMAMLANDI):**
+  - `docs/story/presentation_cues.md`: `https://keremsumer2010-tech.github.io/aseltech/` güncel bölümleri ve tıklama ipuçlarıyla 6 × 30 sn'lik `3:00` Lincoln konuşma metni (Kerem anlatır, Memir demo sürer, Mehmet ve İbrahim soruları alır), `data/*/summary.json` kaynaklı doğrulanmış sayılar (tam yıl için `"includes pre-calibration data"` bildirimi) ve `docs/story/judge_faq.md`'den 5 jüri sorusuna 1'er cümlelik yanıt.
+  - `docs/story/rehearsal_checklist.md`: Lincoln `17:30` provası için sekme sırası (Tab 1–5), internet kesilirse yerel `docs/story/slides.html` + `docs/story/media/demo_30s.mp4` (`3.49 MB`) yedek planı, ekran paylaşımı/ses kontrolleri, süre tutma sinyalleri ve ekip görev dağılımı.
 - BLOCKED: yok
-- AI: Antigravity (Gemini) → PC3 `analysis/` sarmalayıcı, Q08 ayrıştırma/grafik, `docs/story/fullyear.md` ve doğrulama testleri
+- AI: Antigravity (Gemini) → PC3 `analysis/` sarmalayıcı, Q08 ayrıştırma/grafik, `docs/story/fullyear.md`, doğrulama testleri ve `16:35` sunum/prova paketi
