@@ -1,0 +1,257 @@
+{
+  "pairs": [
+    {
+      "pair": [
+        "2026-06-21",
+        "2026-07-03"
+      ],
+      "file": "pipeline/subset/uk_clay/2026-06-21_2026-07-03.npz",
+      "lambda_m": 0.24393202441008952,
+      "ionosphere_applied": true,
+      "ion_p1_p99_spread_cm": [
+        29.26,
+        39.19,
+        9.93
+      ],
+      "raw_scene_std_cm": 2.583,
+      "deion_scene_std_cm": 0.749,
+      "post_deramp_scene_std_cm": 0.636,
+      "cycle_outlier_px": 1,
+      "elev_coef_cm_per_km": null,
+      "valid_frac_after_masks": 0.9231853566168735,
+      "p2_p50_p98_cm": [
+        -1.3,
+        0.2,
+        1.21
+      ],
+      "referenced_valid_std_cm": 0.529
+    },
+    {
+      "pair": [
+        "2026-07-03",
+        "2026-07-15"
+      ],
+      "file": "pipeline/subset/uk_clay/2026-07-03_2026-07-15.npz",
+      "lambda_m": 0.24393202441008952,
+      "ionosphere_applied": true,
+      "ion_p1_p99_spread_cm": [
+        4.27,
+        14.66,
+        10.39
+      ],
+      "raw_scene_std_cm": 4.899,
+      "deion_scene_std_cm": 4.205,
+      "post_deramp_scene_std_cm": 0.673,
+      "cycle_outlier_px": 0,
+      "elev_coef_cm_per_km": null,
+      "valid_frac_after_masks": 0.8510928770133483,
+      "p2_p50_p98_cm": [
+        -2.64,
+        -0.92,
+        0.23
+      ],
+      "referenced_valid_std_cm": 0.595
+    },
+    {
+      "pair": [
+        "2026-07-15",
+        "2026-07-27"
+      ],
+      "file": "pipeline/subset/uk_clay/2026-07-15_2026-07-27.npz",
+      "lambda_m": 0.24393202441008952,
+      "ionosphere_applied": true,
+      "ion_p1_p99_spread_cm": [
+        -21.85,
+        -16.91,
+        4.95
+      ],
+      "raw_scene_std_cm": 1.025,
+      "deion_scene_std_cm": 0.641,
+      "post_deramp_scene_std_cm": 0.495,
+      "cycle_outlier_px": 1,
+      "elev_coef_cm_per_km": null,
+      "valid_frac_after_masks": 0.877609463029198,
+      "p2_p50_p98_cm": [
+        -0.57,
+        0.31,
+        1.51
+      ],
+      "referenced_valid_std_cm": 0.443
+    },
+    {
+      "pair": [
+        "2026-07-27",
+        "2026-08-20"
+      ],
+      "file": "pipeline/subset/uk_clay/2026-07-27_2026-08-20.npz",
+      "lambda_m": 0.24393202441008952,
+      "ionosphere_applied": true,
+      "ion_p1_p99_spread_cm": [
+        -16.63,
+        -10.48,
+        6.15
+      ],
+      "raw_scene_std_cm": 1.553,
+      "deion_scene_std_cm": 0.729,
+      "post_deramp_scene_std_cm": 0.641,
+      "cycle_outlier_px": 2,
+      "elev_coef_cm_per_km": null,
+      "valid_frac_after_masks": 0.8959721345582907,
+      "p2_p50_p98_cm": [
+        -1.1,
+        0.26,
+        1.66
+      ],
+      "referenced_valid_std_cm": 0.553
+    },
+    {
+      "pair": [
+        "2026-08-20",
+        "2026-09-01"
+      ],
+      "file": "pipeline/subset/uk_clay/2026-08-20_2026-09-01.npz",
+      "lambda_m": 0.24393202441008952,
+      "ionosphere_applied": true,
+      "ion_p1_p99_spread_cm": [
+        -34.59,
+        -27.14,
+        7.45
+      ],
+      "raw_scene_std_cm": 1.966,
+      "deion_scene_std_cm": 0.632,
+      "post_deramp_scene_std_cm": 0.577,
+      "cycle_outlier_px": 0,
+      "elev_coef_cm_per_km": null,
+      "valid_frac_after_masks": 0.8985506229983402,
+      "p2_p50_p98_cm": [
+        -1.43,
+        -0.13,
+        0.94
+      ],
+      "referenced_valid_std_cm": 0.501
+    },
+    {
+      "pair": [
+        "2026-09-01",
+        "2026-09-13"
+      ],
+      "file": "pipeline/subset/uk_clay/2026-09-01_2026-09-13.npz",
+      "lambda_m": 0.24393202441008952,
+      "ionosphere_applied": true,
+      "ion_p1_p99_spread_cm": [
+        -2.27,
+        1.59,
+        3.86
+      ],
+      "raw_scene_std_cm": 0.866,
+      "deion_scene_std_cm": 0.778,
+      "post_deramp_scene_std_cm": 0.483,
+      "cycle_outlier_px": 2,
+      "elev_coef_cm_per_km": null,
+      "valid_frac_after_masks": 0.8942024919933609,
+      "p2_p50_p98_cm": [
+        -1.13,
+        -0.01,
+        0.94
+      ],
+      "referenced_valid_std_cm": 0.408
+    },
+    {
+      "pair": [
+        "2026-09-13",
+        "2026-09-25"
+      ],
+      "file": "pipeline/subset/uk_clay/2026-09-13_2026-09-25.npz",
+      "lambda_m": 0.24393202441008952,
+      "ionosphere_applied": true,
+      "ion_p1_p99_spread_cm": [
+        -8.68,
+        -6.54,
+        2.14
+      ],
+      "raw_scene_std_cm": 1.266,
+      "deion_scene_std_cm": 0.883,
+      "post_deramp_scene_std_cm": 0.512,
+      "cycle_outlier_px": 1,
+      "elev_coef_cm_per_km": null,
+      "valid_frac_after_masks": 0.8669238141992192,
+      "p2_p50_p98_cm": [
+        -1.64,
+        -0.51,
+        0.54
+      ],
+      "referenced_valid_std_cm": 0.438
+    },
+    {
+      "pair": [
+        "2026-09-25",
+        "2026-10-07"
+      ],
+      "file": "pipeline/subset/uk_clay/2026-09-25_2026-10-07.npz",
+      "lambda_m": 0.24393202441008952,
+      "ionosphere_applied": true,
+      "ion_p1_p99_spread_cm": [
+        -25.33,
+        -21.87,
+        3.46
+      ],
+      "raw_scene_std_cm": 1.565,
+      "deion_scene_std_cm": 1.241,
+      "post_deramp_scene_std_cm": 0.489,
+      "cycle_outlier_px": 2,
+      "elev_coef_cm_per_km": null,
+      "valid_frac_after_masks": 0.9193445075624752,
+      "p2_p50_p98_cm": [
+        -0.45,
+        0.45,
+        1.51
+      ],
+      "referenced_valid_std_cm": 0.43
+    },
+    {
+      "pair": [
+        "2026-10-07",
+        "2026-10-19"
+      ],
+      "file": "pipeline/subset/uk_clay/2026-10-07_2026-10-19.npz",
+      "lambda_m": 0.24393202441008952,
+      "ionosphere_applied": true,
+      "ion_p1_p99_spread_cm": [
+        16.8,
+        19.69,
+        2.89
+      ],
+      "raw_scene_std_cm": 1.666,
+      "deion_scene_std_cm": 1.264,
+      "post_deramp_scene_std_cm": 0.628,
+      "cycle_outlier_px": 1,
+      "elev_coef_cm_per_km": null,
+      "valid_frac_after_masks": 0.8754938401477429,
+      "p2_p50_p98_cm": [
+        -2.27,
+        -0.84,
+        0.3
+      ],
+      "referenced_valid_std_cm": 0.56
+    }
+  ],
+  "notes": [],
+  "reference_mean_coh": 0.9229,
+  "valid_frac_full_chain": 0.7361,
+  "outlier_px_removed": 0,
+  "cramer_rao": {
+    "looks": 208.0,
+    "per_pair_median_cm": 0.099,
+    "chain_median_cm": 0.308,
+    "chain_p10_cm": 0.186,
+    "chain_p90_cm": 0.509
+  },
+  "per_pair_post_deramp_rms_cm": 0.499,
+  "propagated_chain_atm_noise_cm": 1.498,
+  "cumulative_scene_std_cm": 1.224,
+  "block_1km_p2_p50_p98_cm": [
+    -2.95,
+    -0.68,
+    -0.07
+  ]
+}
