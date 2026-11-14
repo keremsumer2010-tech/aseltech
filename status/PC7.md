@@ -1,7 +1,7 @@
 # PC7 durum
 
 - Görev: Fens GCOV ritmi, polarizasyon karşılaştırması, çevrimdışı site QA ve Node oyun testi
-- Durum: Aguascalientes 9/9 kesit hazır; referans penceresi yok, summary üretilmedi. Kashmar: P078/F071, 9 çift/0 boşluk; 8/9 çift (2026-06-19–2026-10-05) kesildi, ham dosyalar kaldırıldı; dokuzuncu sırada. Ayrıntı docs/qa/PC7.md §26–27.
+- Durum: Xi'an tamamlandı; Taiyuan kaynaklı havza-dışı sabit referans bekliyor. Querétaro ve Aguascalientes 9/9 provisional kesit hazır fakat uygun ortak-valid 7×7 referans penceresi bulunmadı, summary yok. Kashmar 9/9 çift tamamlandı: −6.2 cm LOS/120 gün, −5.167 cm/100 gün, valid_fraction 0.728, confidence high, referans aralığı 0.8 cm; ham dosyalar kaldırıldı, sonuçlar provisional. Ayrıntı docs/qa/PC7.md §24–28; atlas.json başka sahibin olduğundan değiştirilmedi.
 - ASF araması: platform=NISAR, processingLevel=GCOV, bbox [-0.3, 52.4, 0.4, 52.9], başlangıç 2026-06-17; 49 P05023 GCOV ürünü HH/HV ile eşleşti.
 - Tekrarlı seri: path 52, frame 61, 10 benzersiz tarih: 2026-06-17–2026-10-15. Granül listesi `pipeline/pc7/fens_gcov_catalog.json` içinde.
 - Doğrulama: `pipeline/pc7/search_fens_gcov.py` çalıştırıldı; katalog JSON olarak tekrar açılıp parse edildi.

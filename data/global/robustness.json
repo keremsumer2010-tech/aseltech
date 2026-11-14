@@ -18,7 +18,7 @@
     "box_coverage_rule": "A requested box is only scored when the local subset covers at least 98% of its lon/lat extent; incomplete boxes remain explicit invalid variants.",
     "reference_limit": "Corner candidates are selected from high-coherence, low-relative-motion windows. No geological basin polygon or independent GNSS/stable-ground evidence is available to prove they lie outside each basin."
   },
-  "n_cities": 14,
+  "n_cities": 16,
   "n_common_cities_with_27_variants": 1,
   "top3_all_variants_stable": null,
   "top3_conclusion": "inconclusive: fewer than three cities have all 27 complete variants",
@@ -26,10 +26,10 @@
     "central_valley"
   ],
   "kendall_tau_base_vs_variants": {
-    "n_variant_rankings": 0,
-    "mean": null,
-    "min": null,
-    "max": null
+    "n_variant_rankings": 9,
+    "mean": 0.2593,
+    "min": -0.3333,
+    "max": 1.0
   },
   "cities": [
     {
@@ -73,8 +73,8 @@
       "spread_cm": 1.754,
       "min_rate_cm_per_100d": -3.68151,
       "max_rate_cm_per_100d": -2.21985,
-      "rank_min": null,
-      "rank_max": null,
+      "rank_min": 2,
+      "rank_max": 3,
       "n_variants": 9,
       "n_variants_attempted": 27,
       "bbox_center_lonlat": [
@@ -366,8 +366,8 @@
       "spread_cm": 5.3362,
       "min_rate_cm_per_100d": -7.2378,
       "max_rate_cm_per_100d": -2.29682,
-      "rank_min": null,
-      "rank_max": null,
+      "rank_min": 1,
+      "rank_max": 3,
       "n_variants": 27,
       "n_variants_attempted": 27,
       "bbox_center_lonlat": [
@@ -857,6 +857,326 @@
       "variants": []
     },
     {
+      "id": "kashmar",
+      "base_rate_cm_per_100d": -5.166666666666667,
+      "min": -7.2883,
+      "max": -4.742,
+      "spread_cm": 2.5463,
+      "min_rate_cm_per_100d": -6.0736,
+      "max_rate_cm_per_100d": -3.95164,
+      "rank_min": 1,
+      "rank_max": 2,
+      "n_variants": 18,
+      "n_variants_attempted": 27,
+      "bbox_center_lonlat": [
+        58.46,
+        35.24
+      ],
+      "reference_candidates": [
+        {
+          "id": "northwest",
+          "lon": 58.35656,
+          "lat": 35.4176,
+          "mean_coherence": 0.9791,
+          "relative_motion_cm": -0.15,
+          "evidence": "corner low-motion proxy; geology/GNSS stability not independently verified"
+        },
+        {
+          "id": "northeast",
+          "lon": 58.615098,
+          "lat": 35.348064,
+          "mean_coherence": 0.9669,
+          "relative_motion_cm": -0.004,
+          "evidence": "corner low-motion proxy; geology/GNSS stability not independently verified"
+        },
+        {
+          "id": "southwest",
+          "lon": 58.308942,
+          "lat": 35.087048,
+          "mean_coherence": 0.9852,
+          "relative_motion_cm": -0.068,
+          "evidence": "corner low-motion proxy; geology/GNSS stability not independently verified"
+        }
+      ],
+      "reference_selection": {
+        "coverage_fraction": 1.0,
+        "reference_candidates_found": 3,
+        "reference_selection": "three separated corners in +/-0.20 degree box; highest coherence and lowest relative motion"
+      },
+      "variants": [
+        {
+          "reference_id": "northwest",
+          "coherence_threshold": 0.3,
+          "box_half_width_deg": 0.2,
+          "coverage_fraction": 1.0,
+          "valid": true,
+          "headline_cm": -5.3889,
+          "p2_cm": -4.0412,
+          "rate_cm_per_100d": -4.49073,
+          "period_days": 120
+        },
+        {
+          "reference_id": "northwest",
+          "coherence_threshold": 0.3,
+          "box_half_width_deg": 0.25,
+          "coverage_fraction": 1.0,
+          "valid": true,
+          "headline_cm": -7.12,
+          "p2_cm": -4.0949,
+          "rate_cm_per_100d": -5.93334,
+          "period_days": 120
+        },
+        {
+          "reference_id": "northwest",
+          "coherence_threshold": 0.3,
+          "box_half_width_deg": 0.3,
+          "valid": false,
+          "coverage_fraction": 0.9148,
+          "reason": "local subset does not fully cover requested box"
+        },
+        {
+          "reference_id": "northeast",
+          "coherence_threshold": 0.3,
+          "box_half_width_deg": 0.2,
+          "coverage_fraction": 1.0,
+          "valid": true,
+          "headline_cm": -5.5572,
+          "p2_cm": -4.2095,
+          "rate_cm_per_100d": -4.63099,
+          "period_days": 120
+        },
+        {
+          "reference_id": "northeast",
+          "coherence_threshold": 0.3,
+          "box_half_width_deg": 0.25,
+          "coverage_fraction": 1.0,
+          "valid": true,
+          "headline_cm": -7.2883,
+          "p2_cm": -4.2632,
+          "rate_cm_per_100d": -6.0736,
+          "period_days": 120
+        },
+        {
+          "reference_id": "northeast",
+          "coherence_threshold": 0.3,
+          "box_half_width_deg": 0.3,
+          "valid": false,
+          "coverage_fraction": 0.9148,
+          "reason": "local subset does not fully cover requested box"
+        },
+        {
+          "reference_id": "southwest",
+          "coherence_threshold": 0.3,
+          "box_half_width_deg": 0.2,
+          "coverage_fraction": 1.0,
+          "valid": true,
+          "headline_cm": -5.4731,
+          "p2_cm": -4.1253,
+          "rate_cm_per_100d": -4.56088,
+          "period_days": 120
+        },
+        {
+          "reference_id": "southwest",
+          "coherence_threshold": 0.3,
+          "box_half_width_deg": 0.25,
+          "coverage_fraction": 1.0,
+          "valid": true,
+          "headline_cm": -7.2042,
+          "p2_cm": -4.179,
+          "rate_cm_per_100d": -6.00349,
+          "period_days": 120
+        },
+        {
+          "reference_id": "southwest",
+          "coherence_threshold": 0.3,
+          "box_half_width_deg": 0.3,
+          "valid": false,
+          "coverage_fraction": 0.9148,
+          "reason": "local subset does not fully cover requested box"
+        },
+        {
+          "reference_id": "northwest",
+          "coherence_threshold": 0.4,
+          "box_half_width_deg": 0.2,
+          "coverage_fraction": 1.0,
+          "valid": true,
+          "headline_cm": -5.3858,
+          "p2_cm": -3.9195,
+          "rate_cm_per_100d": -4.48816,
+          "period_days": 120
+        },
+        {
+          "reference_id": "northwest",
+          "coherence_threshold": 0.4,
+          "box_half_width_deg": 0.25,
+          "coverage_fraction": 1.0,
+          "valid": true,
+          "headline_cm": -7.0129,
+          "p2_cm": -3.9512,
+          "rate_cm_per_100d": -5.84406,
+          "period_days": 120
+        },
+        {
+          "reference_id": "northwest",
+          "coherence_threshold": 0.4,
+          "box_half_width_deg": 0.3,
+          "valid": false,
+          "coverage_fraction": 0.9148,
+          "reason": "local subset does not fully cover requested box"
+        },
+        {
+          "reference_id": "northeast",
+          "coherence_threshold": 0.4,
+          "box_half_width_deg": 0.2,
+          "coverage_fraction": 1.0,
+          "valid": true,
+          "headline_cm": -5.5637,
+          "p2_cm": -4.0974,
+          "rate_cm_per_100d": -4.6364,
+          "period_days": 120
+        },
+        {
+          "reference_id": "northeast",
+          "coherence_threshold": 0.4,
+          "box_half_width_deg": 0.25,
+          "coverage_fraction": 1.0,
+          "valid": true,
+          "headline_cm": -7.1908,
+          "p2_cm": -4.1291,
+          "rate_cm_per_100d": -5.9923,
+          "period_days": 120
+        },
+        {
+          "reference_id": "northeast",
+          "coherence_threshold": 0.4,
+          "box_half_width_deg": 0.3,
+          "valid": false,
+          "coverage_fraction": 0.9148,
+          "reason": "local subset does not fully cover requested box"
+        },
+        {
+          "reference_id": "southwest",
+          "coherence_threshold": 0.4,
+          "box_half_width_deg": 0.2,
+          "coverage_fraction": 1.0,
+          "valid": true,
+          "headline_cm": -5.4852,
+          "p2_cm": -4.0189,
+          "rate_cm_per_100d": -4.57096,
+          "period_days": 120
+        },
+        {
+          "reference_id": "southwest",
+          "coherence_threshold": 0.4,
+          "box_half_width_deg": 0.25,
+          "coverage_fraction": 1.0,
+          "valid": true,
+          "headline_cm": -7.1122,
+          "p2_cm": -4.0505,
+          "rate_cm_per_100d": -5.92686,
+          "period_days": 120
+        },
+        {
+          "reference_id": "southwest",
+          "coherence_threshold": 0.4,
+          "box_half_width_deg": 0.3,
+          "valid": false,
+          "coverage_fraction": 0.9148,
+          "reason": "local subset does not fully cover requested box"
+        },
+        {
+          "reference_id": "northwest",
+          "coherence_threshold": 0.5,
+          "box_half_width_deg": 0.2,
+          "coverage_fraction": 1.0,
+          "valid": true,
+          "headline_cm": -4.742,
+          "p2_cm": -3.5028,
+          "rate_cm_per_100d": -3.95164,
+          "period_days": 120
+        },
+        {
+          "reference_id": "northwest",
+          "coherence_threshold": 0.5,
+          "box_half_width_deg": 0.25,
+          "coverage_fraction": 1.0,
+          "valid": true,
+          "headline_cm": -5.7741,
+          "p2_cm": -3.5204,
+          "rate_cm_per_100d": -4.81174,
+          "period_days": 120
+        },
+        {
+          "reference_id": "northwest",
+          "coherence_threshold": 0.5,
+          "box_half_width_deg": 0.3,
+          "valid": false,
+          "coverage_fraction": 0.9148,
+          "reason": "local subset does not fully cover requested box"
+        },
+        {
+          "reference_id": "northeast",
+          "coherence_threshold": 0.5,
+          "box_half_width_deg": 0.2,
+          "coverage_fraction": 1.0,
+          "valid": true,
+          "headline_cm": -4.9817,
+          "p2_cm": -3.7425,
+          "rate_cm_per_100d": -4.1514,
+          "period_days": 120
+        },
+        {
+          "reference_id": "northeast",
+          "coherence_threshold": 0.5,
+          "box_half_width_deg": 0.25,
+          "coverage_fraction": 1.0,
+          "valid": true,
+          "headline_cm": -6.0138,
+          "p2_cm": -3.7601,
+          "rate_cm_per_100d": -5.01149,
+          "period_days": 120
+        },
+        {
+          "reference_id": "northeast",
+          "coherence_threshold": 0.5,
+          "box_half_width_deg": 0.3,
+          "valid": false,
+          "coverage_fraction": 0.9148,
+          "reason": "local subset does not fully cover requested box"
+        },
+        {
+          "reference_id": "southwest",
+          "coherence_threshold": 0.5,
+          "box_half_width_deg": 0.2,
+          "coverage_fraction": 1.0,
+          "valid": true,
+          "headline_cm": -4.8671,
+          "p2_cm": -3.6279,
+          "rate_cm_per_100d": -4.05589,
+          "period_days": 120
+        },
+        {
+          "reference_id": "southwest",
+          "coherence_threshold": 0.5,
+          "box_half_width_deg": 0.25,
+          "coverage_fraction": 1.0,
+          "valid": true,
+          "headline_cm": -5.8992,
+          "p2_cm": -3.6455,
+          "rate_cm_per_100d": -4.91598,
+          "period_days": 120
+        },
+        {
+          "reference_id": "southwest",
+          "coherence_threshold": 0.5,
+          "box_half_width_deg": 0.3,
+          "valid": false,
+          "coverage_fraction": 0.9148,
+          "reason": "local subset does not fully cover requested box"
+        }
+      ]
+    },
+    {
       "id": "konya_plain",
       "base_rate_cm_per_100d": -8.9,
       "min": null,
@@ -909,6 +1229,30 @@
       "reference_selection": {
         "reason": "local subset does not cover the full +/-0.20 degree test box",
         "coverage_fraction": 0.9324
+      },
+      "variants": []
+    },
+    {
+      "id": "pekalongan",
+      "base_rate_cm_per_100d": -18.5,
+      "min": null,
+      "max": null,
+      "spread_cm": null,
+      "min_rate_cm_per_100d": null,
+      "max_rate_cm_per_100d": null,
+      "rank_min": null,
+      "rank_max": null,
+      "n_variants": 0,
+      "n_variants_attempted": 0,
+      "bbox_center_lonlat": [
+        109.67,
+        -6.89
+      ],
+      "reference_candidates": [],
+      "reference_selection": {
+        "coverage_fraction": 1.0,
+        "reference_candidates_found": 0,
+        "reference_selection": "three separated corners in +/-0.20 degree box; highest coherence and lowest relative motion"
       },
       "variants": []
     },

@@ -1,0 +1,28 @@
+{
+  "site": "kashmar",
+  "bbox": [
+    58.21,
+    34.99,
+    58.71,
+    35.49
+  ],
+  "subset_bbox": [
+    58.18,
+    34.99,
+    58.71,
+    35.52
+  ],
+  "quality": "provisional",
+  "coverage": "ok",
+  "granules": 9,
+  "chain_pairs": 9,
+  "path": 78,
+  "frame": 71,
+  "period": [
+    "2026-06-19",
+    "2026-10-17"
+  ],
+  "gaps": [],
+  "total_raw_mb": 20354.3,
+  "raw_files_deleted_after_subsetting": true
+}

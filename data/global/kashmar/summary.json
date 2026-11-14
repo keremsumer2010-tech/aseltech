@@ -1,0 +1,74 @@
+{
+  "max_subsidence_cm": -6.2,
+  "max_subsidence_range_cm": [
+    -7.0,
+    -6.2
+  ],
+  "range_cm": [
+    -7.0,
+    -6.2
+  ],
+  "n_references": 3,
+  "reference_sensitivity": {
+    "alt_reference": {
+      "lon": 58.52041,
+      "lat": 35.08602
+    },
+    "max_subsidence_cm_at_same_location": -7.0
+  },
+  "reference_sensitivity_all": [
+    {
+      "alt_reference": {
+        "lon": 58.52041,
+        "lat": 35.08602
+      },
+      "max_subsidence_cm_at_same_location": -7.0
+    },
+    {
+      "alt_reference": {
+        "lon": 58.67834,
+        "lat": 35.34143
+      },
+      "max_subsidence_cm_at_same_location": -6.3
+    }
+  ],
+  "period": [
+    "2026-06-19",
+    "2026-10-17"
+  ],
+  "rate_cm_per_yr_estimate": -18.9,
+  "reference_point": {
+    "lon": 58.225041,
+    "lat": 35.518544,
+    "source": "Sorkhkuh/Band-e Ghoraa field locality at 35\u00b030\u2032N,58\u00b012\u2032E, 1800 m (Allium field record); surrounding Kashmar Valley region treated as stable by Motagh et al. 2008"
+  },
+  "quality": "provisional",
+  "quality_note": "NISAR L2 GUNW CRID P05023 provisional products only; calibration and validation are carried out by NASA-JPL/ISRO.",
+  "component": "LOS",
+  "max_subsidence_location": {
+    "lon": 58.21629,
+    "lat": 35.23011
+  },
+  "max_subsidence_vertical_cm_estimate": -7.6,
+  "incidence_deg_at_max": 35.1,
+  "n_pairs": 9,
+  "method_note": "Headline value = most negative median of ~1 km blocks (13x13 px, >= 50 % valid pixels, within-block std <= 2 cm) of the cumulative LOS map. Rate = linear extrapolation of 120 days (2026-06-19 to 2026-10-17, summer season) to one year: an ESTIMATE that likely overstates the annual net rate because part of summer subsidence recovers in winter. Vertical value assumes purely vertical motion (LOS / cos(incidence)). range_cm = spread of the headline value when the whole chain is re-referenced to up to two other stable windows >= 30 km away.",
+  "p2_cm": -3.17,
+  "rate_cm_per_100d": -5.167,
+  "valid_fraction": 0.728,
+  "confidence": "high",
+  "ref_range_cm": 0.8,
+  "bbox": [
+    58.21,
+    34.99,
+    58.71,
+    35.49
+  ],
+  "reference_outside_basin": true,
+  "reference_anchor": {
+    "lon": 58.2,
+    "lat": 35.5,
+    "mean_coherence": 0.9513,
+    "window": "7x7 common-valid pixels; nearest high-coherence window within 3 km of source locality"
+  }
+}

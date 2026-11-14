@@ -518,3 +518,21 @@ Tam zincirden sonra tekrarlanan yerel kontroller: robustness **14 şehir**, yaln
 ## 27. Kashmar — provisional kapsam ve referans adayı
 
 NISAR Pulse dry-run, hedef bbox `[58.21,34.99,58.71,35.49]` içinde P078/F071, 9 provisional ardışık çift, 0 boşluk ve 20,354.3 MB tahmini ham kapsam döndürdü. Koordinatlı saha yerelliği kaynağı “Kashmar, SW Rivash (Sorkhkuh), Band-e Ghoraa” için `35°30′N, 58°12′E, 1800 m` yayımlar ([Allium taxonomic review, locality record](https://www.ipk-gatersleben.de/fileadmin/content-ipk/Infrastruktur/Genbank/Allium_Database/IrMeRevAllN.pdf)). Kashmar Valley InSAR çalışması vadiyi kuzey/güney dağlarla çevrili topografik havza olarak tarif eder ve çevre alanlarda anlamlı yüzey deformasyonu görülmediğini, bu alanların stabil sayıldığını bildirir ([Motagh et al. 2008](https://academic.oup.com/gji/article/174/1/287/577293)). Bu nedenle Sorkhkuh dağ yerelliği kaynaklı referans adayıdır; gerçek NISAR ortak-valid 7×7 pencere, koherens ve havza sınırı uyumu üretim kesitlerinde ayrıca doğrulanacak.
+
+## 28. Kashmar — provisional analiz tamamlandı
+
+**hazır: Kashmar** — 9/9 provisional GUNW çifti, P078/F071, 2026-06-19–2026-10-17, 120 gün ve boşluk yok. Kesitler `pipeline/subset/global_kashmar/`; her ham granül kesimden sonra kaldırıldı. Ürünler `data/global/kashmar/` altında: coverage, meta, points, QC raporu, summary ve 9 disp PNG.
+
+| Ölçüm | Sonuç |
+|---|---:|
+| En yüksek çökme (yaklaşık 1 km blok medyanı, LOS) | −6.2 cm |
+| Aynı dönem normalize hız | −5.167 cm/100 gün |
+| 120 günün doğrusal yıllıklaştırması | −18.9 cm/yıl tahmin; kış geri toparlanmasını içermediğinden yıllık net oran sayılmamalı |
+| p2 | −3.17 cm |
+| Geçerli alan | 0.728 |
+| Referans duyarlılığı aralığı | 0.8 cm (üç referans denemesi; −7.0…−6.2 cm) |
+| Güven etiketi | high (veri-içi QC; ürün kalitesi yine provisional) |
+
+Saha kaydının 35°30′N, 58°12′E noktasından NISAR gridinde seçilen gerçek 7×7 ortak-geçerli pencere `[58.225041, 35.518544]`, ortalama koherens 0.9513. Yakın dağ yerelliğinin yüksek rakımı ve Motagh et al.’ın vadi çevresini deformasyonsuz/stabil diye tanımlaması bu referansı destekler; bağımsız yeni GNSS ölçümü değildir. En negatif blok merkezi `[58.21629, 35.23011]`. `tools/validate_atlas.py` mevcut PC10 atlasında Kashmar için şehir klasörünün atlas bölgesine henüz eklenmediğini/atlas alanlarının eksik olduğunu raporladı; PC10 sahipliğindeki `data/global/atlas.json` değiştirilmedi.
+
+Tam şehir sonrası QA anlık görüntüsü: `python -m pytest -q pipeline/pc7/tests/test_atlas_robustness.py` **4 passed**; `python pipeline/pc7/validate_json.py` **195 JSON**, 0 parse/NaN/Infinity; 4 `quality` eksiği başka sahiplerin dosyalarında. Atlas validator **22 region/26 şehir klasörü, 239 bulgu (215 hata, 24 uyarı)**. Robustness **16 şehir**, `common_27=1`; 9 tamamlanmış varyant sıralamasında Kendall tau ortalaması **0.2593** (min −0.3333, max 1.0); `top3_stable=null`, ilk üç sıra için yeterli kararlı ortak varyant yok. Çıktılar `data/global/robustness.json`, `docs/story/media/pc7_atlas_robustness.png`.
