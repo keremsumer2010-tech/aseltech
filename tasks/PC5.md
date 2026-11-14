@@ -154,3 +154,7 @@ Kurallar: uydurma yok, her sayının kaynağı dosya:anahtar; REVIEW_1500 dili; 
 2. `status/PC5.md`'ye tek satır yaz: ne yapıyorsun, % kaç bitti, sıradaki ne.
 3. Bundan sonra **en geç 10 dakikada bir** commit + push; 10 dk'dan uzun commit'siz kalma (uzun indirmede her çift bitince ara kayıt).
 4. Sonra bu dosyadaki en son TAKVİYE / KUSURSUZLUK bölümünden devam et.
+
+
+# 🔬 PC1 BAĞIMSIZ KONTROL SONUCU (Paz 02:55) · `docs/story/atlas_top5_check.md`
+PC1 senin yerine ilk sıraların bağımsız kontrolünü yaptı (`docs/story/atlas_top5_check.md`, `tools/atlas_qc.py`). Döndüğünde gözden geçir; Konya Ovası kararını (medium mı low mu) sen ver.

@@ -43,7 +43,7 @@
     "source": "Shi et al. 2020 reports the Xingping reference location as no-deformation; UNGEGN city-coordinate anchor (ID 2459), with local pixel selected by coherence"
   },
   "quality": "provisional",
-  "quality_note": "NISAR L2 GUNW CRID P05023 provisional products only; calibration and validation are carried out by NASA-JPL/ISRO.",
+  "quality_note": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.",
   "component": "LOS",
   "max_subsidence_location": {
     "lon": 109.18355,

@@ -1,0 +1,10 @@
+{
+  "note": "Manual QC decisions with sources (PC1 independent top-rank check, docs/story/atlas_top5_check.md). Merged into qc_flags.json by tools/atlas_qc.py.",
+  "flags": {
+    "bangkok": {
+      "flags": ["literature_mismatch", "noisy_series"],
+      "detail": "Headline -7.5 cm LOS in 108 days implies roughly 10x the published recent rates (about 0.9 cm/yr on average, locally above 2 cm/yr, Sentinel-1 PS-InSAR 2016-2019; 1-3 cm/yr in 2005-2010 InSAR); the headline series has +/-4-5 cm steps in both directions, typical of tropical decorrelation.",
+      "sources": ["https://digital_collect.lib.buu.ac.th/dcms/files/61910094.pdf", "https://doi.nrct.go.th/ListDoi/listDetail/10.14457%2FCU.the.2012.918"]
+    }
+  }
+}

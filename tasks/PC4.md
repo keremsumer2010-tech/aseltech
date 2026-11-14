@@ -169,3 +169,7 @@ Yazma alanın genişledi: `docs/story/atlas_cities/` · `docs/story/atlas_method
 2. `status/PC4.md`'ye tek satır yaz: ne yapıyorsun, % kaç bitti, sıradaki ne.
 3. Bundan sonra **en geç 10 dakikada bir** commit + push; 10 dk'dan uzun commit'siz kalma (uzun indirmede her çift bitince ara kayıt).
 4. Sonra bu dosyadaki en son TAKVİYE / KUSURSUZLUK bölümünden devam et.
+
+
+# 🔬 PC1 BAĞIMSIZ KONTROL SONUCU (Paz 02:55) · `docs/story/atlas_top5_check.md`
+Atlas metinleri: 1. sıra artık **Konya Ovası** (dikkat notuyla); Semarang başlıktan çıktı (faz açma hatası şüphesi), Bangkok/Delhi/Pekin indicative. `docs/story/atlas_top5_check.md`'yi press_summary, slides ve technical_note'a kaynak olarak bağla.

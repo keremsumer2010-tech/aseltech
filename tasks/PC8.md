@@ -61,3 +61,7 @@ Yazma alanı: `tools/bulletin.py`, `docs/bulletins/`, `data/global/exposure_atla
 # ➕ TAKVİYE (Paz 02:25, PC1) — atlas 19 bölge, tamlık 86/114 (`docs/qa/ATLAS_COMPLETENESS.md`). PC4/PC5 2 saattir durmuş; eksikleri sen tamamla.
 1. Yeni 4 şehir **eloy, delhi, quetta, xian** için bülten + `exposure_atlas.json` satırı; vital_signs güncelle (19 bölge).
 2. Tamlık tablosunu her 30 dk yeniden üret.
+
+
+# 🔬 PC1 BAĞIMSIZ KONTROL SONUCU (Paz 02:55) · `docs/story/atlas_top5_check.md`
+`vital_signs.json` 'fastest' alanı artık **güvenilir bölgelerden** seçilmeli (QC işaretlileri hariç); PC1 düzeltti (Konya Ovası). Üreticin varsa bu kuralı ekle. Bültenlerde QC notu olan şehirlere "Under revision" satırı ekle.

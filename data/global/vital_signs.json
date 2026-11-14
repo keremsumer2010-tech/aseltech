@@ -5,11 +5,11 @@
   "cities_measured": 19,
   "cities_measured_source": "data/global/atlas.json (n_regions)",
   "fastest": {
-    "id": "semarang",
-    "name": "Semarang",
-    "country": "Indonesia",
-    "rate_cm_per_100d": -11.2,
-    "source": "data/global/atlas.json"
+    "id": "konya_plain",
+    "name": "Konya Plain",
+    "country": "Türkiye",
+    "rate_cm_per_100d": -8.9,
+    "source": "data/global/atlas.json (fastest among reliable regions; QC-flagged regions excluded, tools/atlas_qc.py)"
   },
   "area_km2_lt_minus5cm": 588.96,
   "area_km2_lt_minus5cm_source": "data/global/exposure_atlas.json (sum excluding nested karapinar)",

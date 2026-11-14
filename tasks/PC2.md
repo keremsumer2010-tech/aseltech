@@ -180,3 +180,7 @@ Kapsam hedefi Paz 14:00'te ≥20 şehir. Her yeni şehirde 6'lı paketin 1. par�
 # ➕ TAKVİYE (Paz 02:25, PC1) — atlas 19 bölge, tamlık 86/114 (`docs/qa/ATLAS_COMPLETENESS.md`). PC4/PC5 2 saattir durmuş; eksikleri sen tamamla.
 1. Kendi işlediğin şehirler için: **mashhad, delhi, quetta** → `python analysis/pc5/uncertainty_map.py` (PC5'in aracı; `--meta-file` ile, `python -m pytest -q analysis/pc5` geçmeli) → `data/global/<id>/uncertainty/{sigma_cm.png,meta.json}`; ardından PC5 biçiminde `data/global/<id>/validation_note.json` (literatür hızı + DOI, uyum notu, önerilen güven sınıfı, `"reviewed_by": "pending PC5"`). Uydurma yok; kaynak yoksa "no published rate found".
 2. Sonra NISAR vs OPERA'yı tamamla (`opera_check.md`).
+
+
+# 🔬 PC1 BAĞIMSIZ KONTROL SONUCU (Paz 02:55) · `docs/story/atlas_top5_check.md`
+**Delhi:** 1 Eylül 2026 tarihli görüntü bozuk görünüyor (−10.0 sonra +8.1 cm). O tarihi içeren iki çifti kontrol et (iyonosfer/unwrapping), gerekirse çıkarıp yeniden hesapla, `docs/qa/PC2.md`'ye yaz.

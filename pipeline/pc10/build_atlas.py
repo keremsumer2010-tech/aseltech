@@ -173,8 +173,25 @@ def main() -> None:
             if e:
                 entries.append(e)
 
-    # Sort by rate_cm_per_100d ascending (most negative = fastest subsidence first)
-    entries.sort(key=lambda r: (r["rate_cm_per_100d"], r["max_cm_los"]))
+    # Time-series QC (PC1, tools/atlas_qc.py): a headline built on a one-cycle phase jump or a single
+    # bad acquisition is not a measurement we can defend -> low confidence, reason in the note.
+    import subprocess, sys
+    subprocess.run([sys.executable, str(ROOT / "tools" / "atlas_qc.py")], check=False)   # refresh flags first
+    qc_path = ROOT / "data" / "global" / "qc_flags.json"
+    qc_flags = json.loads(qc_path.read_text(encoding="utf-8")).get("flags", {}) if qc_path.exists() else {}
+    for e in entries:
+        q = qc_flags.get(e["id"])
+        if q:
+            e["confidence"] = "low"
+            e["indicative_only"] = True
+            e["qc_flags"] = q["flags"]
+            kept = q.get("headline_without_flagged_steps_cm")
+            reason = "QC: " + q["detail"] + (f" Without the flagged step(s) the headline point shows {kept} cm." if kept is not None else "") + " Under revision."
+            e["note"] = (e.get("note", "") + " " + reason).strip()
+
+    # Rank reliable regions first, then indicative ones; inside each group by rate_cm_per_100d
+    # (most negative = fastest subsidence first). Rank 1 is therefore always a defensible number.
+    entries.sort(key=lambda r: (r["confidence"] == "low", r["rate_cm_per_100d"], r["max_cm_los"]))
     for idx, e in enumerate(entries, 1):
         e["rank"] = idx
 

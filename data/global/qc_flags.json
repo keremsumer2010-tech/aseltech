@@ -1,0 +1,82 @@
+{
+  "method": "Automatic time-series QC for atlas headline points (PC1).\n\nFor every region in data/global/atlas.json, look at the headline point's cumulative series\n(points.json, kind == \"most_subsiding\") and flag two failure modes that a single summary\nnumber hides:\n\n  phase_cycle_jump      one step whose size is within ±CYCLE_TOL of a full L-band phase cycle\n                        (lambda/2 = 12.1 cm LOS). Typical of an unwrapping error.\n  single_date_outlier   two consecutive steps of opposite sign, each larger than SPIKE_CM, that\n                        largely cancel: one acquisition is off (atmosphere, unwrapping), the\n                        surrounding dates agree.",
+  "cycle_cm": 12.1,
+  "flags": {
+    "semarang": {
+      "flags": [
+        "phase_cycle_jump"
+      ],
+      "steps_cm": [
+        -3.25,
+        3.5,
+        -2.37,
+        -0.14,
+        1.33,
+        -0.64,
+        0.7,
+        -11.18
+      ],
+      "detail": "step 8 (2026-09-29→2026-10-11) = -11.18 cm ≈ one phase cycle (12.1 cm)",
+      "headline_point": [
+        110.28742,
+        -7.15767
+      ],
+      "headline_without_flagged_steps_cm": -0.87
+    },
+    "delhi": {
+      "flags": [
+        "single_date_outlier"
+      ],
+      "steps_cm": [
+        -1.4,
+        1.88,
+        0.17,
+        -10.01,
+        8.06,
+        -1.95,
+        -1.5,
+        0.43
+      ],
+      "detail": "date 2026-09-01: -10.01 then +8.06 cm (one acquisition off)",
+      "headline_point": [
+        77.1718,
+        28.52531
+      ],
+      "headline_without_flagged_steps_cm": -2.37
+    },
+    "beijing": {
+      "flags": [
+        "single_date_outlier"
+      ],
+      "steps_cm": [
+        0.99,
+        -8.26,
+        7.0,
+        -2.79,
+        3.37,
+        -1.5,
+        0.02,
+        -0.46,
+        0.23
+      ],
+      "detail": "date 2026-07-11: -8.26 then +7.00 cm (one acquisition off)",
+      "headline_point": [
+        116.83974,
+        39.79989
+      ],
+      "headline_without_flagged_steps_cm": -0.14
+    },
+    "bangkok": {
+      "flags": [
+        "literature_mismatch",
+        "noisy_series"
+      ],
+      "detail": "Headline -7.5 cm LOS in 108 days implies roughly 10x the published recent rates (about 0.9 cm/yr on average, locally above 2 cm/yr, Sentinel-1 PS-InSAR 2016-2019; 1-3 cm/yr in 2005-2010 InSAR); the headline series has +/-4-5 cm steps in both directions, typical of tropical decorrelation.",
+      "headline_without_flagged_steps_cm": null,
+      "sources": [
+        "https://digital_collect.lib.buu.ac.th/dcms/files/61910094.pdf",
+        "https://doi.nrct.go.th/ListDoi/listDetail/10.14457%2FCU.the.2012.918"
+      ]
+    }
+  }
+}
