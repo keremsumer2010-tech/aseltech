@@ -99,4 +99,4 @@ Oyun/sunum için tek sayı: `data/central_valley/summary.json` → `max_subsiden
 - AI: Claude Code (Opus) → analysis kodu, testler, kaynak taraması, sonuç kontrolü
 
 ## BLOCKED
--
+- (çözüldü 14:00) tasks/QUEUE.md rebase çakışması: PC2'nin Q01 satırı ile benim Q02 satırım bitişikti. Mehmet'in onayıyla iki satır da korunarak çözüldü (`[~PC2] Q01` + `[x PC3] Q02`), başka satıra dokunulmadı.
