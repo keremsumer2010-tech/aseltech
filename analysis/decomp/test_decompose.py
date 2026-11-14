@@ -66,3 +66,11 @@ def test_too_few_points_and_short_span_give_nan_and_reason():
 def test_shape_mismatch_raises():
     with pytest.raises(ValueError):
         fit(T[:-1], synth(-1.0, 1.0, 1))
+
+
+def test_chunked_equals_unchunked():
+    d = synth(-12.0, 2.5, 6, noise=0.3, shape=(30, 25))
+    a = fit(T, d)
+    b = fit(T, d, chunk=97)
+    for k in ("v_cm_per_yr", "amp_cm", "r2", "reason"):
+        assert np.allclose(a[k], b[k], equal_nan=True)

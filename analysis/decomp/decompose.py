@@ -33,7 +33,7 @@ def decimal_year(d) -> float:
     return d.year + (d - start).days / days
 
 
-def fit(t_years, data, t0=None):
+def _fit(t_years, data, t0=None):
     """Fit the model to data of shape (T, ...) (e.g. (T, H, W) cumulative cm stack).
 
     Returns dict of arrays shaped like data.shape[1:]:
@@ -106,3 +106,18 @@ def fit(t_years, data, t0=None):
         "v_se": r(np.sqrt(cov[:, 1, 1])), "amp_se": r(np.sqrt(amp_var)), "r2": r(r2),
         "n_valid": n.reshape(shp).astype(np.int16), "reason": reason.reshape(shp), "t0": t0,
     }
+
+
+def fit(t_years, data, t0=None, chunk=200_000):
+    """Public entry: same as _fit but processes pixels in chunks (bounded memory on full 1473x1438 grids)."""
+    t = np.asarray(t_years, dtype=np.float64)
+    D = np.asarray(data)
+    shp = D.shape[1:]
+    Y = D.reshape(D.shape[0], -1)
+    t0 = float(np.mean(t)) if t0 is None else float(t0)
+    if Y.shape[1] <= chunk:
+        return _fit(t, D, t0)
+    parts = [_fit(t, Y[:, i:i + chunk], t0) for i in range(0, Y.shape[1], chunk)]
+    out = {k: np.concatenate([p[k] for p in parts]).reshape(shp) for k in parts[0] if k != "t0"}
+    out["t0"] = t0
+    return out
