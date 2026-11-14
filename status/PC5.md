@@ -1,8 +1,12 @@
 # PC5 Durum Raporu
 
-- **Durum:** çalışıyor — Görev 1 tamamlandı, Görev 2'ye geçiliyor
+- **Durum:** çalışıyor — Görev 2 tamamlandı, Görev 3'e (QUEUE Q26+Q27) geçiliyor
 - **Kimlik:** M3hmeT1888 · Antigravity (Gemini) · PC5
-- **Güncelleme:** 2026-11-14 14:52 TR
+- **Güncelleme:** 2026-11-14 15:04 TR
+
+## Görev 2 — Literatür Karşılaştırması (`docs/story/literature_comparison.md`)
+- Central Valley (`Neely et al. 2021`, `Ojha et al. 2019`, `Farr & Jones / NASA Earth Observatory 2017`, `Sneed et al. / USGS SIR 2018-5144`) ve Karapınar/Konya (`Orhan et al. 2021`, `Üstün et al. 2010`, `Canaslan Çomut et al. 2015`) çalışmalarının tamamı HTTP 200 ile canlı olarak doğrulandı.
+- `data/*/summary.json` verilerindeki 108 günlük yaz dönemi kestirimlerinin (`-26.4 cm/yr` LOS Central Valley, `-20.0 cm/yr` LOS Karapınar) neden çok yıllık ortalama hızların üzerinde kaldığı (yaz zirve sulama pompajı vs. kış elastik geri sıçraması `S_ke`) İngilizce teknik paragrafla açıklandı.
 
 ## Görev 1 — Piksel Bazında Belirsizlik Haritası (`analysis/pc5/uncertainty_map.py`)
 - **Yöntem:** Cramér–Rao / Rodriguez & Martin (1992) faz standart sapması $\sigma_\phi = \frac{\sqrt{1-\gamma^2}}{\gamma\sqrt{2L}}$, $\sigma_d = \frac{\lambda}{4\pi}\sigma_\phi \cdot 100$ ve $N$ ardışık `provisional` çift üzerinden kare-toplam ($\sigma_{\text{toplam}} = \sqrt{\sum \sigma_{d,i}^2}$).
