@@ -21,3 +21,6 @@ If your clone folder is `aseltech-gemini3` you are **PC8**: task file `tasks/PC8
 
 ## PC9 (site owner from 15:35)
 If your clone folder is `aseltech-pc9` you are **PC9**: task file `tasks/PC9.md`, status `status/PC9.md`, commit prefix `[PC9]`. You own `web/` (except `web/panel.html`).
+
+## PC10 (global showcase)
+If your clone folder is `aseltech-pc10` you are **PC10**: task file `tasks/PC10.md`, status `status/PC10.md`, commit prefix `[PC10]`.
