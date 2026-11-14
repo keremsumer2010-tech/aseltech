@@ -267,3 +267,12 @@
   - `docs/story/submission_form.md` L33: `validated against 10 GPS stations` → `compared against 10 GPS stations` (`492 chars / 73 words`)
 - **`docs/story/slides.html` & `docs/story/technical_note.html` Link Taraması:** `0` kırık göreli bağlantı.
 - **`python -m pytest -q`:** **`70 passed, 1 warning in 22.41s`**.
+
+---
+
+## 15. 14 Nov 20:46 TR — Tur 6 QA (`validate_json.py`, Web Kapanışları & `pytest`)
+
+- **Önceki Web Bulguları Kapandı (`c2b40e1` & `b24925c`, PC7):** §9'da bildirilen `web/index.html:117` (`pc9_fullyear_point.png` `src` düzeltmesi) ve `web/explorer.html` kalibrasyon/provisional uyarısı eksiklikleri PC7 tarafından kapatıldı; §10'daki ilgili "Web Hatalarının Kapatılması" maddesi tamamlandı.
+- **`python pipeline/pc7/validate_json.py`:** `61` JSON dosyası tarandı (`Parse errors: 0`, `Non-finite numeric values: 0`, `Missing quality field: 0`).
+- **`python analysis/pc8/fix_nan_json.py`:** `61/61` JSON temiz.
+- **`python -m pytest -q`:** **`70 passed, 1 warning in 23.41s`**.
