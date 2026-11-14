@@ -19,9 +19,9 @@ Kerem'in bilgisayarı, Claude. Görev yazar, denetler, birleştirir, siteyi yay�
 `.github/` · `rules/` · `tasks/` · `docs/*.md` · `status/PC1.md`
 
 ## Başlamadan
-- [ ] `rules/RULES.md`, `docs/GOREV_DAGILIMI.md`, `rules/VERI_SOZLESMESI.md` okundu
-- [ ] GitHub → Settings → Pages → **Source: GitHub Actions** seçildi (workflow: `.github/workflows/pages.yml`)
-- [ ] `rules/VERI_SOZLESMESI.md` §5'teki yeni dosyalar (`summary.json`, `_cum.npz`) onaylandı ya da reddedildi
+- [x] `rules/RULES.md`, `docs/GOREV_DAGILIMI.md`, `rules/VERI_SOZLESMESI.md` okundu
+- [x] GitHub → Settings → Pages → **Source: GitHub Actions** seçildi (workflow: `.github/workflows/pages.yml`)
+- [x] `rules/VERI_SOZLESMESI.md` §5 yeni dosyalar (`summary.json`, `_cum.npz`) onaylandı
 
 ---
 

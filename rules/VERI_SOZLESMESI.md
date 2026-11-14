@@ -88,4 +88,5 @@ Genel:
 
 | Tarih | Değişiklik | Kim |
 |---|---|---|
-| 2026-11-14 | CLAUDE.md'den taşındı. Eklenen: `summary.json` (oyun/sunum için tek sayı kaynağı), `analysis/out/<site>_cum.npz` (PC6 için sayısal ızgara), npz sıkıştırma ve `coh` uint8 kuralı | PC1 onayı bekliyor |
+| 2026-11-14 | CLAUDE.md'den taşındı. Eklenen: `summary.json` (oyun/sunum için tek sayı kaynağı), `analysis/out/<site>_cum.npz` (PC6 için sayısal ızgara), npz sıkıştırma ve `coh` uint8 kuralı | PC1 onayladı (2026-11-14) |
+| 2026-11-14 | Eklenen: `placeholder` kalite sınıfı (PC1 site geliştirme verisi) | PC1 |
