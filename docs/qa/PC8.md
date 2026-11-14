@@ -90,17 +90,17 @@
 
 ---
 
-## 3. 15:35 Madde 3 — PC9 Yapılacaklar (`docs/qa/*.md` Açık Site Bulguları Özeti)
+## 3. 15:35 Madde 3 — PC3 / PC9 Yapılacaklar (`docs/qa/*.md` Açık Site Bulguları Özeti — Site Sorumlusu PC3 İçin Tek Liste)
 
-> **Amaç (`tasks/PC8.md` Madde 3):** `docs/qa/*.md` (`PC1.md`, `PC3.md`, `PC4.md`, `PC5.md`, `PC6.md`, `PC7.md`, `PCQ.md`, `PC8.md`) içindeki tüm site (`web/`, `data/catalog.json`) bulguları taranmış, daha önce PC1/PC3 tarafından kapatılan maddeler ayıklanmış ve **PC9'un tek seferde çakışmasız uygulayabileceği açık maddeler** aşağıda öncelik sırasıyla listelenmiştir.
+> **Amaç (`tasks/PC8.md` Madde 3 & `tasks/PC3.md` 15:45 devir):** `docs/qa/*.md` (`PC1.md`, `PC3.md`, `PC4.md`, `PC5.md`, `PC6.md`, `PC7.md`, `PC9.md`, `PCQ.md`, `PC8.md`) içindeki tüm site (`web/`, `data/catalog.json`) bulguları taranmış, daha önce kapatılan maddeler ayıklanmış ve **site sorumlusu PC3'ün (ve PC9'un) tek seferde çakışmasız uygulayabileceği açık maddeler** aşağıda öncelik sırasıyla listelenmiştir.
 
-### 3.1 Önceden Kapatılmış Maddeler (PC9'un Tekrar Dokunmasına Gerek Olmayanlar)
+### 3.1 Önceden Kapatılmış Maddeler (PC3/PC9'un Tekrar Dokunmasına Gerek Olmayanlar)
 - **[KAPANDI — `653b5f2` / `4d98f3a`]** `web/app.js` içindeki `< 2 cm` cetvel öğeleri (`grain of rice 0.2 cm`, `pea 0.6 cm`, `AAA battery 1.0 cm`) kaldırıldı; cetvel `2.4 cm` (`£1 coin / US quarter`) ile başlıyor ve `NOISE_CM = 1.0` gri gürültü bandı eklendi (`PCQ.md` #3).
 - **[KAPANDI — `653b5f2`]** `"four months"` ve `"two tectonic plates"` ifadeleri `web/index.html` ve `web/science.html` içinde `"3½ months"` / `"one summer"` ve `"a major tectonic boundary"` olarak düzeltildi (`PCQ.md` #4–5).
 - **[KAPANDI — `653b5f2`]** Renk çubuğu uç etiketleri `≤ −6` ve `≥ +6` olarak güncellendi (`PCQ.md` #8).
 - **[KAPANDI — `4d98f3a`]** `data/catalog.json` içine `karapinar`, `uk` ve `uk_clay` bölgeleri eklendi (`PC6.md`).
 
-### 3.2 PC9 Yapılacaklar — Açık Site (`web/` & `data/catalog.json`) Maddeleri
+### 3.2 PC3 / PC9 Yapılacaklar — Açık Site (`web/` & `data/catalog.json`) Maddeleri
 
 1. **[YÜKSEK — `web/index.html` `#ukClay` & `web/science.html` `#limits`] PC8 UK Algılama Sınırı Metni ve `pc8_uk_detection.png` Entegrasyonu (`docs/story/uk_findings.md` & `tasks/PC8.md` Madde 1):**
    - **Durum:** `web/index.html` `#ukClay` bölümü (satır 211–239) şu anda `data/uk_clay/detection.json` verisini metin olarak okuyor ancak `docs/story/media/pc8_uk_detection.png` (`Figure 4`) görselini göstermiyor.

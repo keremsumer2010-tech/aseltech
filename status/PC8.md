@@ -1,21 +1,12 @@
 # PC8 durum
 
-- Görev: 15:35 PC1 yeni görev listesi (`tasks/PC8.md`: 1. `docs/story/uk_findings.md` + `docs/story/media/pc8_uk_detection.png`, 2. Karapınar path 172 çapraz kontrol, 3. PC9 yapılacaklar QA özeti)
-- Durum: **TAMAMLANDI** (Madde 1, 2 ve 3 tamamlandı; sürekli QA / izleme adımında)
+- Görev: 15:35 görevleri (`uk_findings`, `karapinar_p172`, `PC3/PC9 site yapılacaklar listesi`) + 16:10 EK GÖREV A/B (`submission_form.md`, `video_subtitles.srt`, `narration_script.md`) + 16:15 CHALLENGE UYUMU B3 (`exposure.py`, `data/*/exposure.json`, `docs/story/exposure.md`)
+- Durum: 15:35 Madde 1–3 ve 16:10 Görev A–B **TAMAMLANDI**; 16:15 B3 (Nüfus ve ürün türü maruziyeti: WorldPop, USDA CDL, ESA WorldCover) üzerinde **çalışılıyor**
 - Çıktılar:
-  - **Madde 1 (`uk_findings` + algılama grafiği):**
-    - `docs/story/uk_findings.md` (PC9 için `REVIEW_1500.md` uyumlu 6 cümlelik sade İngilizce metin, hazır `<section>` HTML bloğu ve kaynak izlenebilirlik tablosu)
-    - `docs/story/media/pc8_uk_detection.png` (190.0 KB, 2 panelli grafik: 9 çiftin `0.31–0.47 cm` 1 km blok std ve `p2–p98` yayılımı + `0.5–2.0 cm` Londra kili ve `1–2 cm/yıl` Holme Fen hızlarının `1.21 cm` $1\sigma$, `3.62 cm` $3\sigma$ tek sezon eşiği ve 3 yıllık yığın eşiği ile karşılaştırması)
-    - `analysis/pc8/plot_uk_detection.py`
-  - **Madde 2 (`karapinar_p172` ikinci geçiş çapraz kontrolü):**
-    - `data/karapinar_p172/meta.json`, `data/karapinar_p172/points.json`, `data/karapinar_p172/summary.json`, `data/karapinar_p172/disp/2026-06-26.png` .. `2026-10-12.png` (9 tarih, 8 ardışık `provisional` çift, Track 172 Ascending Frame 21, %39.0 tam zincir geçerli piksel)
-    - `docs/story/media/pc8_kp_p7_vs_p172.png` (264.3 KB, 3 panelli karşılaştırma grafiği)
-    - `analysis/pc8/karapinar_p172_check.py`, `analysis/pc8/karapinar_p172_cum.npz`, `analysis/pc8/karapinar_p172_cum_stack.npz`, `analysis/pc8/karapinar_p172_pair_stats.json`, `analysis/pc8/kp_p7_vs_p172.json`
-    - Çapraz kontrol sonuçları (`docs/qa/PC8.md` §2): Aktif Karapınar çanağı (`p01`) 9 tarih zaman serisi **`r = 0.798`**, **`RMSE = 1.25 cm` LOS** (`-5.93 cm` vs `-4.73 cm` LOS); 12 benchmark noktası **`r = 0.767` LOS**, **`RMSE = 1.12 cm` LOS**, **`maks fark = 2.34 cm` LOS**; 220 ortak 1 km blok **`r = 0.238` LOS** (`> 2 cm` çöken bloklarda `r = 0.328`, **%76.3** işaret uyumu), **`RMSE = 1.42 cm` LOS**, medyan fark **`-0.19 cm` LOS**, **`maks fark = 3.82 cm` LOS**.
-  - **Madde 3 (`PC9 yapılacaklar` tek liste özeti):**
-    - `docs/qa/PC8.md` §3 altında tüm `docs/qa/*.md` dosyalarındaki açık site (`web/`, `data/catalog.json`) bulguları öncelik sırasıyla 6 maddelik `"PC9 Yapılacaklar"` listesinde birleştirildi.
-- Doğrulama:
-  - `docs/story/media/pc8_uk_detection.png` (190.0 KB) ve `docs/story/media/pc8_kp_p7_vs_p172.png` (264.3 KB) görsel olarak açılıp kontrol edildi (sıfır metin çakışması/taşması, tüm dosya boyutları > 0 B ve ≤ 20 MB).
-  - Tüm JSON ve NPZ çıktıları `data/DATA_CONTRACT.md` şemasına uygun olarak doğrulandı.
-- AI: Antigravity (Gemini) → `analysis/pc8/*.py`, `data/karapinar_p172/*`, `docs/story/uk_findings.md`, `docs/story/media/pc8_*.png`, `docs/qa/PC8.md` ve `status/PC8.md`
+  - **15:35 Madde 1 (`uk_findings` + algılama grafiği):** `docs/story/uk_findings.md`, `docs/story/media/pc8_uk_detection.png` (190.0 KB), `analysis/pc8/plot_uk_detection.py`
+  - **15:35 Madde 2 (`karapinar_p172` çapraz kontrolü):** `data/karapinar_p172/{meta,points,summary}.json`, `data/karapinar_p172/disp/*.png` (9 PNG), `docs/story/media/pc8_kp_p7_vs_p172.png` (264.3 KB), `analysis/pc8/karapinar_p172_check.py`, `analysis/pc8/kp_p7_vs_p172.json` (`p01` zaman serisi `r = 0.798`, `RMSE = 1.25 cm` LOS; 12 nokta `r = 0.767` LOS, `RMSE = 1.12 cm` LOS, `maks fark = 2.34 cm` LOS)
+  - **15:35 Madde 3 (Site yapılacaklar tek liste özeti — PC3 / PC9 için):** `docs/qa/PC8.md` §3
+  - **16:10 Görev A (Teslim formu metinleri):** `docs/story/submission_form.md` (`docs/story/submission_rules.md` alanlarına göre proje adı, 150/500 karakter özet, detaylı açıklama, nasıl çalışır, faydalar, NASA verisi, diğer veri, araçlar, AI kullanımı, demo ve repo linki, referanslar; her alanın tam karakter/kelime sayısı yazılı, NASA Land Subsidence StoryMap 2026 çerçevesi dahil)
+  - **16:10 Görev B (Video altyazısı ve seslendirme metni):** `docs/story/video_subtitles.srt` (6 sahne, `00:00.0–00:30.0`, `docs/story/video_shotlist.md` ile tam uyumlu) ve `docs/story/narration_script.md` (76 kelime, ~152 WPM = 29.6 sn, sahne bazlı kaynak doğrulama tablosu)
+- AI: Antigravity (Gemini) → `analysis/pc8/*.py`, `data/karapinar_p172/*`, `docs/story/{uk_findings,submission_form,narration_script}.md`, `docs/story/video_subtitles.srt`, `docs/story/media/pc8_*.png`, `docs/qa/PC8.md` ve `status/PC8.md`
 - BLOCKED: yok

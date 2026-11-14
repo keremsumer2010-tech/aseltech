@@ -1,0 +1,23 @@
+1
+00:00:00,000 --> 00:00:04,200
+When we drain deep groundwater faster than rain refills it, the land itself sinks.
+
+2
+00:00:04,200 --> 00:00:09,000
+While optical satellites are blinded by clouds, NISAR L-band radar sees right through them.
+
+3
+00:00:09,000 --> 00:00:15,000
+In California's Central Valley, provisional NISAR tracks up to -7.8 cm LOS (-10.1 cm vertical) across 108 days.
+
+4
+00:00:15,000 --> 00:00:20,000
+Tulare Canal slopes hit 57 mm/km; GNSS agrees at 1.00 cm median RMSE; Karapinar sinks -5.9 cm near 29 obruks.
+
+5
+00:00:20,000 --> 00:00:26,000
+Valley Under Pressure turns NISAR rates into a 24-month groundwater trade-off of clay collapse and canal loss.
+
+6
+00:00:26,000 --> 00:00:30,000
+NISAR Pulse: Follow the Water. Provisional NISAR L2 GUNW data (NASA-JPL / ISRO calibration).
