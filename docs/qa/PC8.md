@@ -359,3 +359,8 @@
 - **PC1 Bağımsız Kontrol (`docs/story/atlas_top5_check.md`, Paz 02:55):**
   - `build_exposure_atlas.py` `vital_signs.json` `fastest` seçimi yalnızca güvenilir (`indicative_only=false` ve `qc_flags.json` dışı) bölgeler arasından (`konya_plain`, `-8.9 cm/100d`) seçecek biçimde güncellendi.
   - `tools/bulletin.py` içine `data/global/qc_flags.json` okuması eklendi; QC işaretli şehirlere (`semarang`, `delhi`, `beijing`, `bangkok`) `"Under revision (...)"` uyarı satırı basıldı; `docs/story/submission_form.md` senkronize edildi (`test_bulletin.py` + `test_atlas_qc.py` geçti).
+
+- **YENİ ATAMA 03:05 & `yunlin` (20 bölge):**
+  - `yunlin` eklendi (`27,204` `< -2 cm`, `902` `< -5 cm`, `2.39 km²` `< -5 cm`, GHSL `R7_C31`). Toplam (`karapinar` hariç): **20 bölge**, `591.31 km²`, `1,508,817` kişi (`< -5 cm`), `8,047,490` kişi (`< -2 cm`), `fastest = konya_plain (-8.9 cm/100d)`.
+  - **20 bülten + `index.html`** (`docs/bulletins/yunlin.html` dahil) ve `docs/qa/ATLAS_COMPLETENESS.md` (`PC8: 0 eksik`) güncellendi (`pytest` → `6 passed`).
+  - `docs/story/submission_form.md`, `docs/story/slides_notes.md` ve `docs/story/exposure.md` yeni Top 5 (`1 Konya Plain, 2 Mashhad, 3 Central Valley, 4 Eloy, 5 Mexico City`), tek cümle QC hikâyesi ve `Tahran -7.4 cm` ile güncellendi.
