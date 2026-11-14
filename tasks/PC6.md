@@ -109,3 +109,12 @@ Atlas işlerin bitti; yeni iş (NISAR 3D dosyalarına dokunma):
 1. Science sayfasında Results bölümü kayıttan çalışıyor mu kontrol et; kayıtta artık `atlas_changelog` ve yeni satırlar olabilir — otomatik görünmeli.
 2. **"What changed" kutusu:** atlas sayfasında `data/global/atlas_changelog.json`'dan son 10 değişiklik (tarih, bölge, eski→yeni, neden).
 3. **Hata çubukları:** sıralama tablosunda `rate_ci_cm_per_100d` varsa küçük aralık çubuğu; sıralama metriği artık ortak pencere (`rate_cm_per_100d_common`) — tablo başlığında belirt.
+
+# 🎮 OYUN ↔ ATLAS (Paz 04:05, PC1 — Kerem onayı) · oyun 4 saattir dokunulmadı, artık yine senin
+Oyun sağlam (canlıda testler 6/6, konsol 0 hata). Amaç: oyunu atlasla tek hikâyeye bağlamak. Sırayla:
+1. **Konya tutarlılığı (önce bu):** oyundaki "Konya Closed Basin" `data/karapinar/summary.json`'a (−5.9 cm LOS) kalibre; atlasın 1. sırası ise **Konya Plain** (`data/konya_plain/`, −9.6 cm LOS). Jüri iki farklı sayı görüp karışmasın: oyunda bölge adını ve kartı "Karapınar sub-basin, Konya Closed Basin" yap ve kartta tek satır "Atlas: Konya Plain −9.6 cm (rank 1) → link" ekle. Kalibrasyonu değiştirme; `test_model.html` 6/6 kalmalı.
+2. **Atlastan oyuna:** atlas yan panelinde `central_valley`, `konya_plain`, `karapinar` seçilince "Manage this valley in the simulator" düğmesi → `game/?basin=tulare` veya `game/?basin=konya`.
+3. **Oyundan atlasa:** oyun `?basin=` parametresini okuyup o vadiyle açılsın (karşılama penceresinde seçili); bitiş ekranına "See where else the ground is sinking → atlas" bağlantısı (`atlas.html#konya_plain` / `#central_valley`).
+4. **Ders planı uyumu:** `docs/story/lesson_plan.md`'deki sorulardan biri atlasla karşılaştırma olsun (PC4'e not bırak, dosya onun).
+5. Test: mobil 375 px, projektör 1920, konsol 0 hata, `game/test_model.html` 6/6, `python -m pytest -q` geçer. Sonuç `docs/qa/PC6.md`.
+`results_registry.json`'a `simulator` satırı ekle (group "Engagement", doc `docs/story/game_model.md`, summary + key_number "6/6 model tests, calibration error 0 %"). En geç 10 dk'da bir commit + push.
