@@ -79,3 +79,11 @@ Her adımda commit + push; 3 dk döngüsü (`tasks/SUREKLI.md`).
 2. `status/PC6.md`'ye tek satır yaz: ne yapıyorsun, % kaç bitti, sıradaki ne.
 3. Bundan sonra **en geç 10 dakikada bir** commit + push; 10 dk'dan uzun commit'siz kalma (uzun indirmede her çift bitince ara kayıt).
 4. Sonra bu dosyadaki en son TAKVİYE / KUSURSUZLUK bölümünden devam et.
+
+
+# ➕ TAKVİYE (Paz 02:05, PC1 otomatik kontrol)
+Atlas işlerin bitti; yeni iş (NISAR 3D dosyalarına dokunma):
+1. **Atlas yazdırma görünümü:** `@media print` ile atlas sayfası A4'te tek sayfa sıralama posteri (başlık, ilk 15 tablo, güven rozeti, kalibrasyon cümlesi, kaynak); jüriye PDF olarak verilecek. `docs/qa/PC6.md`'ye ekran görüntüsü yolu.
+2. **"Updated" rozeti:** atlas.json'da `note` "recomputed" içeren şehirlerde (Tahran) yan panelde "Recomputed with off-basin reference — old value −3.5 cm" satırı.
+3. **Ana sayfa "Key numbers":** `data/global/vital_signs.json`'dan (şehir sayısı, en hızlı, alan, nüfus) canlı oku; sabit sayı kalmasın.
+4. Site geneli kırık link + konsol taraması (cache-bust sonrası `?v=` linkleri dahil), sonuç `docs/qa/PC6.md`.

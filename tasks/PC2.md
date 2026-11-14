@@ -171,3 +171,7 @@ Kapsam hedefi Paz 14:00'te ≥20 şehir. Her yeni şehirde 6'lı paketin 1. par�
 2. `status/PC2.md`'ye tek satır yaz: ne yapıyorsun, % kaç bitti, sıradaki ne.
 3. Bundan sonra **en geç 10 dakikada bir** commit + push; 10 dk'dan uzun commit'siz kalma (uzun indirmede her çift bitince ara kayıt).
 4. Sonra bu dosyadaki en son TAKVİYE / KUSURSUZLUK bölümünden devam et.
+
+
+# ➕ TAKVİYE (Paz 02:05, PC1 otomatik kontrol)
+1. Delhi tamam (5/5). Şimdi **NISAR vs OPERA** (`ATLAS FİNAL` madde 2): önce Central Valley (`pipeline/subset/opera_disp`), sonra Houston/Eloy/Mexico City; `data/global/opera_check.json` + `docs/story/opera_check.md`.
