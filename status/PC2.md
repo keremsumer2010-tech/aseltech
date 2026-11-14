@@ -93,4 +93,8 @@
   - **#3 Delta:** 9/9 `provisional` çift (`2026-06-17 → 2026-10-15`, Path 42 Frame 69) ve set profili (`pc2_delta.png`, `delta.md`) güncel ve tam.
   - **#4 Konya Ovası ikinci path çapraz kontrolü:** TAMAMLANDI → `docs/qa/PC2.md` (`konya_plain` Path 7 Descending vs `karapinar` Path 7 Descending vs `karapinar_p172` Path 172 Ascending; `2 km W of Karapınar`'da `-6.30`, `-5.93`, `-4.73 cm` LOS uyumlu).
   - **#6 `pipeline/README.md`:** TAMAMLANDI (tüm `pipeline/*.py` ve `pipeline/pc2/*.py` kullanım notları eklendi).
-  - **#5 Central Valley Path 114 tam yıl (`central_valley_p114_fullyear`):** DEVAM EDİYOR (22 çift `2025-11-30 → 2026-10-20` indiriliyor, 1/22 başladı).
+  - **#5 Central Valley Path 114 tam yıl (`central_valley_p114_fullyear`):** DEVAM EDİYOR (22 çift `2025-11-30 → 2026-10-20` indiriliyor, 1–6/22 push edildi `71cef5f`).
+- **Özgün Katkı O3 (`NISAR Pulse` CLI) — TAMAMLANDI:**
+  - `pipeline/nisarpulse/` (`__main__.py`, `search.py`, `fetch.py`, `process.py`, `catalog.py`, `README.md`, `tests/test_nisarpulse.py`) oluşturuldu; mevcut `pipeline/*.py` ve `analysis/*.py` dosyaları değiştirilmeden sarmalandı.
+  - Ağsız `6/6` birim testi geçti (`0.016s`); `.github/workflows/tests.yml` eklendi (`pages.yml`'e dokunulmadı).
+  - Delta (`--dry-run` `1.20s`, `--resume` uçtan uca `6.9s`, `max_subsidence_cm=-1.3`) kanıtı `docs/story/engine.md`'ye yazıldı.

@@ -1,0 +1,38 @@
+# NISAR Pulse — Single-Command Operational Engine
+
+**What it does:** Turns any bounding box and date window into a quality-tagged NISAR L2 GUNW displacement time series (`data/<site>/meta.json`, `disp/*.png`, `points.json`, `summary.json`) and registers it in `data/catalog.json` with one command.
+
+## Architecture (`pipeline/nisarpulse/`)
+
+- `search.py` — Validates `w,s,e,n` bounds, queries NASA CMR for `NISAR_L2_GUNW_PROVISIONAL_V1` (and `BETA_V1` when `--quality mixed`), classifies pairs (`>= 2026-06-17` provisional vs `beta-precal`), builds a continuous interferometric chain, and flags any temporal gaps.
+- `fetch.py` — Enforces a `20.0 GB` free-disk floor, streams one HDF5 granule at a time via `pipeline.download.download_file`, subsets to compressed `.npz` via `pipeline.subset.subset_gunw`, and deletes the raw `.h5` immediately.
+- `process.py` — Registers the site bounding box at runtime and runs `analysis/cumulative.py` unmodified to produce reference-checked cumulative LOS maps and uncertainty ranges.
+- `catalog.py` — Upserts a `rules/VERI_SOZLESMESI.md`-compliant entry into `data/catalog.json`.
+
+## End-to-End Verification (Sacramento–San Joaquin Delta)
+
+1. **Dry-run plan (`1.20s`, `0` bytes downloaded):**
+   ```bash
+   python -m pipeline.nisarpulse run \
+     --name delta \
+     --bbox -121.85,37.95,-121.45,38.20 \
+     --start 2026-06-17 --end 2026-10-15 \
+     --track 42 --quality provisional --dry-run
+   ```
+   Output: `granules=18 chain_pairs=9 total_raw=19956.3 MB gaps=0` (Path 42, Frame 69, `2026-06-17 → 2026-10-15`).
+
+2. **Full pipeline run with cached `.npz` subsets (`--resume`, `6.9s`):**
+   ```bash
+   python -m pipeline.nisarpulse run \
+     --name delta \
+     --bbox -121.85,37.95,-121.45,38.20 \
+     --start 2026-06-17 --end 2026-10-15 \
+     --track 42 --quality provisional --resume --no-catalog
+   ```
+   Output: `Done [delta] -> data/delta | max_subsidence_cm=-1.3 | elapsed=6.9s` (`range_cm=[-1.3, -1.1]`, `120 days`, `quality="provisional"`).
+
+3. **Offline unit tests (`6/6` pass in `0.016s`):**
+   ```bash
+   python -m unittest discover -s pipeline/nisarpulse/tests -v
+   ```
+   CI runs `python -m pytest pipeline/nisarpulse -q` on push/PR via `.github/workflows/tests.yml`.
