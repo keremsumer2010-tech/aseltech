@@ -438,3 +438,17 @@ NISAR Pulse `--dry-run` (2026-06-17–2026-10-31, ±0.25°, provisional) indirme
 Referans kaynağı kontrolü henüz savunulabilir birer havza-dışı koordinat vermiyor. Xi'an SBAS çalışması kararlı bir referans bölgesini haritada işaretliyor, fakat metin koordinat yayımlamıyor ([Shi et al. 2020](https://www.mdpi.com/2072-4292/12/22/3756), §4.1/Fig. 3). Taiyuan çalışmasında K001 (112.7°E, 37.7°N) düşük düşey hızla kararlı yer olarak tanımlanıyor; ancak koordinat hedef ±0.25° kutunun içinde ve çalışmada referans noktası havza dışında diye belirtilmiyor ([Zhao et al. 2018](https://www.mdpi.com/2072-4292/10/9/1499)). INEGI Querétaro için 2015–2018 PSI haritası yayımlıyor fakat özet kaydı belirli bir kararlı referans koordinatı sağlamıyor ([INEGI, 2019](https://www.inegi.org.mx/app/biblioteca/ficha.html?upc=889463849674)); ek bir çalışmada şehrin doğu kesimi kararlı alan diye tarif ediliyor, yine de tekil koordinat doğrulanmıyor ([Pacheco-Martínez et al.](https://doczz.net/doc/986787/dinsar-analysis-of-differential-ground-subsidence-affecti...)). Bu yüzden bu aşamada koordinat uydurulmadı ve `ready` denmedi.
 
 `python -m pipeline.nisarpulse run --dry-run` çıktıları yalnız katalog/ASF kapsama ön kontrolüdür; dosya indirme ve üretim analizi henüz yapılmadı. B kalite standardı havza-dışı, bilinen sabit referans gerektirdiğinden bu kanıt tamamlanmadan sonuçları yayımlamak uygun değil. A sağlamlık çıktıları ve `data/global/atlas.json` değiştirilmedi.
+
+## 18. Uzun plan FAZ 1 — provisional kapsam ön kontrolü
+
+Python 3.12.10 ile her şehir için NISAR Pulse `--dry-run`, `--box-deg 0.25`, `2026-06-17`–`2026-10-31`, `quality=provisional`, `--no-catalog` çalıştırıldı. CMR erişimi için ağ izni kullanıldı; dry-run ürün indirmedi.
+
+| Şehir | Tam hedef bbox `[w,s,e,n]` | Path/frame | Zincir | Dönem | Tahmini ham toplam |
+|---|---|---|---:|---|---:|
+| Xi'an | `[108.70,34.02,109.20,34.52]` | P076/F071 | 9 çift, 0 boşluk | 2026-06-19–2026-10-17 | 20,976.1 MB |
+| Taiyuan | `[112.30,37.60,112.80,38.10]` | P068/F020 | 9 çift, 0 boşluk | 2026-06-18–2026-10-16 | 20,247.7 MB |
+| Querétaro | `[-100.64,20.34,-100.14,20.84]` | P041/F078 | 9 çift, 0 boşluk | 2026-06-17–2026-10-15 | 20,053.5 MB |
+| Aguascalientes | `[-102.54,21.63,-102.04,22.13]` | P041/F077 | 9 çift, 0 boşluk | 2026-06-17–2026-10-15 | 19,905.5 MB |
+| Kashmar | `[58.21,34.99,58.71,35.49]` | P078/F071 | 9 çift, 0 boşluk | 2026-06-19–2026-10-17 | 20,354.3 MB |
+
+Bu sonuçlar yalnızca ASF/CMR kapsamasını ve tarih zincirini doğrular; analiz veya “hazır” durumu değildir. Xi'an kaynak taramasında eski InSAR çalışması Xingping'i deformasyonsuz referans yeri olarak tanımlıyor (https://www.tandfonline.com/doi/full/10.1080/19475705.2018.1542350); yayın koordinatlı ölçüm istasyonu vermediği için şehir merkezi koordinatı ölçüm noktası gibi kullanılmayacak. Taiyuan için K001 CGPS (112.7°E,37.7°N) eski çalışmada düşük düşey hızla kararlı olarak tanımlanıyor (https://www.mdpi.com/2072-4292/10/9/1499), fakat çalışmanın aynı metni K001'i havza içinde yer alan istasyon olarak listeliyor; “havza dışı” şartını tek başına karşılamaz. Querétaro literatüründe doğu kesimde kararlı deformasyon alanı tarif ediliyor, ancak sayısal sabit nokta koordinatı bu taramada doğrulanmadı (https://doczz.net/doc/986787/dinsar-analysis-of-differential-ground-subsidence-affecti...). Referans doğrulaması çözülmeden referans uydurulmayacak ve `hazır` beyanı yapılmayacak.
