@@ -1,12 +1,12 @@
 # PC2 durum
 
 - Görev: 1 (Hesap, liste, ilk dosya, gunw_structure.md) — **TAMAMLANDI**
-- Görev: 2 (6 provisional Central Valley çifti) — **DEVAM EDİYOR (6/6 kesildi; önceki 4 çift `ion` ile yenileniyor: 2/6 `ion` tamam, 4 çift kaldı)**
+- Görev: 2 (6 provisional Central Valley çifti) — **DEVAM EDİYOR (6/6 kesildi; önceki 4 çift `ion` ile yenileniyor: 3/6 `ion` tamam, 3 çift kaldı)**
 - Çıktılar:
   - `pipeline/search.py`, `pipeline/download.py`, `pipeline/inspect_gunw.py`, `pipeline/subset.py` (`incidence` 12-bit mantissa yuvarlama ile `ion` tam `(1473, 1438) float32` olarak ≤20 MB içinde korunuyor)
   - `pipeline/central_valley_gunw.csv` (27 Path 34 Frame 20 ürünü; 7 provisional `P05023`, 20 beta-precal)
   - `docs/gunw_structure.md` (gerçek `2026-09-08 → 2026-09-20` P05023 HDF5'inden üretildi; λ = 0.24196324 m)
-  - `pipeline/subset/central_valley/2026-06-28_2026-07-10.npz` (15.20 MB, shape=(1473, 1438), NaN=3.15%, ham `.h5` silindi; `ion` eklemek üzere yenilenecek)
+  - `pipeline/subset/central_valley/2026-06-28_2026-07-10.npz` (14.99 MB, shape=(1473, 1438), NaN=3.15%, `ion=(1473, 1438) full`, ham `.h5` silindi)
   - `pipeline/subset/central_valley/2026-07-10_2026-07-22.npz` (15.39 MB, shape=(1473, 1438), NaN=4.49%, ham `.h5` silindi; `ion` eklemek üzere yenilenecek)
   - `pipeline/subset/central_valley/2026-07-22_2026-08-15.npz` (15.34 MB, shape=(1473, 1438), NaN=6.99%, ham `.h5` silindi; `ion` eklemek üzere yenilenecek)
   - `pipeline/subset/central_valley/2026-08-15_2026-08-27.npz` (15.49 MB, shape=(1473, 1438), NaN=4.58%, `ion=(1473, 1438) full`, ham `.h5` silindi)
@@ -14,13 +14,13 @@
   - `pipeline/subset/central_valley/2026-09-08_2026-09-20.npz` (15.59 MB, shape=(1473, 1438), NaN=4.95%, ham `.h5` silindi; `ion` eklemek üzere yenilenecek)
 - İndirme hızları:
   - `2026-09-08 → 2026-09-20`: 10.32 MB/s (2236.0 MB)
-  - `2026-06-28 → 2026-07-10`: 12.71 MB/s (2192.0 MB)
+  - `2026-06-28 → 2026-07-10`: 12.71 MB/s / yenileme 11.23 MB/s (2192.0 MB)
   - `2026-07-10 → 2026-07-22`: 16.79 MB/s (2200.0 MB)
   - `2026-07-22 → 2026-08-15`: 16.92 MB/s (2212.0 MB)
   - `2026-08-15 → 2026-08-27`: 15.66 MB/s (2192.0 MB)
   - `2026-08-27 → 2026-09-08`: 11.82 MB/s (2236.0 MB)
 - Doğrulama:
-  - `2026-06-28_2026-07-10.npz`: `np.load` ile açıldı; `unw` [-0.592, 13.344] rad, `coh` ort=0.604, `epsg=32611`.
+  - `2026-06-28_2026-07-10.npz`: `np.load` ile açıldı; `unw` [-0.592, 13.344] rad, `ion` [34.341, 42.572] rad (`(1473, 1438)` float32), `coh` ort=0.604, `inc` [37.73, 45.31]°, `epsg=32611`.
   - `2026-07-10_2026-07-22.npz`: `np.load` ile açıldı; `unw` [-11.713, 3.400] rad, `coh` ort=0.592, `epsg=32611`, `λ=0.24196324 m`.
   - `2026-07-22_2026-08-15.npz`: `np.load` ile açıldı; `unw` [-4.163, 14.352] rad, `coh` ort=0.495, `epsg=32611`, `λ=0.24196324 m`.
   - `2026-08-15_2026-08-27.npz`: `np.load` ile açıldı; `unw` [-2.746, 8.647] rad, `ion` [3.204, 4.981] rad (`(1473, 1438)` float32), `coh` ort=0.578, `inc` [37.73, 45.31]°, `epsg=32611`, `λ=0.24196324 m`.
