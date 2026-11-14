@@ -7,9 +7,10 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from pipeline.nisarpulse.__main__ import parse_cli_args, write_coverage_report
+from pipeline.nisarpulse.__main__ import parse_cli_args, parse_ref_lonlat, write_coverage_report
 from pipeline.nisarpulse.catalog import upsert_catalog
-from pipeline.nisarpulse.search import build_chain, classify_quality, parse_bbox
+from pipeline.nisarpulse.process import compute_quality_metrics
+from pipeline.nisarpulse.search import bbox_from_center, build_chain, classify_quality, parse_bbox
 
 
 class TestNisarPulse(unittest.TestCase):
@@ -95,6 +96,23 @@ class TestNisarPulse(unittest.TestCase):
             )
             self.assertEqual(rep_ok["coverage"], "ok")
             self.assertEqual(rep_ok["path"], 7)
+
+    def test_bbox_from_center_and_quality_metrics(self) -> None:
+        import numpy as np
+
+        self.assertEqual(bbox_from_center("51.67,32.65"), (51.42, 32.4, 51.92, 32.9))
+        args = parse_cli_args(
+            ["run", "--name", "isfahan", "--center", "51.67,32.65", "--start", "2026-06-17", "--end", "2026-10-31", "--ref-lonlat", "51.45,32.40"]
+        )
+        self.assertEqual(args.box_deg, 0.25)
+        self.assertEqual(parse_ref_lonlat(args.ref_lonlat), (51.45, 32.4))
+
+        grid = np.linspace(-10.0, 0.0, 100).reshape(10, 10)
+        m = compute_quality_metrics(grid, -8.0, ["2026-06-18", "2026-10-16"], [-8.2, -7.8])
+        self.assertEqual(m["rate_cm_per_100d"], round(-8.0 / 120 * 100.0, 2))
+        self.assertAlmostEqual(m["p2_cm"], -9.8, places=1)
+        self.assertEqual(m["valid_fraction"], 1.0)
+        self.assertEqual(m["confidence"], "high")
 
 
 if __name__ == "__main__":

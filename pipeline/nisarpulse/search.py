@@ -17,6 +17,20 @@ _UR_RE = re.compile(
 )
 
 
+def bbox_from_center(center: str, box_deg: float = 0.25) -> tuple[float, float, float, float]:
+    """Build (w, s, e, n) bbox around 'lon,lat' with +/- box_deg half-width."""
+    parts = [p.strip() for p in center.split(",")]
+    if len(parts) != 2:
+        raise ValueError(f"Expected 'lon,lat' for --center, got: {center!r}")
+    if box_deg <= 0:
+        raise ValueError(f"--box-deg must be positive, got: {box_deg}")
+    lon, lat = float(parts[0]), float(parts[1])
+    w, s, e, n = round(lon - box_deg, 4), round(lat - box_deg, 4), round(lon + box_deg, 4), round(lat + box_deg, 4)
+    if not (-180.0 <= w < e <= 180.0) or not (-90.0 <= s < n <= 90.0):
+        raise ValueError(f"Center {center!r} with box_deg={box_deg} exceeds global bounds.")
+    return (w, s, e, n)
+
+
 def parse_bbox(raw: str) -> tuple[float, float, float, float]:
     """Parse 'w,s,e,n' string into validated (west, south, east, north) tuple."""
     parts = [p.strip() for p in raw.split(",")]

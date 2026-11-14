@@ -9,7 +9,7 @@ import time
 from pathlib import Path
 
 from pipeline.nisarpulse.catalog import upsert_catalog
-from pipeline.nisarpulse.search import parse_bbox, search_granules
+from pipeline.nisarpulse.search import bbox_from_center, parse_bbox, search_granules
 
 ROOT = Path(__file__).resolve().parent.parent.parent
 
@@ -22,7 +22,10 @@ def build_parser() -> argparse.ArgumentParser:
     sub = parser.add_subparsers(dest="command", required=True)
     run_p = sub.add_parser("run", help="Search, download, subset, process, and register a site.")
     run_p.add_argument("--name", required=True, help="Site identifier (e.g. delta).")
-    run_p.add_argument("--bbox", required=True, help="Bounding box as w,s,e,n.")
+    run_p.add_argument("--bbox", default=None, help="Bounding box as w,s,e,n.")
+    run_p.add_argument("--center", default=None, help="Center lon,lat (used with --box-deg).")
+    run_p.add_argument("--box-deg", type=float, default=0.25, help="Half-box size in deg (default 0.25).")
+    run_p.add_argument("--ref-lonlat", default=None, help="Out-of-basin reference lon,lat.")
     run_p.add_argument("--start", required=True, help="Start date YYYY-MM-DD.")
     run_p.add_argument("--end", required=True, help="End date YYYY-MM-DD.")
     run_p.add_argument("--track", type=int, default=None, help="Optional relative orbit / path.")
@@ -77,13 +80,22 @@ def parse_cli_args(argv: list[str] | None = None) -> argparse.Namespace:
     normalized: list[str] = []
     i = 0
     while i < len(raw):
-        if raw[i] == "--bbox" and i + 1 < len(raw) and raw[i + 1].startswith("-"):
-            normalized.append(f"--bbox={raw[i + 1]}")
+        if raw[i] in ("--bbox", "--center", "--ref-lonlat") and i + 1 < len(raw) and raw[i + 1].startswith("-"):
+            normalized.append(f"{raw[i]}={raw[i + 1]}")
             i += 2
         else:
             normalized.append(raw[i])
             i += 1
     return build_parser().parse_args(normalized)
+
+
+def parse_ref_lonlat(raw: str | None) -> tuple[float, float] | None:
+    if not raw:
+        return None
+    parts = [p.strip() for p in raw.split(",")]
+    if len(parts) != 2:
+        raise ValueError(f"Expected 'lon,lat' for --ref-lonlat, got: {raw!r}")
+    return (float(parts[0]), float(parts[1]))
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -92,7 +104,13 @@ def main(argv: list[str] | None = None) -> int:
         return 1
 
     t0 = time.monotonic()
-    bbox = parse_bbox(args.bbox)
+    if args.bbox:
+        bbox = parse_bbox(args.bbox)
+    elif args.center:
+        bbox = bbox_from_center(args.center, box_deg=args.box_deg)
+    else:
+        raise SystemExit("Provide either --bbox w,s,e,n or --center lon,lat")
+    ref_lonlat = parse_ref_lonlat(args.ref_lonlat)
     target_data_dir = args.data_dir or (ROOT / "data" / args.name)
     rows, chain, gaps, total_mb = search_granules(
         bbox, args.start, args.end, track=args.track, quality_mode=args.quality
@@ -134,7 +152,7 @@ def main(argv: list[str] | None = None) -> int:
     try:
         fetch_subsets(args.name, bbox, chain, resume=args.resume)
         data_dir, meta, summary = run_cumulative(
-            args.name, bbox, data_dir=target_data_dir, quality_mode=args.quality
+            args.name, bbox, data_dir=target_data_dir, quality_mode=args.quality, ref_lonlat=ref_lonlat
         )
         write_coverage_report(
             data_dir / "coverage.json", args.name, bbox, args.quality, rows, chain, gaps, total_mb
