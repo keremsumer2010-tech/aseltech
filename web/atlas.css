@@ -40,6 +40,9 @@
 .cbadge.high{background:#e6f4ea;color:#137333;border-color:#b7dfb9}
 .cbadge.medium{background:#eef3fb;color:#0b3d91;border-color:#c9d6ea}
 .cbadge.low{background:#fef3c7;color:#92400e;border-color:#f5d076}
+.cbadge.updated{background:#dbeafe;color:#1e40af;border-color:#93c5fd}
+.atlas-updated{font-size:.82rem;background:#eff6ff;border:1px solid #bfdbfe;color:#1e3a8a;border-radius:3px;padding:6px 9px;margin:6px 0}
+.print-only-hdr{display:none}
 .atlas-detail{border-top:1px solid var(--line);padding-top:14px;margin-top:8px}
 .atlas-detail h2{font-size:1.2rem;margin:0 0 .35em}
 .atlas-kv{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0 12px}
@@ -106,4 +109,26 @@
   .tour-caption{left:10px;bottom:10px;max-width:220px;font-size:.78rem}
   .atlas-toolbar{top:10px;right:10px}
   .al-btn,.tour-btn{padding:6px 8px;font-size:.72rem}
+}
+@media print{
+  @page{size:A4 portrait;margin:10mm}
+  body.atlas-page{background:#fff;color:#000;overflow:visible}
+  .site-header,.atlas-wrap{display:none!important}
+  .vital-bar{margin-top:0;padding:6px 0;border:0;background:#fff;grid-template-columns:repeat(4,1fr);gap:6px}
+  .vital-card{padding:6px 8px;border:1px solid #cbd5e1}
+  .vital-card b{font-size:11pt}
+  .print-only-hdr{display:block;margin-bottom:8px;border-bottom:2px solid #0b3d91;padding-bottom:6px}
+  .print-only-hdr h1{font-size:16pt;margin:0 0 2px;color:#0b3d91}
+  .print-only-hdr p{font-size:8pt;margin:0;color:#334155}
+  .atlas-tables{max-width:100%;padding:6px 0 0;border:0}
+  .atlas-tables h2{font-size:12pt;margin:2px 0}
+  .atlas-tables .small{font-size:7.5pt;margin:2px 0 6px}
+  .atlas-tgrid{grid-template-columns:1fr;gap:10px;margin-top:6px}
+  .atlas-tbox h3{font-size:9.5pt;margin:0 0 4px}
+  .atlas-tbl{font-size:7.8pt}
+  .atlas-tbl th,.atlas-tbl td{padding:3px 5px}
+  .atlas-tbl tbody tr:nth-child(n+16){display:none}
+  .atlas-cite{margin-top:8px;padding:6px 8px;background:#fff}
+  .atlas-cite .atlas-actions{display:none}
+  .atlas-cite-txt{font-size:7pt;margin:0}
 }

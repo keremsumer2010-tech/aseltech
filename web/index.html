@@ -258,7 +258,7 @@
     <div class="card" id="atlasSummaryCard" style="margin-top:22px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px">
       <div style="flex:1 1 320px">
         <h3 style="margin:0 0 4px">Global Subsidence Atlas 2026</h3>
-        <p style="margin:0">We applied the same open NISAR method across <b id="atlasCardN">11</b> basins and cities worldwide (<span id="atlasCardRel">6</span> reliable, <span id="atlasCardInd">5</span> indicative only; provisional data). Compare rates per 100 days on the 3D globe.</p>
+        <p style="margin:0">We applied the same open NISAR method across <b id="atlasCardN">—</b> basins and cities worldwide (<span id="atlasCardRel">—</span> reliable, <span id="atlasCardInd">—</span> indicative only; provisional data)<span id="atlasCardVital"></span>. Compare rates per 100 days on the 3D globe.</p>
       </div>
       <a class="btn primary" href="atlas.html">Open the Global Atlas →</a>
     </div>
@@ -298,7 +298,11 @@
     if(await ok(c.dataset.file)){const a=c.querySelector('.newlink');a.href='science.html';a.textContent='Read more →'}
   }
   if(await ok('docs/story/technical_note.md'))document.getElementById('techNote').innerHTML='<a href="'+ROOT+'docs/story/technical_note.md" target="_blank" rel="noopener">Read the technical note →</a>';
-  try{const a=await (await fetch(ROOT+'data/global/atlas.json')).json();if(a&&a.n_regions!=null){document.getElementById('atlasCardN').textContent=a.n_regions;document.getElementById('atlasCardRel').textContent=a.n_reliable;document.getElementById('atlasCardInd').textContent=a.n_indicative;}}catch(e){}
+  try{
+    const [a,v]=await Promise.all([fetch(ROOT+'data/global/atlas.json').then(r=>r.ok?r.json():null),fetch(ROOT+'data/global/vital_signs.json').then(r=>r.ok?r.json():null)]);
+    if(a&&a.n_regions!=null){document.getElementById('atlasCardN').textContent=v&&v.cities_measured!=null?v.cities_measured:a.n_regions;document.getElementById('atlasCardRel').textContent=a.n_reliable;document.getElementById('atlasCardInd').textContent=a.n_indicative;}
+    if(v&&v.fastest&&v.area_km2_lt_minus5cm!=null&&v.people_on_sinking_ground!=null){document.getElementById('atlasCardVital').textContent=` — fastest: ${v.fastest.name} (${v.fastest.rate_cm_per_100d} cm/100d LOS), ${Math.round(v.area_km2_lt_minus5cm).toLocaleString('en-US')} km² sinking >5 cm, ${Math.round(v.people_on_sinking_ground).toLocaleString('en-US')} people exposed`;}
+  }catch(e){}
 })();
 </script>
 </body>

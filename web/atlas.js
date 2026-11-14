@@ -328,8 +328,9 @@ function renderListAndMap(){
     const rateTxt = (typeof val === 'number' && Number.isFinite(val)) ? `${fmtNum(val)} ${unit}` : 'no data';
     const indCls = isIndicative(r) ? ' is-indicative' : '';
     const actCls = r.id === activeId ? ' is-active' : '';
+    const updBadge = /recomputed/i.test(r.note || '') ? ' <span class="cbadge updated">Updated</span>' : '';
     return `<button type="button" class="atlas-item${indCls}${actCls}" data-id="${esc(r.id)}">
-      <span class="ai-left"><span class="ai-name">${r.rank ? '#' + r.rank + ' · ' : ''}${esc(r.name)}</span><span class="ai-sub">${r.country ? esc(r.country) + ' · ' : ''}${confBadge(r)}</span></span>
+      <span class="ai-left"><span class="ai-name">${r.rank ? '#' + r.rank + ' · ' : ''}${esc(r.name)}</span><span class="ai-sub">${r.country ? esc(r.country) + ' · ' : ''}${confBadge(r)}${updBadge}</span></span>
       <span class="ai-right"><span class="ai-rate" style="color:${rateColor(r.rate_cm_per_100d)}">${esc(rateTxt)}</span></span>
     </button>`;
   }).join('') : '<p class="small">No regions match this filter.</p>';
@@ -610,11 +611,13 @@ async function selectRegion(id, fly, updateHash){
   const mainVal = unitMode === 'vert' ? r.max_cm_vertical_est : r.max_cm_los;
   const mainLbl = unitMode === 'vert' ? 'Max vertical (est.)' : 'Max LOS';
 
+  const isRecomputed = /recomputed/i.test(r.note || '');
   const detail = document.getElementById('atlasDetail');
   detail.hidden = false;
   detail.innerHTML = `
     <h2>${esc(r.name)}${r.country ? ` <small class="small">(${esc(r.country)})</small>` : ''}</h2>
-    <p style="margin:0 0 8px">${confBadge(r)} <span class="qbadge provisional">${esc((r.quality || 'provisional').toUpperCase())}</span></p>
+    <p style="margin:0 0 8px">${confBadge(r)} <span class="qbadge provisional">${esc((r.quality || 'provisional').toUpperCase())}</span>${isRecomputed ? ' <span class="cbadge updated">Updated</span>' : ''}</p>
+    ${isRecomputed ? `<p class="atlas-updated"><b>Updated:</b> Recomputed with off-basin reference — old value &minus;3.5 cm</p>` : ''}
     <dl class="atlas-kv">
       <div><dt>Rate (LOS)</dt><dd>${esc(fmtUnit(r.rate_cm_per_100d, 'cm/100d'))}</dd></div>
       <div><dt>${esc(mainLbl)}</dt><dd>${esc(fmtUnit(mainVal, 'cm'))}</dd></div>
