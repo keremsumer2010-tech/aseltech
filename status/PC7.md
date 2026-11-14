@@ -32,5 +32,6 @@
 - Devam: Xi'an için NISAR Pulse arama/kesme ve kaynaklı Xingping referans yerleşimi yakınında ortak-geçerli 7×7 yüksek koherens penceresi seçimi.
 - Xi'an: `--resume` üretimi tekrar başlatıldı; bir ham GUNW indiriliyor, aynı anda başka indirme yok; şehir henüz hazır değil.
 - Tam pytest tekrarlandı: 83 passed, 1 PendingDeprecationWarning; Xi'an indirmesi sürerken.
+- JSON sözleşme taraması: 111 dosyada parse/NaN hatası yok; data/numbers_registry.json quality eksikliği başka sahibin dosyası.
 - AI: Codex → CMR dry-run, kaynak incelemesi ve PC7 QA kaydı.
 - BLOCKED: yok
