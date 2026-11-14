@@ -5,6 +5,7 @@
 - Q02 Karapınar kümülatif: BİTTİ (13:55 TR) — aşağıda
 - Sıradaki: 17:00 QA (sitedeki sayılar = çıktılarım mı) → Q08 hazırlığı
 - **14:11 Mehmet talimatı:** PC3, PC5'in Görev 1'ini (`analysis/decomp/decompose.py` + testler) devraldı. PC5 bu işi TEKRARLAMASIN; PC5 game_model.md ve belirsizlik bütçesiyle devam edebilir.
+- **14:35 game_model hazır** → `docs/story/game_model.md` (PC6 için). Doğrulanan: hedef −7.8 LOS/−10.1 dikey, S_y ort. 0.10, Corcoran kili ≤61 m, Friant-Kern 4000→1600 cfs. Doğrulanamayan (403/erişim yok): S_ske/S_skv kesin değerleri, su yılı olasılıkları → illustrative. Kalibrasyon sayısı: JS çalıştırılamadı (Node yok), PC6 oyundaki kutudan okuyup yazmalı.
 - Güncelleme: 2026-11-14 13:55 TR
 
 ## Bağımsız yeniden üretim (14:05)
