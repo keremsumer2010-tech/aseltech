@@ -1,0 +1,22 @@
+{
+  "site": "kerman",
+  "bbox": [
+    56.82,
+    30.03,
+    57.32,
+    30.53
+  ],
+  "quality": "provisional",
+  "coverage": "ok",
+  "granules": 9,
+  "chain_pairs": 9,
+  "path": 78,
+  "frame": 73,
+  "period": [
+    "2026-06-19",
+    "2026-10-17"
+  ],
+  "gaps": [],
+  "total_raw_mb": 19959.1,
+  "error": null
+}
