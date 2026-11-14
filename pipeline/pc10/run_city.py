@@ -62,6 +62,16 @@ CITY_CONFIG: dict[str, dict] = {
         "bbox": CITIES["yunlin"]["bbox"],
         "path": 39,
     },
+    "pekalongan": {
+        "site_key": "global_pekalongan",
+        "bbox": CITIES["pekalongan"]["bbox"],
+        "path": 90,
+    },
+    "can_tho": {
+        "site_key": "global_can_tho",
+        "bbox": CITIES["can_tho"]["bbox"],
+        "path": 47,
+    },
 }
 
 

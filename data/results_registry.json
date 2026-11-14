@@ -265,6 +265,30 @@
       "data": null,
       "owner": "PC4",
       "status": "ready"
+    },
+    {
+      "id": "global_atlas",
+      "group": "Atlas",
+      "title": "Global subsidence atlas (common-window ranked)",
+      "summary": "21 sinking regions ranked over a common 93-day summer window (2026-06-28 to 2026-09-29) using provisional NISAR GUNW chains.",
+      "key_number": "21 regions (9 reliable, 12 indicative); top reliable -11.0 cm/100d (Konya Plain)",
+      "doc": "docs/story/global_atlas.md",
+      "figure": "docs/story/media/pc10_global.png",
+      "data": "data/global/atlas.json",
+      "owner": "PC10",
+      "status": "ready"
+    },
+    {
+      "id": "atlas_changelog",
+      "group": "Atlas",
+      "title": "Global atlas transparent changelog",
+      "summary": "Machine-readable log of every region addition, QC flag, confidence change, and headline correction (>0.5 cm) across atlas builds.",
+      "key_number": "Tehran -3.5->-7.4 cm (off-basin ref); Semarang -12.1->-6.2 cm (phase jump removed)",
+      "doc": "docs/qa/PC10.md",
+      "figure": null,
+      "data": "data/global/atlas_changelog.json",
+      "owner": "PC10",
+      "status": "ready"
     }
   ]
 }

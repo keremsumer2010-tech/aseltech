@@ -1,0 +1,38 @@
+{
+  "title": "NISAR Pulse Global Atlas Changelog",
+  "entries": [
+    {
+      "timestamp": "2026-11-14T23:05:00Z",
+      "note": "Initial historical corrections (off-basin re-referencing and phase-cycle QC)",
+      "added": [],
+      "removed": [],
+      "value_changes": [
+        {
+          "id": "tehran",
+          "old_cm": -3.5,
+          "new_cm": -7.4,
+          "reason": "Recomputed with off-basin reference (PC11)"
+        },
+        {
+          "id": "semarang",
+          "old_cm": -12.1,
+          "new_cm": -6.2,
+          "reason": "2026-09-29->2026-10-11 phase-cycle jump removed; peak moved to northern coast"
+        }
+      ],
+      "confidence_changes": [],
+      "qc_flag_changes": []
+    },
+    {
+      "timestamp": "2026-11-14T22:30:38Z",
+      "n_regions": 21,
+      "added": [
+        "cangzhou"
+      ],
+      "removed": [],
+      "value_changes": [],
+      "confidence_changes": [],
+      "qc_flag_changes": []
+    }
+  ]
+}
