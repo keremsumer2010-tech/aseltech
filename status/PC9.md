@@ -1,7 +1,11 @@
 # PC9 durum
 
 - Görev: `docs/ATLAS_PLANI.md` PC9 — 5 bölge (`eloy`, `gorgan`, `cangzhou`, `houston`, `lagos`) NISAR Pulse + Karapınar tam yıl koordinasyonu
-- Durum: çalışıyor: `cangzhou` (FAZ 1 #2, Öncelik A — `7/8` `.npz` alt küme hazır, `8/8` sürüyor; `eloy` TAMAMLANDI)
+- Durum: çalışıyor: `gorgan` başlıyor (FAZ 1 #3, Öncelik A; `eloy` + `cangzhou` TAMAMLANDI)
+- **ATLAS_PLANI FAZ 1 — `cangzhou` (`116.85, 38.30`, ±0.25° — TAMAMLANDI):**
+  - Komut: `python analysis/pc9/run_atlas_region.py run --name cangzhou --center 116.85,38.30 --box-deg 0.25 --start 2026-06-17 --end 2026-10-31 --quality provisional --data-dir data/global/cangzhou --no-catalog --resume` (`8` çift `2026-06-21 → 2026-10-19`, `120` gün, `gaps=0`).
+  - Sayılar: `max_subsidence_cm = -2.4 cm` LOS (`-3.2 cm` dikey `estimate`, `42.3°`), `p2_cm = -3.3 cm`, `rate_cm_per_100d = -2.0`, `valid_fraction = 0.432`, `range_cm = [-2.4, -1.6]` (3 referans, oran `0.333`), `confidence = "medium"`.
+  - Doğrulama: `data/global/cangzhou/disp/2026-10-19.png` görsel kontrol + `summary.json` / `p2_cm` doğrulandı (`docs/qa/PC9.md`: `hazır: cangzhou`).
 - **ATLAS_PLANI FAZ 1 — `eloy` (`-111.55, 32.75`, ±0.25° — TAMAMLANDI):**
   - Komut: `python analysis/pc9/run_atlas_region.py run --name eloy --center -111.55,32.75 --box-deg 0.25 --start 2026-06-17 --end 2026-10-31 --quality provisional --data-dir data/global/eloy --no-catalog --resume` (`9` çift `2026-06-19 → 2026-10-17`, `120` gün, `gaps=0`).
   - Sayılar: `max_subsidence_cm = -8.0 cm` LOS (`-10.3 cm` dikey `estimate`, `38.9°`), `p2_cm = -4.3 cm`, `rate_cm_per_100d = -6.67`, `valid_fraction = 0.696`, `range_cm = [-8.4, -7.2]` (3 referans, oran `0.15`), `confidence = "high"`.

@@ -1,0 +1,22 @@
+{
+  "site": "cangzhou",
+  "bbox": [
+    116.6,
+    38.05,
+    117.1,
+    38.55
+  ],
+  "quality": "provisional",
+  "coverage": "ok",
+  "granules": 8,
+  "chain_pairs": 8,
+  "path": 111,
+  "frame": 21,
+  "period": [
+    "2026-06-21",
+    "2026-10-19"
+  ],
+  "gaps": [],
+  "total_raw_mb": 18664.7,
+  "error": null
+}
