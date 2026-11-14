@@ -56,6 +56,7 @@ Her yolun tek sahibi var (`rules/RULES.md` K-7). Burada olmayan bir yere yazman 
 | **PC6** | (14:00: web/ PC1'e geri döndü) + Q23–Q25 yolları · `validation/` · `risk/` · `data/<site>/validation.json` · `data/<site>/assets.json` (Pazar) · `status/PC6.md` |
 | **PCQ** (14:20, bağımsız kontrol ajanı, ASF erişimi yok; 15:10 PC8 işleri) | `docs/story/submission_form.md` · `video_subtitles.srt` · `narration_script.md` · `presentation_cues.md` · `rehearsal_checklist.md` · `docs/qa/PCQ.md` · `README.md` (Q13) · `docs/code_review.md` (Q15) · `status/PCQ.md` |
 | **PC7** (14:35, Codex) | `pipeline/pc7/` · `data/fens/` · `data/water/` · `docs/qa/PC7.md` · `status/PC7.md` |
+| **PC8** (15:20, Mehmet Antigravity #3, `aseltech-gemini3`) | `docs/qa/PC8.md` · `status/PC8.md` (test) |
 | **Herkes** | `tasks/QUEUE.md` içinde **sadece sahiplendiği satır** · sahiplendiği QUEUE işinin "Klasör" sütunundaki yollar · `docs/qa/PCx.md` (kendi QA notları) |
 
 Dikkat: `data/karapinar/` klasörüne hem PC3 hem PC4 yazar; `docs/story/`'ye PC4 ve PC5 yazar.
