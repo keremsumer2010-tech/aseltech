@@ -1,4 +1,4 @@
 # PC8 durum
 
-- Durum: çalışıyor: B01 (S-18) — Açılış (hero) haritasında çökme katmanını ve görüntü döngüsünü kaldırma, "Live background" altyazısını düzeltme
-- Alan: BUGFIX (`tasks/QUEUE.md` B01–B15)
+- Tamamlandı: B01 (S-18 Kritik) — hero haritası `'h'` çökme katmanı/döngüsü kaldırıldı, `.hero-caption` güncellendi (`web/app.js`, `web/index.html`)
+- Sıradaki: B02 (S-22 Kritik)

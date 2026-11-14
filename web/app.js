@@ -51,21 +51,17 @@ async function findings(){
   document.getElementById('findings').hidden = false;
 }
 
-/* ---------- hero: live NISAR layer ---------- */
+/* ---------- hero: satellite basemap ---------- */
 function hero(){
   if (!D.cvMeta) return;
-  const m = D.cvMeta, base = ROOT + 'data/central_valley/disp/';
+  const m = D.cvMeta;
   // flat view: a tilted map shows the horizon, which MapLibre paints light grey behind the hero text
   const heroStyle = {...STYLE, layers: [{id: 'bg', type: 'background', paint: {'background-color': '#05080f'}}, ...STYLE.layers]};
   const hm = new maplibregl.Map({container: 'heroMap', style: heroStyle, center: [-119.45, 36.1], zoom: 8.4, interactive: false, attributionControl: false, pitch: 0, bearing: -12});
   hm.on('load', () => {
-    // put the measured area in the right part of the screen, clear of the headline (left column on wide screens)
     const W = hm.getContainer().clientWidth, wide = W > 860;
     hm.fitBounds([[m.bbox[0], m.bbox[1]], [m.bbox[2], m.bbox[3]]], {duration: 0, bearing: -12,
       padding: wide ? {left: Math.round(W * 0.48), right: 40, top: 90, bottom: 70} : {left: 20, right: 20, top: 70, bottom: Math.round(hm.getContainer().clientHeight * 0.55)}});
-    hm.addSource('h', {type: 'image', url: base + m.dates[0] + '.png', coordinates: corners(m.bbox)});
-    hm.addLayer({id: 'h', type: 'raster', source: 'h', paint: {'raster-opacity': 0.85, 'raster-fade-duration': 600}});
-    let i = 0; setInterval(() => { i = (i + 1) % m.dates.length; hm.getSource('h').updateImage({url: base + m.dates[i] + '.png', coordinates: corners(m.bbox)}); }, 1400);
     let b = -12; setInterval(() => { b += 0.04; hm.setBearing(b); }, 60);
   });
 }

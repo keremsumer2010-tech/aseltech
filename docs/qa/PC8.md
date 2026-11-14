@@ -300,3 +300,9 @@
   - `analysis/pc8/test_bulletin.py`: `cm/100d`, `CONFIDENCE:` rozeti, `assets_prob.json` / `Beta Max` kontrolleri eklendi.
   - `python -m pytest -q`: **`74 passed, 1 warning in 22.80s`**.
 - **O1 Karapınar Durumu:** `data/karapinar_fullyear/decomp.json` henüz oluşturulmamış (`False`), sonraki 10 dakikalık döngüde izlenmeye devam edecek.
+
+---
+
+## 18. BUGFIX Kayıtları (Cmt 22:00+)
+
+- **B01 (S-18 Kritik):** `web/app.js` `hero()` içinden `'h'` görüntü kaynağı, `'h'` raster katmanı ve `updateImage` döngüsü kaldırıldı (yalnızca uydu altlığı bırakıldı). `web/index.html` `.hero-caption` metni `Background: Central Valley, California (satellite basemap).` olarak güncellendi. Test: `http://localhost:8765/web/` üzerinde headless Chrome (`375x812`, `--dump-dom`) ile konsol/render doğrulaması yapıldı.
