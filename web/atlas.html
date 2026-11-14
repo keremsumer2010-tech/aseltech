@@ -15,7 +15,7 @@
 <body class="atlas-page">
 <header class="site-header">
   <a class="logo" href="index.html" aria-label="NISAR Pulse home"><span class="logo-mark"></span><span class="logo-text">NISAR&nbsp;Pulse</span></a>
-  <nav class="site-nav">
+  <nav class="site-nav" aria-label="Main navigation">
     <a href="index.html#story">Story</a><a href="atlas.html" class="active">Atlas</a><a href="explorer.html">Explore</a><a href="index.html#play">Simulator</a><a href="science.html">Science</a><a href="data.html">Data</a><a href="faq.html">FAQ</a>
   </nav>
 </header>
@@ -23,7 +23,7 @@
   <div class="vital-card" id="vcCities" hidden><span class="vc-lbl">Cities measured</span><b id="vCities">—</b><small>2026 NISAR provisional</small></div>
   <div class="vital-card" id="vcFastest" hidden><span class="vc-lbl">Fastest-sinking place</span><b id="vFastest">—</b><small id="vFastestSub">LOS rate per 100 days</small></div>
   <div class="vital-card" id="vcArea" hidden><span class="vc-lbl">Area sinking &gt; 5 cm</span><b id="vArea">—</b><small>km² across measured basins</small></div>
-  <div class="vital-card" id="vcPeople" hidden><span class="vc-lbl">People on sinking ground</span><b id="vPeople">—</b><small>estimate (GHSL / basin)</small></div>
+  <div class="vital-card" id="vcPeople" hidden><span class="vc-lbl">People on sinking ground</span><b id="vPeople">—</b><small>GHSL estimate (&lt; &minus;5 cm)</small></div>
 </section>
 <main class="atlas-wrap">
   <aside class="atlas-panel" aria-label="Global atlas controls and region details">
@@ -37,6 +37,36 @@
       <div class="atlas-stat"><b id="stRel">—</b><span>Reliable</span></div>
       <div class="atlas-stat"><b id="stInd">—</b><span>Indicative only</span></div>
     </div>
+
+    <div class="atlas-controls" aria-label="Search, filter and display options">
+      <input type="search" id="atlasSearch" class="atlas-input" placeholder="Search city or country..." aria-label="Search city or country">
+      <div class="atlas-filter-row">
+        <select id="atlasConfFilter" class="atlas-select" aria-label="Filter by confidence">
+          <option value="all">All confidence</option>
+          <option value="reliable">Reliable only</option>
+          <option value="indicative">Indicative only</option>
+        </select>
+        <select id="atlasCountryFilter" class="atlas-select" aria-label="Filter by country">
+          <option value="all">All countries</option>
+        </select>
+      </div>
+      <div class="atlas-mode-row">
+        <button type="button" class="atlas-mode-btn" id="unitToggle" aria-pressed="false">Values: LOS</button>
+        <button type="button" class="atlas-mode-btn" id="compareBtn" aria-expanded="false">Compare two cities</button>
+      </div>
+    </div>
+
+    <section class="atlas-compare" id="compareBox" aria-label="Compare two cities" hidden>
+      <div class="cmp-hdr">
+        <b>Compare regions</b>
+        <button type="button" class="cmp-close" id="compareClose" aria-label="Close comparison">Close</button>
+      </div>
+      <div class="cmp-selects">
+        <select id="cmpA" class="atlas-select" aria-label="First region to compare"></select>
+        <select id="cmpB" class="atlas-select" aria-label="Second region to compare"></select>
+      </div>
+      <div id="cmpBody"></div>
+    </section>
 
     <div class="atlas-list" id="atlasList" role="list"></div>
     <section class="atlas-detail" id="atlasDetail" hidden></section>
@@ -76,6 +106,17 @@
       <div class="atlas-tscroll"><table class="atlas-tbl" id="tblIndicative"><thead><tr><th>#</th><th>Region</th><th>Rate (cm/100d, LOS)</th><th>Max LOS</th><th>Period</th><th>Confidence</th></tr></thead><tbody></tbody></table></div>
     </div>
   </div>
+  <section class="atlas-cite" id="atlasDataBox" aria-label="Data downloads and citation">
+    <h3>Data &amp; citation</h3>
+    <p class="small">Download the global atlas tables and open documentation for methods and data sources:</p>
+    <div class="atlas-actions" id="atlasDataLinks">
+      <a href="../data/global/atlas.json" download>atlas.json</a>
+      <a href="../docs/story/sources.md" target="_blank" rel="noopener">Sources &amp; DOIs</a>
+      <a href="../docs/story/atlas_data_dictionary.md" target="_blank" rel="noopener">Data dictionary</a>
+      <a href="../docs/story/atlas_methods.md" target="_blank" rel="noopener">Atlas methods</a>
+    </div>
+    <p class="atlas-cite-txt">Team Aseltech (2026). <i>NISAR Global Subsidence Atlas 2026 (provisional)</i>. Derived from NASA-ISRO NISAR L2 GUNW products via Alaska Satellite Facility DAAC. NISAR data are provisional; calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.</p>
+  </section>
 </section>
 <script src="vendor/maplibre-gl.js"></script>
 <script src="atlas.js"></script>

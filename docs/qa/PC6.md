@@ -337,3 +337,11 @@ Komut: `python analysis/pc6/test_20_strategies.py --self-test`
   5. Çevrimdışı yedek: `vendor/maplibre-gl.{js,css}` yerel sunum + `bluemarble_2k.jpg` altlık katmanı (`#offlinePill` uyarısıyla).
   6. Paylaşılabilir `#<id>` URL desteği (`hashchange` + `history.replaceState`) ve PC10 alanları (`detectable`, `robustness_spread`, `people_exposed`, `opera_check`) ile PC4 `City card` / PC8 `Open bulletin` bağlantıları eklendi.
   - Doğrulama (`http://127.0.0.1:8765/web/atlas.html` ve `#mexico_city`): `1920×1080` ve `375×812` headless Chrome testlerinde `rc=0`, `slider=True`, `tourBtn=True`, `cityCard=True`, `bulletin=True`, `vendor=True`, `0` konsol hatası.
+- **TAKVİYE (`tasks/PC6.md` 1–7, `Paz 00:55`):** `web/atlas.html`, `web/atlas.css`, `web/atlas.js` güncellendi:
+  1. `data/global/vital_signs.json` anahtarları (`cities_measured: 13`, `fastest.name: Konya Plain`, `area_km2_lt_minus5cm: 474`, `people_on_sinking_ground: 1,434,355`) canlı bağlandı.
+  2. Yan panelde seçili şehrin tepe noktası (`points.json` `p01`) için kütüphanesiz SVG tarih–cm çizgi grafiği ve `±2σ` belirsizlik bandı eklendi.
+  3. `Compare two cities` (`#compareBox`) ile iki şehir yan yana (hız, max LOS, dikey tahmin, güven ve `p01` üst üste SVG grafiği) eklendi.
+  4. Arama kutusu (`#atlasSearch`), güven sınıfı (`#atlasConfFilter`) ve ülke (`#atlasCountryFilter`) filtreleri liste ve küreye birlikte bağlandı.
+  5. `Values: LOS` ↔ `Values: Vertical (est.)` anahtarı (`#unitToggle`), `Data & citation` indirme kutusu (`#atlasDataBox`, `atlas.geojson`/`atlas.csv` varsa otomatik gösterim) ve Central Valley için `data/central_valley/validation.json` GNSS istasyon katmanı (`cv-gnss`, tıklanınca `r`/`RMSE` popup) eklendi.
+  6. `window.atlasSelect(id)` ve `atlas:select` olayı korundu; `web/atlas_sat.*` dosyalarına dokunulmadı.
+  - Doğrulama (`1920×1080` & `#central_valley` `375×812` headless Chrome): `rc=0`, `vital=True`, `svg=True`, `search=True`, `compare=True`, `unit=True`, `cite=True`, `0` konsol hatası.

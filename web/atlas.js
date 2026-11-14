@@ -1,4 +1,4 @@
-// NISAR Pulse — Global Subsidence Atlas 2026 (Atlas Final v2)
+// NISAR Pulse — Global Subsidence Atlas 2026 (Atlas Final v2 + Takviye)
 const LOCAL = location.pathname.includes('/web/');
 const ROOT = LOCAL ? '../' : './';
 const ESRI = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
@@ -43,9 +43,13 @@ function confColor(r){
   return '#d97706';
 }
 
+function isIndicative(r){
+  return Boolean(r.indicative_only || (r.confidence || '').toLowerCase() === 'low');
+}
+
 function confBadge(r){
   const c = (r.confidence || 'low').toLowerCase();
-  const lbl = (r.indicative_only || c === 'low') ? `${c} · indicative only` : c;
+  const lbl = isIndicative(r) ? `${c} · indicative only` : c;
   return `<span class="cbadge ${esc(c)}">${esc(lbl)}</span>`;
 }
 
@@ -56,8 +60,9 @@ function bboxToCoords(bbox){
   return [[w, n], [e, n], [e, s], [w, s]];
 }
 
-let map, mapReady = false, atlasData = null, sortedRegions = [], activeId = null;
+let map, mapReady = false, atlasData = null, sortedRegions = [], filteredRegions = [], activeId = null;
 let activeLayer = 'disp';
+let unitMode = 'los'; // 'los' | 'vert'
 let animTimer = null, animDates = [], animIdx = 0, activeBase = '', activeBboxCoords = null, activeSigmaUrl = null;
 let tourTimer = null, tourIdx = 0;
 
@@ -172,23 +177,38 @@ async function initVitalSigns(){
     document.getElementById('vcCities').hidden = false;
     shown++;
   }
-  if (vs.fastest_place && typeof vs.fastest_rate_cm_per_100d === 'number' && Number.isFinite(vs.fastest_rate_cm_per_100d)){
-    document.getElementById('vFastest').textContent = `${fmtNum(vs.fastest_rate_cm_per_100d)} cm/100d`;
-    document.getElementById('vFastestSub').textContent = `${vs.fastest_place} (LOS)`;
+  const fName = vs.fastest?.name || vs.fastest_place;
+  const fRate = vs.fastest?.rate_cm_per_100d ?? vs.fastest_rate_cm_per_100d;
+  if (fName && typeof fRate === 'number' && Number.isFinite(fRate)){
+    document.getElementById('vFastest').textContent = `${fmtNum(fRate)} cm/100d`;
+    document.getElementById('vFastestSub').textContent = `${fName} (LOS)`;
     document.getElementById('vcFastest').hidden = false;
     shown++;
   }
-  if (typeof vs.area_gt5_km2 === 'number' && Number.isFinite(vs.area_gt5_km2)){
-    document.getElementById('vArea').textContent = `${fmtInt(vs.area_gt5_km2)} km²`;
+  const areaVal = vs.area_km2_lt_minus5cm ?? vs.area_gt5_km2;
+  if (typeof areaVal === 'number' && Number.isFinite(areaVal)){
+    document.getElementById('vArea').textContent = `${fmtInt(areaVal)} km²`;
     document.getElementById('vcArea').hidden = false;
     shown++;
   }
-  if (typeof vs.people_exposed === 'number' && Number.isFinite(vs.people_exposed)){
-    document.getElementById('vPeople').textContent = fmtInt(vs.people_exposed);
+  const pplVal = vs.people_on_sinking_ground ?? vs.people_exposed;
+  if (typeof pplVal === 'number' && Number.isFinite(pplVal)){
+    document.getElementById('vPeople').textContent = fmtInt(pplVal);
     document.getElementById('vcPeople').hidden = false;
     shown++;
   }
   if (shown > 0) document.getElementById('vitalBar').hidden = false;
+}
+
+async function initDataBox(){
+  const box = document.getElementById('atlasDataLinks');
+  if (!box) return;
+  const [hasGeo, hasCsv] = await Promise.all([
+    okHead('data/global/atlas.geojson'),
+    okHead('data/global/atlas.csv')
+  ]);
+  if (hasGeo) box.insertAdjacentHTML('afterbegin', `<a href="${ROOT}data/global/atlas.geojson" download>atlas.geojson</a>`);
+  if (hasCsv) box.insertAdjacentHTML('afterbegin', `<a href="${ROOT}data/global/atlas.csv" download>atlas.csv</a>`);
 }
 
 function startTour(){
@@ -203,7 +223,7 @@ function startTour(){
     const r = top5[tourIdx % top5.length];
     selectRegion(r.id, true, false);
     if (cap){
-      const lbl = (r.indicative_only || (r.confidence || '').toLowerCase() === 'low') ? 'indicative only' : (r.confidence || 'medium');
+      const lbl = isIndicative(r) ? 'indicative only' : (r.confidence || 'medium');
       cap.innerHTML = `<b>#${tourIdx % top5.length + 1} · ${esc(r.name)}</b><span>${esc(fmtNum(r.rate_cm_per_100d))} cm/100d (LOS) · ${esc(lbl)}</span>`;
       cap.hidden = false;
     }
@@ -213,8 +233,171 @@ function startTour(){
   tourTimer = setInterval(step, 6000);
 }
 
+function buildPointsSvg(ptsList, compareList, nameA, nameB){
+  const pickP01 = pts => Array.isArray(pts) ? (pts.find(p => p.id === 'p01') || pts[0]) : null;
+  const pA = pickP01(ptsList);
+  if (!pA || !Array.isArray(pA.disp_cm) || !pA.disp_cm.length) return '';
+  const pB = compareList ? pickP01(compareList) : null;
+  const valsA = pA.disp_cm.map(Number).filter(Number.isFinite);
+  const valsB = (pB && Array.isArray(pB.disp_cm)) ? pB.disp_cm.map(Number).filter(Number.isFinite) : [];
+  if (!valsA.length) return '';
+
+  const W = 340, H = 122, padL = 36, padR = 10, padT = 10, padB = 22;
+  const plotW = W - padL - padR, plotH = H - padT - padB;
+  const sigmas = valsA.map((_, i) => 0.4 * Math.sqrt(i));
+  const allY = [0, ...valsA.map((v, i) => v - 2 * sigmas[i]), ...valsA.map((v, i) => v + 2 * sigmas[i]), ...valsB];
+  let yMin = Math.min(...allY), yMax = Math.max(...allY);
+  if (yMax - yMin < 1) { yMin -= 0.5; yMax += 0.5; }
+  const yPad = (yMax - yMin) * 0.08;
+  yMin -= yPad; yMax += yPad;
+  const toX = (i, n) => padL + (n <= 1 ? plotW / 2 : (i / (n - 1)) * plotW);
+  const toY = v => padT + ((yMax - v) / (yMax - yMin)) * plotH;
+
+  const upper = valsA.map((v, i) => `${toX(i, valsA.length).toFixed(1)},${toY(v + 2 * sigmas[i]).toFixed(1)}`);
+  const lower = valsA.map((v, i) => `${toX(i, valsA.length).toFixed(1)},${toY(v - 2 * sigmas[i]).toFixed(1)}`).reverse();
+  const polyA = upper.concat(lower).join(' ');
+  const lineA = valsA.map((v, i) => `${toX(i, valsA.length).toFixed(1)},${toY(v).toFixed(1)}`).join(' ');
+  const lineB = valsB.length ? valsB.map((v, i) => `${toX(i, valsB.length).toFixed(1)},${toY(v).toFixed(1)}`).join(' ') : '';
+  const y0 = toY(0).toFixed(1);
+  const d0 = pA.dates?.[0] ? fmtShort(pA.dates[0]) : '';
+  const d1 = pA.dates?.[pA.dates.length - 1] ? fmtShort(pA.dates[pA.dates.length - 1]) : '';
+
+  return `<svg class="atlas-chart-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="Time series at peak point ${esc(pA.name || pA.id)}">
+    <line x1="${padL}" y1="${y0}" x2="${W - padR}" y2="${y0}" stroke="#cbd5e1" stroke-dasharray="3 3"/>
+    ${!pB ? `<polygon points="${polyA}" fill="rgba(11,61,145,0.14)"/>` : ''}
+    <polyline fill="none" stroke="#c8321f" stroke-width="2" points="${lineA}"/>
+    ${lineB ? `<polyline fill="none" stroke="#0b3d91" stroke-width="2" points="${lineB}"/>` : ''}
+    ${valsA.map((v, i) => `<circle cx="${toX(i, valsA.length).toFixed(1)}" cy="${toY(v).toFixed(1)}" r="2.5" fill="#c8321f"/>`).join('')}
+    <text x="${padL - 4}" y="${padT + 8}" text-anchor="end" font-size="9" fill="#64748b" font-family="monospace">${yMax.toFixed(1)}</text>
+    <text x="${padL - 4}" y="${H - padB}" text-anchor="end" font-size="9" fill="#64748b" font-family="monospace">${yMin.toFixed(1)}</text>
+    <text x="${padL}" y="${H - 5}" text-anchor="start" font-size="9" fill="#64748b">${esc(d0)}</text>
+    <text x="${W - padR}" y="${H - 5}" text-anchor="end" font-size="9" fill="#64748b">${esc(d1)}</text>
+    ${pB ? `<text x="${padL + 4}" y="${padT + 9}" font-size="9" fill="#c8321f">${esc(nameA)}</text><text x="${padL + 4}" y="${padT + 20}" font-size="9" fill="#0b3d91">${esc(nameB)}</text>` : ''}
+  </svg>`;
+}
+
+function buildGeoJson(regions){
+  return {
+    type: 'FeatureCollection',
+    features: regions
+      .filter(r => typeof r.lon === 'number' && typeof r.lat === 'number' && Number.isFinite(r.lon) && Number.isFinite(r.lat))
+      .map(r => ({
+        type: 'Feature',
+        properties: {
+          id: r.id,
+          name: r.name,
+          rate: r.rate_cm_per_100d ?? 0,
+          color: rateColor(r.rate_cm_per_100d),
+          confColor: confColor(r),
+          indicative: isIndicative(r)
+        },
+        geometry: {type: 'Point', coordinates: [r.lon, r.lat]}
+      }))
+  };
+}
+
+function renderListAndMap(){
+  const q = (document.getElementById('atlasSearch')?.value || '').trim().toLowerCase();
+  const cf = document.getElementById('atlasConfFilter')?.value || 'all';
+  const ctry = document.getElementById('atlasCountryFilter')?.value || 'all';
+
+  filteredRegions = sortedRegions.filter(r => {
+    if (q && !`${r.name} ${r.country || ''} ${r.id}`.toLowerCase().includes(q)) return false;
+    if (cf === 'reliable' && isIndicative(r)) return false;
+    if (cf === 'indicative' && !isIndicative(r)) return false;
+    if (ctry !== 'all' && (r.country || '') !== ctry) return false;
+    return true;
+  });
+
+  const listEl = document.getElementById('atlasList');
+  listEl.innerHTML = filteredRegions.length ? filteredRegions.map(r => {
+    const val = unitMode === 'vert' ? r.max_cm_vertical_est : r.rate_cm_per_100d;
+    const unit = unitMode === 'vert' ? 'cm vert (est.)' : 'cm/100d';
+    const rateTxt = (typeof val === 'number' && Number.isFinite(val)) ? `${fmtNum(val)} ${unit}` : 'no data';
+    const indCls = isIndicative(r) ? ' is-indicative' : '';
+    const actCls = r.id === activeId ? ' is-active' : '';
+    return `<button type="button" class="atlas-item${indCls}${actCls}" data-id="${esc(r.id)}">
+      <span class="ai-left"><span class="ai-name">${r.rank ? '#' + r.rank + ' · ' : ''}${esc(r.name)}</span><span class="ai-sub">${r.country ? esc(r.country) + ' · ' : ''}${confBadge(r)}</span></span>
+      <span class="ai-right"><span class="ai-rate" style="color:${rateColor(r.rate_cm_per_100d)}">${esc(rateTxt)}</span></span>
+    </button>`;
+  }).join('') : '<p class="small">No regions match this filter.</p>';
+
+  listEl.querySelectorAll('.atlas-item').forEach(btn => {
+    btn.addEventListener('click', () => { stopTour(); selectRegion(btn.dataset.id, true, true); });
+  });
+
+  if (map && mapReady && map.getSource('atlas-pts')){
+    map.getSource('atlas-pts').setData(buildGeoJson(filteredRegions));
+  }
+}
+
+async function renderCompare(){
+  const aId = document.getElementById('cmpA')?.value;
+  const bId = document.getElementById('cmpB')?.value;
+  const body = document.getElementById('cmpBody');
+  if (!body || !aId || !bId) return;
+  const rA = sortedRegions.find(r => r.id === aId);
+  const rB = sortedRegions.find(r => r.id === bId);
+  if (!rA || !rB) return;
+  const baseA = rA.path ? (rA.path.endsWith('/') ? rA.path : rA.path + '/') : `data/global/${rA.id}/`;
+  const baseB = rB.path ? (rB.path.endsWith('/') ? rB.path : rB.path + '/') : `data/global/${rB.id}/`;
+  const [ptsA, ptsB] = await Promise.all([J(baseA + 'points.json'), J(baseB + 'points.json')]);
+  const svg = buildPointsSvg(ptsA, ptsB, rA.name, rB.name);
+  body.innerHTML = `
+    <div class="cmp-grid">
+      <div class="cmp-col"><b>${esc(rA.name)}</b>Rate: ${esc(fmtUnit(rA.rate_cm_per_100d, 'cm/100d'))}<br>Max LOS: ${esc(fmtUnit(rA.max_cm_los, 'cm'))}<br>Vert (est.): ${esc(fmtUnit(rA.max_cm_vertical_est, 'cm'))}<br>${confBadge(rA)}</div>
+      <div class="cmp-col"><b>${esc(rB.name)}</b>Rate: ${esc(fmtUnit(rB.rate_cm_per_100d, 'cm/100d'))}<br>Max LOS: ${esc(fmtUnit(rB.max_cm_los, 'cm'))}<br>Vert (est.): ${esc(fmtUnit(rB.max_cm_vertical_est, 'cm'))}<br>${confBadge(rB)}</div>
+    </div>
+    ${svg ? `<div class="atlas-chart-box"><div class="atlas-chart-hdr"><span>Peak point (p01) overlay (cm, LOS)</span></div>${svg}</div>` : ''}
+  `;
+}
+
+async function loadGnssLayer(){
+  const val = await J('data/central_valley/validation.json');
+  if (!Array.isArray(val) || !map || !mapReady) return;
+  const fc = {
+    type: 'FeatureCollection',
+    features: val
+      .filter(s => typeof s.lon === 'number' && typeof s.lat === 'number')
+      .map(s => ({
+        type: 'Feature',
+        properties: {
+          station: s.station,
+          corr: s.corr,
+          rmse_cm: s.rmse_cm
+        },
+        geometry: {type: 'Point', coordinates: [s.lon, s.lat]}
+      }))
+  };
+  map.addSource('cv-gnss', {type: 'geojson', data: fc});
+  map.addLayer({
+    id: 'cv-gnss',
+    type: 'circle',
+    source: 'cv-gnss',
+    minzoom: 4,
+    paint: {
+      'circle-radius': 5.5,
+      'circle-color': '#10b981',
+      'circle-stroke-color': '#064e3b',
+      'circle-stroke-width': 1.8
+    }
+  });
+  map.on('click', 'cv-gnss', e => {
+    const f = e.features?.[0];
+    if (!f) return;
+    const p = f.properties;
+    new maplibregl.Popup({closeButton: true})
+      .setLngLat(f.geometry.coordinates)
+      .setHTML(`<div style="font-size:12px"><b>GPS station ${esc(p.station)}</b><br>r = ${Number(p.corr).toFixed(2)} · RMSE = ${Number(p.rmse_cm).toFixed(2)} cm<br><a href="https://geodesy.unr.edu/" target="_blank" rel="noopener">Nevada Geodetic Lab</a></div>`)
+      .addTo(map);
+  });
+  map.on('mouseenter', 'cv-gnss', () => { map.getCanvas().style.cursor = 'pointer'; });
+  map.on('mouseleave', 'cv-gnss', () => { map.getCanvas().style.cursor = ''; });
+}
+
 async function initAtlas(){
   initVitalSigns();
+  initDataBox();
   atlasData = await J('data/global/atlas.json');
   if (!atlasData || !Array.isArray(atlasData.regions)){
     document.getElementById('atlasList').innerHTML = '<p class="small">Could not load data/global/atlas.json.</p>';
@@ -225,47 +408,53 @@ async function initAtlas(){
     .sort((a, b) => (a.rate_cm_per_100d ?? 999) - (b.rate_cm_per_100d ?? 999));
 
   document.getElementById('stTotal').textContent = atlasData.n_regions ?? sortedRegions.length;
-  document.getElementById('stRel').textContent = atlasData.n_reliable ?? sortedRegions.filter(r => !r.indicative_only).length;
-  document.getElementById('stInd').textContent = atlasData.n_indicative ?? sortedRegions.filter(r => r.indicative_only).length;
+  document.getElementById('stRel').textContent = atlasData.n_reliable ?? sortedRegions.filter(r => !isIndicative(r)).length;
+  document.getElementById('stInd').textContent = atlasData.n_indicative ?? sortedRegions.filter(r => isIndicative(r)).length;
 
-  const listEl = document.getElementById('atlasList');
-  listEl.innerHTML = sortedRegions.map(r => {
-    const rateTxt = (typeof r.rate_cm_per_100d === 'number' && Number.isFinite(r.rate_cm_per_100d))
-      ? `${fmtNum(r.rate_cm_per_100d)} cm/100d`
-      : 'no data';
-    const indCls = (r.indicative_only || (r.confidence || '').toLowerCase() === 'low') ? ' is-indicative' : '';
-    return `<button type="button" class="atlas-item${indCls}" data-id="${esc(r.id)}">
-      <span class="ai-left"><span class="ai-name">${r.rank ? '#' + r.rank + ' · ' : ''}${esc(r.name)}</span><span class="ai-sub">${r.country ? esc(r.country) + ' · ' : ''}${confBadge(r)}</span></span>
-      <span class="ai-right"><span class="ai-rate" style="color:${rateColor(r.rate_cm_per_100d)}">${esc(rateTxt)}</span></span>
-    </button>`;
-  }).join('');
+  const countries = [...new Set(sortedRegions.map(r => r.country).filter(Boolean))].sort();
+  const cSel = document.getElementById('atlasCountryFilter');
+  if (cSel) cSel.innerHTML = '<option value="all">All countries</option>' + countries.map(c => `<option value="${esc(c)}">${esc(c)}</option>`).join('');
 
-  listEl.querySelectorAll('.atlas-item').forEach(btn => {
-    btn.addEventListener('click', () => { stopTour(); selectRegion(btn.dataset.id, true, true); });
+  const opts = sortedRegions.map(r => `<option value="${esc(r.id)}">${esc(r.name)}</option>`).join('');
+  const cmpA = document.getElementById('cmpA');
+  const cmpB = document.getElementById('cmpB');
+  if (cmpA && cmpB){
+    cmpA.innerHTML = opts;
+    cmpB.innerHTML = opts;
+    if (sortedRegions[1]) cmpB.value = sortedRegions[1].id;
+    cmpA.addEventListener('change', renderCompare);
+    cmpB.addEventListener('change', renderCompare);
+  }
+
+  document.getElementById('atlasSearch')?.addEventListener('input', renderListAndMap);
+  document.getElementById('atlasConfFilter')?.addEventListener('change', renderListAndMap);
+  document.getElementById('atlasCountryFilter')?.addEventListener('change', renderListAndMap);
+  document.getElementById('unitToggle')?.addEventListener('click', e => {
+    unitMode = unitMode === 'los' ? 'vert' : 'los';
+    e.currentTarget.setAttribute('aria-pressed', String(unitMode === 'vert'));
+    e.currentTarget.textContent = unitMode === 'vert' ? 'Values: Vertical (est.)' : 'Values: LOS';
+    renderListAndMap();
+    if (activeId) selectRegion(activeId, false, false);
+  });
+  document.getElementById('compareBtn')?.addEventListener('click', e => {
+    const box = document.getElementById('compareBox');
+    const open = box.hidden;
+    box.hidden = !open;
+    e.currentTarget.setAttribute('aria-expanded', String(open));
+    if (open){
+      if (activeId && cmpA) cmpA.value = activeId;
+      renderCompare();
+    }
+  });
+  document.getElementById('compareClose')?.addEventListener('click', () => {
+    document.getElementById('compareBox').hidden = true;
+    document.getElementById('compareBtn')?.setAttribute('aria-expanded', 'false');
   });
 
   document.querySelectorAll('#atlasLayers .al-btn').forEach(btn => {
     btn.addEventListener('click', () => applyLayer(btn.dataset.layer));
   });
   document.getElementById('tourBtn').addEventListener('click', startTour);
-
-  const geojson = {
-    type: 'FeatureCollection',
-    features: sortedRegions
-      .filter(r => typeof r.lon === 'number' && typeof r.lat === 'number' && Number.isFinite(r.lon) && Number.isFinite(r.lat))
-      .map(r => ({
-        type: 'Feature',
-        properties: {
-          id: r.id,
-          name: r.name,
-          rate: r.rate_cm_per_100d ?? 0,
-          color: rateColor(r.rate_cm_per_100d),
-          confColor: confColor(r),
-          indicative: Boolean(r.indicative_only || (r.confidence || '').toLowerCase() === 'low')
-        },
-        geometry: {type: 'Point', coordinates: [r.lon, r.lat]}
-      }))
-  };
 
   if (typeof maplibregl !== 'undefined'){
     map = new maplibregl.Map({
@@ -290,7 +479,7 @@ async function initAtlas(){
 
     map.on('load', () => {
       mapReady = true;
-      map.addSource('atlas-pts', {type: 'geojson', data: geojson});
+      map.addSource('atlas-pts', {type: 'geojson', data: buildGeoJson(filteredRegions.length ? filteredRegions : sortedRegions)});
       map.addLayer({
         id: 'atlas-pts',
         type: 'circle',
@@ -309,10 +498,13 @@ async function initAtlas(){
       });
       map.on('mouseenter', 'atlas-pts', () => { map.getCanvas().style.cursor = 'pointer'; });
       map.on('mouseleave', 'atlas-pts', () => { map.getCanvas().style.cursor = ''; });
+      loadGnssLayer();
       if (activeLayer === 'disp' && animDates.length) setMapOverlay(`${activeBase}disp/${animDates[animIdx]}.png`, activeBboxCoords);
       else if (activeLayer === 'sigma') setMapOverlay(activeSigmaUrl, activeBboxCoords);
     });
   }
+
+  renderListAndMap();
 
   window.addEventListener('hashchange', () => {
     const id = location.hash ? location.hash.slice(1) : '';
@@ -326,8 +518,8 @@ async function initAtlas(){
 }
 
 function renderTables(regions){
-  const rel = regions.filter(r => !r.indicative_only && (r.confidence || '').toLowerCase() !== 'low');
-  const ind = regions.filter(r => r.indicative_only || (r.confidence || '').toLowerCase() === 'low');
+  const rel = regions.filter(r => !isIndicative(r));
+  const ind = regions.filter(r => isIndicative(r));
   const fill = (id, rows) => {
     const tb = document.querySelector(`#${id} tbody`);
     if (!tb) return;
@@ -362,8 +554,9 @@ async function selectRegion(id, fly, updateHash){
   activeBase = base;
   const sigmaCand1 = `${base}uncertainty/sigma_cm.png`;
   const sigmaCand2 = `data/global/${r.id}/uncertainty/sigma_cm.png`;
-  const [meta, hasBul, hasCard, hasSig1, hasSig2] = await Promise.all([
+  const [meta, pts, hasBul, hasCard, hasSig1, hasSig2] = await Promise.all([
     J(base + 'meta.json'),
+    J(base + 'points.json'),
     okHead(`docs/bulletins/${r.id}.html`),
     okHead(`docs/story/atlas_cities/${r.id}.md`),
     okHead(sigmaCand1),
@@ -387,6 +580,7 @@ async function selectRegion(id, fly, updateHash){
   const lastDate = animDates.length ? animDates[animIdx] : null;
   const pngPath = lastDate ? `${base}disp/${lastDate}.png` : null;
   const srcTxt = meta?.source || 'NASA-ISRO NISAR L2 GUNW (provisional) via ASF DAAC';
+  const chartSvg = buildPointsSvg(pts, null, r.name, null);
 
   const extraCards = [];
   if (r.detectable !== undefined && r.detectable !== null){
@@ -404,6 +598,9 @@ async function selectRegion(id, fly, updateHash){
     extraCards.push(`<div><dt>OPERA cross-check</dt><dd style="font-size:.76rem">${esc(opTxt)}</dd></div>`);
   }
 
+  const mainVal = unitMode === 'vert' ? r.max_cm_vertical_est : r.max_cm_los;
+  const mainLbl = unitMode === 'vert' ? 'Max vertical (est.)' : 'Max LOS';
+
   const detail = document.getElementById('atlasDetail');
   detail.hidden = false;
   detail.innerHTML = `
@@ -411,7 +608,7 @@ async function selectRegion(id, fly, updateHash){
     <p style="margin:0 0 8px">${confBadge(r)} <span class="qbadge provisional">${esc((r.quality || 'provisional').toUpperCase())}</span></p>
     <dl class="atlas-kv">
       <div><dt>Rate (LOS)</dt><dd>${esc(fmtUnit(r.rate_cm_per_100d, 'cm/100d'))}</dd></div>
-      <div><dt>Max LOS</dt><dd>${esc(fmtUnit(r.max_cm_los, 'cm'))}</dd></div>
+      <div><dt>${esc(mainLbl)}</dt><dd>${esc(fmtUnit(mainVal, 'cm'))}</dd></div>
       <div><dt>Vertical (est.)</dt><dd>${esc(fmtUnit(r.max_cm_vertical_est, 'cm'))}</dd></div>
       <div><dt>Yearly rate (est.)</dt><dd>${esc(fmtUnit(r.rate_cm_per_yr_estimate, 'cm/yr'))}</dd></div>
       <div><dt>Period</dt><dd style="font-size:.78rem">${esc(periodTxt)}</dd></div>
@@ -422,6 +619,7 @@ async function selectRegion(id, fly, updateHash){
     </dl>
     ${r.note ? `<p class="small">${esc(r.note)}</p>` : ''}
     <p class="atlas-src"><b>Source:</b> ${esc(srcTxt)}</p>
+    ${chartSvg ? `<div class="atlas-chart-box"><div class="atlas-chart-hdr"><span>Peak point (p01) time series (cm, LOS)</span><span>&plusmn;2&sigma; band</span></div>${chartSvg}</div>` : ''}
     ${pngPath ? `<div class="atlas-player">
       <div class="atlas-player-hdr">
         <button type="button" class="atlas-play-btn" id="atlasPlayBtn">Play</button>
@@ -450,6 +648,9 @@ async function selectRegion(id, fly, updateHash){
   if (activeLayer === 'sigma') setMapOverlay(activeSigmaUrl, activeBboxCoords);
   else if (activeLayer === 'disp' && pngPath) setMapOverlay(pngPath, activeBboxCoords);
   else setMapOverlay(null, null);
+
+  try{ window.dispatchEvent(new CustomEvent('atlas:select', {detail: {id, region: r}})); }catch(e){}
 }
 
+window.atlasSelect = id => selectRegion(id, true, true);
 initAtlas();

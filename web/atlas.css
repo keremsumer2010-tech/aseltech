@@ -7,15 +7,27 @@
 .vc-lbl{display:block;font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--mut);font-weight:600}
 .vital-card b{display:block;font-size:1.35rem;font-family:var(--mono);color:var(--acc);margin:2px 0}
 .vital-card small{font-size:.74rem;color:var(--mut)}
-.atlas-wrap{display:grid;grid-template-columns:420px 1fr;height:calc(100vh - var(--hdr));margin-top:var(--hdr)}
+.atlas-wrap{display:grid;grid-template-columns:430px 1fr;height:calc(100vh - var(--hdr));margin-top:var(--hdr)}
 .vital-bar:not([hidden]) + .atlas-wrap{margin-top:0;height:calc(100vh - var(--hdr) - 86px)}
 .atlas-panel{overflow-y:auto;padding:20px 20px 32px;border-right:1px solid var(--line);background:var(--bg)}
 .atlas-panel h1{font-size:1.55rem;margin:0 0 .3em}
-.atlas-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0 14px}
+.atlas-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0 12px}
 .atlas-stat{background:var(--bg2);border:1px solid var(--line);border-radius:3px;padding:8px 10px}
 .atlas-stat b{display:block;font-size:1.15rem;color:var(--acc);font-family:var(--mono)}
 .atlas-stat span{font-size:.74rem;color:var(--mut)}
-.atlas-list{display:flex;flex-direction:column;gap:6px;margin:12px 0 16px}
+.atlas-controls{display:flex;flex-direction:column;gap:8px;margin:10px 0 12px}
+.atlas-input,.atlas-select{width:100%;padding:8px 10px;min-height:38px;border:1px solid var(--line);border-radius:3px;background:#fff;color:var(--text);font:500 .84rem var(--font)}
+.atlas-filter-row,.atlas-mode-row,.cmp-selects{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.atlas-mode-btn{padding:7px 10px;min-height:38px;border:1px solid var(--line);border-radius:3px;background:var(--bg2);color:var(--text);font:600 .8rem var(--font);cursor:pointer;text-align:center}
+.atlas-mode-btn[aria-pressed="true"],.atlas-mode-btn[aria-expanded="true"]{border-color:var(--acc);background:#eef3fb;color:var(--acc)}
+.atlas-compare{background:var(--bg2);border:1px solid var(--line);border-radius:3px;padding:12px;margin:0 0 14px}
+.atlas-compare[hidden]{display:none}
+.cmp-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.cmp-close{border:1px solid var(--line);background:#fff;border-radius:3px;padding:4px 9px;font:600 .76rem var(--font);cursor:pointer}
+.cmp-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0}
+.cmp-col{background:#fff;border:1px solid var(--line);border-radius:3px;padding:8px;font-size:.78rem}
+.cmp-col b{display:block;font-size:.86rem;margin-bottom:4px}
+.atlas-list{display:flex;flex-direction:column;gap:6px;margin:10px 0 16px}
 .atlas-item{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;text-align:left;padding:9px 11px;background:#fff;border:1px solid var(--line);border-radius:3px;cursor:pointer;font:500 .88rem var(--font);color:var(--text)}
 .atlas-item.is-indicative{opacity:.76}
 .atlas-item:hover,.atlas-item.is-active{border-color:var(--acc);background:#f5f8ff;opacity:1}
@@ -35,6 +47,9 @@
 .atlas-kv dt{font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--mut)}
 .atlas-kv dd{margin:2px 0 0;font:600 .86rem var(--mono);color:var(--text)}
 .atlas-src{font-size:.8rem;color:var(--mut);overflow-wrap:anywhere;margin:8px 0}
+.atlas-chart-box{background:#fff;border:1px solid var(--line);border-radius:3px;padding:10px;margin:10px 0}
+.atlas-chart-hdr{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:.76rem;color:var(--mut);margin-bottom:6px}
+.atlas-chart-svg{display:block;width:100%;height:auto}
 .atlas-player{background:var(--bg2);border:1px solid var(--line);border-radius:3px;padding:10px;margin:10px 0}
 .atlas-player-hdr{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px;flex-wrap:wrap}
 .atlas-play-btn{padding:6px 12px;min-height:36px;border:1px solid var(--acc);background:var(--acc);color:#fff;border-radius:3px;font:600 .8rem var(--font);cursor:pointer}
@@ -77,6 +92,9 @@
 .atlas-tbl th{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--mut);background:var(--bg2)}
 .atlas-tbl tbody tr{cursor:pointer}
 .atlas-tbl tbody tr:hover{background:#f5f8ff}
+.atlas-cite{margin-top:32px;padding:18px 20px;background:var(--bg2);border:1px solid var(--line);border-radius:3px}
+.atlas-cite h3{margin:0 0 6px;font-size:1.05rem}
+.atlas-cite-txt{margin:12px 0 0;font-size:.8rem;color:var(--mut);line-height:1.45}
 @media (max-width:980px){.atlas-tgrid{grid-template-columns:1fr}}
 @media (max-width:860px){
   .atlas-page{overflow:auto}
