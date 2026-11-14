@@ -52,7 +52,7 @@ Her yolun tek sahibi var (`rules/RULES.md` K-7). Burada olmayan bir yere yazman 
 | **PC2** | `pipeline/` (script, csv, `subset/`) · `docs/gunw_structure.md` · `data/<site>/drivers.json` (Pazar) · `status/PC2.md` |
 | **PC3** | `analysis/` (kod, test, `out/`) · `data/<site>/meta.json` · `data/<site>/disp/` · `data/<site>/points.json` · `data/<site>/summary.json` · `data/<site>/decomp.json` · `data/*_fullyear/` · `docs/karapinar_checkpoint_cm.png` · `status/PC3.md` |
 | **PC4** | `data/uk/` · `data/karapinar/sinkholes.geojson` · `docs/story/sources.md` · `docs/story/calibration_note.md` · `status/PC4.md` |
-| **PC5** | `game/` · `docs/story/pitch.md` · `docs/game_v1.png` · `status/PC5.md` |
+| **PC5** | (13:30 yeniden atama) `analysis/decomp/` · `docs/story/uncertainty.md` · `status/PC5.md` |
 | **PC6** | (13:20 itibarıyla Q18 devriyle ayrıca) `web/app.js` · `web/index.html` · `data/catalog.json` · `docs/URUN_TANIMI.md` · `validation/` · `risk/` · `data/<site>/validation.json` · `data/<site>/assets.json` (Pazar) · `status/PC6.md` |
 | **Herkes** | `tasks/QUEUE.md` içinde **sadece sahiplendiği satır** · sahiplendiği QUEUE işinin "Klasör" sütunundaki yollar · `docs/qa/PCx.md` (kendi QA notları) |
 
