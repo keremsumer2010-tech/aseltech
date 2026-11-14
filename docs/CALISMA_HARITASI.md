@@ -71,4 +71,5 @@ a) `git pull`; `docs/qa/*.md` dosyalarında KENDİ dosyaların hakkındaki her b
 b) Kendi çıktılarını yeniden çalıştır, test et, sayıları veri dosyalarıyla karşılaştır.
 c) Kendi alanındaki metinleri REVIEW_1500 kurallarına göre sadeleştir.
 d) Başkasının çıktısında hata görürsen kendi `docs/qa/PCx.md` dosyana yaz (dosyasına dokunma).
-e) status dosyana o an ne yaptığını yaz; "görev bekleniyor" deme.
+e) **HATA AYIKLAMA (boşta kalan herkes):** repo genelinde `python -m pytest -q` (analysis, analysis/decomp, analysis/pc5…), sitede yerel test (`python -m http.server 8765` → /web/, tüm sayfalar, konsol hataları), oyunda strateji testleri, `data/*` JSON'larında şema/NaN/boş değer kontrolü, kırık link taraması. Kendi dosyandaki hatayı düzelt; başkasınınkini `docs/qa/PCx.md`'ye "dosya → hata → nasıl tekrar edilir" biçiminde yaz.
+f) status dosyana o an ne yaptığını yaz; "görev bekleniyor" deme.
