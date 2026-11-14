@@ -873,6 +873,7 @@ input[type="range"] {
   }
 
   .map-stage {
+    order: 1;
     height: 44vh;
     min-height: 290px;
     width: 100%;
@@ -895,6 +896,40 @@ input[type="range"] {
     border-right: none;
     order: 3;
     width: 100%;
+  }
+
+  .btn-primary,
+  .btn-secondary,
+  .btn-quiet,
+  .btn-ghost,
+  .district-chip,
+  .preset-btn,
+  .layer-btn,
+  .model-details summary,
+  .apply-all-row label {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .district-chip,
+  .model-details summary {
+    display: flex;
+    width: 100%;
+  }
+
+  .apply-all-row input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+  }
+
+  input[type="range"] {
+    min-height: 44px;
+    padding: 12px 0;
+  }
+
+  .kpi-value {
+    font-size: 14.5px;
   }
 
   .compare-grid {
