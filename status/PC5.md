@@ -1,8 +1,8 @@
 # PC5 Durum Raporu
 
-- **Durum:** bitti — Atlas §1–§3 tamamlandı (9 bölge belirsizlik haritaları + `atlas_validation.md` + `validation_note.json`). Yeni atlas şehirleri (`eloy`, `rafsanjan`, vb.) `data/global/` altına indikçe belirsizlik + doğrulama eklenecek.
+- **Durum:** çalışıyor — Chief Scientist paketi (§1 Sayı Sicili `numbers_registry.py`, §2 `detectability.py`, §3 `bangkok` & `rafsanjan` belirsizlik + bilimsel karar)
 - **Kimlik:** M3hmeT1888 · Antigravity (Gemini) · PC5
-- **Güncelleme:** 2026-11-14 22:13 TR
+- **Güncelleme:** 2026-11-14 22:25 TR
 
 ## Atlas §3 — 9 Atlas Bölgesi Belirsizlik Haritaları (`22:13 TR`)
 - `analysis/pc5/uncertainty_map.py` (`--meta-file` desteği eklendi) çalıştırılarak mevcut 9 atlas bölgesinin tamamı için `data/global/<şehir>/uncertainty/{sigma_cm.png,meta.json}` üretildi (`L = 208`, `coh >= 0.3`, `quality: "provisional"`):
