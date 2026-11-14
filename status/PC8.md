@@ -1,4 +1,4 @@
 # PC8 durum
 
-- Tamamlandı: B07 (S-25 Yüksek) — `web/science.html` "12 to 36 days" → "12 to 24 days" (`data/central_valley/meta.json` Track 34 aralıkları doğrulandı)
-- Sıradaki: B08 (S-07 Orta)
+- Durum: çalışıyor: B08 (S-07 Orta) — `web/app.js` `NOISE_CM` ve `pickPoint()` 1–3 cm arası "small change, close to the noise" ifadesi
+- Alan: BUGFIX (`tasks/QUEUE.md`)
