@@ -16,11 +16,12 @@ Lincoln programı tek gün: final sunum + jüri + ödül BUGÜN (saat belirtilme
 ## Veri kalitesi
 Bugünkü demo sadece `provisional` veriyi kullanır. Browse PNG'ler `preview` rozetiyle gösterilir. Haziran öncesi (beta-precal) veri Pazar günü AYRI katman ve uyarıyla eklenir. Kalibrasyon NISAR projesinin işidir, bizim değil; sunumda ve sayfada bu açıkça yazar.
 
-## Kim ne yapıyor (bugün)
-- **PC1 (Kerem/yönetmen):** oyun, Sahne 1 verisi, obruk ve Holme Fen kaynakları, birleştirme, GitHub Pages, slayt/video.
-- **PC2 (memir-erdogmus):** Earthdata + Central Valley 8 GUNW indir/kes → küçük alt kümeleri repoya.
-- **PC3 (M3hmeT1888):** cm dönüşümü; Central Valley kümülatif harita + noktalar; sonra Karapınar.
-- **PC4 (acikgozibrahim032-hub):** kaydırmalı hikâye web sayfası (sahte veriyle başla).
+## Kim ne yapıyor (bugün) — ayrıntılı saat tablosu: docs/MASTER_PLAN.md §6
+- **PC1 (Kerem, Claude):** web sitesi (web/), Higgsfield medya (AI etiketli), birleştirme, GitHub Pages, sunum.
+- **PC2 (Memir, Antigravity):** Earthdata + Central Valley 6 provisional GUNW indir/kes → küçük alt kümeleri repoya.
+- **PC3 (Mehmet, Claude Code):** cm dönüşümü; Karapınar kontrol haritası; Central Valley kümülatif harita + noktalar.
+- **PC4 (İbrahim, Antigravity):** UK sahnesi görsel çifti, Karapınar obruk koordinatları (kaynaklı), kaynak listesi + Holme Fen.
+- **PC5 (Mehmet, Antigravity):** Aquifer Manager oyunu + sunum metni.
 
 ## Saatler (TR)
 - 12:00 başla

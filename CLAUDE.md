@@ -26,7 +26,7 @@ Teslim: Paz 15 Kas 23:59 UK (= Pzt 02:59 TR). Tüm çıktı metni İNGİLİZCE.
 - **PC1 = yönetmen** (Kerem'in Claude'u). Görev yazar, denetler, birleştirir.
 - **PC2–PC5 = işçi.** Aynı bilgisayarda iki ajan varsa AYRI klon klasörü kullanır; sadece kendi dosyalarını commit eder (`git add <kendi yolların>`, asla `git add -A`).
 - **İşçiler:** Başlarken: `git pull` → `tasks/PCx.md` oku → yap → `status/PCx.md` güncelle → commit + push.
-- Ekip: PC1 keremsumer2010-tech · PC2 memir-erdogmus (veri, Antigravity/Gemini ile) · PC3 M3hmeT1888 (çökme analizi) · PC4 acikgozibrahim032-hub (web, Antigravity/Gemini ile) · PC5 M3hmeT1888 bilgisayarında Antigravity (oyun + sunum metni).
+- Ekip: PC1 keremsumer2010-tech · PC2 memir-erdogmus (veri, Antigravity/Gemini ile) · PC3 M3hmeT1888 (çökme analizi) · PC4 acikgozibrahim032-hub (UK görselleri, obruklar, kaynaklar; Antigravity/Gemini ile) · PC5 M3hmeT1888 bilgisayarında Antigravity (oyun + sunum metni).
 - Bonus işler `tasks/BACKLOG.md` içinde; görevi biten PC1'e sorup oradan alır.
 - Sadece KENDİ klasöründe yaz (tasks dosyasında yazar). Başkasının klasörüne dokunma.
 - Görevde belirsizlik varsa tahmin etme: `status/PCx.md` içine "BLOCKED: ..." yaz, push et, dur.
@@ -42,6 +42,13 @@ Teslim: Paz 15 Kas 23:59 UK (= Pzt 02:59 TR). Tüm çıktı metni İNGİLİZCE.
   - `preview`: browse PNG'ler — nicel DEĞİL, sadece görsel.
 - Farklı sınıflar AYNI hesapta/katmanda birleştirilmez. Beta veriyle yapılan analiz ayrı klasörde (`*_beta`, `*_fullyear`) ve `quality: "mixed"` olarak durur.
 - Web'de her katmanda rozet + sabit dipnot: "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team."
+
+## Yapay zekâ ile üretilen medya
+- Higgsfield/Gemini vb. ile üretilen görsel ve videolar SADECE süs/anlatım içindir; asla veri gibi gösterilmez.
+- Her birinde görünür "AI-generated illustration" etiketi. Haritalarda sadece gerçek veri. NASA logosu kullanılmaz.
+- Kullanılan tüm yapay zekâ araçları teslimde açıklanır.
+
+## Ana plan: docs/MASTER_PLAN.md
 
 ## Veri kuralları
 - `.h5` ve ham dosyalar repoya GİRMEZ (.gitignore). Ham veriyi `raw/` altına koy.
