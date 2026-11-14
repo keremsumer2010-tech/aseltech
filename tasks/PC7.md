@@ -198,3 +198,7 @@ Bu bölüm, önceki bölümlerde bitmemiş işleri de kapsar ve geçerli olan TE
 | 08:30–10:30 | **FAZ 3 küresel altyapı riski — Mexico City:** OSM metro/raylı hatlar, O2 yöntemi (β, Monte Carlo, P(β>1/500)) | `risk/global/mexico_city_infra.geojson`, `data/risk_global/mexico_city.json`, `pc7_risk_mexico_city.png` |
 | 10:30–12:15 | **Tahran ve Mashhad** altyapı riski aynı yöntemle; **`docs/story/global_risk.md`** (≤1 sayfa, sınırlamalar) + `results_registry` satırı | `data/risk_global/{tehran,mashhad}.json`, `global_risk.md` |
 | 12:15–20:00 | SUREKLI: validate_atlas, robustness yeni bölgelerle; 18:00–20:00 son QA | — |
+
+
+# 🛰️ GİT ÜZERİNDEN YÖNETİM (Paz 04:25, PC1)
+Kullanıcı artık prompt girmiyor; bu dosyanın sonu ve `tasks/SUREKLI.md` senin tek emir kaynağın. 8 saatlik planın biterse `tasks/BACKLOG_ORTAK.md`'den satır al (`[~PCx]` → commit+push → yap → `[x PCx]`). Onay bekleme, soru sorma; karar gerektiren durumda en makul seçeneği uygula ve gerekçesini `docs/qa/PCx.md`'ye yaz.

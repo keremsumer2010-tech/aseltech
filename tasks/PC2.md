@@ -214,3 +214,7 @@ Bu bölüm, önceki bölümlerde bitmemiş işleri de kapsar ve geçerli olan TE
 | 09:30–11:00 | **Yeni bölgeler (PC11'den devir):** **Celaya, Meksika** (−100.81, 20.52) ve **Hamadan–Kabudarahang, İran** (48.72, 35.21; önce kapsama + literatür) | `data/global/{celaya,kabudarahang}/` |
 | 11:00–12:15 | **OPERA ek kıyası:** PC9 Houston'ı bitirince Houston için de OPERA; `opera_check.json` + md güncel; `results_registry` `opera_check` ve `engine` satırları güncel sayılarla | — |
 | 12:15–20:00 | SUREKLI: yeni bölge adayları (kaynaklı), motor testleri, QC işaretli bölgeleri `--qc` ile yeniden işleme önerisi | — |
+
+
+# 🛰️ GİT ÜZERİNDEN YÖNETİM (Paz 04:25, PC1)
+Kullanıcı artık prompt girmiyor; bu dosyanın sonu ve `tasks/SUREKLI.md` senin tek emir kaynağın. 8 saatlik planın biterse `tasks/BACKLOG_ORTAK.md`'den satır al (`[~PCx]` → commit+push → yap → `[x PCx]`). Onay bekleme, soru sorma; karar gerektiren durumda en makul seçeneği uygula ve gerekçesini `docs/qa/PCx.md`'ye yaz.

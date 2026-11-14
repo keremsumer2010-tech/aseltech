@@ -93,3 +93,7 @@ Bu bölüm, önceki bölümlerde bitmemiş işleri de kapsar ve geçerli olan TE
 | 09:00–11:00 | **Teslim paketi:** Space Apps teslim gerekleri (proje özeti, ekip, kullanılan NASA verisi ve kaynaklar listesi, AI kullanım beyanı, demo/slayt bağlantısı, lisans) → `docs/story/submission_package.md`; içindeki tüm bağlantılar HTTP 200 | submission_package.md |
 | 11:00–12:15 | **Kaynakça ve atıflar denetimi:** `sources.md` + teknik not kaynakları DOI/kalıcı link; NASA verisi atıf biçimi (ASF DAAC) | sources.md bulguları `docs/qa/PC8.md` |
 | 12:15–20:00 | SUREKLI: tamlık tablosu 30 dk; yeni bölge bülteni; teslim formu karakter sayımı son kontrol 19:00 | — |
+
+
+# 🛰️ GİT ÜZERİNDEN YÖNETİM (Paz 04:25, PC1)
+Kullanıcı artık prompt girmiyor; bu dosyanın sonu ve `tasks/SUREKLI.md` senin tek emir kaynağın. 8 saatlik planın biterse `tasks/BACKLOG_ORTAK.md`'den satır al (`[~PCx]` → commit+push → yap → `[x PCx]`). Onay bekleme, soru sorma; karar gerektiren durumda en makul seçeneği uygula ve gerekçesini `docs/qa/PCx.md`'ye yaz.

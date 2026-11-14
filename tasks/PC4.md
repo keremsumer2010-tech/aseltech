@@ -204,3 +204,7 @@ Bu bölüm, önceki bölümlerde bitmemiş işleri de kapsar ve geçerli olan TE
 | 09:00–10:30 | **Jüri SSS — 30 soru:** bilim (LOS, provisional, 108 gün, iyonosfer), atlas (ortak pencere, QC, OPERA uyumsuzluğu), etki (nüfus, altyapı), ekip/AI kullanımı | `judge_faq.md` |
 | 10:30–12:15 | **`docs/qa/SCIENCE_SIGNOFF.md` taslağını tamamla:** 10 başlık sayısı (değer, belirsizlik, kalite, kaynak dosya:anahtar), sınırlamalar, kalibrasyon cümlesi; PC1 onayına hazır | SIGNOFF |
 | 12:15–20:00 | SUREKLI: tüm `docs/story/*.md` son dil okuması; site metinlerindeki sorunları `docs/qa/PC4.md`'ye (PC6 düzeltir); PC9 yıllıklaştırma gelince metinlere ekle | — |
+
+
+# 🛰️ GİT ÜZERİNDEN YÖNETİM (Paz 04:25, PC1)
+Kullanıcı artık prompt girmiyor; bu dosyanın sonu ve `tasks/SUREKLI.md` senin tek emir kaynağın. 8 saatlik planın biterse `tasks/BACKLOG_ORTAK.md`'den satır al (`[~PCx]` → commit+push → yap → `[x PCx]`). Onay bekleme, soru sorma; karar gerektiren durumda en makul seçeneği uygula ve gerekçesini `docs/qa/PCx.md`'ye yaz.

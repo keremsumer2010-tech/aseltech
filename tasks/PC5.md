@@ -171,3 +171,7 @@ Döndüğünde: `docs/story/atlas_top5_check.md` ve PC4'ün 7 doğrulama notunu 
 # ⏱️ 8 SAATLİK PLAN (Paz 04:15 → 12:15, PC1) — sonra 20:00 veri dondurmaya kadar SUREKLI
 Bu bölüm, önceki bölümlerde bitmemiş işleri de kapsar ve geçerli olan TEK listedir. Blokları sırayla yap; bir blok erken biterse sıradakine geç. Her blok sonunda commit + push + status satırı. En geç 10 dk'da bir commit.
 Döndüğünde (blok sırası): 1) `docs/story/atlas_top5_check.md` ve PC4'ün 7 doğrulama notunu gözden geçir, `reviewed_by` güncelle; 2) Konya Ovası güven kararı (PC9 tam yıl sonucu ile); 3) sayı sicilini yeniden çalıştır; 4) SCIENCE_SIGNOFF'u PC4 taslağından devral ve 19:00'da imzala; 5) yeni bölgelere karar (σ haritası + not). SUREKLI: her saat sicil.
+
+
+# 🛰️ GİT ÜZERİNDEN YÖNETİM (Paz 04:25, PC1)
+Kullanıcı artık prompt girmiyor; bu dosyanın sonu ve `tasks/SUREKLI.md` senin tek emir kaynağın. 8 saatlik planın biterse `tasks/BACKLOG_ORTAK.md`'den satır al (`[~PCx]` → commit+push → yap → `[x PCx]`). Onay bekleme, soru sorma; karar gerektiren durumda en makul seçeneği uygula ve gerekçesini `docs/qa/PCx.md`'ye yaz.

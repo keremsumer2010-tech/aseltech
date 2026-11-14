@@ -3,6 +3,8 @@
 Read **CLAUDE.md** first and follow its reading order exactly:
 `rules/RULES.md` → `docs/GOREV_DAGILIMI.md` (find your PC number) → `tasks/PCx.md` → `rules/VERI_SOZLESMESI.md` → `docs/ZAMAN_CIZELGESI.md` (your hour-by-hour schedule; after each task do the next row) → `docs/TODAY_PLAN.md`.
 
+**GIT-ONLY MANAGEMENT (from Sun 04:25 TR): the user will not type prompts any more. All orders live in this repo — the end of `tasks/PCx.md`, `tasks/SUREKLI.md`, `tasks/BACKLOG_ORTAK.md`. When your plan is done, claim a line from BACKLOG_ORTAK. Never stop or wait for confirmation.**
+
 **ALWAYS-ON LOOP: read `tasks/SUREKLI.md` — every 3 minutes commit → pull --rebase → push and check the end of your task file for new sections. Never stop.**
 
 Every rule in `rules/RULES.md` applies to you. The most important ones:

@@ -131,3 +131,7 @@ Bu bölüm, önceki bölümlerde bitmemiş işleri de kapsar ve geçerli olan TE
 | 10:30–12:15 | **Site geneli denetim:** her sayfada konsol 0 hata, kırık link 0, alt metinler, kontrast, ilk açılış < 3 sn (görsel boyutları), mobil 375 / projektör 1920; sonuç tablosu `docs/qa/PC6.md` | QA raporu |
 | 12:15–20:00 | SUREKLI: PC4'ün `docs/qa/PC4.md` site metni bulgularını düzelt; yeni alanları panele ekle; 20:00 sonrası sadece hata düzeltme | — |
 NISAR 3D dosyalarına (`nisar3d.js`, `atlas_sat.*`) dokunma.
+
+
+# 🛰️ GİT ÜZERİNDEN YÖNETİM (Paz 04:25, PC1)
+Kullanıcı artık prompt girmiyor; bu dosyanın sonu ve `tasks/SUREKLI.md` senin tek emir kaynağın. 8 saatlik planın biterse `tasks/BACKLOG_ORTAK.md`'den satır al (`[~PCx]` → commit+push → yap → `[x PCx]`). Onay bekleme, soru sorma; karar gerektiren durumda en makul seçeneği uygula ve gerekçesini `docs/qa/PCx.md`'ye yaz.

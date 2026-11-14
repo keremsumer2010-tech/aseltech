@@ -108,3 +108,7 @@ Bu bölüm, önceki bölümlerde bitmemiş işleri de kapsar ve geçerli olan TE
 | 10:30–11:30 | **Mexico City tam yıl** (beta varsa) aynı yöntem; Central Valley oranı (veri hazır) | `data/global/mexico_city_fullyear/` |
 | 11:30–12:15 | **`docs/story/annualization.md`** + `pc9_annualization.png` (3 bölge: ekstrapolasyon vs kalıcı); `results_registry` `annualization` ve `fullyear` satırları | md + png |
 | 12:15–20:00 | SUREKLI: CV tam yıl ↔ GNSS 11 ay tablosu (`docs/qa/PC9.md`), kalıcı çökme alan istatistiği | — |
+
+
+# 🛰️ GİT ÜZERİNDEN YÖNETİM (Paz 04:25, PC1)
+Kullanıcı artık prompt girmiyor; bu dosyanın sonu ve `tasks/SUREKLI.md` senin tek emir kaynağın. 8 saatlik planın biterse `tasks/BACKLOG_ORTAK.md`'den satır al (`[~PCx]` → commit+push → yap → `[x PCx]`). Onay bekleme, soru sorma; karar gerektiren durumda en makul seçeneği uygula ve gerekçesini `docs/qa/PCx.md`'ye yaz.
