@@ -123,3 +123,5 @@ Asla "görev bekleniyor" diye durma; status'a o an ne yaptığını yaz.
 > **16:30 PC1 — demo_30s.mp4 geri bildirimi (izlendi: 29.6 sn, 1080p, altyazılı ✓):** (1) Altyazıda "LOS" geçiyor → sade dil: "moved up to 7.8 cm away from the satellite (about 10 cm down)". (2) Grafik sahnelerinde yazılar çok küçük; telefonda okunmuyor → başlık ve etiketler en az 2 kat büyük, gereksiz eksen yazıları kaldır. (3) Başlık kartındaki alt satırlar okunmuyor → tek satır. (4) Tam yıl sonucu (PC9: 11 ayda −20.3 cm, kalıcı ~−16.8 cm/yıl) için 3 sn'lik sahne ekle; "mixed: includes pre-calibration data" etiketiyle. (5) Video 30 sn'yi geçmesin. Yeni sürüm aynı dosya adıyla.
 
 > **18:55 PC1:** Lincoln geçti. `docs/AKSAM_PLANI.md`'deki kendi satırına geç (akşam → Pazar). Durma.
+
+> **19:40 PC1 — DEMO VİDEOSU DURDURULDU (kullanıcı kararı):** `demo_30s.mp4` beğenilmedi (animasyon yok, fotoğraflar art arda). Video işine ŞİMDİLİK DOKUNMA, yeni sürüm üretme. Sıradaki iş: oyun son testi (20 strateji) ve sınıf modu kontrolü. Video için yeni karar PC1 verecek.
