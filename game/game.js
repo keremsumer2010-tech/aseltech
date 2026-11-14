@@ -939,7 +939,7 @@
       `<strong>Model check against NISAR (${cal.within10Pct ? 'PASS ±10%' : 'CHECK'}):</strong>
       Under baseline summer pumping for the 108-day NISAR window (Jun–Oct 2026), the model simulates
       <span class="mono color-ok">${cal.simulatedVertCm} cm</span> vertical (<span class="mono">${cal.simulatedLosCm} cm</span> LOS) at Terra Bella vs
-      <span class="mono">${cal.measuredVertCm} cm</span> vertical (<span class="mono">${cal.measuredLosCm} cm</span> LOS; ref range −6.2…−7.8 cm LOS) measured by NISAR
+      <span class="mono">${cal.measuredVertCm} cm</span> vertical (<span class="mono">${cal.measuredLosCm} cm</span> LOS; ref range −4.7…−7.8 cm LOS) measured by NISAR
       (<span class="mono">error: ${cal.errorPct}%</span>, extraction scale factor <span class="mono">k=${cal.calibrationFactor}</span>).`;
 
     wireControls();

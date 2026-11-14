@@ -643,16 +643,55 @@ input[type="range"] {
   margin: 0 0 14px;
   color: var(--muted);
   font-size: 13.5px;
+  line-height: 1.55;
+}
+
+.model-details {
+  background: var(--panel-alt);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 9px 12px;
+  margin: 10px 0;
+  font-size: 12.5px;
+}
+
+.model-details summary {
+  cursor: pointer;
+  color: var(--text);
+  font-weight: 600;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.model-details summary::after {
+  content: "+";
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 14px;
+}
+
+.model-details[open] summary::after {
+  content: "−";
+}
+
+.model-details-note {
+  margin: 8px 0 6px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.45;
 }
 
 .calibration-box {
-  background: var(--panel-alt);
+  background: rgba(11, 16, 22, 0.55);
   border: 1px solid var(--border);
   border-left: 3px solid var(--ok);
   border-radius: 5px;
-  padding: 10px 12px;
-  margin: 12px 0;
-  font-size: 12.5px;
+  padding: 9px 11px;
+  margin: 8px 0 2px;
+  font-size: 12px;
 }
 
 .compare-grid {

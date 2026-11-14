@@ -135,7 +135,7 @@
       lon: -119.7283,
       lat: 36.0909,
       areaKm2: 460,
-      clayThicknessM: 82, // Deep Corcoran Clay lacustrine member
+      clayThicknessM: 82, // Total compressible fine-grained interbeds (Corcoran Clay member <= 61 m)
       initialHeadM: -52.0,
       preconsolidationHeadM: -52.4,
       pumpingIntensity: 0.90,

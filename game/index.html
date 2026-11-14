@@ -199,17 +199,23 @@
       </div>
       <h2 id="startTitle">Valley Under Pressure</h2>
       <p class="modal-sub">
-        <strong>Your valley's real ground motion was measured by NASA-ISRO NISAR.</strong>
-        Manage groundwater pumping, canal allocations, and fallowing across 7 real Tulare Basin districts for 24 months (two full California Water Years).
-        Drop the water table below historical preconsolidation head (<em>h<sub>pc</sub></em>), and deep clay aquitards collapse permanently — warping aqueducts and drying shallow wells.
+        Between 28 June and 14 October 2026, NASA-ISRO NISAR measured up to −7.8 cm of radar line-of-sight sinking (−10.1 cm vertical) in California's Tulare Basin and −5.9 cm (−8.0 cm vertical) in Türkiye's Konya Closed Basin.
+        Over the next 24 months, you set monthly groundwater pumping, canal deliveries, and crop fallowing across basin farming districts.
+        Keep farm revenue flowing without dropping groundwater below historical lows, or deep clay layers collapse permanently—cracking canals, drying shallow wells, and increasing sinkhole stress.
       </p>
 
-      <div id="startCalibrationBox" class="calibration-box">
-        Checking model calibration against <code>../data/central_valley/summary.json</code>…
-      </div>
+      <details class="model-details">
+        <summary>Model details and NISAR calibration check</summary>
+        <p class="model-details-note">
+          Uses Terzaghi one-dimensional compaction with elastic storage (<em>S<sub>ke</sub></em>) above preconsolidation head (<em>h<sub>pc</sub></em>), inelastic virgin clay collapse (<em>S<sub>kv</sub></em>) below <em>h<sub>pc</sub></em>, specific yield <em>S<sub>y</sub></em> = 0.10, and calibrated pumping scale <em>k</em> = 0.623.
+        </p>
+        <div id="startCalibrationBox" class="calibration-box">
+          Checking model calibration against <code>../data/central_valley/summary.json</code>…
+        </div>
+      </details>
 
       <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; margin-top:14px; flex-wrap:wrap;">
-        <span style="font-size:11.5px; color:var(--muted);">Provisional NASA-JPL/ISRO L-band interferometry (2026-06-28 → 2026-10-14).</span>
+        <span style="font-size:11.5px; color:var(--muted);">Data: NASA-ISRO NISAR (provisional), ASF DAAC, NGL GNSS, and OpenStreetMap.</span>
         <button id="startBtn" type="button" class="btn-primary" style="flex:0 0 auto; padding:10px 20px;">Start 24-Month Simulation →</button>
       </div>
     </div>
