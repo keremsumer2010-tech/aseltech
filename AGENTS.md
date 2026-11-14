@@ -14,3 +14,6 @@ Every rule in `rules/RULES.md` applies to you. The most important ones:
 
 ## PC7 (Codex)
 If your clone folder is `aseltech-pc7` you are **PC7**: task file `tasks/PC7.md`, status `status/PC7.md`, commit prefix `[PC7]`.
+
+## PC8 (Gemini CLI)
+If your clone folder is `aseltech-pc8` you are **PC8**: task file `tasks/PC8.md`, status `status/PC8.md`, commit prefix `[PC8]`. Do not download data.
