@@ -16,6 +16,7 @@ const STYLE = {version: 8,
 const SCALE = [[2.4, 'the width of a coin'], [5.4, 'the short side of a bank card'], [8.56, 'the long side of a bank card'], [21.0, 'the short side of an A4 sheet'], [29.7, 'the long side of an A4 sheet']];
 const human = cm => { const a = Math.abs(cm); return SCALE.reduce((b, s) => Math.abs(s[0] - a) < Math.abs(b[0] - a) ? s : b)[1]; };
 const NOISE_CM = 1.0; // below this a single point is within the measurement noise (docs/story/uncertainty.md)
+const CLOSE_NOISE_CM = 3.0; // 1-3 cm: cumulative uncertainty envelope across multiple pairs
 const chartOpts = yTitle => ({responsive: true, animation: {duration: 300}, plugins: {legend: {labels: {color: '#2d3748', boxWidth: 12, font: {family: 'Inter', size: 11}}}},
   scales: {x: {ticks: {color: '#4a5568', font: {size: 10}}, grid: {color: '#e5e9f0'}}, y: {ticks: {color: '#4a5568', font: {size: 10}}, grid: {color: '#e5e9f0'}, title: {display: true, text: yTitle, color: '#4a5568'}}}});
 
@@ -208,7 +209,9 @@ function pickPoint(id){
   const span = `${fmtShort(p.dates[0])} – ${fmtShort(p.dates.at(-1))} (${months} months)`;
   r.innerHTML = Math.abs(v) < NOISE_CM
     ? `<b>${p.name}</b>: no clear change (${minus(v)} cm), within the measurement noise of about ±${NOISE_CM} cm · ${span}.`
-    : `<b>${p.name}</b> ${v < 0 ? 'sank' : 'rose'} about <b>${Math.abs(v).toFixed(1)} cm</b> as seen by the satellite · ${span} — about ${human(v)}.`;
+    : (Math.abs(v) <= CLOSE_NOISE_CM
+      ? `<b>${p.name}</b>: small change, close to the noise (${minus(v)} cm) · ${span}.`
+      : `<b>${p.name}</b> ${v < 0 ? 'sank' : 'rose'} about <b>${Math.abs(v).toFixed(1)} cm</b> as seen by the satellite · ${span} — about ${human(v)}.`);
   const data = {labels: p.dates.map(fmtShort), datasets: [{label: 'Ground motion seen by NISAR (cm)', data: p.disp_cm, borderColor: '#ff5a47', backgroundColor: 'rgba(255,90,71,.12)', fill: true, tension: .25, pointRadius: 3}]};
   if (chartP){ chartP.data = data; chartP.update(); } else chartP = new Chart(document.getElementById('pointChart'), {type: 'line', data, options: chartOpts('cm')});
 }
