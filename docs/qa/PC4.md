@@ -114,3 +114,17 @@ Kapsam: `web/index.html` (`1–163`). Genel İngilizce tonu akıcı ve tutarlı 
 2. **`web/index.html:57, 164` & `web/science.html:34`:** `"consecutive 12-day pairs"` ifadesi Central Valley'de 2 adet (`07-22→08-15`, `09-20→10-14`), Karapınar'da 1 adet (`07-20→08-13`) **24 günlük** ardışık çift bulunduğu için `"consecutive pairs (12–24 days)"` olarak güncellenirse tam isabet olur.
 3. **`web/science.html:25`:** `SME2 Soil moisture` satırı hâlâ `(in progress)` diyor; PC2 `data/central_valley/drivers.json` (`d4bf097`) çıktısını tamamladı.
 4. **`docs/story/judge_faq.md` #13 (`web/faq.html` tarafından canlı okunuyor):** `Valley Under Pressure` (24 ay) adını yansıtması için sonraki adımda PC4 tarafından senkronize edilebilir (önceden eski `Aquifer Manager / 10 years` sürümünü anıyordu).
+
+---
+
+## 10. Tüm Depo Link Kontrolü & Günlük Özet (`ZAMAN_CIZELGESI` Cmt 22:00 · Pazar 18:00–22:00)
+
+- **`docs/story/project_page.md` Son Okuma (`Pazar 18:00–20:00`):** Space Apps teslim taslağı Site v2 (`https://keremsumer2010-tech.github.io/aseltech/`), v2 simülasyon (`Valley Under Pressure`, 24 ay), `KVPR (2017)` Friant-Kern / Terra Bella kaynağı ve eşlikçi paketlerle (`sinkhole_timeline.md`, `judge_faq.md`, `slides.html`, `video_shotlist.md`) hizalandı.
+- **Tüm Depo Canlı Dış Link Kontrolü (`Pazar 20:00–22:00` — `README.md`, `docs/`, `web/`, `web3d/`, `data/`, `game/`):** Toplam **50** benzersiz `https://` adayı tarandı (`task-728` + Pages/eğik-çizgi ek kontrolü):
+  - **44 / 44** aktif doküman, veri API, CDN (`MapLibre 4.7.1`, `Chart.js 4.4.1`, `marked 12.0.2`, `Three.js 0.160.0`), GitHub Pages canlı URL'leri (`.../aseltech/`, `.../web3d/`, `.../docs/story/slides.html`), BGS/ASF/USGS/DergiPark/KVPR/GreatFen kaynakları **HTTP 200** verdi.
+  - **`fonts.googleapis.com` & `fonts.gstatic.com` (`web/index.html:10`):** Yalnızca `preconnect` kök etiketi (`CSS` font URL'si `200`).
+  - **PC3 `docs/story/game_model.md` QA Notu (Salt Okunur):**
+    - `catalog-beta.data.gov/...` (`2` bağlantı) → **HTTP 404** (eski `catalog-beta` alt alan adı; `catalog.data.gov` veya birincil USGS bağlantısı önerilir).
+    - `cdec.water.ca.gov/.../javareports?name=WSIHIST` → **`timed out`** (`game_model.md` içinde zaten erişilemedi notu var).
+    - `lfweb.sjgov.org/EHD/0/doc/728929/Page133.aspx` → **HTTP 503** (sunucu geçici erişim hatası).
+    - (`pubs.usgs.gov/of/2001/of01-35/pdf/ofr0135.pdf` bu makineden **HTTP 200** döndü.)

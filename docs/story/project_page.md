@@ -1,31 +1,31 @@
 # NASA Space Apps Project Page Draft (`Q11`)
 
-> **Status:** Ready-to-paste English draft aligned with the official Space Apps project submission form fields. Quantitative Central Valley, Karapınar, and UK Fens metrics come directly from repository data files (`data/central_valley/summary.json`, `web3d/surfaces.json`, `data/uk/meta.json`); bracketed URLs (`{...}`) mark public deployment and demo links to populate after final publishing.
+> **Status:** Ready-to-paste English draft aligned with the official Space Apps project submission form fields (`Q11` + final `ZAMAN_CIZELGESI` Sunday QA). Quantitative Central Valley, Karapınar, and UK Fens metrics come directly from repository data files (`data/central_valley/*.json`, `data/karapinar/*.json`, `web3d/surfaces.json`, `data/uk/meta.json`), linked cleanly with [`docs/story/sinkhole_timeline.md`](sinkhole_timeline.md), [`docs/story/judge_faq.md`](judge_faq.md), [`docs/story/slides.html`](slides.html), and [`docs/story/video_shotlist.md`](video_shotlist.md). Bracketed tokens (`{...}`) mark live verification placeholders before final submission.
 
 ---
 
 ## Project Title
 
-**Under the Cloud, Beneath the Crops: Tracking Silent Land Subsidence with NASA–ISRO NISAR**
+**NISAR Pulse — Follow the Water: Tracking Silent Land Subsidence with NASA–ISRO NISAR**
 
 ---
 
 ## High-Level Project Summary
 
-Over-pumped aquifers, draining lowland peats, shrinking clays, and dissolving karst bedrock cause the ground to sink quietly beneath cities, aqueducts, levees, and farms—often under persistent cloud cover that blinds optical satellites. Our team pairs NASA–ISRO **NISAR L-band Synthetic Aperture Radar (24 cm wavelength)** imagery and Level-2 interferometric displacement (**GUNW**) with peer-reviewed geological benchmarks and an interactive web explorer + educational simulation to turn millimeter-to-centimeter radar phase shifts into actionable local hazard awareness across three flagship regions: the **UK Fens**, **California's Central Valley & Delta**, and **Konya–Karapınar, Türkiye**.
+Over-pumped aquifers, draining lowland peats, shrinking clays, and dissolving karst bedrock cause the ground to sink quietly beneath cities, aqueducts, levees, and farms—often under persistent cloud cover that blinds optical satellites. Our team pairs NASA–ISRO **NISAR L-band Synthetic Aperture Radar (24 cm wavelength)** imagery and Level-2 interferometric displacement (**GUNW**) with independent continuous GPS ground truth, OpenStreetMap infrastructure tilt indexing, peer-reviewed sinkhole inventories, a 3D surface explorer, and a physics-based water-policy simulator (**Valley Under Pressure**) to turn millimeter-to-centimeter radar phase shifts into plain-English water intelligence across three flagship regions: the **UK Fens**, **California's Central Valley & Delta**, and **Konya–Karapınar, Türkiye**.
 
 ---
 
 ## Link to Final Project
 
 - **Source Code & Data Repository:** https://github.com/keremsumer2010-tech/aseltech  
-- **Live Interactive Web App / 3D Viewer:** `{PUBLIC_GITHUB_PAGES_URL}` *(verify incognito/unauthenticated public access before submission)*
+- **Live Interactive Web App (`web/`, `game/`, `web3d/`):** https://keremsumer2010-tech.github.io/aseltech/ *(verify incognito/unauthenticated public access and latest workflow deployment before submission)*
 
 ---
 
 ## Link to Project "Demo"
 
-`{PUBLIC_DEMO_LINK_30S_VIDEO_OR_7_SLIDES}`  
+`{PUBLIC_DEMO_LINK_30S_VIDEO_OR_7_SLIDES}` *(See 30-second capture guide & `.srt` in [`docs/story/video_shotlist.md`](video_shotlist.md) or deployable 7-slide deck at [`docs/story/slides.html`](slides.html) — `https://keremsumer2010-tech.github.io/aseltech/docs/story/slides.html`)*  
 *(Must not exceed 30 seconds video or 7 slides.)*
 
 ---
@@ -35,18 +35,18 @@ Over-pumped aquifers, draining lowland peats, shrinking clays, and dissolving ka
 ### The Problem
 Ground subsidence rarely arrives like an earthquake, yet its cumulative toll rivals major rapid disasters:
 - **Agricultural Peat Drainage (UK Fens & Sacramento Delta):** Draining organic peatlands exposes ancient carbon to oxygen, shrinking the land surface over decades. At **Holme Fen (Cambridgeshire)**, an iron gauge driven in **1851** now stands **approximately 4 metres** above ground, leaving the reserve **2.75 metres below sea level** (Britain's lowest land point), while contemporary arable fenland sinks **1–2 cm/yr**. In California's **Sacramento–San Joaquin Delta**, peat oxidation at **1–3 inches/yr** has dropped central islands **10 to nearly 25 feet** below sea level behind **more than 1,100 miles** of levees—triggering roughly **100 levee failures** since the **1890s** and threatening freshwater exports serving **over 20 million** residents.
-- **Groundwater Over-Draft (California San Joaquin Valley):** Pumping from aquifers below confining clay beds caused up to **8.5 meters (28 feet)** of compaction since the **1920s**, up to **0.6 meters (2 feet) per year** during drought peaks near Chowchilla and Corcoran, and reduced freeboard and flow capacity along a **145-kilometer** stretch of the California Aqueduct.
-- **Sudden Karst Collapse (Konya–Karapınar, Türkiye):** Groundwater decline in soluble carbonate strata has accelerated catastrophic sinkhole (*obruk*) formation—with **104** sinkholes documented across Konya Province (**86** in Karapınar district, **43** recent collapses during **1972–2014**), reaching **80 m** deep (**Akviran Obruğu**) and **76 m** deep (**Yarımoğlu Obruğu**).
+- **Groundwater Over-Draft & Canal Loss (California San Joaquin Valley):** Pumping from aquifers below confining clay beds caused up to **8.5 meters (28 feet)** of compaction since the **1920s**, up to **0.6 meters (2 feet) per year** during drought peaks near Chowchilla and Corcoran, reduced freeboard along a **145-kilometer** stretch of the California Aqueduct, and dropped **152-mile Friant-Kern Canal** capacity by about **60 percent** (**4,000 → 1,600 cfs**) across a **25-mile** reach with deepest sinking near **Terra Bella** (~$400 million estimated full-canal adjustment).
+- **Sudden Karst Collapse (Konya–Karapınar, Türkiye):** Groundwater decline in soluble carbonate strata has accelerated catastrophic sinkhole (*obruk*) formation—with **104** sinkholes documented across Konya Province (**86** in Karapınar district, **43** recent collapses during **1972–2014**; **`24` of `29` verified frame collapses (`82.8%`) occurred in `2007–2013`**, see [`docs/story/sinkhole_timeline.md`](sinkhole_timeline.md)), reaching **80 m** deep (**Akviran Obruğu**) and **76 m** deep (**Yarımoğlu Obruğu**).
 - **Urban Soil Shrink–Swell (Great Britain):** Moisture-driven clay shrinkage and swelling in the **upper two metres** of soil is Britain's most damaging geohazard, costing **£540 million** after the **1991** drought and spiking **350%** to **£64 million** across **>10,000** household insurance claims in a single dry quarter (**July–September 2018**).
 
 ### What Our Solution Does
-Our web experience guides decision-makers and citizens through four synchronized interactive scenes plus a serious game:
-1. **Seeing Through Clouds (UK Fens Comparison):** A side-by-side interactive swipe comparing an optical **VIIRS SNPP** true-color capture on **2026-10-20** (almost completely obscured by cloud cover) against a **same-day NISAR L-band GCOV radar preview**, proving all-weather imaging of The Wash coastline and Fens drainage geometry.
-2. **Reading Millimeter-Scale Ground Motion (California Central Valley):** An interactive MapLibre time-series map showing cumulative NISAR Level-2 **GUNW** Line-of-Sight (LOS) displacement across irrigated agricultural bowls, paired with borehole-style location hydrographs.
-3. **Infrastructure Under Quiet Strain (Aqueducts, Levees & Shrink–Swell):** Contextualizes millimeter-to-centimeter radar deformation gradients against aqueduct freeboard limits, Delta levee stability, and urban shallow-foundation risk.
-4. **Mapping Active Sinkhole Clusters (Karapınar, Konya):** Overlays **29 field-verified sinkhole coordinates** (from peer-reviewed Turkish geographical surveys strictly within the regional radar swath) onto NISAR InSAR displacement tiles, with clickable depth, diameter, formation year, and source links.
-5. **Interactive Simulator Mini-Game:** Translates physical aquifer drawdown, peat oxidation, and infrastructure strain into an accessible resource-management game grounded in measured Central Valley subsidence metrics.
-6. **3D "Breathing Earth" Surface Explorer (`web3d/`):** Renders time-interpolated Three.js 3D displacement surfaces with interactive vertical exaggeration (`10,000×–150,000×`), epoch animation across the summer 2026 San Joaquin Valley stack, and 3D depth columns (`0.5–80 m`) for the 29 mapped Karapınar sinkholes.
+Our multi-page web platform (`web/`: Story Map, `science.html`, `data.html`, `faq.html`, plus `web3d/` and `game/`) guides citizens and planners through six synchronized evidence chapters and two interactive tools:
+1. **Seeing Through Clouds (UK Fens Comparison):** A side-by-side interactive swipe comparing an optical **VIIRS SNPP** true-color capture on **2026-10-20** (~98% cloud obscured) against a **same-day NISAR L-band GCOV radar preview**, proving all-weather imaging of The Wash coastline and Fens drainage geometry alongside the verified **Holme Fen** benchmark (`nearly 4 metres` exposed since `1851`).
+2. **Reading Millimeter-Scale Ground Motion (California Central Valley):** An interactive MapLibre time-series map showing cumulative NISAR Level-2 **GUNW** Line-of-Sight (LOS) displacement across **8** epochs (**7** consecutive `12–24`-day pairs, `2026-06-28 → 2026-10-14`), paired with click-to-inspect borehole hydrographs and plain-English sentences.
+3. **Checking Ground Truth & Infrastructure Strain (`GNSS` + `assets.json`):** Validates NISAR vertical projections against **10 continuous NGL GPS stations** (**6/10** with `r >= 0.4`, median RMSE **`1.00 cm`**, peak `r = 0.90` at `CAHA`/`HANF`) and flags **81 high-risk segments** out of **645** OSM canals, roads, and railways (led by `Tulare Irrigation District Canal` at **`57.01 mm/km`** and `California Aqueduct` at **`49.12 mm/km`**).
+4. **Mapping Active Sinkhole Clusters (Karapınar, Konya):** Overlays **29 field-verified sinkhole coordinates** (strictly inside `[33.3, 37.6, 33.8, 37.9]`, analyzed chronologically in [`docs/story/sinkhole_timeline.md`](sinkhole_timeline.md)) onto our **8-pair** NISAR Track 7 displacement stack (`−5.9 cm` LOS peak `2 km W of Karapınar`).
+5. **Interactive Simulator — *Valley Under Pressure* (`game/index.html`):** A **24-month** Terzaghi / USGS skeletal-storage compaction model across **7** Tulare Basin districts calibrated directly to NISAR's Terra Bella summer subsidence measurement (`−7.8 cm` LOS / `−10.1 cm` vertical est.), exposing irreversible permanent clay collapse and Friant-Kern-scale canal loss when over-pumping drops groundwater head below preconsolidation threshold *h<sub>pc</sub>*.
+6. **3D "Breathing Earth" Surface Explorer (`web3d/`):** Renders time-interpolated Three.js 3D displacement surfaces with interactive vertical exaggeration (`10,000×–150,000×`), epoch animation across both the Central Valley (`80×96`) and Karapınar (`48×80`) stacks, and 3D depth columns (`0.5–80 m`) for all `29` verified Karapınar sinkholes.
 
 ### Quantitative Results & Calibration Transparency
 *(All quantitative InSAR numbers come strictly from NISAR **Provisional** Level-2 `GUNW` collections acquired on or after **2026-06-17**, while same-day UK Fens GCOV browse imagery is strictly labeled **`preview`**).*
@@ -85,13 +85,25 @@ Working as a coordinated multi-workstation team, we split ownership cleanly into
 ## AI & Tool Disclosure
 
 In line with open scientific transparency and competition integrity rules:
-- **Visual Media:** Seven illustrative scene graphics/banners in `web/assets/` (`hero.jpg`, `fens_ai.jpg`, `holme_ai.jpg`, `canal_ai.jpg`, `sinkhole_aerial_ai.jpg`, `obruk_ai.jpg`, `game_valley_ai.jpg`) and `hero.mp4` were created using **Higgsfield AI** and are explicitly labeled `"AI-generated illustration"` in the interface—never represented as real NASA imagery or measurements. No official NASA/ISRO logos are used in application UI.
-- **Software & Documentation Support:** AI coding and research assistants (Claude Code, Codex, and Antigravity) assisted with Python InSAR utility scaffolding, unit tests, coordinate extraction verification from published tables, and documentation drafting. Every numerical claim, URL, coordinate, and unit conversion was independently verified by team members against primary source PDFs, ASF API responses, and automated tests.
+- **Visual Media:** Seven illustrative scene graphics created earlier in `web/assets/` (Higgsfield AI, tagged `"AI-generated illustration"`) remain archived in the repository while Site v2 uses a live NISAR MapLibre displacement map for its hero background alongside custom physics SVG schematics; our 7-slide presentation (`docs/story/slides.html`) and v2 simulator (`game/index.html`) contain **zero AI artwork**.
+- **Software & Documentation Support:** AI coding and research assistants (Claude Code, Gemini / Antigravity) assisted with Python InSAR utility scaffolding, unit tests, coordinate extraction verification from published tables, and documentation drafting (`docs/story/judge_faq.md`, `docs/story/sources.md`). Every numerical claim, URL, coordinate, and unit conversion was independently verified by team members against primary source PDFs, ASF API responses, and automated tests.
+
+---
+
+## Companion Submission Package (`docs/story/`)
+
+- [`docs/story/slides.html`](slides.html) — Interactive `7`-slide browser deck using real NISAR/VIIRS maps and inline SVG charts (zero AI art).
+- [`docs/story/video_shotlist.md`](video_shotlist.md) — `30.0`-second capture shotlist (`Shot 1–6`) and line-verified `video_30s.srt` subtitles.
+- [`docs/story/judge_faq.md`](judge_faq.md) — `15`-question technical Jury Q&A card rendered live in [`web/faq.html`](../../web/faq.html).
+- [`docs/story/sinkhole_timeline.md`](sinkhole_timeline.md) — Chronology and groundwater-driver synthesis across all `29` verified Karapınar sinkholes (`1972–2013`).
+- [`docs/story/holme_fen.md`](holme_fen.md) — Verified Holme Fen single-sentence website copy (`1851` post, `~4 m`, `2.75 m` below sea level).
+- [`docs/story/calibration_note.md`](calibration_note.md) & [`docs/story/submission_rules.md`](submission_rules.md) — NISAR BETA/PROVISIONAL/VALIDATED rules & Space Apps compliance checks.
 
 ---
 
 ## References
 
+- **Friant-Kern Canal Slows By 60 Percent, Subsidence To Blame — KVPR (Ezra David Romero, Aug 3, 2017):** https://www.kvpr.org/environment/2017-08-03/friant-kern-canal-slows-by-60-percent-subsidence-to-blame
 - **NISAR Mission Overview (NASA Science):** https://science.nasa.gov/mission/nisar/
 - **NISAR Products Overview (ASF Data User Guide):** https://nisar-docs.asf.alaska.edu/products-overview/
 - **NISAR Provisional Known Issues (ASF):** https://nisar-docs.asf.alaska.edu/provisional-known-issues/
