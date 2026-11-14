@@ -491,17 +491,19 @@
           <ul>
             <li><strong>Official Notice:</strong> <em>NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA–JPL and ISRO), not by our team.</em></li>
             <li><strong>Strict Gatekeeping:</strong> Pre-calibration <code>beta</code> granules (&lt; 17 Jun 2026) excluded from quantitative cumulative charts; same-day GCOV optical comparison labeled <code>preview</code>; <em>Valley Under Pressure</em> labeled <code>illustrative</code>.</li>
-            <li><strong>Pipeline Reproducibility:</strong> Phase conversion (<code>−λ/4π</code>), masking, and cumulative stacking checks covered by <code>pytest</code> (37+ tests).</li>
+            <li><strong>Zero AI Imagery &amp; Open Code:</strong> Zero AI-generated images on the site, slides, 3D viewer, or <code>demo_30s.mp4</code> (unused early art removed in <code>38b774f</code>); Claude/Gemini assisted Python scaffolding &amp; QA. 43/43 external URLs HTTP 200; 70+ <code>pytest</code> checks.</li>
+            <li><strong>Live Site &amp; Repo:</strong> <a href="https://keremsumer2010-tech.github.io/aseltech/" target="_blank" rel="noopener">keremsumer2010-tech.github.io/aseltech/</a> · <a href="https://github.com/keremsumer2010-tech/aseltech" target="_blank" rel="noopener">github.com/keremsumer2010-tech/aseltech</a></li>
           </ul>
         </div>
-        <div class="card">
-          <h3>Tool &amp; Editorial Transparency</h3>
+        <div class="card" style="display:flex;flex-direction:column;gap:8px;">
+          <h3>2026 Global Subsidence Atlas (Top-5 Provisional LOS)</h3>
+          <img src="media/pc10_global.png" alt="Same NISAR L-band engine across sinking regions worldwide" style="width:100%;max-height:175px;object-fit:cover;border-radius:6px;border:1px solid var(--border);" />
           <ul>
-            <li><strong>Visual Assets:</strong> Zero AI-generated images appear on the site, slide deck, 3D viewer, simulator, or <code>demo_30s.mp4</code> (unused early artwork removed in commit <code>38b774f</code>); every map, chart, and simulator panel plots measured satellite, GPS, and field-survey data.</li>
-            <li><strong>Software Assistance:</strong> Claude and Gemini/Antigravity assisted Python scaffolding, QA cross-checks, and technical editing.</li>
-            <li><strong>Verification:</strong> All 43/43 unique external URLs in <code>docs/story/sources.md</code> verified live HTTP 200; 29/29 Karapınar sinkholes verified line-by-line against Tapur &amp; Bozyiğit (2015) PDF.</li>
-            <li><strong>Live Interactive Site:</strong> <a href="https://keremsumer2010-tech.github.io/aseltech/" target="_blank" rel="noopener">keremsumer2010-tech.github.io/aseltech/</a></li>
-            <li><strong>Repository &amp; Technical Note:</strong> <a href="https://github.com/keremsumer2010-tech/aseltech" target="_blank" rel="noopener">github.com/keremsumer2010-tech/aseltech</a> · <code>docs/story/technical_note.html</code></li>
+            <li><strong>#1 Konya Basin (108 d):</strong> <strong>−9.6 cm</strong> LOS (−12.1 cm vert. est.)</li>
+            <li><strong>#2 Central Valley (108 d):</strong> <strong>−7.8 cm</strong> LOS (−10.1 cm vert. est.; 10-GPS r = 0.924)</li>
+            <li><strong>#3 Jakarta (108 d):</strong> <strong>−6.8 cm</strong> LOS (−9.3 cm vert. est.; 2.9% valid pixels)</li>
+            <li><strong>#4 Karapınar (108 d):</strong> <strong>−5.9 cm</strong> LOS (−8.0 cm vert. est.; 29 sinkholes)</li>
+            <li><strong>#5 Mexico City (120 d):</strong> <strong>−4.4 cm</strong> LOS (−6.2 cm vert. est.; lakebed clays)</li>
           </ul>
         </div>
       </div>

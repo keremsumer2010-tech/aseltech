@@ -76,6 +76,21 @@ We treat external comparisons strictly as consistency checks rather than formal 
 - **Population, Crop & UK Fens Polarimetry (`exposure.md`, `polarization.md`):** Across Central Valley + Konya Basin `> 2 cm` LOS footprints, **`141,555` estimated residents** (`71,701` CV + `69,854` Konya Basin, `11,572` in Karapınar; `196,949` with `<= 2.5 km` basin interpolation) live on subsiding ground; **`79.2%` (`1,251.37 km²`)** of Central Valley `> 2 cm` land is cultivated cropland led by **citrus (`355.64 km²`)** and **pistachios (`230.92 km²`)**. In the UK Fens (`4` fields, `8` `GCOV` dates), `HH` sits **`~7 dB` brighter** than `HV` (`4.27` vs. `3.49 dB` temporal range).
 - **Four Global Cities (`docs/story/global_showcase.md`):** Unmodified pipeline execution records `1 km` peak LOS subsidence of **`−4.4 cm` (Mexico City)**, **`−3.5 cm` (Tehran)**, **`−6.8 cm` (Jakarta, `2.9%` valid pixels)**, and **`−1.4 cm` (Beijing, `[−7.6, −1.4] cm` ref. spread)**.
 
+### 5.1 Global Subsidence Atlas (2026 Provisional Benchmark)
+
+Using the single-command `pipeline/nisarpulse/` engine with identical `provisional`-only (`>= 2026-06-17`, `P05023`) thresholds across basins worldwide, our expanding **2026 NISAR Global Subsidence Atlas** currently ranks `8` completed regions (`108–120` summer–autumn days; additional cities from `data/global/atlas.json` are appended as acquisitions complete):
+
+| Rank | Region / City | Period (`n` pairs) | Peak 1 km LOS (`cm`) | Ref. Range (`cm`) | Vertical Est. (`cm`) | Linearized Rate Est. (`cm/yr`) | Coverage / Note |
+|---:|---|---|---:|---:|---:|---:|---|
+| 1 | **Konya Closed Basin, Türkiye** | `2026-06-26 → 2026-10-12` (`8`) | **`−9.6`** | `[−14.0, −9.6]` | `−12.1` | `−32.5` | Full basin (`provisional`) |
+| 2 | **Central Valley, USA** | `2026-06-28 → 2026-10-14` (`7`) | **`−7.8`** | `[−7.8, −4.7]` | `−10.1` | `−26.4` | 10-GPS `r = 0.924`, `1.00 cm` RMSE |
+| 3 | **Jakarta, Indonesia** | `2026-06-27 → 2026-10-13` (`8`) | **`−6.8`** | 1 ref only | `−9.3` | `−23.2` | `2.9%` valid pixels (tropical veg.) |
+| 4 | **Karapınar, Türkiye** | `2026-06-26 → 2026-10-12` (`8`) | **`−5.9`** | — | `−8.0` | `−19.9` | 29 sinkholes (`p = 0.0001` perm.) |
+| 5 | **Mexico City, Mexico** | `2026-06-22 → 2026-10-20` (`8`) | **`−4.4`** | `[−7.4, −4.4]` | `−6.2` | `−13.5` | Eastern lakebed clays |
+| 6 | **Tehran, Iran** | `2026-06-18 → 2026-10-16` (`9`) | **`−3.5`** | `[−7.3, −3.5]` | `−4.7` | `−10.7` | SW Tehran plain trough |
+| 7 | **Beijing, China** | `2026-06-17 → 2026-10-15` (`9`) | **`−1.4`** | `[−7.6, −1.4]` | `−2.1` | `−4.3` | Wide reference sensitivity |
+| 8 | **Sacramento–San Joaquin Delta, USA** | `2026-06-17 → 2026-10-15` (`9`) | **`−1.3`** | `[−1.3, −1.1]` | `−1.6` | `−4.0` | Levee samples reach `−11.36 cm` |
+
 ---
 
 ## 6. Original Contributions (`docs/OZGUN_KATKILAR.md`)
