@@ -14,7 +14,7 @@
   - `ZAMAN_CIZELGESI` Pazar görevi #1–5: `docs/story/sinkhole_timeline.md` (`29` doğrulanmış Karapınar obruğu + `Q28` `0–1 km` halka analizi `−4.152 cm`), `docs/story/video_shotlist.md`, `docs/story/judge_faq.md` (`uncertainty.md` SNR `2.7×–4.5×` & aktif GNSS `0.86 cm` RMSE / `r = 0.81` + `Q21` çift-yörünge dahil), `docs/story/slides.html`, `docs/story/pitch.md` ve `docs/story/project_page.md` (`Valley Under Pressure` 24 ay v2 oyunu + `Q28` Karapınar + `Q21` Track 34↔114 `%85` işaret uyumu ile tam senkron), `docs/qa/PC4.md` §9–11 (`44/44` aktif dış URL HTTP 200 kontrolü + `web3d/` & PC3/PC5 sayı/sözleşme QA)
 - Doğrulama:
   - UK görsel çifti (`700x500` RGB, `transparency` temiz), `meta.json` şeması ve `sinkholes.geojson` (`29/29` geçerli Point Feature, `NaN` yok) doğrulandı.
-  - `web3d/surfaces.json` valid UTF-8 JSON (`508,881 B`, `NaN` yok), `node --check web3d/app.js` geçti, lokal HTTP sunucu `/web3d/` ve `/data/` yollarında HTTP 200 döndü.
+  - `web3d/surfaces.json` valid UTF-8 JSON (`508,115 B`, `NaN` yok), `node --check web3d/app.js` geçti, lokal HTTP sunucu `/web3d/` ve `/data/` yollarında HTTP 200 döndü.
   - PC4 dokümanları, Three.js CDN ve depo URL'si (`https://github.com/keremsumer2010-tech/aseltech`) dahil doğrulanan **22/22** benzersiz `https://` URL canlı **HTTP 200** döndü (PCQ'nun talep ettiği Terra Bella / Friant-Kern KVPR kaynağı dahil).
   - `docs/qa/PCQ.md` (`Sahip: PC4`) ve `docs/code_review.md` (`web3d/generate_3d_data.py` `h5py` importu + `web3d/` `#backLink` Pages uyumu) bulguları giderildi.
 - Doğrulanmadı (K-2):
