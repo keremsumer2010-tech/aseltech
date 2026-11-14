@@ -1,5 +1,6 @@
 # ORTAK İŞ KUYRUĞU — boşta kalan buradan iş alır
 Sahiplenme: satırı `- [ ]` → `- [~PCx]` yap, HEMEN commit + push (başkası almasın). Bitince satırı kuyruktan **SİL** (yapılanı `status/PCx.md` ve `docs/qa/PCx.md`'ye yaz).
+Sahiplenirken satırın sonuna `(PCx aldı HH:MM)` notu ekle; `[~PCy]` olan satırı ve `[atandı: başka PC]` satırını ALMA; push geçmeden işe başlama (kural: `tasks/PC6.md`/`PC8.md` en altı, Cmt 23:00).
 Push çakışırsa `git pull --rebase`; satırı başkası almışsa bir sonrakini seç. Yukarıdan aşağı öncelik sırası.
 "Gerekli" sütunu: E = Earthdata hesabı gerekir. Klasör = sadece oraya yaz.
 Saatler: `docs/ZAMAN_CIZELGESI.md`. "[atandı: PCx]" işi sadece o PC alır; atanmamış işi (Q16) her boşta kalan alabilir. Tam kurallar: `rules/RULES.md` §7.1. Sahiplenirken bu dosyada **sadece kendi satırını** değiştir.
