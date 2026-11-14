@@ -294,7 +294,24 @@ def main() -> None:
     ap = argparse.ArgumentParser(description="Compute infrastructure subsidence risk GeoJSON.")
     ap.add_argument("--infra", type=Path, default=DEFAULT_INFRA)
     ap.add_argument("--npz", type=Path, default=DEFAULT_NPZ)
-    ap.add_argument("--out", type=Path, default=DEFAULT_OUT)
+    ap.add_argument(
+        "--out",
+        type=Path,
+        default=None,
+        help="Explicit output assets.json path (overrides --data-dir).",
+    )
+    ap.add_argument(
+        "--data-dir",
+        type=Path,
+        default=None,
+        help="Target output directory where assets.json is written if --out is omitted.",
+    )
+    ap.add_argument(
+        "--quality",
+        type=str,
+        default=None,
+        help="Optional quality label override (e.g. 'mixed' for full-year beta+provisional runs).",
+    )
     ap.add_argument("--top", type=int, default=10)
     ap.add_argument("--self-test", action="store_true")
     args = ap.parse_args()
@@ -303,12 +320,16 @@ def main() -> None:
         self_test()
         return
 
+    out_path = args.out or ((args.data_dir / "assets.json") if args.data_dir else DEFAULT_OUT)
     out = compute_assets(args.infra, args.npz, top_n=args.top)
-    args.out.parent.mkdir(parents=True, exist_ok=True)
-    args.out.write_text(json.dumps(out, indent=2, ensure_ascii=False, allow_nan=False) + "\n", encoding="utf-8")
+    if args.quality:
+        out["quality"] = args.quality
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    with out_path.open("w", encoding="utf-8", newline="\n") as fh:
+        fh.write(json.dumps(out, indent=2, ensure_ascii=False, allow_nan=False) + "\n")
     s = out["summary"]
     print(
-        f"Wrote {args.out}: evaluated={s['evaluated_segments']}, "
+        f"Wrote {out_path}: evaluated={s['evaluated_segments']}, "
         f"high={s['high_risk_count']}, medium={s['medium_risk_count']}, low={s['low_risk_count']}"
     )
     for rank, feat in enumerate(out["features"], 1):

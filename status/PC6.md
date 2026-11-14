@@ -1,11 +1,12 @@
 # PC6 durum
 
-- Görev: 14:45 YENİ PAKET (`tasks/PC6.md`) adım 4/5 tamamlandı, adım 5'e (Pazar hazırlığı) geçiliyor.
-- Durum: Önceki tüm işler (`Q05`, `Q06`, `Q19` v2, `Q20`, `Q28`, `Q14`) tamamlandı. 14:45 paketi ilk 4 adım tamamlandı:
-  - Adım 1 (`analysis/pc6/make_animation.py`): `docs/story/media/cv_subsidence.{mp4,gif}` ve `docs/story/media/kp_subsidence.{mp4,gif}` pushlandı (`7369686`).
-  - Adım 2 (`analysis/pc6/make_validation_plots.py`): `docs/story/validation_report.md`, `validation_scatter.png` ve 10 istasyon grafiği pushlandı (`823cb74`).
-  - Adım 3 (`analysis/pc6/make_risk_profiles.py`): `docs/story/risk_dossier.md` ve `risk_1..10.png` profilleri pushlandı (`5248279`).
-  - Adım 4 (Canlı Oyun v2 QA): `https://keremsumer2010-tech.github.io/aseltech/game/` ve `#play` doğrulandı (`summary.json`/`assets.json`/`points.json` HTTP 200, 0 konsol hatası, mobil `/game/` `scrollWidth = 390 px`); kısa iframe yüksekliği için `game/style.css`'e `@media (max-height: 460px)` eklendi (`docs/qa/PC6.md`).
+- Görev: 14:45 YENİ PAKET (`tasks/PC6.md`) TAMAMLANDI (5/5 adım).
+- Durum: Önceki tüm işler (`Q05`, `Q06`, `Q19` v2, `Q20`, `Q28`, `Q14`) ve 14:45 paketinin tamamı (1–5. adımlar) eksiksiz tamamlandı:
+  - Adım 1 (`analysis/pc6/make_animation.py`): `docs/story/media/cv_subsidence.{mp4,gif}` (`3.07 MB` / `4.23 MB`, 8 epok, 1080p) ve `docs/story/media/kp_subsidence.{mp4,gif}` (`0.88 MB` / `1.36 MB`, 9 epok, 1080p) pushlandı (`7369686`).
+  - Adım 2 (`analysis/pc6/make_validation_plots.py`): `docs/story/validation_report.md`, `validation_scatter.png` (`r=0.924`, `RMSE=1.37 cm`) ve 10 `gnss_<station>.png` grafiği pushlandı (`823cb74`).
+  - Adım 3 (`analysis/pc6/make_risk_profiles.py`): `docs/story/risk_dossier.md` ve `risk_1..10.png` profilleri (California Aqueduct #4, Tulare ID Canal #1, Alta East Branch Canal #5, Friant-Kern Canal #7/#9 vurgulu + `game_model.md` kaynaklı 2 cümlelik özet) pushlandı (`5248279`).
+  - Adım 4 (Canlı Oyun v2 QA): `https://keremsumer2010-tech.github.io/aseltech/game/` ve `#play` doğrulandı (`summary.json`/`assets.json`/`points.json` HTTP 200, 0 konsol hatası, mobil `/game/` `scrollWidth = 390 px`); kısa iframe yüksekliği için `game/style.css`'e `@media (max-height: 460px)` eklendi (`09902e8`, `docs/qa/PC6.md`).
+  - Adım 5 (Pazar Tam Yıl Hazırlığı): `validation/compare.py`, `risk/compute_risk.py` ve `risk/karapinar_risk.py` scriptlerine `--data-dir` ve `--quality` bayrakları eklendi; tam yıl `mixed` çalıştırma komutları `docs/qa/PC6.md`'ye belgelendi.
 - Çıktılar:
   - Görev 1 (GNSS): `validation/gnss_stations.csv` (23 istasyon), `validation/gnss/*.csv` (10 istasyon, 2025-11 → 2026-11), `validation/README.md`
   - Görev 2 & 3 (OSM): `risk/central_valley_infra.geojson` (3238 hat, 1.07 MB), `risk/karapinar_infra.geojson` (64 hat, 0.04 MB), `risk/README.md`
@@ -16,11 +17,11 @@
   - Q28: `risk/karapinar_risk.py`, `data/karapinar/assets.json` (64 OSM segmenti + 29 obruk halkası; `0-1 km` ort. `-4.152 cm` vs `>5 km` `-0.647 cm`), `docs/qa/PC6.md`
   - Q14: `docs/qa/PC6.md` (`data/{central_valley,karapinar,uk}/meta.json` ve 12 JSON/GeoJSON dosyası, 0 `NaN`)
 - Doğrulama:
-  - `python -m pytest analysis -q` PASS
-  - `python validation/compare.py --self-test` PASS
-  - `python risk/compute_risk.py --self-test` PASS
-  - `python risk/karapinar_risk.py --self-test` PASS
+  - `python -m pytest analysis -q` PASS (`42 passed, 1 warning`)
+  - `python validation/compare.py --self-test` PASS (`--data-dir --quality mixed` doğrulandı)
+  - `python risk/compute_risk.py --self-test` PASS (`--data-dir --quality mixed` doğrulandı)
+  - `python risk/karapinar_risk.py --self-test` PASS (`--data-dir --quality mixed` doğrulandı)
   - `game/test_model.html`: `5/5 tests passed` (`0%` 108-gün baz hata, `-10.1 cm` dikey / `-7.84 cm` LOS, `k=0.623`)
-  - Canlı tarayıcı testi: masaüstü `1280x850` ve mobil `390x844` (`scrollWidth === 390`, 0 konsol hatası, 0 HTTP 4xx/5xx)
-- BLOCKED: yok. (Yeni görev bekleniyor / tüm PC6 kuyruğu tamamlandı.)
+  - Canlı GitHub Pages testi (`https://keremsumer2010-tech.github.io/aseltech/game/` ve `#play`): masaüstü `1280x850` ve mobil `390x844` (`scrollWidth === 390`, `summary.json`/`assets.json`/`points.json` HTTP 200, 0 konsol hatası, 0 HTTP 4xx/5xx)
+- BLOCKED: yok. (14:45 YENİ PAKET + tüm PC6 görevleri tamamlandı.)
 - AI: Kod ve analiz üretimi + tarayıcı doğrulaması; ölçümler NASA-ISRO NISAR (provisional), NGL ve OpenStreetMap kaynaklıdır.

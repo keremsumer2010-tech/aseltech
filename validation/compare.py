@@ -382,7 +382,24 @@ def main() -> None:
     ap.add_argument("--npz", type=Path, default=DEFAULT_NPZ)
     ap.add_argument("--stations", type=Path, default=DEFAULT_STATIONS_CSV)
     ap.add_argument("--gnss-dir", type=Path, default=DEFAULT_GNSS_DIR)
-    ap.add_argument("--out", type=Path, default=DEFAULT_OUT)
+    ap.add_argument(
+        "--out",
+        type=Path,
+        default=None,
+        help="Explicit output validation.json path (overrides --data-dir).",
+    )
+    ap.add_argument(
+        "--data-dir",
+        type=Path,
+        default=None,
+        help="Target output directory where validation.json is written if --out is omitted.",
+    )
+    ap.add_argument(
+        "--quality",
+        type=str,
+        default=None,
+        help="Optional quality label override (e.g. 'mixed' for full-year beta+provisional runs).",
+    )
     ap.add_argument("--self-test", action="store_true")
     args = ap.parse_args()
 
@@ -390,11 +407,16 @@ def main() -> None:
         self_test()
         return
 
+    out_path = args.out or ((args.data_dir / "validation.json") if args.data_dir else DEFAULT_OUT)
     results = run_comparison(args.npz, args.stations, args.gnss_dir)
-    args.out.parent.mkdir(parents=True, exist_ok=True)
-    args.out.write_text(json.dumps(results, indent=2, allow_nan=False) + "\n", encoding="utf-8")
+    if args.quality:
+        for row in results:
+            row["quality"] = args.quality
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    with out_path.open("w", encoding="utf-8", newline="\n") as fh:
+        fh.write(json.dumps(results, indent=2, allow_nan=False) + "\n")
     valid_stations = [r for r in results if r["rmse_cm"] is not None]
-    print(f"Wrote {args.out} ({len(results)} stations, {len(valid_stations)} inside valid InSAR footprint)")
+    print(f"Wrote {out_path} ({len(results)} stations, {len(valid_stations)} inside valid InSAR footprint)")
     for r in valid_stations:
         print(f"  {r['station']:5s} rmse={r['rmse_cm']} cm  corr={r['corr']}  insar_end={r['insar'][-1]} cm  gnss_end={r['gnss'][-1]} cm")
 

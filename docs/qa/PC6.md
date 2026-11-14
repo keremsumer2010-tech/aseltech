@@ -98,3 +98,43 @@ Tüm 3 bölge ve 12 `.json`/`.geojson` dosyası tarandı (`NaN`/`Infinity`: **0 
   - Tüm sürgüler (`Groundwater Pumping`, `Surface Water Allocation`, `Temporary Land Fallowing`), önayarlar (`2026 Baseline`, `Over-Pump`, `SGMA Balance`), 7 ilçe seçicisi, `Next Month →` / `+6 Mo` / `Reset`, 24 ay audit penceresi ve harita katmanları (`Live Simulation`, `Blend`, `2026 NISAR Raster`) doğrulandı.
 - **`game/` İyileştirmesi:** `#play` içindeki `535x300 px` gömülü iframe'de açılış diyaloğunun altındaki `"Start 24-Month Simulation →"` düğmesi kaydırma gerektiriyordu; yalnızca `game/style.css` dosyasına `@media (max-height: 460px)` kompakt iframe/modal kuralları eklendi (`web/`'e dokunulmadı).
 - **Bilgi Notu (`web/` kapsam dışı):** Canlı ana sayfanın (`aseltech/`) `390x844` mobil kontrolünde Chapter 4 tablosu (`487 px`) ve iframe kutusu (`535 px`) nedeniyle ana sayfa `scrollWidth = 569 px` ölçüldü (`web/` PC6 yazma yetkisi dışında olduğu için yalnızca raporlandı).
+
+## Pazar Hazırlığı — Q07 Tam Yıl (`mixed`) Yeniden Çalıştırma Komutları (`14:45 Paket — Adım 5`)
+
+PC2'nin Q07 tam yıl verisi (`beta` + `provisional` = `mixed` kalite etiketi) geldiğinde mevcut varsayılan `data/central_valley/` veya `data/karapinar/` dosyalarını ezmeden ayrı bir klasöre (`--data-dir`) ve `--quality mixed` etiketiyle çıktı alabilmek için PC6 scriptleri güncellendi:
+
+- `validation/compare.py`: `--npz`, `--stations`, `--gnss-dir`, `--data-dir`, `--out`, `--quality` seçenekleri eklendi (`--out` verilmezse `<data-dir>/validation.json` yazar).
+- `risk/compute_risk.py`: `--infra`, `--npz`, `--data-dir`, `--out`, `--quality`, `--top` seçenekleri eklendi (`--out` verilmezse `<data-dir>/assets.json` yazar).
+- `risk/karapinar_risk.py`: `--sinkholes`, `--infra`, `--npz`, `--data-dir`, `--out`, `--quality` seçenekleri eklendi (`--out` verilmezse `<data-dir>/assets.json` yazar).
+
+### Örnek Pazar Komutları (Ayrı Klasöre Yazma)
+
+```bash
+# 1) Central Valley tam yıl GNSS doğrulaması (varsayılan data/central_valley/'yi bozmaz)
+python validation/compare.py \
+  --npz <Q07_TAM_YIL_CV_CUM_NPZ> \
+  --data-dir data/central_valley_full \
+  --quality mixed
+
+# 2) Central Valley tam yıl altyapı risk indeksi
+python risk/compute_risk.py \
+  --npz <Q07_TAM_YIL_CV_CUM_NPZ> \
+  --data-dir data/central_valley_full \
+  --quality mixed
+
+# 3) Karapınar tam yıl obruk + altyapı risk indeksi (gerekirse)
+python risk/karapinar_risk.py \
+  --npz <Q07_TAM_YIL_KP_CUM_NPZ> \
+  --data-dir data/karapinar_full \
+  --quality mixed
+```
+
+Ana site verilerini doğrudan güncellemek gerektiğinde `--data-dir data/central_valley` (veya `--data-dir` parametresiz varsayılan yol) + `--quality mixed` kullanılabilir; `--npz` içindeki `quality` alanı doğrudan `mixed` ise `--quality` parametresi isteğe bağlıdır.
+
+### Doğrulama (`14:45 Paket — Adım 5` sonrası çalıştırılan kontroller)
+
+- `python validation/compare.py --self-test` → `Self-test passed (10 stations evaluated, JSON clean).`
+- `python risk/compute_risk.py --self-test` → `Self-test passed (top 10 segments valid GeoJSON, zero NaNs).`
+- `python risk/karapinar_risk.py --self-test` → `PASS self-test: 0-1km=-6.564 cm < 1-2km=-3.05 cm < 2-5km=-0.178 cm | line dist=0.0 m`
+- `python -m pytest analysis -q` → `42 passed, 1 warning in 7.60s`
+- Geçici `--data-dir` + `--quality mixed` testi (`validation/compare.py`, `risk/compute_risk.py`, `risk/karapinar_risk.py`) → `10` istasyon, `81` yüksek riskli CV segmenti ve `64` Karapınar segmenti `quality="mixed"` ile ayrı klasöre temiz JSON olarak üretildi (geçici dizin silindi).

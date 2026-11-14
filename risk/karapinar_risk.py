@@ -173,6 +173,7 @@ def compute_karapinar_assets(
     infra_path: Path = DEFAULT_INFRA,
     npz_path: Path = DEFAULT_NPZ,
     out_path: Path = DEFAULT_OUT,
+    quality_override: str | None = None,
 ) -> dict:
     """Run sinkhole ring + OSM proximity/gradient risk analysis and save JSON."""
     with open(sinkholes_path, "r", encoding="utf-8") as f:
@@ -186,7 +187,7 @@ def compute_karapinar_assets(
         y_grid = z["y"]
         epsg = int(z["epsg"])
         dates = [str(d) for d in z["dates"]]
-        quality = str(z["quality"]) if "quality" in z else "provisional"
+        quality = quality_override or (str(z["quality"]) if "quality" in z else "provisional")
     project_fn = cr.make_batch_projector(epsg)
 
     ring_info = analyze_sinkhole_rings(cum_cm, x_grid, y_grid, epsg, sh_gj["features"], project_fn)
@@ -343,14 +344,42 @@ def self_test() -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Compute Karapinar sinkhole ring subsidence and OSM proximity risk.")
+    parser.add_argument("--sinkholes", type=Path, default=DEFAULT_SINKHOLES)
+    parser.add_argument("--infra", type=Path, default=DEFAULT_INFRA)
+    parser.add_argument("--npz", type=Path, default=DEFAULT_NPZ)
+    parser.add_argument(
+        "--out",
+        type=Path,
+        default=None,
+        help="Explicit output assets.json path (overrides --data-dir).",
+    )
+    parser.add_argument(
+        "--data-dir",
+        type=Path,
+        default=None,
+        help="Target output directory where assets.json is written if --out is omitted.",
+    )
+    parser.add_argument(
+        "--quality",
+        type=str,
+        default=None,
+        help="Optional quality label override (e.g. 'mixed' for full-year beta+provisional runs).",
+    )
     parser.add_argument("--self-test", action="store_true", help="Run synthetic unit check")
     args = parser.parse_args()
     if args.self_test:
         self_test()
         return
-    res = compute_karapinar_assets()
+    out_path = args.out or ((args.data_dir / "assets.json") if args.data_dir else DEFAULT_OUT)
+    res = compute_karapinar_assets(
+        sinkholes_path=args.sinkholes,
+        infra_path=args.infra,
+        npz_path=args.npz,
+        out_path=out_path,
+        quality_override=args.quality,
+    )
     s = res["summary"]
-    print(f"Wrote {DEFAULT_OUT} ({s['total_infra_segments']} segments, 0 NaNs verified)")
+    print(f"Wrote {out_path} ({s['total_infra_segments']} segments, 0 NaNs verified)")
     print("Disjoint rings:", s["sinkhole_ring_analysis"]["disjoint_rings"])
     print("Within 1/2/5 km infra count:", s["segments_within_1km_of_sinkhole"], s["segments_within_2km_of_sinkhole"], s["segments_within_5km_of_sinkhole"])
     print("Top 5 nearest infra segments:", [(f["properties"]["name"], f["properties"]["type"], f["properties"]["nearest_sinkhole_m"], f["properties"]["gradient_mm_per_km"]) for f in res["features"][:5]])
