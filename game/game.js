@@ -791,22 +791,6 @@
 
     $('sinkholeLegendItem').hidden = activeBasinId !== 'konya';
 
-    const sinkBanner = $('sinkholeStatusBanner');
-    if (sinkBanner) {
-      if (activeBasinId === 'konya') {
-        sinkBanner.hidden = false;
-        const hitList = simState.districts.filter((x) => x.sinkholeRiskIndicator).map((x) => x.shortName);
-        if (hitList.length > 0) {
-          sinkBanner.className = 'sinkhole-banner elevated';
-          sinkBanner.innerHTML = `<strong>Sinkhole risk indicator: Elevated</strong> (${hitList.join(', ')}) — indicator only; does not predict collapse of individual obruks.`;
-        } else {
-          sinkBanner.className = 'sinkhole-banner';
-          sinkBanner.innerHTML = `<strong>Sinkhole risk indicator: Baseline</strong> (0/6 zones past 4 cm karst threshold; indicator only, not predictive).`;
-        }
-      } else {
-        sinkBanner.hidden = true;
-      }
-    }
 
     // Sliders, ARIA valuetext & Dynamic Surface Cap
     $('pumpSlider').value = d.controls.pumpingPct;
