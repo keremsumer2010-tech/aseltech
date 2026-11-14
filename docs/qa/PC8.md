@@ -188,3 +188,25 @@
 - **Konya Kapalı Havzası (`[32.4, 37.4, 33.9, 38.1]`, `2026-06-26` → `2026-10-12`, 8 Track 7 çifti):**
   - **WorldPop 100 m (`2020`, `estimate`):** Havza BBox toplamı `868,371` kişi (`444,542` geçerli InSAR pikseli). **`> 2 cm` LOS:** **`69,854`** kişi (`118,485` `<= 2.5 km` enterpolasyonlu; `79,261` dikey *estimate*). **`> 5 cm` LOS:** **`16,822`** kişi (`33,700` enterpolasyonlu; `32,016` dikey *estimate*).
   - **ESA WorldCover 10 m (`2021 v200`, `N36E030` + `N36E033`):** `> 2 cm` LOS ortak geçerli (`627.18 km²`): Grassland `284.91 km²` (`45.4%`), Cropland `173.10 km²` (`27.6%`), Bare/sparse `127.51 km²` (`20.3%`), Built-up `40.69 km²` (`6.5%`), Tree cover `0.77 km²` (`0.1%`). `> 5 cm` LOS (`99.47 km²`): Cropland `36.28 km²` (`36.5%`), Grassland `32.70 km²` (`32.9%`), Bare/sparse `21.13 km²` (`21.2%`), Built-up `9.16 km²` (`9.2%`). Enterpolasyonlu `> 2 cm` havza (`2,157.67 km²`): Cropland `1,167.69 km²` (`54.1%`).
+
+---
+
+## 8. 14 Nov 2026 Akşamı Madde 4 — `docs/MASTER_PLAN.md` §9 Teslim Kontrol Listesi Doğrulaması
+
+| # | `docs/MASTER_PLAN.md` §9 Maddesi | Durum | Doğrulama Kanıtı ve Açık Kalanlar |
+|---|---|---|---|
+| 1 | Proje sayfası İngilizce, tüm alanlar dolu (özet, nasıl çalışır, faydalar, hedefler, araçlar) | **HAZIR** | `docs/story/submission_form.md` içindeki 13 Space Apps alanı (16 `text` bloğu) tamamen İngilizce dolduruldu; karakter/kelime sınırları Python ile doğrulandı; `TBD`/`TODO` placeholder taraması `0` sonuç verdi (`[]`). |
+| 2 | Demo: ≤30 sn video (İngilizce altyazı) VEYA ≤7 slayt; link herkese açık | **SLAYT HAZIR / VİDEO BEKLEMEDE** | `docs/story/slides.html` tam **7 slayt** (`<section class="slide"> = 7`), `docs/story/slides_notes.md` konuşmacı notları hazır. Video yolu için `docs/story/video_subtitles.srt` ve `docs/story/narration_script.md` hazır (video dondurulmuş durumda; sunumda canlı/PDF slayt linkinin herkese açık paylaşılması yeterli). |
+| 3 | Repo linki ve canlı site linki herkese açık | **KISMEN AÇIK** | GitHub repo linki (`https://github.com/keremsumer2010-tech/aseltech`) `web/index.html`, `web/science.html`, `web/data.html` ve `docs/story/slides.html` içinde mevcut; ancak **canlı deploy URL'si** (GitHub Pages / Vercel) PC1/PC3 tarafından yayına alındıktan sonra teslim formuna eklenecek. |
+| 4 | Kullanılan NASA verisi ve diğer kaynaklar listelendi | **HAZIR** | NASA-ISRO NISAR (provisional + NASA-JPL/ISRO kalibrasyon notu), OPERA DISP-S1, SMAP/IMERG, WorldPop 100 m (`CC BY 4.0`), USDA CDL 30 m (`Public Domain`), ESA WorldCover 10 m (`CC BY 4.0`) ve USGS/NGL GNSS kaynakları `submission_form.md`, `web/data.html`, `web/science.html` ve `docs/story/exposure.md` içinde listelendi. |
+| 5 | Yapay zekâ kullanımı açıklandı (Claude, Gemini, Higgsfield — neyi ürettikleri) | **PC1 ONAYI BEKLİYOR** | `docs/story/submission_form.md` §AI Disclosure alanı ve `web/index.html` / `web/science.html` / `docs/story/slides.html` içinde Claude, Gemini ve Higgsfield açıklamaları mevcut; `MASTER_PLAN.md` §9 gereği son resmi metin onayı PC1 tarafından verilecek. |
+| 6 | NASA logosu yok; AI görselleri etiketli | **GEÇTİ (`0` NASA logosu)** | 9 HTML dosyası (`web/*.html`, `game/*.html`, `docs/story/slides.html`) tarandı: `NASA_LOGO_HITS: 0`, gizli anahtar taraması `SECRET_HITS: 0`, `docs/story/media/` (`41` dosya) `BAD_MEDIA: 0`. `web/index.html`, `web/science.html` ve `slides.html` içinde AI üretimi/desteği etiketli. |
+| 7 | Teslim saati: Pazar 23:59 UK = Pazartesi 02:59 TR — hedef Pazar 22:00 TR | **TAKİPTE** | `python -m pytest -q`: **`63 passed, 1 warning`**; `data/**/*.json` (`60` dosya): **`BAD_JSON: 0`**. Aşağıdaki 2 web hatası PC3/PC9 için kaydedildi. |
+
+---
+
+## 9. Hata Ayıklama Bulguları (`ASLA BOŞ KALMA` İlk Turu — Diğer PC Dosyalarına Dokunmadan)
+
+1. `web/index.html` (satır 117) -> `<img src="" data-src="docs/story/media/pc9_fullyear_point.png" ...>` kırık görsel yolu ve boş `src` (`web/app.js` içinde `data-src` işleyicisi yok; ayrıca `web/` altından göreli yol `../docs/story/media/pc9_fullyear_point.png` olmalı) -> **Nasıl tekrar edilir:** `web/index.html` dosyasında `pc9_fullyear_point.png` görselini arayın veya yerel sunucuda `http://localhost:8000/web/index.html` açıp Chapter 2 figürünün yüklenmediğini (404 / boş `src`) gözlemleyin.
+2. `web/explorer.html` -> Sayfada NISAR provisional veri / NASA-JPL & ISRO kalibrasyon uyarısı metni bulunmuyor (`cal=False`) -> **Nasıl tekrar edilir:** `web/explorer.html` içinde `"calibration"` veya `"provisional"` araması yapın (0 eşleşme).
+3. `python -m pytest -q` -> **`63 passed, 1 warning`** (`analysis/cumulative.py:127` `cmap.set_bad` PendingDeprecationWarning); `60` adet `data/**/*.json` dosyasında sözdizimi veya `NaN/Infinity` hatası yok (`BAD_JSON: 0`).
