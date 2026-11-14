@@ -7,7 +7,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from pipeline.nisarpulse.__main__ import parse_cli_args
+from pipeline.nisarpulse.__main__ import parse_cli_args, write_coverage_report
 from pipeline.nisarpulse.catalog import upsert_catalog
 from pipeline.nisarpulse.search import build_chain, classify_quality, parse_bbox
 
@@ -74,6 +74,27 @@ class TestNisarPulse(unittest.TestCase):
         self.assertTrue(args.dry_run)
         self.assertTrue(args.resume)
         self.assertEqual(args.quality, "provisional")
+
+    def test_write_coverage_report(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            cov_path = Path(tmp) / "coverage.json"
+            rep_none = write_coverage_report(
+                cov_path, "nowhere", (0.0, 0.0, 1.0, 1.0), "provisional", [], [], [], 0.0, error="empty"
+            )
+            self.assertEqual(rep_none["coverage"], "none")
+            self.assertEqual(rep_none["error"], "empty")
+            rep_ok = write_coverage_report(
+                cov_path,
+                "isfahan",
+                (51.37, 32.35, 51.97, 32.95),
+                "provisional",
+                [{"a": 1}],
+                [{"path": 7, "frame": 69, "date1": "2026-06-26", "date2": "2026-07-08"}],
+                [],
+                2200.0,
+            )
+            self.assertEqual(rep_ok["coverage"], "ok")
+            self.assertEqual(rep_ok["path"], 7)
 
 
 if __name__ == "__main__":
