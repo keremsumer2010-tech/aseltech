@@ -163,7 +163,7 @@ function compare(){
 /* ---------- Chapter 3: time + points ---------- */
 function cvControls(){
   if (!D.cvMeta) return;
-  const m = D.cvMeta, s = document.getElementById('slider'), lbl = document.getElementById('dateLbl'), btn = document.getElementById('play');
+  const m = D.cvMeta, s = document.getElementById('slider'), lbl = document.getElementById('dateLbl'), btn = document.getElementById('cvPlay');
   s.max = m.dates.length - 1; s.value = m.dates.length - 1; lbl.textContent = fmtDate(m.dates.at(-1));
   const go = i => { cvIdx = i; s.value = i; lbl.textContent = fmtDate(m.dates[i]); const src = map?.getSource('cv'); if (src) src.updateImage({url: ROOT + `data/central_valley/disp/${m.dates[i]}.png`, coordinates: corners(m.bbox)}); };
   s.addEventListener('input', () => go(+s.value));
@@ -211,6 +211,15 @@ function riskList(){
 }
 
 /* ---------- Chapter 6: sinkholes ---------- */
+function ringChart(){
+  const ra = D.kpAssets?.summary?.sinkhole_ring_analysis; if (!ra?.disjoint_rings) return;
+  const rings = ra.disjoint_rings, bg = rings.find(r => r.band.startsWith('>')), r1 = rings[0];
+  setK('kp.ring1', Math.abs(r1.mean_cm).toFixed(1)); setK('kp.ringbg', Math.abs(bg.mean_cm).toFixed(1)); setK('kp.ringN', ra.sinkholes_inside_1km_footprint);
+  document.getElementById('ringBox').hidden = false;
+  new Chart(document.getElementById('ringChart'), {type: 'bar',
+    data: {labels: rings.map(r => r.band.replace(' (background)', '')), datasets: [{label: 'Average sinking (cm)', data: rings.map(r => Math.abs(r.mean_cm)), backgroundColor: ['#c8321f', '#d6604d', '#e8a08f', '#b8c2d0']}]},
+    options: {...chartOpts('cm sinking'), plugins: {legend: {display: false}}, scales: {...chartOpts('cm sinking').scales, x: {...chartOpts('').scales.x, title: {display: true, text: 'Distance from nearest sinkhole', color: '#4a5568'}}}}});
+}
 function sinkList(){
   if (!D.sinks) return;
   const ul = document.getElementById('sinkList');
@@ -222,7 +231,13 @@ function sinkList(){
 function extras(){
   const g = ROOT + 'game/index.html', v3 = ROOT + 'web3d/index.html';
   const vid = document.getElementById('cvVideo'); if (vid) vid.src = ROOT + 'docs/story/media/cv_subsidence.mp4';
-  document.getElementById('gameFrame').src = g; document.getElementById('gameOpen').href = g; document.getElementById('view3d').href = v3;
+  document.getElementById('gameOpen').href = g; document.getElementById('view3d').href = v3;
+  // the game loads only on request: the page stays fast and the poster explains what it is
+  document.getElementById('gamePlay')?.addEventListener('click', () => {
+    const box = document.getElementById('gameBox'), f = document.createElement('iframe');
+    f.title = 'Valley Under Pressure simulator'; f.src = g; f.allow = 'fullscreen';
+    box.replaceChildren(f); f.focus();
+  });
 }
 
-load().then(() => { hero(); storyMap(); compare(); cvControls(); gnssTable(); riskList(); sinkList(); extras(); findings(); });
+load().then(() => { hero(); storyMap(); compare(); cvControls(); gnssTable(); riskList(); sinkList(); ringChart(); extras(); findings(); });

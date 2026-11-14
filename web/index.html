@@ -97,6 +97,7 @@
       </figure>
       <figcaption>Figure 1. Left: NASA VIIRS true colour (GIBS). Right: NISAR GCOV quick-look. <span class="qbadge preview">PREVIEW</span> quick-look, not quantitative.</figcaption>
       <div class="note"><b>Why the Fens matter.</b> <span id="holmeText">Driven flush with the peat in 1851, the Holme Fen cast-iron post now stands nearly <b>4 metres</b> above the sunken fields — leaving the fenland <b>2.75 m below sea level</b>, Britain's lowest land, while drained farmland still loses 1–2 cm a year (<a href="https://www.greatfen.org.uk/about-great-fen/heritage/holme-fen-posts" target="_blank" rel="noopener">The Great Fen</a>).</span></div>
+      <p class="note" id="ukClay" hidden><b>London's clay, checked too.</b> Over London we found no ground movement larger than the measurement noise in summer 2026 (nothing beyond ±<span data-k="uk.clayThr">3.6</span> cm). Seasonal clay shrinkage there is smaller than one summer of NISAR data can resolve — an honest "not detected".</p>
     </article>
 
     <article class="step" data-step="cv">
@@ -104,7 +105,7 @@
       <h2>Central Valley: up to <span data-k="cv.max">−7.8</span> cm in 108 days</h2>
       <p class="keypoint">In one summer of pumping, broad areas of farmland sank by several centimetres.</p>
       <p>The Central Valley grows a large share of America's fruit, nuts and vegetables. Through the 2026 irrigation season, NISAR recorded the valley floor sinking in broad bowls around Tulare and Corcoran. The ground moves down each summer as groundwater is pumped and partly recovers in winter; this record covers one summer.</p>
-      <div class="timebar"><button id="play" class="playbtn" aria-label="Play animation">▶</button><input id="slider" type="range" min="0" max="0" value="0" aria-label="Date"><span id="dateLbl" class="mono"></span></div>
+      <div class="timebar"><button id="cvPlay" class="playbtn" aria-label="Play animation">▶</button><input id="slider" type="range" min="0" max="0" value="0" aria-label="Date"><span id="dateLbl" class="mono"></span></div>
       <p class="hint">Press play, or tap a white dot on the map.</p>
       <div class="readout" id="readout">—</div>
       <div class="chartbox"><canvas id="pointChart" height="180"></canvas></div>
@@ -136,6 +137,11 @@
       <h2>Karapınar, Konya: subsidence and sinkholes</h2>
       <p class="keypoint">The same process is at work in Türkiye, and the ground sinks most near the sinkholes.</p>
       <p>On the Konya Plain, falling groundwater has been linked to sudden sinkholes (<i>obruk</i>) in farmland around Karapınar. NISAR measured up to <b data-k="kp.max">−5.9</b> cm of sinking here between <span data-k="kp.period">26 Jun – 12 Oct 2026</span>.</p>
+      <div id="ringBox" hidden>
+        <p>Near the sinkholes the ground sank faster: within 1 km of a documented sinkhole it dropped <b data-k="kp.ring1">4.2</b> cm on average, against <b data-k="kp.ringbg">0.6</b> cm on land more than 5 km away.</p>
+        <div class="chartbox"><canvas id="ringChart" height="150" aria-label="Average sinking by distance from the nearest sinkhole"></canvas></div>
+        <p class="small">Based on the <span data-k="kp.ringN">10</span> of <span data-k="kp.sinks">29</span> sinkholes that lie inside the area NISAR could measure reliably; a pattern, not proof of cause.</p>
+      </div>
       <ul class="sinklist" id="sinkList"></ul>
       <figcaption>Figure 5. Ground motion from <span data-k="kp.pairs">8</span> NISAR radar image pairs, with documented sinkholes (red). Each point links to its source. <span class="qbadge provisional">PROVISIONAL</span><span class="figcredit">Data: NASA-ISRO NISAR via ASF DAAC. Analysis: Team Taykut.</span></figcaption>
     </article>
@@ -176,11 +182,25 @@
 <!-- SIMULATOR -->
 <section class="band dark" id="play">
   <div class="wrap">
-    <p class="chapter">Simulator</p>
-    <h2>Valley Under Pressure</h2>
-    <p class="narrow">Manage groundwater for seven districts of the Tulare Basin over 24 months. The model follows the standard USGS description of aquifer compaction and is calibrated to the subsidence NISAR measured in 2026. At the end, your result is compared with the measurement.</p>
-    <div class="gameframe"><iframe id="gameFrame" title="Valley Under Pressure simulator" loading="lazy"></iframe></div>
-    <p class="small"><a id="gameOpen" href="#" target="_blank" rel="noopener">Open full screen ↗</a> · <a id="view3d" href="#" target="_blank" rel="noopener">3D view of the sinking ground ↗</a></p>
+    <div class="sim">
+      <div>
+        <p class="chapter">Simulator</p>
+        <h2>Valley Under Pressure</h2>
+        <dl class="sim-steps">
+          <dt>What you decide</dt><dd>How much groundwater seven farming districts pump, how much river water they get, and how much land rests, month by month for two years.</dd>
+          <dt>What happens</dt><dd>Water levels fall, the clay underground is squeezed and the ground sinks. Below a critical level the sinking becomes permanent, wells run dry and canals lose capacity.</dd>
+          <dt>What you learn</dt><dd>At the end your valley is compared with what NISAR actually measured in 2026. The model is set so that ordinary pumping reproduces that measurement.</dd>
+        </dl>
+        <p class="small">Some inputs (well depths, crop prices, rainfall odds) are illustrative and marked so in the game. <a href="science.html">How the model works</a></p>
+      </div>
+      <figure class="sim-shot">
+        <div class="gameframe" id="gameBox">
+          <img id="gamePoster" src="assets/simulator.jpg" alt="Screenshot of the Valley Under Pressure simulator: a map of seven Tulare Basin districts, sinking in centimetres, and controls for pumping" loading="lazy">
+          <button class="playbig" id="gamePlay" type="button">▶&nbsp; Play the simulator</button>
+        </div>
+        <figcaption><a id="gameOpen" href="#" target="_blank" rel="noopener">Open full screen ↗</a> · <a id="view3d" href="#" target="_blank" rel="noopener">3D view of the sinking ground ↗</a></figcaption>
+      </figure>
+    </div>
   </div>
 </section>
 
