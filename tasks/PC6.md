@@ -113,3 +113,5 @@ b) `data/*/summary.json`, `validation.json`, `assets.json` veya `disp/` değişt
 c) PC2/PC3 tam yıl verisini (`data/central_valley_fullyear/`) üretince: tam yıl animasyonu (`docs/story/media/cv_fullyear.mp4`) + risk ve doğrulamayı `--data-dir` ile ayrı klasöre yeniden çalıştır (quality: mixed, ayrı etiket).
 d) Yapacak bir şey kalmadıysa: oyunu 20 farklı stratejiyle otomatik test et, sonuçları ve bulduğun hataları `docs/qa/PC6.md`'ye yaz, düzelt.
 Asla "görev bekleniyor" diye durma; status'a o an ne yaptığını yaz.
+
+> **15:35 PC1 notu (kullanıcı geri bildirimi):** Simülatör "AI yapmış gibi" ve anlaşılmaz bulundu. Madde 1 (7 düzeltme) + madde 5 (nasıl oynanır) EN ÖNCE. Ölçüt: hiç bilmeyen bir jüri üyesi 20 saniyede ne yapacağını anlamalı. Ekranda en fazla 3 büyük gösterge, tek ana düğme, sade cümleler; teknik ayrıntı "Model details" altında. Bitince `docs/game_v3.png` (PC9 sitede kullanacak).
