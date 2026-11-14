@@ -17,7 +17,8 @@ ROOT = Path(__file__).resolve().parents[1]
 ATLAS_PATH = ROOT / "data/global/atlas.json"
 BBOX_SPAN_DEG = 0.5
 BBOX_TOL_DEG = 0.005
-RATE_TOL_CM_PER_100D = 0.02
+# Accept values rounded to one decimal place while still catching larger drift.
+RATE_TOL_CM_PER_100D = 0.051
 REFERENCE_RANGE_RATIO_MAX = 0.30
 
 
@@ -202,6 +203,11 @@ def _check_summary(city: str, directory: Path, atlas_region: dict[str, Any]) -> 
             expected = float(headline) * 100.0 / days
             if abs(float(stored_rate) - expected) > RATE_TOL_CM_PER_100D:
                 findings.append(f"{city}: rate_cm_per_100d {float(stored_rate):.4f} disagrees with headline/days×100 {expected:.4f}")
+        if _finite_number(headline) and _finite_number(atlas_region.get("rate_cm_per_100d")):
+            expected = float(headline) * 100.0 / days
+            atlas_rate = float(atlas_region["rate_cm_per_100d"])
+            if abs(atlas_rate - expected) > RATE_TOL_CM_PER_100D:
+                findings.append(f"{city}: atlas rate_cm_per_100d {atlas_rate:.4f} disagrees with summary headline/dates {expected:.4f}")
     except ValidationError as exc:
         findings.append(f"{city}: {exc}")
 
@@ -249,6 +255,42 @@ def validate() -> tuple[list[str], int, int]:
             issues.append(f"{city}: atlas region missing id")
         by_id[city] = region
 
+    classification_ids: dict[str, set[str]] = {"reliable": set(), "indicative": set()}
+    for bucket in ("reliable", "indicative"):
+        entries = atlas.get(bucket)
+        if not isinstance(entries, list):
+            issues.append(f"atlas.json {bucket} must be an array")
+            continue
+        for index, entry in enumerate(entries):
+            if not isinstance(entry, dict) or not entry.get("id"):
+                issues.append(f"atlas.json {bucket}[{index}] missing id/object")
+                continue
+            city = str(entry["id"])
+            classification_ids[bucket].add(city)
+            if city not in by_id:
+                issues.append(f"atlas.json {bucket} contains {city}, absent from regions")
+                continue
+            for field in ("rate_cm_per_100d", "p2_cm", "confidence", "valid_fraction", "ref_range_cm", "period"):
+                if field not in entry or entry[field] is None:
+                    issues.append(f"atlas.json {bucket}[{city}] missing/empty {field}")
+            findings = _confidence_checks(city, entry, f"atlas.{bucket}")
+            issues.extend(findings)
+            expected_confidence = by_id[city].get("confidence")
+            actual_confidence = entry.get("confidence")
+            if actual_confidence != expected_confidence:
+                issues.append(f"atlas.json {bucket}[{city}] confidence disagrees with regions")
+            if bucket == "indicative" and actual_confidence != "low":
+                issues.append(f"atlas.json indicative entry {city} is not confidence=low")
+            if bucket == "reliable" and actual_confidence == "low":
+                issues.append(f"atlas.json reliable entry {city} is confidence=low")
+    overlap = classification_ids["reliable"] & classification_ids["indicative"]
+    if overlap:
+        issues.append(f"atlas.json reliable/indicative lists overlap: {sorted(overlap)}")
+    listed_ids = classification_ids["reliable"] | classification_ids["indicative"]
+    region_ids = set(by_id)
+    if listed_ids != region_ids:
+        issues.append(f"atlas.json reliable/indicative coverage differs from regions; missing={sorted(region_ids-listed_ids)}, extra={sorted(listed_ids-region_ids)}")
+
     city_dirs: dict[str, Path] = {}
     for city, region in by_id.items():
         rel = Path(str(region.get("path", f"data/global/{city}/")))
@@ -272,6 +314,11 @@ def validate() -> tuple[list[str], int, int]:
         issues.extend(city_issues)
         if summary is not None:
             summaries[city] = summary
+
+    for city, region in by_id.items():
+        for field in ("rate_cm_per_100d", "p2_cm", "confidence", "valid_fraction", "ref_range_cm", "period"):
+            if field not in region or region[field] is None:
+                issues.append(f"{city}: atlas region missing/empty {field}")
 
     rates: list[tuple[str, float]] = []
     derived_rates: list[tuple[str, float]] = []

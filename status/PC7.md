@@ -19,5 +19,5 @@
 - 20:00 hata ayıklama 4: `python -m pytest -q` 110+ saniye çıktı vermedi; Ctrl+C ile durduruldu. Sonuç alınamadı; PASS/FAIL iddiası yok. `docs/qa/PC7.md` §11.
 - 20:00 hata ayıklama 5: `pipeline/pc7/validate_json.py` eklendi ve çalıştırıldı; 61 JSON'da 0 parse hatası, 0 non-finite değer, 0 eksik quality; 12 points.json kaliteyi kardeş meta.json'dan miras alıyor. `docs/qa/PC7.md` §12.
 - 20:10 O2 tamamlandı: `risk/probabilistic_risk.py`, iki test, `data/central_valley/assets_prob.json`, `docs/story/engineering_risk.md`, `docs/story/media/pc7_risk_prob.png`; 3.238 kaynaktan skorlanabilir 2.082 hat, 1000 Monte Carlo. `docs/qa/PC7.md` §13.
-- Atlas QA: `tools/validate_atlas.py` eklendi/çalıştırıldı; atlas 8 kayıt, 9 şehir dizini, 170 bulgu (160 hata, 9 referans uyarısı, 1 bilgi); Isfahan klasörü henüz atlas listesinde değil. Ayrıntı `docs/qa/PC7.md` §14.
+- Atlas QA: `tools/validate_atlas.py` güncel atlasla yeniden çalıştırıldı; 8 atlas kaydı, 9 şehir dizini, 128 bulgu (119 hata, 9 referans uyarısı); Isfahan atlas dışında. Ayrıntı `docs/qa/PC7.md` §14.
 - BLOCKED: yok
