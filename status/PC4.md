@@ -1,14 +1,14 @@
 # PC4 durum
 
-- Görev: 1, 2, 3 + Queue `Q11`, `Q12`, `Q16`, `Q30`, `Q31` + 14:10 Paketi #3–5 (`judge_faq.md`, `slides.html`, `video_shotlist.md`) BİTTİ — #6 (`web/index.html` okuma) sürüyor
-- Durum: çalışıyor (14:10 Yeni Paket #1–5 tamamlandı, sıradaki #6 `web/index.html` QA önerileri)
-- Güncelleme: 2026-11-14 14:19 TR
+- Görev: 1, 2, 3 + Queue `Q11`, `Q12`, `Q16`, `Q30`, `Q31` + 14:10 Paketi (1–6 TÜMÜ BİTTİ)
+- Durum: tamamlandı (tüm 14:10 paketi commit + push edildi)
+- Güncelleme: 2026-11-14 14:21 TR
 - Çıktılar:
   - Görev 1: `data/uk/optical_2026-10-20.jpg` (`700x500`, `19,490 B`), `data/uk/radar_2026-10-20.png` (`700x500`, `631,556 B`), `data/uk/meta.json` (`1,421 B`, `quality: "preview"`)
   - Görev 2: `data/karapinar/sinkholes.geojson` (`18,638 B`, `29` doğrulanmış Karapınar obruğu, tümü `bbox = [33.3, 37.6, 33.8, 37.9]` içinde; Tapur & Bozyiğit 2015)
   - Görev 3: `docs/story/sources.md` (5 zorunlu konu + GIBS/ASF URL'leri), `docs/story/calibration_note.md` (BETA `<2026-06-17` vs PROVISIONAL `P05023` vs VALIDATED `>=2026-10-21` + zorunlu NISAR dipnotu)
   - Queue `Q11`, `Q12`, `Q30` & `Q31`: `docs/story/project_page.md`, `docs/story/pitch.md` (`−7.8 cm` CV / `−5.9 cm` Karapınar, 10 GNSS medyan RMSE `1.00 cm`, `assets.json` `57.01 mm/km` Tulare Kanalı ile eşlendi), `docs/story/holme_fen.md` (tek cümle kart metni + `#holmeText`), `docs/story/submission_rules.md` (`Space_Apps_2022_Project_Submission_Guide.pdf` HTTP 200)
-  - 14:10 Paketi #3–5: `docs/story/judge_faq.md` (15 jüri sorusu-cevabı), `docs/story/slides.html` (7 slaytlık tek-dosya HTML sunum; yalnızca gerçek UK/CV/Karapınar haritaları + SVG grafikler, AI görselsiz), `docs/story/video_shotlist.md` (30 sn 6 plan çekim listesi + `.srt` altyazılar)
+  - 14:10 Paketi #3–6: `docs/story/judge_faq.md` (15 jüri sorusu-cevabı), `docs/story/slides.html` (7 slaytlık tek-dosya HTML sunum; yalnızca gerçek UK/CV/Karapınar haritaları + SVG grafikler, AI görselsiz), `docs/story/video_shotlist.md` (30 sn 6 plan çekim listesi + `.srt` altyazılar), `docs/qa/PC4.md` §6 (`web/index.html` İngilizce okuma ve 6 öneri — `web/` değiştirilmedi)
   - Queue `Q16`: `web3d/` (`surfaces.json` `508,881 B` / `497.0 KB`) — Three.js `@0.160.0` ile Central Valley (`2026-06-28` → `2026-10-14`, `7` çift / `8` epok, `80×96`) ve Karapınar (`2026-06-26` → `2026-10-12`, `8` çift / `9` epok, `48×80` + `29` obruk)
   - QA & Kuyruk: `docs/qa/PC4.md`, `tasks/QUEUE.md` (`Q11`, `Q12`, `Q16`, `Q30`, `Q31` `- [x PC4]`)
 - Doğrulama:
