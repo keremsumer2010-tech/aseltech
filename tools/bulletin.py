@@ -11,6 +11,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+from datetime import date
 import html
 import json
 import statistics
@@ -61,25 +62,96 @@ def _format_last_pair(points_data: Any) -> dict[str, Any]:
     }
 
 
-def _top_segments(region_dir: Path, limit: int = 5) -> tuple[str, list[dict[str, Any]]]:
+def _compute_rate_100d_and_confidence(
+    region: dict[str, Any],
+    summary: dict[str, Any],
+    meta: dict[str, Any],
+) -> tuple[float | None, str, str]:
+    """Return (rate_cm_per_100d, confidence_level, display_label)."""
+    period = summary.get("period") or region.get("period") or []
+    days: int | None = None
+    if isinstance(period, list) and len(period) >= 2 and period[0] and period[1]:
+        try:
+            d0 = date.fromisoformat(str(period[0]))
+            d1 = date.fromisoformat(str(period[1]))
+            days = max(1, (d1 - d0).days)
+        except ValueError:
+            days = None
+
+    max_los = summary.get("max_subsidence_cm", region.get("max_cm_los"))
+    rate_100d = region.get("rate_cm_per_100d") or summary.get("rate_cm_per_100d")
+    if rate_100d is not None:
+        rate_val: float | None = round(float(rate_100d), 2)
+    elif max_los is not None and days is not None:
+        rate_val = round((float(max_los) / days) * 100.0, 2)
+    else:
+        rate_val = None
+
+    explicit_conf = region.get("confidence") or summary.get("confidence")
+    if isinstance(explicit_conf, str) and explicit_conf.lower() in {"high", "medium", "low"}:
+        conf = explicit_conf.lower()
+    else:
+        conf = "high"
+        coverage = region.get("coverage", "ok")
+        n_pairs = summary.get("n_pairs", region.get("n_pairs"))
+        vfrac = summary.get("valid_pixel_fraction")
+        if vfrac is None:
+            vfrac = meta.get("valid_pixel_fraction")
+        ref_range = summary.get("range_cm") or summary.get("max_subsidence_range_cm")
+
+        if coverage != "ok":
+            conf = "low"
+        elif vfrac is not None and float(vfrac) < 0.25:
+            conf = "low"
+        elif max_los is not None and abs(float(max_los)) < 3.0:
+            conf = "low"
+        elif isinstance(n_pairs, int) and n_pairs < 3:
+            conf = "medium"
+        elif vfrac is not None and float(vfrac) < 0.60:
+            conf = "medium"
+
+        if conf != "low" and max_los is not None and isinstance(ref_range, list) and len(ref_range) == 2:
+            spread = abs(float(ref_range[1]) - float(ref_range[0]))
+            if abs(float(max_los)) > 0 and spread > 0.5 * abs(float(max_los)):
+                conf = "medium"
+
+    label = "LOW (indicative only)" if conf == "low" else conf.upper()
+    return rate_val, conf, label
+
+
+def _top_segments(region_dir: Path, limit: int = 5) -> tuple[str, str, list[dict[str, Any]]]:
     """Read O2 `assets_prob.json` if available, else fall back to `assets.json`."""
     prob = _read_json(region_dir / "assets_prob.json")
     if isinstance(prob, dict) and prob.get("features"):
-        feats = prob["features"]
         rows = []
-        for f in feats:
+        for f in prob["features"]:
             pr = f.get("properties", {})
+            p_beta = pr.get("p_beta_exceed") or {}
+            ci90 = pr.get("ci90") or {}
+            diff_ci = ci90.get("max_differential_cm")
+            p500 = p_beta.get("1/500")
+            p1000 = p_beta.get("1/1000")
             rows.append({
                 "name": pr.get("name") or pr.get("type") or "Unnamed corridor",
                 "type": pr.get("type", ""),
-                "length_km": pr.get("length_km"),
-                "gradient_mm_per_km": pr.get("gradient_mm_per_km"),
-                "max_cm": pr.get("max_cm"),
-                "p_exceed": pr.get("p_exceed") or pr.get("p_exceed_beta"),
-                "risk": pr.get("risk", ""),
+                "max_diff_cm": pr.get("max_differential_cm"),
+                "diff_ci90": diff_ci,
+                "beta_max": pr.get("beta_max"),
+                "p_diff_gt_10cm": pr.get("p_diff_gt_10cm"),
+                "p_beta_500": p500,
+                "p_beta_1000": p1000,
             })
-        rows.sort(key=lambda r: float(r.get("p_exceed") or r.get("gradient_mm_per_km") or 0.0), reverse=True)
-        return "O2 probabilistic infrastructure risk (assets_prob.json)", rows[:limit]
+        rows.sort(
+            key=lambda r: (
+                float(r.get("p_diff_gt_10cm") or 0.0),
+                float(r.get("p_beta_1000") or 0.0),
+                float(r.get("p_beta_500") or 0.0),
+                float(r.get("max_diff_cm") or 0.0),
+                float(r.get("beta_max") or 0.0),
+            ),
+            reverse=True,
+        )
+        return "o2", "O2 probabilistic infrastructure risk (assets_prob.json)", rows[:limit]
 
     assets = _read_json(region_dir / "assets.json")
     if isinstance(assets, dict) and assets.get("features"):
@@ -96,9 +168,9 @@ def _top_segments(region_dir: Path, limit: int = 5) -> tuple[str, list[dict[str,
                 "risk": pr.get("risk", ""),
             })
         rows.sort(key=lambda r: float(r.get("gradient_mm_per_km") or 0.0), reverse=True)
-        return "Infrastructure tilt ranking (assets.json)", rows[:limit]
+        return "o1_assets", "Infrastructure tilt ranking (assets.json)", rows[:limit]
 
-    return "none", []
+    return "none", "none", []
 
 
 def _gnss_summary(region_dir: Path) -> dict[str, Any]:
@@ -141,11 +213,12 @@ def render_region_bulletin(region: dict[str, Any], out_dir: Path = OUT_DIR) -> P
     max_vert = summary.get("max_subsidence_vertical_cm_estimate", region.get("max_cm_vertical_est"))
     ref_range = summary.get("range_cm") or summary.get("max_subsidence_range_cm")
     rate_yr = summary.get("rate_cm_per_yr_estimate", region.get("rate_cm_per_yr_estimate"))
+    rate_100d, conf_level, conf_label = _compute_rate_100d_and_confidence(region, summary, meta)
     n_pairs = summary.get("n_pairs", region.get("n_pairs", "N/A"))
     inc_deg = summary.get("incidence_deg_at_max", "N/A")
 
     last_pair = _format_last_pair(points)
-    seg_source, top_segs = _top_segments(region_dir, limit=5)
+    seg_kind, seg_source, top_segs = _top_segments(region_dir, limit=5)
     gnss = _gnss_summary(region_dir)
 
     disp_png_rel = f"../../{rel_data}/disp/{last_date}.png"
@@ -168,13 +241,35 @@ def render_region_bulletin(region: dict[str, Any], out_dir: Path = OUT_DIR) -> P
         else "single reference window"
     )
 
-    if top_segs:
+    if top_segs and seg_kind == "o2":
+        seg_rows = []
+        for idx, s in enumerate(top_segs, 1):
+            mdiff = f"{s['max_diff_cm']:.2f} cm" if s.get("max_diff_cm") is not None else "-"
+            ci = s.get("diff_ci90")
+            ci_str = f" [{ci[0]:.1f}, {ci[1]:.1f}]" if isinstance(ci, list) and len(ci) == 2 else ""
+            beta_val = f"{s['beta_max']:.2e}" if s.get("beta_max") is not None else "-"
+            p10 = f"{s['p_diff_gt_10cm']:.1%}" if s.get("p_diff_gt_10cm") is not None else "-"
+            p1000 = f"{s['p_beta_1000']:.1%}" if s.get("p_beta_1000") is not None else "-"
+            p500 = f"{s['p_beta_500']:.1%}" if s.get("p_beta_500") is not None else "-"
+            seg_rows.append(
+                f"<tr><td>{idx}</td><td>{_esc(s['name'])}</td><td>{_esc(s['type'])}</td>"
+                f"<td class='num'>{mdiff}{ci_str}</td><td class='num'>{beta_val}</td>"
+                f"<td class='num'>{p10}</td><td class='num'>{p1000} / {p500}</td></tr>"
+            )
+        seg_section = (
+            f"<p class='sub'>Source: {_esc(seg_source)}</p>"
+            "<table><thead><tr><th>#</th><th>Segment</th><th>Type</th>"
+            "<th class='num'>Max Diff (90% CI)</th><th class='num'>Beta Max</th>"
+            "<th class='num'>P(Diff &gt; 10 cm)</th><th class='num'>P(Beta &gt; 1/1000 | 1/500)</th></tr></thead>"
+            f"<tbody>{''.join(seg_rows)}</tbody></table>"
+        )
+    elif top_segs:
         seg_rows = []
         for idx, s in enumerate(top_segs, 1):
             extra = (
-                f"{s['p_exceed']:.1%}"
-                if s.get("p_exceed") is not None
-                else (f"{s['nearest_sinkhole_m']:.0f} m to sinkhole" if s.get("nearest_sinkhole_m") is not None else _esc(s.get("risk", "")))
+                f"{s['nearest_sinkhole_m']:.0f} m to sinkhole"
+                if s.get("nearest_sinkhole_m") is not None
+                else str(s.get("risk", ""))
             )
             grad = f"{s['gradient_mm_per_km']:.2f}" if s.get("gradient_mm_per_km") is not None else "-"
             mcm = f"{s['max_cm']:.2f}" if s.get("max_cm") is not None else "-"
@@ -242,6 +337,10 @@ def render_region_bulletin(region: dict[str, Any], out_dir: Path = OUT_DIR) -> P
   h1 {{ font-size:1.35rem; margin:0 0 4px 0; }}
   .meta {{ font-size:.86rem; color:var(--muted); }}
   .badge {{ display:inline-block; padding:3px 9px; border-radius:999px; font-size:.75rem; font-weight:700; letter-spacing:.04em; background:#fef3c7; color:#92400e; border:1px solid #f59e0b; }}
+  .conf-high {{ background:#dcfce7; color:#166534; border-color:#22c55e; }}
+  .conf-medium {{ background:#fef3c7; color:#92400e; border-color:#f59e0b; }}
+  .conf-low {{ background:#fee2e2; color:#991b1b; border-color:#ef4444; }}
+  .kpi .subval {{ font-size:.76rem; color:var(--muted); margin-top:2px; font-weight:400; }}
   .actions {{ display:flex; gap:8px; align-items:center; }}
   .btn {{ font-size:.82rem; padding:6px 12px; border-radius:6px; border:1px solid var(--line); background:var(--panel); color:var(--ink); text-decoration:none; cursor:pointer; }}
   .btn-primary {{ background:var(--accent); color:#fff; border-color:var(--accent); }}
@@ -278,6 +377,7 @@ def render_region_bulletin(region: dict[str, Any], out_dir: Path = OUT_DIR) -> P
       <div class="meta">Observation window: {_esc(start_date)} to {_esc(last_date)} ({_esc(n_pairs)} pairs) &middot; Atlas Rank #{_esc(region.get('rank', '-'))} &middot; Coverage: {_esc(region.get('coverage', 'ok'))}</div>
     </div>
     <div class="actions">
+      <span class="badge conf-{_esc(conf_level)}">CONFIDENCE: {_esc(conf_label)}</span>
       <span class="badge">{_esc(quality)}</span>
       <a class="btn" href="index.html">All Bulletins</a>
       <button class="btn btn-primary" onclick="window.print()">Print / PDF</button>
@@ -288,7 +388,7 @@ def render_region_bulletin(region: dict[str, Any], out_dir: Path = OUT_DIR) -> P
     <div class="kpi"><div class="lbl">Peak Cumulative (LOS)</div><div class="val">{_esc(max_los)} cm</div></div>
     <div class="kpi"><div class="lbl">Vertical Est. ({_esc(inc_deg)}&deg;)</div><div class="val">{_esc(max_vert)} cm</div></div>
     <div class="kpi"><div class="lbl">3-Ref Sensitivity</div><div class="val" style="font-size:0.98rem;">{_esc(range_str)}</div></div>
-    <div class="kpi"><div class="lbl">Annualized Rate (Est.)</div><div class="val">{_esc(rate_yr)} cm/yr</div></div>
+    <div class="kpi"><div class="lbl">Rate (cm / 100 days)</div><div class="val">{_esc(rate_100d if rate_100d is not None else 'N/A')} cm/100d</div><div class="subval">Annualized est.: {_esc(rate_yr)} cm/yr</div></div>
   </div>
 
   <div class="two">
@@ -327,17 +427,32 @@ def render_region_bulletin(region: dict[str, Any], out_dir: Path = OUT_DIR) -> P
 
 
 def render_index(regions: list[dict[str, Any]], generated: list[tuple[dict[str, Any], Path]], out_dir: Path = OUT_DIR) -> Path:
-    rows = []
+    enriched: list[tuple[float, dict[str, Any], Path, float | None, str, str]] = []
     for reg, path in generated:
+        rel_data = (reg.get("path") or f"data/global/{reg['id']}/").rstrip("/")
+        rdir = ROOT / rel_data
+        summary = _read_json(rdir / "summary.json") or {}
+        meta = _read_json(rdir / "meta.json") or {}
+        rate_100d, conf_level, conf_label = _compute_rate_100d_and_confidence(reg, summary, meta)
+        sort_key = abs(rate_100d) if rate_100d is not None else 0.0
+        enriched.append((sort_key, reg, path, rate_100d, conf_level, conf_label))
+
+    enriched.sort(key=lambda item: item[0], reverse=True)
+
+    rows = []
+    for idx, (_, reg, path, rate_100d, conf_level, conf_label) in enumerate(enriched, 1):
         period = reg.get("period") or ["", ""]
         end_d = period[1] if len(period) >= 2 else ""
+        rate_str = f"{rate_100d:+.2f} cm/100d" if rate_100d is not None else "N/A"
         rows.append(
-            f"<tr><td>#{_esc(reg.get('rank', '-'))}</td>"
+            f"<tr><td>#{idx}</td>"
             f"<td><a href='{_esc(path.name)}'><strong>{_esc(reg.get('name', reg['id']))}</strong></a></td>"
             f"<td>{_esc(reg.get('country', ''))}</td>"
+            f"<td class='num'><strong>{_esc(rate_str)}</strong></td>"
             f"<td class='num'>{_esc(reg.get('max_cm_los', ''))} cm</td>"
             f"<td class='num'>{_esc(reg.get('max_cm_vertical_est', ''))} cm</td>"
             f"<td>{_esc(end_d)}</td>"
+            f"<td><span class='pill conf-{_esc(conf_level)}'>{_esc(conf_label)}</span></td>"
             f"<td>{_esc(reg.get('quality', 'provisional'))}</td></tr>"
         )
 
@@ -349,13 +464,17 @@ def render_index(regions: list[dict[str, Any]], generated: list[tuple[dict[str, 
 <title>NISAR Pulse Bulletins — 2026 Operational Index</title>
 <style>
   body {{ margin:0; padding:24px; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; color:#0f172a; background:#f8fafc; }}
-  .wrap {{ max-width:900px; margin:0 auto; background:#fff; border:1px solid #cbd5e1; border-radius:10px; padding:24px 28px; }}
+  .wrap {{ max-width:1020px; margin:0 auto; background:#fff; border:1px solid #cbd5e1; border-radius:10px; padding:24px 28px; }}
   h1 {{ margin:0 0 6px; font-size:1.4rem; }}
   p {{ color:#475569; font-size:.92rem; }}
-  table {{ width:100%; border-collapse:collapse; margin-top:16px; font-size:.9rem; }}
+  table {{ width:100%; border-collapse:collapse; margin-top:16px; font-size:.88rem; }}
   th, td {{ padding:9px 10px; border-bottom:1px solid #e2e8f0; text-align:left; }}
   th {{ background:#f1f5f9; }}
   .num {{ text-align:right; font-variant-numeric:tabular-nums; }}
+  .pill {{ display:inline-block; padding:2px 8px; border-radius:999px; font-size:.74rem; font-weight:700; border:1px solid #cbd5e1; }}
+  .conf-high {{ background:#dcfce7; color:#166534; border-color:#22c55e; }}
+  .conf-medium {{ background:#fef3c7; color:#92400e; border-color:#f59e0b; }}
+  .conf-low {{ background:#fee2e2; color:#991b1b; border-color:#ef4444; }}
   a {{ color:#1d4ed8; text-decoration:none; }}
   a:hover {{ text-decoration:underline; }}
   .notice {{ margin-top:18px; padding:10px 12px; background:#fffbeb; border-left:4px solid #b45309; font-size:.82rem; }}
@@ -364,9 +483,9 @@ def render_index(regions: list[dict[str, Any]], generated: list[tuple[dict[str, 
 <body>
 <div class="wrap">
   <h1>NISAR Pulse Operational Bulletins</h1>
-  <p>Single-page, printable subsidence bulletins automatically generated from <code>data/global/atlas.json</code> and regional contract outputs ({len(generated)} active regions).</p>
+  <p>Single-page, printable subsidence bulletins automatically generated from <code>data/global/atlas.json</code> and regional contract outputs ({len(generated)} active regions, ranked by period-independent <code>rate_cm_per_100d</code>).</p>
   <table>
-    <thead><tr><th>Rank</th><th>Region</th><th>Country</th><th class="num">Max LOS</th><th class="num">Vertical Est.</th><th>Latest Date</th><th>Quality</th></tr></thead>
+    <thead><tr><th>Rank</th><th>Region</th><th>Country</th><th class="num">Rate (cm/100d)</th><th class="num">Max LOS</th><th class="num">Vertical Est.</th><th>Latest Date</th><th>Confidence</th><th>Quality</th></tr></thead>
     <tbody>{''.join(rows)}</tbody>
   </table>
   <div class="notice"><strong>Calibration Notice:</strong> {_esc(CALIBRATION_NOTICE)}</div>

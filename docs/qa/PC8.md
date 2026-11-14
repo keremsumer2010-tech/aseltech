@@ -287,3 +287,16 @@
   - `analysis/pc8/test_bulletin.py`: `1 passed in 0.24s`.
 - **`docs/story/submission_form.md`:** `data/global/atlas.json` (8 aktif bölge sıralaması) ve `tools/bulletin.py` (`docs/bulletins/*.html`) eklendi (`§5: 5,239 chars / 746 words`, `§6: 1,956 chars / 256 words`).
 - **O1 Karapınar Durumu:** `data/karapinar_fullyear/decomp.json` henüz oluşturulmamış (`False`), sonraki `git pull` döngülerinde takip edilecek.
+
+---
+
+## 17. 14 Nov 21:08 TR — Tur 8 QA: `O2` Olasılıksal Risk & `ATLAS_PLANI.md` 21:05 Kalite Standardı
+
+- **`tools/bulletin.py` Güncellemesi:**
+  - `data/central_valley/assets_prob.json` gerçek O2 şemasına (`beta_max`, `p_beta_exceed` `{'1/500', '1/1000'}`, `max_differential_cm`, `p_diff_gt_10cm`, `ci90`) uyarlandı; `docs/bulletins/central_valley.html` artık en riskli 5 koridor için `Max Diff (90% CI)`, `Beta Max`, `P(Diff > 10 cm)` ve `P(Beta > 1/1000 | 1/500)` tablolarını basıyor, diğer bölgeler `assets.json` tablosuna düşüyor.
+  - `docs/ATLAS_PLANI.md` **21:05 Kalite Standardı** uygulandı: dönem uzunluğundan bağımsız **`rate_cm_per_100d`** ana metrik olarak eklendi (`docs/bulletins/index.html` bu metriğe göre sıralanıyor; `rate_cm_per_yr_estimate` ikincil tahmine alındı) ve her bültene/satıra **`confidence` (`HIGH` / `MEDIUM` / `LOW (indicative only)`)** rozeti eklendi.
+- **Doğrulama:**
+  - `python tools/bulletin.py`: 8 bölge HTML bülteni + `docs/bulletins/index.html` yeniden üretildi (`9` HTML dosyasında **`0` kırık bağlantı**).
+  - `analysis/pc8/test_bulletin.py`: `cm/100d`, `CONFIDENCE:` rozeti, `assets_prob.json` / `Beta Max` kontrolleri eklendi.
+  - `python -m pytest -q`: **`74 passed, 1 warning in 22.80s`**.
+- **O1 Karapınar Durumu:** `data/karapinar_fullyear/decomp.json` henüz oluşturulmamış (`False`), sonraki 10 dakikalık döngüde izlenmeye devam edecek.

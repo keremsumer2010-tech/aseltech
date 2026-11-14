@@ -13,6 +13,10 @@
   h1 { font-size:1.35rem; margin:0 0 4px 0; }
   .meta { font-size:.86rem; color:var(--muted); }
   .badge { display:inline-block; padding:3px 9px; border-radius:999px; font-size:.75rem; font-weight:700; letter-spacing:.04em; background:#fef3c7; color:#92400e; border:1px solid #f59e0b; }
+  .conf-high { background:#dcfce7; color:#166534; border-color:#22c55e; }
+  .conf-medium { background:#fef3c7; color:#92400e; border-color:#f59e0b; }
+  .conf-low { background:#fee2e2; color:#991b1b; border-color:#ef4444; }
+  .kpi .subval { font-size:.76rem; color:var(--muted); margin-top:2px; font-weight:400; }
   .actions { display:flex; gap:8px; align-items:center; }
   .btn { font-size:.82rem; padding:6px 12px; border-radius:6px; border:1px solid var(--line); background:var(--panel); color:var(--ink); text-decoration:none; cursor:pointer; }
   .btn-primary { background:var(--accent); color:#fff; border-color:var(--accent); }
@@ -49,6 +53,7 @@
       <div class="meta">Observation window: 2026-06-22 to 2026-10-20 (8 pairs) &middot; Atlas Rank #5 &middot; Coverage: ok</div>
     </div>
     <div class="actions">
+      <span class="badge conf-medium">CONFIDENCE: MEDIUM</span>
       <span class="badge">PROVISIONAL</span>
       <a class="btn" href="index.html">All Bulletins</a>
       <button class="btn btn-primary" onclick="window.print()">Print / PDF</button>
@@ -59,7 +64,7 @@
     <div class="kpi"><div class="lbl">Peak Cumulative (LOS)</div><div class="val">-4.4 cm</div></div>
     <div class="kpi"><div class="lbl">Vertical Est. (44.2&deg;)</div><div class="val">-6.2 cm</div></div>
     <div class="kpi"><div class="lbl">3-Ref Sensitivity</div><div class="val" style="font-size:0.98rem;">[-7.4, -4.4] cm LOS</div></div>
-    <div class="kpi"><div class="lbl">Annualized Rate (Est.)</div><div class="val">-13.5 cm/yr</div></div>
+    <div class="kpi"><div class="lbl">Rate (cm / 100 days)</div><div class="val">-3.67 cm/100d</div><div class="subval">Annualized est.: -13.5 cm/yr</div></div>
   </div>
 
   <div class="two">
