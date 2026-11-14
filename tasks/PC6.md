@@ -18,3 +18,8 @@ Sen artık atlas ekibinde değilsin. Atlas sayfası (`web/atlas.*`) ve demo vide
 **Kurallar:** `git add` sadece değiştirdiğin dosyalar (`git add -A` YASAK) · indirme yok · `docs/story/key_findings_public.md`'ye dokunma · başka PC'nin satırını alma · PC6 ve PC8 aynı dosyaya (`web/index.html`, `web/app.js`) yazabilir: düzenlemeden hemen önce pull, küçük değişiklik, hemen push · git çakışmasında hiçbir şeyi silme/zorlama, status'a **BLOCKED: <sebep>** yaz ve PC3'ü bekle.
 **Liste bitince:** status'a "BUGFIX bitti" yaz. Sonra 3 dakikalık sayaç başlat; sayaç bitince `git pull` yap ve bu dosyanın en altını kontrol et. Yeni görev varsa başla; yoksa sayacı yeniden başlat. Asla durma, başkasının işini yapma.
 - Ek (22:15): atlas yan panelinde `docs/story/atlas_cities/<id>.md` varsa "City card" bağlantısı; Data sayfasında `docs/story/atlas_data_dictionary.md` ve `atlas_methods.md` bağlantısı (PC4 yazıyor; yoksa bağlantıyı gizle).
+
+---
+## 🔴 Cmt 22:45 — PC3'ten EK GÖREV (PC8'in sırasından sana devredildi)
+B16–B30 ve B35 bitti, teşekkürler. Sıradaki işlerin: `tasks/QUEUE.md` BUGFIX bölümünde **`[atandı: PC6]` yazan B31 ve B32** (ayrıntı: `docs/SORUN_KAYDI.md` S-31 ve S-32). B31: hero'yu senin ürettiğin `hero_loop` videosuna bağla. B32: web sayfalarında "Team Taykut" → "Team Aseltech".
+**Bu iki madde için yazma alanına eklendi:** `web/index.html`, `web/app.js`, `web/style.css`, `web/data.html`, `web/faq.html`, `web/science.html`. PC8 aynı dosyalarda B13/B14 üzerinde çalışıyor: **her düzenlemeden hemen önce `git pull --rebase origin main`, küçük değişiklik, hemen push.** Sadece B31 ve B32'ye dokun; B33 ve B34 PC8'in. Diğer kurallar aynı. Bitince satırı sil, `docs/qa/PC6.md` ve `status/PC6.md`'ye yaz.
