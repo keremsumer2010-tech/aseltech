@@ -13,9 +13,6 @@ from __future__ import annotations
 import argparse
 import json
 import sys
-import time
-import urllib.parse
-import urllib.request
 from datetime import date
 from pathlib import Path
 
@@ -96,23 +93,28 @@ def save_png(grid, path, vmin, vmax):
     plt.imsave(path, np.ma.masked_invalid(grid), cmap=cmap, vmin=vmin, vmax=vmax)
 
 
-def reverse_name(lon, lat, cache):
-    key = f"{lon:.2f},{lat:.2f}"
-    if key in cache:
-        return cache[key]
-    q = urllib.parse.urlencode({"lat": f"{lat:.4f}", "lon": f"{lon:.4f}", "format": "jsonv2", "zoom": 12})
-    req = urllib.request.Request(f"https://nominatim.openstreetmap.org/reverse?{q}",
-                                 headers={"User-Agent": "aseltech-space-apps-hackathon/1.0"})
-    name = None
-    try:
-        with urllib.request.urlopen(req, timeout=20) as r:
-            a = json.load(r).get("address", {})
-        name = next((a[k] for k in ("city", "town", "village", "hamlet", "suburb", "county") if k in a), None)
-    except Exception as ex:  # network failure -> coordinate label, never an invented name
-        print("nominatim failed", ex)
-    time.sleep(1.1)  # Nominatim usage policy: max 1 request / second
-    cache[key] = name
-    return name
+def load_places(site):
+    """OSM place=city|town|village nodes for the site (Overpass export, ODbL, (c) OpenStreetMap contributors)."""
+    f = ROOT / "analysis" / "out" / f"{site}_places_osm.json"
+    if not f.exists():
+        return []
+    e = json.loads(f.read_text(encoding="utf-8"))["elements"]
+    return [(x["tags"]["name"], x["lon"], x["lat"]) for x in e if "name" in x["tags"]]
+
+
+def place_label(lon, lat, places):
+    """'7 km SW of Corcoran' from the nearest OSM place; coordinates if no place list."""
+    if not places:
+        return f"{lat:.3f}N {abs(lon):.3f}{'W' if lon < 0 else 'E'}"
+    kx = 111.32 * np.cos(np.deg2rad(lat))
+    best = min(places, key=lambda p: ((p[1] - lon) * kx) ** 2 + ((p[2] - lat) * 110.57) ** 2)
+    dx, dy = (lon - best[1]) * kx, (lat - best[2]) * 110.57
+    km = float(np.hypot(dx, dy))
+    if km < 1.5:
+        return best[0]
+    ang = (np.degrees(np.arctan2(dx, dy)) + 360) % 360
+    d = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"][int((ang + 22.5) // 45) % 8]
+    return f"{km:.0f} km {d} of {best[0]}"
 
 
 def pick_points(cum_s, valid, ref_rc, x, y, epsg, min_sep_px=60):
@@ -267,14 +269,13 @@ def main():
     }
     (ddir / "meta.json").write_text(json.dumps(meta, indent=2), encoding="utf-8")
 
-    cache = {}
+    places = [] if a.no_names else load_places(site)
     pts = pick_points(sm, valid & np.isfinite(sm), (r, c), x, y, epsg)
     points = []
     for i, (kind, pr, pc, lon, lat) in enumerate(pts, 1):
         win = np.stack(cum)[:, max(pr - 1, 0): pr + 2, max(pc - 1, 0): pc + 2]
         ts = np.nanmedian(win.reshape(len(dates), -1), axis=1)
-        place = None if a.no_names else reverse_name(lon, lat, cache)
-        name = f"near {place}" if place else f"{lat:.3f}N {abs(lon):.3f}W"
+        name = place_label(lon, lat, places)
         points.append({"id": f"p{i:02d}", "name": name, "kind": kind, "lon": round(lon, 5), "lat": round(lat, 5),
                        "dates": dates, "disp_cm": [None if not np.isfinite(v) else round(float(v), 2) for v in ts]})
     (ddir / "points.json").write_text(json.dumps(points, indent=2), encoding="utf-8")

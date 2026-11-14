@@ -1,0 +1,720 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.11 87bfad18",
+  "osm3s": {
+    "timestamp_osm_base": "2026-07-24T11:04:51Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+
+{
+  "type": "node",
+  "id": 150933225,
+  "lat": 36.6243940,
+  "lon": -119.3137300,
+  "tags": {
+    "ele": "129",
+    "gnis:feature_id": "277569",
+    "name": "Orange Cove",
+    "place": "village",
+    "population": "9946",
+    "population:date": "2006",
+    "source:population": "US Census",
+    "wikidata": "Q83845"
+  }
+},
+{
+  "type": "node",
+  "id": 150933653,
+  "lat": 36.5138398,
+  "lon": -119.5538929,
+  "tags": {
+    "ele": "92",
+    "gnis:feature_id": "277533",
+    "name": "Kingsburg",
+    "place": "town",
+    "population": "11382",
+    "website": "http://cityofkingsburg-ca.gov/",
+    "wikidata": "Q779614",
+    "wikipedia": "en:Kingsburg, California"
+  }
+},
+{
+  "type": "node",
+  "id": 150933900,
+  "lat": 36.2027859,
+  "lon": -120.1036676,
+  "tags": {
+    "ele": "114",
+    "gnis:feature_id": "1652725",
+    "name": "Huron",
+    "place": "village",
+    "population": "7172",
+    "population:date": "2006",
+    "source:population": "US Census",
+    "wikidata": "Q2649652"
+  }
+},
+{
+  "type": "node",
+  "id": 150934665,
+  "lat": 36.0981045,
+  "lon": -119.5603728,
+  "tags": {
+    "ele": "63",
+    "gnis:feature_id": "1652690",
+    "name": "Corcoran",
+    "place": "town",
+    "population": "23403",
+    "population:date": "2006",
+    "source:population": "US Census",
+    "wikidata": "Q913487"
+  }
+},
+{
+  "type": "node",
+  "id": 150937620,
+  "lat": 35.8841206,
+  "lon": -119.2723328,
+  "tags": {
+    "ele": "86",
+    "gnis:feature_id": "1652700",
+    "name": "Earlimart",
+    "place": "village",
+    "population": "8537",
+    "wikidata": "Q2235532",
+    "wikipedia": "en:Earlimart, California"
+  }
+},
+{
+  "type": "node",
+  "id": 150938750,
+  "lat": 36.4760619,
+  "lon": -119.4431785,
+  "tags": {
+    "ele": "91",
+    "gnis:feature_id": "1652746",
+    "name": "London",
+    "place": "village",
+    "population": "1869",
+    "wikidata": "Q586353",
+    "wikipedia": "en:London, California"
+  }
+},
+{
+  "type": "node",
+  "id": 150939402,
+  "lat": 35.6163468,
+  "lon": -119.6943420,
+  "tags": {
+    "ele": "93",
+    "gnis:feature_id": "1660956",
+    "name": "Lost Hills",
+    "place": "village",
+    "population": "2370",
+    "population:date": "2020",
+    "wikidata": "Q2188469",
+    "wikipedia": "en:Lost Hills, California"
+  }
+},
+{
+  "type": "node",
+  "id": 150939840,
+  "lat": 36.0934931,
+  "lon": -119.1991388,
+  "tags": {
+    "ele": "103",
+    "gnis:feature_id": "1661710",
+    "name": "Woodville",
+    "place": "village",
+    "population": "1740",
+    "wikidata": "Q390000",
+    "wikipedia": "en:Woodville, California"
+  }
+},
+{
+  "type": "node",
+  "id": 150940021,
+  "lat": 36.2961694,
+  "lon": -119.1420953,
+  "tags": {
+    "ele": "387",
+    "gnis:feature_id": "1652707",
+    "name": "Exeter",
+    "place": "town",
+    "population": "11169",
+    "source:population": "City Limits Sign",
+    "wikidata": "Q986815",
+    "wikipedia": "en:Exeter, California"
+  }
+},
+{
+  "type": "node",
+  "id": 150940445,
+  "lat": 36.2977283,
+  "lon": -119.2067760,
+  "tags": {
+    "contact:website": "https://www.cityoffarmersville-ca.gov/",
+    "ele": "109",
+    "gnis:feature_id": "1652709",
+    "name": "Farmersville",
+    "place": "town",
+    "population": "10397",
+    "population:date": "2020",
+    "postal_code": "93223",
+    "source:population": "US Census",
+    "website": "https://www.cityoffarmersville-ca.gov/",
+    "wikidata": "Q986808",
+    "wikipedia": "en:Farmersville, California"
+  }
+},
+{
+  "type": "node",
+  "id": 150943471,
+  "lat": 36.4311225,
+  "lon": -119.8596190,
+  "tags": {
+    "ele": "68",
+    "gnis:feature_id": "1661314",
+    "name": "Riverdale",
+    "place": "village",
+    "population": "3153",
+    "wikidata": "Q3458236",
+    "wikipedia": "en:Riverdale, California"
+  }
+},
+{
+  "type": "node",
+  "id": 150943852,
+  "lat": 36.5963906,
+  "lon": -119.4511877,
+  "tags": {
+    "ele": "106",
+    "gnis:feature_id": "1659495",
+    "name": "Reedley",
+    "place": "town",
+    "population": "24194",
+    "population:date": "2010",
+    "wikidata": "Q984609",
+    "wikipedia": "en:Reedley, California"
+  }
+},
+{
+  "type": "node",
+  "id": 150944511,
+  "lat": 36.3157833,
+  "lon": -119.7084642,
+  "tags": {
+    "ele": "72",
+    "gnis:feature_id": "1652665",
+    "name": "Armona",
+    "place": "village",
+    "population": "4156",
+    "wikidata": "Q2673381",
+    "wikipedia": "en:Armona, California"
+  }
+},
+{
+  "type": "node",
+  "id": 150945253,
+  "lat": 36.3006495,
+  "lon": -119.7827122,
+  "tags": {
+    "ele": "69",
+    "gnis:feature_id": "1660905",
+    "name": "Lemoore",
+    "place": "town",
+    "population": "22916",
+    "population:date": "2006",
+    "source:population": "US Census",
+    "wikidata": "Q986940"
+  }
+},
+{
+  "type": "node",
+  "id": 150945930,
+  "lat": 36.0041223,
+  "lon": -120.1290272,
+  "tags": {
+    "ele": "246",
+    "gnis:feature_id": "1660285",
+    "name": "Avenal",
+    "place": "town",
+    "population": "16837",
+    "population:date": "2006",
+    "source:population": "US Census",
+    "wikidata": "Q790415"
+  }
+},
+{
+  "type": "node",
+  "id": 150946164,
+  "lat": 35.7688425,
+  "lon": -119.2470530,
+  "tags": {
+    "ele": "96",
+    "gnis:feature_id": "1652697",
+    "name": "Delano",
+    "place": "city",
+    "population": "53819",
+    "population:date": "2011",
+    "source:population": "US Census",
+    "website": "https://www.cityofdelano.org/",
+    "wikidata": "Q775868",
+    "wikipedia": "en:Delano, California"
+  }
+},
+{
+  "type": "node",
+  "id": 150946706,
+  "lat": 36.4134809,
+  "lon": -119.0986330,
+  "tags": {
+    "ele": "134",
+    "gnis:feature_id": "251787",
+    "name": "Woodlake",
+    "place": "village",
+    "population": "7336",
+    "population:date": "2006",
+    "source:population": "US Census",
+    "wikidata": "Q986884"
+  }
+},
+{
+  "type": "node",
+  "id": 150947098,
+  "lat": 36.2077351,
+  "lon": -119.3473421,
+  "tags": {
+    "ele": "88",
+    "gnis:feature_id": "1652803",
+    "name": "Tulare",
+    "name:ar": "تولاري، تولاري، كاليفورنيا",
+    "name:ru": "Туларе",
+    "place": "town",
+    "population": "59278",
+    "wikidata": "Q616562",
+    "wikipedia": "en:Tulare, California"
+  }
+},
+{
+  "type": "node",
+  "id": 150948636,
+  "lat": 35.9686669,
+  "lon": -119.2919569,
+  "tags": {
+    "ele": "83",
+    "gnis:feature_id": "1652777",
+    "name": "Pixley",
+    "place": "village",
+    "population": "3310",
+    "wikidata": "Q979976",
+    "wikipedia": "en:Pixley, California"
+  }
+},
+{
+  "type": "node",
+  "id": 150950390,
+  "lat": 36.5449499,
+  "lon": -119.2873384,
+  "tags": {
+    "ele": "114",
+    "gnis:feature_id": "230107",
+    "name": "Orosi",
+    "place": "village",
+    "population": "8770",
+    "wikidata": "Q3301639",
+    "wikipedia": "en:Orosi, California"
+  }
+},
+{
+  "type": "node",
+  "id": 150950782,
+  "lat": 36.6116810,
+  "lon": -119.5300864,
+  "tags": {
+    "ele": "104",
+    "gnis:feature_id": "1659348",
+    "name": "Parlier",
+    "place": "village",
+    "population": "13124",
+    "population:date": "2006",
+    "source:population": "US Census",
+    "wikidata": "Q985259"
+  }
+},
+{
+  "type": "node",
+  "id": 150950836,
+  "lat": 36.5707838,
+  "lon": -119.6120765,
+  "tags": {
+    "ele": "94",
+    "gnis:feature_id": "1659624",
+    "name": "Selma",
+    "place": "town",
+    "population": "22710",
+    "population:date": "2006",
+    "source:population": "US Census",
+    "wikidata": "Q983593"
+  }
+},
+{
+  "type": "node",
+  "id": 150951272,
+  "lat": 36.6488390,
+  "lon": -120.2526596,
+  "tags": {
+    "ele": "50",
+    "gnis:feature_id": "1660022",
+    "name": "Tranquillity",
+    "place": "village",
+    "population": "799",
+    "wikidata": "Q2358592",
+    "wikipedia": "en:Tranquillity, California"
+  }
+},
+{
+  "type": "node",
+  "id": 150953106,
+  "lat": 36.6305058,
+  "lon": -119.6784690,
+  "tags": {
+    "ele": "94",
+    "gnis:feature_id": "1659724",
+    "name": "Fowler",
+    "place": "village",
+    "population": "5063",
+    "population:date": "2006",
+    "source:population": "US Census",
+    "wikidata": "Q1705361"
+  }
+},
+{
+  "type": "node",
+  "id": 150953157,
+  "lat": 36.0652300,
+  "lon": -119.0167679,
+  "tags": {
+    "ele": "139",
+    "gnis:feature_id": "1652779",
+    "name": "Porterville",
+    "name:en": "Porterville",
+    "place": "city",
+    "population": "59988",
+    "population:date": "2010",
+    "website": "https://www.ci.porterville.ca.us/",
+    "wikidata": "Q927173",
+    "wikipedia": "en:Porterville, California"
+  }
+},
+{
+  "type": "node",
+  "id": 150954023,
+  "lat": 35.6780104,
+  "lon": -119.2292748,
+  "tags": {
+    "addr:postcode": "93250",
+    "ele": "108",
+    "gnis:feature_id": "1652750",
+    "name": "McFarland",
+    "place": "town",
+    "population": "12890",
+    "population:date": "2011",
+    "source:population": "US Census",
+    "website": "https://www.mcfarlandcity.org/",
+    "wikidata": "Q977395",
+    "wikipedia": "en:McFarland, California"
+  }
+},
+{
+  "type": "node",
+  "id": 150954626,
+  "lat": 36.5432837,
+  "lon": -119.3870656,
+  "tags": {
+    "ele": "102",
+    "gnis:feature_id": "1658422",
+    "name": "Dinuba",
+    "place": "town",
+    "population": "21453",
+    "wikidata": "Q986906",
+    "wikipedia": "en:Dinuba, California"
+  }
+},
+{
+  "type": "node",
+  "id": 150957165,
+  "lat": 35.5941238,
+  "lon": -119.3409457,
+  "tags": {
+    "ele": "100",
+    "gnis:feature_id": "1661652",
+    "name": "Wasco",
+    "place": "town",
+    "population": "25545",
+    "wikidata": "Q985255",
+    "wikipedia": "en:Wasco, California"
+  }
+},
+{
+  "type": "node",
+  "id": 150960318,
+  "lat": 36.3510616,
+  "lon": -119.4201204,
+  "tags": {
+    "ele": "87",
+    "gnis:feature_id": "1660689",
+    "name": "Goshen",
+    "place": "village",
+    "population": "3006",
+    "wikidata": "Q2136629",
+    "wikipedia": "en:Goshen, California"
+  }
+},
+{
+  "type": "node",
+  "id": 150965508,
+  "lat": 36.3277959,
+  "lon": -119.6461565,
+  "tags": {
+    "capital": "6",
+    "ele": "76",
+    "gnis:feature_id": "1660714",
+    "name": "Hanford",
+    "name:en": "Hanford",
+    "place": "city",
+    "population": "56910",
+    "website": "https://www.ci.hanford.ca.us/",
+    "wikidata": "Q375185"
+  }
+},
+{
+  "type": "node",
+  "id": 150969227,
+  "lat": 36.4332835,
+  "lon": -119.6867990,
+  "tags": {
+    "ele": "79",
+    "gnis:feature_id": "1660899",
+    "name": "Laton",
+    "place": "village",
+    "population": "1824",
+    "wikidata": "Q2386043",
+    "wikipedia": "en:Laton, California"
+  }
+},
+{
+  "type": "node",
+  "id": 150970218,
+  "lat": 35.9624530,
+  "lon": -119.0442687,
+  "tags": {
+    "addr:postcode": "93270",
+    "ele": "148",
+    "gnis:feature_id": "1652800",
+    "name": "Terra Bella",
+    "place": "village",
+    "population": "3310",
+    "wikidata": "Q289033",
+    "wikipedia": "en:Terra Bella, California"
+  }
+},
+{
+  "type": "node",
+  "id": 150970688,
+  "lat": 36.1455070,
+  "lon": -119.0606587,
+  "tags": {
+    "ele": "122",
+    "gnis:feature_id": "1652797",
+    "name": "Strathmore",
+    "place": "village",
+    "population": "2819",
+    "wikidata": "Q947961",
+    "wikipedia": "en:Strathmore, California"
+  }
+},
+{
+  "type": "node",
+  "id": 150971244,
+  "lat": 36.3871725,
+  "lon": -119.2178889,
+  "tags": {
+    "ele": "111",
+    "gnis:feature_id": "1652729",
+    "name": "Ivanhoe",
+    "place": "village",
+    "population": "4495",
+    "wikidata": "Q2426614",
+    "wikipedia": "en:Ivanhoe, California"
+  }
+},
+{
+  "type": "node",
+  "id": 150971339,
+  "lat": 36.2030064,
+  "lon": -119.0881600,
+  "tags": {
+    "ele": "118",
+    "gnis:feature_id": "1652744",
+    "name": "Lindsay",
+    "place": "town",
+    "population": "10860",
+    "population:date": "2006",
+    "source:population": "US Census",
+    "wikidata": "Q984167",
+    "wikipedia": "en:Lindsay, California"
+  }
+},
+{
+  "type": "node",
+  "id": 150973480,
+  "lat": 36.5232834,
+  "lon": -119.2867823,
+  "tags": {
+    "ele": "110",
+    "gnis:feature_id": "1658363",
+    "name": "Cutler",
+    "place": "village",
+    "population": "5000",
+    "wikidata": "Q2055988",
+    "wikipedia": "en:Cutler, California"
+  }
+},
+{
+  "type": "node",
+  "id": 150973778,
+  "lat": 36.6066162,
+  "lon": -120.1890447,
+  "tags": {
+    "ele": "53",
+    "gnis:feature_id": "277594",
+    "name": "San Joaquin",
+    "place": "village",
+    "population": "4001",
+    "population:date": "2010",
+    "source:population": "US Census",
+    "website": "https://www.cityofsanjoaquin.org/",
+    "wikidata": "Q2081619",
+    "wikipedia": "en:San Joaquin, California"
+  }
+},
+{
+  "type": "node",
+  "id": 150977365,
+  "lat": 36.4388364,
+  "lon": -118.9045445,
+  "tags": {
+    "ele": "257",
+    "gnis:feature_id": "1661569",
+    "name": "Three Rivers",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 150980416,
+  "lat": 36.3302284,
+  "lon": -119.2920580,
+  "tags": {
+    "capital": "6",
+    "ele": "101",
+    "gnis:feature_id": "1652807",
+    "name": "Visalia",
+    "name:azb": "ویسالیا",
+    "name:de": "Visalia",
+    "name:en": "Visalia",
+    "name:es": "Visalia",
+    "name:ur": "ویسالیا",
+    "place": "city",
+    "population": "130104",
+    "population:date": "2010",
+    "website": "https://www.visalia.city/",
+    "wikidata": "Q495373",
+    "wikipedia": "es:Visalia (California)"
+  }
+},
+{
+  "type": "node",
+  "id": 150980998,
+  "lat": 36.5428916,
+  "lon": -119.8322710,
+  "tags": {
+    "ele": "75",
+    "gnis:feature_id": "277485",
+    "name": "Caruthers",
+    "place": "village",
+    "wikidata": "Q2671627"
+  }
+},
+{
+  "type": "node",
+  "id": 150981331,
+  "lat": 35.7966644,
+  "lon": -119.1081375,
+  "tags": {
+    "ele": "157",
+    "gnis:feature_id": "1661309",
+    "name": "Richgrove",
+    "place": "village",
+    "population": "2882",
+    "wikidata": "Q2153913",
+    "wikipedia": "en:Richgrove, California"
+  }
+},
+{
+  "type": "node",
+  "id": 2117345545,
+  "lat": 36.5119288,
+  "lon": -119.4464460,
+  "tags": {
+    "name": "Delft Colony",
+    "place": "village",
+    "population": "454",
+    "wikidata": "Q5253693"
+  }
+},
+{
+  "type": "node",
+  "id": 2147392314,
+  "lat": 36.0601362,
+  "lon": -119.3103517,
+  "tags": {
+    "name": "Tipton",
+    "place": "village",
+    "population": "2543",
+    "wikidata": "Q2849923",
+    "wikipedia": "en:Tipton, California"
+  }
+},
+{
+  "type": "node",
+  "id": 9409095213,
+  "lat": 35.9337885,
+  "lon": -119.2819300,
+  "tags": {
+    "name": "Teviston",
+    "place": "village",
+    "wikidata": "Q6143717",
+    "wikipedia": "en:Teviston, California"
+  }
+},
+{
+  "type": "node",
+  "id": 10048372608,
+  "lat": 35.5014610,
+  "lon": -119.2736820,
+  "tags": {
+    "ele": "109",
+    "name": "Shafter",
+    "place": "town",
+    "population": "20070",
+    "population:date": "2020-04-01",
+    "wikidata": "Q985258",
+    "wikipedia": "en:Shafter, California"
+  }
+}
+
+  ]
+}
