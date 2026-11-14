@@ -64,3 +64,13 @@ Kümülatif `subsidence_cm` eğrisi yaz boyunca tekdüze aşağı doğru birikti
 1. `2026-06-28 – 2026-10-14` arasındaki `8` epokluk seride geç yaz yüzey kuruması ve azalan sulama sinyali kümülatif çökmeyle aynı yönde (`r = 0.57–0.79`) değişmektedir, ancak **`N = 8` örneklem büyüklüğü ve trend etkisi nedeniyle hiçbir sürücü $\alpha = 0.05$ düzeyinde nedensel öncü olarak doğrulanamaz**.
 2. Trendden arındırılmış 12–24 günlük aralık hızları yalnızca `7` nokta sunmakta ve belirgin bir kısa dönem tepkisi göstermemektedir (`p ≥ 0.31`).
 3. Mevsimsel gecikme yapısını ve elastik geri tepme vs. kalıcı akifer sıkışması ayrımını güvenilir biçimde test etmek için en az tam bir hidrolojik döngü (`N ≥ 24–30` epok, Q08 tam yıl serisi) gerekmektedir.
+
+---
+
+## 5. NASA NISAR Uygulama Teknik Raporları ile Fiziksel Bağlam (`Kaynaklar Entegrasyonu`)
+
+NASA'nın resmi [**NISAR Applications — Drought and Groundwater Withdrawal**](https://assets.science.nasa.gov/content/dam/science/missions/nisar/nisar-jpl/pdf/NISAR_Applications_Drought_and_Groundwater_Withdrawal1.pdf) teknik raporu ve [**NISAR Societal Benefits — Soil Moisture and Water Resources**](https://science.nasa.gov/mission/nisar/societal-benefits/) portalı, Central Valley ve Konya Ovası gibi tarım havzalarındaki yer deformasyonunu yönlendiren fiziksel nedensellik zincirini açıkça tanımlar:
+
+1. **Kuraklık → Yüzey Suyu Kısıtlaması → Pompalama Artışı:** Kurak dönemlerde kanal ve barajlardan sağlanan yüzey sulama suyu azaldığında çiftçiler yeraltı suyu çekimini artırır.
+2. **Piezometrik Yük Düşüşü → Elastik vs. Kalıcı Sıkışma:** Sıkıştırılabilir ince taneli kil/aquitard katmanlarında (örneğin Corcoran Clay altı) boşluk suyu basıncının önceki en düşük eşiğin (`preconsolidation head`) altına inmesi geri dönüşümsüz iskelet sıkışmasına yol açar; eşik üstündeki kış yağışı ve yüzey suyu artışı ise kısmi elastik kabarma üretir.
+3. **Toprak Nemi (`SME2`) ile Birlikte İzleme:** L-band radar geri saçılımının toprağın dielektrik sabitine yüksek duyarlılığı sayesinde yüzey kuruluğu ve sulama kesintisi eşzamanlı izlenebilir; bu da yaz aylarındaki gecikmeli yeraltı çekimi tepkisini tam yıl (`2025-11-24 → 2026-10-14`, Q08) deformasyon serisiyle birlikte yorumlamayı mümkün kılar.
