@@ -1,6 +1,4 @@
 # PC8 durum
 
-BLOCKED: git pull --rebase origin main →
-Auto-merging tasks/QUEUE.md
-CONFLICT (content): Merge conflict in tasks/QUEUE.md
-error: could not apply a95a99e... [PC8] fix B06 (S-03): explain blue areas in video caption and map legend
+- Tamamlandı: B06 (S-03 Yüksek) — video altyazısı ve harita göstergesine mavi alan açıklaması eklendi (`web/index.html`)
+- Sıradaki: B07 (S-25 Yüksek)
