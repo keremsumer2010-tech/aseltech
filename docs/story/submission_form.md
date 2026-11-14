@@ -1,19 +1,19 @@
 # NASA Space Apps 2026 — Copy-Paste Submission Form (`docs/story/submission_form.md`)
 
 **Owner:** PC8 (`M3hmeT1888`) · **Challenge:** *Dancing with the SARs*  
-**Compliance:** Every field below is written in plain English following [`docs/REVIEW_1500.md`](../REVIEW_1500.md) (zero banned buzzwords, zero emojis, zero exclamation marks, dated and unit-labelled measurements, explicit `provisional` / `preview` / `mixed` / `estimate` tags, and mandatory NISAR calibration notice). All numbers trace directly to committed repository files (`data/*/summary.json`, `data/central_valley/validation.json`, `data/*/assets.json`, `data/uk_clay/detection.json`, `data/central_valley_fullyear/decomp.json`, `data/fens/crops.json`). Character and word counts are provided for every portal box.
+**Compliance:** Every field below is written in plain English following [`docs/REVIEW_1500.md`](../REVIEW_1500.md) (zero banned buzzwords, zero emojis, zero exclamation marks, dated and unit-labelled measurements, explicit `provisional` / `preview` / `mixed` / `estimate` tags, and mandatory NISAR calibration notice). Every number cites its exact repository source file (`data/*/summary.json`, `validation.json`, `assets.json`, `exposure.json`, `detection.json`, `decomp.json`, `cross_sensor.json`, `polarizations.json`, `drivers.json`).
 
 ---
 
 ## 1. Project Title
 *(Portal limit: typically ≤ 60–80 characters)*
 
-- **Short Title (`48 chars` / `8 words`):**
+- **Short Title (`48 chars` / `7 words`):**
 ```text
 NISAR Pulse: Tracking Land Subsidence from Space
 ```
 
-- **Full Descriptive Title (`76 chars` / `11 words`):**
+- **Full Descriptive Title (`79 chars` / `13 words`):**
 ```text
 NISAR Pulse — Follow the Water: Tracking Silent Land Subsidence with L-Band SAR
 ```
@@ -21,16 +21,16 @@ NISAR Pulse — Follow the Water: Tracking Silent Land Subsidence with L-Band SA
 ---
 
 ## 2. High-Level Project Summary (Short Description)
-*(Portal limit: 150-character ultra-short version and 480-character standard summary box)*
+*(Portal limit: 150-character ultra-short version and 500-character standard summary box)*
 
-- **Ultra-Short Version (`146 chars` / `23 words` — fits 150-char limit):**
+- **Ultra-Short Version (`147 chars` / `21 words` — fits 150-char limit):**
 ```text
 Open web platform using provisional NASA-ISRO NISAR L-band radar to map centimeter-scale land subsidence, canal tilt, and groundwater risk in 2026.
 ```
 
-- **Standard Portal Summary (`469 chars` / `70 words` — fits 500-char limit):**
+- **Standard Portal Summary (`493 chars` / `73 words` — fits 500-char limit):**
 ```text
-NASA's NISAR Land Subsidence StoryMap showed California's sinking valley with 2013-2017 airborne radar. We measured the same valley and aqueduct from space in 2026 with provisional NASA-ISRO NISAR L-band radar (24 cm wavelength), validated results against 10 GPS stations (1.00 cm median RMSE), ranked 645 canal and road segments by tilt, compared Karapinar sinkholes in Turkiye and UK peat/clay limits, and built a 24-month groundwater simulator in an open web app.
+NASA's NISAR Land Subsidence StoryMap showed California's sinking valley with 2013-2017 airborne radar. We measured the same valley, aqueduct, and Delta from space in 2026 with provisional NASA-ISRO NISAR L-band radar, validated against 10 GPS stations (1.00 cm median RMSE), ranked 645 corridors by tilt, tested the same engine across Turkiye, Mexico City, Tehran, Jakarta, and the UK, quantified population and crop exposure, and built an open 24-month groundwater simulator and 3D explorer.
 ```
 
 ---
@@ -38,7 +38,7 @@ NASA's NISAR Land Subsidence StoryMap showed California's sinking valley with 20
 ## 3. Link to Final Project & Repository
 *(Must be public and require no login or permission)*
 
-- **Live Interactive Application (`web/`, `game/`, `web3d/`):**
+- **Live Interactive Application (`web/`, `web/explorer.html`, `game/`, `web3d/`):**
 ```text
 https://keremsumer2010-tech.github.io/aseltech/web/index.html
 ```
@@ -50,32 +50,29 @@ https://github.com/keremsumer2010-tech/aseltech
 
 ---
 
-## 4. Link to Project Demo
-*(Strictly ONE public link: either a ≤ 30.0-second video with English subtitles OR a ≤ 7-slide presentation in English)*
+## 4. Link to Project "Demo"
+*(Strictly ONE public link: ≤ 7-slide English presentation OR ≤ 30.0-second video with English subtitles. See [`docs/story/slides_notes.md`](slides_notes.md) for slide-by-slide presenter notes and captions.)*
 
-- **Option A — 30-Second Video (with embedded English subtitles `docs/story/video_subtitles.srt`):**
-```text
-https://github.com/keremsumer2010-tech/aseltech/raw/main/docs/story/media/demo_30s.mp4
-```
-
-- **Option B — 7-Slide English Browser Deck (fallback / companion link):**
+- **Primary Demo Link — 7-Slide English Browser Deck (`≤ 7 slides`, printable to PDF):**
 ```text
 https://keremsumer2010-tech.github.io/aseltech/docs/story/slides.html
 ```
 
 ---
 
-## 5. Detailed Project Description (`2,384 chars` / `348 words`)
+## 5. Detailed Project Description (`4,189 chars` / `626 words` — Source-Tagged)
 
 ```text
 WHAT WE BUILT AND WHY IT MATTERS
-When groundwater is pumped faster than rain refills it, or when organic peatlands are drained, deep clay and peat layers compact and the ground sinks by millimeters to centimeters per month. NASA's NISAR Land Subsidence StoryMap (Peacock et al., 2024) illustrated this hazard in California's Central Valley using 2013-2017 airborne UAVSAR radar. Our project, NISAR Pulse - Follow the Water, updates that story from space in 2026 using open NASA-ISRO NISAR L-band Synthetic Aperture Radar (24 cm wavelength) across three regions: California's Central Valley, Konya-Karapinar in Turkiye, and eastern England (the Fens and Greater London).
+When groundwater is pumped faster than rain refills it, or when organic peatlands are drained, deep clay and peat layers compact and the ground sinks by millimeters to centimeters per month. NASA's NISAR Land Subsidence StoryMap (Peacock et al., 2024) illustrated this hazard in California's Central Valley using 2013-2017 airborne UAVSAR radar. Our project, NISAR Pulse - Follow the Water, updates that story from space in 2026 using open NASA-ISRO NISAR L-band Synthetic Aperture Radar (24 cm wavelength) across California, Turkiye, the UK, Mexico City, Tehran, and Jakarta.
 
-KEY QUANTITATIVE FINDINGS (ALL DATES AND UNITS EXPLICIT)
-1. UK Fens All-Weather Imaging (20 Oct 2026, preview): A side-by-side comparison of VIIRS SNPP true-color optical imagery (over 98% cloud cover) and a same-day NISAR L2 GCOV radar preview resolves The Wash coastline and Fens drainage network through clouds, anchored by the Holme Fen iron post (~4 m peat loss since 1851; 1-2 cm/yr contemporary rate). Over 8 provisional GCOV epochs (28 Jul-20 Oct 2026), Fens cropland HV backscatter drops by -2.41 dB after late-summer harvest.
-2. California Central Valley Subsidence (28 Jun-14 Oct 2026, 108 days, 7 provisional GUNW pairs): Cumulative line-of-sight (LOS) subsidence reaches -7.8 cm (range -4.7 to -7.8 cm across 3 reference windows; -10.1 cm vertical estimate at 39.1 deg incidence, 6 km N of Terra Bella). Across common valid pixels (7,704.68 km2), 1,578.27 km2 subsided more than 2 cm and 239.54 km2 subsided more than 5 cm. An experimental 11-month mixed chain (24 Nov 2025-14 Oct 2026, 18 beta-precal + 7 provisional pairs) separates -16.8 cm/yr LOS permanent compaction from an 11.7 cm peak-to-peak seasonal swing near Earlimart.
-3. Karapinar Basin & Sinkholes, Turkiye (26 Jun-12 Oct 2026, 108 days, 8 provisional GUNW pairs): Cumulative subsidence reaches -5.9 cm LOS (-8.0 cm vertical estimate at 41.9 deg incidence, 2 km W of Karapinar), cross-checked against ascending Track 172 (-4.7 cm LOS at p01, 12-point r = 0.77, RMSE = 1.12 cm LOS). Valid pixels within 1 km of 29 field-verified sinkholes sink 6.4 times faster (-4.15 cm LOS) than background plateau areas beyond 5 km (-0.65 cm LOS).
-4. UK London Clay Detection Limit (21 Jun-19 Oct 2026, 120 days, 9 provisional pairs): Expected seasonal clay shrink-swell (0.5-2.0 cm) lies below our measured single-season 1 km block noise floor (1.21 cm 1-sigma, 3.62 cm 3-sigma), demonstrating why multi-year NISAR time series are needed for sub-centimeter urban clay monitoring.
+KEY QUANTITATIVE FINDINGS (DATES, UNITS & REPO SOURCES)
+1. UK Fens All-Weather & Polarization (28 Jul-20 Oct 2026, preview & provisional): A swipe comparison of cloudy VIIRS SNPP optical imagery (over 98% cloud on 20 Oct 2026) against a same-day NISAR L2 GCOV radar preview resolves The Wash coastline and Fens drainage [data/uk/meta.json], anchored by the Holme Fen iron post (~4 m peat loss since 1851; 1-2 cm/yr modern rate [docs/story/holme_fen.md]). Across 8 provisional GCOV epochs and 4 sample windows, mean temporal range is 4.27 dB in HH, 3.49 dB in HV, and 1.36 dB in HV/HH ratio, showing HV is the clearest vegetation-structure indicator [data/fens/polarizations.json; docs/story/polarization.md].
+2. California Central Valley & Delta (28 Jun-14 Oct 2026, 7 provisional pairs, 108 days): Peak 1-km block-median subsidence reaches -7.8 cm LOS (3-reference spread -7.8 to -4.7 cm; -10.1 cm vertical estimate at 39.1 deg, 6 km N of Terra Bella) [data/central_valley/summary.json], with 1,578.27 km2 sinking > 2 cm LOS and 239.54 km2 > 5 cm LOS [data/central_valley/area_stats.json]. An experimental 11-month mixed chain (24 Nov 2025-14 Oct 2026, 18 beta-precal + 7 provisional pairs) separates -16.77 +/- 2.24 cm/yr LOS permanent compaction from an 11.67 cm peak-to-peak seasonal rebound near Earlimart [data/central_valley_fullyear/decomp.json]. In the Sacramento-San Joaquin Delta (17 Jun-15 Oct 2026, 9 pairs), basin peak is -1.3 cm LOS (-1.6 cm vertical est.), while levee alignments reach -3.48 cm at the 10th percentile and -11.36 cm locally [data/delta/summary.json; docs/story/delta.md].
+3. Konya Closed Basin & Karapinar, Turkiye (26 Jun-12 Oct 2026, 8 provisional pairs, 108 days): Across the full Konya Plain, subsidence peaks at -9.6 cm LOS (-14.0 to -9.6 cm across 3 references; -12.1 cm vertical estimate at 37.6 deg) south of Konya city [data/konya_plain/summary.json]. In Karapinar, Track 7 peaks at -5.9 cm LOS (-8.0 cm vertical est.) [data/karapinar/summary.json], cross-checked by ascending Track 172 (-4.73 cm LOS at p01; 12-point r = 0.767, RMSE = 1.12 cm LOS) [analysis/pc8/kp_p7_vs_p172.json]. Valid pixels within 1 km of 29 verified sinkholes sink 6.4x faster (-4.15 cm LOS) than background plateau (> 5 km: -0.65 cm LOS) [data/karapinar/assets.json].
+4. Global Transferability (108-120 days, provisional): Running our exact pipeline unchanged measures -4.4 cm LOS (2-ref spread -7.4 to -4.4 cm) in Mexico City, -3.5 cm LOS (-7.3 to -3.5 cm) in Tehran, and -6.8 cm LOS in Jakarta (where 2.9% valid coverage is reported honestly) [data/global/*/summary.json; docs/story/global_showcase.md].
+5. UK London Clay Detection Limit (21 Jun-19 Oct 2026, 9 provisional pairs, 120 days): Single-season 1-km block noise (1.21 cm 1-sigma, 3.62 cm 3-sigma) exceeds expected 0.5-2.0 cm seasonal clay motion, placing London below single-season detection limit [data/uk_clay/detection.json; docs/story/uk_findings.md].
+6. Human & Crop Exposure: Using WorldPop 100 m (2020), an estimated 71,701 Central Valley residents and 11,572 Karapinar residents live on pixels subsiding > 2 cm LOS (3,407 and 2,214 on > 5 cm LOS) [data/*/exposure.json]. USDA CDL 30 m shows 79.2% (1,251.4 km2) of California's > 2 cm LOS zone is cultivated cropland, led by citrus (355.6 km2) and pistachios (230.9 km2); ESA WorldCover 10 m maps Karapinar's exposed grassland, built-up fabric, and irrigated cropland [docs/story/exposure.md].
 
 CALIBRATION NOTICE
 NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.
@@ -83,74 +80,73 @@ NISAR data are provisional. Calibration and validation are carried out by the NI
 
 ---
 
-## 6. How It Works (`1,492 chars` / `219 words`)
+## 6. How It Works (`1,842 chars` / `246 words`)
 
 ```text
 1. HDF5 Subsetting & Phase-to-Centimeter Pipeline (Python):
 We query the ASF Search API for NISAR Level-2 Geocoded Unwrapped Interferogram (GUNW) and Geocoded Polarimetric Covariance (GCOV) granules (CRID P05023). For each consecutive 12-to-24-day GUNW pair, our pipeline reads unwrappedPhase, coherenceMagnitude, connectedComponents, and the split-spectrum ionospheric phase screen on its native 80 m UTM grid. We convert unwrapped phase (radians) to line-of-sight displacement (cm) via dr_LOS = -(wavelength / 4*pi) * dphi using each granule's centerFrequency (1.229 GHz, wavelength = 24.39 cm), mask pixels where coherence < 0.30 or connectedComponents == 0, subtract the ionosphere screen and a planar/topographic ramp, reference each pair to a stable high-coherence bedrock window, and accumulate gap-free displacement chains.
 
-2. Independent Validation (GNSS + Two-Orbit Cross-Check):
-In California, we compare vertical estimates (LOS / cos(incidence)) against daily IGS20/NA positions at 10 Nevada Geodetic Laboratory GPS stations, achieving 1.00 cm median time-series RMSE (0.80 cm across 4 actively subsiding interior stations) and r = 0.924 cross-station agreement. We also cross-check ascending Track 34 against descending Track 114 across 6,719 1-km blocks (85% sign agreement for |d| > 3 cm) and decompose vertical (-7.2 cm at Alpaugh) versus east-west (-0.1 cm) motion.
+2. Independent Validation (GNSS, Dual-Orbit & Multi-Sensor):
+In California, vertical estimates (LOS / cos(incidence)) match 10 Nevada Geodetic Laboratory GPS stations at r = 0.924 cross-station agreement and 1.00 cm median RMSE (0.82 cm across 5 central Tulare stations) [data/central_valley/validation.json; data/central_valley_s1/cross_sensor.json]. Dual-orbit cross-checks compare Track 34 vs. Track 114 in California (6,719 1-km blocks, 85% sign agreement for |d| > 3 cm; -7.2 cm vertical at Alpaugh [data/central_valley/vertical.json]) and Track 7 vs. Track 172 in Karapinar. Across 25 Central Valley pairs, L-band NISAR retains 80.4% valid summer cropland coherence where shorter 5.55 cm C-band Sentinel-1 waves wrap > 2.77 cm in single 12-24 day steps [docs/story/cross_sensor.md].
 
-3. Browser Story Map, 3D Surface Explorer & Policy Simulator:
-Static JSON/PNG outputs power a MapLibre GL story map (web/), a Three.js 3D basin viewer (web3d/), and a 24-month Terzaghi aquifer compaction simulator (game/) running entirely in the browser.
+3. Interactive Web Platform:
+Static JSON/PNG outputs drive a MapLibre GL story map (web/), multi-region explorer (web/explorer.html), Three.js 3D surface viewer (web3d/), and 24-month Terzaghi aquifer simulator (game/).
 ```
 
 ---
 
-## 7. Benefits & Impact (`1,068 chars` / `156 words`)
+## 7. Benefits & Impact (`1,243 chars` / `164 words`)
 
 ```text
-- Water & Infrastructure Managers: Our OpenStreetMap differential tilt index evaluates 645 canal, road, and rail corridors in the Central Valley and identifies 81 high-risk segments (> 10 mm/km tilt), led by the Tulare Irrigation District Canal (57.01 mm/km) and a 102.8 km reach of the California Aqueduct (49.12 mm/km). A +/-25% threshold sensitivity test confirms the top-10 priority ranking is 100% invariant, helping engineers prioritize canal liner inspections before freeboard loss occurs.
-- Agricultural Communities & Planners in Konya-Karapinar: Mapping regional groundwater subsidence bowls (-5.9 cm LOS in 108 days) alongside 29 verified karst sinkholes highlights where active drawdown and highway tilt (up to 19.74 mm/km along route 42-42) intersect, without falsely claiming to predict exact roof-collapse dates.
-- Educators, Students & Citizens: Plain-English cards, coin-and-hand physical scale comparisons (>= 2.4 cm above noise), and the 24-month Valley Under Pressure simulator turn multi-gigabyte HDF5 radar files into an accessible tool for understanding irreversible clay compaction.
+- Water & Infrastructure Managers: Our OpenStreetMap differential tilt index evaluates 645 canal, road, and rail corridors in the Central Valley and flags 81 high-risk segments (> 10 mm/km tilt), led by the Tulare Irrigation District Canal (57.01 mm/km) and a 102.8 km reach of the California Aqueduct (49.12 mm/km) [data/central_valley/assets.json]. A +/-25% threshold sensitivity test confirms the top-10 priority ranking is 100% invariant [docs/story/risk_sensitivity.md]. In the Sacramento-San Joaquin Delta, levee-aligned sampling prioritizes embankment segments up to -11.36 cm LOS for inspection [docs/story/delta.md].
+- Agricultural Communities & Planners in Konya-Karapinar: Mapping basin-wide drawdown (-9.6 cm LOS south of Konya; -5.9 cm LOS in Karapinar) alongside 29 verified karst sinkholes highlights highway corridors up to 19.74 mm/km tilt (route 42-42) [data/karapinar/assets.json], without falsely claiming to predict sudden roof-collapse dates.
+- Educators, Students & Citizens: Plain-English cards, physical scale rulers (>= 2.4 cm above noise), a classroom lesson plan [docs/story/lesson_plan.md], and the 24-month Valley Under Pressure simulator turn multi-gigabyte HDF5 radar files into accessible groundwater literacy.
 ```
 
 ---
 
-## 8. Space Agency Data Used (`1,089 chars` / `155 words`)
+## 8. Space Agency Data Used (`1,402 chars` / `198 words`)
 
 ```text
-1. NASA-ISRO NISAR Level-2 Geocoded Unwrapped Interferogram (GUNW, Provisional CRID P05023, accessed via NASA Earthdata / ASF DAAC):
-- California Central Valley: 7 provisional pairs on Track 34 Ascending (2026-06-28 to 2026-10-14), 6 provisional pairs on Track 114 Descending (2026-06-21 to 2026-10-19), plus 18 pre-calibration beta pairs (2025-11-24 to 2026-06-28, stored separately as quality: mixed in data/central_valley_fullyear/).
-- Karapinar, Konya, Turkiye: 8 provisional pairs on Track 7 Descending and 8 provisional pairs on Track 172 Ascending (2026-06-26 to 2026-10-12).
-- Greater London, UK: 9 provisional pairs on Track 101 Ascending (2026-06-21 to 2026-10-19).
+1. NASA-ISRO NISAR Level-2 Geocoded Unwrapped Interferogram (GUNW, Provisional CRID P05023, NASA Earthdata / ASF DAAC):
+- California Central Valley: 7 provisional pairs Track 34 Asc (2026-06-28 to 2026-10-14), 6 provisional pairs Track 114 Desc (2026-06-21 to 2026-10-19), and 18 pre-calibration beta pairs (2025-11-24 to 2026-06-28, stored separately as quality: mixed in data/central_valley_fullyear/).
+- Sacramento-San Joaquin Delta: 9 provisional pairs Track 42 Desc (2026-06-17 to 2026-10-15).
+- Konya Basin & Karapinar, Turkiye: 8 provisional pairs Track 7 Desc and 8 provisional pairs Track 172 Asc (2026-06-26 to 2026-10-12).
+- Greater London, UK: 9 provisional pairs Track 101 Asc (2026-06-21 to 2026-10-19).
+- Global Cities: Mexico City (8 pairs Track 113 Desc, 2026-06-22 to 2026-10-20), Tehran (9 pairs Track 56 Asc, 2026-06-18 to 2026-10-16), and Jakarta (8 pairs Track 18 Desc, 2026-06-27 to 2026-10-13).
 
 2. NASA-ISRO NISAR Level-2 Geocoded Polarimetric Covariance (GCOV, Provisional CRID P05023, ASF DAAC):
-- Eastern England / UK Fens: 2026-10-20 all-weather radar browse preview (data/uk/) and 8-epoch dual-polarization (HHHH, HVHV) agricultural time series (2026-07-28 to 2026-10-20, data/fens/crops.json).
+- Eastern England / UK Fens: 2026-10-20 radar preview (data/uk/) and 8-epoch HH/HV agricultural time series (2026-07-28 to 2026-10-20, data/fens/polarizations.json).
 
-3. NASA GIBS / Worldview Snapshots API:
-- VIIRS SNPP Corrected Reflectance True Color (2026-10-20 over the UK Fens, data/uk/optical.png).
-
-4. NASA NISAR Level-2 Soil Moisture (SME2, Provisional, Central Valley driver comparison).
+3. NASA GIBS / Worldview Snapshots API (VIIRS SNPP True Color, 2026-10-20 UK Fens), NASA NISAR L3 Soil Moisture (SME2, Central Valley & Karapinar drivers), and NASA CMR OPERA_L3_DISP-S1_V1 archive coverage audit.
 ```
 
 ---
 
-## 9. Other Non-Space-Agency Data Used (`748 chars` / `107 words`)
+## 9. Other Non-Space-Agency Data Used (`967 chars` / `150 words`)
 
 ```text
 - Nevada Geodetic Laboratory (NGL, University of Nevada, Reno): Daily continuous GPS vertical time series (IGS20/NA reference frame) at 10 stations in the San Joaquin Valley (CAHA, CAFP, HANF, P566, P056, P564, P565, CAD1, QCAP, TLBN).
-- OpenStreetMap (ODbL): Canal, aqueduct, highway, and railway vector geometries in California (645 evaluated segments) and Karapinar, Turkiye (77 evaluated segments), plus settlement names for benchmark point labelling.
+- OpenStreetMap (ODbL): Canal, aqueduct, levee, highway, and railway vector geometries in California (645 evaluated segments), the Delta (87 levee points), and Karapinar, Turkiye (77 evaluated segments), plus settlement names.
 - Copernicus DEM GLO-90 (ESA): 90 m digital elevation model used for topographic phase ramp checks.
-- WorldPop Open Population Data (100 m gridded population, CC BY 4.0), USDA NASS Cropland Data Layer (CropScape, public domain), and ESA WorldCover 10 m (CC BY 4.0) for population and crop exposure analysis.
+- WorldPop Open Population Data (100 m gridded population, 2020, CC BY 4.0), USDA NASS Cropland Data Layer (30 m, 2021, Public Domain), and ESA WorldCover 10 m v200 (2021, CC BY 4.0) for population and crop exposure analysis.
 - Published Karapinar sinkhole coordinates (29 verified collapses, Tapur & Bozyigit 2015, 2016; Orhan et al. 2021) and UK Holme Fen peat loss records (Great Fen Project / UKCEH).
 ```
 
 ---
 
-## 10. Tools, Coding Languages, Hardware & Software (`634 chars` / `91 words`)
+## 10. Tools, Coding Languages, Hardware & Software (`660 chars` / `83 words`)
 
 ```text
 - Languages: Python 3.11, JavaScript (ES6+), HTML5, CSS3.
-- Scientific Python Stack: NumPy, SciPy, h5py, Matplotlib, Pillow, PyProj, Rasterio, Requests, asf_search, pytest (automated unit tests for phase-to-cm conversion, coherence masking, reference subtraction, and seasonal decomposition).
-- Web & 3D Visualization: MapLibre GL JS (2D interactive displacement maps and GeoJSON overlays), Three.js v0.160.0 (web3d/ interactive 3D displacement mesh and sinkhole depth columns), HTML5 Canvas (charts and 24-month aquifer simulator).
+- Scientific Python Stack: NumPy, SciPy, h5py, Matplotlib, Pillow, PyProj, Rasterio, Requests, asf_search, pytest (automated unit tests for phase-to-cm conversion, coherence masking, reference subtraction, cross-sensor metrics, and seasonal decomposition).
+- Web & 3D Visualization: MapLibre GL JS (2D interactive displacement maps, multi-region explorer, and GeoJSON overlays), Three.js v0.160.0 (web3d/ interactive 3D displacement mesh and sinkhole depth columns), HTML5 Canvas (charts and 24-month aquifer simulator).
 - Workflow & Hosting: Git, GitHub, GitHub Pages (static zero-backend deployment).
 ```
 
 ---
 
-## 11. Project Development & Technical Challenges (`962 chars` / `141 words`)
+## 11. Project Development & Technical Challenges (`1,198 chars` / `159 words`)
 
 ```text
 We organized our team into parallel tracks governed by a strict JSON/PNG data contract (rules/VERI_SOZLESMESI.md): HDF5 subsetting, InSAR phase inversion, GPS/literature validation, infrastructure risk and game simulation, frontend integration, and continuous QA.
@@ -163,7 +159,7 @@ Three technical challenges shaped our design:
 
 ---
 
-## 12. AI Usage Disclosure (`692 chars` / `102 words`)
+## 12. AI Usage Disclosure (`793 chars` / `111 words`)
 
 ```text
 - Data Maps, Charts & Simulator: Zero generative AI images are used in our scientific maps, charts, or active Site v2 interface. Every displacement raster, GPS trace, infrastructure profile, and 3D surface is rendered directly from measured NISAR, NGL GPS, OpenStreetMap, and survey data. (Earlier illustrative concept graphics archived in web/assets/ carry explicit "AI-generated illustration" labels per project rules.)
@@ -172,19 +168,19 @@ Three technical challenges shaped our design:
 
 ---
 
-## 13. References (Copy-Paste List for Portal References Box)
+## 13. References (`2,607 chars` / `268 words` — Copy-Paste List for Portal References Box)
 
 ```text
 1. NASA-ISRO NISAR Mission & Applications White Papers: https://science.nasa.gov/mission/nisar/ and https://science.nasa.gov/mission/nisar/societal-benefits/
 2. Peacock, A., An, K., Pinto, N., & Lou, Y. (2024). NISAR ArcGIS StoryMaps (Land Subsidence): https://storymaps.arcgis.com/stories/109e602e748346f3be8dc89124619828 (https://doi.org/10.5281/zenodo.10818833)
 3. NISAR Data User Guide & GUNW/GCOV Product Specifications (ASF DAAC): https://nisar-docs.asf.alaska.edu/gunw and https://nisar-docs.asf.alaska.edu/provisional-known-issues/
 4. Neely, W. R., Borsa, A. A., Burney, J. A., Levy, M. C., Silverii, F., & Sneed, M. (2021). Characterization of groundwater recharge and flow in California's San Joaquin Valley from InSAR and GPS. Water Resources Research, 57(4), e2020WR028451: https://pmc.ncbi.nlm.nih.gov/articles/PMC8047915/
-5. Ojha, C., Werth, S., & Shirzaei, M. (2019). Groundwater loss and aquifer systemetic compaction in San Joaquin Valley during 2012-2015 drought. JGR Solid Earth, 124, 3127-3143: https://pmc.ncbi.nlm.nih.gov/articles/PMC6559157/
-6. USGS Scientific Investigations Report 2018-5144 (Land Subsidence Along the California Aqueduct): https://pubs.usgs.gov/publication/sir20185144
-7. USGS Fact Sheet 005-00 (Land Subsidence in the Sacramento-San Joaquin Delta): https://pubs.usgs.gov/publication/fs00500
-8. Orhan, O., Oliver-Cabrera, T., Wdowinski, S., Yalvac, S., & Yakar, M. (2021). Land subsidence and its relations with sinkhole activity in Karapinar region, Turkey. Sensors, 21(3), 774: https://pmc.ncbi.nlm.nih.gov/articles/PMC7865528/
-9. Tapur, T., & Bozyigit, R. (2015). Current sinkhole formations in Konya Province. Marmara Coğrafya Dergisi, 31, 415-441: https://dergipark.org.tr/tr/download/article-file/3454
-10. Great Fen Project — Holme Fen Posts & UKCEH Lowland Peatlands WP2 Briefing: https://www.greatfen.org.uk/about-great-fen/heritage/holme-fen-posts and https://lowlandpeat.ceh.ac.uk/sites/default/files/2022-07/Policy-brief-note-WP2.pdf
-11. British Geological Survey — Swelling and Shrinking Soils (London Clay): https://www.bgs.ac.uk/geology-projects/shallow-geohazards/clay-shrink-swell/
-12. Nevada Geodetic Laboratory (NGL) GPS Networks, OpenStreetMap Contributors (ODbL), WorldPop (CC BY 4.0), USDA NASS Cropland Data Layer, and ESA WorldCover 10 m (CC BY 4.0).
+5. Ojha, C., Werth, S., & Shirzaei, M. (2019). Groundwater loss and aquifer system compaction in San Joaquin Valley during 2012-2015 drought. JGR Solid Earth, 124, 3127-3143: https://pmc.ncbi.nlm.nih.gov/articles/PMC6559157/
+6. USGS Scientific Investigations Report 2018-5144 (Land Subsidence Along the California Aqueduct) and Fact Sheet 005-00 (Sacramento-San Joaquin Delta): https://pubs.usgs.gov/publication/sir20185144 and https://pubs.usgs.gov/publication/fs00500
+7. Orhan, O., Oliver-Cabrera, T., Wdowinski, S., Yalvac, S., & Yakar, M. (2021). Land subsidence and its relations with sinkhole activity in Karapinar region, Turkey. Sensors, 21(3), 774: https://pmc.ncbi.nlm.nih.gov/articles/PMC7865528/
+8. Tapur, T., & Bozyigit, R. (2015). Current sinkhole formations in Konya Province. Marmara Cografya Dergisi, 31, 415-441: https://dergipark.org.tr/tr/download/article-file/3454
+9. Great Fen Project — Holme Fen Posts & UKCEH Lowland Peatlands WP2 Briefing: https://www.greatfen.org.uk/about-great-fen/heritage/holme-fen-posts and https://lowlandpeat.ceh.ac.uk/sites/default/files/2022-07/Policy-brief-note-WP2.pdf
+10. British Geological Survey — Swelling and Shrinking Soils (London Clay): https://www.bgs.ac.uk/geology-projects/shallow-geohazards/clay-shrink-swell/
+11. Haghighi, M. H., & Motagh, M. (2024) (Tehran subsidence, PMC11086625) & Abidin, H. Z. et al. (2015) (Jakarta subsidence, PIAHS 372:115): https://pmc.ncbi.nlm.nih.gov/articles/PMC11086625/ and https://piahs.copernicus.org/articles/372/115/2015/
+12. Nevada Geodetic Laboratory (NGL) GPS Networks, OpenStreetMap Contributors (ODbL), WorldPop (CC BY 4.0, DOI: 10.5258/SOTON/WP00645), USDA NASS Cropland Data Layer (Public Domain), and ESA WorldCover 10 m (CC BY 4.0, DOI: 10.5281/zenodo.7254221).
 ```

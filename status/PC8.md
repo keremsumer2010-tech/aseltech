@@ -1,7 +1,7 @@
 # PC8 durum
 
-- Görev: 15:35 görevleri (`uk_findings`, `karapinar_p172`, `PC3/PC9 site yapılacaklar listesi`) + 16:10 EK GÖREV A/B (`submission_form.md`, `video_subtitles.srt`, `narration_script.md`) + 16:15 CHALLENGE UYUMU B3 (`exposure.py`, `data/*/exposure.json`, `docs/story/exposure.md`, `pc8_exposure.png`)
-- Durum: **TAMAMLANDI** (Tüm 15:35, 16:10 ve 16:15 görevleri tamamlandı, doğrulandı ve push edildi; sürekli QA/izleme adımında)
+- Görev: `docs/CALISMA_HARITASI.md` PC8 sırası (1. `submission_form.md` yeni sonuçlar + karakter sınırları + kaynaklar, 2. `slides_notes.md`, 3. `exposure.md` Konya Ovası ekleme, 4. `MASTER_PLAN.md` §9 teslim kontrol listesi doğrulama)
+- Durum: **Madde 1 (`submission_form.md`) TAMAMLANDI**; Madde 2 (`docs/story/slides_notes.md`) hazırlanıyor
 - Çıktılar:
   - **15:35 Madde 1 (`uk_findings` + algılama grafiği):** `docs/story/uk_findings.md`, `docs/story/media/pc8_uk_detection.png` (190.0 KB), `analysis/pc8/plot_uk_detection.py`
   - **15:35 Madde 2 (`karapinar_p172` çapraz kontrolü):** `data/karapinar_p172/{meta,points,summary}.json`, `data/karapinar_p172/disp/*.png` (9 PNG), `docs/story/media/pc8_kp_p7_vs_p172.png` (264.3 KB), `analysis/pc8/karapinar_p172_check.py`, `analysis/pc8/kp_p7_vs_p172.json` (`p01` zaman serisi `r = 0.798`, `RMSE = 1.25 cm` LOS; 12 nokta `r = 0.767` LOS, `RMSE = 1.12 cm` LOS, `maks fark = 2.34 cm` LOS)
