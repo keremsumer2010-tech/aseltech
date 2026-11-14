@@ -4,10 +4,10 @@
 
 ## Architecture (`pipeline/nisarpulse/`)
 
-- `search.py` — Validates `w,s,e,n` bounds, queries NASA CMR for `NISAR_L2_GUNW_PROVISIONAL_V1` (and `BETA_V1` when `--quality mixed`), classifies pairs (`>= 2026-06-17` provisional vs `beta-precal`), builds a continuous interferometric chain, and flags any temporal gaps.
+- `search.py` — Supports `--center lon,lat --box-deg 0.25` (default `±0.25°` ≈ 55 × 55 km) or explicit `--bbox w,s,e,n`, queries NASA CMR for `NISAR_L2_GUNW_PROVISIONAL_V1` (and `BETA_V1` when `--quality mixed`), classifies pairs (`>= 2026-06-17` provisional vs `beta-precal`), builds a continuous interferometric chain, and writes `coverage.json` (`coverage: "none"` on empty coverage) plus gap diagnostics.
 - `fetch.py` — Enforces a `20.0 GB` free-disk floor, streams one HDF5 granule at a time via `pipeline.download.download_file`, subsets to compressed `.npz` via `pipeline.subset.subset_gunw`, and deletes the raw `.h5` immediately.
-- `process.py` — Registers the site bounding box at runtime and runs `analysis/cumulative.py` unmodified to produce reference-checked cumulative LOS maps and uncertainty ranges.
-- `catalog.py` — Upserts a `rules/VERI_SOZLESMESI.md`-compliant entry into `data/catalog.json`.
+- `process.py` — Registers the site bounding box at runtime, runs `analysis/cumulative.py` unmodified (with optional `--data-dir` and out-of-basin `--ref-lonlat lon,lat` re-referencing), and appends standardized Atlas quality metrics (`p2_cm`, `rate_cm_per_100d`, `valid_fraction`, `confidence`) to `summary.json`.
+- `catalog.py` — Upserts a `rules/VERI_SOZLESMESI.md`-compliant entry into `data/catalog.json` (skippable via `--no-catalog` for global atlas runs).
 
 ## End-to-End Verification (Sacramento–San Joaquin Delta)
 
@@ -31,8 +31,20 @@
    ```
    Output: `Done [delta] -> data/delta | max_subsidence_cm=-1.3 | elapsed=6.9s` (`range_cm=[-1.3, -1.1]`, `120 days`, `quality="provisional"`).
 
-3. **Offline unit tests (`6/6` pass in `0.016s`):**
+3. **Offline unit tests (`8/8` pass):**
    ```bash
    python -m unittest discover -s pipeline/nisarpulse/tests -v
    ```
    CI runs `python -m pytest pipeline/nisarpulse -q` on push/PR via `.github/workflows/tests.yml`.
+
+## Multi-Region Global Atlas Proof (`data/global/`, `provisional`)
+
+All five Priority-A basins below were processed end-to-end with `pipeline.nisarpulse` (`--quality provisional`, `--data-dir data/global/<city> --no-catalog`):
+
+| City | Path / Frame | Period | Pairs | Max LOS (cm) | `p2_cm` | `rate_cm_per_100d` | `valid_fraction` | `confidence` |
+|---|---|---|---:|---:|---:|---:|---:|---|
+| `isfahan` | P056 / F018 | `2026-06-18 → 2026-10-16` | 9 | -2.5 | -2.90 | -2.08 | 0.325 | `medium` |
+| `rafsanjan` | P128 / F017 | `2026-06-23 → 2026-10-21` | 9 | -5.8 | -4.30 | -4.83 | 0.847 | `medium` |
+| `mashhad` | P078 / F070 | `2026-06-19 → 2026-10-17` | 9 | -8.6 | -6.68 | -7.17 | 0.705 | `medium` |
+| `quetta` | P041 / F017 | `2026-06-17 → 2026-10-15` | 9 | -3.8 | -2.50 | -3.17 | 0.713 | `medium` |
+| `delhi` | P106 / F074 | `2026-06-21 → 2026-10-19` | 8 | -4.3 | -4.45 | -3.58 | 0.053 | `low` |

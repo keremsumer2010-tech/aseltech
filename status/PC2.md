@@ -108,4 +108,4 @@
   - **2/5 `rafsanjan`** (Path 128 Frame 17, `2026-06-23 → 2026-10-21`, 9/9 `provisional` çift, `--ref-lonlat 56.23647,30.64582`): `data/global/rafsanjan/` hazır — `max_subsidence_cm=-5.8`, `p2_cm=-4.3`, `rate_cm_per_100d=-4.83`, `valid_fraction=0.847`, `confidence=medium`.
   - **3/5 `mashhad`** (Path 78 Frame 70, `2026-06-19 → 2026-10-17`, 9/9 `provisional` çift): `data/global/mashhad/` hazır — `max_subsidence_cm=-8.6`, `p2_cm=-6.68`, `rate_cm_per_100d=-7.17`, `valid_fraction=0.705`, `confidence=medium`.
   - **4/5 `quetta`** (Path 41 Frame 17, `2026-06-17 → 2026-10-15`, 9/9 `provisional` çift): `data/global/quetta/` hazır — `max_subsidence_cm=-3.8`, `p2_cm=-2.5`, `rate_cm_per_100d=-3.17`, `valid_fraction=0.713`, `confidence=medium`.
-  - Sıradaki: `delhi`.
+  - **5/5 `delhi`** (Path 106 Frame 74, `2026-06-21 → 2026-10-19`, 8/8 `provisional` çift): `data/global/delhi/` hazır — `max_subsidence_cm=-4.3`, `p2_cm=-4.45`, `rate_cm_per_100d=-3.58`, `valid_fraction=0.053`, `confidence=low` (muson dönemi dekorelasyonu; tüm 5 PC2 A-önceliği şehri tamamlandı, `atlas.json`'a dokunulmadı).

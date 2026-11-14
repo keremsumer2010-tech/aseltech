@@ -1,0 +1,22 @@
+{
+  "site": "delhi",
+  "bbox": [
+    76.83,
+    28.3,
+    77.33,
+    28.8
+  ],
+  "quality": "provisional",
+  "coverage": "ok",
+  "granules": 11,
+  "chain_pairs": 8,
+  "path": 106,
+  "frame": 74,
+  "period": [
+    "2026-06-21",
+    "2026-10-19"
+  ],
+  "gaps": [],
+  "total_raw_mb": 18237.4,
+  "error": null
+}
