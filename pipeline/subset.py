@@ -150,6 +150,17 @@ def bilinear_interp_2d(
     return out.astype(np.float32)
 
 
+def _bitround_f32(arr: np.ndarray, keep_mantissa_bits: int = 12) -> np.ndarray:
+    """Zero low mantissa bits of finite float32 values to improve deflate compression."""
+    a = np.ascontiguousarray(arr, dtype=np.float32)
+    shift = 23 - keep_mantissa_bits
+    if shift <= 0:
+        return a
+    u = a.view(np.uint32)
+    rounded = ((u >> shift) << shift).view(np.float32)
+    return np.where(np.isfinite(a), rounded, a).astype(np.float32)
+
+
 def _read_epsg(proj_ds: h5py.Dataset) -> int:
     for key in ("epsg_code", "EPSG_code", "epsg"):
         if key in proj_ds.attrs:
@@ -269,7 +280,10 @@ def subset_gunw(
             rg_x = radar_grid["xCoordinates"][:]
             rg_y = radar_grid["yCoordinates"][:]
             inc_slice = radar_grid["incidenceAngle"][z_idx, :, :]
-            inc_sub = bilinear_interp_2d(rg_x, rg_y, inc_slice, x_sub, y_sub)
+            inc_sub = _bitround_f32(
+                bilinear_interp_2d(rg_x, rg_y, inc_slice, x_sub, y_sub),
+                keep_mantissa_bits=12,
+            )
         else:
             h_used = 0.0
             inc_sub = np.full(unw.shape, np.nan, dtype=np.float32)
@@ -297,20 +311,23 @@ def subset_gunw(
 
     np.savez_compressed(out_path, **payload)
     size_mb = out_path.stat().st_size / (1024 * 1024)
-    dropped_ion = False
-    if size_mb > MAX_NPZ_MB and payload["ion"].size > 0:
-        payload["ion"] = np.array([], dtype=np.float32)
+    ion_bits = "full"
+    for keep_bits in (14, 12):
+        if size_mb <= MAX_NPZ_MB or payload["ion"].size == 0:
+            break
+        payload["ion"] = _bitround_f32(ion, keep_mantissa_bits=keep_bits)
         np.savez_compressed(out_path, **payload)
         size_mb = out_path.stat().st_size / (1024 * 1024)
-        dropped_ion = True
+        ion_bits = f"{keep_bits}b"
 
     if size_mb > 20.0:
         raise ValueError(f"Output {out_path} is {size_mb:.2f} MB (> 20 MB limit)")
 
     with np.load(out_path) as data:
-        assert data["unw"].shape == data["coh"].shape == data["incidence"].shape
+        assert data["unw"].shape == data["coh"].shape == data["incidence"].shape == data["ion"].shape
         assert data["unw"].dtype == np.float32
         assert data["coh"].dtype == np.uint8
+        assert data["ion"].dtype == np.float32
         nan_pct = float(100.0 * np.isnan(data["unw"]).mean())
         shape = data["unw"].shape
 
@@ -324,7 +341,7 @@ def subset_gunw(
         "epsg": epsg,
         "wavelength": float(wavelength),
         "quality": quality,
-        "dropped_ion": dropped_ion,
+        "ion_bits": ion_bits,
     }
 
 
@@ -351,7 +368,7 @@ def main() -> None:
         f"Saved {info['out_path']} | shape={info['shape']} | "
         f"size={info['size_mb']:.2f} MB | NaN={info['nan_pct']:.2f}% | "
         f"epsg={info['epsg']} | lambda={info['wavelength']:.5f} m | "
-        f"quality={info['quality']} | dropped_ion={info['dropped_ion']}"
+        f"quality={info['quality']} | ion_bits={info['ion_bits']}"
     )
 
 
