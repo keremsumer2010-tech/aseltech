@@ -1,4 +1,4 @@
 # PC8 durum
 
-- Durum: çalışıyor: B11 (S-10 Orta) — UK radar katmanına `maxZoom` sınırı ekleme (`web/app.js`)
-- Alan: BUGFIX (`tasks/QUEUE.md`)
+- Tamamlandı: B11 (S-10 Orta) — UK radar katmanına `maxZoom: 10.5` sınırı eklendi (`web/app.js`)
+- Sıradaki: B12 (S-11 Orta)

@@ -100,9 +100,9 @@ function storyMap(){
       map.addLayer({id: 'sites', type: 'circle', source: 'sites', paint: {'circle-radius': 9, 'circle-color': '#ff5a47', 'circle-stroke-color': '#fff', 'circle-stroke-width': 2}});
       if (D.uk){
         map.addSource('uk-opt', {type: 'image', url: ROOT + `data/uk/optical_${D.uk.date}.jpg`, coordinates: corners(D.uk.bbox)});
-        map.addLayer({id: 'uk-opt', type: 'raster', source: 'uk-opt', paint: {'raster-opacity': 0.9}});
+        map.addLayer({id: 'uk-opt', type: 'raster', source: 'uk-opt', maxzoom: 11, paint: {'raster-opacity': 0.9}});
         map.addSource('uk', {type: 'image', url: ROOT + `data/uk/radar_${D.uk.date}.png`, coordinates: corners(D.uk.bbox)});
-        map.addLayer({id: 'uk-radar', type: 'raster', source: 'uk', paint: {'raster-opacity': 0.9}});
+        map.addLayer({id: 'uk-radar', type: 'raster', source: 'uk', maxzoom: 11, paint: {'raster-opacity': 0.9}});
       }
       if (D.cvMeta){
         const m = D.cvMeta; cvIdx = m.dates.length - 1;
@@ -153,6 +153,7 @@ function show(step, force){
   if (force && step === current && inView(v)) return;
   current = step;
   for (const id of ALL) if (map.getLayer(id)) map.setLayoutProperty(id, 'visibility', v.layers.includes(id) ? 'visible' : 'none');
+  map.setMaxZoom(step === 'uk' ? 10.5 : 18);
   if (map.getLayer('sat')) map.setPaintProperty('sat', 'raster-opacity', step === 'uk' ? 0.14 : 1);
   if (map.getLayer('cv-disp')) map.setPaintProperty('cv-disp', 'raster-opacity', v.dim ? 0.45 : 0.65);
   if (v.bbox) map.fitBounds([[v.bbox[0], v.bbox[1]], [v.bbox[2], v.bbox[3]]], {padding: 40, duration: 1800, essential: true});
