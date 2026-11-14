@@ -1,7 +1,10 @@
 # PC6 durum
 
-- Görev: 14:10 yeni paketi (`tasks/PC6.md` + `tasks/QUEUE.md` PC6 satırları) TAMAMLANDI.
-- Durum: PC6'ya atanan tüm işler tamamlandı ve doğrulandı (`Q05`, `Q06`, `Q19` v2, `Q20`, `Q28`, `Q14`). (`Q13` ve `Q15` `PCQ` tarafından tamamlandı; `Q17` PC1 tarafından `PC7`'ye devredildi.)
+- Görev: 14:45 YENİ PAKET (`tasks/PC6.md`) adım 1/5 tamamlandı, adım 2'ye geçiliyor.
+- Durum: Önceki tüm işler (`Q05`, `Q06`, `Q19` v2, `Q20`, `Q28`, `Q14`) tamamlandı. 14:45 paketi 1. adım (1080p MP4+GIF animasyonları) üretildi ve doğrulandı:
+  - `analysis/pc6/make_animation.py`: Harita döşeme indirmesi/yapay görsel kullanmadan doğrudan `data/*/disp/*.png`, `points.json`, `meta.json`, `risk/*_infra.geojson` ve `data/karapinar/sinkholes.geojson` üzerinden 1080p kareler üretiyor.
+  - `docs/story/media/cv_subsidence.mp4` (`3.07 MB`, `1920x1080`, `h264/yuv420p`, `10.42 s`, 8 epok) ve `docs/story/media/cv_subsidence.gif` (`4.23 MB`).
+  - `docs/story/media/kp_subsidence.mp4` (`0.88 MB`, `1920x1080`, `h264/yuv420p`, `11.58 s`, 9 epok) ve `docs/story/media/kp_subsidence.gif` (`1.36 MB`).
 - Çıktılar:
   - Görev 1 (GNSS): `validation/gnss_stations.csv` (23 istasyon), `validation/gnss/*.csv` (10 istasyon, 2025-11 → 2026-11), `validation/README.md`
   - Görev 2 & 3 (OSM): `risk/central_valley_infra.geojson` (3238 hat, 1.07 MB), `risk/karapinar_infra.geojson` (64 hat, 0.04 MB), `risk/README.md`
