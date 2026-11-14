@@ -244,10 +244,11 @@ button { font-family: inherit; }
 /* ---------- responsive ---------- */
 @media (max-width: 1280px) { :root { --panel-w: 320px; } .seg-btn { padding: 7px 11px; font-size: 12px; } }
 @media (max-width: 1100px) {
-  body { overflow: auto; }
+  body { overflow-x: hidden; overflow-y: auto; }
   .app-shell { height: auto; }
   .topbar { height: auto; flex-wrap: wrap; padding: 12px 16px; }
   .workspace { grid-template-columns: 1fr; grid-template-rows: 62vh auto auto; }
+  .workspace > *, .dock > *, .control-panel > * { min-width: 0; max-width: 100%; }
   .control-panel { grid-column: 1; grid-row: 3; overflow: visible; }
   .dock { grid-row: 2; height: auto; grid-template-columns: 1fr; }
   .timeline-dock { height: 260px; }
@@ -255,13 +256,27 @@ button { font-family: inherit; }
 }
 @media (max-width: 640px) {
   .brand-group .pill { display: none; }
-  .topbar-meta { width: 100%; justify-content: space-between; }
-  .seg-map { top: auto; bottom: 14px; }
+  .topbar { padding: 10px 12px; gap: 10px; }
+  .topbar-meta { width: 100%; flex-wrap: wrap; gap: 8px; justify-content: flex-start; }
+  .seg { max-width: 100%; }
+  #presetSeg { width: 100%; }
+  #presetSeg .seg-btn { flex: 1; padding: 10px 6px; font-size: 11.5px; }
+  .seg-map { top: auto; bottom: 10px; left: 10px; max-width: calc(100% - 20px); }
+  .seg-map .seg-btn { padding: 10px 8px; font-size: 11.5px; }
   .map-legend { display: none; }
-  .date-stamp { top: 70px; bottom: auto; }
+  .date-stamp { top: auto; bottom: 64px; right: 10px; }
   .kpi-grid { grid-template-columns: 1fr; }
-  .start-card { padding: 28px 22px; }
+  .modal-backdrop { padding: 12px; }
+  .modal-card, .start-card { width: 100%; max-width: 100%; padding: 20px 16px; }
   .start-steps, .basin-cards, .compare-grid, .test-head, .classroom-grid { grid-template-columns: 1fr; }
   .start-foot { flex-direction: column; align-items: stretch; }
+  .btn-primary, .btn-quiet, .btn-lg { min-height: 44px; }
+  .icon-btn { min-width: 44px; min-height: 44px; }
+  .seg-btn { min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
+  .layer-btn { min-height: 44px; display: inline-flex; align-items: center; }
+  .model-details > summary { min-height: 44px; display: flex; align-items: center; }
+  .dmark { min-height: 44px; min-width: 44px; padding: 8px 10px; display: inline-flex; align-items: center; }
+  .maplibregl-ctrl-group button { width: 44px !important; height: 44px !important; }
+  .maplibregl-ctrl-attrib-button { min-width: 44px !important; min-height: 44px !important; }
 }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }

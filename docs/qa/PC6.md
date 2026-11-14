@@ -231,3 +231,13 @@ Komut: `python analysis/pc6/test_20_strategies.py --self-test`
   - Üst çubuğa `#classroomBtn` eklendi; tıklanınca `docs/story/lesson_plan.md` (40 dakikalık ders planı, Trial A / Trial B) ile birebir uyumlu **3 hazır senaryo** (`Normal Year`, `Multi-Year Drought · Trial A`, `Sustainable Pumping · Trial B`) ve **3 tartışma sorusu** içeren `#classroomModal` açılıyor.
   - 24 ay sonunda `#endModal` içinde `#endClassroomBox` ve `#endClassroomScenarioTag` otomatik görüntüleniyor.
 - **Canlı Tarayıcı Doğrulaması (`http://127.0.0.1:8766/game/`):** `#classroomBtn` → `#classroomModal` (3 senaryo + 3 soru) → `Multi-Year Drought` (`[data-classroom="drought"]`) tek tıkla 24 ay koştu, `#endModal` ve `#endClassroomBox` (`Tulare Basin · Scenario 2: Multi-Year Drought`) açıldı; **0 konsol hatası, 0 ağ hatası**.
+
+### 8.3 Görev 3 · Telefon (`375×812`) ve Projektör (`1280×720`) Testi + Dokunmatik Hedefler (≥ 44 px)
+- **Tarih / Saat:** `2026-11-14 19:48 TR`
+- **İlk Tarayıcı Testinde Bulunan Hatalar (`375×812`):**
+  1. Başlangıç kutusu ve ana simülatörde `scrollWidth = 434.4 px > 375 px` (~`59.4 px` yatay taşma; `.topbar-meta` ve `.modal-card` dar ekrana sarılmıyordu).
+  2. Dokunmatik hedefler (`#startBtn` `33 px`, `.seg-btn` `26 px`, `#classroomBtn` `32.6 px`, `#paramsBtn` `34×34 px`, `.layer-btn` `27.6 px`, `.dmark` `25.6 px`, `.maplibregl-ctrl-group button` `29×29 px`, `#nextMonthBtn` `38 px`, `#fastForwardBtn`/`#resetBtn` `32.6 px`) `< 44 px` idi.
+- **Düzeltme (`game/style.css`):** `@media (max-width: 1100px)` ve `@media (max-width: 640px)` kuralları güncellendi (`min-width: 0; max-width: 100%`, `#presetSeg` tam genişlik, `.topbar-meta` sarma, tüm etkileşimli düğme/katman/işaretçi/harita zoom kontrollerine `min-height: 44px` / `min-width: 44px`).
+- **Tekrar Test Sonucu:**
+  - **Telefon (`375×812`):** Başlangıç kutusu `scrollWidth = 360 ≤ 375`, ana simülatör `scrollWidth = 375 === 375` (**0 px taşma**), `< 44 px` dokunmatik hedef sayısı: **0** (tümü `>= 44 px`), **0 konsol hatası, 0 ağ hatası**.
+  - **Projektör (`1280×720`):** `1280×720` tam sığma (yatay/dikey taşma **0 px**), harita + alt grafik/okuma + sağ kontrol paneli çakışmasız ve okunaklı, **0 konsol hatası**.
