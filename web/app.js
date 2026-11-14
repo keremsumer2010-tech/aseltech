@@ -53,32 +53,14 @@ async function initUSA(){
   const slider = document.getElementById('cvSlider'), label = document.getElementById('cvDate');
   slider.max = m.dates.length - 1; slider.value = m.dates.length - 1;
   const pts = (await getJSON([base + 'points.json']))?.data || [];
-  const valRes = m.quality !== 'placeholder' ? await getJSON([base + 'validation.json']) : null;
-  const assetsRes = m.quality !== 'placeholder' ? await getJSON([base + 'assets.json']) : null;
-  const gnss = (valRes?.data || []).filter(v => v.rmse_cm != null);
   map.on('load', () => {
     map.addSource('disp', {type: 'image', url: base + `disp/${m.dates.at(-1)}.png`, coordinates: corners(m.bbox)});
     map.addLayer({id: 'disp', type: 'raster', source: 'disp', paint: {'raster-opacity': 0.8, 'raster-fade-duration': 0}});
-    if (assetsRes?.data?.features?.length){
-      map.addSource('assets', {type: 'geojson', data: assetsRes.data});
-      map.addLayer({id: 'assets', type: 'line', source: 'assets', paint: {'line-color': '#e3b341', 'line-width': 2.5, 'line-opacity': 0.85}});
-      map.on('click', 'assets', e => { const p = e.features[0].properties;
-        new maplibregl.Popup().setLngLat(e.lngLat).setHTML(`<b>${p.name}</b> (${p.type})<br>Tilt gradient: <b>${p.gradient_mm_per_km} mm/km</b><br>Peak LOS: ${p.max_cm} cm · Risk: ${String(p.risk || '').toUpperCase()}`).addTo(map); });
-      map.on('mouseenter', 'assets', () => map.getCanvas().style.cursor = 'pointer');
-      map.on('mouseleave', 'assets', () => map.getCanvas().style.cursor = '');
-    }
     map.addSource('pts', {type: 'geojson', data: {type: 'FeatureCollection', features: pts.map(p => ({type: 'Feature', properties: {id: p.id}, geometry: {type: 'Point', coordinates: [p.lon, p.lat]}}))}});
     map.addLayer({id: 'pts', type: 'circle', source: 'pts', paint: {'circle-radius': 7, 'circle-color': '#fff', 'circle-stroke-color': '#000', 'circle-stroke-width': 2}});
     map.on('click', 'pts', e => select(pts.find(p => p.id === e.features[0].properties.id)));
     map.on('mouseenter', 'pts', () => map.getCanvas().style.cursor = 'pointer');
     map.on('mouseleave', 'pts', () => map.getCanvas().style.cursor = '');
-    if (gnss.length){
-      map.addSource('gnss', {type: 'geojson', data: {type: 'FeatureCollection', features: gnss.map(v => ({type: 'Feature', properties: {station: v.station}, geometry: {type: 'Point', coordinates: [v.lon, v.lat]}}))}});
-      map.addLayer({id: 'gnss', type: 'circle', source: 'gnss', paint: {'circle-radius': 6, 'circle-color': '#5ec8ff', 'circle-stroke-color': '#070b14', 'circle-stroke-width': 2}});
-      map.on('click', 'gnss', e => selectGnss(gnss.find(v => v.station === e.features[0].properties.station)));
-      map.on('mouseenter', 'gnss', () => map.getCanvas().style.cursor = 'pointer');
-      map.on('mouseleave', 'gnss', () => map.getCanvas().style.cursor = '');
-    }
     show(+slider.value);
     if (pts.length) select(pts[0]);
   });
@@ -96,11 +78,6 @@ async function initUSA(){
     timer = setInterval(() => { slider.value = (+slider.value + 1) % m.dates.length; show(+slider.value); }, 900);
   });
   let chart = null;
-  function renderChart(labels, datasets){
-    const data = {labels, datasets};
-    if (chart){ chart.data = data; chart.update(); return; }
-    chart = new Chart(document.getElementById('cvChart'), {type: 'line', data, options: {plugins: {legend: {labels: {color: '#93a3c0'}}}, scales: {x: {ticks: {color: '#93a3c0'}, grid: {color: '#1f2b44'}}, y: {ticks: {color: '#93a3c0'}, grid: {color: '#1f2b44'}, title: {display: true, text: 'cm', color: '#93a3c0'}}}}});
-  }
   function select(p){
     if (!p) return;
     if (p.disp_cm.at(-1) == null){ document.getElementById('cvSentence').textContent = `${p.name}: no reliable measurement at this point.`; return; }
@@ -109,18 +86,9 @@ async function initUSA(){
     const tag = m.quality === 'placeholder' ? ' <span class="badge placeholder">PLACEHOLDER</span>' : '';
     document.getElementById('cvSentence').innerHTML =
       `<b>${p.name}:</b> this spot ${verb} <b>${Math.abs(v).toFixed(1)} cm</b> between ${fmtDate(p.dates[0])} and ${fmtDate(p.dates.at(-1))} (${months} month${months > 1 ? 's' : ''}) — about ${humanScale(v)}.${tag}`;
-    renderChart(p.dates.map(fmtDate), [{label: 'Ground motion (cm, line of sight)', data: p.disp_cm, borderColor: '#ff6b5a', backgroundColor: 'rgba(255,107,90,.15)', fill: true, tension: .25}]);
-  }
-  function selectGnss(v){
-    if (!v) return;
-    const iEnd = v.insar.at(-1), gEnd = v.gnss.at(-1);
-    const corrTxt = v.corr != null ? `, r = ${v.corr.toFixed(2)}` : '';
-    document.getElementById('cvSentence').innerHTML =
-      `<b>GNSS ${v.station} (vertical est.):</b> NISAR <b>${iEnd != null ? iEnd.toFixed(1) : 'n/a'} cm</b> vs. NGL GPS <b>${gEnd != null ? gEnd.toFixed(1) : 'n/a'} cm</b> · RMSE ${v.rmse_cm.toFixed(2)} cm${corrTxt} <small>(cyan dots = GPS stations; amber lines = high-tilt infrastructure)</small>`;
-    renderChart(v.dates.map(fmtDate), [
-      {label: 'NISAR vertical est. (cm)', data: v.insar, borderColor: '#ff6b5a', backgroundColor: 'rgba(255,107,90,.12)', fill: false, tension: .25},
-      {label: 'NGL GNSS vertical (cm)', data: v.gnss, borderColor: '#5ec8ff', backgroundColor: 'rgba(94,200,255,.12)', borderDash: [5, 4], fill: false, tension: .25}
-    ]);
+    const data = {labels: p.dates.map(fmtDate), datasets: [{label: 'Ground motion (cm, line of sight)', data: p.disp_cm, borderColor: '#ff6b5a', backgroundColor: 'rgba(255,107,90,.15)', fill: true, tension: .25}]};
+    if (chart){ chart.data = data; chart.update(); return; }
+    chart = new Chart(document.getElementById('cvChart'), {type: 'line', data, options: {plugins: {legend: {labels: {color: '#93a3c0'}}}, scales: {x: {ticks: {color: '#93a3c0'}, grid: {color: '#1f2b44'}}, y: {ticks: {color: '#93a3c0'}, grid: {color: '#1f2b44'}, title: {display: true, text: 'cm', color: '#93a3c0'}}}}});
   }
 }
 

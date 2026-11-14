@@ -29,7 +29,7 @@ Mevcut durumda `data/` altında henüz üretilmiş `meta.json` dosyası yok (`da
 
 ## 4. `data/` Faz-2 Denetimi (`13:41 TR` — Central Valley Gerçek Verisi Geldi)
 
-Gerçek `data/central_valley/` çıktıları (`meta.json`, `summary.json`, `points.json`, 8 `disp/*.png`) ve PC6 üretimleri (`validation.json`, `assets.json`, `catalog.json`, `game/index.html`) denetlendi:
+Gerçek `data/central_valley/` çıktıları (`meta.json`, `summary.json`, `points.json`, 8 `disp/*.png`) ve PC6 veri üretimleri (`validation.json`, `assets.json`) denetlendi (web sitesiyle ilgili `data/catalog.json`, `game/index.html`, `docs/game_v1.png`, `web/app.js` değişiklikleri kullanıcı isteğiyle geri alındı):
 
 | Dosya | `quality` / `quality_note` | `vmin` / `vmax` | `bbox` (`[w,s,e,n]`) | Sonuç |
 |---|---|---|---|---|
@@ -38,12 +38,7 @@ Gerçek `data/central_valley/` çıktıları (`meta.json`, `summary.json`, `poin
 | `data/central_valley/points.json` | n/a (site noktaları) | 12 nokta, `NaN` yok | Central Valley içi | Geçti (`2026-06-28 → 2026-10-14`, 8 tarih) |
 | `data/central_valley/validation.json` | `"provisional"` + tam dipnot | `NaN` yok | 10 GNSS istasyonu footprint içi | Geçti (`CAHA` RMSE 0.752 cm `r=0.896`, `HANF` RMSE 0.834 cm `r=0.896`, `QCAP` RMSE 0.767 cm `r=0.820`, `TLBN` RMSE 1.173 cm `r=0.793`) |
 | `data/central_valley/assets.json` | `"provisional"` + OSM ODbL + dipnot | 645 segment ≥ 1 km değerlendirildi (`high=81, medium=131, low=433`) | top 10 GeoJSON `NaN` yok | Geçti (Tulare Irrig. Canal 57.01 mm/km, California Aqueduct 49.12 mm/km, Friant-Kern Canal 46.06 mm/km) |
-| `data/catalog.json` | `central_valley: provisional`, `karapinar: pending`, `uk: pending` | n/a | n/a | Geçti (`NaN` yok) |
 
-### Güncel Doğrulama Sonuçları
-- **`python -m pytest analysis -q`:** `17 passed in 2.62s`.
-- **Yerel HTTP sunucu testi (`http.server`):** `/web/`, `/web/index.html`, `/web/app.js`, `/web/style.css`, `/game/`, `/game/index.html`, `/data/catalog.json`, `/data/central_valley/*.json` ve `disp/2026-10-14.png` — 13/13 yol **HTTP 200 OK**, sıfır `NaN`.
-- **Açık kalan dış bağımlılıklar (Q14 / Q18 Faz-3 için beklenen):**
-  - `data/karapinar/` (PC3 `Q02` + PC4 `sinkholes.geojson`) henüz yok.
-  - `data/uk/meta.json` ve Holme Fen kaynaklı rakamı (`web/index.html:47` `<span class="pending">`) PC4 tarafından henüz gelmedi; K-2 gereği placeholder korundu.
-  - `web/app.js:83` null koruması PC1 tarafından `c7bac46` ile çözülmüş doğrulandı.
+### Güncel Notlar
+- `data/karapinar/meta.json` (`Q02`) henüz eklendi (`quality: provisional`, `vmin/vmax: -5.0/5.0`, `bbox: [33.3, 37.6, 33.8, 37.9]`, 9 PNG); tam Q14/UK kontrolü `data/uk/` tamamlandığında tekrarlanacak.
+- `web/app.js`, `docs/URUN_TANIMI.md`, `game/`, `docs/game_v1.png`, `data/catalog.json` kullanıcı isteği üzerine PC6 öncesi duruma (`c7bac46` / `4cba32a`) geri alındı.
