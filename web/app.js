@@ -54,18 +54,20 @@ async function findings(){
   document.getElementById('findings').hidden = false;
 }
 
-/* ---------- hero: satellite basemap ---------- */
-function hero(){
-  if (!D.cvMeta) return;
-  const m = D.cvMeta;
-  // flat view: a tilted map shows the horizon, which MapLibre paints light grey behind the hero text
-  const heroStyle = {...STYLE, layers: [{id: 'bg', type: 'background', paint: {'background-color': '#05080f'}}, ...STYLE.layers]};
-  const hm = new maplibregl.Map({container: 'heroMap', style: heroStyle, center: [-119.45, 36.1], zoom: 8.4, interactive: false, attributionControl: false, pitch: 0, bearing: -12, fadeDuration: 0, renderWorldCopies: false});
-  hm.on('load', () => {
-    const W = hm.getContainer().clientWidth, wide = W > 860;
-    hm.fitBounds([[m.bbox[0], m.bbox[1]], [m.bbox[2], m.bbox[3]]], {duration: 0, bearing: -12,
-      padding: wide ? {left: Math.round(W * 0.48), right: 40, top: 90, bottom: 70} : {left: 20, right: 20, top: 70, bottom: Math.round(hm.getContainer().clientHeight * 0.55)}});
-  });
+/* ---------- hero: looping satellite video (poster only on reduced-motion) ---------- */
+function heroVideo(){
+  const hv = document.getElementById('heroVideo');
+  if (!hv) return;
+  hv.poster = ROOT + 'docs/story/media/hero_poster.webp';
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  for (const [ext, type] of [['webm', 'video/webm'], ['mp4', 'video/mp4']]){
+    const s = document.createElement('source');
+    s.src = ROOT + `docs/story/media/hero_loop.${ext}`;
+    s.type = type;
+    hv.appendChild(s);
+  }
+  hv.load();
+  hv.play().catch(() => {});
 }
 
 /* ---------- story map ---------- */
@@ -329,4 +331,5 @@ function extras(){
   });
 }
 
-load().then(() => { hero(); storyMap(); compare(); cvControls(); gnssTable(); riskList(); sinkList(); ringChart(); polChart(); fullYear(); extras(); findings(); });
+heroVideo();
+load().then(() => { storyMap(); compare(); cvControls(); gnssTable(); riskList(); sinkList(); ringChart(); polChart(); fullYear(); extras(); findings(); });
