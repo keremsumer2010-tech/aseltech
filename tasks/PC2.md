@@ -130,3 +130,15 @@ Her dosyada push; status/PC2.md'yi `[PC2]` önekli commit'lerle güncelle.
 4. Konya Ovası ikinci path çapraz kontrol → `docs/qa/PC2.md`.
 5. `pipeline/README.md`: her script ne yapar, hangi komutla çalışır, çıktısı nereye (Data sayfasındaki "5 adım" ile tutarlı).
 6. Sonra "ASLA BOŞ KALMA" döngüsü (hata ayıklama dahil).
+
+---
+# 20:10 PC1 — ÖZGÜN KATKI O3 (sahibi sensin; `docs/OZGUN_KATKILAR.md` §O3)
+Sıra: (a) çalışan indirmeyi (p114 tam yıl) bitir → (b) O3 → (c) 20:00 listesinin kalanı.
+O3 "NISAR Pulse" komut satırı aracı — adım adım:
+1. `pipeline/nisarpulse/` paketi: `__main__.py` (argparse), `search.py`, `fetch.py`, `process.py`, `catalog.py`. Mevcut `pipeline/*.py` ve `analysis/*.py` fonksiyonlarını import ederek sarmala, DEĞİŞTİRME.
+2. Komut: `python -m pipeline.nisarpulse run --name <ad> --bbox w,s,e,n --start ... --end ... [--track N] [--quality provisional|mixed] [--dry-run] [--resume]`. Çıktı: `data/<ad>/meta.json, disp/, points.json, summary.json` (sözleşme) + `data/catalog.json` kaydı.
+3. `--dry-run`: ASF araması, bulunan çift sayısı, toplam boyut, zincir boşlukları; hiçbir şey indirmez.
+4. Testler (ağsız): bbox ayrıştırma, çift zinciri oluşturma (boşluk tespiti), quality etiketleme kuralı (≥2026-06-17 provisional), catalog güncellemesi → `pipeline/nisarpulse/tests/`. `python -m pytest pipeline/nisarpulse -q` geçmeli.
+5. `.github/workflows/tests.yml`: push'ta sadece testler (indirme yok). PC1 izniyle `.github/` altına sadece bu dosyayı ekle; `pages.yml`'e DOKUNMA.
+6. Kanıt: aracı küçük bir bölgede uçtan uca çalıştır (ör. Delta veya küçük bir Konya alt kutusu) ve komutu + süreyi `docs/story/engine.md`'ye yaz. "5 dakikada başla" bölümüyle `pipeline/nisarpulse/README.md`.
+Yazma alanına eklendi: `pipeline/nisarpulse/`, `.github/workflows/tests.yml`, `docs/story/engine.md`.

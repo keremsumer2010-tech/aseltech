@@ -60,3 +60,13 @@ PC1 kontrolünde bulunanlar ve senin düzeltme iznin (bu maddeler için yazma al
 4. `python -m pytest -q` tüm repo; geçmeyen/toplanamayan testleri `docs/qa/PC7.md`'ye yaz.
 5. Tüm `data/**/*.json` için: geçerli JSON mu (NaN/Infinity tarayıcıda `response.json()`'u bozar), `quality` alanı var mı — script `pipeline/pc7/validate_json.py`; sonucu `docs/qa/PC7.md`.
 6. Q10 Fens mevsim yorumu (çalışma haritası madde 2), sonra her 2 saatte doğrulamayı tekrar çalıştır.
+
+---
+# 20:10 PC1 — ÖZGÜN KATKI O2 (sahibi sensin; `docs/OZGUN_KATKILAR.md` §O2) — 20:00 hata ayıklama 1–3'ten hemen sonra
+Mühendislik standardıyla, belirsizliği hesaba katan altyapı riski (indirme yok, repo verisiyle):
+1. Girdiler: `analysis/out/central_valley_cum.npz` (kümülatif ızgara), `data/central_valley/uncertainty/` (σ; NaN düzeltmesi PC8'de), `risk/central_valley_infra.geojson` (OSM hatları), `data/central_valley/assets.json` (mevcut indeks).
+2. Her segment: 100 m aralıkla örnekle; dikey tahmin (LOS/cos θ); **açısal distorsiyon β = Δçökme / mesafe** (pencereler: 100 m, 500 m, 1 km), segment boyunca **maks diferansiyel çökme**; kanallar için ayrıca boyuna profil.
+3. Belirsizlik: piksel σ ile 1000 Monte Carlo → `p_beta_exceed` (eşikler 1/500 ve 1/1000; kaynaklı: Boscardin & Cording 1989, Skempton & MacDonald 1956 — kaynağı doğrula ve `engineering_risk.md`'ye yaz), `p_diff_gt_10cm`, %90 güven aralığı.
+4. Çıktı: `risk/probabilistic_risk.py` (+ `risk/test_probabilistic_risk.py`: bilinen profil → bilinen β; σ=0 → olasılık 0/1), `data/central_valley/assets_prob.json` (segment başına `name, type, osm_id, beta_max, p_beta_exceed, p_diff_gt_10cm, ci90`), `docs/story/engineering_risk.md` (yöntem, eşik kaynakları, ilk 10 segment tablosu, California Aqueduct yorumu, sınırlamalar: tek yaz sezonu, LOS varsayımı), `docs/story/media/pc7_risk_prob.png`.
+5. Mevcut deterministik indeksle karşılaştır: ilk 10 değişti mi? Bir paragraf.
+Yazma alanına eklendi: `risk/probabilistic_risk.py`, `risk/test_probabilistic_risk.py`, `data/central_valley/assets_prob.json`, `docs/story/engineering_risk.md`.

@@ -47,3 +47,14 @@ Yazma alanına eklendi: `data/*/exposure.json`, `docs/story/exposure.md`, `analy
 4. `submission_form.md` + `slides_notes.md`: video yerine slayt (`docs/story/slides.html`) ile teslim senaryosuna göre güncelle; tüm yeni sonuçlar (tam yıl, Delta, Konya Ovası, küresel 4 şehir, C-band, maruziyet).
 5. MASTER_PLAN §9 kontrol listesindeki "KISMEN" ve "BEKLİYOR" maddelerini kapatmak için gereken her şeyi `docs/qa/PC8.md`'ye yapılacaklar listesi olarak yaz.
 6. Sonra "ASLA BOŞ KALMA" döngüsü.
+
+---
+# 20:10 PC1 — ÖZGÜN KATKI O1 (sahibi sensin; `docs/OZGUN_KATKILAR.md` §O1) — 20:00 madde 1–3'ten hemen sonra
+Kalıcı akifer depolama kaybı (km³/yıl):
+1. Girdi: `data/central_valley_fullyear/decomp.json` (+ PNG'ler; piksel değerleri için `analysis/out/` altındaki tam yıl npz/ızgara dosyaları — yoksa `analysis/decomp/run_decomp.py` çıktılarını bul; PC9'un status'una bak), geliş açısı (LOS→dikey), referans duyarlılığı aralığı (summary.json).
+2. Hesap: V = Σ v_kalıcı,dikey × A_piksel (sadece reason=ok pikseller; havza maskesi: bbox içinde, gerekirse çökme > 1 cm/yıl olan alan). Birim km³/yıl ve milyon m³/yıl. Belirsizlik: piksel standart hatası (korelasyon uyarısıyla) + 3 referansla aralık → alt/üst sınır.
+3. Bağlam: yöntemin dayanağı — USGS Circular 1182 (Galloway et al. 1999) ve kalıcı sıkışma = kalıcı depolama kaybı yaklaşımı; San Joaquin/Tulare için yayımlanmış kayıp tahminleri (kaynak, yıl, birim) ile büyüklük mertebesi kıyası. Her linki aç.
+4. Çıktı: `analysis/pc8/storage_loss.py` (+ test: sabit hız × bilinen alan → bilinen hacim), `data/central_valley_fullyear/storage_loss.json` (`volume_km3_per_yr, lower, upper, area_km2, method, assumptions, quality:"mixed"`), `docs/story/storage_loss.md` (sade 5 cümle + teknik paragraf), `docs/story/media/pc8_storage_loss.png`.
+5. Anlaşılır karşılaştırma ekle (ör. "X Olympic pools" veya bir barajın kapasitesiyle — kaynaklı).
+6. Karapınar tam yıl `decomp` gelince aynısı → `data/karapinar_fullyear/storage_loss.json`.
+Yazma alanına eklendi: `analysis/pc8/storage_loss.py`, `data/*_fullyear/storage_loss.json`, `docs/story/storage_loss.md`.

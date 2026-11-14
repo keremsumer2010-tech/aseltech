@@ -199,3 +199,10 @@ Ayrıntı: `docs/TODAY_PLAN.md` ve `docs/MASTER_PLAN.md` §6, §8.
 ## Geri alınabilir mi
 
 Evet. PC1 rolleri saat başı kontrolde değiştirebilir; değişiklik önce bu dosyaya, sonra görev dosyasına yazılır.
+
+
+## 20:10 Özgün katkılar 2.0 sahiplik ekleri
+- PC2: `pipeline/nisarpulse/`, `.github/workflows/tests.yml`, `docs/story/engine.md`
+- PC7: `risk/probabilistic_risk.py`, `risk/test_probabilistic_risk.py`, `data/central_valley/assets_prob.json`, `docs/story/engineering_risk.md`, (20:00 hata ayıklama için) `web/index.html` görsel yolu ve `web/explorer.html` uyarısı, `requirements.txt`
+- PC8: `analysis/pc8/storage_loss.py`, `data/*_fullyear/storage_loss.json`, `docs/story/storage_loss.md`, (20:00) NaN temizliği `data/*/uncertainty/meta.json`, `data/central_valley_s1/cross_sensor.json` quality
+- PC4: `docs/story/technical_note.md|html`
