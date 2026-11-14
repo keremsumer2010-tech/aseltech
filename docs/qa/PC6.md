@@ -287,3 +287,17 @@ Komut: `python analysis/pc6/test_20_strategies.py --self-test`
   - `/docs/story/slides.html`: **0 konsol hatası, 0 ağ hatası (404 kapandı), 0 kırık görsel**.
   - `/game/test_model.html`: **6/6 PASS**, 0 konsol hatası, 0 ağ hatası.
   - `/web/index.html`: **0 konsol hatası, 0 kırık görsel**; `technical_note.md` `200 OK` oldu, yalnızca henüz eklenmemiş `HEAD /docs/story/engineering_risk.md` `404` dönüyor.
+
+---
+
+## 15. `ATLAS_PLANI.md` (20:50) — PC6 Sinematik 3D Demo Videosu v2
+- **Tarih / Saat:** `2026-11-14 21:01 TR`
+- **Üretim Hattı:**
+  - `analysis/pc6/build_demo_v2_data.py` → `analysis/pc6/demo_v2_data.json` (`0.78 MB`): AWS Açık Veri **Copernicus DEM GLO-30** (`rasterio /vsicurl/` ile Central Valley `50.9–1186.4 m` ve Karapınar `980.5–2001.5 m` yükseklik ızgaraları), `data/central_valley_fullyear/` (`26` epok, `mixed`), `data/karapinar/` (`9` epok + `29` obruk), `8` küresel atlas noktası.
+  - `analysis/pc6/demo_v2_scene.html`: Three.js (`r158`) WebGL 3D sahnesi (0–12 s Central Valley 3D arazi + aylık dikey "nefes", 12–20 s 3D Dünya küresi + atlas çubukları, 20–26 s Konya/Karapınar 3D + 29 obruk halkası, 26–30 s kapanış kartı; sade İngilizce büyük altyazı, `"LOS"` yok, AI görseli/sesi yok).
+  - `analysis/pc6/render_demo_v2.py`: Headless Chrome ile `900/900` kare yakalama + `ffmpeg` kodlama.
+- **Doğrulama (`ffprobe` + Tarayıcı):**
+  - `docs/story/media/demo_30s_v2.mp4`: `14.64 MB` (`≤ 20 MB`), `1920×1080`, `h264`, `yuv420p`, `30.000 s`.
+  - `docs/story/media/demo_30s_v2_web.mp4`: `3.56 MB` (`web/` için hafif sürüm), `1280×720`, `h264`, `yuv420p`, `30.000 s`.
+  - Tarayıcı kontrolü (`http://127.0.0.1:8766/analysis/pc6/demo_v2_scene.html`): 50/50 istek `HTTP 200 OK`, **0 konsol hatası, 0 ağ hatası**.
+- **PC3 Notu:** `docs/story/media/demo_30s_v2_web.mp4` (`3.56 MB`, `720p`) siteye bağlanmaya hazır.
