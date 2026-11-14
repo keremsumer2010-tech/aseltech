@@ -69,17 +69,17 @@ function hero(){
 }
 
 /* ---------- story map ---------- */
-let map, chartP, chartG, cvIdx = 0, timer = null;
+let map, chartP, chartG, cvIdx = 0, timer = null, ukMarkers = [];
 const CVB = [-120.2, 35.6, -119.0, 36.6];
 const VIEWS = {
   intro: {center: [-45, 42], zoom: 1.4, layers: ['sites']},
-  uk:    {bbox: [-0.3, 52.4, 0.4, 52.9], layers: ['uk-opt', 'uk-radar'], tag: 'NISAR radar (20 Oct 2026) · dark basemap outside frame is cloud-free mosaic from other dates · PREVIEW'},
+  uk:    {bbox: [-0.3, 52.4, 0.4, 52.9], layers: ['uk-opt', 'uk-radar', 'uk-frame'], tag: 'NISAR radar (20 Oct 2026) · dark basemap outside frame is cloud-free mosaic from other dates · PREVIEW'},
   cv:    {bbox: CVB, layers: ['cv-disp', 'cv-pts'], tag: 'NISAR ground motion · PROVISIONAL', legend: true},
   gnss:  {bbox: CVB, layers: ['cv-disp', 'gnss'], dim: true, tag: 'GPS stations (green: r ≥ 0.6)', legend: true},
   risk:  {bbox: CVB, layers: ['cv-disp', 'risk'], dim: true, tag: 'Infrastructure tilt risk', legend: true},
   kp:    {bbox: [33.3, 37.6, 33.8, 37.9], layers: ['kp-disp', 'sinks'], tag: 'NISAR ground motion · PROVISIONAL', legend: true},
 };
-const ALL = ['sites', 'uk-opt', 'uk-radar', 'cv-disp', 'cv-pts', 'gnss', 'risk', 'kp-disp', 'sinks'];
+const ALL = ['sites', 'uk-opt', 'uk-radar', 'uk-frame', 'cv-disp', 'cv-pts', 'gnss', 'risk', 'kp-disp', 'sinks'];
 const fc = feats => ({type: 'FeatureCollection', features: feats});
 const pt = (props, c) => ({type: 'Feature', properties: props, geometry: {type: 'Point', coordinates: c}});
 
@@ -103,6 +103,22 @@ function storyMap(){
         map.addLayer({id: 'uk-opt', type: 'raster', source: 'uk-opt', maxzoom: 11, paint: {'raster-opacity': 0.9}});
         map.addSource('uk', {type: 'image', url: ROOT + `data/uk/radar_${D.uk.date}.png`, coordinates: corners(D.uk.bbox)});
         map.addLayer({id: 'uk-radar', type: 'raster', source: 'uk', maxzoom: 11, paint: {'raster-opacity': 0.9}});
+        const rc = corners(D.uk.bbox);
+        map.addSource('uk-frame', {type: 'geojson', data: {type: 'Feature', geometry: {type: 'LineString', coordinates: [...rc, rc[0]]}}});
+        map.addLayer({id: 'uk-frame', type: 'line', source: 'uk-frame', paint: {'line-color': '#94a3b8', 'line-width': 1.5, 'line-opacity': 0.75}});
+        const ukPlaces = [
+          ['The Wash', [0.250, 52.880]],
+          ['Peterborough', [-0.248, 52.574]],
+          ["King's Lynn", [0.395, 52.752]],
+          ['Holme Fen', [-0.217, 52.483]],
+        ];
+        ukMarkers = ukPlaces.map(([lbl, coords]) => {
+          const el = document.createElement('div');
+          el.className = 'uk-lbl';
+          el.textContent = lbl;
+          el.style.display = 'none';
+          return new maplibregl.Marker({element: el, anchor: 'center'}).setLngLat(coords).addTo(map);
+        });
       }
       if (D.cvMeta){
         const m = D.cvMeta; cvIdx = m.dates.length - 1;
@@ -153,6 +169,7 @@ function show(step, force){
   if (force && step === current && inView(v)) return;
   current = step;
   for (const id of ALL) if (map.getLayer(id)) map.setLayoutProperty(id, 'visibility', v.layers.includes(id) ? 'visible' : 'none');
+  ukMarkers.forEach(mk => { mk.getElement().style.display = step === 'uk' ? '' : 'none'; });
   map.setMaxZoom(step === 'uk' ? 10.5 : 18);
   if (map.getLayer('sat')) map.setPaintProperty('sat', 'raster-opacity', step === 'uk' ? 0.14 : 1);
   if (map.getLayer('cv-disp')) map.setPaintProperty('cv-disp', 'raster-opacity', v.dim ? 0.45 : 0.65);
