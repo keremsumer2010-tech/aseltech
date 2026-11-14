@@ -96,3 +96,7 @@ Sırayla (her biri bittikçe push, K-13):
 3. Q03 GCOV (6 tarih) → `data/central_valley/gcov/`.
 4. **Karapınar ikinci geçiş (path 172)** provisional çiftleri → `pipeline/subset/karapinar_p172/` (PC3'ün Konya çapraz kontrolü için).
 Her adımda status/PC2.md'yi güncelle (panel commit mesajını `[PC2] ...` biçiminde bekliyor).
+
+---
+# 15:05 EK İŞ (PC7 Earthdata kullanamıyor) — Q07'den önce, kısa
+**Fens GCOV alt kümeleri**: `fens` bbox (-0.3, 52.4, 0.4, 52.9), 2026-06-17 sonrası provisional GCOV tarihleri (en fazla 8 tarih, mümkünse aynı path), HH ve HV gamma0 → dB, bbox kes → `pipeline/subset/fens_gcov/<YYYY-MM-DD>.npz` (`hh_db`, `hv_db`, `x`, `y`, `epsg`, `date`, `granule`, `quality`). Her dosya < 20 MB. Bitince status'ta "fens_gcov hazır" yaz (PC7 analiz edecek). Sonra Q07'ye dön.
