@@ -40,6 +40,7 @@ Sıra her yerde **`[lon_min, lat_min, lon_max, lat_max]`** = `[w, s, e, n]`.
 | `beta-precal` | 2026-06-17 öncesi tarih içeren ürün (kalibrasyon öncesi beta) | Pazar, ayrı klasör |
 | `mixed` | provisional + beta-precal birlikte işlenmiş seri | Sadece `*_fullyear` / `*_beta` klasörleri |
 | `preview` | Browse PNG; nicel değil, sadece görsel | B planı ve UK sahnesi |
+| `placeholder` | PC1'in site geliştirirken koyduğu sahte veri; gerçek dosya aynı adla üzerine yazılır | Sadece geliştirme; yayında kalırsa rozetle "PLACEHOLDER" |
 
 Kurallar:
 - Farklı sınıflar aynı hesapta/katmanda birleşmez. `mixed` çıktı **ayrı klasörde** durur.

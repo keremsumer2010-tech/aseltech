@@ -136,6 +136,8 @@ Ayrıca:
 - Her iş bitince: status → `git pull --rebase origin main` → commit → push → **hemen** sonraki iş.
 - Her 30-45 dakikada bir `git pull`: PC1 `tasks/` altına yeni görev yazabilir.
 - Verimlilik: büyük dosyayı baştan sona okuma, `grep`/özet kullan; aynı araştırmayı tekrarlama, önce `docs/` ve `status/`'a bak.
+- Yeniden okuma: her `git pull` sonrası `git diff --stat HEAD@{1} HEAD -- rules tasks docs CLAUDE.md` çalıştır;
+  **sadece değişen dosyayı** yeniden oku. Kendi `tasks/PCx.md` dosyanı her yeni işten önce tekrar oku (kısa).
 
 ## 8. Disk ve indirme
 
@@ -158,7 +160,41 @@ Her madde gerçekten yaşanmış bir hatadan çıkar. Şablon:
 **Ders →** hangi K kuralı (yoksa yeni K eklenir)
 ```
 
-*(Henüz kayıt yok.)*
+### E-01 · ASF araması `dataset=NISAR` ile boş
+**Ne oldu:** SearchAPI `dataset=NISAR` 502/boş döndü.
+**Sonuç:** Veri yok sanıldı.
+**Düzeltme:** `platform=NISAR` kullan.
+**Ders →** K-1 (çalıştırmadan sonuç raporlanmaz)
+
+### E-02 · `.h5` indirmede "HTTP Basic: Access denied"
+**Ne oldu:** Girişsiz `.h5` isteği reddedildi; browse PNG ise girişsiz indi.
+**Sonuç:** Ham veri için Earthdata şart.
+**Düzeltme:** Earthdata hesabı + `~/.netrc` (insan kendisi yazar).
+**Ders →** K-9
+
+### E-03 · git commit: "Author identity unknown"
+**Ne oldu:** Yeni bilgisayarda git kimliği yoktu.
+**Sonuç:** Commit atılamadı.
+**Düzeltme:** Repo içinde `git config user.name` ve `user.email` (GitHub noreply e-postası; kişisel e-posta değil).
+**Ders →** K-9
+
+### E-04 · ASF sonucunda `bytes` alanı sözlük
+**Ne oldu:** Dosya boyutunu toplarken TypeError.
+**Sonuç:** Script çöktü.
+**Düzeltme:** Boyut = iç `bytes` değerlerinin toplamı.
+**Ders →** K-1
+
+### E-05 · Windows Git Bash'te heredoc/tırnak içinde backtick
+**Ne oldu:** Komut satırında Markdown backtick'i komut ikamesi gibi çalıştı, metin bozuldu.
+**Sonuç:** Dosya eksik yazıldı.
+**Düzeltme:** Dosyaları editör/yazma aracıyla oluştur; komut satırına backtick'li metin koyma; yazdıktan sonra kontrol et.
+**Ders →** K-1
+
+### E-06 · spaceappschallenge.org sayfaları boş geliyor
+**Ne oldu:** Sayfa JS ile yüklendiği için düz istek boş döndü.
+**Sonuç:** Bilgi yok sanıldı.
+**Düzeltme:** Tarayıcıda 5-10 sn bekleyip oku.
+**Ders →** K-2 (bilgi yoksa "bulunamadı" yaz, tahmin etme)
 
 ---
 

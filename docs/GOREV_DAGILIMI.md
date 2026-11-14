@@ -128,6 +128,27 @@ PC6 validation/, risk/ ──► (Pazar) validation.json, assets.json ──► 
 Zincir: PC2 13:30'u kaçırırsa PC3 kayar, PC3 15:30'u kaçırırsa PC1 B planına geçer
 (browse PNG'ler, `preview` rozetli). Diğer hatlar ana hattı beklemez.
 
+**Yedek kritik yol:** PC1, Kerem'in bilgisayarında aynı ilk GUNW'yi (09-08→09-20) arka planda indirip açar
+(Kerem Earthdata `.netrc`'yi kendisi kurar). PC2 takılırsa zincir PC1'den sürer.
+
+## 4b. Faz planı (TR) — "veri yokken ne yapılır?"
+
+İlke: **sözleşme önce.** Formatlar `rules/VERI_SOZLESMESI.md`'de sabit; herkes sahte/örnek veriyle hemen başlar,
+gerçek veri gelince sadece dosya değişir. Kimse veri bekleyerek durmaz.
+
+| Faz | Saat | PC1 | PC2 | PC3 | PC4 | PC5 | PC6 |
+|---|---|---|---|---|---|---|---|
+| 0 Hazırlık | 12:00-12:20 | Pages ayarı; Kerem Earthdata | Earthdata, `.netrc`, paketler | Earthdata, `.netrc`, paketler | Kurulum | Kurulum | Kurulum |
+| 1 Bağımsız | 12:20-13:30 | Site iskeleti `placeholder` veriyle; Higgsfield açılış; yedek GUNW | İlk GUNW + `gunw_structure.md` | `insar.py` + sentetik testler; Karapınar indirmesi | UK bulut/radar çifti | Oyun | GNSS istasyonları |
+| ✔ 13:30 | | **GUNW açıldı mı?** Hayır → B planı | | | | | |
+| 2 Gerçek veri | 13:30-16:00 | UK çiftini bağla | 6 çift, her biri gelince push | İlk 2 npz gelince kümülatif hattı çalıştır, her yenisinde yeniden üret | Obruklar | Oyun cilası | OSM hatları |
+| ✔ 15:30 | | **İlk gerçek cm haritası sitede mi?** | | | | | |
+| 3 Birleştirme | 16:00-17:00 | Tüm veri + oyun | QUEUE | Karapınar | Kaynaklar | Sunum metni | QUEUE |
+| 🔒 16:30 | | **Özellik dondurma:** yeni özellik yok, sadece düzeltme ve QA | | | | | |
+| 4 Yayın + QA | 17:00-17:30 | Yayın | Siteyi telefonda test | Sitedeki sayıları kendi çıktısıyla karşılaştır | Kaynak linklerini test et | Oyunu sitede test et | İngilizce metin kontrolü |
+| 5 Prova | 17:30+ | Sunum | Demo sürücüsü | Soru-cevap: veri/yöntem | Soru-cevap: kaynaklar | | |
+QA notları: `docs/qa/PCx.md`.
+
 ## 5. İki tarafı olan işler
 
 Ana sahip kararı verir ve dosyayı yazar; ikinci taraf kendi ucunu ona göre bağlar.
