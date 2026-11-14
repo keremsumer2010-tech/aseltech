@@ -81,3 +81,10 @@ Tüm 3 bölge ve 12 `.json`/`.geojson` dosyası tarandı (`NaN`/`Infinity`: **0 
 | `data/central_valley/meta.json` | `provisional` | `-6.0 / +6.0` | `[-120.2, 35.6, -119.0, 36.6]` ✅ Tam uyum | `8 / 8` PNG mevcut ✅ | `summary.json` tepe noktası `−7.8 cm` LOS (harita ±6 cm'de simetrik doygun, kasıtlı). `quality_note` NASA-JPL/ISRO şartını sağlıyor ✅ |
 | `data/karapinar/meta.json` | `provisional` | `-5.0 / +5.0` | `[33.3, 37.6, 33.8, 37.9]` ✅ Tam uyum | `9 / 9` PNG mevcut ✅ | `summary.json` tepe noktası `−5.9 cm` LOS. `sinkholes.geojson` (`29`) ve `assets.json` (`64`) ile sıfır NaN ✅ |
 | `data/uk/meta.json` | `preview` | `Yok` (optik/browse) | `[-0.3, 52.4, 0.4, 52.9]` ✅ Tam uyum | `optical_2026-10-20.jpg` & `radar_2026-10-20.png` mevcut ✅ | Not (PC1/PC4 için): `meta.json` içinde yerel dosya adları (`optical_image`/`radar_image`) yok, yalnızca `date` + URL var; `data/catalog.json` içinde `karapinar` ve `uk` hâlâ `pending` görünüyor (PC1 entegrasyon bekliyor). |
+
+### Game v2 Model Parametre Uyumlama Notu (`docs/story/game_model.md` §5–6 · 14:33 TR)
+- `game/model.js` & `game/game.js` güncellendi: `S_y = 0.10` (USGS PP 1401-D ortalaması), `S_ske`/`S_skv` kaynak notu (`Sneed 2001, OFR 01-35`), kil kalınlığı etiketi `"Compressible clay interbeds (CVHM aggregate, illustrative)"`, su-yılı sınıf olasılıkları `illustrative` bayraklı, Pages 404 riskini önlemek için birincil veri kaynağı olarak `../data/central_valley/assets.json` (Pages uyumlu), başlangıç kutusu başlığı `"Model check against NISAR"`.
+- **Güncel Kalibrasyon Sayıları (`S_y = 0.10`):**
+  - `d_measured` (NISAR 108 gün dikey eşdeğer): **`-10.1 cm`** (`-7.8 cm` LOS, `cos(39.1°)`)
+  - Ölçek katsayısı (`extractionScaleFactor k`): **`0.623`**
+  - `game/test_model.html`: **5/5 PASS**, 108 gün simülasyonu **`-10.1 cm`** dikey (`-7.84 cm` LOS), hata **`0%`** (`≤ ±10%`), tarayıcıda **0 konsol / 0 ağ hatası**.

@@ -48,27 +48,27 @@
     },
     physics: {
       specificYield: {
-        value: 0.12,
+        value: 0.10,
         unit: 'dimensionless',
-        source: 'USGS PP 1766 (Faunt, 2009) — upper semi-confined Tulare alluvial aquifer S_y ~0.08–0.18',
+        source: 'Williamson, Prudic & Swain (1989) USGS PP 1401-D — Tulare/SJV cited average 0.10 (range 0.08–0.12)',
         illustrative: false,
       },
       elasticSpecificStorage: {
         value: 1.0e-5,
         unit: '1/m',
-        source: 'USGS PP 497-F / Sneed et al. (2013) — elastic skeletal specific storage S_ske ~0.6–1.5e-5 m^-1',
-        illustrative: false,
+        source: 'Order of magnitude, Sneed (2001) USGS OFR 01-35; exact m^-1 value not verified in full PDF',
+        illustrative: true,
       },
       inelasticSpecificStorage: {
         value: 3.1e-4,
         unit: '1/m',
-        source: 'USGS PP 1766 / Sneed et al. (2013) — virgin inelastic skeletal specific storage S_skv (~31x S_ske)',
-        illustrative: false,
+        source: 'Order of magnitude (~31x S_ske), Sneed (2001) USGS OFR 01-35 (>=20x ratio); exact value not verified',
+        illustrative: true,
       },
       baselineAnnualDemandM: {
         value: 1.48,
         unit: 'm/yr equivalent column',
-        source: 'Calibrated from CDWR / CVHM net agricultural groundwater pumpage (~1.2–1.6 m/yr in hotspot districts)',
+        source: 'Simplified Tulare bucket irrigation demand curve',
         illustrative: true,
       },
       baselineAnnualRechargeM: {
@@ -78,19 +78,19 @@
         illustrative: true,
       },
     },
-    // Monthly California Central Valley irrigation & recharge normalized weights (Oct..Sep, sum = 1.0)
+    // Monthly California Central Valley irrigation & recharge normalized weights (Oct..Sep, sum = 1.0, illustrative)
     seasonalWeights: {
       // Index: 0=Oct, 1=Nov, 2=Dec, 3=Jan, 4=Feb, 5=Mar, 6=Apr, 7=May, 8=Jun, 9=Jul, 10=Aug, 11=Sep
       pumping: [0.05, 0.02, 0.01, 0.01, 0.02, 0.05, 0.09, 0.12, 0.15, 0.19, 0.17, 0.12],
       recharge: [0.04, 0.08, 0.14, 0.18, 0.17, 0.15, 0.10, 0.06, 0.03, 0.02, 0.015, 0.015],
     },
-    // California DWR San Joaquin Valley Water Year Index historical frequency (~1901–2024)
+    // California DWR San Joaquin Valley Water Year Index structure (weights/probs marked illustrative until CDEC WSIHIST verified)
     waterYearTypes: [
-      { id: 'Wet', label: 'Wet', prob: 0.30, rechargeMult: 1.38, maxSurfacePct: 100, badgeColor: '#3ddc97' },
-      { id: 'Above Normal', label: 'Above Normal', prob: 0.15, rechargeMult: 1.15, maxSurfacePct: 90, badgeColor: '#4da3ff' },
-      { id: 'Below Normal', label: 'Below Normal', prob: 0.17, rechargeMult: 0.90, maxSurfacePct: 70, badgeColor: '#8cbef8' },
-      { id: 'Dry', label: 'Dry', prob: 0.18, rechargeMult: 0.60, maxSurfacePct: 40, badgeColor: '#f5b942' },
-      { id: 'Critical', label: 'Critical', prob: 0.20, rechargeMult: 0.35, maxSurfacePct: 15, badgeColor: '#ff6b57' },
+      { id: 'Wet', label: 'Wet', prob: 0.30, rechargeMult: 1.38, maxSurfacePct: 100, badgeColor: '#3ddc97', illustrative: true },
+      { id: 'Above Normal', label: 'Above Normal', prob: 0.15, rechargeMult: 1.15, maxSurfacePct: 90, badgeColor: '#4da3ff', illustrative: true },
+      { id: 'Below Normal', label: 'Below Normal', prob: 0.17, rechargeMult: 0.90, maxSurfacePct: 70, badgeColor: '#8cbef8', illustrative: true },
+      { id: 'Dry', label: 'Dry', prob: 0.18, rechargeMult: 0.60, maxSurfacePct: 40, badgeColor: '#f5b942', illustrative: true },
+      { id: 'Critical', label: 'Critical', prob: 0.20, rechargeMult: 0.35, maxSurfacePct: 15, badgeColor: '#ff6b57', illustrative: true },
     ],
     thresholds: {
       canalMediumGradientMmKm: 5.0,

@@ -231,10 +231,10 @@
         },
       });
 
-      // Subtle roads/rails backdrop from risk/central_valley_infra.geojson
+      // Roads/rails & canals backdrop from data/central_valley/assets.json (Pages-safe; full risk/ geojson optionally added locally)
       map.addSource('infra-backdrop', {
         type: 'geojson',
-        data: infraBackdropGeoJson || { type: 'FeatureCollection', features: [] },
+        data: infraBackdropGeoJson || assetsGeoJson || { type: 'FeatureCollection', features: [] },
       });
       map.addLayer({
         id: 'infra-roads-rail',
@@ -514,7 +514,7 @@
     ctx.fillStyle = '#f5b942';
     ctx.fillText(`h_pc ${d.preconsolidationHeadM.toFixed(1)} m`, w - 98, Math.max(46, hpcY + 11));
     ctx.fillStyle = '#c4b5a5';
-    ctx.fillText(`Corcoran Clay (b0=${d.clayThicknessM}m)`, 6, Math.min(h - 6, clayTop + currentClayPx + 12));
+    ctx.fillText(`Compressible clay interbeds (b0=${d.clayThicknessM}m, illustr.)`, 6, Math.min(h - 6, clayTop + currentClayPx + 12));
 
     const pill = $('stratRegimePill');
     if (pill) {
@@ -781,12 +781,14 @@
     const cal = ValleyModel.runCalibrationCheck(summaryData);
     const p = ValleyModel.CONFIG.physics;
     const rows = [
-      ['Calibration Scale Factor', `${cal.calibrationFactor}`, 'Multiplier (108-day NISAR benchmark)', 'SOURCED (Calibrated to summary.json)', false],
-      ['Specific Yield (S_y)', `${p.specificYield.value}`, p.specificYield.unit, p.specificYield.source, false],
-      ['Elastic Skeletal Storage (S_ske)', `${p.elasticSpecificStorage.value}`, p.elasticSpecificStorage.unit, p.elasticSpecificStorage.source, false],
-      ['Inelastic Skeletal Storage (S_skv)', `${p.inelasticSpecificStorage.value}`, p.inelasticSpecificStorage.unit, p.inelasticSpecificStorage.source, false],
-      ['Baseline Demand / Recharge', `${p.baselineAnnualDemandM.value} / ${p.baselineAnnualRechargeM.value}`, 'm/yr eq', 'Simplified Tulare bucket demand curve', true],
-      ['Canal Capacity Loss Curve', 'Up to 60% above 10 mm/km', '% conveyance drop', 'Friant-Kern 60% bottleneck (USBR) + heuristic onset curve', true],
+      ['Model Check Factor (k)', `${cal.calibrationFactor}`, 'Multiplier (108-day NISAR summer benchmark)', 'Calibrated to data/central_valley/summary.json (-10.1 cm vert / -7.8 cm LOS)', false],
+      ['Specific Yield (S_y)', `${p.specificYield.value}`, p.specificYield.unit, p.specificYield.source, p.specificYield.illustrative],
+      ['Elastic Skeletal Storage (S_ske)', `${p.elasticSpecificStorage.value}`, p.elasticSpecificStorage.unit, p.elasticSpecificStorage.source, p.elasticSpecificStorage.illustrative],
+      ['Inelastic Skeletal Storage (S_skv)', `${p.inelasticSpecificStorage.value}`, p.inelasticSpecificStorage.unit, p.inelasticSpecificStorage.source, p.inelasticSpecificStorage.illustrative],
+      ['Compressible Clay Interbeds (b0)', '12–82 m across districts', 'Aggregate thickness', 'CVHM SUB aggregate interbeds (Corcoran Clay alone <= 61 m per Page 1986)', true],
+      ['Water Year Probabilities & Caps', 'DWR 5-class weights (15–100% cap)', 'Probability / %', 'Formula from DWR WSIHIST; class probabilities illustrative', true],
+      ['Baseline Demand / Recharge', `${p.baselineAnnualDemandM.value} / ${p.baselineAnnualRechargeM.value}`, 'm/yr eq', p.baselineAnnualDemandM.source, true],
+      ['Canal Capacity Loss Curve', 'Up to 60% above 10 mm/km', '% conveyance drop', 'Friant-Kern >60% capacity loss verified (FWA/KVPR); onset threshold illustrative', true],
       ['Well Failure Depths & Crop Prices', 'Representative depths & $/ha', 'wells / USD', 'Stylized regional baseline per district', true],
     ];
     return `<table class="param-table">
@@ -903,31 +905,42 @@
   }
 
   async function boot() {
-    try {
-      const [sRes, pRes, aRes, iRes] = await Promise.all([
-        fetch('../data/central_valley/summary.json'),
-        fetch('../data/central_valley/points.json'),
-        fetch('../data/central_valley/assets.json'),
-        fetch('../risk/central_valley_infra.geojson'),
-      ]);
-      if (sRes.ok) summaryData = await sRes.json();
-      if (pRes.ok) pointsData = await pRes.json();
-      if (aRes.ok) assetsGeoJson = await aRes.json();
-      if (iRes.ok) infraBackdropGeoJson = await iRes.json();
-    } catch (_err) {
-      // Fallback to embedded defaults if opened offline
-    }
+    const fetchSafe = async (url) => {
+      try {
+        const r = await fetch(url);
+        if (!r.ok) {
+          console.warn(`Optional/data asset HTTP ${r.status}: ${url}`);
+          return null;
+        }
+        return await r.json();
+      } catch (err) {
+        console.warn(`Failed fetching ${url}:`, err);
+        return null;
+      }
+    };
+
+    const isLocal = location.hostname === '127.0.0.1' || location.hostname === 'localhost';
+    const [sRes, pRes, aRes, iRes] = await Promise.all([
+      fetchSafe('../data/central_valley/summary.json'),
+      fetchSafe('../data/central_valley/points.json'),
+      fetchSafe('../data/central_valley/assets.json'),
+      isLocal ? fetchSafe('../risk/central_valley_infra.geojson') : Promise.resolve(null),
+    ]);
+    summaryData = sRes;
+    pointsData = pRes;
+    assetsGeoJson = aRes;
+    infraBackdropGeoJson = iRes;
 
     resetSimulation(true);
     if (assetsGeoJson) tagAssetsToNearestDistrict(assetsGeoJson);
 
     const cal = ValleyModel.runCalibrationCheck(summaryData);
     $('startCalibrationBox').innerHTML =
-      `<strong>Calibration Verification (${cal.within10Pct ? 'PASS ±10%' : 'CHECK'}):</strong>
-      Under baseline pumping for the 108-day NISAR window (Jun–Oct 2026), our physics model simulates
+      `<strong>Model check against NISAR (${cal.within10Pct ? 'PASS ±10%' : 'CHECK'}):</strong>
+      Under baseline summer pumping for the 108-day NISAR window (Jun–Oct 2026), the model simulates
       <span class="mono color-ok">${cal.simulatedVertCm} cm</span> vertical (<span class="mono">${cal.simulatedLosCm} cm</span> LOS) at Terra Bella vs
-      <span class="mono">${cal.measuredVertCm} cm</span> vertical (<span class="mono">${cal.measuredLosCm} cm</span> LOS) measured by NISAR
-      (<span class="mono">error: ${cal.errorPct}%</span>, scale factor <span class="mono">${cal.calibrationFactor}</span>).`;
+      <span class="mono">${cal.measuredVertCm} cm</span> vertical (<span class="mono">${cal.measuredLosCm} cm</span> LOS; ref range −6.2…−7.8 cm LOS) measured by NISAR
+      (<span class="mono">error: ${cal.errorPct}%</span>, extraction scale factor <span class="mono">k=${cal.calibrationFactor}</span>).`;
 
     wireControls();
     initMap();
