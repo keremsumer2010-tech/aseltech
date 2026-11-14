@@ -78,19 +78,19 @@ We treat external comparisons strictly as consistency checks rather than formal 
 
 ### 5.1 Global Subsidence Atlas (2026 Provisional Benchmark)
 
-Using the single-command `pipeline/nisarpulse/` engine with identical `provisional`-only (`>= 2026-06-17`, `P05023`) thresholds and standardized `±0.25°` boxes across basins worldwide (`docs/ATLAS_PLANI.md` §1–§4), our expanding **2026 NISAR Global Subsidence Atlas** (`data/global/atlas.json` + `data/global/isfahan/summary.json`) ranks `9` completed regions by the period-independent **`rate_cm_per_100d` (`cm / 100 days LOS`)** metric. **LOS & Period Caveat:** all values are Line-of-Sight (`LOS`, not vertical) computed over single `108–120`-day summer–autumn windows and remain sensitive to stable-reference placement; regions without completed PC5 literature cross-checks (including Konya Basin `−9.6 cm` and Isfahan `−2.5 cm`) are labeled **`preliminary`**, and low-coverage frames are separated as **`indicative only`**:
+Using the single-command `pipeline/nisarpulse/` engine with identical `provisional`-only (`>= 2026-06-17`, `P05023`) thresholds and standardized `±0.25°` boxes across basins worldwide (`docs/ATLAS_PLANI.md` §1–§4), our expanding **2026 NISAR Global Subsidence Atlas** (`data/global/atlas.json` + `data/global/isfahan/summary.json`, audited in [`atlas_validation.md`](atlas_validation.md)) ranks `9` completed regions by **`rate_cm_per_100d` (`cm / 100 days LOS`)**—*to our knowledge, one of the first standardized multi-basin comparisons built on provisional NISAR L-band GUNW data using a single open-source pipeline*. **LOS & Period Caveat:** all values are Line-of-Sight (`LOS`, not vertical) over single `108–120`-day summer–autumn windows; `data/global/atlas.json` splits `5` `reliable` (`medium`) from `3` `indicative` (`low`) entries, while [`atlas_validation.md`](atlas_validation.md) approves only **Central Valley**, **Delta**, and **Karapınar** (spatial contrast only) for press headlines until standardized `±0.25°` / outside-basin reruns complete (Mexico City was already re-run off-basin from `−4.4` to **`−7.0 cm` LOS**):
 
-| Rank | Region / City | Period (`n` pairs, days) | Rate (`cm/100d LOS`) | Peak 1 km LOS (`cm`) | Ref. Range (`cm`) | Vertical Est. (`cm`) | Confidence / Status |
+| Rank | Region / City | Period (`n` pairs, days) | Rate (`cm/100d LOS`) | Peak 1 km LOS (`cm`) | Vertical Est. (`cm`) | Valid Px | Atlas Tier / PC5 Gate (`atlas_validation.md`) |
 |---:|---|---|---:|---:|---:|---:|---|
-| 1 | **Konya Closed Basin, Türkiye** | `2026-06-26 → 2026-10-12` (`8`, `108 d`) | **`−8.89`** | `−9.6` | `[−14.0, −9.6]` | `−12.1` | **`preliminary`** (pending PC5 lit. check) |
-| 2 | **Central Valley, USA** | `2026-06-28 → 2026-10-14` (`7`, `108 d`) | **`−7.22`** | `−7.8` | `[−7.8, −4.7]` | `−10.1` | `high` (10-GPS `r = 0.924`) |
-| 3 | **Jakarta, Indonesia** | `2026-06-27 → 2026-10-13` (`8`, `108 d`) | **`−6.30`** | `−6.8` | 1 ref only | `−9.3` | **`low — indicative only`** (`2.9%` valid; `preliminary`) |
-| 4 | **Karapınar, Türkiye** | `2026-06-26 → 2026-10-12` (`8`, `108 d`) | **`−5.46`** | `−5.9` | — | `−8.0` | `medium` (`p = 0.0001` perm., P172 check) |
-| 5 | **Mexico City, Mexico** | `2026-06-22 → 2026-10-20` (`8`, `120 d`) | **`−3.67`** | `−4.4` | `[−7.4, −4.4]` | `−6.2` | **`preliminary`** (outside-basin ref. re-run) |
-| 6 | **Tehran, Iran** | `2026-06-18 → 2026-10-16` (`9`, `120 d`) | **`−2.92`** | `−3.5` | `[−7.3, −3.5]` | `−4.7` | **`preliminary`** (pending PC5 lit. check) |
-| 7 | **Isfahan, Iran** | `2026-06-18 → 2026-10-16` (`9`, `120 d`) | **`−2.08`** | `−2.5` | `[−2.6, −0.8]` | `−3.4` | **`preliminary`** (`medium` `32.5%` valid, `p2 = −2.9`) |
-| 8 | **Beijing, China** | `2026-06-17 → 2026-10-15` (`9`, `120 d`) | **`−1.17`** | `−1.4` | `[−7.6, −1.4]` | `−2.1` | **`preliminary`** (wide ref. spread) |
-| 9 | **Sacramento–San Joaquin Delta, USA** | `2026-06-17 → 2026-10-15` (`9`, `120 d`) | **`−1.08`** | `−1.3` | `[−1.3, −1.1]` | `−1.6` | `medium` (local levee reach `−11.36 cm`) |
+| 1 | **Konya Closed Basin, Türkiye** | `2026-06-26 → 2026-10-12` (`8`, `108 d`) | **`−8.89`** | `−9.6` | `−12.1` | `11.6%` | `reliable` in `atlas.json`; **`preliminary`** (PC5 `low`, pending `±0.25°` box) |
+| 2 | **Central Valley, USA** | `2026-06-28 → 2026-10-14` (`7`, `108 d`) | **`−7.22`** | `−7.8` | `−10.1` | `62.9%` | `reliable` (`medium`; 10-GPS `r = 0.924`, **PC5 Press Approved**) |
+| 3 | **Jakarta, Indonesia** | `2026-06-27 → 2026-10-13` (`8`, `108 d`) | **`−6.30`** | `−6.8` | `−9.3` | `2.9%` | **`indicative only`** (`low`, tropical decorrelation; **`preliminary`**) |
+| 4 | **Mexico City, Mexico** *(off-basin rerun)* | `2026-06-22 → 2026-10-20` (`8`, `120 d`) | **`−5.83`** | `−7.0` | `−9.7` | `63.9%` | `reliable` (`medium`, `p2 = −5.7 cm`; prior NASA-JPL NISAR note) |
+| 5 | **Karapınar, Türkiye** | `2026-06-26 → 2026-10-12` (`8`, `108 d`) | **`−5.46`** | `−5.9` | `−8.0` | `14.2%` | **`indicative only`** (`low`; **PC5 Conditional** on `p = 0.0001` sinkholes) |
+| 6 | **Tehran, Iran** | `2026-06-18 → 2026-10-16` (`9`, `120 d`) | **`−2.92`** | `−3.5` | `−4.7` | `35.7%` | **`indicative only`** (`low`; **`preliminary`**, alt. ref. `−7.3 cm`) |
+| 7 | **Isfahan, Iran** | `2026-06-18 → 2026-10-16` (`9`, `120 d`) | **`−2.08`** | `−2.5` | `−3.4` | `32.5%` | `medium` in `summary.json`; **`preliminary`** (pending `atlas.json`/PC5) |
+| 8 | **Beijing, China** | `2026-06-17 → 2026-10-15` (`9`, `120 d`) | **`−1.17`** | `−1.4` | `−2.1` | `71.1%` | `reliable` in `atlas.json`; **`preliminary`** (PC5 `low`, ref. spread `4.43`) |
+| 9 | **Sacramento–San Joaquin Delta, USA** | `2026-06-17 → 2026-10-15` (`9`, `120 d`) | **`−1.08`** | `−1.3` | `−1.6` | `43.4%` | `reliable` (`medium`; PC5 **`high`**, **Press Approved**) |
 
 ---
 
