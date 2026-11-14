@@ -345,3 +345,4 @@ Komut: `python analysis/pc6/test_20_strategies.py --self-test`
   5. `Values: LOS` ↔ `Values: Vertical (est.)` anahtarı (`#unitToggle`), `Data & citation` indirme kutusu (`#atlasDataBox`, `atlas.geojson`/`atlas.csv` varsa otomatik gösterim) ve Central Valley için `data/central_valley/validation.json` GNSS istasyon katmanı (`cv-gnss`, tıklanınca `r`/`RMSE` popup) eklendi.
   6. `window.atlasSelect(id)` ve `atlas:select` olayı korundu; `web/atlas_sat.*` dosyalarına dokunulmadı.
   - Doğrulama (`1920×1080` & `#central_valley` `375×812` headless Chrome): `rc=0`, `vital=True`, `svg=True`, `search=True`, `compare=True`, `unit=True`, `cite=True`, `0` konsol hatası.
+- **`SUREKLI.md` Tur 1 (`23:49 TR`):** `python -m pytest -q` → **83 passed**, 1 `PendingDeprecationWarning` (`23.71 s`).
