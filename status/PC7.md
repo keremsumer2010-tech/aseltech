@@ -1,7 +1,7 @@
 # PC7 durum
 
 - Görev: Fens GCOV ritmi, polarizasyon karşılaştırması, çevrimdışı site QA ve Node oyun testi
-- Durum: Pekin eski kesit QC'si July 11'i sahne-geneli düşürmedi (0/9 pair correction/drop; tekil spike 1/12 nokta); dış referans için 3 km içinde ortak 7×7 pencere eski kesitlerde yok. Tam-kutu indirme/işleme süreci sürüyor; ayrıntı docs/qa/PC7.md §29.
+- Durum: Pekin tam-kutu job'u ikinci granüle ilerledi; ham alanda tek `.h5.part` gözleniyor, işlem sonucu henüz yok. Eski kesit QC'si July 11'i sahne-geneli düşürmedi (0/9 pair correction/drop; tekil spike 1/12 nokta); eski kesitlerde dış referans 7×7 penceresi yok. Ayrıntı docs/qa/PC7.md §29.
 - ASF araması: platform=NISAR, processingLevel=GCOV, bbox [-0.3, 52.4, 0.4, 52.9], başlangıç 2026-06-17; 49 P05023 GCOV ürünü HH/HV ile eşleşti.
 - Tekrarlı seri: path 52, frame 61, 10 benzersiz tarih: 2026-06-17–2026-10-15. Granül listesi `pipeline/pc7/fens_gcov_catalog.json` içinde.
 - Doğrulama: `pipeline/pc7/search_fens_gcov.py` çalıştırıldı; katalog JSON olarak tekrar açılıp parse edildi.
