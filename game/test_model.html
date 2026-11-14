@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Valley Under Pressure — Model Unit Tests</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #0b0f14;
+      color: #e6edf3;
+      margin: 24px auto;
+      max-width: 860px;
+      padding: 0 16px;
+      line-height: 1.5;
+    }
+    h1 { font-size: 20px; margin-bottom: 6px; }
+    .meta { color: #8b9bb0; font-size: 13px; margin-bottom: 18px; }
+    .case {
+      background: #131a22;
+      border: 1px solid #223041;
+      border-radius: 6px;
+      padding: 12px 14px;
+      margin-bottom: 10px;
+    }
+    .pass { border-left: 4px solid #3ddc97; }
+    .fail { border-left: 4px solid #ff6b57; }
+    .badge {
+      display: inline-block;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 12px;
+      padding: 2px 7px;
+      border-radius: 4px;
+      margin-right: 8px;
+      font-weight: 600;
+    }
+    .badge.pass { background: rgba(61,220,151,.15); color: #3ddc97; }
+    .badge.fail { background: rgba(255,107,87,.15); color: #ff6b57; }
+    pre {
+      margin: 8px 0 0;
+      color: #9eb3c8;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 12px;
+      white-space: pre-wrap;
+    }
+    #summary {
+      font-weight: 600;
+      font-size: 15px;
+      padding: 12px 14px;
+      border-radius: 6px;
+      margin-bottom: 16px;
+      background: #131a22;
+      border: 1px solid #223041;
+    }
+  </style>
+</head>
+<body>
+  <h1>Valley Under Pressure v2 — Hydrogeology & Compaction Unit Tests</h1>
+  <div class="meta">Testing <code>game/model.js</code> against <code>../data/central_valley/summary.json</code> and Terzaghi preconsolidation mechanics.</div>
+  <div id="summary">Running tests…</div>
+  <div id="results"></div>
+
+  <script src="./model.js"></script>
+  <script>
+    (async function runTests() {
+      const resultsEl = document.getElementById('results');
+      const summaryEl = document.getElementById('summary');
+      const cases = [];
+
+      function assert(name, cond, detail) {
+        cases.push({ name, pass: Boolean(cond), detail: detail || '' });
+      }
+
+      let summaryJson = null;
+      let pointsJson = null;
+      try {
+        const [sRes, pRes] = await Promise.all([
+          fetch('../data/central_valley/summary.json'),
+          fetch('../data/central_valley/points.json'),
+        ]);
+        if (sRes.ok) summaryJson = await sRes.json();
+        if (pRes.ok) pointsJson = await pRes.json();
+      } catch (err) {
+        // Offline / unit-only fallback
+      }
+
+      // 1. Calibration test against real NISAR summary.json (or embedded fallback matching summary.json)
+      const cal = ValleyModel.runCalibrationCheck(summaryJson);
+      assert(
+        'Calibration: 108-day baseline run matches NISAR summary.json within +-10%',
+        cal.within10Pct && cal.simulatedVertCm < 0 && cal.simulatedLosCm < 0,
+        `Measured=${cal.measuredVertCm} cm vert (${cal.measuredLosCm} cm LOS) | Simulated=${cal.simulatedVertCm} cm vert (${cal.simulatedLosCm} cm LOS) | Error=${cal.errorPct}% | ScaleFactor=${cal.calibrationFactor}`
+      );
+
+      // 2. Hydration test from points.json
+      const hydrated = ValleyModel.hydrateFromRepoData(pointsJson, summaryJson);
+      const p01Hydrated = hydrated.districts.find((d) => d.id === 'p01');
+      assert(
+        'Repo data hydration loads real NISAR coordinates & series for Terra Bella (p01)',
+        p01Hydrated && Math.abs(p01Hydrated.nisarLosCm - (-7.8)) < 0.05,
+        `Loaded ${hydrated.districts.length} districts; p01 pointName="${p01Hydrated.pointName}", nisarLosCm=${p01Hydrated.nisarLosCm}`
+      );
+
+      // 3. Terzaghi preconsolidation hysteresis: recharge recovers ONLY elastic, permanent stays locked
+      const hystSim = ValleyModel.createSimulationState({ year1WaterYear: 'Dry', year2WaterYear: 'Wet' });
+      ValleyModel.setDistrictControls(hystSim, 'ALL', { pumpingPct: 145, surfaceAllocPct: 20, fallowPct: 0 });
+      for (let i = 0; i < 12; i++) ValleyModel.stepMonth(hystSim);
+      const p01Year1 = { ...hystSim.districts[0] };
+      // Switch to zero pumping + maximum Wet-year surface recharge in winter months
+      ValleyModel.setDistrictControls(hystSim, 'ALL', { pumpingPct: 10, surfaceAllocPct: 100, fallowPct: 50 });
+      for (let i = 0; i < 6; i++) ValleyModel.stepMonth(hystSim); // Oct..Mar winter recharge
+      const p01Winter = hystSim.districts[0];
+      assert(
+        'Preconsolidation hysteresis: winter recovery raises head & elastic rebound without reversing permanent compaction',
+        p01Winter.headM > p01Year1.headM &&
+          p01Winter.inelasticCm <= p01Year1.inelasticCm + 1e-9 &&
+          p01Winter.inelasticCm < -5.0 &&
+          p01Winter.elasticCm >= p01Year1.elasticCm,
+        `End Y1 head=${p01Year1.headM.toFixed(2)}m, perm=${p01Year1.inelasticCm.toFixed(2)}cm, elast=${p01Year1.elasticCm.toFixed(2)}cm -> After wet winter head=${p01Winter.headM.toFixed(2)}m, perm=${p01Winter.inelasticCm.toFixed(2)}cm, elast=${p01Winter.elasticCm.toFixed(2)}cm`
+      );
+
+      // 4. Policy monotonicity: 150% pumping subsides more than 100%, which subsides more than 40% + 25% fallowing
+      function runScenario(pump, fallow) {
+        const s = ValleyModel.createSimulationState({ year1WaterYear: 'Below Normal', year2WaterYear: 'Below Normal' });
+        ValleyModel.setDistrictControls(s, 'ALL', { pumpingPct: pump, surfaceAllocPct: 60, fallowPct: fallow });
+        for (let i = 0; i < 24; i++) ValleyModel.stepMonth(s);
+        return s;
+      }
+      const sHigh = runScenario(150, 0);
+      const sBase = runScenario(100, 0);
+      const sCons = runScenario(40, 25);
+      const cHigh = sHigh.districts[0].totalCm;
+      const cBase = sBase.districts[0].totalCm;
+      const cCons = sCons.districts[0].totalCm;
+      assert(
+        'Monotonic policy response: 150% pumping < 100% baseline < conservation (40% pump, 25% fallow)',
+        cHigh < cBase && cBase < cCons,
+        `24-mo Terra Bella vertical subsidence: 150%=${cHigh.toFixed(2)}cm, 100%=${cBase.toFixed(2)}cm, Conservation=${cCons.toFixed(2)}cm`
+      );
+
+      // 5. Critical water year enforces 15% surface allocation cap and emits zero NaNs
+      const critSim = ValleyModel.createSimulationState({ year1WaterYear: 'Critical', year2WaterYear: 'Critical' });
+      ValleyModel.setDistrictControls(critSim, 'ALL', { pumpingPct: 120, surfaceAllocPct: 100, fallowPct: 0 });
+      for (let i = 0; i < 24; i++) ValleyModel.stepMonth(critSim);
+      const capRespected = critSim.districts.every((d) => d.controls.surfaceAllocPct <= 15);
+      const finiteCheck = critSim.districts.every(
+        (d) =>
+          Number.isFinite(d.headM) &&
+          Number.isFinite(d.totalCm) &&
+          Number.isFinite(d.inelasticCm) &&
+          Number.isFinite(d.cumulativeRevenueMUsd) &&
+          Number.isFinite(d.canalCapacityLossPct)
+      );
+      assert(
+        'Critical Water Year enforces 15% surface cap and produces zero NaN/Infinity across 24 months',
+        critSim.finished && capRespected && finiteCheck && critSim.valleyHistory.length === 24,
+        `finished=${critSim.finished}, maxSurfaceAfterCap=${Math.max(...critSim.districts.map((d) => d.controls.surfaceAllocPct))}%, historyLen=${critSim.valleyHistory.length}`
+      );
+
+      const passed = cases.filter((c) => c.pass).length;
+      summaryEl.textContent = `${passed}/${cases.length} tests passed`;
+      summaryEl.style.color = passed === cases.length ? '#3ddc97' : '#ff6b57';
+      window.__TEST_RESULTS__ = { passed, total: cases.length, cases };
+
+      resultsEl.innerHTML = cases
+        .map(
+          (c) => `
+          <div class="case ${c.pass ? 'pass' : 'fail'}">
+            <div><span class="badge ${c.pass ? 'pass' : 'fail'}">${c.pass ? 'PASS' : 'FAIL'}</span><strong>${c.name}</strong></div>
+            <pre>${c.detail}</pre>
+          </div>`
+        )
+        .join('');
+    })();
+  </script>
+</body>
+</html>
