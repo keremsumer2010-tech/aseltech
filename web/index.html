@@ -16,7 +16,7 @@
 <header class="site-header">
   <a class="logo" href="index.html" aria-label="NISAR Pulse home"><span class="logo-mark"></span><span class="logo-text">NISAR&nbsp;Pulse</span></a>
   <nav class="site-nav">
-    <a href="#story" class="active">Story</a><a href="explorer.html">Explore</a><a href="#play">Simulator</a><a href="science.html">Science</a><a href="data.html">Data</a><a href="faq.html">FAQ</a>
+    <a href="#story" class="active">Story</a><a href="atlas.html">Atlas</a><a href="explorer.html">Explore</a><a href="#play">Simulator</a><a href="science.html">Science</a><a href="data.html">Data</a><a href="faq.html">FAQ</a>
   </nav>
 </header>
 
@@ -255,6 +255,13 @@
       <li><b>Compare places.</b> The same steps work for any irrigated basin or growing city; only the area of interest changes.</li>
     </ol>
     <p class="small">NASA describes these uses in its NISAR applications papers on <a href="https://science.nasa.gov/mission/nisar/societal-benefits/" target="_blank" rel="noopener">subsidence, groundwater, levees and dams, sinkholes and food security</a>.</p>
+    <div class="card" id="atlasSummaryCard" style="margin-top:22px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px">
+      <div style="flex:1 1 320px">
+        <h3 style="margin:0 0 4px">Global Subsidence Atlas 2026</h3>
+        <p style="margin:0">We applied the same open NISAR method across <b id="atlasCardN">11</b> basins and cities worldwide (<span id="atlasCardRel">6</span> reliable, <span id="atlasCardInd">5</span> indicative only; provisional data). Compare rates per 100 days on the 3D globe.</p>
+      </div>
+      <a class="btn primary" href="atlas.html">Open the Global Atlas →</a>
+    </div>
   </div>
 </section>
 
@@ -291,6 +298,7 @@
     if(await ok(c.dataset.file)){const a=c.querySelector('.newlink');a.href='science.html';a.textContent='Read more →'}
   }
   if(await ok('docs/story/technical_note.md'))document.getElementById('techNote').innerHTML='<a href="'+ROOT+'docs/story/technical_note.md" target="_blank" rel="noopener">Read the technical note →</a>';
+  try{const a=await (await fetch(ROOT+'data/global/atlas.json')).json();if(a&&a.n_regions!=null){document.getElementById('atlasCardN').textContent=a.n_regions;document.getElementById('atlasCardRel').textContent=a.n_reliable;document.getElementById('atlasCardInd').textContent=a.n_indicative;}}catch(e){}
 })();
 </script>
 </body>

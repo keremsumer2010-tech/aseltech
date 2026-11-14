@@ -10,13 +10,14 @@
 <body>
 <header class="site-header">
   <a class="logo" href="index.html" aria-label="NISAR Pulse home"><span class="logo-mark"></span><span class="logo-text">NISAR&nbsp;Pulse</span></a>
-  <nav class="site-nav"><a href="index.html#story">Story</a><a href="explorer.html">Explore</a><a href="index.html#play">Simulator</a><a href="science.html">Science</a><a href="data.html" class="active">Data</a><a href="faq.html">FAQ</a></nav>
+  <nav class="site-nav"><a href="index.html#story">Story</a><a href="atlas.html">Atlas</a><a href="explorer.html">Explore</a><a href="index.html#play">Simulator</a><a href="science.html">Science</a><a href="data.html" class="active">Data</a><a href="faq.html">FAQ</a></nav>
 </header>
 <main class="doc">
   <p class="kicker">Open data</p>
   <h1>Every number, downloadable</h1>
   <p class="lede">All derived datasets are plain JSON, GeoJSON and PNG files you can open in any tool. The code that produced them is in the <a href="https://github.com/keremsumer2010-tech/aseltech">repository</a> (MIT licence).</p>
   <table class="data" id="files"><thead><tr><th>Dataset</th><th>Region</th><th>Quality</th><th>File</th></tr></thead><tbody></tbody></table>
+  <p class="small" id="atlasDocs" hidden></p>
   <h2 id="reproduce">Reproduce our data in 5 steps</h2>
   <ol class="steps5">
     <li><b>Get a free NASA Earthdata login</b> at <a href="https://urs.earthdata.nasa.gov/" target="_blank" rel="noopener">urs.earthdata.nasa.gov</a> and put it in your <code>~/.netrc</code> file (instructions in the <a href="https://github.com/keremsumer2010-tech/aseltech#setup">README</a>).</li>
@@ -43,9 +44,17 @@ J('data/catalog.json').then(cat => {
   if (!cat) return;
   const rows = [];
   for (const s of cat) for (const l of s.layers) rows.push(`<tr><td>${l.title}</td><td>${s.title}</td><td>${CLS[l.quality] ? `<span class="qbadge ${CLS[l.quality]}">${String(l.quality).toUpperCase()}</span>` : (l.quality || '—')}</td><td><a class="mono" href="${ROOT + l.file}" download>${l.file.split('/').slice(-2).join('/')}</a></td></tr>`);
+  rows.push(`<tr><td>Global subsidence atlas (all measured regions)</td><td>Global</td><td><span class="qbadge provisional">PROVISIONAL</span></td><td><a class="mono" href="${ROOT}data/global/atlas.json" download>global/atlas.json</a></td></tr>`);
   rows.push(`<tr><td>Data catalogue (everything above)</td><td>All</td><td>—</td><td><a class="mono" href="${ROOT}data/catalog.json" download>data/catalog.json</a></td></tr>`);
   document.querySelector('#files tbody').innerHTML = rows.join('');
 });
+(async () => {
+  const links = [];
+  for (const [f, label] of [['docs/story/atlas_data_dictionary.md', 'Atlas data dictionary'], ['docs/story/atlas_methods.md', 'Atlas methods']]) {
+    try { if ((await fetch(ROOT + f, {method: 'HEAD'})).ok) links.push(`<a href="${ROOT + f}" target="_blank" rel="noopener">${label}</a>`); } catch (e) {}
+  }
+  if (links.length) { const el = document.getElementById('atlasDocs'); el.innerHTML = 'Global Atlas documentation: ' + links.join(' · '); el.hidden = false; }
+})();
 </script>
 </body>
 </html>

@@ -13,7 +13,6 @@ Saatler: `docs/ZAMAN_CIZELGESI.md`. "[atandı: PCx]" işi sadece o PC alır; ata
 
 ## ORTAK İŞLER (Cmt 22:10, PC belirtilmeden — boşta kalan herkes alabilir)
 PC6 ve PC8'in eski, bitmemiş işleri buraya taşındı. Ayrıntı: `docs/ATLAS_PLANI.md`. Sahiplen: `- [ ]` → `- [~PCx]`; bitince satırı sil.
-- [~PC6] C03 · Tüm sayfaların menüsüne "Atlas" bağlantısı + ana sayfaya tek özet kartı + Data sayfasına `data/global/atlas.json` bağlantısı (C01'den sonra; küçük değişiklik) · web/*.html (PC6 aldı 23:08)
 - [ ] C06 · O1 Karapınar kalıcı depolama kaybı: `data/karapinar_fullyear/decomp.json` oluşunca `analysis/pc8/storage_loss.py` ile → `data/karapinar_fullyear/storage_loss.json` · data/karapinar_fullyear/
 
 ## BUGFIX — Sorun Kaydı (Cmt 22:00, Mehmet kararı) · SADECE PC6 ve PC8
