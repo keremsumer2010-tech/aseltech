@@ -45,6 +45,8 @@ def main(site, path, frame, ref_height_m=None):
     finally:
         h5.unlink(missing_ok=True)
     dst = ROOT / "analysis" / "out" / f"{site}_geometry.npz"
+    # float16 keeps the file far below the 20 MB repo limit (K-12); unit vectors need ~3 decimals only
+    g = {k: (v.astype(np.float16) if k in ("los_e", "los_n", "los_u", "incidence") else v) for k, v in g.items()}
     np.savez_compressed(dst, granule=n, **g)
     print(dst.name, n, "los_e", np.nanmedian(g["los_e"]), "los_n", np.nanmedian(g["los_n"]),
           "los_u", np.nanmedian(g["los_u"]), "inc", np.nanmedian(g["incidence"]))
