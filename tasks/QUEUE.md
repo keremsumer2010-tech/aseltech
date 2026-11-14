@@ -13,7 +13,6 @@ Saatler: `docs/ZAMAN_CIZELGESI.md`. "[atandı: PCx]" işi sadece o PC alır; ata
 
 ## ORTAK İŞLER (Cmt 22:10, PC belirtilmeden — boşta kalan herkes alabilir)
 PC6 ve PC8'in eski, bitmemiş işleri buraya taşındı. Ayrıntı: `docs/ATLAS_PLANI.md`. Sahiplen: `- [ ]` → `- [~PCx]`; bitince satırı sil.
-- [~PC8] C01 · Atlas sayfası: `web/atlas.html` + `web/atlas.js` + `web/atlas.css` — MapLibre küre (sabit sürüm), `../data/global/atlas.json` noktaları, renk/sıra `rate_cm_per_100d`, güven rozeti (low → "indicative only"), tıklayınca yan panel (dönem, çift sayısı, kalite, kaynak, PNG, bülten `docs/bulletins/`) · web/atlas.* (PC8 aldı 23:01)
 - [ ] C02 · Atlas sayfasına "Fastest-sinking places in our 2026 NISAR atlas" tablosu: güvenilir ve indicative iki liste, dönem, "LOS", provisional uyarısı (C01'den sonra) · web/atlas.*
 - [ ] C03 · Tüm sayfaların menüsüne "Atlas" bağlantısı + ana sayfaya tek özet kartı + Data sayfasına `data/global/atlas.json` bağlantısı (C01'den sonra; küçük değişiklik) · web/*.html
 - [ ] C04 · Atlas sayfası testi: telefon 375 px, dizüstü, konsol 0 hata, NaN/boş alan sayfayı bozmasın → `docs/qa/PCx.md` · web/atlas.*

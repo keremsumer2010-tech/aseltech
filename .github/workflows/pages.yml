@@ -42,6 +42,7 @@ jobs:
           if [ -d game ]; then cp -r game _site/game; fi
           if [ -d web3d ]; then cp -r web3d _site/web3d; fi
           if [ -d docs/story ]; then mkdir -p _site/docs && cp -r docs/story _site/docs/story; fi
+          if [ -d docs/bulletins ]; then mkdir -p _site/docs && cp -r docs/bulletins _site/docs/bulletins; fi
           if [ -f validation/gnss_stations.csv ]; then mkdir -p _site/validation && cp validation/gnss_stations.csv _site/validation/gnss_stations.csv; fi
           rm -f _site/.gitkeep _site/data/.gitkeep _site/game/.gitkeep
           touch _site/.nojekyll
