@@ -469,7 +469,7 @@ Xi'an üretim denemesinde `pipeline/subset/global_xian/` altında bir kesit olu�
 
 Xi'an hattı yeniden `--resume` ile başlatıldı; gözlem anında bir sonraki ham GUNW granülü indiriliyor. H5 kesitlenince aynı granülün ham dosyası downloader `finally` bloğunda silinir. `data/global/xian/summary.json` henüz oluşmadığı için **hazır değil**.
 
-Aktarım ilerlemesi: 9 çiftin 4'ü `pipeline/subset/global_xian/` altında kesildi; ham `.h5` dosyaları kesimlerden sonra yok. Beşinci çift sırada. Boş disk eşiği 20 GB, mevcut boş alan önceki kontrolde yaklaşık 482 GB ölçüldü.
+Aktarım ilerlemesi: son kontrolde 9 çiftin 7'si `pipeline/subset/global_xian/` altında kesildi; kesilen granüllerin ham `.h5` dosyaları silindi. Sekizinci çift tekli aktarımda. Boş disk eşiği 20 GB, mevcut boş alan önceki kontrolde yaklaşık 482 GB ölçüldü.
 
 Referans notu: Shi et al. çalışması Xingping'i “no deformation” referansı olarak tanımlar ([çalışma](https://www.tandfonline.com/doi/full/10.1080/19475705.2018.1542350)); UNGEGN yerleşim koordinatı yalnızca yaklaşık ankordur ([UNGEGN ID 2459](https://ungegn.un.org/dashboard/cities/details?id=2459)). Daha geniş Weihe Basin çalışması Xingping yakınında yaklaşık 38 mm/y subsidence rapor ettiği için ([2022 çalışma](https://www.mdpi.com/2072-4292/14/13/3182)), bu yerel piksel seçimini bağımsız GPS doğrulaması gibi yorumlamayacağım. Herhangi bir şehir sonucu bu referans belirsizliğini taşıyacak.
 
