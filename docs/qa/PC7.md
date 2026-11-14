@@ -478,3 +478,13 @@ Diğer şehirler için ilk kaynak taraması: Aguascalientes Valley çalışması
 Xi'an indirmesi sürerken tüm yerel test paketi tekrar çalıştırıldı: `python -m pytest -q` → **83 passed, 1 PendingDeprecationWarning, 27.56 s**. İndirme çalışma anında tek `.h5.part` dosyasıydı; boş disk yaklaşık 482 GB, NISAR Pulse güvenli alan eşiği 20 GB'ın üzerindeydi.
 
 Yerel sözleşme taraması `python pipeline/pc7/validate_json.py`: **111 JSON**, 0 parse/non-standard constant hatası, 0 NaN/Infinity; yalnız `data/numbers_registry.json` `quality` alanından yoksun (başka sahibin dosyası, değiştirilmedi). 18 `points.json` quality alanını kardeş `meta.json`'dan miras alıyor.
+
+## 22. FAZ 1 — Xi'an tamamlandı
+
+**hazır: Xi'an** — 9 provisional NISAR GUNW zincir çifti, 2026-06-19–2026-10-17 (120 gün); hedef kutu `[108.70, 34.02, 109.20, 34.52]`, P076/F071. `pipeline/subset/global_xian/` içinde dokuz kesit var; kapsama kaydı 0 boşluk ve ham dosyaların kesim sonrası silindiğini doğruluyor. Çıktılar `data/global/xian/summary.json`, `meta.json`, `points.json`, `coverage.json` ve `disp/` altında.
+
+Sonuç provisional ve orta güven: en negatif yaklaşık 1 km blok medyanı **−1.5 cm LOS**, `p2_cm=−1.6`, `rate_cm_per_100d=−1.25`, `valid_fraction=0.362`, `ref_range_cm=2.4`. 120 günlük doğrusal yıllıklaştırma −4.5 cm/yıl olarak kaydedilmiş, fakat yaz dönemi gözleminden yıllık hız çıkarımı kış toparlanmasını dışarıda bırakabileceği için yıllık tahmin değildir. Referans duyarlılığı büyük (2.4 cm aralık; headline mutlak değerinin yaklaşık %160'ı); sıra/karşılaştırma için sağlam sonuç sayılmamalı.
+
+Referans ankru Xingping literatürde deformasyonsuz bölge olarak tanımlanıyor; yerel 7×7 ortak-geçerli pencere koherensi 0.7912, seçilen piksel `[108.488199, 34.302914]`. Başka bir Weihe Basin çalışması Xingping civarında hareket rapor ettiğinden bu koordinat bağımsız GNSS sabitliği kanıtı değildir. Üç referans alternatifi değerlendirilmiş olsa da iki alternatifin yerel sonuçları −2.5 ve −3.9 cm çıktı; ana sonuç referans seçimine hassas.
+
+Kontroller: `meta.json` 10 tarih içeriyor; 12 noktanın her biriyle tarihler eşleşiyor ve `disp_cm` değerleri sonlu. `python -m pytest -q pipeline/pc7/tests/test_atlas_robustness.py` **4/4 PASS**. `tools/validate_atlas.py` **14 atlas bölgesi / 15 şehir klasörü, 172 bulgu (158 hata, 14 uyarı)** raporladı; Xi'an'a özel bulgular, PC10 sahipliğindeki `data/global/atlas.json` içinde bölge ve metrik kaydının bulunmaması. PC7 atlas dosyasını değiştirmedi. Güncellenen sağlamlık hesabında Xi'an için 27 varyant üretilemedi (0 tam varyant); bu nedenle Xi'an varyant sıralamasına dahil değil.

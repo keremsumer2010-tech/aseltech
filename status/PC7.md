@@ -1,7 +1,7 @@
 # PC7 durum
 
 - Görev: Fens GCOV ritmi, polarizasyon karşılaştırması, çevrimdışı site QA ve Node oyun testi
-- Durum: FAZ 1 Xi'an üretimi sürüyor; robustness yenilendi (4/4 ağsız test PASS); atlas doğrulayıcısı 157 bulgu verdi
+- Durum: FAZ 1 Xi'an verisi üretildi ve yerel kontroller tamamlandı; atlas doğrulayıcısında Xi'an için atlas kaydı eksik (PC10 sahipliğinde). Sıradaki şehir Taiyuan; havza dışı referans kanıtı araştırılıyor.
 - ASF araması: platform=NISAR, processingLevel=GCOV, bbox [-0.3, 52.4, 0.4, 52.9], başlangıç 2026-06-17; 49 P05023 GCOV ürünü HH/HV ile eşleşti.
 - Tekrarlı seri: path 52, frame 61, 10 benzersiz tarih: 2026-06-17–2026-10-15. Granül listesi `pipeline/pc7/fens_gcov_catalog.json` içinde.
 - Doğrulama: `pipeline/pc7/search_fens_gcov.py` çalıştırıldı; katalog JSON olarak tekrar açılıp parse edildi.
@@ -29,8 +29,7 @@
 - Önceki Git index izni engeli yükseltilmiş erişimle çözüldü; kapsam raporu commit/push edildi.
 - Uzun plan FAZ 1 kapsamı: Python 3.12.10 NISAR Pulse dry-run ile Xi'an, Taiyuan, Querétaro, Aguascalientes, Kashmar'ın her birinde 9 ardışık provisional çift ve sıfır boşluk doğrulandı. Ham veri indirmedim; ayrıntılar `docs/qa/PC7.md` §18.
 - `pipeline/pc7/run_atlas_city.py` eklendi; py_compile ve bbox/reference yardımcıları smoke check geçti. Ham veri henüz indirilmedi, yeni şehir `ready` değil. Ayrıntı `docs/qa/PC7.md` §19.
-- Devam: Xi'an için NISAR Pulse arama/kesme ve kaynaklı Xingping referans yerleşimi yakınında ortak-geçerli 7×7 yüksek koherens penceresi seçimi.
-- Xi'an: `--resume` üretimi devam ediyor; 9 çiftten 8'i yerel kesit olarak hazır, son granül tekli indirmede; başka eşzamanlı indirme yok; şehir henüz hazır değil.
+- Xi'an: 9 provisional çift kesildi; ham granüller kesimden sonra silindi. `data/global/xian/` özeti üretildi. Başlık ölçümü −1.5 cm LOS, −1.25 cm/100 gün; 120 günlük dönem, 36.2% valid fraction, orta güven. Üç referans alternatifi aralığı 2.4 cm olduğundan referans duyarlılığı yüksek; keşifsel sonuç olarak yorumlanmalı.
 - Tam pytest tekrarlandı: 83 passed, 1 PendingDeprecationWarning; Xi'an indirmesi sürerken.
 - JSON sözleşme taraması: 111 dosyada parse/NaN hatası yok; data/numbers_registry.json quality eksikliği başka sahibin dosyası.
 - AI: Codex → CMR dry-run, kaynak incelemesi ve PC7 QA kaydı.

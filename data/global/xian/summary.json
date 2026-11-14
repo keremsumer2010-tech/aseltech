@@ -1,0 +1,74 @@
+{
+  "max_subsidence_cm": -1.5,
+  "max_subsidence_range_cm": [
+    -3.9,
+    -1.5
+  ],
+  "range_cm": [
+    -3.9,
+    -1.5
+  ],
+  "n_references": 3,
+  "reference_sensitivity": {
+    "alt_reference": {
+      "lon": 108.7975,
+      "lat": 34.10691
+    },
+    "max_subsidence_cm_at_same_location": -2.5
+  },
+  "reference_sensitivity_all": [
+    {
+      "alt_reference": {
+        "lon": 108.7975,
+        "lat": 34.10691
+      },
+      "max_subsidence_cm_at_same_location": -2.5
+    },
+    {
+      "alt_reference": {
+        "lon": 108.90519,
+        "lat": 34.48531
+      },
+      "max_subsidence_cm_at_same_location": -3.9
+    }
+  ],
+  "period": [
+    "2026-06-19",
+    "2026-10-17"
+  ],
+  "rate_cm_per_yr_estimate": -4.5,
+  "reference_point": {
+    "lon": 108.488199,
+    "lat": 34.302914,
+    "source": "Shi et al. 2020 reports the Xingping reference location as no-deformation; UNGEGN city-coordinate anchor (ID 2459), with local pixel selected by coherence"
+  },
+  "quality": "provisional",
+  "quality_note": "NISAR L2 GUNW CRID P05023 provisional products only; calibration and validation are carried out by NASA-JPL/ISRO.",
+  "component": "LOS",
+  "max_subsidence_location": {
+    "lon": 109.18355,
+    "lat": 34.18031
+  },
+  "max_subsidence_vertical_cm_estimate": -2.0,
+  "incidence_deg_at_max": 42.1,
+  "n_pairs": 9,
+  "method_note": "Headline value = most negative median of ~1 km blocks (13x13 px, >= 50 % valid pixels, within-block std <= 2 cm) of the cumulative LOS map. Rate = linear extrapolation of 120 days (2026-06-19 to 2026-10-17, summer season) to one year: an ESTIMATE that likely overstates the annual net rate because part of summer subsidence recovers in winter. Vertical value assumes purely vertical motion (LOS / cos(incidence)). range_cm = spread of the headline value when the whole chain is re-referenced to up to two other stable windows >= 30 km away.",
+  "p2_cm": -1.6,
+  "rate_cm_per_100d": -1.25,
+  "valid_fraction": 0.362,
+  "confidence": "medium",
+  "ref_range_cm": 2.4,
+  "bbox": [
+    108.7,
+    34.02,
+    109.2,
+    34.52
+  ],
+  "reference_outside_basin": true,
+  "reference_anchor": {
+    "lon": 108.48,
+    "lat": 34.3,
+    "mean_coherence": 0.7912,
+    "window": "7x7 common-valid pixels; nearest high-coherence window within 3 km of source locality"
+  }
+}

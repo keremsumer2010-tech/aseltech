@@ -1,0 +1,28 @@
+{
+  "site": "xian",
+  "bbox": [
+    108.7,
+    34.02,
+    109.2,
+    34.52
+  ],
+  "subset_bbox": [
+    108.46000000000001,
+    34.02,
+    109.2,
+    34.52
+  ],
+  "quality": "provisional",
+  "coverage": "ok",
+  "granules": 9,
+  "chain_pairs": 9,
+  "path": 76,
+  "frame": 71,
+  "period": [
+    "2026-06-19",
+    "2026-10-17"
+  ],
+  "gaps": [],
+  "total_raw_mb": 20976.1,
+  "raw_files_deleted_after_subsetting": true
+}
