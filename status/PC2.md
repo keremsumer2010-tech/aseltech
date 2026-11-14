@@ -2,7 +2,8 @@
 
 - Görev: 1 (Hesap, liste, ilk dosya, gunw_structure.md) — **TAMAMLANDI**
 - Görev: 2 (Central Valley provisional çiftleri) — **TAMAMLANDI (7/7 tam `ion` katmanıyla push edildi)**
-- Görev: Q01 (Karapınar GUNW Path 7 Frame 69 provisional zinciri) — **DEVAM EDİYOR (7/8 tamamlandı ve push edildi, son çift 2026-09-30→2026-10-12 indiriliyor)**
+- Görev: Q01 (Karapınar GUNW Path 7 Frame 69 provisional zinciri) — **TAMAMLANDI (8/8 tam `ion` katmanıyla `pipeline/subset/karapinar/` altına push edildi — PC3 için hazır!)**
+- Görev: Q04 (Central Valley SME2 toprak nemi → `data/central_valley/drivers.json`) — **DEVAM EDİYOR**
 - Çıktılar:
   - `pipeline/search.py`, `pipeline/download.py`, `pipeline/inspect_gunw.py`, `pipeline/subset.py` (`incidence` 12-bit mantissa yuvarlama ile `ion` tam `(1473, 1438) float32` olarak ≤20 MB içinde korunuyor)
   - `pipeline/central_valley_gunw.csv` (27 Path 34 Frame 20 ürünü; 7 provisional `P05023`, 20 beta-precal)
@@ -22,6 +23,7 @@
   - `pipeline/subset/karapinar/2026-08-13_2026-08-25.npz` (1.79 MB, shape=(470, 603), NaN=27.97%, `ion=(470, 603) full`, epsg=32636, ham `.h5` silindi)
   - `pipeline/subset/karapinar/2026-08-25_2026-09-06.npz` (1.99 MB, shape=(470, 603), NaN=19.45%, `ion=(470, 603) full`, epsg=32636, ham `.h5` silindi)
   - `pipeline/subset/karapinar/2026-09-06_2026-09-18.npz` (1.78 MB, shape=(470, 603), NaN=35.47%, `ion=(470, 603) full`, epsg=32636, ham `.h5` silindi)
+  - `pipeline/subset/karapinar/2026-09-30_2026-10-12.npz` (1.83 MB, shape=(470, 603), NaN=29.07%, `ion=(470, 603) full`, epsg=32636, ham `.h5` silindi)
 - İndirme hızları:
   - `2026-09-08 → 2026-09-20`: 10.32 MB/s / yenileme 12.43 MB/s (2236.0 MB)
   - `2026-06-28 → 2026-07-10`: 12.71 MB/s / yenileme 11.23 MB/s (2192.0 MB)
