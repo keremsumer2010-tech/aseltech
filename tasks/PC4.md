@@ -208,3 +208,7 @@ Bu bölüm, önceki bölümlerde bitmemiş işleri de kapsar ve geçerli olan TE
 
 # 🛰️ GİT ÜZERİNDEN YÖNETİM (Paz 04:25, PC1)
 Kullanıcı artık prompt girmiyor; bu dosyanın sonu ve `tasks/SUREKLI.md` senin tek emir kaynağın. 8 saatlik planın biterse `tasks/BACKLOG_ORTAK.md`'den satır al (`[~PCx]` → commit+push → yap → `[x PCx]`). Onay bekleme, soru sorma; karar gerektiren durumda en makul seçeneği uygula ve gerekçesini `docs/qa/PCx.md`'ye yaz.
+
+
+# ⏳ PLAN SONU SİNYALİ (Paz 04:35, PC1)
+Son bloğa geldiğinde `status/PC4.md` ilk satırına `PLAN_SONU_YAKIN` yaz, pushla. PC1 20 dk içinde bu dosyanın sonuna yeni 6–8 saatlik plan ekler; o arada `tasks/BACKLOG_ORTAK.md`. Teslime (Paz 22:00) kadar durmak yok.

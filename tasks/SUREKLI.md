@@ -1,3 +1,5 @@
+# ⏳ PLAN SONU SİNYALİ (Paz 04:35): Planının son bloğuna geldiğinde veya kalan işin 2 saatten azsa `status/PCx.md`'nin ilk satırına `PLAN_SONU_YAKIN` yaz ve pushla. PC1 her 20 dk bakar ve dosyanın sonuna yeni 6–8 saatlik plan ekler. Yeni plan gelene kadar BACKLOG_ORTAK'tan iş al; asla durma.
+
 # 🛰️ GİT ÜZERİNDEN YÖNETİM (Paz 04:25): Kullanıcı artık prompt girmiyor. Tüm görev ve emirler bu repoda: `tasks/PCx.md` (sonu), `tasks/SUREKLI.md`, `tasks/BACKLOG_ORTAK.md`. PC1 her 30 dk görev ekler/devreder. Planın biterse BACKLOG_ORTAK'tan satır al; asla durma, onay bekleme.
 
 # 📣 GENEL EMİR (Paz 01:50): herkes şu an commit + push etsin, status'a ilerleme yazsın; en geç 10 dk'da bir commit.
