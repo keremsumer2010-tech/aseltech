@@ -82,3 +82,35 @@ Kapsam: `web/index.html` (`1–163`). Genel İngilizce tonu akıcı ve tutarlı 
 `docs/story/video_shotlist.md` içindeki 6 SRT satırı (`00:00.0–00:30.0`) güncel `data/*/*.json`, `game/` ve `sources.md` ile satır satır denetlendi:
 - **Güncelleme (Shot 5 & Cue 5):** `52d9796` ile gelen `game/index.html` (v2) başlığının **"Valley Under Pressure"** ve zaman ufkunun **24 ay (`Month 0 / 24`)** olduğu görüldü; çekim adımları (`Over-Pump`, `#pumpSlider`, `Terra Bella`) ve Cue 5 metni güncel v2 arayüze göre düzeltildi (`web/index.html:134–137` için de §6 önerisi güncellendi).
 - **Sonuç:** `Cue 1–6` içindeki tüm sayılar (`1851`, `~4 m`, `2026-10-20`, `−7.8 cm` LOS, `−10.1 cm` dikey, `108` gün, `57.01 mm/km`, `1.00 cm` medyan RMSE, `−5.9 cm` LOS, `29` obruk) birebir doğrulandı (`docs/story/video_shotlist.md` § Line-by-Line Matrix).
+
+---
+
+## 9. Site v2 (`web/`) Sayı Kaynağı Denetimi & `data/*/meta.json` Sözleşme Kontrolü (`ZAMAN_CIZELGESI` Pazar 15:00–18:00)
+
+`669b7e8` (Site v2) ve `d4bf097` (`drivers.json`) sonrası `web/index.html`, `web/science.html`, `web/data.html`, `web/faq.html`, `data/catalog.json` ve tüm `data/*/*.json` dosyaları otomatik betikle denetlendi (`2026-11-14`):
+
+### 9a. `data/*/meta.json` ve JSON Bütünlüğü (`NaN` yok, tüm boyutlar `< 20 MB`)
+
+| Klasör | `quality` | `bbox` Sözleşme Uyumu | `dates` vs `disp/*.png` | `NaN` / Boyut | Durum |
+|---|---|---|---|---|---|
+| `data/central_valley/` (`meta`, `summary`, `points`, `validation`, `assets`, `drivers`) | `provisional` | `[-120.2, 35.6, -119.0, 36.6]` ✔ | `8` tarih = `8` PNG ✔ | Yok · maks `47.2 KB` | **GEÇTİ** |
+| `data/karapinar/` (`meta`, `summary`, `points`, `sinkholes.geojson`) | `provisional` | `[33.3, 37.6, 33.8, 37.9]` ✔ | `9` tarih = `9` PNG ✔ | Yok · maks `18.6 KB` | **GEÇTİ** |
+| `data/uk/` (`meta.json`, `optical_2026-10-20.jpg`, `radar_2026-10-20.png`) | `preview` | `[-0.3, 52.4, 0.4, 52.9]` ✔ | GCOV hızlı bakış çifti (`700×500`) | Yok · maks `631.6 KB` | **GEÇTİ** |
+
+### 9b. Site v2 (`web/index.html`, `web/science.html`, `web/data.html`) Sayı Kaynağı Matrisi
+
+| Sayfa / Konum | Sayfa Üstündeki Sayı / İfade | Doğrulanan Kaynak Dosya | Sonuç |
+|---|---|---|---|
+| `web/index.html:30,38–39,84` | `7.8 cm` / `−7.8 cm` LOS, `108 days`, `28 Jun – 14 Oct 2026`, `7` pairs, `≈−10 cm` vertical | `data/central_valley/summary.json` (`-7.8`, `-10.1 @ 39.1°`, `n_pairs=7`) | **GEÇTİ** |
+| `web/index.html:40,99–102` | `81` high, `131` medium, `433` low, `645` evaluated segments, `≥ 10 / 5 mm/km` | `data/central_valley/assets.json` `summary` | **GEÇTİ** |
+| `web/index.html:41,90` & `science.html:70` | `10` GPS stations, **`6/10`** agree (`r ≥ 0.4`) | `data/central_valley/validation.json` (`CAHA 0.90`, `HANF 0.90`, `QCAP 0.82`, `TLBN 0.79`, `P056 0.66`, `P566 0.42` = tam **`6/10`**) | **GEÇTİ** |
+| `web/index.html:42–43,108–110` | `−5.9 cm` LOS, `26 Jun – 12 Oct 2026`, `8` pairs, `29` sinkholes | `data/karapinar/summary.json` + `sinkholes.geojson` (`29` Feature) | **GEÇTİ** |
+| `web/index.html:65,72–73` | `20 Oct 2026` UK VIIRS vs NISAR `preview`; `1851` post `nearly 4 m`, `2.75 m below sea level`, `1–2 cm/yr` | `data/uk/meta.json` + `docs/story/holme_fen.md` & `sources.md` §1 (`HTTP 200`) | **GEÇTİ** |
+| `web/science.html:23,27,30,34` | `July 2025`, `17 Jun 2026`, `P05023`, `80 m`, `1239 MHz → 0.24196 m`, `[−6.2, −7.8] cm` | `docs/gunw_structure.md` (`0.24196324 m`), `sources.md` §5, `summary.json` | **GEÇTİ** |
+
+### 9c. PC1 İçin Site v2 Güncel Düzeltme Notları *(Salt Okunur Denetim)*
+
+1. **`data/catalog.json` (`web/data.html:38,42` tarafından canlı okunuyor):** `karapinar` ve `uk` girdileri hâlâ `quality: "pending"`, `layers: []` yazıyor; oysa tüm Karapınar (`provisional`), UK (`preview`) ve `data/central_valley/drivers.json` (`provisional`, `Q04`) dosyaları repoda hazır.
+2. **`web/index.html:57, 164` & `web/science.html:34`:** `"consecutive 12-day pairs"` ifadesi Central Valley'de 2 adet (`07-22→08-15`, `09-20→10-14`), Karapınar'da 1 adet (`07-20→08-13`) **24 günlük** ardışık çift bulunduğu için `"consecutive pairs (12–24 days)"` olarak güncellenirse tam isabet olur.
+3. **`web/science.html:25`:** `SME2 Soil moisture` satırı hâlâ `(in progress)` diyor; PC2 `data/central_valley/drivers.json` (`d4bf097`) çıktısını tamamladı.
+4. **`docs/story/judge_faq.md` #13 (`web/faq.html` tarafından canlı okunuyor):** `Valley Under Pressure` (24 ay) adını yansıtması için sonraki adımda PC4 tarafından senkronize edilebilir (önceden eski `Aquifer Manager / 10 years` sürümünü anıyordu).
