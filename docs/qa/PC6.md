@@ -24,3 +24,26 @@ Mevcut durumda `data/` altında henüz üretilmiş `meta.json` dosyası yok (`da
 2. **`web/index.html:154` (kırık olabilecek link kontrolü):** `docs/story/sources.md` linki şu an henüz oluşmamış (PC4 üretince aktifleşecek). 17:00 yayını öncesi tekrar kontrol edilmeli.
 3. **`web/index.html:47` (yer tutucu metin):** Holme Fen kartında `<span class="pending">Exact figure and source being verified.</span>` mevcut (PC4 kaynaklı rakamı verince güncellenmeli).
 4. **Tekrar kontrol:** PC2/PC3/PC4 gerçek `data/*/meta.json` dosyalarını push ettiğinde Q14 tekrar çalıştırılıp `- [x PC6]` işaretlenecek.
+
+---
+
+## 4. `data/` Faz-2 Denetimi (`13:41 TR` — Central Valley Gerçek Verisi Geldi)
+
+Gerçek `data/central_valley/` çıktıları (`meta.json`, `summary.json`, `points.json`, 8 `disp/*.png`) ve PC6 üretimleri (`validation.json`, `assets.json`, `catalog.json`, `game/index.html`) denetlendi:
+
+| Dosya | `quality` / `quality_note` | `vmin` / `vmax` | `bbox` (`[w,s,e,n]`) | Sonuç |
+|---|---|---|---|---|
+| `data/central_valley/meta.json` | `"provisional"` + tam NASA-JPL/ISRO kalibrasyon dipnotu | `-6.0` / `6.0` (simetrik, `RdBu`) | `[-120.2, 35.6, -119.0, 36.6]` (`VERI_SOZLESMESI.md` §1 ile birebir) | Geçti (8 PNG tümü mevcut, 7 granule CRID `P05023`, skip `beta-precal` notlu) |
+| `data/central_valley/summary.json` | `"provisional"` + dipnot | `max_subsidence_cm: -7.8`, `rate_cm_per_yr_estimate: -26.4` | ref `(-119.14562, 36.45323)` | Geçti (`method_note` yaz mevsimi doğrusal ekstrapolasyon uyarısını dürüstçe içeriyor, `NaN` yok) |
+| `data/central_valley/points.json` | n/a (site noktaları) | 12 nokta, `NaN` yok | Central Valley içi | Geçti (`2026-06-28 → 2026-10-14`, 8 tarih) |
+| `data/central_valley/validation.json` | `"provisional"` + tam dipnot | `NaN` yok | 10 GNSS istasyonu footprint içi | Geçti (`CAHA` RMSE 0.752 cm `r=0.896`, `HANF` RMSE 0.834 cm `r=0.896`, `QCAP` RMSE 0.767 cm `r=0.820`, `TLBN` RMSE 1.173 cm `r=0.793`) |
+| `data/central_valley/assets.json` | `"provisional"` + OSM ODbL + dipnot | 645 segment ≥ 1 km değerlendirildi (`high=81, medium=131, low=433`) | top 10 GeoJSON `NaN` yok | Geçti (Tulare Irrig. Canal 57.01 mm/km, California Aqueduct 49.12 mm/km, Friant-Kern Canal 46.06 mm/km) |
+| `data/catalog.json` | `central_valley: provisional`, `karapinar: pending`, `uk: pending` | n/a | n/a | Geçti (`NaN` yok) |
+
+### Güncel Doğrulama Sonuçları
+- **`python -m pytest analysis -q`:** `17 passed in 2.62s`.
+- **Yerel HTTP sunucu testi (`http.server`):** `/web/`, `/web/index.html`, `/web/app.js`, `/web/style.css`, `/game/`, `/game/index.html`, `/data/catalog.json`, `/data/central_valley/*.json` ve `disp/2026-10-14.png` — 13/13 yol **HTTP 200 OK**, sıfır `NaN`.
+- **Açık kalan dış bağımlılıklar (Q14 / Q18 Faz-3 için beklenen):**
+  - `data/karapinar/` (PC3 `Q02` + PC4 `sinkholes.geojson`) henüz yok.
+  - `data/uk/meta.json` ve Holme Fen kaynaklı rakamı (`web/index.html:47` `<span class="pending">`) PC4 tarafından henüz gelmedi; K-2 gereği placeholder korundu.
+  - `web/app.js:83` null koruması PC1 tarafından `c7bac46` ile çözülmüş doğrulandı.

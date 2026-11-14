@@ -60,19 +60,19 @@ Ana mesaj (jüriye): *"We answered the NISAR Handbook's own application question
 
 | Yetenek | Kod var | Siteye bağlı | Ölçüldü / doğrulandı | Gün |
 |---|:---:|:---:|---|---|
-| GUNW arama ve indirme | ☐ | n/a | | Cmt |
-| Faz → cm dönüşümü (testli) | ☐ | n/a | | Cmt |
-| Central Valley kümülatif harita | ☐ | ☐ | | Cmt |
-| Tıkla-grafik + sade cümle | ☐ | ☐ | | Cmt |
-| Karapınar haritası + obruklar | ☐ | ☐ | | Cmt |
-| UK bulut ↔ radar sahnesi | ☐ | ☐ | | Cmt |
-| Aquifer Manager | ☐ | ☐ | | Cmt |
-| GitHub Pages yayını | ☐ | n/a | | Cmt |
-| GNSS doğrulama | ☐ | ☐ | | Paz |
-| Altyapı risk indeksi | ☐ | ☐ | | Paz |
-| Kalıcı / geri dönen | ☐ | ☐ | | Paz |
-| Toprak nemi grafiği | ☐ | ☐ | | Paz |
-| 30 sn video / 7 slayt | ☐ | n/a | | Paz |
+| GUNW arama ve indirme | ☑ | n/a | PC2: 7 provisional Central Valley alt kümesi | Cmt |
+| Faz → cm dönüşümü (testli) | ☑ | n/a | `pytest analysis -q`: 17 passed (2.62s) | Cmt |
+| Central Valley kümülatif harita | ☑ | ☑ | 7 provisional çift (`2026-06-28 → 2026-10-14`), maks `-7.8 cm` LOS | Cmt |
+| Tıkla-grafik + sade cümle | ☑ | ☑ | 12 nokta + 10 GNSS istasyonu etkileşimli; yerel `http.server` 200 OK | Cmt |
+| Karapınar haritası + obruklar | ☐ | ☐ | `Q02` çalışıyor (`data/karapinar/` bekleniyor) | Cmt |
+| UK bulut ↔ radar sahnesi | ☐ | ☐ | `data/uk/` bekleniyor | Cmt |
+| Aquifer Manager | ☑ | ☑ | `game/index.html` (`summary.json` 26.4 cm/yr provisional ile bağlı) | Cmt |
+| GitHub Pages yayını | ☑ | n/a | `.github/workflows/pages.yml` hazır; yerel sunucu doğrulandı | Cmt |
+| GNSS doğrulama | ☑ | ☑ | 10 NGL istasyonu (`CAHA` RMSE 0.75 cm `r=0.90`, `HANF` RMSE 0.83 cm `r=0.90`) | Paz |
+| Altyapı risk indeksi | ☑ | ☑ | 645 segment, top 10 (Tulare Canal 57.01 mm/km, CA Aqueduct 49.12 mm/km) | Paz |
+| Kalıcı / geri dönen | ☐ | ☐ | `Q08` bekleniyor (Pazar) | Paz |
+| Toprak nemi grafiği | ☐ | ☐ | `Q04` bekleniyor (Pazar) | Paz |
+| 30 sn video / 7 slayt | ☑ | n/a | `docs/story/pitch.md` (3 dk konuşma + 30 sn video `.srt` + 7 slayt) | Paz |
 
 ## 5. Kapsam dışı (bilinçli)
 

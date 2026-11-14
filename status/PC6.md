@@ -1,25 +1,17 @@
 # PC6 durum
 
-- Görev: 1, 2, 3 (bitti) + Q05 (`validation/compare.py`), Q06 (`risk/compute_risk.py`), Q14 Faz-1 QA (`docs/qa/PC6.md`)
-- Durum: Görev 1–3, Q05/Q06 scriptleri ve Q14 Faz-1 QA tamamlandı (`central_valley_cum.npz` ve gerçek `data/*/meta.json` dosyaları gelince Q05/Q06/Q14 son çalıştırmaları yapılacak)
-- Çıktılar:
-  - `validation/fetch_gnss.py` (7.1 KB)
-  - `validation/compare.py` (15.5 KB; UTM projeksiyonu + 3×3 piksel medyanı + LOS→dikey dönüşüm + 7 günlük GNSS medyanı + RMSE/korelasyon; `data/central_valley/validation.json` üreticisi)
-  - `validation/gnss_stations.csv` (4.0 KB, 23 istasyon, Central Valley bbox `[-120.2, 35.6, -119.0, 36.6]`, en az `2026-06-28` → `2026-09-20`)
-  - `validation/gnss/*.csv`: 10 istasyon (`TLBN`, `QCAP`, `CAHA`, `HANF`, `CAFP`, `P056`, `CAD1`, `P565`, `P564`, `P566`), 515–658 satır/dosya (`10.3–13.7 KB`), birim `cm` (`up_cm`, NGL IGS20/NA `.NA.tenv3` m→cm dönüşümü)
-  - `validation/README.md` (kaynaklar, IGS20/NA referans çerçevesi, dönem ve değişim özeti)
-  - `risk/fetch_osm_infra.py` (5.0 KB)
-  - `risk/central_valley_infra.geojson` (1.066 MB < 20 MB; 3,238 hat: `canal`=1,662, `rail`=656, `motorway`=591, `trunk`=329; özellikler yalnızca `name, type, osm_id`)
-  - `risk/karapinar_infra.geojson` (0.040 MB; 64 hat: `secondary`=45, `trunk`=19; özellikler yalnızca `name, type, osm_id`)
-  - `risk/README.md` (Overpass QL sorguları, tarih `2026-11-14`, lisans `© OpenStreetMap contributors, ODbL`)
-  - `risk/compute_risk.py` (100 m sıklaştırmalı hat örnekleme + `≥200 m` açıklıkta `mm/km` eğim + risk sınıflandırması; `data/central_valley/assets.json` üreticisi)
-  - `docs/qa/PC6.md` (Q14 Faz-1 QA: `web/mock/central_valley/meta.json`, `RdBu` renk ölçeği, İngilizce metinler, AI/kalibrasyon etiketleri)
-- Doğrulama:
-  - `python validation/fetch_gnss.py` çalıştırıldı: 23 istasyon bulundu; seçilen 10 istasyonun `.sta` sayfaları HTTP 200 döndü; 10 istasyonun tümü `2026-06-28 → 2026-09-20` provisional döneminde tam günlük veriye (`jun_n=7, sep_n=7`) ve `TLBN` (-3.90 cm provisional / -10.77 cm tam yıl), `QCAP` (-3.59 cm / -7.79 cm), `CAHA` (-3.38 cm), `HANF` (-2.54 cm / -6.61 cm), `CAFP` (-2.40 cm), `P056` (-1.65 cm / -3.01 cm) gerçek çökme sinyallerine sahip; `P566` (-0.02 cm / -0.93 cm) referans kenar istasyonu.
-  - Kaynak: NGL `https://geodesy.unr.edu/NGLStationPages/DataHoldings.txt` ve `https://geodesy.unr.edu/gps_timeseries/IGS20/tenv3/NA/<STA>.NA.tenv3` (`README_tenv3.txt`).
-  - `python risk/fetch_osm_infra.py` çalıştırıldı: JSON geçerli, dosya boyutları < 20 MB, named kanallar arasında `California Aqueduct` (ve Coastal Branch Phase 1/2) ve `Friant-Kern Canal` mevcut (`Delta-Mendota Canal` bbox kuzey sınırının dışında).
-  - `python validation/compare.py --self-test` geçti: pure-math UTM vs `pyproj` farkı `0.0079 cm`; sentetik `cum_stack_cm` + `incidence=38°` ile `TLBN`, `QCAP`, `P566` serileri `rmse=0.0 cm, corr=1.0` ile geri kazanıldı, 10 istasyon JSON çıktısı `NaN`sız doğrulandı. `analysis/out/central_valley_cum.npz` henüz oluşmadığı için `data/central_valley/validation.json` üretimi bekliyor.
-  - `python risk/compute_risk.py --self-test` geçti: gerçek `risk/central_valley_infra.geojson` (3,238 hat) üzerinde sentetik çökme çanağıyla 1,913 segment değerlendirildi (`high=6, medium=40, low=1867`), en riskli 10 segment GeoJSON çıktısı `NaN`sız doğrulandı (`BNSF Bakersfield Subdivision`, `Lakeland Canal`, `Angiola Siding`). `analysis/out/central_valley_cum.npz` henüz oluşmadığı için `data/central_valley/assets.json` üretimi bekliyor.
-  - `python -m pytest analysis -q`: `13 passed in 2.48s`. `RdBu` renk ölçeği (`0.0=#67001f`, `1.0=#053061`) `web/style.css` ve `web/index.html` ile uyumlu doğrulandı. `data/*/meta.json` henüz oluşmadığı için Q14 tekrar kontrol bekliyor.
-- BLOCKED: yok
-- AI: Antigravity (Gemini) -> GNSS/OSM veri indirme scriptleri, doğrulama kontrolü ve README dokümantasyonu
+- Görev: Görev 1–3, Q05 (`[x]`), Q06 (`[x]`), Q19 (`[x]`), Q20 (`[x]`), Q18 (`[~PC6]` Central Valley + oyun entegre, Karapınar/UK bekleniyor), Q14 (`[~PC6]` Central Valley denetlendi, Karapınar/UK bekleniyor)
+- Durum:
+  - **Q05 (`validation/compare.py`, `data/central_valley/validation.json`):** Tamamlandı. `central_valley_cum.npz` + `central_valley_cum_stack.npz` (8 tarih: `2026-06-28 → 2026-10-14`, piksel bazlı `incidence` ile dikey projeksiyon `LOS / cos(θ)`) ile NGL GNSS karşılaştırması çalıştırıldı; havza içi aktif istasyonlarda güçlü uyum (`CAHA` RMSE `0.752 cm` `r=0.8957`, `HANF` RMSE `0.834 cm` `r=0.8955`, `QCAP` RMSE `0.767 cm` `r=0.8198`, `TLBN` RMSE `1.173 cm` `r=0.7926`, `P056` RMSE `0.788 cm` `r=0.6613`).
+  - **Q06 (`risk/compute_risk.py`, `data/central_valley/assets.json`):** Tamamlandı. ~1 km blok medyanı (`radius_m=480`) ve `MIN_SPAN_M=1000 m` açıklıkla 645 altyapı segmenti değerlendirildi (`high=81`, `medium=131`, `low=433`). En riskli 10 segment arasında `Tulare Irrigation District Canal` (`57.01 mm/km`, `-6.75 cm`), `Exeter Subdivision` rail (`55.61 / 49.69 mm/km`, `-7.80 cm`), `California Aqueduct` (`49.12 mm/km`, `-7.42 cm`) ve `Friant-Kern Canal` (`46.06 / 44.47 mm/km`) yer alıyor.
+  - **Q19 (`game/index.html` — Aquifer Manager):** Tamamlandı. Mevcut site tasarımı (`web/style.css` koyu tema renkleri, `tabular-nums`, `border-radius:14px`, `.badge.provisional`/`.placeholder`) ile birebir uyumlu tek dosya oyun; 10 yıl, %0–150 pompalama, `CONFIG` modeli ve `../data/central_valley/summary.json` dinamik bağlantısı (`26.4 cm/yr` yaz dönemi LOS tahmini ile `"nisar"` provisional rozetine geçer, erişilemezse `"illustrative"` 10.0 cm/yr kalır).
+  - **Q20 (`docs/story/pitch.md`):** Tamamlandı. Lincoln 3 dk canlı sunum akışı (jüri S&C hazırlığı dahil), 30 sn video senaryosu + İngilizce `.srt` altyazısı ve ≤7 slayt planı K-2 gereği `{PLACEHOLDER}` değişkenleriyle yazıldı (sıfır uydurma sayı).
+  - **Q18 (`data/catalog.json`, `web/app.js`, `docs/URUN_TANIMI.md`):** Sitenin mevcut tasarım dili değiştirilmeden Central Valley gerçek verileri, `validation.json` (camgöbeği GNSS noktaları + çift çizgili InSAR/GNSS kıyaslama grafiği) ve `assets.json` (kehribar altyapı risk hatları + tıkla popup) haritaya bağlandı. `data/karapinar/`, `data/uk/` ve Holme Fen kaynaklı rakam PC3/PC4'ten geldikçe son kontrol tamamlanacak.
+  - **Q14 (`docs/qa/PC6.md` Faz-2):** `data/central_valley/meta.json` (`quality: provisional`, `vmin/vmax: -6.0/6.0`, `bbox: [-120.2, 35.6, -119.0, 36.6]`, 8 PNG) ve tüm JSON çıktılar sıfır `NaN` ile doğrulandı.
+- Doğrulama (son çalıştırma):
+  - `python validation/compare.py --self-test` ve `python validation/compare.py`: geçti (10/10 istasyon footprint içi).
+  - `python risk/compute_risk.py --self-test` ve `python risk/compute_risk.py`: geçti (`high=9, medium=7, low=691` sentetik; `high=81, medium=131, low=433` gerçek Central Valley).
+  - `python -m pytest analysis -q`: `17 passed in 2.62s`.
+  - Yerel `http.server` testi: `/web/`, `/web/index.html`, `/web/app.js`, `/web/style.css`, `/game/index.html`, `/data/catalog.json`, `/data/central_valley/*.json` ve `disp/2026-10-14.png` — 13/13 yol `HTTP 200 OK`, tüm JSON dosyaları geçerli ve `NaN`sız.
+- BLOCKED: `data/karapinar/` (Q02) ve `data/uk/` / Holme Fen kaynak metni henüz main'de yok (PC3/PC4 bekliyor).
+- AI: Antigravity (Gemini) -> GNSS/OSM scriptleri, `game/index.html`, `docs/story/pitch.md`, site JS entegrasyonu, QA ve doğrulama.
