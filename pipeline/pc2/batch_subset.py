@@ -46,7 +46,7 @@ def build_consecutive_chain(
     """Filter rows and pick the longest consecutive pair chain (preferring P05023 and shortest step)."""
     filtered = []
     for r in rows:
-        if r["crid"] != "P05023":
+        if not include_beta and r["crid"] != "P05023":
             continue
         if not include_beta and (
             r["quality"] != "provisional"
@@ -60,11 +60,12 @@ def build_consecutive_chain(
             continue
         filtered.append(r)
 
-    # Deduplicate by (date1, date2), keeping latest granule name
+    # Deduplicate by (date1, date2), preferring P05023 then latest granule name
     by_pair: dict[tuple[str, str], dict] = {}
     for r in filtered:
         key = (r["date1"], r["date2"])
-        if key not in by_pair or r["granule"] > by_pair[key]["granule"]:
+        prev = by_pair.get(key)
+        if prev is None or (r["crid"] == "P05023", r["granule"]) > (prev["crid"] == "P05023", prev["granule"]):
             by_pair[key] = r
 
     # Group by date1, sort candidates by date2 ascending (prefer 12-day over 24-day)
