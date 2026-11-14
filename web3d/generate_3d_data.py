@@ -86,10 +86,11 @@ except ImportError:
     shim.Transformer = Transformer
     sys.modules["pyproj"] = shim
 
-try:
-    import h5py  # noqa: F401
-except ImportError:
+import importlib.util
+
+if importlib.util.find_spec("h5py") is None:
     import types as _types
+
     sys.modules["h5py"] = _types.ModuleType("h5py")
 
 ROOT = Path(__file__).resolve().parent.parent

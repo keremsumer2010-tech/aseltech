@@ -14,7 +14,8 @@
 - Doğrulama:
   - UK görsel çifti (`700x500` RGB, `transparency` temiz), `meta.json` şeması ve `sinkholes.geojson` (`29/29` geçerli Point Feature, `NaN` yok) doğrulandı.
   - `web3d/surfaces.json` valid UTF-8 JSON (`508,881 B`, `NaN` yok), `node --check web3d/app.js` geçti, lokal HTTP sunucu `/web3d/` ve `/data/` yollarında HTTP 200 döndü.
-  - PC4 dokümanları, Three.js CDN ve depo URL'si (`https://github.com/keremsumer2010-tech/aseltech`) dahil doğrulanan **22/22** benzersiz `https://` URL canlı **HTTP 200** döndü.
+  - PC4 dokümanları, Three.js CDN ve depo URL'si (`https://github.com/keremsumer2010-tech/aseltech`) dahil doğrulanan **22/22** benzersiz `https://` URL canlı **HTTP 200** döndü (PCQ'nun talep ettiği Terra Bella / Friant-Kern KVPR kaynağı dahil).
+  - `docs/qa/PCQ.md` (`Sahip: PC4`) ve `docs/code_review.md` (`web3d/generate_3d_data.py` `h5py` importu + `web3d/` `#backLink` Pages uyumu) bulguları giderildi.
 - Doğrulanmadı (K-2):
   - `Küpbasan Yeni Obruk-I`: Tapur & Bozyiğit (2015) Tablo 1'deki `37° 43' 99"` saniye yazım hatası nedeniyle koordinatı doğrulanmadı; GeoJSON'a dahil edilmedi.
   - `https://www.spaceappschallenge.org/resources/participant-faq/`: Linux ortamında TLS `CERTIFICATE_VERIFY_FAILED` hatası nedeniyle doğrudan doğrulanmadı; resmi `Space_Apps_2022_Project_Submission_Guide.pdf` HTTP 200 ile doğrulandı (`submission_rules.md`).

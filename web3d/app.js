@@ -431,6 +431,15 @@ function animate(now) {
   renderer.render(scene, camera);
 }
 
+const backLink = document.getElementById("backLink");
+if (backLink) {
+  fetch("../index.html", { method: "HEAD", cache: "no-cache" })
+    .then((r) => {
+      if (r.ok) backLink.setAttribute("href", "../");
+    })
+    .catch(() => {});
+}
+
 fetch("surfaces.json")
   .then((r) => r.json())
   .then((data) => {

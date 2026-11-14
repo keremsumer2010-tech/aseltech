@@ -36,6 +36,10 @@ All sources listed below were opened and verified directly against primary scien
   URL: https://pubs.usgs.gov/publication/fs00500 (PDF: https://pubs.usgs.gov/fs/2000/fs00500/pdf/fs00500.pdf)  
   Key finding: Across the Sacramento–San Joaquin Delta's **1,150-square-mile** area, **57** islands/tracts protected by **more than 1,100 miles** of levees experience long-term peat-oxidation subsidence of **1–3 inches per year**, leaving central Delta islands **10 to nearly 25 feet** below sea level, contributing to **about 100 levee failures** since the early **1890s**, and threatening freshwater exports (up to **7.5 million acre-feet/yr**) supplying **more than 20 million** Californians.
 
+- **Friant-Kern Canal Slows By 60 Percent, Subsidence To Blame — KVPR / Valley Public Radio (Ezra David Romero, August 3, 2017)**  
+  URL: https://www.kvpr.org/environment/2017-08-03/friant-kern-canal-slows-by-60-percent-subsidence-to-blame  
+  Key finding: Citing the Friant Water Authority (Doug DeFlitch), a **25-mile** reach of the **152-mile** Friant-Kern Canal in Tulare County—built in the **1940s** to irrigate **1 million acres** and supply towns including Lindsey, Orange Cove, and **Terra Bella**—sank **two to three feet**, cutting flow capacity by about **60 percent** (from **4,000 cfs** design capacity down to **1,600 cfs**), with the **deepest sinking near Terra Bella** and estimated full-canal adjustment costs around **$400 million**.
+
 ---
 
 ## 3. Karapınar / Konya Basin Sinkholes (*Obruks*) & Subsidence
