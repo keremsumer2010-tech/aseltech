@@ -1,14 +1,14 @@
 {
   "title": "Global Atlas Population and Area Exposure on Sinking Ground (108-day equivalent)",
-  "generated_utc": "2026-11-14T20:46:15Z",
+  "generated_utc": "2026-11-14T21:26:09Z",
   "source": "GHSL GHS-POP E2025 R2023A 3-arcsecond (~100 m, WGS84, European Commission JRC) intersected with provisional NISAR L2 GUNW cumulative LOS displacement scaled to 108 days, excluding pixels with |disp| < 2*sigma (data/global/detectability.json)",
   "quality": "provisional",
   "quality_note": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.",
   "notes": "karapinar is reported separately as a local subset inside konya_plain; totals exclude karapinar to prevent double-counting.",
   "totals_excluding_nested_karapinar": {
-    "people_lt_minus2cm": 7744238,
-    "people_lt_minus5cm": 1501493,
-    "area_km2_lt_minus5cm": 575.13
+    "people_lt_minus2cm": 7830190,
+    "people_lt_minus5cm": 1504865,
+    "area_km2_lt_minus5cm": 576.74
   },
   "cities": [
     {
@@ -402,6 +402,42 @@
           "lat": 35.6399,
           "cum_cm_los": -1.83,
           "rate_cm_per_100d": -1.53
+        }
+      ],
+      "source": "GHSL GHS-POP E2025 R2023A 3-arcsecond (~100 m, WGS84, European Commission JRC) intersected with provisional NISAR L2 GUNW cumulative LOS displacement scaled to 108 days, excluding pixels with |disp| < 2*sigma (data/global/detectability.json)",
+      "quality": "provisional"
+    },
+    {
+      "id": "hanoi",
+      "name": "Hanoi",
+      "country": "Vietnam",
+      "people_lt_minus2cm": 85952,
+      "people_lt_minus5cm": 3372,
+      "area_km2_lt_minus5cm": 1.61,
+      "area_km2_lt_minus2cm": 39.67,
+      "bbox_population_ghsl": 7686307,
+      "two_sigma_threshold_cm": 0.708,
+      "two_sigma_source": "Cramer-Rao 2*sigma computed from pipeline/subset",
+      "days_measured": 120,
+      "normalized_window_days": 108,
+      "top_subsiding_areas": [
+        {
+          "lon": 105.7146,
+          "lat": 20.9831,
+          "cum_cm_los": -2.48,
+          "rate_cm_per_100d": -2.07
+        },
+        {
+          "lon": 105.6646,
+          "lat": 20.9833,
+          "cum_cm_los": -2.36,
+          "rate_cm_per_100d": -1.97
+        },
+        {
+          "lon": 105.6649,
+          "lat": 21.049,
+          "cum_cm_los": -2.05,
+          "rate_cm_per_100d": -1.71
         }
       ],
       "source": "GHSL GHS-POP E2025 R2023A 3-arcsecond (~100 m, WGS84, European Commission JRC) intersected with provisional NISAR L2 GUNW cumulative LOS displacement scaled to 108 days, excluding pixels with |disp| < 2*sigma (data/global/detectability.json)",
