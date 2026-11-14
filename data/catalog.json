@@ -4,56 +4,195 @@
     "title": "San Joaquin / Central Valley, California",
     "quality": "provisional",
     "quality_note": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.",
-    "period": [
-      "2026-06-28",
-      "2026-10-14"
-    ],
     "path": "data/central_valley/",
     "layers": [
       {
         "id": "disp",
-        "title": "Cumulative LOS Displacement",
+        "title": "Cumulative ground motion (line of sight), 8 dates",
         "kind": "raster_series",
         "file": "data/central_valley/meta.json",
         "quality": "provisional"
       },
       {
         "id": "points",
-        "title": "Key Point Time Series",
+        "title": "Point time series",
         "kind": "points",
         "file": "data/central_valley/points.json",
         "quality": "provisional"
       },
       {
+        "id": "summary",
+        "title": "Headline numbers and reference range",
+        "kind": "summary",
+        "file": "data/central_valley/summary.json",
+        "quality": "provisional"
+      },
+      {
+        "id": "area",
+        "title": "Area sinking more than 2 cm / 5 cm per date",
+        "kind": "table",
+        "file": "data/central_valley/area_stats.json",
+        "quality": "provisional"
+      },
+      {
+        "id": "vertical",
+        "title": "Vertical and east-west motion from two orbits (track 34 + 114)",
+        "kind": "raster",
+        "file": "data/central_valley/vertical.json",
+        "quality": "provisional"
+      },
+      {
         "id": "validation",
-        "title": "Continuous GNSS Vertical Validation",
+        "title": "GPS comparison (10 stations)",
         "kind": "validation",
         "file": "data/central_valley/validation.json",
         "quality": "provisional"
       },
       {
         "id": "assets",
-        "title": "Canal, Rail & Highway Differential Risk (Top 10)",
+        "title": "Canal, rail and road tilt risk",
         "kind": "geojson",
         "file": "data/central_valley/assets.json",
         "quality": "provisional"
+      },
+      {
+        "id": "drivers",
+        "title": "Soil moisture and irrigation drivers",
+        "kind": "table",
+        "file": "data/central_valley/drivers.json",
+        "quality": "provisional"
+      },
+      {
+        "id": "uncertainty",
+        "title": "Per-pixel uncertainty map",
+        "kind": "raster",
+        "file": "data/central_valley/uncertainty/meta.json",
+        "quality": "provisional"
       }
+    ],
+    "period": [
+      "2026-06-28",
+      "2026-10-14"
     ]
   },
   {
     "site": "karapinar",
-    "title": "Karapinar / Konya Basin, Turkiye",
-    "quality": "pending",
-    "quality_note": "Karapinar GUNW cumulative rasters and sourced sinkhole catalog are in preparation (Q01/Q02).",
+    "title": "Karapınar / Konya Basin, Türkiye",
+    "quality": "provisional",
+    "quality_note": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.",
     "path": "data/karapinar/",
-    "layers": []
+    "layers": [
+      {
+        "id": "disp",
+        "title": "Cumulative ground motion (line of sight), 9 dates",
+        "kind": "raster_series",
+        "file": "data/karapinar/meta.json",
+        "quality": "provisional"
+      },
+      {
+        "id": "points",
+        "title": "Point time series",
+        "kind": "points",
+        "file": "data/karapinar/points.json",
+        "quality": "provisional"
+      },
+      {
+        "id": "summary",
+        "title": "Headline numbers",
+        "kind": "summary",
+        "file": "data/karapinar/summary.json",
+        "quality": "provisional"
+      },
+      {
+        "id": "area",
+        "title": "Area sinking more than 2 cm / 5 cm per date",
+        "kind": "table",
+        "file": "data/karapinar/area_stats.json",
+        "quality": "provisional"
+      },
+      {
+        "id": "sinkholes",
+        "title": "Documented sinkholes (29, each with a source)",
+        "kind": "geojson",
+        "file": "data/karapinar/sinkholes.geojson",
+        "quality": "reference"
+      },
+      {
+        "id": "assets",
+        "title": "Sinkhole distance rings and infrastructure risk",
+        "kind": "geojson",
+        "file": "data/karapinar/assets.json",
+        "quality": "provisional"
+      },
+      {
+        "id": "uncertainty",
+        "title": "Per-pixel uncertainty map",
+        "kind": "raster",
+        "file": "data/karapinar/uncertainty/meta.json",
+        "quality": "provisional"
+      }
+    ],
+    "period": [
+      "2026-06-26",
+      "2026-10-12"
+    ]
   },
   {
     "site": "uk",
     "title": "The Fens / Cambridgeshire, UK",
-    "quality": "pending",
-    "quality_note": "Optical cloud vs. NISAR radar quick-look pair is in preparation.",
+    "quality": "preview",
+    "quality_note": "NISAR GCOV browse PNG is a visual preview (not quantitative backscatter). Underlying granule is from the NISAR Provisional collection (CRID P05023). Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.",
     "path": "data/uk/",
-    "layers": []
+    "layers": [
+      {
+        "id": "compare",
+        "title": "Cloudy optical image vs NISAR radar quick-look, same day",
+        "kind": "image_pair",
+        "file": "data/uk/meta.json",
+        "quality": "preview"
+      }
+    ],
+    "date": "2026-10-20"
+  },
+  {
+    "site": "uk_clay",
+    "title": "London clay, UK (result: below detection)",
+    "quality": "provisional",
+    "quality_note": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.",
+    "path": "data/uk_clay/",
+    "layers": [
+      {
+        "id": "disp",
+        "title": "Cumulative ground motion (line of sight), 10 dates",
+        "kind": "raster_series",
+        "file": "data/uk_clay/meta.json",
+        "quality": "provisional"
+      },
+      {
+        "id": "points",
+        "title": "Point time series",
+        "kind": "points",
+        "file": "data/uk_clay/points.json",
+        "quality": "provisional"
+      },
+      {
+        "id": "summary",
+        "title": "Headline numbers (read detection_status first)",
+        "kind": "summary",
+        "file": "data/uk_clay/summary.json",
+        "quality": "provisional"
+      },
+      {
+        "id": "detection",
+        "title": "Signal vs noise test: below detection",
+        "kind": "summary",
+        "file": "data/uk_clay/detection.json",
+        "quality": "provisional"
+      }
+    ],
+    "period": [
+      "2026-06-21",
+      "2026-10-19"
+    ]
   }
 ]
