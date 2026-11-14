@@ -34,7 +34,7 @@ gecikirse onlar boşta kalmaz.
 | **PC2** | Memir (memir-erdogmus) | Memir'in PC | Antigravity | Veri indirme ve kesme |
 | **PC3** | Mehmet (M3hmeT1888) | Mehmet'in PC · `aseltech-claude` | Claude Code | Çökme analizi (cm) |
 | **PC4** | İbrahim (acikgozibrahim032-hub) | İbrahim'in PC | Antigravity | UK görselleri, obruklar, kaynaklar |
-| **PC5** | Mehmet (M3hmeT1888) | Mehmet'in PC · `aseltech-gemini` | Antigravity | Aquifer Manager oyunu + sunum metni |
+| **PC5** | Mehmet (M3hmeT1888) | Mehmet'in PC · `aseltech-gemini` | Antigravity | Matematik/analiz: ayrıştırma modülü + belirsizlik bütçesi (13:30) |
 | **PC6** | Mehmet (M3hmeT1888) | Mehmet'in PC · `aseltech-gemini2` | Antigravity | GNSS doğrulama + altyapı verisi |
 
 Mehmet'in bilgisayarında 3 ajan var: **klasör adın kim olduğunu söyler.** İnsan sorumluluğu:
