@@ -120,3 +120,69 @@ All sources listed below were opened and verified directly against primary scien
 - **ASF NISAR L2 GCOV Browse PNG (`2026-10-20`, CRID `P05023`)**  
   URL: https://nisar.asf.earthdatacloud.nasa.gov/BROWSE/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_033_124_D_062_2005_DHDH_A_20261020T192237_20261020T192312_P05023_N_F_J_001/NISAR_L2_PR_GCOV_033_124_D_062_2005_DHDH_A_20261020T192237_20261020T192312_P05023_N_F_J_001_LATLON.png  
   Key finding: Unauthenticated L-band radar backscatter browse PNG acquired the same UTC day (`2026-10-20T19:22:37Z`) over eastern England, imaging The Wash coastline and Fens drainage geometry cleanly beneath the cloud deck (`quality: "preview"`).
+
+---
+
+## 7. Challenge Resources & Learn More (`NASA NISAR StoryMap`, `Applications White Papers`, `Portals & Training`)
+
+Every resource from the NASA Space Apps *"Dancing with the SARs"* Resources tab below was opened and verified (`HTTP 200`):
+
+- **NISAR ArcGIS StoryMaps — Land Subsidence (Peacock, A., An, K., Pinto, N., & Lou, Y., 2024; Zenodo `doi:10.5281/zenodo.10818833`)**  
+  URL: https://storymaps.arcgis.com/stories/109e602e748346f3be8dc89124619828  
+  Key finding: Frames groundwater pumping subsidence as an invisible global infrastructure risk led by **California's Central Valley and California Aqueduct** (airborne L-band **UAVSAR** measured a subsidence bowl exceeding **40 inches** during **2013–2017**, citing Miller et al. 2020 and Jones et al. 2020) and **Mexico City**, establishing the historical benchmark our 2026 spaceborne NISAR analysis updates.
+
+- **NISAR Societal Benefits & Applications White Papers Portal — NASA Science / JPL**  
+  URL: https://science.nasa.gov/mission/nisar/societal-benefits/ (JPL redirect: https://nisar.jpl.nasa.gov/applications/societal-benefit/)  
+  Key finding: Organizes domain white papers explaining how systematic 12-day L-band and S-band SAR products translate surface deformation, backscatter, and polarimetry into operational water, hazard, and food-security monitoring.
+
+- **NISAR Applications White Paper: Subsidence (`NISAR_Applications_Subsidence.pdf`)**  
+  URL: https://assets.science.nasa.gov/content/dam/science/missions/nisar/nisar-jpl/pdf/NISAR_Applications_Subsidence.pdf  
+  Key finding: Explains why gradual subsidence caused by subsurface compaction often goes unnoticed until canals, railways, and levees suffer structural grade loss, requiring routine satellite radar early warning.
+
+- **NISAR Applications White Paper: Drought and Groundwater Withdrawal (`NISAR_Applications_Drought_and_Groundwater_Withdrawal1.pdf`)**  
+  URL: https://assets.science.nasa.gov/content/dam/science/missions/nisar/nisar-jpl/pdf/NISAR_Applications_Drought_and_Groundwater_Withdrawal1.pdf  
+  Key finding: Details the hydrological chain linking surface-water scarcity during drought to intensified aquifer pumping, irreversible fine-grained clay compaction, and infrastructure deformation.
+
+- **NISAR Applications White Paper: Levees and Dams (`NISAR_Applications_Levees_and_Dams1.pdf`)**  
+  URL: https://assets.science.nasa.gov/content/dam/science/missions/nisar/nisar-jpl/pdf/NISAR_Applications_Levees_and_Dams1.pdf  
+  Key finding: Highlights how routine 12-day L-band interferometry supplements manual walk-over inspections across thousands of kilometres of earthen flood barriers by flagging localized settlement and seepage zones early.
+
+- **NISAR Applications White Paper: Sinkholes and Cavern Collapse (`NISAR_Applications_Sinkholes1.pdf`)**  
+  URL: https://assets.science.nasa.gov/content/dam/science/missions/nisar/nisar-jpl/pdf/NISAR_Applications_Sinkholes1.pdf  
+  Key finding: Explains karst dissolution and subsurface cavern roof instability in carbonate bedrock (such as limestone), showing how SAR maps regional drawdown bowls and subtle precursor deformation around sinkhole zones.
+
+- **NISAR Applications White Paper: Food Security & Crop Area Monitoring (`NISAR_Applications_Food_Security1.pdf`)**  
+  URL: https://assets.science.nasa.gov/content/dam/science/missions/nisar/nisar-jpl/pdf/NISAR_Applications_Food_Security1.pdf  
+  Key finding: Demonstrates how biweekly dual-polarization L-band backscatter (`HH` and `HV`) penetrates cloud cover to classify active cropland area and seasonal phenological growth.
+
+- **NISAR Applications White Paper: Soil Moisture & Water Resources (`NISARApplications_SoilMoisture1.pdf`)**  
+  URL: https://assets.science.nasa.gov/content/dam/science/missions/nisar/nisar-jpl/pdf/NISARApplications_SoilMoisture1.pdf  
+  Key finding: Explains microwave radar sensitivity to soil dielectric constant changes driven by water content, enabling 12-day field-scale moisture retrievals across agricultural regions.
+
+- **ASF NISAR Data User Guide (Documentation Portal)**  
+  URL: https://nisar-docs.asf.alaska.edu/  
+  Key finding: Primary reference manual for NISAR Level-1/2/3 product naming, `GUNW` and `GCOV` HDF5 layer hierarchies, correction screens, and `BETA` / `PROVISIONAL` / `VALIDATED` calibration releases.
+
+- **ASF Vertex Data Search Portal & NASA Earthdata Search**  
+  URL: https://search.asf.alaska.edu/ (Earthdata Search: https://search.earthdata.nasa.gov/)  
+  Key finding: Open NASA/ASF search catalogs used to filter and download NISAR `GUNW`, `GCOV`, and `SME2` acquisitions by polygon, path/frame, date range, and `CRID P05023`.
+
+- **What is Synthetic Aperture Radar (Intro to SAR) — NASA Earthdata**  
+  URL: https://www.earthdata.nasa.gov/learn/earth-observation-data-basics/sar  
+  Key finding: Accessible primer covering radar wavelengths (`L`, `S`, `C`, `X`), polarimetry (`HH`/`HV`), surface roughness and dielectric controls on backscatter, canopy penetration, and differential interferometry (`InSAR`).
+
+- **Earth Observation Data Basics (Intro to Remote Sensing) — NASA Earthdata**  
+  URL: https://www.earthdata.nasa.gov/learn/earth-observation-data-basics  
+  Key finding: Explains active microwave radar transmission (day/night, cloud-penetrating) versus passive optical sensors that depend on solar illumination and cloud-free skies.
+
+- **NASA ARSET — Applied Remote Sensing Training Program**  
+  URL: https://appliedsciences.nasa.gov/get-involved/training  
+  Key finding: Offers free instructor-led and self-paced trainings on SAR physics, InSAR subsidence monitoring, and groundwater resource mapping in English and Spanish for researchers, water agencies, and educators.
+
+- **NASA JPL UAVSAR Educational Postcards**  
+  URL: https://uavsar.jpl.nasa.gov/education/postcards.html  
+  Key finding: Interactive gallery of airborne L-band UAVSAR scenes linking radar scattering visual examples directly back to the 2013–2017 Central Valley aqueduct study featured in NASA's NISAR StoryMap.
+
+- **Canadian Space Agency (CSA) — Synthetic Aperture Radar Tutorial**  
+  URL: https://github.com/asc-csa/Synthetic_Aperture_Radar_Tutorial  
+  Key finding: Open Python and QGIS laboratory notebooks teaching practical SAR visualization, polarimetry, and interferometric change analysis.

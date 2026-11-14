@@ -22,6 +22,9 @@
 | `{TWO_ORBIT_VERT}` | `data/central_valley/vertical.json` (`Q22`) | Two-orbit pixel inversion (`49.6%` overlap): **Alpaugh / Earlimart bowl `−7.2 cm` vertical (`−0.1 cm` east-west)**; max block `−9.8 cm` vertical (`+2.4 cm` east); `up_cm` `p2 = −5.98`, `p50 = −1.25`, `p98 = +2.35 cm` |
 | `{TOP_CANAL_NAME}` / Slope | `data/central_valley/assets.json` | `Tulare Irrigation District Canal` (`57.01 mm/km`, `2.17 km`) & `California Aqueduct` (`49.12 mm/km`, `102.8 km`); `81/645` high-risk segments |
 | `{N_SINKHOLES}` | `data/karapinar/sinkholes.geojson`, `assets.json` | `29` verified Karapınar sinkholes (`0–1 km` ring mean **`−4.15 cm` LOS**, `6.4×` vs `>5 km` background; `19.74 mm/km` near `Köken Obruğu-II`) |
+| `{CV_FULLYEAR}` | `data/central_valley_fullyear/decomp.json`, `docs/story/fullyear.md` | **Mixed-quality (`18` `beta-precal` + `7` `provisional`)** 11-month chain (`24 Nov 2025 → 14 Oct 2026`, `324 days`, `25` pairs): Earlimart (`p01`) `−20.3 cm` LOS cumulative (`−26.9 cm` vert. est.), decomposed (`R² = 0.97`) into **`−16.8 ± 2.2 cm/yr`** permanent compaction (`−14.9 cm` over 324 days) vs. **`11.7 cm`** peak-to-peak seasonal rebound (`1.28:1` ratio) |
+
+> **Challenge Alignment & NASA StoryMap Context (`16:15` / `16:25`):** NASA's [NISAR Land Subsidence StoryMap](https://storymaps.arcgis.com/stories/109e602e748346f3be8dc89124619828) showed the Central Valley subsidence bowl with airborne radar (2013–2017). We measured the same valley — and the same aqueduct — from space with NISAR in 2026, checked it against GPS, and ranked the canal and road segments at risk. Built as an open-source **interactive application** to **track and visualize surface change**, seasonal **patterns and rhythms**, subsurface **physical drivers**, five-audience **actionable insights** (`audiences.md`), and NISAR **future applications** (`future_applications.md`).
 
 ---
 
@@ -64,12 +67,12 @@
   And we are explicit about limits: NISAR science data are currently marked **provisional** — sensor calibration is performed by NASA–JPL and ISRO, not our team."
 
 ### 2:40 – 3:00 · Road Ahead & Close
-- **[ON SCREEN — `/web3d/` 3D "Breathing Earth" interactive mesh + GitHub repository URL]:**
+- **[ON SCREEN — `/web3d/` 3D "Breathing Earth" interactive mesh + Five-Audience Cards + GitHub URL]:**
 - **[SPEAKER]:**
-  "Looking forward, separating seasonal elastic bounce in winter from permanent clay collapse lets regions track true aquifer death in real time. Because L-band radar never blinks for clouds, water managers can finally manage what they couldn't see. Thank you — and we welcome your questions."
+  "Looking forward—from extending NASA's 2013–2017 airborne Central Valley StoryMap into our 2026 11-month Earlimart decomposition (`−16.8 cm/yr` permanent compaction vs. `11.7 cm` seasonal swing)—continuous 12-day L-band NISAR passes turn radar phase into actionable insights for scientists, canal managers, educators, decision-makers, and local communities alike. Thank you — and we welcome your questions."
 
 ### Prepared Jury Q&A Notes
-- See full **15-question card** in `docs/story/judge_faq.md` (`quality: provisional` vs. `preview`, LOS vs. vertical `cos θ`, ionosphere + Copernicus DEM GLO-90 deramp, 108-day linear rate caution, GNSS station-by-station spread, Karapınar sinkhole predictability limits, and AI disclosure).
+- See [`docs/story/presentation_cues.md`](presentation_cues.md) (`6 × 30 s` Lincoln blocks + 5 single-sentence Q&As), [`docs/story/rehearsal_checklist.md`](rehearsal_checklist.md) (offline failsafes), and full **15-question card** in [`docs/story/judge_faq.md`](judge_faq.md), plus [`docs/story/audiences.md`](audiences.md), [`docs/story/future_applications.md`](future_applications.md), [`docs/story/team_story.md`](team_story.md), and [`docs/story/lesson_plan.md`](lesson_plan.md).
 
 ---
 
@@ -151,5 +154,5 @@ NISAR Pulse: Follow the Water. Provisional NISAR L2 GUNW data (NASA-JPL / ISRO c
 
 ### Slide 7 · Scientific Integrity, Provenance & AI Disclosure
 - **Calibration Notice:** NISAR data used here are **provisional** (`CRID P05023`); sensor calibration and validation are performed by the NISAR project (NASA–JPL / ISRO), not by our team.
-- **Open & Reproducible:** Pure Python/NumPy pipeline (`pytest`-verified phase-to-cm tests) + interactive MapLibre & Three.js (`web3d/`) hosted statically.
+- **Open & Reproducible:** Pure Python/NumPy pipeline (`pytest`-verified phase-to-cm tests) + interactive MapLibre & Three.js (`web3d/`) hosted statically, extending NASA's [Land Subsidence StoryMap](https://storymaps.arcgis.com/stories/109e602e748346f3be8dc89124619828) and [NISAR Societal Benefits White Papers](https://science.nasa.gov/mission/nisar/societal-benefits/) (`docs/story/sources.md §7`).
 - **AI Transparency:** **Zero AI-generated images** appear in the live website, slide deck, simulator, 3D explorer, or `demo_30s.mp4` (`38b774f`); all maps, charts, and simulator panels display measured satellite, GPS, and field-survey data. Coding & documentation assistance provided by Claude and Gemini/Antigravity.
