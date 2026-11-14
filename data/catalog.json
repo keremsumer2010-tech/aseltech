@@ -1,16 +1,108 @@
 [
   {
     "site": "central_valley",
-    "title": "San Joaquin / Central Valley, California",
+    "title": "Central Valley, California — summer 2026",
     "quality": "provisional",
     "quality_note": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.",
     "path": "data/central_valley/",
+    "bbox": [
+      -120.2,
+      35.6,
+      -119.0,
+      36.6
+    ],
     "layers": [
       {
-        "id": "disp",
-        "title": "Cumulative ground motion (line of sight), 8 dates",
+        "id": "motion",
+        "title": "Ground motion (cm, line of sight)",
         "kind": "raster_series",
         "file": "data/central_valley/meta.json",
+        "png": "data/central_valley/disp/{date}.png",
+        "dates": [
+          "2026-06-28",
+          "2026-07-10",
+          "2026-07-22",
+          "2026-08-15",
+          "2026-08-27",
+          "2026-09-08",
+          "2026-09-20",
+          "2026-10-14"
+        ],
+        "bbox": [
+          -120.2,
+          35.6,
+          -119.0,
+          36.6
+        ],
+        "legend": {
+          "vmin": -6.0,
+          "vmax": 6.0,
+          "cmap": "RdBu",
+          "units": "cm",
+          "low": "sinking",
+          "high": "rising"
+        },
+        "quality": "provisional"
+      },
+      {
+        "id": "uncertainty",
+        "title": "Measurement uncertainty (1σ, cm)",
+        "kind": "raster",
+        "file": "data/central_valley/uncertainty/meta.json",
+        "png": "data/central_valley/uncertainty/sigma_cm.png",
+        "bbox": [
+          -120.2,
+          35.6,
+          -119.0,
+          36.6
+        ],
+        "legend": {
+          "vmin": 0.0,
+          "vmax": 1.0,
+          "cmap": "viridis",
+          "units": "cm",
+          "low": "more certain",
+          "high": "less certain"
+        },
+        "quality": "provisional"
+      },
+      {
+        "id": "radar",
+        "title": "Radar brightness, HV (dB)",
+        "kind": "raster_series",
+        "file": "data/central_valley/gcov/meta.json",
+        "png": "data/central_valley/gcov/{date}.png",
+        "dates": [
+          "2026-06-28",
+          "2026-07-10",
+          "2026-07-22",
+          "2026-08-15",
+          "2026-08-27",
+          "2026-09-08",
+          "2026-09-20",
+          "2026-10-14"
+        ],
+        "bbox": [
+          -120.2,
+          35.6,
+          -119.0,
+          36.6
+        ],
+        "legend": {
+          "vmin": -28.0,
+          "vmax": -10.0,
+          "cmap": "viridis",
+          "units": "dB",
+          "low": "bare or dry",
+          "high": "dense crops"
+        },
+        "quality": "provisional"
+      },
+      {
+        "id": "risk",
+        "title": "Infrastructure risk (canals, roads, rail)",
+        "kind": "geojson",
+        "file": "data/central_valley/assets.json",
         "quality": "provisional"
       },
       {
@@ -21,38 +113,38 @@
         "quality": "provisional"
       },
       {
+        "id": "grid",
+        "title": "Clickable ~1–2 km grid",
+        "kind": "table",
+        "file": "data/central_valley/grid.json",
+        "quality": "provisional"
+      },
+      {
         "id": "summary",
-        "title": "Headline numbers and reference range",
+        "title": "Headline numbers",
         "kind": "summary",
         "file": "data/central_valley/summary.json",
         "quality": "provisional"
       },
       {
         "id": "area",
-        "title": "Area sinking more than 2 cm / 5 cm per date",
+        "title": "Area sinking more than 2 / 5 cm",
         "kind": "table",
         "file": "data/central_valley/area_stats.json",
         "quality": "provisional"
       },
       {
-        "id": "vertical",
-        "title": "Vertical and east-west motion from two orbits (track 34 + 114)",
-        "kind": "raster",
-        "file": "data/central_valley/vertical.json",
-        "quality": "provisional"
-      },
-      {
         "id": "validation",
-        "title": "GPS comparison (10 stations)",
+        "title": "GPS comparison",
         "kind": "validation",
         "file": "data/central_valley/validation.json",
         "quality": "provisional"
       },
       {
-        "id": "assets",
-        "title": "Canal, rail and road tilt risk",
-        "kind": "geojson",
-        "file": "data/central_valley/assets.json",
+        "id": "vertical",
+        "title": "Vertical and east–west motion (two orbits)",
+        "kind": "summary",
+        "file": "data/central_valley/vertical.json",
         "quality": "provisional"
       },
       {
@@ -60,13 +152,6 @@
         "title": "Soil moisture and irrigation drivers",
         "kind": "table",
         "file": "data/central_valley/drivers.json",
-        "quality": "provisional"
-      },
-      {
-        "id": "uncertainty",
-        "title": "Per-pixel uncertainty map",
-        "kind": "raster",
-        "file": "data/central_valley/uncertainty/meta.json",
         "quality": "provisional"
       }
     ],
@@ -76,24 +161,226 @@
     ]
   },
   {
+    "site": "central_valley_fullyear",
+    "title": "Central Valley, California — full year (Nov 2025 – Oct 2026)",
+    "quality": "mixed",
+    "quality_note": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team. This series MIXES provisional products with pre-calibration BETA products (dates before 2026-06-17); treat amplitudes before that date with extra caution.",
+    "path": "data/central_valley_fullyear/",
+    "bbox": [
+      -120.2,
+      35.6,
+      -119.0,
+      36.6
+    ],
+    "layers": [
+      {
+        "id": "motion",
+        "title": "Ground motion (cm, line of sight)",
+        "kind": "raster_series",
+        "file": "data/central_valley_fullyear/meta.json",
+        "png": "data/central_valley_fullyear/disp/{date}.png",
+        "dates": [
+          "2025-11-24",
+          "2025-12-06",
+          "2025-12-18",
+          "2025-12-30",
+          "2026-01-11",
+          "2026-01-23",
+          "2026-02-04",
+          "2026-02-16",
+          "2026-02-28",
+          "2026-03-12",
+          "2026-03-24",
+          "2026-04-05",
+          "2026-04-17",
+          "2026-04-29",
+          "2026-05-11",
+          "2026-05-23",
+          "2026-06-04",
+          "2026-06-16",
+          "2026-06-28",
+          "2026-07-10",
+          "2026-07-22",
+          "2026-08-15",
+          "2026-08-27",
+          "2026-09-08",
+          "2026-09-20",
+          "2026-10-14"
+        ],
+        "bbox": [
+          -120.2,
+          35.6,
+          -119.0,
+          36.6
+        ],
+        "legend": {
+          "vmin": -16.0,
+          "vmax": 16.0,
+          "cmap": "RdBu",
+          "units": "cm",
+          "low": "sinking",
+          "high": "rising"
+        },
+        "quality": "mixed"
+      },
+      {
+        "id": "permanent",
+        "title": "Permanent trend (cm/yr)",
+        "kind": "raster",
+        "file": "data/central_valley_fullyear/decomp.json",
+        "png": "data/central_valley_fullyear/decomp_permanent.png",
+        "bbox": [
+          -120.2,
+          35.6,
+          -119.0,
+          36.6
+        ],
+        "legend": {
+          "vmin": -15.0,
+          "vmax": 15.0,
+          "cmap": "RdBu",
+          "units": "cm/yr",
+          "low": "sinking",
+          "high": "rising"
+        },
+        "quality": "mixed"
+      },
+      {
+        "id": "seasonal",
+        "title": "Seasonal swing (cm)",
+        "kind": "raster",
+        "file": "data/central_valley_fullyear/decomp.json",
+        "png": "data/central_valley_fullyear/decomp_seasonal.png",
+        "bbox": [
+          -120.2,
+          35.6,
+          -119.0,
+          36.6
+        ],
+        "legend": {
+          "vmin": 0.0,
+          "vmax": 7.0,
+          "cmap": "magma",
+          "units": "cm",
+          "low": "small",
+          "high": "large"
+        },
+        "quality": "mixed"
+      },
+      {
+        "id": "points",
+        "title": "Point time series",
+        "kind": "points",
+        "file": "data/central_valley_fullyear/points.json",
+        "quality": "mixed"
+      },
+      {
+        "id": "summary",
+        "title": "Headline numbers",
+        "kind": "summary",
+        "file": "data/central_valley_fullyear/summary.json",
+        "quality": "mixed"
+      }
+    ],
+    "period": [
+      "2025-11-24",
+      "2026-10-14"
+    ]
+  },
+  {
     "site": "karapinar",
-    "title": "Karapınar / Konya Basin, Türkiye",
+    "title": "Karapınar, Türkiye — track 7",
     "quality": "provisional",
     "quality_note": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.",
     "path": "data/karapinar/",
+    "bbox": [
+      33.3,
+      37.6,
+      33.8,
+      37.9
+    ],
     "layers": [
       {
-        "id": "disp",
-        "title": "Cumulative ground motion (line of sight), 9 dates",
+        "id": "motion",
+        "title": "Ground motion (cm, line of sight)",
         "kind": "raster_series",
         "file": "data/karapinar/meta.json",
+        "png": "data/karapinar/disp/{date}.png",
+        "dates": [
+          "2026-06-26",
+          "2026-07-08",
+          "2026-07-20",
+          "2026-08-13",
+          "2026-08-25",
+          "2026-09-06",
+          "2026-09-18",
+          "2026-09-30",
+          "2026-10-12"
+        ],
+        "bbox": [
+          33.3,
+          37.6,
+          33.8,
+          37.9
+        ],
+        "legend": {
+          "vmin": -5.0,
+          "vmax": 5.0,
+          "cmap": "RdBu",
+          "units": "cm",
+          "low": "sinking",
+          "high": "rising"
+        },
         "quality": "provisional"
+      },
+      {
+        "id": "uncertainty",
+        "title": "Measurement uncertainty (1σ, cm)",
+        "kind": "raster",
+        "file": "data/karapinar/uncertainty/meta.json",
+        "png": "data/karapinar/uncertainty/sigma_cm.png",
+        "bbox": [
+          33.3,
+          37.6,
+          33.8,
+          37.9
+        ],
+        "legend": {
+          "vmin": 0.0,
+          "vmax": 1.0,
+          "cmap": "viridis",
+          "units": "cm",
+          "low": "more certain",
+          "high": "less certain"
+        },
+        "quality": "provisional"
+      },
+      {
+        "id": "risk",
+        "title": "Infrastructure risk (canals, roads, rail)",
+        "kind": "geojson",
+        "file": "data/karapinar/assets.json",
+        "quality": "provisional"
+      },
+      {
+        "id": "sinkholes",
+        "title": "Documented sinkholes",
+        "kind": "geojson",
+        "file": "data/karapinar/sinkholes.geojson",
+        "quality": "reference"
       },
       {
         "id": "points",
         "title": "Point time series",
         "kind": "points",
         "file": "data/karapinar/points.json",
+        "quality": "provisional"
+      },
+      {
+        "id": "grid",
+        "title": "Clickable ~1–2 km grid",
+        "kind": "table",
+        "file": "data/karapinar/grid.json",
         "quality": "provisional"
       },
       {
@@ -105,30 +392,9 @@
       },
       {
         "id": "area",
-        "title": "Area sinking more than 2 cm / 5 cm per date",
+        "title": "Area sinking more than 2 / 5 cm",
         "kind": "table",
         "file": "data/karapinar/area_stats.json",
-        "quality": "provisional"
-      },
-      {
-        "id": "sinkholes",
-        "title": "Documented sinkholes (29, each with a source)",
-        "kind": "geojson",
-        "file": "data/karapinar/sinkholes.geojson",
-        "quality": "reference"
-      },
-      {
-        "id": "assets",
-        "title": "Sinkhole distance rings and infrastructure risk",
-        "kind": "geojson",
-        "file": "data/karapinar/assets.json",
-        "quality": "provisional"
-      },
-      {
-        "id": "uncertainty",
-        "title": "Per-pixel uncertainty map",
-        "kind": "raster",
-        "file": "data/karapinar/uncertainty/meta.json",
         "quality": "provisional"
       }
     ],
@@ -138,21 +404,70 @@
     ]
   },
   {
-    "site": "uk",
-    "title": "The Fens / Cambridgeshire, UK",
-    "quality": "preview",
-    "quality_note": "NISAR GCOV browse PNG is a visual preview (not quantitative backscatter). Underlying granule is from the NISAR Provisional collection (CRID P05023). Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.",
-    "path": "data/uk/",
+    "site": "karapinar_p172",
+    "title": "Karapınar, Türkiye — track 172 (second orbit)",
+    "quality": "provisional",
+    "quality_note": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.",
+    "path": "data/karapinar_p172/",
+    "bbox": [
+      33.3,
+      37.6,
+      33.8,
+      37.9
+    ],
     "layers": [
       {
-        "id": "compare",
-        "title": "Cloudy optical image vs NISAR radar quick-look, same day",
-        "kind": "image_pair",
-        "file": "data/uk/meta.json",
-        "quality": "preview"
+        "id": "motion",
+        "title": "Ground motion (cm, line of sight)",
+        "kind": "raster_series",
+        "file": "data/karapinar_p172/meta.json",
+        "png": "data/karapinar_p172/disp/{date}.png",
+        "dates": [
+          "2026-06-26",
+          "2026-07-08",
+          "2026-07-20",
+          "2026-08-13",
+          "2026-08-25",
+          "2026-09-06",
+          "2026-09-18",
+          "2026-09-30",
+          "2026-10-12"
+        ],
+        "bbox": [
+          33.3,
+          37.6,
+          33.8,
+          37.9
+        ],
+        "legend": {
+          "vmin": -6.0,
+          "vmax": 6.0,
+          "cmap": "RdBu",
+          "units": "cm",
+          "low": "sinking",
+          "high": "rising"
+        },
+        "quality": "provisional"
+      },
+      {
+        "id": "points",
+        "title": "Point time series",
+        "kind": "points",
+        "file": "data/karapinar_p172/points.json",
+        "quality": "provisional"
+      },
+      {
+        "id": "summary",
+        "title": "Headline numbers",
+        "kind": "summary",
+        "file": "data/karapinar_p172/summary.json",
+        "quality": "provisional"
       }
     ],
-    "date": "2026-10-20"
+    "period": [
+      "2026-06-26",
+      "2026-10-12"
+    ]
   },
   {
     "site": "uk_clay",
@@ -160,12 +475,45 @@
     "quality": "provisional",
     "quality_note": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.",
     "path": "data/uk_clay/",
+    "bbox": [
+      -0.5,
+      51.3,
+      0.2,
+      51.7
+    ],
     "layers": [
       {
-        "id": "disp",
-        "title": "Cumulative ground motion (line of sight), 10 dates",
+        "id": "motion",
+        "title": "Ground motion (cm, line of sight)",
         "kind": "raster_series",
         "file": "data/uk_clay/meta.json",
+        "png": "data/uk_clay/disp/{date}.png",
+        "dates": [
+          "2026-06-21",
+          "2026-07-03",
+          "2026-07-15",
+          "2026-07-27",
+          "2026-08-20",
+          "2026-09-01",
+          "2026-09-13",
+          "2026-09-25",
+          "2026-10-07",
+          "2026-10-19"
+        ],
+        "bbox": [
+          -0.5,
+          51.3,
+          0.2,
+          51.7
+        ],
+        "legend": {
+          "vmin": -4.0,
+          "vmax": 4.0,
+          "cmap": "RdBu",
+          "units": "cm",
+          "low": "sinking",
+          "high": "rising"
+        },
         "quality": "provisional"
       },
       {
@@ -176,15 +524,22 @@
         "quality": "provisional"
       },
       {
+        "id": "grid",
+        "title": "Clickable ~1–2 km grid",
+        "kind": "table",
+        "file": "data/uk_clay/grid.json",
+        "quality": "provisional"
+      },
+      {
         "id": "summary",
-        "title": "Headline numbers (read detection_status first)",
+        "title": "Headline numbers",
         "kind": "summary",
         "file": "data/uk_clay/summary.json",
         "quality": "provisional"
       },
       {
         "id": "detection",
-        "title": "Signal vs noise test: below detection",
+        "title": "Signal vs noise test",
         "kind": "summary",
         "file": "data/uk_clay/detection.json",
         "quality": "provisional"
@@ -193,6 +548,58 @@
     "period": [
       "2026-06-21",
       "2026-10-19"
+    ]
+  },
+  {
+    "site": "uk",
+    "title": "The Fens, UK — radar through cloud",
+    "quality": "preview",
+    "quality_note": "NISAR GCOV browse PNG is a visual preview (not quantitative backscatter). Underlying granule is from the NISAR Provisional collection (CRID P05023). Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.",
+    "path": "data/uk/",
+    "bbox": [
+      -0.3,
+      52.4,
+      0.4,
+      52.9
+    ],
+    "layers": [
+      {
+        "id": "radarimg",
+        "title": "NISAR radar image, 2026-10-20 (quick-look)",
+        "kind": "raster",
+        "file": "data/uk/meta.json",
+        "png": "data/uk/radar_2026-10-20.png",
+        "bbox": [
+          -0.3,
+          52.4,
+          0.4,
+          52.9
+        ],
+        "legend": null,
+        "quality": "preview"
+      }
+    ],
+    "date": "2026-10-20"
+  },
+  {
+    "site": "fens",
+    "title": "The Fens, UK — crop radar signal",
+    "quality": "provisional",
+    "quality_note": "8 local NISAR GCOV P05023 provisional acquisitions from 2026-06-22 through 2026-10-08. The 480 m sample windows are field-like sampling areas, not verified parcel boundaries; sparse dates limit crop-phenology interpretation.",
+    "path": "data/fens/",
+    "bbox": null,
+    "layers": [
+      {
+        "id": "crops",
+        "title": "Field radar time series (HH, HV)",
+        "kind": "table",
+        "file": "data/fens/crops.json",
+        "quality": "provisional"
+      }
+    ],
+    "period": [
+      "2026-06-22",
+      "2026-10-08"
     ]
   }
 ]

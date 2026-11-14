@@ -186,3 +186,21 @@ details.fold>summary:focus-visible{outline:3px solid #9cc3ff;outline-offset:2px}
 /* long file names / URLs in docs must wrap; wide tables scroll inside themselves on phones */
 .doc code,.doc a,.doc td,.doc li{overflow-wrap:anywhere}
 @media (max-width:860px){.doc .md table,.doc table.data{display:block;overflow-x:auto;max-width:100%}.doc .md pre,.doc .eq{max-width:100%}}
+/* explorer */
+.explorer-page{overflow:hidden}
+.xp{display:grid;grid-template-columns:360px 1fr;height:100vh;padding-top:var(--hdr)}
+.xp-panel{overflow-y:auto;padding:20px 20px 30px;border-right:1px solid var(--line);background:#fff}
+.xp-panel h1{font-size:1.5rem;margin:0 0 .3em}
+.xp-lbl{display:block;font-weight:700;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--acc);margin:16px 0 6px}
+.xp-select{width:100%;padding:8px 10px;font:500 .92rem var(--font);border:1px solid var(--line);border-radius:3px;background:#fff}
+.xp-badge{margin:8px 0 0;font-size:.8rem;color:var(--mut)}.xp-badge small{display:block;margin-top:4px}
+.xp-layers{border:0;padding:0;margin:0}
+.xp-radio,.xp-check{display:flex;gap:8px;align-items:flex-start;font-size:.9rem;padding:4px 0;cursor:pointer}
+.xp-overlays{margin-top:6px;padding-top:6px;border-top:1px dashed var(--line)}
+.xp-legend{margin:14px 0 4px}.xp-words{font-family:var(--font)!important;color:var(--dim);font-size:.72rem}
+.xp-mapwrap{position:relative}#xpMap{position:absolute;inset:0}
+@media (max-width:860px){
+  .explorer-page{overflow:auto}
+  .xp{grid-template-columns:1fr;grid-template-rows:55vh auto;height:auto}
+  .xp-mapwrap{grid-row:1;min-height:55vh}.xp-panel{grid-row:2;border-right:0}
+}

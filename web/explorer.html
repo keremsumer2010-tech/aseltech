@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Explore the data — NISAR Pulse</title>
+<meta name="description" content="Explore NISAR ground-motion maps yourself: choose a region, a layer and a date, then click the map to see how that spot moved.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="explorer-page">
+<header class="site-header">
+  <a class="logo" href="index.html" aria-label="NISAR Pulse home"><span class="logo-mark"></span><span class="logo-text">NISAR&nbsp;Pulse</span></a>
+  <nav class="site-nav"><a href="index.html#story">Story</a><a href="explorer.html" class="active">Explore</a><a href="index.html#play">Simulator</a><a href="science.html">Science</a><a href="data.html">Data</a><a href="faq.html">FAQ</a></nav>
+</header>
+<main class="xp">
+  <aside class="xp-panel" aria-label="Explorer controls">
+    <h1>Explore the data</h1>
+    <p class="small">Choose a region and a layer, move through the dates, then click anywhere on the map to see how that spot moved.</p>
+
+    <label class="xp-lbl" for="xpSite">Region</label>
+    <select id="xpSite" class="xp-select"></select>
+    <p id="xpBadge" class="xp-badge"></p>
+
+    <fieldset class="xp-layers"><legend class="xp-lbl">Map layer</legend><div id="xpLayers"></div></fieldset>
+    <div id="xpOverlays" class="xp-overlays"></div>
+
+    <div id="xpTime" class="xp-time" hidden>
+      <label class="xp-lbl" for="xpSlider">Date</label>
+      <div class="timebar"><button id="xpPlay" class="playbtn" type="button" aria-label="Play through the dates">▶</button><input id="xpSlider" type="range" min="0" max="0" value="0"><span id="xpDate" class="mono"></span></div>
+    </div>
+
+    <div id="xpLegend" class="xp-legend" hidden><div class="lg-ramp" id="xpRamp"></div><div class="lg-ticks"><span id="xpMin"></span><span id="xpUnits"></span><span id="xpMax"></span></div><div class="lg-ticks xp-words"><span id="xpLow"></span><span id="xpHigh"></span></div></div>
+
+    <div id="xpPick" class="readout" aria-live="polite">Click the map to see one spot.</div>
+    <div class="chartbox" id="xpChartBox" hidden><canvas id="xpChart" height="190"></canvas></div>
+    <p class="small" id="xpHow"></p>
+  </aside>
+  <section class="xp-mapwrap"><div id="xpMap"></div></section>
+</main>
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="explorer.js"></script>
+</body>
+</html>
