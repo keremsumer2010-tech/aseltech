@@ -80,6 +80,7 @@ async function initUSA(){
   let chart = null;
   function select(p){
     if (!p) return;
+    if (p.disp_cm.at(-1) == null){ document.getElementById('cvSentence').textContent = `${p.name}: no reliable measurement at this point.`; return; }
     const v = p.disp_cm.at(-1), months = Math.max(1, Math.round((new Date(p.dates.at(-1)) - new Date(p.dates[0])) / 2.63e9));
     const verb = v < 0 ? 'sank' : 'rose';
     const tag = m.quality === 'placeholder' ? ' <span class="badge placeholder">PLACEHOLDER</span>' : '';

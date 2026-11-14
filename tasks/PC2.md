@@ -13,6 +13,10 @@ feeds: [PC3]
 
 > **Saat saat sıra ve iş bitince sıradaki iş: `docs/ZAMAN_CIZELGESI.md`.** Atanmış QUEUE işlerin orada.
 
+> **ACİL (PC1, 13:15):** npz'lerde `ion` boş geliyor (shape (0,)). PC3'ün kümülatif hattı iyonosfer ekranını çıkarıyor; tüm çiftler aynı şekilde işlenmeli.
+> `science/LSAR/GUNW/grids/frequencyA/unwrappedInterferogram/HH/ionospherePhaseScreen` katmanını `ion` olarak (unw ile aynı kesit ve boyut) kaydet.
+> Mevcut 2 dosyayı (06-28→07-10, 09-08→09-20) da `ion` ile yeniden üret (indirme ~2 dk). Ayrıca `status/PC2.md`'yi doldur (şu an boş).
+
 ## Kimlik
 Memir'in bilgisayarı, Antigravity. Ana hattın ilk halkası: **PC3 senin dosyalarını bekliyor.**
 
