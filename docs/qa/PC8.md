@@ -179,3 +179,12 @@
 
 - **Fens (`pipeline/subset/fens`) Kontrolü:** `pipeline/subset/` altında yalnızca `central_valley`, `karapinar`, `karapinar_p172` ve `uk_clay` alt kümeleri bulunmaktadır; `fens` GUNW alt kümesi yoktur. Holme Fen karşılaştırması `docs/story/holme_fen.md` literatür hızı (`1–2 cm/yıl`) üzerinden `docs/story/uk_findings.md` ve `docs/story/media/pc8_uk_detection.png` içine dahil edilmiştir.
 - **`docs/story/media/` Boyut Kontrolü (K-12):** Orijinal 25 medya dosyası + PC8 tarafından üretilen 2 yeni PNG (`pc8_uk_detection.png` `190.0 KB`, `pc8_kp_p7_vs_p172.png` `264.3 KB`) dahil toplam **27 dosya** kontrol edildi; hiçbir dosya **0 bayt** veya **20 MB** sınırının üzerinde değildir.
+
+---
+
+## 7. 14 Nov 2026 Akşamı Madde 3 — Konya Ovası (`konya_plain`) Nüfus ve Arazi Maruziyeti (`data/konya_plain/exposure.json`)
+
+- **Üretilen / Güncellenen Dosyalar:** `analysis/pc8/exposure.py`, `data/konya_plain/exposure.json`, `data/karapinar/exposure.json`, `data/central_valley/exposure.json`, `docs/story/exposure.md`, `docs/story/media/pc8_exposure.png` (3 panelli grafik).
+- **Konya Kapalı Havzası (`[32.4, 37.4, 33.9, 38.1]`, `2026-06-26` → `2026-10-12`, 8 Track 7 çifti):**
+  - **WorldPop 100 m (`2020`, `estimate`):** Havza BBox toplamı `868,371` kişi (`444,542` geçerli InSAR pikseli). **`> 2 cm` LOS:** **`69,854`** kişi (`118,485` `<= 2.5 km` enterpolasyonlu; `79,261` dikey *estimate*). **`> 5 cm` LOS:** **`16,822`** kişi (`33,700` enterpolasyonlu; `32,016` dikey *estimate*).
+  - **ESA WorldCover 10 m (`2021 v200`, `N36E030` + `N36E033`):** `> 2 cm` LOS ortak geçerli (`627.18 km²`): Grassland `284.91 km²` (`45.4%`), Cropland `173.10 km²` (`27.6%`), Bare/sparse `127.51 km²` (`20.3%`), Built-up `40.69 km²` (`6.5%`), Tree cover `0.77 km²` (`0.1%`). `> 5 cm` LOS (`99.47 km²`): Cropland `36.28 km²` (`36.5%`), Grassland `32.70 km²` (`32.9%`), Bare/sparse `21.13 km²` (`21.2%`), Built-up `9.16 km²` (`9.2%`). Enterpolasyonlu `> 2 cm` havza (`2,157.67 km²`): Cropland `1,167.69 km²` (`54.1%`).

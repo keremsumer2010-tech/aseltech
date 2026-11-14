@@ -1,0 +1,290 @@
+{
+  "site": "konya_plain",
+  "period": [
+    "2026-06-26",
+    "2026-10-12"
+  ],
+  "bbox": [
+    32.4,
+    37.4,
+    33.9,
+    38.1
+  ],
+  "quality": "provisional",
+  "quality_note": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.",
+  "population": {
+    "source": "WorldPop Open Population Repository (100 m / 3 arc-sec Gridded Population, 2020, UN-adjusted)",
+    "doi": "https://doi.org/10.5258/SOTON/WP00645",
+    "service_url": "https://worldpop.arcgis.com/arcgis/rest/services/WorldPop_Total_Population_100m/ImageServer",
+    "year": 2020,
+    "resolution_m": 100,
+    "license": "CC BY 4.0 (WorldPop, University of Southampton)",
+    "total_population_in_bbox_estimate": 868371,
+    "population_on_valid_insar_pixels_estimate": 444542,
+    "population_on_common_valid_pixels_estimate": 444542,
+    "population_subsidence_gt_2cm_los_estimate": 69854,
+    "population_subsidence_gt_5cm_los_estimate": 16822,
+    "population_subsidence_gt_2cm_los_common_mask_estimate": 69854,
+    "population_subsidence_gt_5cm_los_common_mask_estimate": 16822,
+    "population_subsidence_gt_2cm_los_interpolated_2p5km_estimate": 118485,
+    "population_subsidence_gt_5cm_los_interpolated_2p5km_estimate": 33700,
+    "population_subsidence_gt_2cm_vertical_estimate": 79261,
+    "population_subsidence_gt_5cm_vertical_estimate": 32016,
+    "population_subsidence_gt_2cm_vertical_interpolated_estimate": 131720,
+    "population_subsidence_gt_5cm_vertical_interpolated_estimate": 60309
+  },
+  "land_cover_and_crops": {
+    "source": "ESA WorldCover 10 m 2021 v200 (Sentinel-1 & Sentinel-2 Global Land Cover)",
+    "year": 2021,
+    "resolution_m": 10,
+    "doi": "https://doi.org/10.5281/zenodo.7254221",
+    "license": "CC BY 4.0 (European Space Agency / WorldCover Consortium)",
+    "tile_urls": [
+      "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N36E030_Map.tif",
+      "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N36E033_Map.tif"
+    ],
+    "subsiding_area_gt_2cm_los_common_km2": 627.18,
+    "subsiding_area_gt_5cm_los_common_km2": 99.47,
+    "subsiding_area_gt_2cm_los_final_epoch_km2": 627.18,
+    "subsiding_area_gt_5cm_los_final_epoch_km2": 99.47,
+    "subsiding_area_gt_2cm_los_interpolated_km2": 2157.67,
+    "subsiding_area_gt_5cm_los_interpolated_km2": 547.71,
+    "top5_land_cover_gt_2cm_los_common": [
+      {
+        "code": 30,
+        "name": "Grassland",
+        "area_km2": 284.91,
+        "share_percent": 45.4,
+        "pixels_80m": 44517
+      },
+      {
+        "code": 40,
+        "name": "Cropland",
+        "area_km2": 173.1,
+        "share_percent": 27.6,
+        "pixels_80m": 27047
+      },
+      {
+        "code": 60,
+        "name": "Bare / sparse vegetation",
+        "area_km2": 127.51,
+        "share_percent": 20.3,
+        "pixels_80m": 19923
+      },
+      {
+        "code": 50,
+        "name": "Built-up",
+        "area_km2": 40.69,
+        "share_percent": 6.5,
+        "pixels_80m": 6358
+      },
+      {
+        "code": 10,
+        "name": "Tree cover",
+        "area_km2": 0.77,
+        "share_percent": 0.1,
+        "pixels_80m": 121
+      }
+    ],
+    "top5_land_cover_gt_5cm_los_common": [
+      {
+        "code": 40,
+        "name": "Cropland",
+        "area_km2": 36.28,
+        "share_percent": 36.5,
+        "pixels_80m": 5668
+      },
+      {
+        "code": 30,
+        "name": "Grassland",
+        "area_km2": 32.7,
+        "share_percent": 32.9,
+        "pixels_80m": 5110
+      },
+      {
+        "code": 60,
+        "name": "Bare / sparse vegetation",
+        "area_km2": 21.13,
+        "share_percent": 21.2,
+        "pixels_80m": 3302
+      },
+      {
+        "code": 50,
+        "name": "Built-up",
+        "area_km2": 9.16,
+        "share_percent": 9.2,
+        "pixels_80m": 1431
+      },
+      {
+        "code": 10,
+        "name": "Tree cover",
+        "area_km2": 0.17,
+        "share_percent": 0.2,
+        "pixels_80m": 27
+      }
+    ],
+    "top5_land_cover_gt_2cm_los_final_epoch": [
+      {
+        "code": 30,
+        "name": "Grassland",
+        "area_km2": 284.91,
+        "share_percent": 45.4,
+        "pixels_80m": 44517
+      },
+      {
+        "code": 40,
+        "name": "Cropland",
+        "area_km2": 173.1,
+        "share_percent": 27.6,
+        "pixels_80m": 27047
+      },
+      {
+        "code": 60,
+        "name": "Bare / sparse vegetation",
+        "area_km2": 127.51,
+        "share_percent": 20.3,
+        "pixels_80m": 19923
+      },
+      {
+        "code": 50,
+        "name": "Built-up",
+        "area_km2": 40.69,
+        "share_percent": 6.5,
+        "pixels_80m": 6358
+      },
+      {
+        "code": 10,
+        "name": "Tree cover",
+        "area_km2": 0.77,
+        "share_percent": 0.1,
+        "pixels_80m": 121
+      }
+    ],
+    "top5_land_cover_gt_5cm_los_final_epoch": [
+      {
+        "code": 40,
+        "name": "Cropland",
+        "area_km2": 36.28,
+        "share_percent": 36.5,
+        "pixels_80m": 5668
+      },
+      {
+        "code": 30,
+        "name": "Grassland",
+        "area_km2": 32.7,
+        "share_percent": 32.9,
+        "pixels_80m": 5110
+      },
+      {
+        "code": 60,
+        "name": "Bare / sparse vegetation",
+        "area_km2": 21.13,
+        "share_percent": 21.2,
+        "pixels_80m": 3302
+      },
+      {
+        "code": 50,
+        "name": "Built-up",
+        "area_km2": 9.16,
+        "share_percent": 9.2,
+        "pixels_80m": 1431
+      },
+      {
+        "code": 10,
+        "name": "Tree cover",
+        "area_km2": 0.17,
+        "share_percent": 0.2,
+        "pixels_80m": 27
+      }
+    ],
+    "top5_land_cover_gt_2cm_los_interpolated": [
+      {
+        "code": 40,
+        "name": "Cropland",
+        "area_km2": 1167.69,
+        "share_percent": 54.1,
+        "pixels_80m": 182452
+      },
+      {
+        "code": 30,
+        "name": "Grassland",
+        "area_km2": 652.63,
+        "share_percent": 30.2,
+        "pixels_80m": 101973
+      },
+      {
+        "code": 60,
+        "name": "Bare / sparse vegetation",
+        "area_km2": 289.43,
+        "share_percent": 13.4,
+        "pixels_80m": 45224
+      },
+      {
+        "code": 50,
+        "name": "Built-up",
+        "area_km2": 46.37,
+        "share_percent": 2.1,
+        "pixels_80m": 7246
+      },
+      {
+        "code": 10,
+        "name": "Tree cover",
+        "area_km2": 0.92,
+        "share_percent": 0.0,
+        "pixels_80m": 144
+      }
+    ],
+    "full_bbox_land_cover": [
+      {
+        "code": 40,
+        "name": "Cropland",
+        "area_km2": 5471.58,
+        "share_percent": 53.3,
+        "pixels_80m": 854934
+      },
+      {
+        "code": 30,
+        "name": "Grassland",
+        "area_km2": 3286.86,
+        "share_percent": 32.0,
+        "pixels_80m": 513572
+      },
+      {
+        "code": 60,
+        "name": "Bare / sparse vegetation",
+        "area_km2": 1168.35,
+        "share_percent": 11.4,
+        "pixels_80m": 182555
+      },
+      {
+        "code": 50,
+        "name": "Built-up",
+        "area_km2": 285.82,
+        "share_percent": 2.8,
+        "pixels_80m": 44660
+      },
+      {
+        "code": 10,
+        "name": "Tree cover",
+        "area_km2": 39.19,
+        "share_percent": 0.4,
+        "pixels_80m": 6123
+      },
+      {
+        "code": 80,
+        "name": "Permanent water bodies",
+        "area_km2": 9.31,
+        "share_percent": 0.1,
+        "pixels_80m": 1455
+      },
+      {
+        "code": 90,
+        "name": "Herbaceous wetland",
+        "area_km2": 0.68,
+        "share_percent": 0.0,
+        "pixels_80m": 107
+      }
+    ]
+  },
+  "method_note": "Population exposure is estimated by projecting WorldPop 100 m (3 arc-sec, 2020, UN-adjusted) grid cell centers onto the 80 m NISAR UTM grid (EPSG:32636) built from the 8 consecutive Track 7 GUNW pairs referenced to 32.91943E, 37.93711N. Land-cover exposure samples ESA WorldCover 10 m v200 (2021) tiles N36E030 and N36E033 across the 80 m NISAR grid (0.0064 km^2/pixel)."
+}

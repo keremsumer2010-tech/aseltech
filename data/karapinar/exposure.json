@@ -39,7 +39,9 @@
     "resolution_m": 10,
     "doi": "https://doi.org/10.5281/zenodo.7254221",
     "license": "CC BY 4.0 (European Space Agency / WorldCover Consortium)",
-    "tile_url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N36E033_Map.tif",
+    "tile_urls": [
+      "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N36E033_Map.tif"
+    ],
     "subsiding_area_gt_2cm_los_common_km2": 28.69,
     "subsiding_area_gt_5cm_los_common_km2": 3.1,
     "subsiding_area_gt_2cm_los_final_epoch_km2": 28.69,
@@ -283,5 +285,5 @@
       }
     ]
   },
-  "method_note": "Population exposure is estimated by projecting WorldPop 100 m (3 arc-sec, 2020, UN-adjusted) grid cell centers onto the 80 m NISAR UTM grid (EPSG:32636) and summing population where cumulative 108-day LOS subsidence is <= -2.0 cm (> 2 cm sinking) and <= -5.0 cm (> 5 cm sinking). Land-cover exposure samples ESA WorldCover 10 m v200 (2021) across the 80 m NISAR grid (0.0064 km^2/pixel) for both the 8-pair common-valid mask (28.66 km^2 <= -2 cm), the final-epoch cumulative mask (49.15 km^2 <= -2 cm), and the <= 2.5 km nearest-neighbor basin interpolation (covering decorrelated center-pivot cropland)."
+  "method_note": "Population exposure is estimated by projecting WorldPop 100 m (3 arc-sec, 2020, UN-adjusted) grid cell centers onto the 80 m NISAR UTM grid (EPSG:32636) and summing population where cumulative 108-day LOS subsidence is <= -2.0 cm (> 2 cm sinking) and <= -5.0 cm (> 5 cm sinking). Land-cover exposure samples ESA WorldCover 10 m v200 (2021) across the 80 m NISAR grid (0.0064 km^2/pixel)."
 }

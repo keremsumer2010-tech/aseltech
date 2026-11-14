@@ -22,6 +22,7 @@ are streamed in memory via HTTP Range requests / ImageServer bbox exports (< 8 M
 from __future__ import annotations
 
 import json
+import sys
 from io import BytesIO
 from pathlib import Path
 
@@ -36,22 +37,29 @@ from scipy.ndimage import distance_transform_edt
 import requests
 
 ROOT = Path(__file__).resolve().parents[2]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+from analysis import insar, cumulative
+
 CV_CUM_NPZ = ROOT / "analysis" / "out" / "central_valley_cum.npz"
 KP_CUM_NPZ = ROOT / "analysis" / "out" / "karapinar_cum.npz"
 CV_STACK_NPZ = ROOT / "analysis" / "out" / "central_valley_cum_stack.npz"
 KP_STACK_NPZ = ROOT / "analysis" / "out" / "karapinar_cum_stack.npz"
+KONYA_SUBSET_DIR = ROOT / "pipeline" / "subset" / "konya_plain"
 
 CV_OUT_JSON = ROOT / "data" / "central_valley" / "exposure.json"
 KP_OUT_JSON = ROOT / "data" / "karapinar" / "exposure.json"
+KONYA_OUT_JSON = ROOT / "data" / "konya_plain" / "exposure.json"
 FIG_OUT = ROOT / "docs" / "story" / "media" / "pc8_exposure.png"
 
 WORLDPOP_IMAGESERVER = (
     "https://worldpop.arcgis.com/arcgis/rest/services/WorldPop_Total_Population_100m/ImageServer/exportImage"
 )
-ESA_WORLDCOVER_COG = (
-    "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/"
-    "ESA_WorldCover_10m_2021_v200_N36E033_Map.tif"
-)
+ESA_WORLDCOVER_COG_TILES = [
+    "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N36E030_Map.tif",
+    "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N36E033_Map.tif",
+]
+ESA_WORLDCOVER_COG = ESA_WORLDCOVER_COG_TILES[1]
 PC_STAC_SEARCH = "https://planetarycomputer.microsoft.com/api/stac/v1/search"
 PC_SAS_SIGN = "https://planetarycomputer.microsoft.com/api/sas/v1/sign"
 
@@ -359,27 +367,113 @@ def fetch_usda_cdl_central_valley(site_data: dict, bbox: list[float]) -> dict:
     }
 
 
-def fetch_esa_worldcover_karapinar(site_data: dict, bbox: list[float]) -> dict:
+def load_konya_plain_from_subsets(subset_dir: Path, bbox: list[float]) -> dict:
     """
-    Stream ESA WorldCover 10 m v200 (2021) COG window over Karapinar bbox `[33.3, 37.6, 33.8, 37.9]`
-    and tabulate area (km^2) per land-cover class in subsiding areas (> 2 cm and > 5 cm LOS).
-    Look up both the 80 m NISAR pixel grid and sub-pixel 10 m distribution inside each 80 m cell.
+    Build cumulative LOS displacement grid for Konya Plain (`[32.4, 37.4, 33.9, 38.1]`)
+    from `pipeline/subset/konya_plain/*.npz` using the reference window in `data/konya_plain/meta.json`.
+    """
+    meta = json.loads((ROOT / "data" / "konya_plain" / "meta.json").read_text(encoding="utf-8"))
+    ref_lon = float(meta["reference_point"]["lon"])
+    ref_lat = float(meta["reference_point"]["lat"])
+
+    npz_files = sorted(subset_dir.glob("*.npz"))
+    if not npz_files:
+        raise FileNotFoundError(f"No NPZ files found in {subset_dir}")
+
+    d0 = np.load(npz_files[0], allow_pickle=True)
+    x = np.asarray(d0["x"], dtype=np.float64)
+    y = np.asarray(d0["y"], dtype=np.float64)
+    epsg = int(d0["epsg"])
+    inc = np.asarray(d0["incidence"], dtype=np.float32)
+
+    tr_to_utm = Transformer.from_crs("EPSG:4326", f"EPSG:{epsg}", always_xy=True)
+    rx, ry = tr_to_utm.transform(ref_lon, ref_lat)
+    ref_c = int(np.argmin(np.abs(x - rx)))
+    ref_r = int(np.argmin(np.abs(y - ry)))
+
+    stack = []
+    dates = []
+    cum = np.zeros(inc.shape, dtype=np.float32)
+    common_valid = np.ones(inc.shape, dtype=bool)
+
+    for idx, f in enumerate(npz_files):
+        d = np.load(f, allow_pickle=True)
+        if idx == 0:
+            dates.append(str(d["date1"]))
+            stack.append(np.zeros(inc.shape, dtype=np.float32))
+        dates.append(str(d["date2"]))
+
+        unw = np.asarray(d["unw"], dtype=np.float32)
+        coh = np.asarray(d["coh"], dtype=np.float32)
+        cc = np.asarray(d["conncomp"], dtype=np.float32)
+        ion = np.asarray(d["ion"], dtype=np.float32)
+        wl = float(d["wavelength"])
+
+        cm = insar.phase_to_cm(unw, wl)
+        if np.isfinite(ion).any():
+            ion_cm = insar.phase_to_cm(ion, wl)
+            cm = np.where(np.isfinite(ion_cm), cm - ion_cm, cm)
+        cm = insar.mask_coherence(cm, coh, thr=0.30)
+        cm = np.where(cc != 0, cm, np.nan)
+        cm = cumulative.deramp(cm)
+        cm = insar.reference(cm, (ref_r, ref_c), radius=3)
+        cm = np.where(np.abs(cm) <= 15.0, cm, np.nan)
+
+        common_valid &= np.isfinite(cm)
+        cum = np.where(common_valid, cum + cm, np.nan)
+        stack.append(cum.copy())
+
+    xx, yy = np.meshgrid(x, y)
+    tr_to_ll = Transformer.from_crs(f"EPSG:{epsg}", "EPSG:4326", always_xy=True)
+    lon, lat = tr_to_ll.transform(xx, yy)
+    lon_min, lat_min, lon_max, lat_max = bbox
+    in_bbox = (lon >= lon_min) & (lon <= lon_max) & (lat >= lat_min) & (lat <= lat_max)
+
+    return {
+        "cum": cum,
+        "inc": inc,
+        "x": x,
+        "y": y,
+        "lon": lon,
+        "lat": lat,
+        "epsg": epsg,
+        "dates": dates,
+        "in_bbox": in_bbox,
+        "valid_final": np.isfinite(cum) & in_bbox,
+        "valid_common": common_valid & in_bbox,
+    }
+
+
+def fetch_esa_worldcover_site(site_data: dict, bbox: list[float], tile_urls: list[str]) -> dict:
+    """
+    Stream ESA WorldCover 10 m v200 (2021) COG windows across one or more 3x3-deg tiles
+    covering `bbox` and tabulate area (km^2) per land-cover class in subsiding areas.
     """
     lon_min, lat_min, lon_max, lat_max = bbox
-    with rasterio.open(ESA_WORLDCOVER_COG) as src:
-        win = from_bounds(lon_min, lat_min, lon_max, lat_max, src.transform)
-        win = win.round_offsets().round_lengths()
-        wc_arr = src.read(1, window=win)
-        win_transform = src.window_transform(win)
-
-    # Sample WorldCover 10 m at NISAR 80 m grid centers (and 3x3 sub-points per 80 m cell for high accuracy)
     lon = site_data["lon"]
     lat = site_data["lat"]
-    cols = np.floor((lon - win_transform.c) / win_transform.a).astype(np.int32)
-    rows = np.floor((lat - win_transform.f) / win_transform.e).astype(np.int32)
-    cols = np.clip(cols, 0, wc_arr.shape[1] - 1)
-    rows = np.clip(rows, 0, wc_arr.shape[0] - 1)
-    wc_on_nisar = wc_arr[rows, cols]
+    wc_on_nisar = np.zeros(lon.shape, dtype=np.uint8)
+
+    for url in tile_urls:
+        with rasterio.open(url) as src:
+            left, bottom, right, top = src.bounds
+            in_tile = (lon >= left) & (lon < right) & (lat >= bottom) & (lat < top)
+            if not np.any(in_tile):
+                continue
+            l_b = max(left + 1e-4, float(lon[in_tile].min()) - 0.002)
+            r_b = min(right - 1e-4, float(lon[in_tile].max()) + 0.002)
+            b_b = max(bottom + 1e-4, float(lat[in_tile].min()) - 0.002)
+            t_b = min(top - 1e-4, float(lat[in_tile].max()) + 0.002)
+            win = from_bounds(l_b, b_b, r_b, t_b, src.transform)
+            win = win.round_offsets().round_lengths()
+            wc_arr = src.read(1, window=win)
+            wt = src.window_transform(win)
+
+            cols = np.floor((lon[in_tile] - wt.c) / wt.a).astype(np.int32)
+            rows = np.floor((lat[in_tile] - wt.f) / wt.e).astype(np.int32)
+            cols = np.clip(cols, 0, wc_arr.shape[1] - 1)
+            rows = np.clip(rows, 0, wc_arr.shape[0] - 1)
+            wc_on_nisar[in_tile] = wc_arr[rows, cols]
 
     pixel_area_km2 = 0.0064
     cum = site_data["cum"]
@@ -426,7 +520,7 @@ def fetch_esa_worldcover_karapinar(site_data: dict, bbox: list[float]) -> dict:
         "resolution_m": 10,
         "doi": "https://doi.org/10.5281/zenodo.7254221",
         "license": "CC BY 4.0 (European Space Agency / WorldCover Consortium)",
-        "tile_url": ESA_WORLDCOVER_COG,
+        "tile_urls": tile_urls,
         "subsiding_area_gt_2cm_los_common_km2": round(int(mask_gt2_common.sum()) * pixel_area_km2, 2),
         "subsiding_area_gt_5cm_los_common_km2": round(int(mask_gt5_common.sum()) * pixel_area_km2, 2),
         "subsiding_area_gt_2cm_los_final_epoch_km2": round(int(mask_gt2_final.sum()) * pixel_area_km2, 2),
@@ -442,16 +536,16 @@ def fetch_esa_worldcover_karapinar(site_data: dict, bbox: list[float]) -> dict:
     }
 
 
-def make_exposure_figure(cv_data: dict, kp_data: dict, out_path: Path):
-    """Create a 2-panel NASA Earth Observatory style chart of crop/land-cover and population exposure."""
+def make_exposure_figure(cv_data: dict, kp_data: dict, konya_data: dict, out_path: Path):
+    """Create a 3-panel NASA Earth Observatory style chart of crop/land-cover and population exposure."""
     plt.rcParams.update({
         "font.family": "DejaVu Sans",
-        "font.size": 9.5,
-        "axes.titlesize": 10.5,
-        "axes.labelsize": 9.5,
+        "font.size": 9.0,
+        "axes.titlesize": 10.0,
+        "axes.labelsize": 9.0,
     })
 
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12.8, 5.4), dpi=180)
+    fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(16.5, 5.4), dpi=180)
     fig.patch.set_facecolor("#ffffff")
 
     # Panel A: Central Valley Top 5 Cultivated Crops in > 2 cm and > 5 cm LOS Subsidence
@@ -464,87 +558,95 @@ def make_exposure_figure(cv_data: dict, kp_data: dict, out_path: Path):
     areas_5_cv = [top5_5_lookup.get(c["code"], 0.0) for c in cv_crops_2][::-1]
 
     y_pos = np.arange(len(names_cv))
-    ax1.barh(y_pos + 0.17, areas_2_cv, height=0.33, color="#2b6cb0", label="Subsidence > 2 cm LOS (1,579.2 km² total)")
-    ax1.barh(y_pos - 0.17, areas_5_cv, height=0.33, color="#c53030", label="Subsidence > 5 cm LOS (239.8 km² total)")
+    ax1.barh(y_pos + 0.17, areas_2_cv, height=0.33, color="#2b6cb0", label="> 2 cm LOS (1,579.2 km²)")
+    ax1.barh(y_pos - 0.17, areas_5_cv, height=0.33, color="#c53030", label="> 5 cm LOS (239.8 km²)")
     for i, (a2, s2, a5) in enumerate(zip(areas_2_cv, shares_2_cv, areas_5_cv)):
-        ax1.text(a2 + 4.5, i + 0.17, f"{a2:.1f} km² ({s2:.1f}%)", va="center", fontsize=8.4, color="#1a365d", fontweight="bold")
+        ax1.text(a2 + 4.5, i + 0.17, f"{a2:.1f} km² ({s2:.1f}%)", va="center", fontsize=7.9, color="#1a365d", fontweight="bold")
         if a5 > 0:
-            ax1.text(a5 + 4.5, i - 0.17, f"{a5:.1f} km²", va="center", fontsize=8.0, color="#9b2c2c")
+            ax1.text(a5 + 4.5, i - 0.17, f"{a5:.1f} km²", va="center", fontsize=7.6, color="#9b2c2c")
 
     ax1.set_yticks(y_pos)
     ax1.set_yticklabels(names_cv, fontweight="bold")
-    ax1.set_xlabel("Exposed Crop Area (km², 80 m NISAR Common Valid Mask)")
-    ax1.set_title("A. Central Valley Top 5 Cultivated Crops in Subsiding Zones\n(USDA CDL 30 m · 28 Jun–14 Oct 2026 Provisional)", fontweight="bold", pad=8)
-    ax1.set_xlim(0, max(areas_2_cv) * 1.48)
+    ax1.set_xlabel("Exposed Crop Area (km², 80 m NISAR)")
+    ax1.set_title("A. Central Valley Top 5 Crops\n(USDA CDL 30 m · 28 Jun–14 Oct 2026)", fontweight="bold", pad=8)
+    ax1.set_xlim(0, max(areas_2_cv) * 1.54)
     ax1.set_ylim(-0.65, len(names_cv) - 0.35)
     ax1.grid(axis="x", linestyle="--", alpha=0.35)
     ax1.spines["top"].set_visible(False)
     ax1.spines["right"].set_visible(False)
-    ax1.legend(loc="lower right", frameon=True, facecolor="#f8fafc", edgecolor="#cbd5e0", fontsize=8.0)
+    ax1.legend(loc="lower right", frameon=True, facecolor="#f8fafc", edgecolor="#cbd5e0", fontsize=7.6)
 
     pop_cv = cv_data["population"]
     ax1.text(
-        0.98, 0.19,
-        f"WorldPop 100 m (2020) Population:\n"
-        f"• > 2 cm LOS: {pop_cv['population_subsidence_gt_2cm_los_estimate']:,} (valid px)\n"
-        f"  [{pop_cv['population_subsidence_gt_2cm_los_interpolated_2p5km_estimate']:,} basin interp.]\n"
-        f"• > 5 cm LOS: {pop_cv['population_subsidence_gt_5cm_los_estimate']:,} (valid px)\n"
-        f"  [{pop_cv['population_subsidence_gt_5cm_los_interpolated_2p5km_estimate']:,} basin interp.]",
-        transform=ax1.transAxes,
-        ha="right",
-        va="bottom",
-        fontsize=7.8,
-        bbox=dict(boxstyle="round,pad=0.4", facecolor="#edf2f7", edgecolor="#cbd5e0"),
+        0.98, 0.21,
+        f"WorldPop 100 m (2020):\n"
+        f"• > 2 cm: {pop_cv['population_subsidence_gt_2cm_los_estimate']:,} (valid)\n"
+        f"  [{pop_cv['population_subsidence_gt_2cm_los_interpolated_2p5km_estimate']:,} interp.]\n"
+        f"• > 5 cm: {pop_cv['population_subsidence_gt_5cm_los_estimate']:,} (valid)\n"
+        f"  [{pop_cv['population_subsidence_gt_5cm_los_interpolated_2p5km_estimate']:,} interp.]",
+        transform=ax1.transAxes, ha="right", va="bottom", fontsize=7.4,
+        bbox=dict(boxstyle="round,pad=0.38", facecolor="#edf2f7", edgecolor="#cbd5e0"),
     )
 
-    # Panel B: Karapinar ESA WorldCover 10 m Land-Cover Exposure
-    kp_wc_2 = kp_data["land_cover_and_crops"]["top5_land_cover_gt_2cm_los_common"]
-    kp_wc_5_lookup = {c["code"]: c["area_km2"] for c in kp_data["land_cover_and_crops"]["top5_land_cover_gt_5cm_los_common"]}
+    def plot_wc_panel(ax, site_data_json: dict, title: str, color2: str, color5: str):
+        lc = site_data_json["land_cover_and_crops"]
+        wc2 = lc["top5_land_cover_gt_2cm_los_common"]
+        wc5_map = {c["code"]: c["area_km2"] for c in lc["top5_land_cover_gt_5cm_los_common"]}
+        names = [c["name"] for c in wc2][::-1]
+        a2_list = [c["area_km2"] for c in wc2][::-1]
+        s2_list = [c["share_percent"] for c in wc2][::-1]
+        a5_list = [wc5_map.get(c["code"], 0.0) for c in wc2][::-1]
 
-    names_kp = [c["name"] for c in kp_wc_2][::-1]
-    areas_2_kp = [c["area_km2"] for c in kp_wc_2][::-1]
-    shares_2_kp = [c["share_percent"] for c in kp_wc_2][::-1]
-    areas_5_kp = [kp_wc_5_lookup.get(c["code"], 0.0) for c in kp_wc_2][::-1]
+        yp = np.arange(len(names))
+        tot2 = lc["subsiding_area_gt_2cm_los_common_km2"]
+        tot5 = lc["subsiding_area_gt_5cm_los_common_km2"]
+        ax.barh(yp + 0.17, a2_list, height=0.33, color=color2, label=f"> 2 cm LOS ({tot2:.1f} km²)")
+        ax.barh(yp - 0.17, a5_list, height=0.33, color=color5, label=f"> 5 cm LOS ({tot5:.1f} km²)")
+        pad_x = max(a2_list) * 0.025
+        for i, (a2, s2, a5) in enumerate(zip(a2_list, s2_list, a5_list)):
+            ax.text(a2 + pad_x, i + 0.17, f"{a2:.2f} km² ({s2:.1f}%)", va="center", fontsize=7.9, color="#1a202c", fontweight="bold")
+            if a5 > 0:
+                ax.text(a5 + pad_x, i - 0.17, f"{a5:.2f} km²", va="center", fontsize=7.6, color="#9c4221")
 
-    y_pos_kp = np.arange(len(names_kp))
-    ax2.barh(y_pos_kp + 0.17, areas_2_kp, height=0.33, color="#2f855a", label="Subsidence > 2 cm LOS (28.7 km² common mask)")
-    ax2.barh(y_pos_kp - 0.17, areas_5_kp, height=0.33, color="#dd6b20", label="Subsidence > 5 cm LOS (3.1 km² common mask)")
-    for i, (a2, s2, a5) in enumerate(zip(areas_2_kp, shares_2_kp, areas_5_kp)):
-        ax2.text(a2 + 0.45, i + 0.17, f"{a2:.2f} km² ({s2:.1f}%)", va="center", fontsize=8.4, color="#22543d", fontweight="bold")
-        if a5 > 0:
-            ax2.text(a5 + 0.45, i - 0.17, f"{a5:.2f} km²", va="center", fontsize=8.0, color="#9c4221")
+        ax.set_yticks(yp)
+        ax.set_yticklabels(names, fontweight="bold")
+        ax.set_xlabel("Exposed Land Cover (km², ESA WorldCover 10 m)")
+        ax.set_title(title, fontweight="bold", pad=8)
+        ax.set_xlim(0, max(a2_list) * 1.56)
+        ax.set_ylim(-0.65, len(names) - 0.35)
+        ax.grid(axis="x", linestyle="--", alpha=0.35)
+        ax.spines["top"].set_visible(False)
+        ax.spines["right"].set_visible(False)
+        ax.legend(loc="lower right", frameon=True, facecolor="#f8fafc", edgecolor="#cbd5e0", fontsize=7.6)
 
-    ax2.set_yticks(y_pos_kp)
-    ax2.set_yticklabels(names_kp, fontweight="bold")
-    ax2.set_xlabel("Exposed Land-Cover Area (km², ESA WorldCover 10 m)")
-    ax2.set_title("B. Karapınar Land Cover in Subsiding Zones\n(ESA WorldCover 10 m · 26 Jun–12 Oct 2026 Provisional)", fontweight="bold", pad=8)
-    ax2.set_xlim(0, max(areas_2_kp) * 1.48)
-    ax2.set_ylim(-0.65, len(names_kp) - 0.35)
-    ax2.grid(axis="x", linestyle="--", alpha=0.35)
-    ax2.spines["top"].set_visible(False)
-    ax2.spines["right"].set_visible(False)
-    ax2.legend(loc="lower right", frameon=True, facecolor="#f8fafc", edgecolor="#cbd5e0", fontsize=8.0)
+        pop = site_data_json["population"]
+        ax.text(
+            0.98, 0.21,
+            f"WorldPop 100 m (2020):\n"
+            f"• > 2 cm: {pop['population_subsidence_gt_2cm_los_estimate']:,} (valid)\n"
+            f"  [{pop['population_subsidence_gt_2cm_los_interpolated_2p5km_estimate']:,} interp.]\n"
+            f"• > 5 cm: {pop['population_subsidence_gt_5cm_los_estimate']:,} (valid)\n"
+            f"  [{pop['population_subsidence_gt_5cm_los_interpolated_2p5km_estimate']:,} interp.]",
+            transform=ax.transAxes, ha="right", va="bottom", fontsize=7.4,
+            bbox=dict(boxstyle="round,pad=0.38", facecolor="#edf2f7", edgecolor="#cbd5e0"),
+        )
 
-    pop_kp = kp_data["population"]
-    ax2.text(
-        0.98, 0.19,
-        f"WorldPop 100 m (2020) Population:\n"
-        f"• > 2 cm LOS: {pop_kp['population_subsidence_gt_2cm_los_estimate']:,} (valid px)\n"
-        f"  [{pop_kp['population_subsidence_gt_2cm_los_interpolated_2p5km_estimate']:,} basin interp.]\n"
-        f"• > 5 cm LOS: {pop_kp['population_subsidence_gt_5cm_los_estimate']:,} (valid px)\n"
-        f"  [{pop_kp['population_subsidence_gt_5cm_los_interpolated_2p5km_estimate']:,} basin interp.]",
-        transform=ax2.transAxes,
-        ha="right",
-        va="bottom",
-        fontsize=7.8,
-        bbox=dict(boxstyle="round,pad=0.4", facecolor="#edf2f7", edgecolor="#cbd5e0"),
+    plot_wc_panel(
+        ax2, kp_data,
+        "B. Karapınar Land Cover\n(ESA WorldCover 10 m · 26 Jun–12 Oct 2026)",
+        "#2f855a", "#dd6b20",
+    )
+    plot_wc_panel(
+        ax3, konya_data,
+        "C. Konya Closed Basin Land Cover\n(ESA WorldCover 10 m · 26 Jun–12 Oct 2026)",
+        "#2c7a7b", "#b83280",
     )
 
     fig.text(
         0.5, 0.008,
         "Data: NASA-ISRO NISAR L2 GUNW (provisional, CRID P05023), WorldPop 100 m (CC BY 4.0), USDA CDL 30 m (Public Domain), ESA WorldCover 10 m (CC BY 4.0). "
         "Calibration by NASA-JPL/ISRO.",
-        ha="center", fontsize=7.8, color="#4a5568"
+        ha="center", fontsize=8.0, color="#4a5568"
     )
     plt.tight_layout(rect=[0, 0.03, 1, 1])
     out_path.parent.mkdir(parents=True, exist_ok=True)
@@ -588,7 +690,7 @@ def main():
     print("Fetching Karapinar WorldPop 100 m population...")
     kp_pop = fetch_worldpop_exposure(kp_site, [33.3, 37.6, 33.8, 37.9])
     print("Fetching Karapinar ESA WorldCover 10 m land-cover exposure...")
-    kp_wc = fetch_esa_worldcover_karapinar(kp_site, [33.3, 37.6, 33.8, 37.9])
+    kp_wc = fetch_esa_worldcover_site(kp_site, [33.3, 37.6, 33.8, 37.9], [ESA_WORLDCOVER_COG_TILES[1]])
 
     kp_json = {
         "site": "karapinar",
@@ -605,15 +707,42 @@ def main():
             "Population exposure is estimated by projecting WorldPop 100 m (3 arc-sec, 2020, UN-adjusted) grid cell "
             "centers onto the 80 m NISAR UTM grid (EPSG:32636) and summing population where cumulative 108-day LOS "
             "subsidence is <= -2.0 cm (> 2 cm sinking) and <= -5.0 cm (> 5 cm sinking). Land-cover exposure samples "
-            "ESA WorldCover 10 m v200 (2021) across the 80 m NISAR grid (0.0064 km^2/pixel) for both the 8-pair "
-            "common-valid mask (28.66 km^2 <= -2 cm), the final-epoch cumulative mask (49.15 km^2 <= -2 cm), and "
-            "the <= 2.5 km nearest-neighbor basin interpolation (covering decorrelated center-pivot cropland)."
+            "ESA WorldCover 10 m v200 (2021) across the 80 m NISAR grid (0.0064 km^2/pixel)."
         ),
     }
     KP_OUT_JSON.write_text(json.dumps(kp_json, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(f"Saved {KP_OUT_JSON}")
 
-    make_exposure_figure(cv_json, kp_json, FIG_OUT)
+    print("Building Konya Plain cumulative grid from NPZ subsets...")
+    konya_bbox = [32.4, 37.4, 33.9, 38.1]
+    konya_site = load_konya_plain_from_subsets(KONYA_SUBSET_DIR, konya_bbox)
+    print("Fetching Konya Plain WorldPop 100 m population...")
+    konya_pop = fetch_worldpop_exposure(konya_site, konya_bbox)
+    print("Fetching Konya Plain ESA WorldCover 10 m land-cover exposure (N36E030 + N36E033)...")
+    konya_wc = fetch_esa_worldcover_site(konya_site, konya_bbox, ESA_WORLDCOVER_COG_TILES)
+
+    konya_json = {
+        "site": "konya_plain",
+        "period": ["2026-06-26", "2026-10-12"],
+        "bbox": konya_bbox,
+        "quality": "provisional",
+        "quality_note": (
+            "NISAR data are provisional. Calibration and validation are carried out by the NISAR project "
+            "(NASA-JPL and ISRO), not by our team."
+        ),
+        "population": konya_pop,
+        "land_cover_and_crops": konya_wc,
+        "method_note": (
+            "Population exposure is estimated by projecting WorldPop 100 m (3 arc-sec, 2020, UN-adjusted) grid cell "
+            "centers onto the 80 m NISAR UTM grid (EPSG:32636) built from the 8 consecutive Track 7 GUNW pairs "
+            "referenced to 32.91943E, 37.93711N. Land-cover exposure samples ESA WorldCover 10 m v200 (2021) "
+            "tiles N36E030 and N36E033 across the 80 m NISAR grid (0.0064 km^2/pixel)."
+        ),
+    }
+    KONYA_OUT_JSON.write_text(json.dumps(konya_json, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    print(f"Saved {KONYA_OUT_JSON}")
+
+    make_exposure_figure(cv_json, kp_json, konya_json, FIG_OUT)
     print(f"Saved {FIG_OUT}")
 
 
