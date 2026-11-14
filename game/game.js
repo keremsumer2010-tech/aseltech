@@ -830,9 +830,8 @@
     $('kpiRegimeSub').textContent = isVirgin ? 'Collapsing' : 'Springs back';
     $('kpiRegimeSub').style.color = isVirgin ? '#c8321f' : '#1f7a35';
 
-    $('kpiHeadM').textContent = `${d.headM.toFixed(1)} m`;
-    $('kpiHpcM').textContent = `Low: ${d.preconsolidationHeadM.toFixed(1)} m`;
-    $('kpiHpcM').style.color = isVirgin ? '#c8321f' : '';
+    $('kpiRevenue').textContent = `$${d.cumulativeRevenueMUsd.toFixed(1)}M`;
+    $('kpiRevSub').textContent = `${100 - d.controls.fallowPct}% cropped`;
 
     // Events
     if (simState.events.length > 0) {
