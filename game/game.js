@@ -1223,6 +1223,10 @@
     document.querySelectorAll('.classroom-scen-btn').forEach((b) => {
       b.classList.toggle('active', b.dataset.classroom === scenKey);
     });
+    activePreset = null;
+    if ($('classroomModal')) $('classroomModal').hidden = true;
+    if ($('startModal')) $('startModal').hidden = true;
+    if ($('endClassroomBox')) $('endClassroomBox').hidden = false;
     if ($('endClassroomScenarioTag')) {
       $('endClassroomScenarioTag').textContent = `${ui.shortLabel} · ${spec.label}`;
     }
@@ -1242,6 +1246,8 @@
     chartStart = null;
     // start from the 2026 baseline scenario (the same settings the NISAR calibration uses)
     activePreset = 'baseline';
+    document.querySelectorAll('.classroom-scen-btn').forEach((b) => b.classList.remove('active'));
+    if ($('endClassroomBox')) $('endClassroomBox').hidden = true;
     ValleyModel.setDistrictControls(simState, 'ALL', presetPatch('baseline'));
     if (keepModalHidden) $('endModal').hidden = true;
     $('eventList').innerHTML = `<div class="event-item">
@@ -1370,6 +1376,28 @@
     });
     $('paramsModal').addEventListener('click', (e) => { if (e.target === $('paramsModal')) $('paramsModal').hidden = true; });
 
+    if ($('classroomBtn')) {
+      $('classroomBtn').addEventListener('click', () => {
+        $('classroomModal').hidden = false;
+      });
+    }
+    if ($('closeClassroomBtn')) {
+      $('closeClassroomBtn').addEventListener('click', () => {
+        $('classroomModal').hidden = true;
+      });
+    }
+    if ($('classroomModal')) {
+      $('classroomModal').addEventListener('click', (e) => {
+        if (e.target === $('classroomModal')) $('classroomModal').hidden = true;
+      });
+    }
+    document.querySelectorAll('.classroom-scen-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        playTone('click');
+        runClassroomScenario(btn.dataset.classroom);
+      });
+    });
+
     let syncRafPending = false;
     const handleSlider = (key, val, labelId) => {
       activePreset = null; // a hand-set value is no longer one of the three scenarios
@@ -1392,11 +1420,12 @@
       if (e.ctrlKey || e.metaKey || e.altKey) return;
       if (e.key === 'Escape') {
         $('paramsModal').hidden = true;
+        if ($('classroomModal')) $('classroomModal').hidden = true;
         $('endModal').hidden = true;
         $('startModal').hidden = true;
         return;
       }
-      const modalOpen = !$('startModal').hidden || !$('endModal').hidden || !$('paramsModal').hidden;
+      const modalOpen = !$('startModal').hidden || !$('endModal').hidden || !$('paramsModal').hidden || ($('classroomModal') && !$('classroomModal').hidden);
       if (modalOpen) return;
 
       const tag = document.activeElement ? document.activeElement.tagName : '';

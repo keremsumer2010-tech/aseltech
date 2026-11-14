@@ -223,3 +223,11 @@ Komut: `python analysis/pc6/test_20_strategies.py --self-test`
 - **Canlı Tarayıcı Testi (`http://127.0.0.1:8766/game/test_model.html`):** **6/6 PASS**, 0 konsol hatası, 0 başarısız ağ isteği.
 - **Ana Oyun Açılışı (`http://127.0.0.1:8766/game/`):** HTTP 200, 36 ağ isteği (0 hata), 0 konsol hatası.
 - **Bulunan Hata:** Yok (`0` hata).
+
+### 8.2 Görev 2 · Sınıf Modu Kontrolü ve `lesson_plan.md` Uyumu
+- **Tarih / Saat:** `2026-11-14 19:44 TR`
+- **Tespit Edilen Eksik:** PC3'ün açık tema yeniden tasarımında (`54029c7`..`e0be89c`) `game/game.js` içinde `CLASSROOM_SCENARIOS` / `runClassroomScenario()` duruyorken `game/index.html` içindeki Classroom Mode arayüzü (`#classroomModal`, 3 tek tık senaryo, `#endClassroomBox`) kaldırılmıştı.
+- **Düzeltme (`game/index.html`, `game/game.js`, `game/style.css`):**
+  - Üst çubuğa `#classroomBtn` eklendi; tıklanınca `docs/story/lesson_plan.md` (40 dakikalık ders planı, Trial A / Trial B) ile birebir uyumlu **3 hazır senaryo** (`Normal Year`, `Multi-Year Drought · Trial A`, `Sustainable Pumping · Trial B`) ve **3 tartışma sorusu** içeren `#classroomModal` açılıyor.
+  - 24 ay sonunda `#endModal` içinde `#endClassroomBox` ve `#endClassroomScenarioTag` otomatik görüntüleniyor.
+- **Canlı Tarayıcı Doğrulaması (`http://127.0.0.1:8766/game/`):** `#classroomBtn` → `#classroomModal` (3 senaryo + 3 soru) → `Multi-Year Drought` (`[data-classroom="drought"]`) tek tıkla 24 ay koştu, `#endModal` ve `#endClassroomBox` (`Tulare Basin · Scenario 2: Multi-Year Drought`) açıldı; **0 konsol hatası, 0 ağ hatası**.

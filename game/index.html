@@ -27,6 +27,7 @@
           <button type="button" class="seg-btn preset-btn" data-preset="overpump">Over-Pump</button>
           <button type="button" class="seg-btn preset-btn" data-preset="balance">SGMA Balance</button>
         </div>
+        <button id="classroomBtn" class="btn-quiet" type="button" title="Classroom mode: 3 lesson scenarios &amp; discussion questions">Classroom</button>
         <button id="paramsBtn" class="icon-btn" type="button" title="Sources and model tests" aria-label="Sources and model tests">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5"/><path d="M8 7.5h8M8 11h6"/></svg>
         </button>
@@ -226,6 +227,18 @@
         </div>
       </div>
 
+      <div id="endClassroomBox" class="end-classroom-box" hidden>
+        <div class="end-classroom-head">
+          <strong>Classroom debrief</strong>
+          <span id="endClassroomScenarioTag" class="pill"></span>
+        </div>
+        <ol class="classroom-q-list">
+          <li><strong>Elastic vs. permanent compaction:</strong> Why does winter recharge lift the ground slightly while drawdown below <em>h<sub>pc</sub></em> locks in permanent sinking?</li>
+          <li><strong>Canal tilt (mm/km) vs. uniform sinking:</strong> Why does <code>49.12 mm/km</code> on the California Aqueduct or <code>57.01 mm/km</code> on the Tulare Canal disrupt gravity flow more than uniform sinking?</li>
+          <li><strong>12-day NISAR repeat &amp; sinkholes:</strong> How can managers in Tulare and Konya (<code>6.4&times;</code> faster sinking within 1 km of mapped sinkholes) use 12-day updates without claiming exact collapse dates?</li>
+        </ol>
+      </div>
+
       <div class="end-actions">
         <button id="copySummaryBtn" type="button" class="btn-quiet">Copy summary</button>
         <button id="closeEndBtn" type="button" class="btn-quiet">Inspect map</button>
@@ -250,6 +263,50 @@
       </div>
       <div id="paramsTableWrap" class="info-pane"></div>
       <div id="testsWrap" class="info-pane" hidden></div>
+    </div>
+  </div>
+
+  <!-- Classroom Mode (aligned with docs/story/lesson_plan.md) -->
+  <div id="classroomModal" class="modal-backdrop" hidden>
+    <div class="modal-card modal-card-wide" role="dialog" aria-modal="true" aria-labelledby="classroomTitle">
+      <div class="modal-top">
+        <div>
+          <p class="kicker">Educator Lesson Plan · 40-Minute Lab (Grades 9–12)</p>
+          <h2 id="classroomTitle">Classroom Mode</h2>
+        </div>
+        <button id="closeClassroomBtn" type="button" class="icon-btn" aria-label="Close">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+      <p class="modal-sub">Run one of the three 24-month scenarios in one click on the active valley, then use the discussion questions below with <code>docs/story/lesson_plan.md</code>.</p>
+
+      <div class="classroom-grid" role="group" aria-label="Classroom scenarios">
+        <button type="button" class="classroom-scen-btn" data-classroom="normal">
+          <span class="cs-kicker">Scenario 1</span>
+          <strong>Normal Year</strong>
+          <span class="cs-meta">Below Normal &rarr; Above Normal &middot; 100% pump &middot; 70% canal &middot; 0% fallow</span>
+        </button>
+        <button type="button" class="classroom-scen-btn" data-classroom="drought">
+          <span class="cs-kicker">Scenario 2 &middot; Lesson Plan Trial A</span>
+          <strong>Multi-Year Drought</strong>
+          <span class="cs-meta">Dry &rarr; Critical &middot; 140% pump &middot; 20% canal &middot; 0% fallow</span>
+        </button>
+        <button type="button" class="classroom-scen-btn" data-classroom="sustainable">
+          <span class="cs-kicker">Scenario 3 &middot; Lesson Plan Trial B</span>
+          <strong>Sustainable Pumping</strong>
+          <span class="cs-meta">Below Normal &rarr; Dry &middot; 55% pump &middot; 85% canal &middot; 25% fallow</span>
+        </button>
+      </div>
+
+      <details class="model-details" open>
+        <summary>3 Classroom Discussion Questions</summary>
+        <ol class="classroom-q-list">
+          <li><strong>Elastic rebound vs. permanent clay compaction:</strong> Why does winter recharge restore part of the land height while pumping below the preconsolidation head (<em>h<sub>pc</sub></em>) locks in permanent compaction?</li>
+          <li><strong>Canal tilt (mm/km) vs. total depth:</strong> Why do gradients like <code>57.01 mm/km</code> (Tulare Irrigation District Canal) and <code>49.12 mm/km</code> (California Aqueduct) disrupt gravity flow more than uniform sinking?</li>
+          <li><strong>12-day NISAR monitoring &amp; Karapınar sinkholes:</strong> How does <code>6.4&times;</code> faster sinking within 1 km of 29 mapped sinkholes guide field priorities without predicting an exact collapse date?</li>
+        </ol>
+      </details>
+      <p class="test-note">NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.</p>
     </div>
   </div>
 
