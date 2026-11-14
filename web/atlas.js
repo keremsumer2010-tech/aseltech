@@ -117,6 +117,26 @@ async function initAtlas(){
   const hashId = location.hash ? location.hash.slice(1) : '';
   const initial = regions.find(r => r.id === hashId) || regions[0];
   if (initial) selectRegion(initial.id, false);
+  renderTables(regions);
+}
+
+function renderTables(regions){
+  const rel = regions.filter(r => !r.indicative_only && (r.confidence || '').toLowerCase() !== 'low');
+  const ind = regions.filter(r => r.indicative_only || (r.confidence || '').toLowerCase() === 'low');
+  const fill = (id, rows) => {
+    const tb = document.querySelector(`#${id} tbody`);
+    if (!tb) return;
+    tb.innerHTML = rows.length ? rows.map((r, i) => {
+      const pTxt = Array.isArray(r.period) && r.period.length === 2 ? `${fmtShort(r.period[0])} – ${fmtShort(r.period[1])}` : '—';
+      return `<tr data-id="${esc(r.id)}"><td>${i + 1}</td><td><b>${esc(r.name)}</b>${r.country ? ' · ' + esc(r.country) : ''}</td><td class="mono">${esc(fmtNum(r.rate_cm_per_100d))}</td><td class="mono">${esc(fmtNum(r.max_cm_los))} cm</td><td>${esc(pTxt)}</td><td>${confBadge(r)}</td></tr>`;
+    }).join('') : '<tr><td colspan="6" class="small">None in this class.</td></tr>';
+    tb.querySelectorAll('tr[data-id]').forEach(tr => tr.addEventListener('click', () => {
+      selectRegion(tr.dataset.id, true);
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    }));
+  };
+  fill('tblReliable', rel);
+  fill('tblIndicative', ind);
 }
 
 async function selectRegion(id, fly){
