@@ -235,3 +235,33 @@ PC2 **Q07** kapsamında tam yıl Central Valley zincirini (`2025-11-24 → 2026-
 | `tehran` | 9 | 0.346 | 0.571 | 0.826 | 36.5% |
 
 - **Doğrulama:** `C:\Users\celik\AppData\Local\Programs\Python\Python312\python.exe -m pytest analysis/pc5 -q` → `22 passed in 28.62s`. Tüm 9 `meta.json` ayrıştırıldı; `isfahan`, `mexico_city`, `jakarta` `sigma_cm.png` dosyaları açılarak saydamlık ve konum hizalaması görsel olarak kontrol edildi.
+
+---
+
+## 10. Sayı Sicili (`numbers_registry.py`) Uyumsuzluk Raporu (`22:31 TR`)
+
+`analysis/pc5/numbers_registry.py` ile `web/*` ve `docs/story/*` dosyaları taranıp `data/numbers_registry.json` (`26` metrik: `21` approved, `5` preliminary, `0` rejected) ve `docs/story/numbers_registry.md` üretildi. Saptanan **14** uyumsuzluk (`dosya:satır → yazılan değer → veri dosyasındaki değer → kimin dosyası → düzeltme`):
+
+1. `docs/story/key_findings_public.md:5` → `6.2–7.8 cm` → `[-7.8, -4.7] cm` (`data/central_valley/summary.json:range_cm`) → **PC5 (Mehmet)** → Referans aralığını `4.7–7.8 cm` olarak güncelle (Mehmet onayıyla).
+2. `docs/story/global_showcase.md:27` → `-4.4 cm` (eski Mexico City havza içi referansı) → `-7.0 cm LOS` (`data/global/mexico_city/summary.json`, GB volkanik referans) → **PC10** → `-7.0 cm LOS (-5.8 cm/100 d)` ile güncelle.
+3. `docs/story/judge_faq.md:17` → `-4.4 cm` → `-7.0 cm LOS` (`data/global/mexico_city/summary.json`) → **PC4** → `-7.0 cm LOS` ile güncelle.
+4. `docs/story/judge_faq.md:53` → `-4.4 cm` → `-7.0 cm LOS` (`data/global/mexico_city/summary.json`) → **PC4** → `-7.0 cm LOS` ile güncelle.
+5. `docs/story/pitch.md:27` → `-4.4 cm` → `-7.0 cm LOS` (`data/global/mexico_city/summary.json`) → **PC4** → `-7.0 cm LOS` ile güncelle.
+6. `docs/story/presentation_cues.md:16` → `-4.4 cm` → `-7.0 cm LOS` (`data/global/mexico_city/summary.json`) → **PC4** → `-7.0 cm LOS` ile güncelle.
+7. `docs/story/presentation_cues.md:100` → `-4.4 cm` → `-7.0 cm LOS` (`data/global/mexico_city/summary.json`) → **PC4** → `-7.0 cm LOS` ile güncelle.
+8. `docs/story/presentation_cues.md:115` → `-4.4 cm` → `-7.0 cm LOS` (`data/global/mexico_city/summary.json`) → **PC4** → `-7.0 cm LOS` ile güncelle.
+9. `docs/story/rehearsal_checklist.md:16` → `-4.4 cm` → `-7.0 cm LOS` (`data/global/mexico_city/summary.json`) → **PC4** → `-7.0 cm LOS` ile güncelle.
+10. `docs/story/slides_notes.md:54` → `-4.4 cm` → `-7.0 cm LOS` (`data/global/mexico_city/summary.json`) → **PC4** → `-7.0 cm LOS` ile güncelle.
+11. `docs/story/slides_notes.md:68` → `-4.4 cm` → `-7.0 cm LOS` (`data/global/mexico_city/summary.json`) → **PC4** → `-7.0 cm LOS` ile güncelle.
+12. `docs/story/submission_form.md:73` → `-4.4 cm` → `-7.0 cm LOS` (`data/global/mexico_city/summary.json`) → **PC8 / PC4** → `-7.0 cm LOS` ile güncelle.
+13. `docs/story/technical_note.md:77` → `-4.4 cm` → `-7.0 cm LOS` (`data/global/mexico_city/summary.json`) → **PC4** → `-7.0 cm LOS` ile güncelle.
+14. `docs/story/slides.html:429` → `-4.4 cm` → `-7.0 cm LOS` (`data/global/mexico_city/summary.json`) → **PC4** → `-7.0 cm LOS` ile güncelle.
+
+---
+
+## 11. Tespit Edilebilirlik (`detectability.py`) & Yeni Atlas Kararları (`bangkok`, `rafsanjan`)
+
+- **Minimum Tespit Edilebilir Hız (`data/global/detectability.json`, `docs/story/detectability.md`, `docs/story/media/pc5_detectability.png`):**
+  - 11 atlas bölgesinde Cramér–Rao `2-sigma` formal faz gürültüsü eşiği medyan **`0.578 cm/100 d`** (aralık `0.544–0.615 cm/100 d`). 11 bölgenin tamamı `detectable = true` (`SNR = 3.7–28.9`). Atmosferik gürültü hariçtir; saha ölçeğinde ampirik `3-sigma` eşiği `data/uk_clay/detection.json` ile **`3.62 cm`**'dir.
+- **`rafsanjan` (`data/global/rafsanjan/uncertainty/`, `validation_note.json`):** `9` çift, medyan `σ = 0.330 cm`, `%84.9` geçerli piksel, `SNR = 17.6`, `-5.8 cm` LOS (`-7.4 cm` dikey *est.*, `~22.5 cm/yr` yıllık *est.*) — Motagh et al. (`15–30+ cm/yr`) ile uyumlu → **`reliable` (`medium` confidence, basına onaylı)**.
+- **`bangkok` (`data/global/bangkok/uncertainty/`, `validation_note.json`):** `8` çift, medyan `σ = 0.327 cm`, `%34.6` geçerli piksel, `SNR = 22.9`, `-7.5 cm` LOS (`-9.0 cm` dikey *est.*). Modern Phien-wej et al. / Aobpaet et al. hızlarının (`1–3 cm/yr`) 7–10× üzerinde (muson troposferik gecikmesi + `n_ref=2`) → **`indicative` (`low` confidence, basından hariç)**.

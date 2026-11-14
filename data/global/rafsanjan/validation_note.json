@@ -1,0 +1,39 @@
+{
+  "id": "rafsanjan",
+  "name": "Rafsanjan",
+  "data_path": "data/global/rafsanjan/",
+  "atlas_los_cm": -5.8,
+  "atlas_vertical_cm_est": -7.4,
+  "atlas_period": [
+    "2026-06-23",
+    "2026-10-21"
+  ],
+  "n_days": 120,
+  "rate_cm_per_100d_los": -4.83,
+  "rate_cm_per_yr_est_los": -10.7,
+  "valid_fraction": 0.849,
+  "ref_range_cm": [
+    -5.8,
+    -3.5
+  ],
+  "ref_sensitivity_ratio": 0.4,
+  "sigma_median_cm": 0.33,
+  "snr": 17.6,
+  "detectable": true,
+  "literature_vertical_cm_per_yr": "15 to 30+ (localized hotspots up to 37) across Rafsanjan Plain",
+  "literature_sources": [
+    "Motagh, M. et al. (2008, 2017) & Haghighi & Motagh (2024), Sentinel-1/Envisat InSAR across Iran",
+    "Mousavi, S.M. et al. (2001), GPS land subsidence monitoring in Rafsanjan Plain"
+  ],
+  "agreement_note": "120-day vertical estimate (-7.4 cm, ~22.5 cm/yr annualized) sits squarely inside the published 15-30+ cm/yr Rafsanjan Plain InSAR range. High spatial coherence (84.9% valid pixels), SNR=17.6, and external northern margin reference (56.236E, 30.646N) support reliable detection; ref_spread/peak=0.40 places confidence at medium.",
+  "recommended_confidence": "medium",
+  "atlas_decision": "reliable",
+  "press_summary_approved": true,
+  "press_summary_gate_note": "Approved for press/atlas ranking as provisional 120-day estimate (84.9% valid pixels, consistent with 15-30+ cm/yr literature).",
+  "first_nisar_measurement": {
+    "city_measured_by_nisar_before": false,
+    "evidence": "No peer-reviewed or official NASA/ISRO NISAR subsidence publication found for Rafsanjan as of 2026-11-14."
+  },
+  "quality": "provisional",
+  "quality_note": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team."
+}

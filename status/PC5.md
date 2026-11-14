@@ -1,8 +1,17 @@
 # PC5 Durum Raporu
 
-- **Durum:** çalışıyor — Chief Scientist paketi (§1 Sayı Sicili `numbers_registry.py`, §2 `detectability.py`, §3 `bangkok` & `rafsanjan` belirsizlik + bilimsel karar)
+- **Durum:** bitti — Chief Scientist paketi (§1 Sayı Sicili, §2 Detectability, §3 `bangkok` & `rafsanjan` belirsizlik + karar) tamamlandı; Pazar 19:00 `SCIENCE_SIGNOFF.md` ve saatlik döngü için hazır.
 - **Kimlik:** M3hmeT1888 · Antigravity (Gemini) · PC5
-- **Güncelleme:** 2026-11-14 22:25 TR
+- **Güncelleme:** 2026-11-14 22:32 TR
+
+## Chief Scientist Paketi (§1–§3, `22:32 TR`)
+- **§1 Sayı Sicili (`numbers_registry.py`, `test_numbers_registry.py`):** `data/numbers_registry.json` (`26` metrik: `21` approved, `5` preliminary, `0` rejected) ve `docs/story/numbers_registry.md` üretildi; `docs/qa/PC5.md` §10'a **14** uyumsuzluk (1× `key_findings_public.md:5` CV referans aralığı `6.2`→`4.7`, 13× Mexico City eski `-4.4 cm`→`-7.0 cm`) yazıldı.
+- **§2 Tespit Edilebilirlik (`detectability.py`, `test_detectability.py`):** `data/global/detectability.json`, `docs/story/detectability.md`, `docs/story/media/pc5_detectability.png` üretildi. 11 atlas bölgesinde `2-sigma` formal faz gürültüsü eşiği medyan **`0.578 cm/100 d`** (`0.544–0.615 cm/100 d`), `11/11` `detectable = true` (`SNR = 3.7–28.9`; UK London Clay ampirik `3-sigma` eşiği `3.62 cm`).
+- **§3 Yeni Atlas Şehirleri (`bangkok`, `rafsanjan`):** `uncertainty/{sigma_cm.png,meta.json}` + `validation_note.json` + `docs/story/atlas_validation.md` güncellendi:
+  - `rafsanjan`: `9` çift, `σ = 0.330 cm`, `%84.9` geçerli, `-5.8 cm` LOS (`-7.4 cm` dikey *est.*), Motagh et al. (`15–30+ cm/yr`) ile uyumlu → **`reliable` (`medium`)**.
+  - `bangkok`: `8` çift, `σ = 0.327 cm`, `%34.6` geçerli, `-7.5 cm` LOS, modern literatürün (`1–3 cm/yr`) 7–10× üzerinde → **`indicative` (`low`)**.
+- **Doğrulama:** `C:\Users\celik\AppData\Local\Programs\Python\Python312\python.exe -m pytest analysis/pc5 -q` → **`26 passed`**; `pc5_detectability.png`, `bangkok/uncertainty/sigma_cm.png`, `rafsanjan/uncertainty/sigma_cm.png` açılarak kontrol edildi.
+- **AI:** Gemini → `analysis/pc5/{numbers_registry.py,detectability.py,test_*.py}`, `data/numbers_registry.json`, `data/global/{detectability.json,bangkok/,rafsanjan/}`, `docs/story/{numbers_registry.md,detectability.md,atlas_validation.md,media/pc5_detectability.png}`, `docs/qa/PC5.md` §10–§11
 
 ## Atlas §3 — 9 Atlas Bölgesi Belirsizlik Haritaları (`22:13 TR`)
 - `analysis/pc5/uncertainty_map.py` (`--meta-file` desteği eklendi) çalıştırılarak mevcut 9 atlas bölgesinin tamamı için `data/global/<şehir>/uncertainty/{sigma_cm.png,meta.json}` üretildi (`L = 208`, `coh >= 0.3`, `quality: "provisional"`):
