@@ -70,8 +70,9 @@
 - **Memir Clicks (`Tab 1` `#play` -> `Tab 3: game/index.html` + `Tab 4: web3d/index.html`):**
   1. In `#play`, click **`#gamePlay` (`"▶ Play the simulator"`)** or switch to pre-loaded **`Tab 3` (`game/index.html`)** via **`#gameOpen` (`"Open full screen ↗"`)**.
   2. Click preset **`2. Multi-Year Drought`** in **Classroom Mode**, step forward across the 24-month horizon against the 2026 NISAR dashed benchmark, then switch for `5–8 s` to **`Tab 4` (`web3d/index.html`)** via **`#view3d` (`"3D view of the sinking ground ↗"`)** and toggle Karapınar `29` sinkholes + breathing loop.
+  3. In `Tab 4` (or the atlas 3D view), toggle **`NISAR 3D Orbit`** showing real CelesTrak TLE orbit propagation via SGP4, left-looking `33°–47°` swath geometry, and live next-pass calculation.
 - **Kerem Says:**
-  > Maps diagnose past pumping; our Valley Under Pressure simulator matches NISAR's 2026 Terra Bella summer rate so growers, students, and water boards can test two-year pumping decisions live. Pulling water levels below the historical preconsolidation low permanently crushes clay in the 24-month chart and Three.js 3D bowl, showing storage capacity that never returns even when wet winters come back.
+  > Maps diagnose past pumping; our Valley Under Pressure simulator matches NISAR's 2026 Terra Bella summer rate so growers, students, and water boards can test two-year pumping decisions live. Pulling water levels below the historical preconsolidation low permanently crushes clay in the 24-month chart and Three.js 3D bowl, showing storage capacity that never returns even when wet winters come back. Furthermore, our 3D orbit viewer pairs real CelesTrak TLE propagation with NISAR's left-looking 33-to-47-degree radar swath, computing the exact countdown to the next 12-day pass over every monitored city.
 - **Offline Fallback Cue (`Tab 5`):** `Slide 6` (`docs/story/slides.html`).
 
 ### Block 6 (`2:30 – 3:00`) · Five User Groups, Future NISAR Applications & Mandatory Attribution Close
