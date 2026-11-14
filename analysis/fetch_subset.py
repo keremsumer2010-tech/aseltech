@@ -15,7 +15,7 @@ import numpy as np
 from shapely.geometry import box
 
 sys.path.insert(0, str(Path(__file__).parent))
-from gunw_io import BBOX, subset  # noqa: E402
+from gunw_io import BBOX, dates_from_name, quality_for, subset  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -31,7 +31,10 @@ def main(site, path, frame, ref_height_m=None):
             continue
         if "_P05023_" not in n:
             continue
-        key = n.split("_SH_")[1][:8] + "_" + n.split("_SH_")[1][34:42]
+        d1, d2 = dates_from_name(n)
+        if quality_for(d1, d2, "P05023") != "provisional":
+            continue
+        key = f"{d1}_{d2}"
         todo[key] = max(todo.get(key, ""), n)  # keep highest product counter (J_00x)
     out_dir = ROOT / "analysis" / "out" / "subset" / site
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -40,8 +43,7 @@ def main(site, path, frame, ref_height_m=None):
     netrc = Path.home() / ("_netrc" if (Path.home() / "_netrc").exists() else ".netrc")
     for key in sorted(todo):
         n = todo[key]
-        t1, t2 = key.split("_")
-        dst = out_dir / f"{t1[:4]}-{t1[4:6]}-{t1[6:]}_{t2[:4]}-{t2[4:6]}-{t2[6:]}.npz"
+        dst = out_dir / f"{key}.npz"
         if dst.exists():
             print("skip", dst.name, flush=True)
             continue

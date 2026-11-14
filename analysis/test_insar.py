@@ -2,7 +2,7 @@ import numpy as np
 import pytest
 
 from insar import (
-    choose_reference, coh_to_float, los_to_vertical, mask_coherence, mask_components, pair_to_cm,
+    choose_reference, coh_to_float, cycle_outliers, deramp, remove_islands, los_to_vertical, mask_coherence, mask_components, pair_to_cm,
     phase_to_cm, reference, wavelength_from_frequency,
 )
 
@@ -75,6 +75,35 @@ def test_choose_reference_picks_most_coherent_valid_window():
     excl[:] = True
     with pytest.raises(ValueError):
         choose_reference(coh, None, exclude=excl)
+
+
+def test_cycle_outliers():
+    a = np.full((27, 27), -2.0, np.float32)
+    a[10:13, 4] = -2.0 - 12.1  # one-cycle jump strip
+    a[20, 20] = -3.0           # small real deviation stays
+    out = cycle_outliers(a, thr_cm=6.0, block=9)
+    assert np.isnan(out[11, 4]) and out[20, 20] == -3.0 and out[0, 0] == -2.0
+
+
+def test_remove_islands():
+    a = np.full((30, 30), np.nan, np.float32)
+    a[0:20, 0:20] = 1.0      # big region (400 px) stays
+    a[25:27, 25:27] = -10.0  # 4-px island goes
+    out = remove_islands(a, min_px=50)
+    assert np.isfinite(out[5, 5]) and np.isnan(out[25, 25])
+
+
+def test_deramp_removes_plane_keeps_local_bowl():
+    yy, xx = np.mgrid[0:100, 0:120].astype(np.float32)
+    bowl = -4.0 * np.exp(-((yy - 50) ** 2 + (xx - 60) ** 2) / 50.0)
+    ramp = 0.05 * xx - 0.03 * yy + 2.0
+    a = bowl + ramp
+    a[0:5, 0:5] = np.nan
+    out = deramp(a, order=1, step=1)
+    # after deramp, bowl depth relative to surroundings is preserved
+    assert (np.nanmedian(out[:, :20]) - out[50, 60]) == pytest.approx(4.0, abs=0.1)
+    assert abs(np.nanmedian(out[:, :20]) - np.nanmedian(out[:, -20:])) < 0.05
+    assert np.isnan(out[0, 0])
 
 
 def test_pair_chain_synthetic_bowl():

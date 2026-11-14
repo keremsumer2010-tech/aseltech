@@ -28,10 +28,11 @@ from scipy.ndimage import median_filter, minimum_filter
 
 sys.path.insert(0, str(Path(__file__).parent))
 from gunw_io import BBOX  # noqa: E402
-from insar import choose_reference, mask_coherence, mask_components, phase_to_cm, reference  # noqa: E402
+from insar import choose_reference, cycle_outliers, deramp, remove_islands, mask_coherence, mask_components, phase_to_cm, reference  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 RADIUS = 3
+ISLAND_MIN_PX = 200  # 200 px * 80 m * 80 m = 1.28 km^2
 PAIR_OUTLIER_CM = 15.0  # |per-pair LOS| above this in a 12-24 day pair = unwrapping error (documented)
 CMAP = "RdBu"
 DISCLAIMER = ("NISAR data are provisional. Calibration and validation are carried out by the NISAR project "
@@ -151,6 +152,9 @@ def main():
     ap.add_argument("site")
     ap.add_argument("--thr", type=float, default=0.3)
     ap.add_argument("--no-names", action="store_true")
+    ap.add_argument("--deramp", type=int, default=1, choices=[0, 1, 2],
+                    help="per-pair ramp removal: 0 none, 1 plane (default), 2 quadratic")
+    ap.add_argument("--no-ion", dest="ion", action="store_false", help="do not subtract the product ionosphere screen")
     a = ap.parse_args()
     site, bbox = a.site, BBOX[a.site]
     src, files = load_pairs(site)
@@ -165,12 +169,25 @@ def main():
     for d1, d2, f, d in used:
         if d["unw"].shape != d0["unw"].shape or not np.allclose(d["x"], x) or not np.allclose(d["y"], y):
             raise SystemExit(f"grid mismatch in {f.name}; BLOCKED (pairs must share one grid)")
-        cm = phase_to_cm(d["unw"], float(d["wavelength"]))
+        unw = d["unw"]
+        ion_used = a.ion and "ion" in d and d["ion"].shape == unw.shape
+        if ion_used:
+            # Product ionosphere phase screen (shipped in GUNW, not applied by default:
+            # https://nisar-docs.asf.alaska.edu/gunw). Subtracting it lowered the scatter in every
+            # pair we tested (status/PC3.md), which also confirms the sign.
+            unw = unw - d["ion"]
+        cm = phase_to_cm(unw, float(d["wavelength"]))
         if "conncomp" in d and d["conncomp"].size:
             cm = mask_components(cm, d["conncomp"])
         cm = mask_coherence(cm, d["coh"], a.thr)
+        cm = remove_islands(cm, ISLAND_MIN_PX)
+        if a.deramp:
+            cm = deramp(cm, order=a.deramp)
+        n_before = int(np.isfinite(cm).sum())
+        cm = cycle_outliers(cm, thr_cm=float(d["wavelength"]) / 4 * 100)
+        cycle_px = n_before - int(np.isfinite(cm).sum())
         pair_cm.append(cm)
-        stats.append({"pair": [d1, d2], "lambda_m": float(d["wavelength"]),
+        stats.append({"pair": [d1, d2], "lambda_m": float(d["wavelength"]), "ionosphere_applied": bool(ion_used), "cycle_outlier_px": cycle_px,
                       "valid_frac_after_masks": float(np.isfinite(cm).mean())})
 
     valid_all = np.logical_and.reduce([np.isfinite(c) for c in pair_cm])
@@ -233,9 +250,17 @@ def main():
         "granules": granules,
         "notes": (f"Cumulative LOS displacement relative to {dates[0]}, sum of {len(used)} consecutive pairs ({pairs_txt}). "
                   f"Phase to cm with -lambda/(4*pi), lambda from each file's centerFrequency. Masks: coherence >= {a.thr}, "
-                  f"connectedComponents != 0, |pair| > {PAIR_OUTLIER_CM} cm removed; pixel shown only if valid in every pair. "
-                  f"All pairs referenced to the same window at {lon_r:.4f}E {lat_r:.4f}N. Ionosphere, troposphere and solid-earth-tide "
-                  "layers shipped in the product were NOT applied (product default). " + " ".join(notes)),
+                  f"connectedComponents != 0, isolated patches < {ISLAND_MIN_PX} px (1.3 km2) removed (unwrapping-error guard), pixels deviating > lambda/4 (half a phase cycle) from their 720 m "
+                  f"tile median removed, "
+                  f"|pair| > {PAIR_OUTLIER_CM} cm removed; pixel shown only if valid in every pair. "
+                  f"All pairs referenced to the same window at {lon_r:.4f}E {lat_r:.4f}N. "
+                  + ("The ionosphere phase screen shipped in each GUNW was subtracted. " if a.ion else
+                     "The ionosphere phase screen was NOT applied. ")
+                  + ({1: "A best-fit plane was removed from each pair (long-wavelength atmospheric residual; this can also "
+                         "remove part of any valley-wide tilt). ",
+                      2: "A best-fit quadratic surface was removed from each pair. "}.get(a.deramp, ""))
+                  + "Troposphere and solid-earth-tide layers were NOT applied; residual atmospheric noise of a few cm "
+                  "per pair is expected. " + " ".join(notes)),
         "reference_point": {"lon": round(lon_r, 5), "lat": round(lat_r, 5)},
         "quality": "provisional",
         "quality_note": DISCLAIMER,

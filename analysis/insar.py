@@ -84,6 +84,66 @@ def los_to_vertical(cm, incidence_deg):
     return (np.asarray(cm, dtype=np.float32) / np.cos(np.deg2rad(incidence_deg))).astype(np.float32)
 
 
+def remove_islands(arr, min_px: int = 200):
+    """NaN out valid regions (8-connected) smaller than min_px. Small isolated patches surrounded by
+    masked pixels are where unwrapping cycle errors (+-2pi = lambda/2) survive the coherence mask."""
+    from scipy.ndimage import label
+    a = np.array(arr, dtype=np.float32, copy=True)
+    lab, n = label(np.isfinite(a), structure=np.ones((3, 3), bool))
+    if n == 0:
+        return a
+    sizes = np.bincount(lab.ravel())
+    small = sizes < min_px
+    small[0] = False
+    a[small[lab]] = np.nan
+    return a
+
+
+def cycle_outliers(arr, thr_cm: float, block: int = 9):
+    """NaN pixels deviating more than thr_cm from the NaN-median of their block x block tile.
+
+    Use thr_cm = lambda/4 in cm (half an unwrapping cycle): a pixel that jumped by a full 2*pi
+    (lambda/2) relative to its 720 m neighbourhood is an unwrapping error, not ground motion
+    in a 12-24 day pair.
+    """
+    a = np.array(arr, dtype=np.float32, copy=True)
+    H, W = a.shape
+    Hp, Wp = -(-H // block) * block, -(-W // block) * block
+    pad = np.full((Hp, Wp), np.nan, np.float32)
+    pad[:H, :W] = a
+    tiles = pad.reshape(Hp // block, block, Wp // block, block)
+    import warnings
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore", RuntimeWarning)
+        med = np.nanmedian(tiles, axis=(1, 3))
+    full = np.repeat(np.repeat(med, block, 0), block, 1)[:H, :W]
+    a[np.abs(a - full) > thr_cm] = np.nan
+    return a
+
+
+def deramp(arr, order: int = 1, step: int = 4):
+    """Remove a best-fit plane (order=1) or quadratic surface (order=2) fitted to finite pixels.
+
+    Standard InSAR step for long-wavelength residuals (orbit/atmosphere), as MintPy's `deramp`
+    (https://github.com/insarlab/MintPy/blob/main/src/mintpy/objects/ramp.py). It can also remove part of a
+    genuine scene-wide signal; callers must document its use. Fitting uses every `step`-th pixel for speed.
+    """
+    a = np.asarray(arr, dtype=np.float32)
+    H, W = a.shape
+    yy, xx = np.mgrid[0:H, 0:W].astype(np.float64)
+    yy /= H
+    xx /= W
+    cols = [np.ones_like(xx), xx, yy] + ([xx * xx, yy * yy, xx * yy] if order == 2 else [])
+    G = np.stack([c.ravel() for c in cols], axis=1)
+    sub = np.zeros((H, W), bool)
+    sub[::step, ::step] = True
+    ok = (np.isfinite(a) & sub).ravel()
+    if ok.sum() < G.shape[1] * 10:
+        raise ValueError("too few valid pixels to fit a ramp")
+    coef, *_ = np.linalg.lstsq(G[ok], a.ravel()[ok].astype(np.float64), rcond=None)
+    return (a - (G @ coef).reshape(H, W)).astype(np.float32)
+
+
 def choose_reference(coh, valid=None, radius: int = 3, stride: int = 5, exclude=None):
     """Pick the (row, col) whose (2r+1)^2 window is fully valid and has the highest mean coherence.
 
