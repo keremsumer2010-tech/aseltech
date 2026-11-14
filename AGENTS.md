@@ -6,6 +6,7 @@ Which worker are you? Ask the human if unsure.
 - Antigravity on **memir-erdogmus**'s computer = **PC2** → task `tasks/PC2.md`, status `status/PC2.md`.
 - Antigravity on **M3hmeT1888**'s computer = **PC5** → task `tasks/PC5.md`, status `status/PC5.md`.
   (M3hmeT1888's Claude Code is PC3 and works in a DIFFERENT clone folder; never touch `analysis/`.)
+- Antigravity on **acikgozibrahim032-hub**'s computer = **PC4** → task `tasks/PC4.md`, status `status/PC4.md`.
 
 - Start: `git pull` → read `CLAUDE.md`, `docs/TODAY_PLAN.md`, your task file → do the task → update your status file → `git pull --rebase` → commit `[PCx] ...` → push.
 - Only write inside the folders listed in your task file. Commit only your own files (`git add <paths>`, never `git add -A`).
