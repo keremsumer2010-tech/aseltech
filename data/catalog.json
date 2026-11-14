@@ -1,0 +1,59 @@
+[
+  {
+    "site": "central_valley",
+    "title": "San Joaquin / Central Valley, California",
+    "quality": "provisional",
+    "quality_note": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.",
+    "period": [
+      "2026-06-28",
+      "2026-10-14"
+    ],
+    "path": "data/central_valley/",
+    "layers": [
+      {
+        "id": "disp",
+        "title": "Cumulative LOS Displacement",
+        "kind": "raster_series",
+        "file": "data/central_valley/meta.json",
+        "quality": "provisional"
+      },
+      {
+        "id": "points",
+        "title": "Key Point Time Series",
+        "kind": "points",
+        "file": "data/central_valley/points.json",
+        "quality": "provisional"
+      },
+      {
+        "id": "validation",
+        "title": "Continuous GNSS Vertical Validation",
+        "kind": "validation",
+        "file": "data/central_valley/validation.json",
+        "quality": "provisional"
+      },
+      {
+        "id": "assets",
+        "title": "Canal, Rail & Highway Differential Risk (Top 10)",
+        "kind": "geojson",
+        "file": "data/central_valley/assets.json",
+        "quality": "provisional"
+      }
+    ]
+  },
+  {
+    "site": "karapinar",
+    "title": "Karapinar / Konya Basin, Turkiye",
+    "quality": "pending",
+    "quality_note": "Karapinar GUNW cumulative rasters and sourced sinkhole catalog are in preparation (Q01/Q02).",
+    "path": "data/karapinar/",
+    "layers": []
+  },
+  {
+    "site": "uk",
+    "title": "The Fens / Cambridgeshire, UK",
+    "quality": "pending",
+    "quality_note": "Optical cloud vs. NISAR radar quick-look pair is in preparation.",
+    "path": "data/uk/",
+    "layers": []
+  }
+]

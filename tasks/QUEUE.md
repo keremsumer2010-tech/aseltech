@@ -20,12 +20,15 @@ Saatler: `docs/ZAMAN_CIZELGESI.md`. "[atandı: PCx]" işi sadece o PC alır; ata
 ## 14:00 EK İŞLER (Mehmet'in ajanları boş kalmasın — sırayla)
 - [ ] Q21 · [atandı: PC3] · İKİNCİ GEÇİŞLE DOĞRULAMA: Central Valley GUNW **path 114** provisional ardışık çiftleri (kendi fetch_subset ile) → kümülatif → path 34 sonucuyla aynı noktalarda karşılaştır (fark, korelasyon) → `data/central_valley_p114/` + `docs/qa/PC3.md`. İki bağımsız geometri aynı çökmeyi gösteriyorsa en güçlü kanıtımız bu · analysis/, data/central_valley_p114/
 - [ ] Q22 · [atandı: PC3] · Q21 yükselen/alçalan geçişse: iki LOS'tan dikey + doğu-batı ayrıştırması (ortak tarih aralığında) → `data/central_valley/vertical.json` + 1 PNG · analysis/
-- [ ] Q23 · [atandı: PC6] · (PC4 sessiz) UK bulut/radar görsel çifti — tasks/PC4.md Görev 1'in aynısı → `data/uk/` · data/uk/
-- [ ] Q24 · [atandı: PC6] · (PC4 sessiz) Karapınar obruk noktaları, her biri kaynaklı — tasks/PC4.md Görev 2 → `data/karapinar/sinkholes.geojson` · data/karapinar/sinkholes.geojson
-- [ ] Q25 · [atandı: PC6] · (PC4 sessiz) Kaynak listesi + Holme Fen rakamı + kalibrasyon notu — tasks/PC4.md Görev 3 → `docs/story/` · docs/story/sources.md, docs/story/calibration_note.md
+- [x PC4] Q23 · UK bulut/radar çifti — PC4 13:12'de yaptı (`data/uk/`)
+- [x PC4] Q24 · Karapınar 29 kaynaklı obruk — PC4 yaptı
+- [x PC4] Q25 · Kaynaklar + kalibrasyon notu — PC4 yaptı
 - [ ] Q26 · [atandı: PC5] · Nokta bazında zaman serisi kalitesi: `points.json` her nokta için doğrusal uyum, artık std, en büyük sıçrama (unwrapping şüphesi) → `docs/qa/PC5.md` tablo · analysis/decomp/
 - [ ] Q27 · [atandı: PC5] · GNSS doğrulama sonucunun (`data/central_valley/validation.json`) istatistiksel yorumu: RMSE, korelasyon, eğilim farkı; 3 cümle İngilizce → `docs/story/uncertainty.md` · docs/story/uncertainty.md
-Not: PC4 başlarsa Q23–Q25 satırını ÖNCE sahiplenen yapar (satır kuralı).
+- [ ] Q28 · [atandı: PC6] · Karapınar risk: obruk noktaları (`sinkholes.geojson`) ile PC3 çökme haritası (`data/karapinar/`) ilişkisi — obruk çevresi 1/2/5 km halkalarda ortalama çökme vs bölge geneli; OSM yol/kanal hatlarının obruklara uzaklığı → `data/karapinar/assets.json` + `docs/qa/PC6.md` özet · risk/, data/karapinar/assets.json
+- [ ] Q29 · [atandı: PC6] · `game/index.html` (PC6'nın Q19 oyunu) — PC1 geri yükledi; telefonda test, `data/central_valley/summary.json` hızını okuyor mu kontrol, küçük hata düzelt (sadece game/) · game/
+- [ ] Q30 · [atandı: PC4] · `docs/story/pitch.md` ile `project_page.md` sayılarını `data/*/summary.json` ile eşle (CV −7.8 cm LOS / ~−10 cm dikey, Karapınar −5.9 cm LOS); tutarsızlık varsa düzelt · docs/story/
+- [ ] Q31 · [atandı: PC4] · Holme Fen kartı için tek cümle İngilizce metin + kaynak linki → `docs/story/holme_fen.md` (PC1 siteye koyacak) · docs/story/holme_fen.md
 
 ## Öncelik 2 — Pazar katkıları
 - [ ] Q07 · [atandı: PC2] · Central Valley tam yıl zinciri (2025-11-24→2026-10-14, P05023) indir/kes → `pipeline/subset/central_valley_beta/` (beta-precal ayrı!) · E · pipeline/
