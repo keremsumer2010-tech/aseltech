@@ -324,3 +324,22 @@
 - **C01 (Atlas Sayfası):** `web/atlas.html`, `web/atlas.js`, `web/atlas.css` oluşturuldu ve `.github/workflows/pages.yml` içine `docs/bulletins` kopyası eklendi. Sabit `maplibre-gl@5.3.0` küre projeksiyonu (2D yedekli), `../data/global/atlas.json` noktaları (`rate_cm_per_100d` renk/sıra), güven rozeti (`low` → `indicative only`), tıklanınca yan panelde dönem, çift sayısı, geçerli piksel oranı, referans aralığı, `meta.json` kaynak bilgisi, son tarih `disp/*.png` haritası ve mevcutsa `docs/bulletins/<id>.html` bağlantısı eklendi; `null`/`NaN` alanlara karşı korumalı. Test: `http://127.0.0.1:8766/web/atlas.html` üzerinde headless Chrome (`375x812` ve `1280x800`) 0 JS hatası, `Konya Plain`, `indicative only` rozetleri ve `Open bulletin` bağlantısı doğrulandı.
 - **C02 (Atlas Sıralama Tabloları):** `web/atlas.html`, `web/atlas.js` (`renderTables()`) ve `web/atlas.css` içine `"Fastest-sinking places in our 2026 NISAR atlas"` bölümü eklendi: `Reliable measurements` (`6` bölge) ve `Indicative only (low confidence)` (`5` bölge) olmak üzere iki ayrı tablo, `cm/100d, LOS` hızı, dönem, `LOS` ve `provisional` kalibrasyon uyarısı ile; satıra tıklanınca kürede o bölgeyi seçip yukarı kaydırıyor. Test: `http://127.0.0.1:8766/web/atlas.html` üzerinde headless Chrome (`375x812` ve `1280x800`) 0 JS hatası, her iki tablonun eksiksiz dolduğu doğrulandı.
 - **C04 (Atlas Sayfası QA Testi):** `web/atlas.html#isfahan`, `#jakarta` ve `#konya_plain` üzerinde `375x812` (telefon) ve `1440x900` (dizüstü) headless Chrome testi yapıldı. Boş `country` (`Isfahan`) için görülen `<h2>Isfahan ()</h2>` ve liste alt satırındaki baştaki `·` ile `null` alanlarda görülen `— cm` birimli gösterimi `web/atlas.js` içinde `fmtUnit()` ve koşullu `country` biçimlendirmesiyle düzeltildi. Yeniden testte: `375x812` ve `1440x900` görünümlerinde `0` JS/konsol hatası, `0` `NaN` çıktısı doğrulandı.
+
+---
+
+## 19. ATLAS FİNAL Kayıtları (`tasks/PC8.md` Paz 00:20, PC1)
+
+- **Madde 1 (`data/global/exposure_atlas.json`, `docs/story/exposure.md` §6):**
+  - JRC `GHSL GHS-POP E2025 R2023A 4326_3ss` (100 m, açık erişim) karoları `raw/ghsl/` altına indirilip (`git`'e eklenmeden) `data/global/atlas.json` içindeki tüm **13 bölge** için ortak geçerli InSAR kümülatif LOS yer değiştirmesi (`pipeline/subset/*` ve `analysis/out/*_cum.npz`, `108` güne ölçeklenmiş) ile kesiştirildi.
+  - `data/global/detectability.json` içindeki şehir bazlı `2 * sigma` gürültü tabanı (`0.588`–`0.728 cm`; Mashhad için Cramér-Rao `0.634 cm`) altındaki pikseller sayılmadı.
+  - Yuvalanmış `karapinar` alt kümesi çift sayımı önlemek için küresel toplamlardan hariç tutuldu: `474.26 km²` (`< -5 cm / 108 gün`), `1,434,355` kişi (`< -5 cm / 108 gün`), `7,151,872` kişi (`< -2 cm / 108 gün`). Yöntem `docs/story/exposure.md` §6 altına yazıldı. Commit: `b11db53`.
+- **Madde 2 (`data/global/vital_signs.json`):**
+  - `cities_measured: 13`, `fastest: {id: "konya_plain", rate_cm_per_100d: -8.9}`, `area_km2_lt_minus5cm: 474.26`, `people_on_sinking_ground: 1434355` (her alan kaynak etiketli, `quality: "provisional"`). Commit: `b11db53`.
+- **Madde 3 (`tools/bulletin.py` v2.0 → `docs/bulletins/*.html`):**
+  - NASA Disasters Program harita paketi düzenine yükseltildi: üst meta blok (`Product ID: NP-<CITY>-2026-001`, UTC yayın zamanı, veri penceresi, sensör `NISAR L-band GUNW, provisional`, kalite sınıfı, güven rozeti, `v2.0`), en çok çöken ilk 3 bölge (`1 km` blok medyanı), GHSL etkilenen nüfus, altyapı (`O2` / `assets.json`) ve 3 maddelik `"What This Means"` özeti, alt kalibrasyon uyarısı ve A4 yazdırma CSS'i (`@page { size: A4 portrait; margin: 12mm; }`).
+  - Tüm **13 bölge bülteni + `index.html`** (`14` HTML) yeniden üretildi; bağlantı/görsel taraması: `0` kırık bağlantı. Commit: `b8854a1`.
+- **Madde 4 (`docs/story/submission_form.md`):**
+  - 13 bölgelik küresel atlas, GHSL maruziyet sayıları (`474.26 km²`, `1,434,355` kişi) ve `Bulletin v2.0` özeti §5 madde 4 ve madde 7 içine eklendi (sade İngilizce, `REVIEW_1500.md` uyumlu).
+- **Madde 5 (Doğrulama):**
+  - `python -m pytest -q`: **`83 passed, 1 warning in 26.34s`**.
+  - `docs/bulletins/*.html` (`14` HTML): **`0` kırık link**.
