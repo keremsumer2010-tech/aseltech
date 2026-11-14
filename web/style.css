@@ -136,6 +136,6 @@ table.mini tr{cursor:pointer}table.mini tr.sel td{background:rgba(79,182,255,.08
   .hero-caption{left:16px;right:16px;text-align:left}
   .foot{flex-direction:column}
   .map-legend{width:170px;bottom:22px}
-  .site-nav{gap:14px;max-width:62vw}
+  .site-nav{gap:14px;max-width:60vw}.site-header{gap:16px;padding:0 14px}.logo{flex:none}.site-nav a{font-size:.82rem}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important}}
