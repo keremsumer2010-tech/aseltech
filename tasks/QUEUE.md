@@ -25,7 +25,7 @@ Saatler: `docs/ZAMAN_CIZELGESI.md`. "[atandı: PCx]" işi sadece o PC alır; ata
 - [x PC4] Q25 · Kaynaklar + kalibrasyon notu — PC4 yaptı
 - [ ] Q26 · [atandı: PC5] · Nokta bazında zaman serisi kalitesi: `points.json` her nokta için doğrusal uyum, artık std, en büyük sıçrama (unwrapping şüphesi) → `docs/qa/PC5.md` tablo · analysis/decomp/
 - [ ] Q27 · [atandı: PC5] · GNSS doğrulama sonucunun (`data/central_valley/validation.json`) istatistiksel yorumu: RMSE, korelasyon, eğilim farkı; 3 cümle İngilizce → `docs/story/uncertainty.md` · docs/story/uncertainty.md
-- [~PC6] Q28 · [atandı: PC6] · Karapınar risk: obruk noktaları (`sinkholes.geojson`) ile PC3 çökme haritası (`data/karapinar/`) ilişkisi — obruk çevresi 1/2/5 km halkalarda ortalama çökme vs bölge geneli; OSM yol/kanal hatlarının obruklara uzaklığı → `data/karapinar/assets.json` + `docs/qa/PC6.md` özet · risk/, data/karapinar/assets.json
+- [x PC6] Q28 · [atandı: PC6] · Karapınar risk: obruk noktaları (`sinkholes.geojson`) ile PC3 çökme haritası (`data/karapinar/`) ilişkisi — obruk çevresi 1/2/5 km halkalarda ortalama çökme vs bölge geneli; OSM yol/kanal hatlarının obruklara uzaklığı → `data/karapinar/assets.json` + `docs/qa/PC6.md` özet · risk/, data/karapinar/assets.json
 - [x PC1] Q29 · İPTAL (oyun v2 ile değişti); telefonda test, `data/central_valley/summary.json` hızını okuyor mu kontrol, küçük hata düzelt (sadece game/) · game/
 - [x PC4] Q30 · [atandı: PC4] · `docs/story/pitch.md` ile `project_page.md` sayılarını `data/*/summary.json` ile eşle (CV −7.8 cm LOS / ~−10 cm dikey, Karapınar −5.9 cm LOS); tutarsızlık varsa düzelt · docs/story/
 - [x PC4] Q31 · [atandı: PC4] · Holme Fen kartı için tek cümle İngilizce metin + kaynak linki → `docs/story/holme_fen.md` (PC1 siteye koyacak) · docs/story/holme_fen.md
@@ -40,7 +40,7 @@ Saatler: `docs/ZAMAN_CIZELGESI.md`. "[atandı: PCx]" işi sadece o PC alır; ata
 - [x PC4] Q11 · [atandı: PC4] · Space Apps proje sayfası metni taslağı (İngilizce; özet, nasıl çalışır, faydalar, araçlar, NASA verisi, AI kullanımı) → `docs/story/project_page.md`
 - [x PC4] Q12 · [atandı: PC4] · Space Apps 2026 kurallarında AI kullanım açıklaması ve demo şartları — resmi sayfadan doğrula → `docs/story/submission_rules.md`
 - [x PCQ] Q13 · [atandı: PCQ] · README.md: kurulum, veri hattı nasıl çalıştırılır, lisans, kaynaklar (sadece README.md)
-- [~PC6] Q14 · [atandı: PC6] · Tüm data/*/meta.json'ları kontrol et: quality alanı, vmin/vmax, bbox tutarlı mı → `docs/qa/PCx.md` (her PC kendi dosyası; düzeltme gerekirse sahibinin status'una değil, kendi QA dosyana not)
+- [x PC6] Q14 · [atandı: PC6] · Tüm data/*/meta.json'ları kontrol et: quality alanı, vmin/vmax, bbox tutarlı mı → `docs/qa/PCx.md` (her PC kendi dosyası; düzeltme gerekirse sahibinin status'una değil, kendi QA dosyana not)
 - [x PCQ] Q15 · [atandı: PCQ] · Repo kodlarını gözden geçir: testler çalışıyor mu, hardcoded yol var mı → `docs/code_review.md`
 
 ## Öncelik 4 — vitrin (sadece her şey bittiyse)

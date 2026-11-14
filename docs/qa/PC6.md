@@ -42,3 +42,42 @@ Gerçek `data/central_valley/` çıktıları (`meta.json`, `summary.json`, `poin
 ### Güncel Notlar
 - `data/karapinar/meta.json` (`Q02`) henüz eklendi (`quality: provisional`, `vmin/vmax: -5.0/5.0`, `bbox: [33.3, 37.6, 33.8, 37.9]`, 9 PNG); tam Q14/UK kontrolü `data/uk/` tamamlandığında tekrarlanacak.
 - `web/app.js`, `docs/URUN_TANIMI.md`, `game/`, `docs/game_v1.png`, `data/catalog.json` kullanıcı isteği üzerine PC6 öncesi duruma (`c7bac46` / `4cba32a`) geri alındı.
+
+---
+
+## Q28 · Karapınar Obruk & Altyapı Risk Analizi (`risk/karapinar_risk.py` → `data/karapinar/assets.json`)
+
+- **Girdi verileri:** `analysis/out/karapinar_cum.npz` (`470×603`, `EPSG:32636`, `2026-06-26 → 2026-10-12`, `quality: provisional`, `40,194` geçerli piksel), `data/karapinar/sinkholes.geojson` (`29` kaynaklı obruk), `risk/karapinar_infra.geojson` (`64` OSM koridoru: `secondary=45`, `trunk=19`).
+- **Bölge geneli (tüm geçerli pikseller):** Ortalama `−0.699 cm` · Medyan `−0.646 cm` · Std `1.555 cm` · En derin piksel `−9.055 cm`.
+
+### Obruk Çevresi Radyal Halka Çökme Analizi (29 Obruk Çevresi)
+| Halka Mesafesi | Geçerli Piksel | Ortalama LOS (cm) | Medyan LOS (cm) | Min (cm) | Bölge Ort. Farkı | `≤ -2 cm` Piksel % |
+|---|---:|---:|---:|---:|---:|---:|
+| **0–1 km** (obruk çekirdeği) | 60 | **−4.152** | −4.186 | −5.627 | **−3.453 cm** | **100.0 %** |
+| **1–2 km** | 176 | **−4.030** | −4.027 | −7.934 | −3.331 cm | 90.3 % |
+| **2–5 km** | 985 | −1.957 | −1.818 | −7.775 | −1.258 cm | 47.8 % |
+| **>5 km** (arka plan) | 38,973 | −0.647 | −0.619 | −9.055 | +0.052 cm | 17.9 % |
+| *Kümülatif `≤ 1 km` / `≤ 2 km` / `≤ 5 km`* | 60 / 236 / 1,221 | −4.152 / −4.061 / −2.364 | −4.186 / −4.066 / −2.484 | — | — | 100.0 / 92.8 / 56.5 % |
+
+**Bulgu:** İlk 1 km içindeki ortalama çökme (`−4.152 cm`), >5 km bölge arka planının (`−0.647 cm`) **6.4 katıdır**; radar izindeki 10 obruk çevresinde piksellerin %100'ü `−2 cm` eşiğini aşmaktadır. En yüksek 1 km içi ortalamalar: `Köken Obruğu-I` (`−4.71 cm`), `Köken Obruğu-II` (`−4.663 cm`), `Köken Obruğu-III` (`−4.158 cm`), `Seyithacı Obruğu-VI` (`−4.091 cm`), `Seyithacı Obruğu-I` (`−4.029 cm`).
+
+### OSM Yol & Koridor Yakınlık ve Eğim Riski (`64` Segment)
+- **Mesafe dağılımı:** `≤ 1 km`: **2** segment · `≤ 2 km`: **4** segment · `≤ 5 km`: **9** segment. (OSM sorgusunda Karapınar bounding box içinde `waterway=canal` bulunmamaktadır; tüm koridorlar `secondary` ve `trunk` karayollarıdır.)
+- **Eğim risk sınıfları (`≥ 1000 m` geçerli kesim):** `high`: **10** · `medium`: **3** · `low`: **8** · `outside_or_short`: **43**.
+- **En yakın segmentler:**
+  1. `42-42` (`secondary`, osm: `208237483`): `Köken Obruğu-II`'ye **597.3 m**, InSAR diferansiyel eğim **19.74 mm/km** (`max=-5.07 cm`, `risk=high`).
+  2. `42-42` (`secondary`, osm: `172934693`): `Seyithacı Obruğu-V`'e **619.0 m** (`risk=high` yakınlık).
+  3. `Adana - Konya Yolu` / `Konya - Adana Yolu` (`trunk`, D-330): `Akkuyu Obruğu-IV`'e **1,478.5 m / 1,494.3 m** (`risk=medium` yakınlık).
+- **Doğrulama:** `python risk/karapinar_risk.py --self-test` **PASS** (`0 NaN/Infinity`).
+
+---
+
+## Q14 · Tüm `data/*/meta.json` Tam Denetimi (14:29 TR Güncellemesi)
+
+Tüm 3 bölge ve 12 `.json`/`.geojson` dosyası tarandı (`NaN`/`Infinity`: **0 adet**):
+
+| Bölge (`meta.json`) | `quality` | `vmin / vmax` | `bbox` (`VERI_SOZLESMESI` uyumu) | Görseller (`disp/` veya `uk/`) | Bulgular & Not |
+|---|---|---|---|---|---|
+| `data/central_valley/meta.json` | `provisional` | `-6.0 / +6.0` | `[-120.2, 35.6, -119.0, 36.6]` ✅ Tam uyum | `8 / 8` PNG mevcut ✅ | `summary.json` tepe noktası `−7.8 cm` LOS (harita ±6 cm'de simetrik doygun, kasıtlı). `quality_note` NASA-JPL/ISRO şartını sağlıyor ✅ |
+| `data/karapinar/meta.json` | `provisional` | `-5.0 / +5.0` | `[33.3, 37.6, 33.8, 37.9]` ✅ Tam uyum | `9 / 9` PNG mevcut ✅ | `summary.json` tepe noktası `−5.9 cm` LOS. `sinkholes.geojson` (`29`) ve `assets.json` (`64`) ile sıfır NaN ✅ |
+| `data/uk/meta.json` | `preview` | `Yok` (optik/browse) | `[-0.3, 52.4, 0.4, 52.9]` ✅ Tam uyum | `optical_2026-10-20.jpg` & `radar_2026-10-20.png` mevcut ✅ | Not (PC1/PC4 için): `meta.json` içinde yerel dosya adları (`optical_image`/`radar_image`) yok, yalnızca `date` + URL var; `data/catalog.json` içinde `karapinar` ve `uk` hâlâ `pending` görünüyor (PC1 entegrasyon bekliyor). |
