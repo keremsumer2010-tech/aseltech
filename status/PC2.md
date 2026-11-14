@@ -64,3 +64,11 @@
 
 - **Karapınar ikinci geçiş (Path 172 Frame 21, provisional GUNW) — TAMAMLANDI (8/8):**
   - `pipeline/karapinar_p172_gunw.csv` + `pipeline/subset/karapinar_p172/` altında `2026-06-26 → 2026-10-12` arası **8/8** `provisional` çift push edildi (`4136995`; dosya boyutları `1.93–2.14 MB`).
+
+## 17:37 Güncelleme — 15:50 BÜYÜK PAKET Madde 1 (Sacramento–San Joaquin Delta) TAMAMLANDI
+
+- **Delta GUNW (Path 42 Descending, Frame 69, provisional) — TAMAMLANDI (9/9):**
+  - `pipeline/delta_gunw.csv` + `pipeline/subset/delta/` altında `2026-06-17 → 2026-10-15` arası kesintisiz **9/9** `provisional` çift (`shape=(403, 493)`, `1.22–1.43 MB`, tam `ion` katmanlı) push edildi (`d0c52d8`, `4ee15c0`, `68b4920`).
+  - `pipeline/pc2/run_cumulative.py delta --data-dir data/delta` ile `data/delta/` (`disp/*.png`, `meta.json`, `points.json`, `summary.json`) üretildi ve push edildi (`5b4b6dd`): 1 km blok medyan tepe çökmesi `-1.3 cm` LOS (`range_cm=[-1.3, -1.1]`, 120 gün, dikey tahmin `-1.6 cm`).
+  - `pipeline/pc2/delta_levees.py` ile OSM set hatları boyunca profil çıkarıldı (`N=87` örnek, p10=`-3.48 cm`, en belirgin 4.09 km set hattında min `-11.36 cm`); `docs/story/media/pc2_delta.png` ve `docs/story/delta.md` (A5, A11, Levees and Dams + StoryMap atıflı) oluşturuldu.
+- **Sıradaki iş:** Madde 2 (**Konya Ovası'nın tamamı**, `konya_plain`, Path 7 Frame 69).
