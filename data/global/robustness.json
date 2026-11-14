@@ -914,7 +914,7 @@
     },
     {
       "id": "semarang",
-      "base_rate_cm_per_100d": -11.2,
+      "base_rate_cm_per_100d": -6.5,
       "min": null,
       "max": null,
       "spread_cm": null,
@@ -932,17 +932,17 @@
         {
           "id": "northeast",
           "lon": 110.610133,
-          "lat": -6.795504,
-          "mean_coherence": 0.8275,
-          "relative_motion_cm": 3.708,
+          "lat": -6.796228,
+          "mean_coherence": 0.8297,
+          "relative_motion_cm": 2.13,
           "evidence": "corner low-motion proxy; geology/GNSS stability not independently verified"
         },
         {
           "id": "southwest",
-          "lon": 110.265782,
-          "lat": -7.099749,
-          "mean_coherence": 0.9005,
-          "relative_motion_cm": -1.439,
+          "lon": 110.273018,
+          "lat": -7.104826,
+          "mean_coherence": 0.8739,
+          "relative_motion_cm": 0.5,
           "evidence": "corner low-motion proxy; geology/GNSS stability not independently verified"
         }
       ],
