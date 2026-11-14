@@ -646,13 +646,17 @@
     const d = simState.districts.find((x) => x.id === selectedDistrictId) || simState.districts[0];
     const wySpec = ValleyModel.getWaterYearSpec(simState.currentWaterYear);
 
-    // Header Pills
+    // Header Pills: Month X of 24 · Date · Season
     const moIdx = simState.monthStep;
-    const dispLabel =
-      moIdx === 0
-        ? 'Month 0 / 24 · Oct 2026'
-        : `Month ${moIdx} / ${simState.totalMonths} · ${simState.valleyHistory[moIdx - 1].label}`;
-    $('monthPill').textContent = dispLabel;
+    const calLabel = moIdx === 0 ? 'Oct 2026' : simState.valleyHistory[moIdx - 1].label;
+    const seasonTag = /^(Dec|Jan|Feb)/.test(calLabel)
+      ? 'Winter · wet recharge'
+      : /^(Mar|Apr|May)/.test(calLabel)
+      ? 'Spring · snowmelt'
+      : /^(Jun|Jul|Aug)/.test(calLabel)
+      ? 'Summer · peak pumping'
+      : 'Autumn · early year';
+    $('monthPill').textContent = `Month ${moIdx} of ${simState.totalMonths} · ${calLabel} · ${seasonTag}`;
 
     const wyYearNum = moIdx < 12 ? 1 : 2;
     const wyPill = $('wyPill');
@@ -727,7 +731,7 @@
     // Turn button states
     $('nextMonthBtn').disabled = simState.finished;
     $('fastForwardBtn').disabled = simState.finished;
-    $('nextMonthBtn').textContent = simState.finished ? '24 Months Complete' : 'Next Month →';
+    $('nextMonthBtn').textContent = simState.finished ? '24 Months Complete' : 'Advance one month →';
 
     renderStratigraphy(d);
     updateTimelineChart(d);
