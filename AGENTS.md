@@ -11,3 +11,6 @@ Every rule in `rules/RULES.md` applies to you. The most important ones:
 - NEVER IDLE: when a task is done, do not stop or ask. Follow `rules/RULES.md` §7.1: next task in your file → `tasks/QUEUE.md` (claim one line only, push immediately) → QA notes in `docs/qa/PCx.md`. `git pull` every 30–45 min.
 - Never ask for, store or print passwords or tokens.
 - Never invent numbers, coordinates or sources.
+
+## PC7 (Codex)
+If your clone folder is `aseltech-pc7` you are **PC7**: task file `tasks/PC7.md`, status `status/PC7.md`, commit prefix `[PC7]`.
