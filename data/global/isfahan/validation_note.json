@@ -1,0 +1,34 @@
+{
+  "id": "isfahan",
+  "name": "Isfahan",
+  "data_path": "data/global/isfahan/",
+  "atlas_los_cm": -2.5,
+  "atlas_vertical_cm_est": -3.4,
+  "atlas_period": [
+    "2026-06-18",
+    "2026-10-16"
+  ],
+  "n_days": 120,
+  "rate_cm_per_100d_los": -2.08,
+  "rate_cm_per_yr_est_los": -7.5,
+  "valid_fraction": 0.325,
+  "ref_range_cm": [
+    -2.6,
+    -0.8
+  ],
+  "ref_sensitivity_ratio": 0.72,
+  "literature_vertical_cm_per_yr": "-5 to -11 across Isfahan-Borkhar plain (localized hotspots up to -14 to -25)",
+  "literature_sources": [
+    "Esmaeili et al. / Motagh et al. Isfahan-Borkhar Sentinel-1 PSI & SBAS InSAR studies",
+    "Iranian geological & Zayandeh-Rud groundwater subsidence assessments (2025-2026)"
+  ],
+  "agreement_note": "120-day LOS peak (-2.5 cm LOS; -3.4 cm vertical est., ~-10.3 cm/yr vertical est.) sits squarely within the published -5 to -11 cm/yr Isfahan-Borkhar range. Two southern rocky-margin references (51.589E, 32.355N and 51.949E, 32.414N) agree tightly (-2.5 to -2.6 cm), whereas alt_ref 2 (51.697E, 32.805N) sits near the northern Borkhar subsidence peak and pulls the headline to -0.8 cm. Valid fraction is 32.5%.",
+  "recommended_confidence": "medium",
+  "press_summary_approved": true,
+  "press_summary_gate_note": "Consistent with published -5 to -11 cm/yr range when referenced to southern rocky foothills; label as provisional 120-day estimate (valid_fraction 32.5%).",
+  "first_nisar_measurement": {
+    "city_measured_by_nisar_before": false,
+    "evidence": "No peer-reviewed or official NASA/ISRO NISAR subsidence publication found for Isfahan as of 2026-11-14.",
+    "atlas_first_claim_note": "Multi-basin standardized atlas phrasing must use qualified (to our knowledge) only after excluding Mexico City from any individual-first claim."
+  }
+}
