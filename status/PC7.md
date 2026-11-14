@@ -13,4 +13,4 @@
 - QA sonuçları: `docs/qa/PC7.md`.
 - Kaynak: https://api.daac.asf.alaska.edu/services/search/param (ASF SearchAPI)
 - AI: Codex → yerel GCOV analizi, kaynak sentezi, offline QA scriptleri ve Node test sürücüsü.
-- BLOCKED: `git add status/PC7.md` → `fatal: Unable to create '.git/index.lock': Permission denied`. Tam erişim seçildiği bildirilse de bu oturumda `.git` yazılamıyor; kurala göre Git komutları durduruldu.
+- BLOCKED: `git status --short --branch` → `fatal: this operation must be run in a work tree`. `git pull --rebase origin main` başarılıydı; bu hata sonrası repo kuralı gereği Git işlemleri durduruldu.
