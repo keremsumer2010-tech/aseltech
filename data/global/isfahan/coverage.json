@@ -1,0 +1,22 @@
+{
+  "site": "isfahan",
+  "bbox": [
+    51.37,
+    32.35,
+    51.97,
+    32.95
+  ],
+  "quality": "provisional",
+  "coverage": "ok",
+  "granules": 9,
+  "chain_pairs": 9,
+  "path": 56,
+  "frame": 18,
+  "period": [
+    "2026-06-18",
+    "2026-10-16"
+  ],
+  "gaps": [],
+  "total_raw_mb": 20432.9,
+  "error": null
+}

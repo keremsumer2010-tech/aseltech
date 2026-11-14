@@ -99,7 +99,10 @@
       - Yaz/Sonbahar (`data/central_valley_p114_fullyear/`, `2026-05-29 → 2026-10-20`, 144 gün, 10 çift): tepe **`-9.8 cm` LOS** (`range_cm=[-9.8, -5.4]`, dikey `-13.3 cm` @ `42.5°`).
       - Kış/İlkbahar (`data/central_valley_p114_fullyear/winter/`, `2025-11-30 → 2026-05-05`, 156 gün, 10 çift): tepe **`-6.7 cm` LOS** (`range_cm=[-7.3, -6.3]`, dikey `-8.7 cm` @ `40.1°`).
     - Segment özeti `data/central_valley_p114_fullyear/segments.json` içinde; PC9 iki geçişli tam yıl kıyası yapabilir.
-- **Özgün Katkı O3 (`NISAR Pulse` CLI) — TAMAMLANDI:**
+- **Özgün Katkı O3 (`NISAR Pulse` CLI) — TAMAMLANDI + Kalite Standardı:**
   - `pipeline/nisarpulse/` (`__main__.py`, `search.py`, `fetch.py`, `process.py`, `catalog.py`, `README.md`, `tests/test_nisarpulse.py`) oluşturuldu; mevcut `pipeline/*.py` ve `analysis/*.py` dosyaları değiştirilmeden sarmalandı.
-  - Ağsız `6/6` birim testi geçti (`0.016s`); `.github/workflows/tests.yml` eklendi (`pages.yml`'e dokunulmadı).
+  - `docs/ATLAS_PLANI.md` Kalite Standardı eklendi: `--center` + `--box-deg 0.25` varsayılanı, `summary.json`'a `p2_cm`, `rate_cm_per_100d`, `valid_fraction`, `confidence`, havza dışı `--ref-lonlat` desteği, `coverage.json` ve `--data-dir`. Ağsız `8/8` birim testi geçti (`0.053s`); `.github/workflows/tests.yml` eklendi (`pages.yml`'e dokunulmadı).
   - Delta (`--dry-run` `1.20s`, `--resume` uçtan uca `6.9s`, `max_subsidence_cm=-1.3`) kanıtı `docs/story/engine.md`'ye yazıldı.
+- **Küresel Atlas (`docs/ATLAS_PLANI.md` — PC2 A Önceliği):**
+  - **1/5 `isfahan`** (Path 56 Frame 18, `2026-06-18 → 2026-10-16`, 9/9 `provisional` çift): `data/global/isfahan/` hazır — `max_subsidence_cm=-2.5`, `p2_cm=-2.9`, `rate_cm_per_100d=-2.08`, `valid_fraction=0.325`, `confidence=medium`.
+  - Sıradaki: `rafsanjan` → `mashhad` → `quetta` → `delhi`.
