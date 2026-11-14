@@ -1,5 +1,6 @@
 # PC7 durum
 
 - Görev: Q10
-- Durum: başlamadı
-- BLOCKED: git pull --rebase origin main → error: cannot pull with rebase: You have unstaged changes. Please commit or stash them.
+- Durum: çalışıyor, Q10 başladı
+- Q10 sahiplenme commit'i 98ae6fb origin/main'e push edildi.
+- AI: Codex → Q10 Fens ekin ritmi çalışması.
