@@ -257,9 +257,7 @@ function extras(){
   document.getElementById('gamePlay')?.addEventListener('click', () => {
     const box = document.getElementById('gameBox'), f = document.createElement('iframe');
     f.title = 'Valley Under Pressure simulator'; f.src = g; f.allow = 'fullscreen';
-    box.closest('.sim')?.classList.add('playing');
     box.replaceChildren(f); f.focus();
-    box.scrollIntoView({block: 'start'});
   });
 }
 

@@ -122,15 +122,6 @@ table.mini tr{cursor:pointer}table.mini tr.sel td{background:#e8eef8}
 .sim .gameframe{margin-top:0}
 .sim-shot{margin:0}
 .gameframe img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top left}
-.gameframe.light{background:#fff;aspect-ratio:4/3}
-.gameposter{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:6px;padding:12% 24px 0;text-align:center;background:linear-gradient(180deg,#f3f5f8 0 52%,#efe6d2 52% 74%,#b9926a 74% 86%,#d3e3f3 86%)}
-.gameposter b{font-size:clamp(1.3rem,2.6vw,1.9rem);letter-spacing:-.015em}
-.gameposter span:last-child{color:var(--mut);font-size:.95rem;max-width:26rem}
-.gameposter .kicker{margin:0}
-.gameframe.light .playbig{top:66%}
-.sim.playing{grid-template-columns:1fr;gap:20px}
-.gameframe{scroll-margin-top:calc(var(--hdr) + 16px)}
-.sim.playing .gameframe{aspect-ratio:auto;height:min(720px,calc(100vh - var(--hdr) - 60px));min-height:560px}
 .playbig{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);padding:.9em 1.6em;font:700 1.05rem var(--font);color:#fff;background:var(--acc);border:0;border-radius:4px;box-shadow:0 6px 24px rgba(0,0,0,.35);cursor:pointer}
 .playbig:hover,.playbig:focus-visible{filter:brightness(1.15);outline:3px solid #9cc3ff;outline-offset:2px}
 .sim-steps{margin:18px 0 12px}
