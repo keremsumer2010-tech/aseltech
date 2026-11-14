@@ -78,6 +78,6 @@ Yazma alanı: `tools/bulletin.py`, `docs/bulletins/`, `data/global/exposure_atla
 # ➕ TAKVİYE (Paz 03:50, PC1 otomatik kontrol) — atlas 21 bölge, tamlık 122/126
 "Yeni görev yok" yazma; işler:
 1. **Bülten indeksi + basın paketi sayfası:** `docs/bulletins/index.html`'i atlas sıralamasıyla (QC sonrası, güvenilirler önce) yeniden üret; her bültenin üstüne ortak zaman penceresi değeri (`rate_cm_per_100d_common`) ve güven aralığı (`rate_ci_cm_per_100d`) satırı.
-2. **Teslim formu son hâl:** `submission_form.md`'de atlas paragrafını v2'ye göre güncelle (21 bölge, ortak 93 günlük pencere, QC ile 4 bölge indicative), karakter sınırlarını yeniden say.
+2. **Teslim formu son hâl:** `submission_form.md`'de atlas paragrafını v2'ye göre güncelle (21 bölge, ortak 93 günlük pencere, QC ile 3 bölge indicative (Delhi, Pekin, Bangkok; Semarang düzeltildi)), karakter sınırlarını yeniden say.
 3. **Değişiklik günlüğünü bültenlere bağla:** bölgenin `atlas_changelog.json` kaydı varsa bültende "Revision history" kutusu.
 4. Tamlık tablosunu 30 dk'da bir yenile.
