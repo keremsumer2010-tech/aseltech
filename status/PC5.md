@@ -1,8 +1,14 @@
 # PC5 Durum Raporu
 
-- **Durum:** tamamlandı (Görev 1–7 + 15:00 inceleme kuralları uyumu; PC5 testleri 12 passed)
+- **Durum:** çalışıyor — 15:30 paketi Görev 1 (`docs/story/key_findings_public.md`) tamamlanıyor, ardından Görev 2 (`area_stats.json`) geliyor
 - **Kimlik:** M3hmeT1888 · Antigravity (Gemini) · PC5
-- **Güncelleme:** 2026-11-14 15:13 TR
+- **Güncelleme:** 2026-11-14 15:27 TR
+
+## 15:30 Paketi Görev 1 — Halk Dilinde Anahtar Bulgular (`docs/story/key_findings_public.md`)
+- `docs/story/key_findings.md` içindeki 8 ana bulgu `docs/REVIEW_1500.md` kurallarına göre ana sayfa için tek cümlelik, jargonsuz (`LOS`, `Cramér–Rao`, `Pearson`, `RMSE`, `coherence` içermeyen), sayı + birim + tarih + kaynak dosya içeren 8 maddeye dönüştürüldü.
+- **AI:** Gemini → `docs/story/key_findings_public.md`
+
+---
 
 ## Görev 7 & `docs/REVIEW_1500.md` Uyumu (`docs/qa/PC5.md` §3, `docs/story/key_findings.md`, `docs/story/game_sensitivity.md`)
 - `docs/qa/PC5.md` §3'e tam yıl zinciri (`Q07`/`Q08`) geldiğinde çalıştırılacak komut sırası, beklenen çıktılar (`decomp.json`, `decomp_permanent.png`, `decomp_seasonal.png`, `sigma_cm.png`), kalite kapıları (`--quality mixed`, `suspect_ids == []`) ve `pyproj` ortam uyarısı eklendi.
