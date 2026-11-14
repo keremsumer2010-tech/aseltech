@@ -241,23 +241,24 @@ Rapor: `docs/story/engineering_risk.md`; veri: `data/central_valley/assets_prob.
 
 ## 14. Global atlas kalite standardı ve O2 yeniden kontrolü
 
-`python tools/validate_atlas.py` ile `data/global/atlas.json` ve atlasın gösterdiği şehir dizinleri kontrol edildi. Mevcut 8 atlas bölgesi için (atlas + 8 × `summary.json`/`meta.json`/`points.json`, toplam 25 JSON) parse/NaN/sonsuz sayı bulgusu yok. Komut **156 bulgu** ile beklenen exit code `1` döndürdü: **147 sözleşme hatası, 8 referans uyarısı, 1 bilgi**. Bu sonuç temiz doğrulama değildir; mevcut atlas seed dosyası PC1 standardındaki yeni alanları taşımıyor.
+`python tools/validate_atlas.py` ile `data/global/atlas.json` ve şehir dizinleri kontrol edildi. Son pull'da Isfahan `data/global/isfahan/` verileri geldi; şehir klasörü var ancak `atlas.json` içinde henüz kaydı yok. Doğrulayıcı 8 kayıtlı atlas bölgesini ve toplam 9 şehir dizinini inceledi; atlas ve şehir ağaçlarındaki **46 JSON** dosyasında parse/NaN/sonsuz sayı bulgusu yok. Komut **170 bulgu** ile beklenen exit code `1` döndürdü: **160 sözleşme hatası, 9 referans uyarısı, 1 bilgi**. Bu temiz doğrulama değildir; seed/şehir verilerinde kalite standardı alanları eksik.
 
-| Şehir | meta bbox boyutu (lon × lat) | dönem (gün) | summary'den türetilen LOS cm/100d | referans duyarlılığı (ref aralığı / başlık) |
+| Şehir | meta bbox boyutu (lon × lat) | dönem (gün) | LOS cm/100d | referans duyarlılığı (ref aralığı / başlık) |
 |---|---:|---:|---:|---|
-| Beijing | 0.60° × 0.40° | 120 | −1.17 | 442.9%, n=3; proxy başarısız |
-| Central Valley | 1.20° × 1.00° | 108 | −7.22 | 39.7%, n=3; proxy başarısız |
-| Jakarta | 0.37° × 0.30° | 108 | −6.30 | aralık yok, n=1; doğrulanamadı |
-| Karapınar | 0.50° × 0.30° | 108 | −5.46 | aralık yok, n=1; doğrulanamadı |
-| Mexico City | 0.35° × 0.35° | 120 | −3.67 | 68.2%, n=2; proxy başarısız |
-| Tehran | 0.55° × 0.40° | 120 | −2.92 | 108.6%, n=2; proxy başarısız |
-| Konya Plain | 1.50° × 0.70° | 108 | −8.89 | 45.8%, n=3; proxy başarısız |
-| Delta | 0.40° × 0.25° | 120 | −1.08 | 15.4%, n=2; 3 alternatif koşulu yok |
+| Beijing | 0.60° × 0.40° | 120 | −1.17 (türetilmiş) | 442.9%, n=3; proxy başarısız |
+| Central Valley | 1.20° × 1.00° | 108 | −7.22 (türetilmiş) | 39.7%, n=3; proxy başarısız |
+| Jakarta | 0.37° × 0.30° | 108 | −6.30 (türetilmiş) | aralık yok, n=1; doğrulanamadı |
+| Karapınar | 0.50° × 0.30° | 108 | −5.46 (türetilmiş) | aralık yok, n=1; doğrulanamadı |
+| Mexico City | 0.35° × 0.35° | 120 | −3.67 (türetilmiş) | 68.2%, n=2; proxy başarısız |
+| Tehran | 0.55° × 0.40° | 120 | −2.92 (türetilmiş) | 108.6%, n=2; proxy başarısız |
+| Konya Plain | 1.50° × 0.70° | 108 | −8.89 (türetilmiş) | 45.8%, n=3; proxy başarısız |
+| Delta | 0.40° × 0.25° | 120 | −1.08 (türetilmiş) | 15.4%, n=2; 3 alternatif koşulu yok |
+| Isfahan | 0.60° × 0.60° | 120 | −2.08 (summary alanı) | 72.0%, n=3; proxy başarısız |
 
-Kalite standardındaki hedef iki boyutta `0.50°` (merkez ±`0.25°`); 8 şehrin her birinde en az bir bbox boyutu farklı. Tüm mevcut şehir `summary.json` dosyalarında `rate_cm_per_100d`, `p2_cm`, `confidence`, `valid_fraction`, `ref_range_cm` alanları eksik; `atlas.json` bölgelerinde de bu alanlar eksik. Sıralama alanı bulunmadığı için oranı dosyadan birebir doğrulayamıyor. Tarih aralığı ile başlık değerinden hesaplanan sıralama mevcut sırayla aynı çıktı; yalnızca türetilmiş karşılaştırmadır, saklanan bir oranı doğrulamış sayılmaz. Atlas kayıtlarında 12 boş string bulundu (8 boş `note`, 4 boş `country`).
+Kalite standardı hedefi iki boyutta `0.50°` (merkez ±`0.25°`); dokuz şehir dizininin her birinde en az bir bbox boyutu farklı. Sekiz eski şehir `summary.json` dosyasında `rate_cm_per_100d`, `p2_cm`, `confidence`, `valid_fraction`, `ref_range_cm` eksik. Isfahan summary'sinde ilk dört alan var ve `−2.5 cm / 120 gün × 100 = −2.083 cm/100d` ile kaydedilen `−2.08` tutarlı; `ref_range_cm` eksik. Mevcut 8 atlas kaydında yeni `rate_cm_per_100d`, `p2_cm`, `confidence`, `valid_fraction`, `ref_range_cm` alanları yok. Atlas sırası, summary tarih/başlıklarından türetilen hız sırasıyla aynı; fakat saklanan hız olmadığı için published-sort value doğrulanmış sayılmaz. Atlas seed'inde 12 boş string var (8 boş `note`, 4 boş `country`). Isfahan'ın summary'si atlas listesinde bulunmuyor; yeni dokümanlarda geçen “9 regions” ifadesi ile `atlas.json` (8 region) uyuşmuyor.
 
-Hiçbir şehirde açık `reference_outside_basin` kanıt alanı yok. `reference_sensitivity` aralıkları yalnız kararlılık proxy'si olarak değerlendirildi; havza dışı jeolojik alanı kanıtlamaz. Jakarta ve Karapınar'da aralık/kıyas girdileri bulunmadı. Güven sınıfı ile geçerli piksel oranı da alanlar eksik olduğundan karşılaştırılamadı. Isfahan için yeni yedi yerel subset çifti var, ancak `data/global/isfahan/summary.json` ve atlas girdisi henüz yok; bu yüzden şehir raporlamasına dahil edilmedi.
+Hiçbir şehirde açık `reference_outside_basin` kanıt alanı yok. Referans aralığı/hız oranı yalnız kararlılık proxy'si; havza dışı jeolojik alanı kanıtlamaz. Jakarta ve Karapınar'da aralık/kıyas girdileri yok. Isfahan için `confidence=medium`, `valid_fraction=0.325`; düşük geçerli oran nedeniyle `high` verilmemiş, bu nedenle ≥0.40 yüksek-güven eşiğiyle çelişmiyor; ancak referans proxy'si başarısız. Sekiz eski şehirde `confidence`/`valid_fraction` eksik olduğundan uyum kontrolü yapılamıyor.
 
-O2 yeniden kontrolü: `risk/probabilistic_risk.py`, `data/central_valley/assets_prob.json`, `docs/story/engineering_risk.md` ve grafik mevcut; `technical_note.md/html` ve `project_page.md` O2 sonuçlarını içeriyor. `python -m pytest -q risk/test_probabilistic_risk.py`: **2 passed**. Eşik kaynaklarının tam bibliyografisi yerel kaynak kaydında hâlâ yok; O2 raporunda eşikler yalnız tarama/sensitivity değeri olarak sunuluyor.
+O2 yeniden kontrolü: `risk/probabilistic_risk.py`, `data/central_valley/assets_prob.json`, `docs/story/engineering_risk.md` ve grafik mevcut; `technical_note.md/html` ve `project_page.md` O2 sonuçlarını içeriyor. `python -m pytest -q risk/test_probabilistic_risk.py`: **2 passed**. `python pipeline/pc7/validate_json.py`: **74 JSON**, parse/non-standard constant hatası 0, non-finite sayı 0, kalite etiketi eksiği 0; 15 `points.json` kaliteyi kardeş `meta.json`'dan alıyor. Eşik kaynaklarının tam bibliyografisi yerel kaynak kaydında hâlâ yok; O2 raporunda eşikler yalnız tarama/sensitivity değeri olarak sunuluyor.
 
-Doğrulayıcı: `tools/validate_atlas.py` (çevrimdışı, salt-okunur). `python -m py_compile tools/validate_atlas.py` başarılı. Her yeni şehir atlas klasörüne ve atlas listesine eklendiğinde `python tools/validate_atlas.py` yeniden çalıştırılmalı. Bu kontrolde PC10'a ait veri/atlas dosyaları değiştirilmedi.
+Doğrulayıcı: `tools/validate_atlas.py` (çevrimdışı, salt-okunur). `python -m py_compile tools/validate_atlas.py` başarılı. Her yeni şehir klasörü ya da atlas kaydı eklendiğinde `python tools/validate_atlas.py` yeniden çalıştırılmalı. Bu kontrolde PC10'a ait atlas/veri dosyaları değiştirilmedi.

@@ -1,7 +1,7 @@
 # PC7 durum
 
 - Görev: Fens GCOV ritmi, polarizasyon karşılaştırması, çevrimdışı site QA ve Node oyun testi
-- Durum: O2 tamamlandı; atlas doğrulayıcısı çalıştırıldı, mevcut atlas şeması kalite standardında eksikler içeriyor
+- Durum: O2 tamamlandı; atlas doğrulayıcısı güncel Isfahan verisiyle yeniden çalıştırıldı, kalite standardı açıkları raporlandı
 - ASF araması: platform=NISAR, processingLevel=GCOV, bbox [-0.3, 52.4, 0.4, 52.9], başlangıç 2026-06-17; 49 P05023 GCOV ürünü HH/HV ile eşleşti.
 - Tekrarlı seri: path 52, frame 61, 10 benzersiz tarih: 2026-06-17–2026-10-15. Granül listesi `pipeline/pc7/fens_gcov_catalog.json` içinde.
 - Doğrulama: `pipeline/pc7/search_fens_gcov.py` çalıştırıldı; katalog JSON olarak tekrar açılıp parse edildi.
@@ -19,5 +19,5 @@
 - 20:00 hata ayıklama 4: `python -m pytest -q` 110+ saniye çıktı vermedi; Ctrl+C ile durduruldu. Sonuç alınamadı; PASS/FAIL iddiası yok. `docs/qa/PC7.md` §11.
 - 20:00 hata ayıklama 5: `pipeline/pc7/validate_json.py` eklendi ve çalıştırıldı; 61 JSON'da 0 parse hatası, 0 non-finite değer, 0 eksik quality; 12 points.json kaliteyi kardeş meta.json'dan miras alıyor. `docs/qa/PC7.md` §12.
 - 20:10 O2 tamamlandı: `risk/probabilistic_risk.py`, iki test, `data/central_valley/assets_prob.json`, `docs/story/engineering_risk.md`, `docs/story/media/pc7_risk_prob.png`; 3.238 kaynaktan skorlanabilir 2.082 hat, 1000 Monte Carlo. `docs/qa/PC7.md` §13.
-- Atlas QA: `tools/validate_atlas.py` eklendi/çalıştırıldı; 8 bölge, 156 bulgu (147 hata, 8 referans uyarısı, 1 bilgi); ayrıntı ve şehir tablosu `docs/qa/PC7.md` §14.
+- Atlas QA: `tools/validate_atlas.py` eklendi/çalıştırıldı; atlas 8 kayıt, 9 şehir dizini, 170 bulgu (160 hata, 9 referans uyarısı, 1 bilgi); Isfahan klasörü henüz atlas listesinde değil. Ayrıntı `docs/qa/PC7.md` §14.
 - BLOCKED: yok

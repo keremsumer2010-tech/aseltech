@@ -154,8 +154,30 @@ def _check_summary(city: str, directory: Path, atlas_region: dict[str, Any]) -> 
         try:
             points = load_json(points_path)
             findings.extend(f"{city}: points.json {issue}" for issue in _walk_nonfinite_or_empty(points))
+            if isinstance(points, list) and isinstance(meta, dict) and isinstance(meta.get("dates"), list):
+                expected_dates = meta["dates"]
+                for index, point in enumerate(points):
+                    if not isinstance(point, dict):
+                        findings.append(f"{city}: points.json entry {index} is not an object")
+                        continue
+                    dates = point.get("dates")
+                    values = point.get("disp_cm")
+                    if dates != expected_dates:
+                        findings.append(f"{city}: points.json entry {index} dates disagree with meta.json")
+                    if isinstance(values, list) and isinstance(dates, list) and len(values) != len(dates):
+                        findings.append(f"{city}: points.json entry {index} disp_cm length differs from dates")
         except (OSError, json.JSONDecodeError, ValidationError) as exc:
             findings.append(f"{city}: invalid points.json: {exc}")
+    known_files = {p.resolve() for p in (summary_path, meta_path, points_path)}
+    for extra_path in directory.rglob("*.json"):
+        if extra_path.resolve() in known_files:
+            continue
+        try:
+            extra = load_json(extra_path)
+            findings.extend(f"{city}: {extra_path.relative_to(directory).as_posix()} {issue}"
+                            for issue in _walk_nonfinite_or_empty(extra))
+        except (OSError, json.JSONDecodeError, ValidationError) as exc:
+            findings.append(f"{city}: invalid {extra_path.relative_to(directory).as_posix()}: {exc}")
 
     for key in ("max_subsidence_cm", "period", "rate_cm_per_100d", "p2_cm", "confidence", "valid_fraction", "ref_range_cm", "reference_point", "quality"):
         if key not in summary or summary[key] is None or summary[key] == "":
@@ -244,6 +266,8 @@ def validate() -> tuple[list[str], int, int]:
     summaries: dict[str, dict[str, Any]] = {}
     for city, directory in sorted(city_dirs.items()):
         region = by_id.get(city, {})
+        if city not in by_id and (directory / "summary.json").is_file():
+            issues.append(f"{city}: city data folder has summary.json but no atlas.json region entry")
         city_issues, summary = _check_summary(city, directory, region)
         issues.extend(city_issues)
         if summary is not None:
