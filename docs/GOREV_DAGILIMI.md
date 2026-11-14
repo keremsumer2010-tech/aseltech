@@ -52,7 +52,7 @@ Her yolun tek sahibi var (`rules/RULES.md` K-7). Burada olmayan bir yere yazman 
 | **PC2** | `pipeline/` (script, csv, `subset/`) · `docs/gunw_structure.md` · `data/<site>/drivers.json` (Pazar) · `status/PC2.md` |
 | **PC3** | `analysis/` (kod, test, `out/`) · `data/<site>/meta.json` · `data/<site>/disp/` · `data/<site>/points.json` · `data/<site>/summary.json` · `data/<site>/decomp.json` · `data/*_fullyear/` · `docs/karapinar_checkpoint_cm.png` · `status/PC3.md` |
 | **PC4** | `data/uk/` · `data/karapinar/sinkholes.geojson` · `docs/story/sources.md` · `docs/story/calibration_note.md` · `status/PC4.md` |
-| **PC5** | (13:30 yeniden atama) `analysis/decomp/` · `docs/story/uncertainty.md` · `status/PC5.md` |
+| **PC5** | (14:40) `analysis/pc5/` · `data/*/uncertainty/` · `docs/story/literature_comparison.md` · `key_findings.md` · `game_sensitivity.md` · `risk_sensitivity.md` · `docs/qa/PC5.md` · `status/PC5.md` |
 | **PC6** | (14:00: web/ PC1'e geri döndü) + Q23–Q25 yolları · `validation/` · `risk/` · `data/<site>/validation.json` · `data/<site>/assets.json` (Pazar) · `status/PC6.md` |
 | **PCQ** (14:20, bağımsız kontrol ajanı, ASF erişimi yok) | `docs/qa/PCQ.md` · `README.md` (Q13) · `docs/code_review.md` (Q15) · `status/PCQ.md` |
 | **PC7** (14:35, Codex) | `pipeline/pc7/` · `data/fens/` · `data/water/` · `docs/qa/PC7.md` · `status/PC7.md` |

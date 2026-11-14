@@ -1,47 +1,55 @@
-# PC5 — Matematik / analiz (13:30'da yeniden atandı: tasarım işleri QUEUE Q19/Q20'ye alındı)
+# PC5 — Bilimsel güvenilirlik paketi (14:40'ta yenilendi)
 
-> Bu dosyadaki sıra geçerlidir (`docs/ZAMAN_CIZELGESI.md`'deki eski PC5 sütunu iptal). İş bitince durma: RULES §7.1.
+> Eski PC5 işleri (decompose, error_budget, game_model) PC3 tarafından yapıldı. Bu dosya TAMAMEN yenidir; aşağıdaki sırayla çalış, iş bitince sormadan sıradakine geç (RULES §7.1). İNDİRME YAPMA (aynı bilgisayarda PC3 indiriyor): sadece repodaki veriyle çalış.
 
 ## Kimlik
-M3hmeT1888 · Antigravity (Gemini) · klasör `aseltech-gemini`
+M3hmeT1888 · Antigravity (Gemini) · klasör `aseltech-gemini` · commit öneki `[PC5]`
 
 ## Yazma alanı
-`analysis/decomp/` (yeni alt klasör, sadece senin) · `docs/story/uncertainty.md` · `docs/qa/PC5.md` · `status/PC5.md`
-`analysis/` içindeki diğer dosyalar PC3'ündür: okuyabilir/import edebilirsin, DEĞİŞTİRME.
+`analysis/pc5/` (kodun) · `data/central_valley/uncertainty/` · `data/karapinar/uncertainty/` · `docs/story/literature_comparison.md` · `docs/story/key_findings.md` · `docs/story/game_sensitivity.md` · `docs/story/risk_sensitivity.md` · `docs/qa/PC5.md` · `status/PC5.md` · QUEUE'da sadece Q26/Q27 satırları.
+`analysis/` içindeki diğer dosyalar PC3'ün: import edebilirsin, DEĞİŞTİRME.
 
 ## En kritik iş
-Pazar günkü "kalıcı vs geri dönen çökme" (özgün katkı #1) için test edilmiş ayrıştırma kodu — PC3 tam yıl verisiyle sadece çalıştıracak.
+Görev 1 (belirsizlik haritası) ve Görev 2 (literatür kıyası): jüri "bu sayılara neden güvenelim?" diye sorduğunda cevabımız bunlar.
 
 ## Görevler
-1. **(13:30–15:00) Ayrıştırma modülü** — `analysis/decomp/decompose.py`
-   - Her piksel: `d(t) = a + v·t + A·sin(2πt) + B·cos(2πt)` (t yıl), en küçük kareler, vektörleştirilmiş (tüm pikseller tek lstsq).
-   - Çıktılar: `v` (cm/yıl, kalıcı eğilim), genlik `sqrt(A²+B²)` (cm, geri dönen), faz (en düşük ay), standart hatalar, R².
-   - Geçerli nokta < 8 veya süre < 9 ay → NaN + sebep kodu.
-   - `analysis/decomp/test_decompose.py`: bilinen v/A/faz + gürültü → geri bulma toleransı; boşluk/NaN testleri. `python -m pytest analysis/decomp -q` geçmeli.
-2. **(15:00–16:30) Belirsizlik bütçesi** — `analysis/decomp/error_budget.py` + `docs/story/uncertainty.md`
-   - Zincir toplamında gürültü: σ_toplam ≈ σ_çift·√N (bağımsızlık varsayımı açıkça yazılır).
-   - σ_çift: PC3'ün sabit kontrol noktalarından; yoksa `pipeline/subset/central_valley/*.npz` yüksek koherenslı sabit bölge std'si.
-   - İyonosfer ekranı (npz'de `ion` varsa) p1–p99 aralığı → cm.
-   - Site "How we know" için 3–4 cümle İngilizce + tablo; ölçülen sayılar yöntemiyle, tahminler "estimate".
-3. **(16:30 sonrası)** `summary.json` sayılarının bağımsız kontrolü → `docs/qa/PC5.md`; sonra QUEUE'da atanmamış en üst iş.
+0. **ŞİMDİ (5 dk):** `git pull --rebase origin main` → status/PC5.md'ye "Durum: çalışıyor, Görev 1" yaz → commit + push. Hiç commit atmadın; ilk iş bu.
+
+1. **Piksel bazında belirsizlik haritası** (14:45–15:45) → `analysis/pc5/uncertainty_map.py`
+   - Girdi: `pipeline/subset/central_valley/*.npz` (`coh`, `unw`, `wavelength`; coh uint8 ise /255).
+   - Tek çift faz std'si (Cramér-Rao / Rodriguez-Martin yaklaşımı): `σφ = sqrt(1−γ²) / (γ·sqrt(2L))`, L = etkin bakış sayısı (80 m GUNW için ürün dokümanından L'yi bul ve kaynakla; bulamazsan L'yi parametre yap, varsayımını yaz).
+   - cm'ye: `σd = λ/(4π)·σφ·100`. Zincir toplamı: `σ_toplam = sqrt(Σ σd_i²)` (bağımsızlık varsayımı; atmosferi KAPSAMAZ, açıkça yaz).
+   - Çıktı: `data/central_valley/uncertainty/sigma_cm.png` (bbox'a oturan, şeffaf, sabit renk aralığı), `data/central_valley/uncertainty/meta.json` (`bbox, units:"cm", vmin, vmax, median_sigma_cm, p90_sigma_cm, method, assumptions, quality:"provisional"`).
+   - `analysis/pc5/test_uncertainty_map.py`: γ=1 → σ=0, γ↓ → σ↑, bilinen sayısal örnek. pytest geçmeli.
+   - Aynısını Karapınar için (`pipeline/subset/karapinar/` varsa) → `data/karapinar/uncertainty/`.
+
+2. **Literatür kıyası** (15:45–16:30) → `docs/story/literature_comparison.md`
+   - Central Valley: yayımlanmış InSAR/GPS çökme hızları (NASA JPL, USGS, hakemli makaleler; Tulare/Corcoran bölgesi). Tablo: kaynak, yıl, yöntem, dönem, hız (cm/yıl), link.
+   - Karapınar/Konya: yayımlanmış InSAR çökme hızları (hakemli). Aynı tablo.
+   - Bizim sonuç: `data/central_valley/summary.json` ve `data/karapinar/summary.json` (108 günlük değer + yıllık "estimate"); hangi aralığa düştüğünü 3–4 cümle İngilizce yorumla. Bizim yıllık tahmin neden yüksek olabilir (yaz sezonu, elastik geri dönüş) açıkla.
+   - HER LİNKİ AÇ; açamadığın kaynağı yazma.
+
+3. **Q26 + Q27** (16:30–17:00) — tasks/QUEUE.md'de satırları sahiplen.
+   - Q26: `analysis/decomp/point_quality.py` (PC3'ün) varsa onu ÇALIŞTIR, sonuç tablosunu `docs/qa/PC5.md`'ye yaz; yoksa aynı mantığı `analysis/pc5/` altında yaz.
+   - Q27: `data/central_valley/validation.json` istatistiksel yorumu → `docs/story/uncertainty.md` SONUNA DEĞİL, `docs/story/key_findings.md` içine bir bölüm olarak: medyan RMSE, r dağılımı, hareketli (|GPS|>2 cm) ve sabit istasyon gruplarında ayrı ayrı. 3 cümle İngilizce.
+
+4. **Anahtar bulgular sayfası** (17:00–17:30) → `docs/story/key_findings.md` (PC1 bunu sitenin Science sayfasına bağlayacak)
+   - En fazla 8 madde, her biri: bulgu + sayı ± belirsizlik + dosya kaynağı. Örn. "Largest 108-day subsidence: −7.8 cm LOS (range −6.2…−7.8 with reference choice; per-pixel σ ≈ X cm)".
+   - Sadece repodaki dosyalardaki sayılar; uydurma yok.
+
+5. **Risk indeksi duyarlılığı** (17:30–18:30) → `analysis/pc5/risk_sensitivity.py` + `docs/story/risk_sensitivity.md`
+   - `data/central_valley/assets.json` özellikleri üzerinden eşikleri ±%25 değiştir (gradyan 7.5/10/12.5 mm/km, çökme 7.5/10/12.5 cm): yüksek riskli segment sayısı nasıl değişiyor? İlk 10'daki segmentler sabit kalıyor mu? Tablo + 3 cümle.
+
+6. **Oyun modeli duyarlılığı** (18:30–19:30) → `analysis/pc5/game_sensitivity.py` + `docs/story/game_sensitivity.md`
+   - `docs/story/game_model.md` ve `game/model.js`'teki denklemleri Python'a aktar (game/ dosyalarına DOKUNMA). Monte Carlo (1000 çalıştırma): S_kv, S_ke, b0 parametrelerini kaynaktaki aralıklarda değiştir → 24 aylık toplam çökme dağılımı (p10/p50/p90). Kalibrasyon noktası (−10 cm / 108 gün) hangi parametre bölgesinde? Tablo + histogram PNG (`docs/story/game_sensitivity.png`).
+
+7. **Pazar hazırlığı** (19:30 sonrası): tam yıl verisi (PC2 Q07) gelince `analysis/decomp/run_decomp.py`'yi çalıştırma talimatını ve beklenen çıktıları `docs/qa/PC5.md`'ye yaz; PC3 ile çakışma olmasın diye sadece kontrol listesi.
 
 ## Bitti sayılır eğer
-Testler geçiyor · docstring'ler yöntemi ve varsayımları anlatıyor · uncertainty.md'deki her sayının hesap yolu yazılı.
-
-## B planı
-PC3 verisi gelmezse belirsizliği npz'lerden hesapla, "preliminary" etiketle.
+Her görevde: kod çalıştı, testler (varsa) geçti, çıktı açılıp kontrol edildi, status/PC5.md'de yöntem + sayılar + varsayımlar yazılı, push edildi.
 
 ## Yapma listesi
-PC3'ün dosyalarını değiştirme · sayı uydurma · beta ile provisional'ı aynı hesapta karıştırma (K-3).
+İndirme yapma · başka PC'nin dosyasını değiştirme · sayı/kaynak uydurma · provisional ile beta'yı karıştırma · `git add -A`.
 
 ## Rapor (`status/PC5.md`)
-Ne bitti, test sonucu, σ değerleri ve yöntemi.
-
----
-# 14:10 YENİ PAKET (öncelik sırası)
-0. **ÖNCE: 10 dk içinde ilk commit** (status/PC5.md "çalışıyor" + yapılacaklar listesi). Saat 14:10 itibarıyla hiç commit yok.
-1. **OYUN MODELİ PARAMETRELERİ** (14:10–15:00, PC6'nın oyunu buna bağlı) → `docs/story/game_model.md`:
-   San Joaquin Valley için kaynaklı değerler: özgül verim S_y, elastik ve inelastik iskelet depolama katsayıları (S_ke, S_kv) veya eşdeğerleri, tipik sıkışabilir kil kalınlığı b0, tipik kuyu derinlikleri, yıllık beslenme, California Water Year Index sınıfları (wet/above/below/dry/critical) ve olasılıkları, kanal kapasite kaybı örnekleri (Friant-Kern, Delta-Mendota). Her değer: sayı, birim, kaynak linki (USGS/DWR/hakemli). Bulamadığın değer "illustrative" + mantıklı aralık. Sonra **kalibrasyon**: "normal yıl, mevcut pompalama" 108 günde −10 cm dikey (summary.json) verecek ölçek katsayısını hesapla ve formülüyle yaz. Bitince PC6'ya status'ta "game_model hazır" yaz.
-2. **Ayrıştırma modülü** (`analysis/decomp/decompose.py` + testler) — tasks/PC5.md Görev 1.
-3. **Belirsizlik bütçesi** — Görev 2.
-4. **Q26, Q27**.
+Her görev bitince: ne yapıldı, sayılar, varsayımlar, `AI: Gemini → ...`.
