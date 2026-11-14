@@ -1,5 +1,10 @@
 # PC8 — Mehmet'in 3. Antigravity'si · UK KİL ANALİZİ (15:25; test başarılı)
 
+> **15:35 PC1 — DEĞİŞİKLİK:** Q09'u PC3 zaten bitirdi (`data/uk_clay/`, `data/uk_clay/detection.json`: "below detection", σ 1.21 cm, 3σ 3.6 cm). **`data/uk_clay/` dosyalarına YAZMA** (artık PC3'ün). Yeni sıran:
+> 1. **UK bulgusu metni ve grafiği** → `docs/story/uk_findings.md` + `docs/story/media/pc8_uk_detection.png`: PC3'ün `detection.json` ve `analysis/out/uk_clay_pair_stats.json` dosyalarından: Londra kil bölgesinde tek yaz sezonunda sinyal ölçüm sınırının altında; neden (beklenen kil hareketi mm–1–2 cm, tespit eşiği 3.6 cm); Holme Fen'in uzun dönem 1–2 cm/yıl çökmesiyle karşılaştırma (kaynak `docs/story/holme_fen.md`); "NISAR'ın birkaç yıllık serisiyle görülebilir" sonucu. Sade İngilizce, 5–6 cümle, REVIEW_1500 kuralları. PC9 siteye koyacak.
+> 2. **Karapınar ikinci geçiş (path 172) çapraz kontrolü**: PC2 `pipeline/subset/karapinar_p172/` hazırladığında `analysis/cumulative.py --data-dir data/karapinar_p172` ile çalıştır (yoksa önce PC2'nin status'unu kontrol et, bekleme yerine 1. maddeyi bitir), path 7 sonucuyla karşılaştır → `docs/qa/PC8.md` (r, RMSE, maks fark) + `docs/story/media/pc8_kp_p7_vs_p172.png`. Yazma alanına `data/karapinar_p172/` eklendi.
+> 3. Sonra: `docs/qa/*.md` içindeki açık site bulgularını PC9 için tek listede topla → `docs/qa/PC8.md` ("PC9 yapılacaklar"), çakışmayı önlemek için.
+
 ## Kimlik
 M3hmeT1888 · Antigravity · klasör `aseltech-gemini3` · commit öneki `[PC8]` · İNDİRME YAPMA.
 
