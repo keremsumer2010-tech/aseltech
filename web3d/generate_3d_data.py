@@ -266,18 +266,19 @@ def build_region_payload(
     }
 
 
-def build_precomputed_cv_payload(
+def build_precomputed_stack_payload(
+    site: str,
     title: str,
     subtitle: str,
     bbox: tuple[float, float, float, float],
     step_deg: float,
 ) -> dict | None:
-    """Build Central Valley 3D payload directly from PC3's official 7-pair stack & summary JSON."""
-    stack_path = ROOT / "analysis" / "out" / "central_valley_cum_stack.npz"
-    cum_path = ROOT / "analysis" / "out" / "central_valley_cum.npz"
-    summary_path = ROOT / "data" / "central_valley" / "summary.json"
-    meta_path = ROOT / "data" / "central_valley" / "meta.json"
-    points_path = ROOT / "data" / "central_valley" / "points.json"
+    """Build 3D payload directly from PC3's official cumulative stack & summary JSON."""
+    stack_path = ROOT / "analysis" / "out" / f"{site}_cum_stack.npz"
+    cum_path = ROOT / "analysis" / "out" / f"{site}_cum.npz"
+    summary_path = ROOT / "data" / site / "summary.json"
+    meta_path = ROOT / "data" / site / "meta.json"
+    points_path = ROOT / "data" / site / "points.json"
     if not (stack_path.exists() and summary_path.exists() and meta_path.exists()):
         return None
 
@@ -298,7 +299,11 @@ def build_precomputed_cv_payload(
     mean_coh = None
     if ref_rc is not None:
         r0, c0 = ref_rc
-        subset_files = sorted((ROOT / "pipeline" / "subset" / "central_valley").glob("*.npz"))
+        subset_files = sorted((ROOT / "pipeline" / "subset" / site).glob("*.npz"))
+        if not subset_files and site == "karapinar":
+            kp_single = ROOT / "analysis" / "out" / "karapinar_20260918_20260930.npz"
+            if kp_single.exists():
+                subset_files = [kp_single]
         if subset_files:
             cohs = [
                 float(np.load(f, allow_pickle=False)["coh"][max(0, r0 - 3): r0 + 4, max(0, c0 - 3): c0 + 4].mean()) / 255.0
@@ -333,8 +338,10 @@ def build_precomputed_cv_payload(
                 label = pt["name"]
                 break
     if not label:
-        places = load_places("central_valley")
-        label = place_label(max_loc["lon"], max_loc["lat"], places) if places else f"{abs(max_loc['lat']):.3f}N, {abs(max_loc['lon']):.3f}W"
+        places = load_places(site)
+        hemi_lat = "N" if max_loc["lat"] >= 0 else "S"
+        hemi_lon = "E" if max_loc["lon"] >= 0 else "W"
+        label = place_label(max_loc["lon"], max_loc["lat"], places) if places else f"{abs(max_loc['lat']):.3f}{hemi_lat}, {abs(max_loc['lon']):.3f}{hemi_lon}"
     max_loc["label"] = label
 
     ref_pt = dict(summary["reference_point"])
@@ -342,7 +349,7 @@ def build_precomputed_cv_payload(
 
     days = (date.fromisoformat(dates[-1]) - date.fromisoformat(dates[0])).days
     return {
-        "site": "central_valley",
+        "site": site,
         "title": title,
         "subtitle": subtitle,
         "bbox": list(bbox),
@@ -376,7 +383,8 @@ def build_precomputed_cv_payload(
 
 
 def main() -> None:
-    cv_payload = build_precomputed_cv_payload(
+    cv_payload = build_precomputed_stack_payload(
+        site="central_valley",
         title="San Joaquin Valley (California)",
         subtitle="7 provisional NISAR GUNW pairs (2026-06-28 → 2026-10-14, DEM + iono deramped)",
         bbox=BBOX["central_valley"],
@@ -392,17 +400,25 @@ def main() -> None:
             bbox=BBOX["central_valley"],
             step_deg=0.0125,
         )
-    kp_files = [ROOT / "analysis" / "out" / "karapinar_20260918_20260930.npz"]
 
-    kp_payload = build_region_payload(
+    kp_payload = build_precomputed_stack_payload(
         site="karapinar",
         title="Karapınar Basin (Konya, Türkiye)",
-        subtitle="Single 12-day provisional checkpoint overlaid with 29 verified obruk sinkholes",
-        npz_files=kp_files,
+        subtitle="8 provisional NISAR GUNW pairs (2026-06-26 → 2026-10-12) + 29 verified obruk sinkholes",
         bbox=BBOX["karapinar"],
         step_deg=0.00625,
-        extra_notes="Single 12-day pair shown alongside verified field sinkhole coordinates from Tapur & Bozyigit (2015).",
     )
+    if kp_payload is None:
+        kp_files = [ROOT / "analysis" / "out" / "karapinar_20260918_20260930.npz"]
+        kp_payload = build_region_payload(
+            site="karapinar",
+            title="Karapınar Basin (Konya, Türkiye)",
+            subtitle="Single 12-day provisional checkpoint overlaid with 29 verified obruk sinkholes",
+            npz_files=kp_files,
+            bbox=BBOX["karapinar"],
+            step_deg=0.00625,
+            extra_notes="Single 12-day pair shown alongside verified field sinkhole coordinates from Tapur & Bozyigit (2015).",
+        )
 
     gj_path = ROOT / "data" / "karapinar" / "sinkholes.geojson"
     gj = json.loads(gj_path.read_text(encoding="utf-8"))
