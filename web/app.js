@@ -246,9 +246,25 @@ function ringChart(){
   const rings = ra.disjoint_rings, bg = rings.find(r => r.band.startsWith('>')), r1 = rings[0];
   setK('kp.ring1', Math.abs(r1.mean_cm).toFixed(1)); setK('kp.ringbg', Math.abs(bg.mean_cm).toFixed(1)); setK('kp.ringN', ra.sinkholes_inside_1km_footprint);
   document.getElementById('ringBox').hidden = false;
-  new Chart(document.getElementById('ringChart'), {type: 'bar',
-    data: {labels: rings.map(r => r.band.replace(' (background)', '')), datasets: [{label: 'Average sinking (cm)', data: rings.map(r => Math.abs(r.mean_cm)), backgroundColor: ['#c8321f', '#d6604d', '#e8a08f', '#b8c2d0']}]},
-    options: {...chartOpts('cm sinking'), plugins: {legend: {display: false}}, scales: {...chartOpts('cm sinking').scales, x: {...chartOpts('').scales.x, title: {display: true, text: 'Distance from nearest sinkhole', color: '#4a5568'}}}}});
+  const stds = rings.map(r => r.std_cm ?? 0);
+  const errBars = {
+    id: 'ringErrBars',
+    afterDatasetsDraw(chart){
+      const {ctx, scales: {y}} = chart, meta = chart.getDatasetMeta(0);
+      ctx.save(); ctx.strokeStyle = '#1a1f29'; ctx.lineWidth = 1.5;
+      meta.data.forEach((bar, i) => {
+        const s = stds[i]; if (!s) return;
+        const mean = Math.abs(rings[i].mean_cm), yTop = y.getPixelForValue(mean + s), yBot = y.getPixelForValue(Math.max(0, mean - s));
+        ctx.beginPath(); ctx.moveTo(bar.x, yTop); ctx.lineTo(bar.x, yBot);
+        ctx.moveTo(bar.x - 4, yTop); ctx.lineTo(bar.x + 4, yTop);
+        ctx.moveTo(bar.x - 4, yBot); ctx.lineTo(bar.x + 4, yBot); ctx.stroke();
+      });
+      ctx.restore();
+    }
+  };
+  new Chart(document.getElementById('ringChart'), {type: 'bar', plugins: [errBars],
+    data: {labels: rings.map(r => `${r.band.replace(' (background)', '')} (n=${r.pixel_count.toLocaleString('en-US')})`), datasets: [{label: 'Average sinking (cm)', data: rings.map(r => Math.abs(r.mean_cm)), backgroundColor: ['#c8321f', '#d6604d', '#e8a08f', '#b8c2d0']}]},
+    options: {...chartOpts('cm sinking'), plugins: {legend: {display: false}, tooltip: {callbacks: {label: c => `Mean ${c.parsed.y.toFixed(2)} cm (±${(stds[c.dataIndex] || 0).toFixed(2)} cm SD, n=${rings[c.dataIndex].pixel_count.toLocaleString('en-US')})`}}}, scales: {...chartOpts('cm sinking').scales, y: {...chartOpts('cm sinking').scales.y, suggestedMax: 6.5}, x: {...chartOpts('').scales.x, title: {display: true, text: 'Distance from nearest sinkhole (pixel count)', color: '#4a5568'}}}}});
 }
 function sinkList(){
   if (!D.sinks) return;
