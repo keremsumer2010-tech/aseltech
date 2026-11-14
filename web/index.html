@@ -14,7 +14,7 @@
 </head>
 <body>
 <header class="site-header">
-  <a class="logo" href="index.html"><span class="logo-mark"></span>NISAR&nbsp;Pulse</a>
+  <a class="logo" href="index.html" aria-label="NISAR Pulse home"><span class="logo-mark"></span><span class="logo-text">NISAR&nbsp;Pulse</span></a>
   <nav class="site-nav">
     <a href="#story" class="active">Story</a><a href="#play">Simulator</a><a href="science.html">Science</a><a href="data.html">Data</a><a href="faq.html">FAQ</a>
   </nav>
@@ -27,8 +27,13 @@
   <div class="hero-content">
     <p class="kicker">NASA Space Apps Challenge 2026 · Dancing with the SARs</p>
     <h1>The ground beneath<br>our food is sinking.</h1>
-    <p class="lede">Between 28 June and 14 October 2026, NASA-ISRO's NISAR radar measured parts of California's Central Valley moving up to <b data-k="cv.max">7.8</b> cm away from the satellite as groundwater was pumped for irrigation. This page explains the measurement, how we checked it, and what it means for canals, roads and farms in California, Türkiye and the United Kingdom.</p>
-    <div class="hero-cta"><a class="btn primary" href="#story">Read the story</a><a class="btn ghost" href="#play">Open the simulator</a></div>
+    <p class="lede">NASA-ISRO's NISAR satellite measured farmland in California sinking up to <b data-k="cv.maxabs">7.8</b> cm in 108 days. We checked it against GPS and mapped what is at risk.</p>
+    <ol class="mce" aria-label="What this project does">
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M4 12a8 8 0 0 1 8-8M20 12a8 8 0 0 1-8 8M7.5 12A4.5 4.5 0 0 1 12 7.5M16.5 12a4.5 4.5 0 0 1-4.5 4.5"/></svg><b>Measure</b><span>Radar image pairs from NISAR turned into a centimetre map of sinking ground.</span></li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg><b>Check</b><span>Compared with 10 GPS stations and a second, independent satellite pass.</span></li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 20h18M6 20V10l6-5 6 5v10M10 20v-5h4v5"/></svg><b>Explain</b><span>Canals and roads at risk, sinkholes in Türkiye, and a simulator to try it yourself.</span></li>
+    </ol>
+    <div class="hero-cta"><a class="btn primary" href="#findings">See what we found</a><a class="btn ghost" href="#play">Try the simulator</a></div>
     <p class="byline">14 November 2026 · Team Taykut, Ankara · Data: NASA-ISRO NISAR (provisional), NASA ASF DAAC, Nevada Geodetic Laboratory, OpenStreetMap</p>
   </div>
   <p class="hero-caption">Live background: cumulative ground motion measured by NISAR over the Central Valley, 28 Jun – 14 Oct 2026 (red = sinking). <span class="qbadge provisional">PROVISIONAL</span></p>
@@ -36,12 +41,20 @@
 
 <!-- KEY NUMBERS -->
 <section class="stats" aria-label="Key measurements">
-  <div class="stat"><div class="num"><span data-k="cv.max">−7.8</span><small>cm</small></div><div class="lbl">Largest sinking measured in the Central Valley (line of sight, 108 days)</div></div>
-  <div class="stat"><div class="num"><span data-k="cv.vert">≈−10</span><small>cm</small></div><div class="lbl">Same spot, estimated vertical motion</div></div>
-  <div class="stat"><div class="num"><span data-k="risk.high">81</span></div><div class="lbl">Canal, road and rail segments flagged high-risk by our tilt index</div></div>
-  <div class="stat"><div class="num"><span data-k="gnss.good">6</span><small>/10</small></div><div class="lbl">GPS stations where ground and satellite agree (r ≥ 0.4)</div></div>
-  <div class="stat"><div class="num"><span data-k="kp.max">−5.9</span><small>cm</small></div><div class="lbl">Largest sinking measured around Karapınar, Türkiye</div></div>
-  <div class="stat"><div class="num"><span data-k="kp.sinks">29</span></div><div class="lbl">Documented sinkholes on our Konya map, each with a source</div></div>
+  <div class="stat"><div class="num"><span data-k="cv.max">−7.8</span><small>cm</small></div><div class="lbl"><b>Largest sinking</b> in California's Central Valley, <span data-k="cv.period">28 Jun – 14 Oct 2026</span> (108 days)</div></div>
+  <div class="stat"><div class="num"><span data-k="cv.area5">240</span><small>km²</small></div><div class="lbl"><b>Farmland that sank more than 5 cm</b> in the same 108 days</div></div>
+  <div class="stat"><div class="num"><span data-k="gnss.mederr">1.0</span><small>cm</small></div><div class="lbl"><b>Typical difference from GPS</b> (median of <span data-k="gnss.n">10</span> ground stations)</div></div>
+  <div class="stat"><div class="num"><span data-k="risk.high">81</span><small>/<span data-k="risk.evaluated">645</span></small></div><div class="lbl"><b>Canal, road and rail sections</b> on steeply uneven sinking ground</div></div>
+</section>
+
+<!-- WHAT WE FOUND -->
+<section class="band" id="findings" hidden>
+  <div class="wrap">
+    <p class="chapter">What we found</p>
+    <h2>Eight findings, in plain words</h2>
+    <div class="findings" id="findingsList"></div>
+    <p class="small">Every number comes from the data files on the <a href="data.html">Data</a> page. Method and uncertainties: <a href="science.html">Science</a>.</p>
+  </div>
 </section>
 
 <section class="band" id="watch" style="padding:70px 6vw">

@@ -19,24 +19,48 @@ const chartOpts = yTitle => ({responsive: true, animation: {duration: 300}, plug
 
 const D = {};
 async function load(){
-  [D.cvMeta, D.cvSum, D.cvPts, D.val, D.assets, D.kpMeta, D.kpSum, D.sinks, D.uk] = await Promise.all([
+  [D.cvMeta, D.cvSum, D.cvPts, D.val, D.assets, D.kpMeta, D.kpSum, D.sinks, D.uk, D.kpAssets, D.cvArea, D.ukClay] = await Promise.all([
     J('data/central_valley/meta.json'), J('data/central_valley/summary.json'), J('data/central_valley/points.json'),
     J('data/central_valley/validation.json'), J('data/central_valley/assets.json'),
-    J('data/karapinar/meta.json'), J('data/karapinar/summary.json'), J('data/karapinar/sinkholes.geojson'), J('data/uk/meta.json')]);
-  if (D.cvSum){ setK('cv.max', minus(D.cvSum.max_subsidence_cm)); setK('cv.vert', '≈' + minus(D.cvSum.max_subsidence_vertical_cm_estimate)); setK('cv.pairs', D.cvSum.n_pairs); }
+    J('data/karapinar/meta.json'), J('data/karapinar/summary.json'), J('data/karapinar/sinkholes.geojson'), J('data/uk/meta.json'),
+    J('data/karapinar/assets.json'), J('data/central_valley/area_stats.json'), J('data/uk_clay/detection.json')]);
+  if (D.cvSum){ setK('cv.max', minus(D.cvSum.max_subsidence_cm)); setK('cv.maxabs', Math.abs(D.cvSum.max_subsidence_cm).toFixed(1)); setK('cv.vert', '≈' + minus(D.cvSum.max_subsidence_vertical_cm_estimate)); setK('cv.pairs', D.cvSum.n_pairs);
+    setK('cv.period', `${fmtShort(D.cvSum.period[0])} – ${fmtDate(D.cvSum.period[1])}`); }
+  if (D.cvArea?.area_km2_lt_5cm) setK('cv.area5', Math.round(D.cvArea.area_km2_lt_5cm.at(-1)));
   if (D.assets?.summary){ const s = D.assets.summary; setK('risk.high', s.high_risk_count); setK('risk.med', s.medium_risk_count); setK('risk.low', s.low_risk_count); setK('risk.evaluated', s.evaluated_segments); }
-  if (D.val) setK('gnss.good', D.val.filter(s => s.corr >= 0.4).length);
+  if (D.val){ setK('gnss.good', D.val.filter(s => s.corr >= 0.4).length); setK('gnss.n', D.val.length);
+    const r = D.val.map(s => s.rmse_cm).sort((a, b) => a - b), n = r.length; setK('gnss.mederr', (n % 2 ? r[(n - 1) / 2] : (r[n / 2 - 1] + r[n / 2]) / 2).toFixed(1)); }
+  if (D.ukClay?.status === 'below_detection'){ setK('uk.clayThr', D.ukClay.detection_threshold_cm.toFixed(1)); const e = document.getElementById('ukClay'); if (e) e.hidden = false; }
   if (D.kpSum){ setK('kp.max', minus(D.kpSum.max_subsidence_cm)); setK('kp.pairs', D.kpSum.n_pairs); setK('kp.period', `${fmtShort(D.kpSum.period[0])} – ${fmtDate(D.kpSum.period[1])}`); }
   if (D.sinks) setK('kp.sinks', D.sinks.features.length);
   if (D.uk) setK('uk.date', fmtDate(D.uk.date));
+}
+
+/* ---------- what we found: docs/story/key_findings_public.md (numbered list) ---------- */
+const esc = s => s.replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
+async function findings(){
+  let md; try{ const r = await fetch(ROOT + 'docs/story/key_findings_public.md', {cache: 'no-cache'}); if (!r.ok) return; md = await r.text(); }catch(e){ return; }
+  const items = [...md.matchAll(/^\d+\.\s+\*\*(.+?)\*\*\s*(.+)$/gm)].map(m => ({
+    title: m[1].replace(/:\s*$/, '').replace(/\s*\([^)]*\d{4}\)\s*$/, ''),
+    text: m[2].replace(/\s*\([^()]*`[^`]+`[^()]*\)/g, '').replace(/`/g, '').trim()}));
+  if (!items.length) return;
+  document.getElementById('findingsList').innerHTML = items.map((f, i) =>
+    `<article class="finding"><span class="fnum">${i + 1}</span><h3>${esc(f.title)}</h3><p>${esc(f.text)}</p></article>`).join('');
+  document.getElementById('findings').hidden = false;
 }
 
 /* ---------- hero: live NISAR layer ---------- */
 function hero(){
   if (!D.cvMeta) return;
   const m = D.cvMeta, base = ROOT + 'data/central_valley/disp/';
-  const hm = new maplibregl.Map({container: 'heroMap', style: STYLE, center: [-119.35, 36.1], zoom: 8.2, interactive: false, attributionControl: false, pitch: 30, bearing: -12});
+  // flat view: a tilted map shows the horizon, which MapLibre paints light grey behind the hero text
+  const heroStyle = {...STYLE, layers: [{id: 'bg', type: 'background', paint: {'background-color': '#05080f'}}, ...STYLE.layers]};
+  const hm = new maplibregl.Map({container: 'heroMap', style: heroStyle, center: [-119.45, 36.1], zoom: 8.4, interactive: false, attributionControl: false, pitch: 0, bearing: -12});
   hm.on('load', () => {
+    // put the measured area in the right part of the screen, clear of the headline (left column on wide screens)
+    const W = hm.getContainer().clientWidth, wide = W > 860;
+    hm.fitBounds([[m.bbox[0], m.bbox[1]], [m.bbox[2], m.bbox[3]]], {duration: 0, bearing: -12,
+      padding: wide ? {left: Math.round(W * 0.48), right: 40, top: 90, bottom: 70} : {left: 20, right: 20, top: 70, bottom: Math.round(hm.getContainer().clientHeight * 0.55)}});
     hm.addSource('h', {type: 'image', url: base + m.dates[0] + '.png', coordinates: corners(m.bbox)});
     hm.addLayer({id: 'h', type: 'raster', source: 'h', paint: {'raster-opacity': 0.85, 'raster-fade-duration': 600}});
     let i = 0; setInterval(() => { i = (i + 1) % m.dates.length; hm.getSource('h').updateImage({url: base + m.dates[i] + '.png', coordinates: corners(m.bbox)}); }, 1400);
@@ -194,4 +218,4 @@ function extras(){
   document.getElementById('gameFrame').src = g; document.getElementById('gameOpen').href = g; document.getElementById('view3d').href = v3;
 }
 
-load().then(() => { hero(); storyMap(); compare(); cvControls(); gnssTable(); riskList(); sinkList(); extras(); });
+load().then(() => { hero(); storyMap(); compare(); cvControls(); gnssTable(); riskList(); sinkList(); extras(); findings(); });
