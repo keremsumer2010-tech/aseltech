@@ -2,27 +2,6 @@
   "method": "Automatic time-series QC for atlas headline points (PC1).\n\nFor every region in data/global/atlas.json, look at the headline point's cumulative series\n(points.json, kind == \"most_subsiding\") and flag two failure modes that a single summary\nnumber hides:\n\n  phase_cycle_jump      one step whose size is within ±CYCLE_TOL of a full L-band phase cycle\n                        (lambda/2 = 12.1 cm LOS). Typical of an unwrapping error.\n  single_date_outlier   two consecutive steps of opposite sign, each larger than SPIKE_CM, that\n                        largely cancel: one acquisition is off (atmosphere, unwrapping), the\n                        surrounding dates agree.",
   "cycle_cm": 12.1,
   "flags": {
-    "semarang": {
-      "flags": [
-        "phase_cycle_jump"
-      ],
-      "steps_cm": [
-        -3.25,
-        3.5,
-        -2.37,
-        -0.14,
-        1.33,
-        -0.64,
-        0.7,
-        -11.18
-      ],
-      "detail": "step 8 (2026-09-29→2026-10-11) = -11.18 cm ≈ one phase cycle (12.1 cm)",
-      "headline_point": [
-        110.28742,
-        -7.15767
-      ],
-      "headline_without_flagged_steps_cm": -0.87
-    },
     "delhi": {
       "flags": [
         "single_date_outlier"

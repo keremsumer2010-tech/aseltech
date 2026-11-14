@@ -93,7 +93,45 @@ def _compute_confidence(
     return "medium"
 
 
-def _load_entry(site_id: str, name: str, country: str, ddir: Path, rel_path: str) -> dict | None:
+def _load_aux_maps() -> tuple[dict, dict, dict, dict]:
+    det_map: dict[str, dict] = {}
+    det_f = ROOT / "data" / "global" / "detectability.json"
+    if det_f.exists():
+        for c in json.loads(det_f.read_text(encoding="utf-8")).get("cities", []):
+            det_map[c["id"]] = c
+
+    rob_map: dict[str, dict] = {}
+    rob_f = ROOT / "data" / "global" / "robustness.json"
+    if rob_f.exists():
+        for c in json.loads(rob_f.read_text(encoding="utf-8")).get("cities", []):
+            rob_map[c["id"]] = c
+
+    exp_map: dict[str, dict] = {}
+    exp_f = ROOT / "data" / "global" / "exposure_atlas.json"
+    if exp_f.exists():
+        for c in json.loads(exp_f.read_text(encoding="utf-8")).get("cities", []):
+            exp_map[c["id"]] = c
+
+    op_map: dict[str, dict] = {}
+    op_f = ROOT / "data" / "global" / "opera_check.json"
+    if op_f.exists():
+        op_data = json.loads(op_f.read_text(encoding="utf-8"))
+        if isinstance(op_data, list):
+            for c in op_data:
+                if "id" in c:
+                    op_map[c["id"]] = c
+
+    return det_map, rob_map, exp_map, op_map
+
+
+def _load_entry(
+    site_id: str,
+    name: str,
+    country: str,
+    ddir: Path,
+    rel_path: str,
+    aux: tuple[dict, dict, dict, dict] | None = None,
+) -> dict | None:
     sf = ddir / "summary.json"
     if not sf.exists():
         return None
@@ -128,6 +166,27 @@ def _load_entry(site_id: str, name: str, country: str, ddir: Path, rel_path: str
 
     conf = _compute_confidence(valid_frac, ref_range, max_cm, n_refs, val_note)
 
+    det_map, rob_map, exp_map, op_map = aux or ({}, {}, {}, {})
+    det_row = det_map.get(site_id)
+    rob_row = rob_map.get(site_id)
+    exp_row = exp_map.get(site_id)
+    op_row = op_map.get(site_id)
+
+    detectable = det_row.get("detectable") if det_row else None
+    rob_spread = rob_row.get("spread_cm") if rob_row else None
+    people_exposed = exp_row.get("people_lt_minus2cm") if exp_row else None
+    opera_check = (
+        {k: op_row.get(k) for k in ("r", "rmse_cm", "rmse_cm_per_100d", "slope", "n") if k in op_row}
+        if op_row
+        else None
+    )
+
+    # ATLAS_FINAL §2: detectable=false or robustness_spread > |value|/2 -> low confidence
+    if detectable is False:
+        conf = "low"
+    if rob_spread is not None and abs(max_cm) > 0 and float(rob_spread) > abs(max_cm) / 2.0:
+        conf = "low"
+
     loc = s.get("max_subsidence_location") or s.get("reference_point") or {}
     return {
         "id": site_id,
@@ -146,6 +205,10 @@ def _load_entry(site_id: str, name: str, country: str, ddir: Path, rel_path: str
         "rate_cm_per_yr_estimate": s.get("rate_cm_per_yr_estimate"),
         "valid_fraction": valid_frac,
         "ref_range_cm": ref_range,
+        "detectable": detectable,
+        "robustness_spread": rob_spread,
+        "people_exposed": people_exposed,
+        "opera_check": opera_check,
         "confidence": conf,
         "indicative_only": conf == "low",
         "coverage": "ok",
@@ -155,10 +218,11 @@ def _load_entry(site_id: str, name: str, country: str, ddir: Path, rel_path: str
 
 
 def main() -> None:
+    aux = _load_aux_maps()
     entries: list[dict] = []
 
     for sid, name, country, ddir in CORE_REGIONS:
-        e = _load_entry(sid, name, country, ddir, f"data/{sid}/")
+        e = _load_entry(sid, name, country, ddir, f"data/{sid}/", aux=aux)
         if e:
             entries.append(e)
 
@@ -169,7 +233,7 @@ def main() -> None:
                 continue
             sid = sub.name
             name, country = GLOBAL_META.get(sid, (sid.replace("_", " ").title(), ""))
-            e = _load_entry(sid, name, country, sub, f"data/global/{sid}/")
+            e = _load_entry(sid, name, country, sub, f"data/global/{sid}/", aux=aux)
             if e:
                 entries.append(e)
 
@@ -222,6 +286,7 @@ def main() -> None:
 
     out_path = ROOT / "data" / "global" / "atlas.json"
     out_path.write_text(json.dumps(atlas, indent=2, ensure_ascii=False), encoding="utf-8")
+    subprocess.run([sys.executable, str(ROOT / "tools" / "atlas_exports.py"), str(out_path)], check=False)
     print(f"Wrote {out_path} ({len(entries)} regions: {len(reliable)} reliable, {len(indicative)} indicative)")
     for e in entries:
         print(
