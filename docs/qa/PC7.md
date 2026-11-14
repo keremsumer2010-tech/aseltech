@@ -6,24 +6,29 @@ Yayımlama eşlemesi: `web/` site kökü; `data/`, `game/`, `web3d/` ve `docs/st
 
 | Kaynak | Satır | Göreli yol | Repo karşılığı | Kontrol |
 |---|---:|---|---|---|
-| `web/app.js` | 23 | `data/central_valley/meta.json` | `data/central_valley/meta.json` | OK |
-| `web/app.js` | 23 | `data/central_valley/points.json` | `data/central_valley/points.json` | OK |
-| `web/app.js` | 23 | `data/central_valley/summary.json` | `data/central_valley/summary.json` | OK |
-| `web/app.js` | 24 | `data/central_valley/assets.json` | `data/central_valley/assets.json` | OK |
-| `web/app.js` | 24 | `data/central_valley/validation.json` | `data/central_valley/validation.json` | OK |
-| `web/app.js` | 25 | `data/karapinar/meta.json` | `data/karapinar/meta.json` | OK |
-| `web/app.js` | 25 | `data/karapinar/sinkholes.geojson` | `data/karapinar/sinkholes.geojson` | OK |
-| `web/app.js` | 25 | `data/karapinar/summary.json` | `data/karapinar/summary.json` | OK |
-| `web/app.js` | 25 | `data/uk/meta.json` | `data/uk/meta.json` | OK |
-| `web/app.js` | 37 | `data/central_valley/disp/` | `data/central_valley/disp` | OK |
-| `web/app.js` | 68 | `data/uk/radar_${D.uk.date}.png` | `data/uk/radar_*.png` | OK (dynamic pattern has matches) |
-| `web/app.js` | 71 | `data/central_valley/disp/${m.dates[cvIdx]}.png` | `data/central_valley/disp/*.png` | OK (dynamic pattern has matches) |
-| `web/app.js` | 92 | `data/karapinar/disp/${m.dates.at(-1)}.png` | `data/karapinar/disp/*.png` | OK (dynamic pattern has matches) |
-| `web/app.js` | 130 | `data/uk/optical_${D.uk.date}.jpg` | `data/uk/optical_*.jpg` | OK (dynamic pattern has matches) |
-| `web/app.js` | 131 | `data/uk/radar_${D.uk.date}.png` | `data/uk/radar_*.png` | OK (dynamic pattern has matches) |
-| `web/app.js` | 141 | `data/central_valley/disp/${m.dates[i]}.png` | `data/central_valley/disp/*.png` | OK (dynamic pattern has matches) |
-| `web/app.js` | 192 | `game/index.html` | `game/index.html` | OK |
-| `web/app.js` | 192 | `web3d/index.html` | `web3d/index.html` | OK |
+| `web/app.js` | 25 | `data/central_valley/meta.json` | `data/central_valley/meta.json` | OK |
+| `web/app.js` | 25 | `data/central_valley/points.json` | `data/central_valley/points.json` | OK |
+| `web/app.js` | 25 | `data/central_valley/summary.json` | `data/central_valley/summary.json` | OK |
+| `web/app.js` | 26 | `data/central_valley/assets.json` | `data/central_valley/assets.json` | OK |
+| `web/app.js` | 26 | `data/central_valley/validation.json` | `data/central_valley/validation.json` | OK |
+| `web/app.js` | 27 | `data/karapinar/meta.json` | `data/karapinar/meta.json` | OK |
+| `web/app.js` | 27 | `data/karapinar/sinkholes.geojson` | `data/karapinar/sinkholes.geojson` | OK |
+| `web/app.js` | 27 | `data/karapinar/summary.json` | `data/karapinar/summary.json` | OK |
+| `web/app.js` | 27 | `data/uk/meta.json` | `data/uk/meta.json` | OK |
+| `web/app.js` | 28 | `data/central_valley/area_stats.json` | `data/central_valley/area_stats.json` | OK |
+| `web/app.js` | 28 | `data/karapinar/assets.json` | `data/karapinar/assets.json` | OK |
+| `web/app.js` | 28 | `data/uk_clay/detection.json` | `data/uk_clay/detection.json` | OK |
+| `web/app.js` | 44 | `docs/story/key_findings_public.md` | `docs/story/key_findings_public.md` | OK |
+| `web/app.js` | 57 | `data/central_valley/disp/` | `data/central_valley/disp` | OK |
+| `web/app.js` | 94 | `data/uk/radar_${D.uk.date}.png` | `data/uk/radar_*.png` | OK (dynamic pattern has matches) |
+| `web/app.js` | 97 | `data/central_valley/disp/${m.dates[cvIdx]}.png` | `data/central_valley/disp/*.png` | OK (dynamic pattern has matches) |
+| `web/app.js` | 118 | `data/karapinar/disp/${m.dates.at(-1)}.png` | `data/karapinar/disp/*.png` | OK (dynamic pattern has matches) |
+| `web/app.js` | 157 | `data/uk/optical_${D.uk.date}.jpg` | `data/uk/optical_*.jpg` | OK (dynamic pattern has matches) |
+| `web/app.js` | 158 | `data/uk/radar_${D.uk.date}.png` | `data/uk/radar_*.png` | OK (dynamic pattern has matches) |
+| `web/app.js` | 168 | `data/central_valley/disp/${m.dates[i]}.png` | `data/central_valley/disp/*.png` | OK (dynamic pattern has matches) |
+| `web/app.js` | 232 | `game/index.html` | `game/index.html` | OK |
+| `web/app.js` | 232 | `web3d/index.html` | `web3d/index.html` | OK |
+| `web/app.js` | 233 | `docs/story/media/cv_subsidence.mp4` | `docs/story/media/cv_subsidence.mp4` | OK |
 | `web/data.html` | 8 | `style.css` | `web/style.css` | OK |
 | `web/data.html` | 12 | `index.html` | `web/index.html` | OK |
 | `web/data.html` | 13 | `data.html` | `web/data.html` | OK |
@@ -57,11 +62,17 @@ Yayımlama eşlemesi: `web/` site kökü; `data/`, `game/`, `web3d/` ve `docs/st
 | `web/index.html` | 19 | `data.html` | `web/data.html` | OK |
 | `web/index.html` | 19 | `faq.html` | `web/faq.html` | OK |
 | `web/index.html` | 19 | `science.html` | `web/science.html` | OK |
-| `web/index.html` | 103 | `science.html#risk` | `web/science.html` | OK |
-| `web/index.html` | 170 | `data.html` | `web/data.html` | OK |
-| `web/index.html` | 170 | `science.html` | `web/science.html` | OK |
-| `web/index.html` | 177 | `faq.html` | `web/faq.html` | OK |
-| `web/index.html` | 183 | `app.js` | `web/app.js` | OK |
+| `web/index.html` | 56 | `data.html` | `web/data.html` | OK |
+| `web/index.html` | 56 | `science.html` | `web/science.html` | OK |
+| `web/index.html` | 64 | `science.html#findings` | `web/science.html` | OK |
+| `web/index.html` | 112 | `science.html` | `web/science.html` | OK |
+| `web/index.html` | 132 | `science.html#risk` | `web/science.html` | OK |
+| `web/index.html` | 194 | `science.html` | `web/science.html` | OK |
+| `web/index.html` | 198 | `assets/simulator.jpg` | `web/assets/simulator.jpg` | OK |
+| `web/index.html` | 219 | `data.html` | `web/data.html` | OK |
+| `web/index.html` | 219 | `science.html` | `web/science.html` | OK |
+| `web/index.html` | 226 | `faq.html` | `web/faq.html` | OK |
+| `web/index.html` | 232 | `app.js` | `web/app.js` | OK |
 | `web/science.html` | 8 | `style.css` | `web/style.css` | OK |
 | `web/science.html` | 12 | `index.html` | `web/index.html` | OK |
 | `web/science.html` | 13 | `data.html` | `web/data.html` | OK |
@@ -69,19 +80,25 @@ Yayımlama eşlemesi: `web/` site kökü; `data/`, `game/`, `web3d/` ve `docs/st
 | `web/science.html` | 13 | `index.html#play` | `web/index.html` | OK |
 | `web/science.html` | 13 | `index.html#story` | `web/index.html` | OK |
 | `web/science.html` | 13 | `science.html` | `web/science.html` | OK |
-| `web/science.html` | 60 | `docs.js` | `web/docs.js` | OK |
-| `web/science.html` | 62 | `docs/story/calibration_note.md` | `docs/story/calibration_note.md` | OK |
-| `web/science.html` | 63 | `docs/story/sources.md` | `docs/story/sources.md` | OK |
-| `web/science.html` | 64 | `data/central_valley/validation.json` | `data/central_valley/validation.json` | OK |
+| `web/science.html` | 83 | `docs.js` | `web/docs.js` | OK |
+| `web/science.html` | 85 | `docs/story/calibration_note.md` | `docs/story/calibration_note.md` | OK |
+| `web/science.html` | 86 | `docs/story/sources.md` | `docs/story/sources.md` | OK |
+| `web/science.html` | 87 | `docs/story/key_findings.md` | `docs/story/key_findings.md` | OK |
+| `web/science.html` | 88 | `docs/story/literature_comparison.md` | `docs/story/literature_comparison.md` | OK |
+| `web/science.html` | 89 | `docs/story/uncertainty.md` | `docs/story/uncertainty.md` | OK |
+| `web/science.html` | 90 | `docs/story/validation_report.md` | `docs/story/validation_report.md` | OK |
+| `web/science.html` | 91 | `docs/story/risk_dossier.md` | `docs/story/risk_dossier.md` | OK |
+| `web/science.html` | 92 | `data/central_valley/summary.json` | `data/central_valley/summary.json` | OK |
+| `web/science.html` | 101 | `data/central_valley/validation.json` | `data/central_valley/validation.json` | OK |
 
-Kontrol edilen yerel yol: 67. Eksik: 0.
+Kontrol edilen yerel yol: 84. Eksik: 0.
 Eksik yerel yol bulunmadı.
-
 ## 2. Veri sözleşmesi (offline)
 
 | Dosya | Parse | quality alanı | quality_note alanı | Sözleşme şeması |
 |---|---|---|---|---|
 | `data/catalog.json` | OK | records | records | OK |
+| `data/central_valley/area_stats.json` | OK | root | root | not specified |
 | `data/central_valley/assets.json` | OK | root | root | OK |
 | `data/central_valley/drivers.json` | OK | root | root | OK |
 | `data/central_valley/gcov/meta.json` | OK | root | root | OK |
@@ -91,34 +108,49 @@ Eksik yerel yol bulunmadı.
 | `data/central_valley/uncertainty/meta.json` | OK | root | root | not specified |
 | `data/central_valley/validation.json` | OK | records | records | OK |
 | `data/central_valley/vertical.json` | OK | root | root | not specified |
+| `data/central_valley_fullyear/decomp.json` | OK | root | root | not specified |
+| `data/central_valley_fullyear/meta.json` | OK | root | root | OK |
+| `data/central_valley_fullyear/points.json` | OK | missing | missing | OK |
+| `data/central_valley_fullyear/summary.json` | OK | root | root | OK |
+| `data/fens/crops.json` | OK | root | root | not specified |
+| `data/karapinar/area_stats.json` | OK | root | root | not specified |
 | `data/karapinar/assets.json` | OK | root | root | OK |
 | `data/karapinar/meta.json` | OK | root | root | OK |
 | `data/karapinar/points.json` | OK | missing | missing | OK |
-| `data/karapinar/sinkholes.geojson` | OK | missing | missing | OK |
+| `data/karapinar/sinkholes.geojson` | OK | root | root | OK |
 | `data/karapinar/summary.json` | OK | root | root | OK |
 | `data/karapinar/uncertainty/meta.json` | OK | root | root | not specified |
+| `data/karapinar_p172/meta.json` | OK | root | root | OK |
+| `data/karapinar_p172/points.json` | OK | missing | missing | OK |
+| `data/karapinar_p172/summary.json` | OK | root | root | OK |
 | `data/uk/meta.json` | OK | root | root | OK |
+| `data/uk_clay/detection.json` | OK | root | root | not specified |
+| `data/uk_clay/meta.json` | OK | root | root | OK |
+| `data/uk_clay/points.json` | OK | missing | missing | OK |
+| `data/uk_clay/summary.json` | OK | root | root | OK |
 
 ### Bulgular
 - `data/central_valley/points.json`: dataset-level `quality` missing
 - `data/central_valley/points.json`: dataset-level `quality_note` missing
+- `data/central_valley_fullyear/points.json`: dataset-level `quality` missing
+- `data/central_valley_fullyear/points.json`: dataset-level `quality_note` missing
 - `data/karapinar/points.json`: dataset-level `quality` missing
 - `data/karapinar/points.json`: dataset-level `quality_note` missing
-- `data/karapinar/sinkholes.geojson`: dataset-level `quality` missing
-- `data/karapinar/sinkholes.geojson`: dataset-level `quality_note` missing
+- `data/karapinar_p172/points.json`: dataset-level `quality` missing
+- `data/karapinar_p172/points.json`: dataset-level `quality_note` missing
+- `data/uk_clay/points.json`: dataset-level `quality` missing
+- `data/uk_clay/points.json`: dataset-level `quality_note` missing
 
-JSON/GeoJSON dosyası: 17; parse hatası: 0; tarih dizisi: 40; points/meta tarih karşılaştırması: 24, uyumsuzluk: 0; bulgu satırı: 6.
-
+JSON/GeoJSON dosyası: 31; parse hatası: 0; tarih dizisi: 83; points/meta tarih karşılaştırması: 60, uyumsuzluk: 0; bulgu satırı: 10.
 ## 3. İngilizce metin ve yazım kontrolü (offline)
 
 Kaynak: `web/*.html` (5 dosya). Script/style/noscript içerikleri görünür metin sayılmadı. Dinamik JS ve dış markdown bu statik HTML taramasına dahil değil.
 
 | Satır | Kaynak | Metin | Sorun | Öneri |
 |---:|---|---|---|---|
-| 37 | `web/science.html` | Consecutive 12-day pairs (28 Jun → 14 Oct 2026 for track 34) are summed into a cumulative map. A chain with any gap is not joined. Headline numbers are the most negative median of ~1 km blocks with… | birimsiz sayı: −6.2 | İlk değerin yanına da `cm` birimini ekle |
+| 23 | `web/science.html` | The main result. Parts of California's Central Valley moved up to −7.8 cm away from the satellite in 108 days; depending on the stable area used as reference the value lies between −4.7 and −7.8 cm. | birimsiz sayı: −4.7 | İlk değerin yanına da `cm` birimini ekle |
 
 Toplam bulgu: 1.
-
 ## 4. Oyun modeli: 24 aylık strateji testi (Node, offline)
 
 `game/model.js` değiştirilmedi. `pipeline/pc7/game_strategy_test.js` modeli doğrudan çalıştırdı; her satırda toplam çökme ve kalıcı çökme, 24. ay sonunda en çok çöken bölgenin mutlak dikey değeri; gelir ise modelin vadi toplamı (milyon USD).
@@ -154,3 +186,17 @@ HV dizileri, tarihler yukarıdaki sırada (dB):
 Dört pencerede de ilk tarihten son tarihe net HV düşüşü yok (son değerler 0.23–1.13 dB daha az negatif); ara tarihlerde ise yön değişiyor. Bu seri tek başına hasat veya sürüm etkisini kanıtlamıyor. Pencereler GCOV dokusundan seçilmiş örnekleme kareleri; kadastro parseli olarak doğrulanmadı.
 
 Çıktılar: `data/fens/crops.json` ve `data/fens/hv_timeseries.png`. JSON parse edildi; tarihler sıralı/benzersiz, alan dizileri tarihlerle aynı uzunlukta ve sonlu, kalite etiketi provisional, yöntem üç cümle. Grafik dosyası oluşturulup görsel olarak açıldı. ASF sorgusu veya veri indirme yapılmadı.
+
+## 6. Polarizasyon karşılaştırması (offline)
+
+`data/fens/crops.json` her örnek pencere için `hh_db`, `hv_db`, doğrusal `hv_hh_ratio` ve `hv_hh_ratio_db` dizilerini içeriyor. Oran, her pikselde `10 ** ((HV_dB − HH_dB) / 10)` ile hesaplandı ve sonra pencere içinde ortalandı; grafikte log oran `10 log10(HV/HH)` olarak gösteriliyor.
+
+| Kanal | Dört pencerenin ortalama zaman aralığı | Okuma |
+|---|---:|---|
+| HH | 4.27 dB | En büyük gözlenen değişim; zemin, pürüzlülük ve nem de etkiler. |
+| HV | 3.49 dB | Daha küçük değişim; bitki örtüsündeki hacim saçılması için daha doğrudan yorumlanabilir. |
+| HV/HH | 1.36 dB | En kararlı seri; bu örneklerde daha az zaman değişimi gösterdi. |
+
+Bu ölçülmüş aralıklar HH'nin en geniş sayısal salınımı verdiğini, SAR fiziğinin ise HV'yi bitki yapısı için daha doğrudan gösterge yaptığını ortaya koyuyor. Sekiz tarih ve doğrulanmamış örnek pencereleri ekim/hasat tarihini kanıtlamıyor. Kaynaklar: [NASA NISAR Food Security white paper](https://assets.science.nasa.gov/content/dam/science/missions/nisar/nisar-jpl/pdf/NISAR_Applications_Food_Security1.pdf), [NASA Earthdata SAR Handbook, Chapter 2](https://earthdata.nasa.gov/s3fs-public/2025-04/SARHB_CH2_Content.pdf). NASA StoryMap'in Central Valley/Aqueduct çökme çerçevesi ayrı arazi-hareketi uygulamasıdır: [NISAR StoryMap](https://storymaps.arcgis.com/stories/109e602e748346f3be8dc89124619828).
+
+`docs/story/polarization.md` ve `docs/story/media/pc7_polarization.png` üretildi. Üç kanal için değerler sonlu; JSON oran dizileri 8 tarih uzunluğunda; karşılaştırma grafiği açılıp görsel olarak kontrol edildi.

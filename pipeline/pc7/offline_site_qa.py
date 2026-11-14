@@ -326,7 +326,7 @@ BANNED = re.compile(r"\b(revolutionary|cutting[- ]edge|unlock|harness|delve|seam
 EMOJI = re.compile(r"[\U0001F1E6-\U0001FAFF\u2600-\u27BF]")
 NUMBER = re.compile(r"(?<![\w])(?:[+−-]\s*)?\d+(?:[.,]\d+)?(?![\w])")
 MONTHS = "jan feb mar apr may jun jul aug sep sept oct nov dec january february march april june july august september october november december"
-UNITS = re.compile(r"^\s*(?:%|percent\b|cm\b|mm\b|km\b|m\b|metres?\b|meters?\b|feet\b|ft\b|days?\b|weeks?\b|months?\b|years?\b|minutes?\b|hours?\b|pairs?\b|stations?\b|segments?\b|districts?\b|fields?\b|pixels?\b|products?\b|points?\b|sites?\b|layers?\b|mhz\b|hz\b|ha\b|mm/km\b|cm/yr\b|cm per year\b|water years?\b)", re.I)
+UNITS = re.compile(r"^\s*(?:%|percent\b|cm\b|mm\b|km²\b|km\^2\b|m²\b|km\b|m\b|metres?\b|meters?\b|feet\b|ft\b|days?\b|weeks?\b|months?\b|years?\b|minutes?\b|hours?\b|pairs?\b|stations?\b|segments?\b|districts?\b|fields?\b|pixels?\b|products?\b|points?\b|sites?\b|layers?\b|mhz\b|hz\b|ha\b|mm/km\b|cm/yr\b|cm per year\b|water years?\b)", re.I)
 
 
 def number_is_contextual(text, match):
@@ -341,6 +341,8 @@ def number_is_contextual(text, match):
         return True
     if re.match(r"\s*[–−-]\s*\d+(?:[.,]\d+)?\s*(?:%|cm\b|mm\b|km\b|m\b|metres?\b|meters?\b|days?\b|years?\b)", after, re.I):
         return True  # both ends of a range share the following unit
+    if re.match(r"\s+to\s+\d+(?:[.,]\d+)?\s*(?:%|cm\b|mm\b|km\b|m\b|days?\b|years?\b)", after, re.I):
+        return True  # first value in a written range, e.g. 12 to 24 days
     if "coherence" in text.lower() and re.search(r"coherence\s*[<≤]\s*" + re.escape(token), text, re.I):
         return True
     if " high " in f" {text.lower()} " and " medium " in f" {text.lower()} " and " low " in f" {text.lower()} ":
@@ -357,7 +359,7 @@ def number_is_contextual(text, match):
         return True
     if UNITS.match(after):
         return True
-    if re.search(r"\b(?:canal|road|rail|sinkholes?|gps stations?|continuous stations?|consecutive(?:\s+\w+){0,2}\s+pairs?|districts?|fields?|segments?|products?|observations?)\b", after[:70], re.I):
+    if re.search(r"\b(?:canal|road|rail|sinkholes?|gps stations?|continuous stations?|consecutive(?:\s+\w+){0,5}\s+pairs?|districts?|fields?|segments?|products?|observations?)\b", after[:90], re.I):
         return True  # explicit count noun
     if re.search(r"\b\d+\s*/\s*" + re.escape(numeric) + r"\s+gps stations?\b", text, re.I):
         return True

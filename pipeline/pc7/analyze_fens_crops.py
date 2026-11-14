@@ -18,6 +18,7 @@ from pyproj import Transformer
 ROOT = Path(__file__).resolve().parents[2]
 INPUT = ROOT / "pipeline" / "subset" / "fens_gcov"
 OUTPUT = ROOT / "data" / "fens"
+POLARIZATION_PLOT = ROOT / "docs" / "story" / "media" / "pc7_polarization.png"
 WINDOW_PIXELS = 12
 PIXEL_SIZE_M = 40
 WINDOW_SIZE_M = WINDOW_PIXELS * PIXEL_SIZE_M
@@ -95,6 +96,8 @@ def analyze():
 
         hv_values = []
         hh_values = []
+        ratio_values = []
+        ratio_db_values = []
         for record in records:
             hv = record["hv_db"][row0:row1, col0:col1]
             hh = record["hh_db"][row0:row1, col0:col1]
@@ -103,6 +106,10 @@ def analyze():
                 raise ValueError(f"Incomplete HH/HV coverage for {field_id} on {record['date_text']}")
             hv_values.append(round(float(np.mean(hv[common_valid], dtype=np.float64)), 2))
             hh_values.append(round(float(np.mean(hh[common_valid], dtype=np.float64)), 2))
+            pixel_ratios = np.power(10.0, (hv[common_valid] - hh[common_valid]) / 10.0)
+            mean_ratio = float(np.mean(pixel_ratios, dtype=np.float64))
+            ratio_values.append(round(mean_ratio, 5))
+            ratio_db_values.append(round(10.0 * float(np.log10(mean_ratio)), 2))
 
         west = float(x[col0] - PIXEL_SIZE_M / 2)
         east = float(x[col1 - 1] + PIXEL_SIZE_M / 2)
@@ -120,22 +127,30 @@ def analyze():
                 "lat": round(lat, 5),
                 "hv_db": hv_values,
                 "hh_db": hh_values,
+                "hv_hh_ratio": ratio_values,
+                "hv_hh_ratio_db": ratio_db_values,
                 "sample_window": {
                     "epsg": epsg,
                     "bounds_m": [round(west, 1), round(south, 1), round(east, 1), round(north, 1)],
                 },
             }
         )
-        plot_series.append(hv_values)
+        plot_series.append({
+            "hh_db": hh_values,
+            "hv_db": hv_values,
+            "hv_hh_ratio": ratio_values,
+            "hv_hh_ratio_db": ratio_db_values,
+        })
 
     granules = [str(record["granule"].item()) for record in records]
     first_date, last_date = dates[0], dates[-1]
-    endpoint_changes = [values[-1] - values[0] for values in plot_series]
-    min_change, max_change = min(endpoint_changes), max(endpoint_changes)
+    mean_hh_range = float(np.mean([np.ptp(series["hh_db"]) for series in plot_series]))
+    mean_hv_range = float(np.mean([np.ptp(series["hv_db"]) for series in plot_series]))
+    mean_ratio_range = float(np.mean([np.ptp(series["hv_hh_ratio_db"]) for series in plot_series]))
     method = (
         f"Eight provisional NISAR GCOV acquisitions (CRID P05023; {first_date} to {last_date}) were averaged in four separated 480 m by 480 m windows (12 by 12 40 m pixels) selected from field-like patterns in the local median-HV image; window centers are WGS84 and bounds are EPSG:32630. "
-        f"Across all four windows, final-date HV is {min_change:.1f} to {max_change:.1f} dB less negative than first-date HV, although intermediate values are non-monotonic; no shared net HV decline is seen across this series. "
-        "These observations do not establish a harvest or tillage effect, and the windows are sampling rectangles rather than verified cadastral field polygons."
+        f"Mean per-window temporal ranges were {mean_hh_range:.2f} dB for HH, {mean_hv_range:.2f} dB for HV, and {mean_ratio_range:.2f} dB for 10 log10(HV/HH); these differences do not identify a crop event. "
+        "The observations do not establish a harvest or tillage effect, and the windows are sampling rectangles rather than verified cadastral field polygons."
     )
     result = {
         "dates": dates,
@@ -153,7 +168,7 @@ def analyze():
 
     fig, ax = plt.subplots(figsize=(9, 5.5))
     for field, values in zip(fields, plot_series):
-        ax.plot(plot_dates, values, marker="o", linewidth=1.8, label=field["id"])
+        ax.plot(plot_dates, values["hv_db"], marker="o", linewidth=1.8, label=field["id"])
     ax.set_title("Fens sample-window mean HV backscatter")
     ax.set_ylabel("Mean HV backscatter (dB)")
     ax.set_xlabel("NISAR acquisition date")
@@ -165,7 +180,28 @@ def analyze():
     fig.savefig(OUTPUT / "hv_timeseries.png", dpi=180)
     plt.close(fig)
 
-    print(json.dumps({"dates": dates, "fields": fields, "outputs": [str(json_path), str(OUTPUT / 'hv_timeseries.png')]}, indent=2))
+    fig, axes = plt.subplots(3, 1, figsize=(10, 9), sharex=True)
+    channels = [
+        ("hh_db", "HH backscatter (dB)"),
+        ("hv_db", "HV backscatter (dB)"),
+        ("hv_hh_ratio_db", "10 log10(HV/HH) (dB)"),
+    ]
+    for ax, (key, ylabel) in zip(axes, channels):
+        for field, series in zip(fields, plot_series):
+            ax.plot(plot_dates, series[key], marker="o", linewidth=1.5, label=field["id"])
+        ax.set_ylabel(ylabel)
+        ax.grid(True, alpha=0.25)
+    axes[0].set_title("Fens polarization comparison across four sample windows")
+    axes[0].legend(title="Window", ncol=4)
+    axes[-1].set_xlabel("NISAR acquisition date")
+    axes[-1].xaxis.set_major_locator(mdates.AutoDateLocator())
+    axes[-1].xaxis.set_major_formatter(mdates.ConciseDateFormatter(axes[-1].xaxis.get_major_locator()))
+    fig.tight_layout()
+    POLARIZATION_PLOT.parent.mkdir(parents=True, exist_ok=True)
+    fig.savefig(POLARIZATION_PLOT, dpi=180)
+    plt.close(fig)
+
+    print(json.dumps({"dates": dates, "fields": fields, "outputs": [str(json_path), str(OUTPUT / 'hv_timeseries.png'), str(POLARIZATION_PLOT)]}, indent=2))
 
 
 if __name__ == "__main__":

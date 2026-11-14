@@ -35,6 +35,26 @@
         -10.11,
         -9.16
       ],
+      "hv_hh_ratio": [
+        0.33732,
+        0.3266,
+        0.34869,
+        0.28141,
+        0.27596,
+        0.28847,
+        0.28267,
+        0.27934
+      ],
+      "hv_hh_ratio_db": [
+        -4.72,
+        -4.86,
+        -4.58,
+        -5.51,
+        -5.59,
+        -5.4,
+        -5.49,
+        -5.54
+      ],
       "sample_window": {
         "epsg": 32630,
         "bounds_m": [
@@ -69,6 +89,26 @@
         -9.64,
         -11.03,
         -11.43
+      ],
+      "hv_hh_ratio": [
+        0.16631,
+        0.19131,
+        0.21533,
+        0.17727,
+        0.17269,
+        0.18968,
+        0.15322,
+        0.18114
+      ],
+      "hv_hh_ratio_db": [
+        -7.79,
+        -7.18,
+        -6.67,
+        -7.51,
+        -7.63,
+        -7.22,
+        -8.15,
+        -7.42
       ],
       "sample_window": {
         "epsg": 32630,
@@ -105,6 +145,26 @@
         -14.47,
         -13.26
       ],
+      "hv_hh_ratio": [
+        0.18428,
+        0.23082,
+        0.2834,
+        0.20574,
+        0.20945,
+        0.20451,
+        0.18469,
+        0.19352
+      ],
+      "hv_hh_ratio_db": [
+        -7.35,
+        -6.37,
+        -5.48,
+        -6.87,
+        -6.79,
+        -6.89,
+        -7.34,
+        -7.13
+      ],
       "sample_window": {
         "epsg": 32630,
         "bounds_m": [
@@ -140,6 +200,26 @@
         -15.99,
         -15.28
       ],
+      "hv_hh_ratio": [
+        0.31123,
+        0.2583,
+        0.27034,
+        0.2451,
+        0.24139,
+        0.29023,
+        0.25264,
+        0.26932
+      ],
+      "hv_hh_ratio_db": [
+        -5.07,
+        -5.88,
+        -5.68,
+        -6.11,
+        -6.17,
+        -5.37,
+        -5.97,
+        -5.7
+      ],
       "sample_window": {
         "epsg": 32630,
         "bounds_m": [
@@ -164,5 +244,5 @@
     "NISAR_L2_PR_GCOV_031_124_D_062_2005_DHDH_A_20260926T192237_20260926T192312_P05023_N_F_J_001",
     "NISAR_L2_PR_GCOV_032_124_D_062_2005_DHDH_A_20261008T192237_20261008T192312_P05023_N_F_J_001"
   ],
-  "method": "Eight provisional NISAR GCOV acquisitions (CRID P05023; 2026-06-22 to 2026-10-08) were averaged in four separated 480 m by 480 m windows (12 by 12 40 m pixels) selected from field-like patterns in the local median-HV image; window centers are WGS84 and bounds are EPSG:32630. Across all four windows, final-date HV is 0.2 to 1.1 dB less negative than first-date HV, although intermediate values are non-monotonic; no shared net HV decline is seen across this series. These observations do not establish a harvest or tillage effect, and the windows are sampling rectangles rather than verified cadastral field polygons."
+  "method": "Eight provisional NISAR GCOV acquisitions (CRID P05023; 2026-06-22 to 2026-10-08) were averaged in four separated 480 m by 480 m windows (12 by 12 40 m pixels) selected from field-like patterns in the local median-HV image; window centers are WGS84 and bounds are EPSG:32630. Mean per-window temporal ranges were 4.27 dB for HH, 3.49 dB for HV, and 1.36 dB for 10 log10(HV/HH); these differences do not identify a crop event. The observations do not establish a harvest or tillage effect, and the windows are sampling rectangles rather than verified cadastral field polygons."
 }
