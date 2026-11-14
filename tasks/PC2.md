@@ -202,3 +202,15 @@ Belirsizlik haritaları ve OPERA kıyası için teşekkürler. Sıradaki 3 iş a
 2. **OPERA uyumsuzluğunu açıkla (jüri soracak):** Mexico City r=0.91 iken Central Valley r=0.40, Eloy r=0.09. Sırayla test et ve `opera_check.md`'ye yaz: (a) zaman penceresi örtüşmesi (aynı tarihler mi), (b) bakış geometrisi — OPERA Sentinel-1 LOS ile NISAR sol bakış LOS farklı: ikisini de dikey tahmine çevirip (cos θ) kıyasla, (c) referans noktası hizalaması (aynı sabit noktaya göre yeniden referansla), (d) çözünürlük/ortalama (1 km bloklarda kıyasla), (e) tarım alanlarında C-band/L-band farkı (toprak nemi, bitki). Her test sonrası r, RMSE, eğim tablosu. Açıklanamıyorsa dürüstçe yaz. `results_registry.json` `opera_check` satırına özet + anahtar sayı.
 3. **Yeni bölgeler (PC11'den devir; PC11 hâlâ Tahran/Pekin/Cakarta'da):** **Kerman, İran** (57.07, 30.28; literatürde >30 cm/yıl) ve **Tianjin, Çin** (117.20, 39.10). `--qc` ile, kalite standardında; "hazır" notu.
 En geç 10 dk'da bir commit + push.
+
+
+# ⏱️ 8 SAATLİK PLAN (Paz 04:15 → 12:15, PC1) — sonra 20:00 veri dondurmaya kadar SUREKLI
+Bu bölüm, önceki bölümlerde bitmemiş işleri de kapsar ve geçerli olan TEK listedir. Blokları sırayla yap; bir blok erken biterse sıradakine geç. Her blok sonunda commit + push + status satırı. En geç 10 dk'da bir commit.
+| Saat | Blok | Çıktı |
+|---|---|---|
+| 04:15–06:00 | **Kerman + Tianjin bitir** (sürüyor), `--qc` ile, kalite standardı; "hazır" notu | `data/global/{kerman,tianjin}/` |
+| 06:00–08:00 | **NISAR Pulse `--qc` motoru** (önceki bölüm madde 1; başlamadıysan şimdi): piksel düzeyinde faz döngüsü düzeltme + aykırı tarih atma, `qc_report.json`, ağsız testler; **Delhi'yi `--qc` ile yeniden çalıştır** | `pipeline/nisarpulse/qc.py` + testler, `data/global/delhi/qc_report.json` |
+| 08:00–09:30 | **Tek komutla yeniden üretilebilirlik:** `python -m pipeline.nisarpulse reproduce <id>` — bölgenin `meta.json` granül listesinden aynı summary'yi yeniden üretir; README'ye "atlası yeniden üret" bölümü; GitHub Actions'ta ağsız `--dry-run` testi | `pipeline/nisarpulse/reproduce.py`, `docs/story/engine.md` güncel |
+| 09:30–11:00 | **Yeni bölgeler (PC11'den devir):** **Celaya, Meksika** (−100.81, 20.52) ve **Hamadan–Kabudarahang, İran** (48.72, 35.21; önce kapsama + literatür) | `data/global/{celaya,kabudarahang}/` |
+| 11:00–12:15 | **OPERA ek kıyası:** PC9 Houston'ı bitirince Houston için de OPERA; `opera_check.json` + md güncel; `results_registry` `opera_check` ve `engine` satırları güncel sayılarla | — |
+| 12:15–20:00 | SUREKLI: yeni bölge adayları (kaynaklı), motor testleri, QC işaretli bölgeleri `--qc` ile yeniden işleme önerisi | — |

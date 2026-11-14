@@ -166,3 +166,8 @@ Döndüğünde: `docs/story/atlas_top5_check.md` ve PC4'ün 7 doğrulama notunu 
 
 # 🔗 ENTEGRASYON (Paz 03:20, PC1) · `docs/ENTEGRASYON.md`
 **Sitede görünür yap:** `data/results_registry.json`'da senin satırların: `atlas_validation`, `detectability`, `cross_sensor`, `drivers`, `sinkholes`, `uncertainty`. Her birine `summary` (tek sade cümle) ve `key_number` (birim + kalite etiketi, kendi veri dosyandan) yaz, `status: ready`. Yeni sonuç üretince yeni satır ekle (aynı alanlar). Sayı uydurma yok; PC4 sayı siciliyle aynı olmalı.
+
+
+# ⏱️ 8 SAATLİK PLAN (Paz 04:15 → 12:15, PC1) — sonra 20:00 veri dondurmaya kadar SUREKLI
+Bu bölüm, önceki bölümlerde bitmemiş işleri de kapsar ve geçerli olan TEK listedir. Blokları sırayla yap; bir blok erken biterse sıradakine geç. Her blok sonunda commit + push + status satırı. En geç 10 dk'da bir commit.
+Döndüğünde (blok sırası): 1) `docs/story/atlas_top5_check.md` ve PC4'ün 7 doğrulama notunu gözden geçir, `reviewed_by` güncelle; 2) Konya Ovası güven kararı (PC9 tam yıl sonucu ile); 3) sayı sicilini yeniden çalıştır; 4) SCIENCE_SIGNOFF'u PC4 taslağından devral ve 19:00'da imzala; 5) yeni bölgelere karar (σ haritası + not). SUREKLI: her saat sicil.

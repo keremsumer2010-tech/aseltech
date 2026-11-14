@@ -186,3 +186,15 @@ Kapsam hedefi Paz 14:00'te ≥20 şehir. Her yeni şehirde 6'lı paketin 1. par�
 1. **xian** belirsizlik haritası hâlâ eksik (tamlık ✗) — önce bu.
 2. `results_registry.json`: **robustness, engineering_risk, polarization** satırlarına özet + anahtar sayı; `docs/story/robustness.md` yaz ve bağla.
 3. Aguascalientes'i bitir, "hazır".
+
+
+# ⏱️ 8 SAATLİK PLAN (Paz 04:15 → 12:15, PC1) — sonra 20:00 veri dondurmaya kadar SUREKLI
+Bu bölüm, önceki bölümlerde bitmemiş işleri de kapsar ve geçerli olan TEK listedir. Blokları sırayla yap; bir blok erken biterse sıradakine geç. Her blok sonunda commit + push + status satırı. En geç 10 dk'da bir commit.
+| Saat | Blok | Çıktı |
+|---|---|---|
+| 04:15–05:30 | **Aguascalientes bitir** + **xian belirsizlik haritası** (tamlık ✗); "hazır" | `data/global/aguascalientes/`, `data/global/xian/uncertainty/` |
+| 05:30–07:00 | **Sağlamlık testini düzelt:** referans adayları havza dışında olmalı (Central Valley'de vadi tabanındaki aday spread'i şişiriyor, bölge haksız `low` oldu). Aday seçimini koherans + düşük hareket + havza sınırı dışı (meta bbox kenarı / DEM eğimi) ile yap; yeniden çalıştır; **`docs/story/robustness.md`** yaz ve `results_registry` satırına bağla | `robustness.json`, `robustness.md` |
+| 07:00–08:30 | **Kashmar, İran** (58.46, 35.24) | `data/global/kashmar/` |
+| 08:30–10:30 | **FAZ 3 küresel altyapı riski — Mexico City:** OSM metro/raylı hatlar, O2 yöntemi (β, Monte Carlo, P(β>1/500)) | `risk/global/mexico_city_infra.geojson`, `data/risk_global/mexico_city.json`, `pc7_risk_mexico_city.png` |
+| 10:30–12:15 | **Tahran ve Mashhad** altyapı riski aynı yöntemle; **`docs/story/global_risk.md`** (≤1 sayfa, sınırlamalar) + `results_registry` satırı | `data/risk_global/{tehran,mashhad}.json`, `global_risk.md` |
+| 12:15–20:00 | SUREKLI: validate_atlas, robustness yeni bölgelerle; 18:00–20:00 son QA | — |

@@ -192,3 +192,15 @@ Ayrıca kayıttaki tüm `summary` cümlelerini en sonda REVIEW_1500'e göre tek 
 
 # ➕ TAKVİYE (Paz 03:50, PC1 otomatik kontrol) — atlas 21 bölge, tamlık 122/126
 PC5 durduğu için `data/results_registry.json`'da PC5 satırlarının özetlerini de sen doldur: **atlas_validation, detectability, cross_sensor, drivers, sinkholes, uncertainty** — tek sade cümle + anahtar sayı, ilgili md/json dosyasından aynen (sayı uydurma yok). Sonra SCIENCE_SIGNOFF taslağına devam.
+
+
+# ⏱️ 8 SAATLİK PLAN (Paz 04:15 → 12:15, PC1) — sonra 20:00 veri dondurmaya kadar SUREKLI
+Bu bölüm, önceki bölümlerde bitmemiş işleri de kapsar ve geçerli olan TEK listedir. Blokları sırayla yap; bir blok erken biterse sıradakine geç. Her blok sonunda commit + push + status satırı. En geç 10 dk'da bir commit.
+| Saat | Blok | Çıktı |
+|---|---|---|
+| 04:15–05:30 | **results_registry özetleri:** PC5 satırları (atlas_validation, detectability, cross_sensor, drivers, sinkholes, uncertainty) + tüm satırları REVIEW_1500 ile tek elden sadeleştir (sayıları değiştirme) | `data/results_registry.json` |
+| 05:30–07:30 | **Teknik not son sürüm:** atlas v2 (ortak 93 günlük pencere, belirsizlik, QC, değişiklik günlüğü), OPERA açıklaması (PC2), bağımsız kontrol (`atlas_top5_check.md`); `technical_note.html` yazdırılabilir; sayılar atlas.json'dan | `technical_note.md/html` |
+| 07:30–09:00 | **Slaytlar son hâl (≤7)** + konuşmacı notları; 3 dk konuşma metni (`presentation_cues.md`) atlas + "kendi hatamızı yakaladık" hikâyesiyle; prova kontrol listesi güncel | `slides.html`, `presentation_cues.md`, `rehearsal_checklist.md` |
+| 09:00–10:30 | **Jüri SSS — 30 soru:** bilim (LOS, provisional, 108 gün, iyonosfer), atlas (ortak pencere, QC, OPERA uyumsuzluğu), etki (nüfus, altyapı), ekip/AI kullanımı | `judge_faq.md` |
+| 10:30–12:15 | **`docs/qa/SCIENCE_SIGNOFF.md` taslağını tamamla:** 10 başlık sayısı (değer, belirsizlik, kalite, kaynak dosya:anahtar), sınırlamalar, kalibrasyon cümlesi; PC1 onayına hazır | SIGNOFF |
+| 12:15–20:00 | SUREKLI: tüm `docs/story/*.md` son dil okuması; site metinlerindeki sorunları `docs/qa/PC4.md`'ye (PC6 düzeltir); PC9 yıllıklaştırma gelince metinlere ekle | — |

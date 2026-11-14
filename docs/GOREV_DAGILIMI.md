@@ -221,3 +221,5 @@ Evet. PC1 rolleri saat başı kontrolde değiştirebilir; değişiklik önce bu 
 - PC4: `docs/story/press_summary.md`
 
 - (Paz 03:35) Kerman, Tianjin: PC11 → PC2 devri (`data/global/{kerman,tianjin}/` artık PC2). PC10 ek: `data/global/atlas_changelog.json`, `data/global/{pekalongan,can_tho}/`.
+
+- (Paz 04:15) Celaya: PC11 → PC2; PC2 ek: `data/global/kabudarahang/`. PC10 ek: `data/global/atlas.schema.json`, `data/global/releases/`, `tests/test_atlas_schema.py`, `data/global/*/thumb.png`. PC6 ek: `web/present.html`. PC8 ek: `tools/vital_signs.py`, `docs/story/submission_package.md`. PC11 ek: `data/global/literature_rates.json`, `docs/story/literature_atlas.md`. PC7 ek: `data/global/kashmar/`, `risk/global/`, `data/risk_global/`, `docs/story/global_risk.md`, `docs/story/robustness.md`.

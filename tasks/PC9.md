@@ -96,3 +96,15 @@ FAZ 2 bitince `annualization` satırı ekle (doc `docs/story/annualization.md`, 
 1. **eloy ve cangzhou** belirsizlik haritaları eksik (tamlık ✗) — Gorgan indirmesi sürerken bunları yap.
 2. `results_registry.json` **fullyear** satırına özet + anahtar sayı.
 3. Konya Ovası tam yıl (FAZ 2) öncelik.
+
+
+# ⏱️ 8 SAATLİK PLAN (Paz 04:15 → 12:15, PC1) — sonra 20:00 veri dondurmaya kadar SUREKLI
+Bu bölüm, önceki bölümlerde bitmemiş işleri de kapsar ve geçerli olan TEK listedir. Blokları sırayla yap; bir blok erken biterse sıradakine geç. Her blok sonunda commit + push + status satırı. En geç 10 dk'da bir commit.
+| Saat | Blok | Çıktı |
+|---|---|---|
+| 04:15–05:30 | **Gorgan bitir** (4/9) + **eloy, cangzhou belirsizlik haritaları** (tamlık ✗); "hazır" | `data/global/gorgan/`, uncertainty/ |
+| 05:30–07:30 | **Houston/Katy** ve **Lagos** | `data/global/{houston,lagos}/` |
+| 07:30–10:30 | **FAZ 2 — Konya Ovası tam yıl (atlasın 1. sırası):** beta-precal (Kas 2025→Haz 2026) + provisional zincir, `run_fullyear.py --step cumulative/decomp`; kalıcı hız vs 108 gün ekstrapolasyonu oranı | `data/konya_plain_fullyear/`, decomp.json |
+| 10:30–11:30 | **Mexico City tam yıl** (beta varsa) aynı yöntem; Central Valley oranı (veri hazır) | `data/global/mexico_city_fullyear/` |
+| 11:30–12:15 | **`docs/story/annualization.md`** + `pc9_annualization.png` (3 bölge: ekstrapolasyon vs kalıcı); `results_registry` `annualization` ve `fullyear` satırları | md + png |
+| 12:15–20:00 | SUREKLI: CV tam yıl ↔ GNSS 11 ay tablosu (`docs/qa/PC9.md`), kalıcı çökme alan istatistiği | — |

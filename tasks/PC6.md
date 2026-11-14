@@ -118,3 +118,16 @@ Oyun sağlam (canlıda testler 6/6, konsol 0 hata). Amaç: oyunu atlasla tek hik
 4. **Ders planı uyumu:** `docs/story/lesson_plan.md`'deki sorulardan biri atlasla karşılaştırma olsun (PC4'e not bırak, dosya onun).
 5. Test: mobil 375 px, projektör 1920, konsol 0 hata, `game/test_model.html` 6/6, `python -m pytest -q` geçer. Sonuç `docs/qa/PC6.md`.
 `results_registry.json`'a `simulator` satırı ekle (group "Engagement", doc `docs/story/game_model.md`, summary + key_number "6/6 model tests, calibration error 0 %"). En geç 10 dk'da bir commit + push.
+
+
+# ⏱️ 8 SAATLİK PLAN (Paz 04:15 → 12:15, PC1) — sonra 20:00 veri dondurmaya kadar SUREKLI
+Bu bölüm, önceki bölümlerde bitmemiş işleri de kapsar ve geçerli olan TEK listedir. Blokları sırayla yap; bir blok erken biterse sıradakine geç. Her blok sonunda commit + push + status satırı. En geç 10 dk'da bir commit.
+| Saat | Blok | Çıktı |
+|---|---|---|
+| 04:15–06:00 | **Oyun ↔ atlas** (önceki bölüm "OYUN ↔ ATLAS" 1–5) | game + atlas linkleri |
+| 06:00–07:30 | **Results bölümü cilası** (kayıttan, gruplar, rozet, grafik), **"What changed"** kutusu (`atlas_changelog.json`), sıralama tablosunda **hata çubukları** ve "ranked by common 93-day window" başlığı | science.html, atlas |
+| 07:30–09:00 | **Ortak ölçekli küçük haritalar** (PC10 `thumb.png`) atlas listesinde ve Results kartlarında; "en hızlı / en geniş" anahtarı (PC10 `area_km2_lt_minus5cm_common`) | atlas |
+| 09:00–10:30 | **Sunum modu:** `web/present.html` — Lincoln demosu için tek tıkla bölüm turu (ana sayfa → atlas → Konya → Results → simülatör), ok tuşları, büyük yazı, internet yoksa yerel kopya çalışır | present.html |
+| 10:30–12:15 | **Site geneli denetim:** her sayfada konsol 0 hata, kırık link 0, alt metinler, kontrast, ilk açılış < 3 sn (görsel boyutları), mobil 375 / projektör 1920; sonuç tablosu `docs/qa/PC6.md` | QA raporu |
+| 12:15–20:00 | SUREKLI: PC4'ün `docs/qa/PC4.md` site metni bulgularını düzelt; yeni alanları panele ekle; 20:00 sonrası sadece hata düzeltme | — |
+NISAR 3D dosyalarına (`nisar3d.js`, `atlas_sat.*`) dokunma.

@@ -81,3 +81,15 @@ Yazma alanı: `tools/bulletin.py`, `docs/bulletins/`, `data/global/exposure_atla
 2. **Teslim formu son hâl:** `submission_form.md`'de atlas paragrafını v2'ye göre güncelle (21 bölge, ortak 93 günlük pencere, QC ile 3 bölge indicative (Delhi, Pekin, Bangkok; Semarang düzeltildi)), karakter sınırlarını yeniden say.
 3. **Değişiklik günlüğünü bültenlere bağla:** bölgenin `atlas_changelog.json` kaydı varsa bültende "Revision history" kutusu.
 4. Tamlık tablosunu 30 dk'da bir yenile.
+
+
+# ⏱️ 8 SAATLİK PLAN (Paz 04:15 → 12:15, PC1) — sonra 20:00 veri dondurmaya kadar SUREKLI
+Bu bölüm, önceki bölümlerde bitmemiş işleri de kapsar ve geçerli olan TEK listedir. Blokları sırayla yap; bir blok erken biterse sıradakine geç. Her blok sonunda commit + push + status satırı. En geç 10 dk'da bir commit.
+| Saat | Blok | Çıktı |
+|---|---|---|
+| 04:15–05:30 | **Bülten indeksi v2 + teslim formu atlas paragrafı + revizyon geçmişi** (önceki TAKVİYE) | bulletins, submission_form |
+| 05:30–07:00 | **`tools/vital_signs.py`:** vital_signs.json'u elle değil betikle üret (atlas.json + exposure_atlas.json; fastest = güvenilir bölgelerden; ortak pencere değeri); test | betik + test |
+| 07:00–09:00 | **Yeni bölgeler için bülten + nüfus etkisi** (Kerman, Tianjin, Gorgan, Houston, Lagos, Pekin, Cakarta, Aguascalientes, Kashmar, Pekalongan, Can Tho — geldikçe) | bulletins, exposure_atlas |
+| 09:00–11:00 | **Teslim paketi:** Space Apps teslim gerekleri (proje özeti, ekip, kullanılan NASA verisi ve kaynaklar listesi, AI kullanım beyanı, demo/slayt bağlantısı, lisans) → `docs/story/submission_package.md`; içindeki tüm bağlantılar HTTP 200 | submission_package.md |
+| 11:00–12:15 | **Kaynakça ve atıflar denetimi:** `sources.md` + teknik not kaynakları DOI/kalıcı link; NASA verisi atıf biçimi (ASF DAAC) | sources.md bulguları `docs/qa/PC8.md` |
+| 12:15–20:00 | SUREKLI: tamlık tablosu 30 dk; yeni bölge bülteni; teslim formu karakter sayımı son kontrol 19:00 | — |
