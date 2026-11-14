@@ -3,7 +3,11 @@
     "2026-06-22",
     "2026-07-04",
     "2026-07-16",
-    "2026-08-21"
+    "2026-08-21",
+    "2026-09-02",
+    "2026-09-14",
+    "2026-09-26",
+    "2026-10-08"
   ],
   "fields": [
     {
@@ -15,13 +19,21 @@
         -16.51,
         -17.23,
         -17.09,
-        -13.97
+        -13.97,
+        -15.54,
+        -15.67,
+        -17.17,
+        -16.1
       ],
       "hh_db": [
         -10.03,
         -11.09,
         -11.42,
-        -7.56
+        -7.56,
+        -8.64,
+        -9.14,
+        -10.11,
+        -9.16
       ],
       "sample_window": {
         "epsg": 32630,
@@ -42,13 +54,21 @@
         -20.45,
         -21.56,
         -21.42,
-        -17.25
+        -17.25,
+        -18.14,
+        -17.79,
+        -20.16,
+        -19.75
       ],
       "hh_db": [
         -11.63,
         -13.47,
         -13.83,
-        -8.9
+        -8.9,
+        -9.55,
+        -9.64,
+        -11.03,
+        -11.43
       ],
       "sample_window": {
         "epsg": 32630,
@@ -69,13 +89,21 @@
         -21.18,
         -22.17,
         -21.78,
-        -20.39
+        -20.39,
+        -20.33,
+        -21.0,
+        -22.25,
+        -20.95
       ],
       "hh_db": [
         -13.34,
         -15.19,
         -15.78,
-        -13.0
+        -13.0,
+        -12.99,
+        -13.43,
+        -14.47,
+        -13.26
       ],
       "sample_window": {
         "epsg": 32630,
@@ -96,13 +124,21 @@
         -22.65,
         -22.24,
         -21.61,
-        -18.19
+        -18.19,
+        -20.25,
+        -20.07,
+        -22.51,
+        -21.52
       ],
       "hh_db": [
         -17.01,
         -15.86,
         -15.39,
-        -11.5
+        -11.5,
+        -13.54,
+        -14.2,
+        -15.99,
+        -15.28
       ],
       "sample_window": {
         "epsg": 32630,
@@ -116,13 +152,17 @@
     }
   ],
   "quality": "provisional",
-  "quality_note": "Four local NISAR GCOV P05023 provisional acquisitions from 2026-06-22 through 2026-08-21. The 480 m sample windows are field-like sampling areas, not verified parcel boundaries; sparse dates limit crop-phenology interpretation.",
+  "quality_note": "8 local NISAR GCOV P05023 provisional acquisitions from 2026-06-22 through 2026-10-08. The 480 m sample windows are field-like sampling areas, not verified parcel boundaries; sparse dates limit crop-phenology interpretation.",
   "source": "NASA-ISRO NISAR Level-2 PR GCOV Provisional (CRID P05023), local PC2 subsets under pipeline/subset/fens_gcov/.",
   "granules": [
     "NISAR_L2_PR_GCOV_023_124_D_062_2005_DHDH_A_20260622T192240_20260622T192316_P05023_N_F_J_001",
     "NISAR_L2_PR_GCOV_024_124_D_062_2005_DHDH_A_20260704T192240_20260704T192315_P05023_N_F_J_001",
     "NISAR_L2_PR_GCOV_025_124_D_062_2005_DHDH_A_20260716T192239_20260716T192315_P05023_N_F_J_001",
-    "NISAR_L2_PR_GCOV_028_124_D_062_2005_DHDH_A_20260821T192237_20260821T192313_P05023_N_F_J_001"
+    "NISAR_L2_PR_GCOV_028_124_D_062_2005_DHDH_A_20260821T192237_20260821T192313_P05023_N_F_J_001",
+    "NISAR_L2_PR_GCOV_029_124_D_062_2005_DHDH_A_20260902T192237_20260902T192312_P05023_N_F_J_001",
+    "NISAR_L2_PR_GCOV_030_124_D_062_2005_DHDH_A_20260914T192237_20260914T192312_P05023_N_F_J_001",
+    "NISAR_L2_PR_GCOV_031_124_D_062_2005_DHDH_A_20260926T192237_20260926T192312_P05023_N_F_J_001",
+    "NISAR_L2_PR_GCOV_032_124_D_062_2005_DHDH_A_20261008T192237_20261008T192312_P05023_N_F_J_001"
   ],
-  "method": "Four provisional NISAR GCOV acquisitions (CRID P05023) were averaged in four separated 480 m by 480 m windows (12 by 12 40 m pixels) selected from field-like patterns in the local median-HV image; centers are WGS84 coordinates and window bounds are EPSG:32630. HV decreased through July and rose in August in windows 1 and 2, varied less before rising in window 3, and rose across all four dates in window 4; no uniform harvest or tillage signature is established. These four sparse dates cannot attribute backscatter changes to harvest or tillage, and the windows are sampling rectangles rather than verified cadastral field polygons."
+  "method": "Eight provisional NISAR GCOV acquisitions (CRID P05023; 2026-06-22 to 2026-10-08) were averaged in four separated 480 m by 480 m windows (12 by 12 40 m pixels) selected from field-like patterns in the local median-HV image; window centers are WGS84 and bounds are EPSG:32630. Across all four windows, final-date HV is 0.2 to 1.1 dB less negative than first-date HV, although intermediate values are non-monotonic; no shared net HV decline is seen across this series. These observations do not establish a harvest or tillage effect, and the windows are sampling rectangles rather than verified cadastral field polygons."
 }

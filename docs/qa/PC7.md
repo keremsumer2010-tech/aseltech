@@ -140,15 +140,17 @@ Kontroller: 0–150% pompalama serisinde çökme monoton arttı; kalıcı çökm
 
 ## 5. Q10 Fens GCOV zaman serisi (yerel kesitler, offline)
 
-Son `git pull --rebase origin main` ile gelen PC2 kesitleri: 2026-06-22, 2026-07-04, 2026-07-16 ve 2026-08-21. Dördü de `quality: provisional`, aynı EPSG:32630 40 m ızgarasında ve HH/HV dB alanları içeriyor. `pipeline/pc7/analyze_fens_crops.py` her tarihte aynı dört ayrı 12 × 12 piksel (480 m × 480 m) pencerenin sonlu HH/HV piksellerini ortaladı; koordinatlar pencerelerin merkezinden dönüştürüldü.
+Son pull'da sekiz PC2 kesiti bulundu: 2026-06-22, 07-04, 07-16, 08-21, 09-02, 09-14, 09-26 ve 10-08. Hepsinin `quality` değeri `provisional`; aynı EPSG:32630 40 m ızgarasında HH/HV dB alanları var. `pipeline/pc7/analyze_fens_crops.py` her tarihte aynı dört ayrı 12 × 12 piksel (480 m × 480 m) pencerenin sonlu HH/HV piksellerini ortaladı; koordinatlar pencere merkezlerinden dönüştürüldü.
 
-| Örnek pencere | 22 Jun HV (dB) | 4 Jul HV (dB) | 16 Jul HV (dB) | 21 Aug HV (dB) |
-|---|---:|---:|---:|---:|
-| f01 | −16.51 | −17.23 | −17.09 | −13.97 |
-| f02 | −20.45 | −21.56 | −21.42 | −17.25 |
-| f03 | −21.18 | −22.17 | −21.78 | −20.39 |
-| f04 | −22.65 | −22.24 | −21.61 | −18.19 |
+HV dizileri, tarihler yukarıdaki sırada (dB):
 
-f01 ve f02 Temmuz boyunca daha negatif, Ağustos'ta daha az negatif oldu; f03 daha küçük değişti ve Ağustos'ta yükseldi; f04 dört tarihte de daha az negatif değerlere ilerledi. Bu dört seyrek tarihte tüm pencereler için hasat veya sürüme bağlanabilecek ortak bir HV düşüşü görülmüyor. Pencereler GCOV dokusundan seçilmiş örnekleme kareleri; kadastro parseli olarak doğrulanmadı.
+| Örnek pencere | HV zaman serisi (dB) | İlk–son değişim (dB) |
+|---|---|---:|
+| f01 | −16.51, −17.23, −17.09, −13.97, −15.54, −15.67, −17.17, −16.10 | +0.41 |
+| f02 | −20.45, −21.56, −21.42, −17.25, −18.14, −17.79, −20.16, −19.75 | +0.70 |
+| f03 | −21.18, −22.17, −21.78, −20.39, −20.33, −21.00, −22.25, −20.95 | +0.23 |
+| f04 | −22.65, −22.24, −21.61, −18.19, −20.25, −20.07, −22.51, −21.52 | +1.13 |
+
+Dört pencerede de ilk tarihten son tarihe net HV düşüşü yok (son değerler 0.23–1.13 dB daha az negatif); ara tarihlerde ise yön değişiyor. Bu seri tek başına hasat veya sürüm etkisini kanıtlamıyor. Pencereler GCOV dokusundan seçilmiş örnekleme kareleri; kadastro parseli olarak doğrulanmadı.
 
 Çıktılar: `data/fens/crops.json` ve `data/fens/hv_timeseries.png`. JSON parse edildi; tarihler sıralı/benzersiz, alan dizileri tarihlerle aynı uzunlukta ve sonlu, kalite etiketi provisional, yöntem üç cümle. Grafik dosyası oluşturulup görsel olarak açıldı. ASF sorgusu veya veri indirme yapılmadı.

@@ -129,16 +129,19 @@ def analyze():
         plot_series.append(hv_values)
 
     granules = [str(record["granule"].item()) for record in records]
+    first_date, last_date = dates[0], dates[-1]
+    endpoint_changes = [values[-1] - values[0] for values in plot_series]
+    min_change, max_change = min(endpoint_changes), max(endpoint_changes)
     method = (
-        "Four provisional NISAR GCOV acquisitions (CRID P05023) were averaged in four separated 480 m by 480 m windows (12 by 12 40 m pixels) selected from field-like patterns in the local median-HV image; centers are WGS84 coordinates and window bounds are EPSG:32630. "
-        "HV decreased through July and rose in August in windows 1 and 2, varied less before rising in window 3, and rose across all four dates in window 4; no uniform harvest or tillage signature is established. "
-        "These four sparse dates cannot attribute backscatter changes to harvest or tillage, and the windows are sampling rectangles rather than verified cadastral field polygons."
+        f"Eight provisional NISAR GCOV acquisitions (CRID P05023; {first_date} to {last_date}) were averaged in four separated 480 m by 480 m windows (12 by 12 40 m pixels) selected from field-like patterns in the local median-HV image; window centers are WGS84 and bounds are EPSG:32630. "
+        f"Across all four windows, final-date HV is {min_change:.1f} to {max_change:.1f} dB less negative than first-date HV, although intermediate values are non-monotonic; no shared net HV decline is seen across this series. "
+        "These observations do not establish a harvest or tillage effect, and the windows are sampling rectangles rather than verified cadastral field polygons."
     )
     result = {
         "dates": dates,
         "fields": fields,
         "quality": "provisional",
-        "quality_note": "Four local NISAR GCOV P05023 provisional acquisitions from 2026-06-22 through 2026-08-21. The 480 m sample windows are field-like sampling areas, not verified parcel boundaries; sparse dates limit crop-phenology interpretation.",
+        "quality_note": f"{len(dates)} local NISAR GCOV P05023 provisional acquisitions from {first_date} through {last_date}. The 480 m sample windows are field-like sampling areas, not verified parcel boundaries; sparse dates limit crop-phenology interpretation.",
         "source": "NASA-ISRO NISAR Level-2 PR GCOV Provisional (CRID P05023), local PC2 subsets under pipeline/subset/fens_gcov/.",
         "granules": granules,
         "method": method,
