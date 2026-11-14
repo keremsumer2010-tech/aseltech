@@ -34,7 +34,7 @@ Saatler: `docs/ZAMAN_CIZELGESI.md`. "[atandı: PCx]" işi sadece o PC alır; ata
 - [ ] Q07 · [atandı: PC2] · Central Valley tam yıl zinciri (2025-11-24→2026-10-14, P05023) indir/kes → `pipeline/subset/central_valley_beta/` (beta-precal ayrı!) · E · pipeline/
 - [ ] Q08 · [atandı: PC3] · Kalıcı vs geri dönen ayrımı (trend + yıllık sinüs) → `data/central_valley_fullyear/decomp.json` + 2 PNG, `quality: mixed` · analysis/
 - [ ] Q09 · [atandı: PC2 indir, PC3 analiz] · UK kil bölgesi (Londra) GUNW provisional zincir → tek kümülatif harita; sinyal yoksa "below detection" raporu → `data/uk_clay/` · E · pipeline/, analysis/
-- [ ] Q10 · [atandı: PC7] · Fens GCOV ekin ritmi (HV zaman serisi, 3–5 tarla) → `data/fens/crops.json` · E
+- [~PC7] Q10 · [atandı: PC7] · Fens GCOV ekin ritmi (HV zaman serisi, 3–5 tarla) → `data/fens/crops.json` · E
 
 ## Öncelik 3 — teslim ve kalite
 - [x PC4] Q11 · [atandı: PC4] · Space Apps proje sayfası metni taslağı (İngilizce; özet, nasıl çalışır, faydalar, araçlar, NASA verisi, AI kullanımı) → `docs/story/project_page.md`
