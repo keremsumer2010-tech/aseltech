@@ -33,6 +33,34 @@
       "value_changes": [],
       "confidence_changes": [],
       "qc_flag_changes": []
+    },
+    {
+      "timestamp": "2026-11-14T23:26:56Z",
+      "n_regions": 22,
+      "added": [
+        "pekalongan"
+      ],
+      "removed": [],
+      "value_changes": [
+        {
+          "id": "delhi",
+          "old_cm": -4.3,
+          "new_cm": -22.3,
+          "reason": "Summary updated"
+        }
+      ],
+      "confidence_changes": [],
+      "qc_flag_changes": [
+        {
+          "id": "delhi",
+          "old": [
+            "single_date_outlier"
+          ],
+          "new": [
+            "phase_cycle_jump"
+          ]
+        }
+      ]
     }
   ]
 }

@@ -9,9 +9,9 @@
     "2026-09-29"
   ],
   "common_window_days": 93,
-  "n_regions": 21,
+  "n_regions": 22,
   "n_reliable": 9,
-  "n_indicative": 12,
+  "n_indicative": 13,
   "regions": [
     {
       "id": "konya_plain",
@@ -380,6 +380,49 @@
       "rank": 9
     },
     {
+      "id": "delhi",
+      "name": "Delhi",
+      "country": "India",
+      "lon": 77.27224,
+      "lat": 28.74887,
+      "max_cm_los": -22.3,
+      "p2_cm": -6.77,
+      "rate_cm_per_100d": -18.6,
+      "max_cm_vertical_est": -28.1,
+      "period": [
+        "2026-06-21",
+        "2026-10-19"
+      ],
+      "days": 120,
+      "n_pairs": 8,
+      "quality": "provisional",
+      "rate_cm_per_yr_estimate": -67.9,
+      "valid_fraction": 0.283,
+      "ref_range_cm": [
+        -22.3,
+        -1.6
+      ],
+      "detectable": null,
+      "robustness_spread": null,
+      "people_exposed": 230452,
+      "opera_check": null,
+      "sigma_cm_median": 0.37,
+      "rate_ci_cm_per_100d": [
+        -19.2,
+        -18.0
+      ],
+      "confidence": "low",
+      "indicative_only": true,
+      "coverage": "ok",
+      "path": "data/global/delhi/",
+      "note": "QC: step 4 (2026-07-27→2026-09-13) = -10.53 cm ≈ one phase cycle (12.1 cm) Without the flagged step(s) the headline point shows -11.77 cm. Under revision.",
+      "rate_cm_per_100d_common": -15.6,
+      "qc_flags": [
+        "phase_cycle_jump"
+      ],
+      "rank": 10
+    },
+    {
       "id": "bangkok",
       "name": "Bangkok",
       "country": "Thailand",
@@ -421,7 +464,50 @@
         "literature_mismatch",
         "noisy_series"
       ],
-      "rank": 10
+      "rank": 11
+    },
+    {
+      "id": "pekalongan",
+      "name": "Pekalongan",
+      "country": "Indonesia",
+      "lon": 109.48137,
+      "lat": -6.86996,
+      "max_cm_los": -22.2,
+      "p2_cm": -20.9,
+      "rate_cm_per_100d": -18.5,
+      "max_cm_vertical_est": -31.9,
+      "period": [
+        "2026-06-20",
+        "2026-10-18"
+      ],
+      "days": 120,
+      "n_pairs": 9,
+      "quality": "provisional",
+      "rate_cm_per_yr_estimate": -67.7,
+      "valid_fraction": 0.266,
+      "ref_range_cm": [
+        -22.2,
+        -12.4
+      ],
+      "detectable": null,
+      "robustness_spread": null,
+      "people_exposed": null,
+      "opera_check": null,
+      "sigma_cm_median": 0.394,
+      "rate_ci_cm_per_100d": [
+        -19.2,
+        -17.8
+      ],
+      "confidence": "low",
+      "indicative_only": true,
+      "coverage": "ok",
+      "path": "data/global/pekalongan/",
+      "note": "QC: step 1 (2026-06-20→2026-07-02) = -13.03 cm ≈ one phase cycle (12.1 cm) Without the flagged step(s) the headline point shows -9.2 cm. Under revision.",
+      "rate_cm_per_100d_common": -11.9,
+      "qc_flags": [
+        "phase_cycle_jump"
+      ],
+      "rank": 12
     },
     {
       "id": "central_valley",
@@ -467,7 +553,7 @@
       "path": "data/central_valley/",
       "note": "",
       "rate_cm_per_100d_common": -7.3,
-      "rank": 11
+      "rank": 13
     },
     {
       "id": "tehran",
@@ -507,7 +593,7 @@
       "path": "data/global/tehran/",
       "note": "",
       "rate_cm_per_100d_common": -6.4,
-      "rank": 12
+      "rank": 14
     },
     {
       "id": "jakarta",
@@ -544,7 +630,7 @@
       "path": "data/global/jakarta/",
       "note": "",
       "rate_cm_per_100d_common": -5.6,
-      "rank": 13
+      "rank": 15
     },
     {
       "id": "karapinar",
@@ -581,50 +667,7 @@
       "path": "data/karapinar/",
       "note": "",
       "rate_cm_per_100d_common": -3.7,
-      "rank": 14
-    },
-    {
-      "id": "delhi",
-      "name": "Delhi",
-      "country": "India",
-      "lon": 77.1718,
-      "lat": 28.52531,
-      "max_cm_los": -4.3,
-      "p2_cm": -4.45,
-      "rate_cm_per_100d": -3.6,
-      "max_cm_vertical_est": -5.4,
-      "period": [
-        "2026-06-21",
-        "2026-10-19"
-      ],
-      "days": 120,
-      "n_pairs": 8,
-      "quality": "provisional",
-      "rate_cm_per_yr_estimate": -13.2,
-      "valid_fraction": 0.053,
-      "ref_range_cm": [
-        -13.5,
-        -1.5
-      ],
-      "detectable": null,
-      "robustness_spread": null,
-      "people_exposed": 230452,
-      "opera_check": null,
-      "sigma_cm_median": 0.37,
-      "rate_ci_cm_per_100d": [
-        -4.2,
-        -3.0
-      ],
-      "confidence": "low",
-      "indicative_only": true,
-      "coverage": "ok",
-      "path": "data/global/delhi/",
-      "note": "QC: date 2026-09-01: -10.01 then +8.06 cm (one acquisition off) Without the flagged step(s) the headline point shows -2.37 cm. Under revision.",
-      "rate_cm_per_100d_common": -3.2,
-      "qc_flags": [
-        "single_date_outlier"
-      ],
-      "rank": 15
+      "rank": 16
     },
     {
       "id": "beijing",
@@ -667,7 +710,7 @@
       "qc_flags": [
         "single_date_outlier"
       ],
-      "rank": 16
+      "rank": 17
     },
     {
       "id": "isfahan",
@@ -707,7 +750,7 @@
       "path": "data/global/isfahan/",
       "note": "",
       "rate_cm_per_100d_common": -2.1,
-      "rank": 17
+      "rank": 18
     },
     {
       "id": "yunlin",
@@ -744,7 +787,7 @@
       "path": "data/global/yunlin/",
       "note": "",
       "rate_cm_per_100d_common": -1.6,
-      "rank": 18
+      "rank": 19
     },
     {
       "id": "xian",
@@ -781,7 +824,7 @@
       "path": "data/global/xian/",
       "note": "",
       "rate_cm_per_100d_common": -1.4,
-      "rank": 19
+      "rank": 20
     },
     {
       "id": "hanoi",
@@ -821,7 +864,7 @@
       "path": "data/global/hanoi/",
       "note": "",
       "rate_cm_per_100d_common": -0.9,
-      "rank": 20
+      "rank": 21
     },
     {
       "id": "ho_chi_minh",
@@ -861,7 +904,7 @@
       "path": "data/global/ho_chi_minh/",
       "note": "",
       "rate_cm_per_100d_common": 4.6,
-      "rank": 21
+      "rank": 22
     }
   ],
   "reliable": [
@@ -1243,6 +1286,50 @@
   ],
   "indicative": [
     {
+      "id": "delhi",
+      "name": "Delhi",
+      "country": "India",
+      "lon": 77.27224,
+      "lat": 28.74887,
+      "max_cm_los": -22.3,
+      "p2_cm": -6.77,
+      "rate_cm_per_100d": -18.6,
+      "max_cm_vertical_est": -28.1,
+      "period": [
+        "2026-06-21",
+        "2026-10-19"
+      ],
+      "days": 120,
+      "n_pairs": 8,
+      "quality": "provisional",
+      "rate_cm_per_yr_estimate": -67.9,
+      "valid_fraction": 0.283,
+      "ref_range_cm": [
+        -22.3,
+        -1.6
+      ],
+      "detectable": null,
+      "robustness_spread": null,
+      "people_exposed": 230452,
+      "opera_check": null,
+      "sigma_cm_median": 0.37,
+      "rate_ci_cm_per_100d": [
+        -19.2,
+        -18.0
+      ],
+      "confidence": "low",
+      "indicative_only": true,
+      "coverage": "ok",
+      "path": "data/global/delhi/",
+      "note": "QC: step 4 (2026-07-27→2026-09-13) = -10.53 cm ≈ one phase cycle (12.1 cm) Without the flagged step(s) the headline point shows -11.77 cm. Under revision.",
+      "rate_cm_per_100d_common": -15.6,
+      "qc_flags": [
+        "phase_cycle_jump"
+      ],
+      "rank": 10,
+      "rank_indicative": 1
+    },
+    {
       "id": "bangkok",
       "name": "Bangkok",
       "country": "Thailand",
@@ -1284,8 +1371,52 @@
         "literature_mismatch",
         "noisy_series"
       ],
-      "rank": 10,
-      "rank_indicative": 1
+      "rank": 11,
+      "rank_indicative": 2
+    },
+    {
+      "id": "pekalongan",
+      "name": "Pekalongan",
+      "country": "Indonesia",
+      "lon": 109.48137,
+      "lat": -6.86996,
+      "max_cm_los": -22.2,
+      "p2_cm": -20.9,
+      "rate_cm_per_100d": -18.5,
+      "max_cm_vertical_est": -31.9,
+      "period": [
+        "2026-06-20",
+        "2026-10-18"
+      ],
+      "days": 120,
+      "n_pairs": 9,
+      "quality": "provisional",
+      "rate_cm_per_yr_estimate": -67.7,
+      "valid_fraction": 0.266,
+      "ref_range_cm": [
+        -22.2,
+        -12.4
+      ],
+      "detectable": null,
+      "robustness_spread": null,
+      "people_exposed": null,
+      "opera_check": null,
+      "sigma_cm_median": 0.394,
+      "rate_ci_cm_per_100d": [
+        -19.2,
+        -17.8
+      ],
+      "confidence": "low",
+      "indicative_only": true,
+      "coverage": "ok",
+      "path": "data/global/pekalongan/",
+      "note": "QC: step 1 (2026-06-20→2026-07-02) = -13.03 cm ≈ one phase cycle (12.1 cm) Without the flagged step(s) the headline point shows -9.2 cm. Under revision.",
+      "rate_cm_per_100d_common": -11.9,
+      "qc_flags": [
+        "phase_cycle_jump"
+      ],
+      "rank": 12,
+      "rank_indicative": 3
     },
     {
       "id": "central_valley",
@@ -1331,8 +1462,8 @@
       "path": "data/central_valley/",
       "note": "",
       "rate_cm_per_100d_common": -7.3,
-      "rank": 11,
-      "rank_indicative": 2
+      "rank": 13,
+      "rank_indicative": 4
     },
     {
       "id": "tehran",
@@ -1372,8 +1503,8 @@
       "path": "data/global/tehran/",
       "note": "",
       "rate_cm_per_100d_common": -6.4,
-      "rank": 12,
-      "rank_indicative": 3
+      "rank": 14,
+      "rank_indicative": 5
     },
     {
       "id": "jakarta",
@@ -1410,8 +1541,8 @@
       "path": "data/global/jakarta/",
       "note": "",
       "rate_cm_per_100d_common": -5.6,
-      "rank": 13,
-      "rank_indicative": 4
+      "rank": 15,
+      "rank_indicative": 6
     },
     {
       "id": "karapinar",
@@ -1448,52 +1579,8 @@
       "path": "data/karapinar/",
       "note": "",
       "rate_cm_per_100d_common": -3.7,
-      "rank": 14,
-      "rank_indicative": 5
-    },
-    {
-      "id": "delhi",
-      "name": "Delhi",
-      "country": "India",
-      "lon": 77.1718,
-      "lat": 28.52531,
-      "max_cm_los": -4.3,
-      "p2_cm": -4.45,
-      "rate_cm_per_100d": -3.6,
-      "max_cm_vertical_est": -5.4,
-      "period": [
-        "2026-06-21",
-        "2026-10-19"
-      ],
-      "days": 120,
-      "n_pairs": 8,
-      "quality": "provisional",
-      "rate_cm_per_yr_estimate": -13.2,
-      "valid_fraction": 0.053,
-      "ref_range_cm": [
-        -13.5,
-        -1.5
-      ],
-      "detectable": null,
-      "robustness_spread": null,
-      "people_exposed": 230452,
-      "opera_check": null,
-      "sigma_cm_median": 0.37,
-      "rate_ci_cm_per_100d": [
-        -4.2,
-        -3.0
-      ],
-      "confidence": "low",
-      "indicative_only": true,
-      "coverage": "ok",
-      "path": "data/global/delhi/",
-      "note": "QC: date 2026-09-01: -10.01 then +8.06 cm (one acquisition off) Without the flagged step(s) the headline point shows -2.37 cm. Under revision.",
-      "rate_cm_per_100d_common": -3.2,
-      "qc_flags": [
-        "single_date_outlier"
-      ],
-      "rank": 15,
-      "rank_indicative": 6
+      "rank": 16,
+      "rank_indicative": 7
     },
     {
       "id": "beijing",
@@ -1536,8 +1623,8 @@
       "qc_flags": [
         "single_date_outlier"
       ],
-      "rank": 16,
-      "rank_indicative": 7
+      "rank": 17,
+      "rank_indicative": 8
     },
     {
       "id": "isfahan",
@@ -1577,8 +1664,8 @@
       "path": "data/global/isfahan/",
       "note": "",
       "rate_cm_per_100d_common": -2.1,
-      "rank": 17,
-      "rank_indicative": 8
+      "rank": 18,
+      "rank_indicative": 9
     },
     {
       "id": "yunlin",
@@ -1615,8 +1702,8 @@
       "path": "data/global/yunlin/",
       "note": "",
       "rate_cm_per_100d_common": -1.6,
-      "rank": 18,
-      "rank_indicative": 9
+      "rank": 19,
+      "rank_indicative": 10
     },
     {
       "id": "xian",
@@ -1653,8 +1740,8 @@
       "path": "data/global/xian/",
       "note": "",
       "rate_cm_per_100d_common": -1.4,
-      "rank": 19,
-      "rank_indicative": 10
+      "rank": 20,
+      "rank_indicative": 11
     },
     {
       "id": "hanoi",
@@ -1694,8 +1781,8 @@
       "path": "data/global/hanoi/",
       "note": "",
       "rate_cm_per_100d_common": -0.9,
-      "rank": 20,
-      "rank_indicative": 11
+      "rank": 21,
+      "rank_indicative": 12
     },
     {
       "id": "ho_chi_minh",
@@ -1735,8 +1822,8 @@
       "path": "data/global/ho_chi_minh/",
       "note": "",
       "rate_cm_per_100d_common": 4.6,
-      "rank": 21,
-      "rank_indicative": 12
+      "rank": 22,
+      "rank_indicative": 13
     }
   ]
 }
