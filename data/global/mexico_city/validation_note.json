@@ -1,0 +1,35 @@
+{
+  "id": "mexico_city",
+  "name": "Mexico City",
+  "data_path": "data/global/mexico_city/",
+  "atlas_los_cm": -4.4,
+  "atlas_vertical_cm_est": -6.2,
+  "atlas_period": [
+    "2026-06-22",
+    "2026-10-20"
+  ],
+  "n_days": 120,
+  "rate_cm_per_100d_los": -3.67,
+  "rate_cm_per_yr_est_los": -13.5,
+  "valid_fraction": 0.639,
+  "ref_range_cm": [
+    -7.4,
+    -4.4
+  ],
+  "ref_sensitivity_ratio": 0.68,
+  "literature_vertical_cm_per_yr": "-30 to -40 in eastern/northern lakebed bowls (up to -50 historically)",
+  "literature_sources": [
+    "Chaussard et al. (2014), Remote Sensing of Environment",
+    "Cigna & Tapete (2021), Remote Sensing",
+    "NASA-JPL NISAR preliminary release (Oct 2025-Jan 2026, >2 cm/month)"
+  ],
+  "agreement_note": "Coherence is high (63.9% valid), so under-estimation (-4.4 cm LOS / -6.2 cm vertical est. over 120 d vs -30 to -40 cm/yr) is caused by in-basin primary reference (-99.013E, 19.587N in Ecatepec/Texcoco), clipped 0.35x0.35 deg bbox cutting off Chalco/eastern Texcoco, and plane deramp. Re-referencing to SW volcanic edge yields -7.4 cm LOS (-10.4 cm vert est., ratio 0.68).",
+  "recommended_confidence": "low",
+  "press_summary_approved": false,
+  "press_summary_gate_note": "Exclude -4.4 cm from press summary until PC10 re-runs with +/-0.25 deg bbox and off-basin volcanic bedrock reference.",
+  "first_nisar_measurement": {
+    "city_measured_by_nisar_before": true,
+    "evidence": "NASA-JPL already released preliminary NISAR L-band InSAR subsidence results for Mexico City (Oct 2025-Jan 2026 acquisitions, >2 cm/month). Cannot claim first NISAR measurement.",
+    "atlas_first_claim_note": "Multi-basin standardized atlas phrasing must use qualified (to our knowledge) only after excluding Mexico City from any individual-first claim."
+  }
+}

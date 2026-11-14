@@ -1,0 +1,31 @@
+{
+  "id": "jakarta",
+  "name": "Jakarta",
+  "data_path": "data/global/jakarta/",
+  "atlas_los_cm": -6.8,
+  "atlas_vertical_cm_est": -9.3,
+  "atlas_period": [
+    "2026-06-27",
+    "2026-10-13"
+  ],
+  "n_days": 108,
+  "rate_cm_per_100d_los": -6.3,
+  "rate_cm_per_yr_est_los": -23.2,
+  "valid_fraction": 0.03,
+  "ref_range_cm": null,
+  "ref_sensitivity_ratio": null,
+  "literature_vertical_cm_per_yr": "-1 to -15 average (-7.3 to -7.7 recent multi-track InSAR; historical hotspots -20 to -28)",
+  "literature_sources": [
+    "Abidin et al. (2011), Natural Hazards",
+    "Hakim et al. / Andreas et al. Sentinel-1 & GNSS InSAR studies"
+  ],
+  "agreement_note": "108-day LOS (-6.8 cm, -9.3 cm vertical est.) is within historical hotspot range, but valid pixel fraction is only 3.0% due to tropical vegetation/urban decorrelation and only 1 coastal reference window (106.911E, -6.116S) was usable.",
+  "recommended_confidence": "low",
+  "press_summary_approved": false,
+  "press_summary_gate_note": "Indicative only (valid_fraction 3.0% < 40%, n_references=1). Exclude from press headline numbers.",
+  "first_nisar_measurement": {
+    "city_measured_by_nisar_before": false,
+    "evidence": "No peer-reviewed NISAR Jakarta subsidence paper found as of 2026-11-14; tropical coherence limits spaceborne measurement.",
+    "atlas_first_claim_note": "Multi-basin standardized atlas phrasing must use qualified (to our knowledge) only after excluding Mexico City from any individual-first claim."
+  }
+}

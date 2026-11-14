@@ -1,0 +1,34 @@
+{
+  "id": "konya_plain",
+  "name": "Konya Plain",
+  "data_path": "data/konya_plain/",
+  "atlas_los_cm": -9.6,
+  "atlas_vertical_cm_est": -12.1,
+  "atlas_period": [
+    "2026-06-26",
+    "2026-10-12"
+  ],
+  "n_days": 108,
+  "rate_cm_per_100d_los": -8.89,
+  "rate_cm_per_yr_est_los": -32.5,
+  "valid_fraction": 0.116,
+  "ref_range_cm": [
+    -14.0,
+    -9.6
+  ],
+  "ref_sensitivity_ratio": 0.46,
+  "literature_vertical_cm_per_yr": "-1.2 to -5.2 regional GNSS; > -7.0 in agricultural bowls",
+  "literature_sources": [
+    "Ustun, Tusat & Yalvac (2010), NHESS 10:1151-1164",
+    "Orhan et al. (2021), Sensors 21(3):774"
+  ],
+  "agreement_note": "108-day summer peak (-9.6 cm LOS, -12.1 cm vertical est., -32.5 cm/yr LOS est.) is 4-5x higher than multi-year InSAR (> -7.0 cm/yr) due to peak summer agricultural pumping, wide bbox (1.5x0.7 deg), low valid pixel fraction (11.6%), and 0.46 reference sensitivity.",
+  "recommended_confidence": "low",
+  "press_summary_approved": false,
+  "press_summary_gate_note": "Do not use -9.6 cm or -32.5 cm/yr in press summary without bbox standardization, full-year seasonal separation, and valid_fraction >= 40%.",
+  "first_nisar_measurement": {
+    "city_measured_by_nisar_before": false,
+    "evidence": "No peer-reviewed NISAR city-level subsidence publication found for Konya Plain as of 2026-11-14; part of broader multi-basin provisional NISAR evaluation.",
+    "atlas_first_claim_note": "Multi-basin standardized atlas phrasing must use qualified (to our knowledge) only after excluding Mexico City from any individual-first claim."
+  }
+}

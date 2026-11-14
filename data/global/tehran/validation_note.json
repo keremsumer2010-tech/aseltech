@@ -1,0 +1,34 @@
+{
+  "id": "tehran",
+  "name": "Tehran",
+  "data_path": "data/global/tehran/",
+  "atlas_los_cm": -3.5,
+  "atlas_vertical_cm_est": -4.7,
+  "atlas_period": [
+    "2026-06-18",
+    "2026-10-16"
+  ],
+  "n_days": 120,
+  "rate_cm_per_100d_los": -2.92,
+  "rate_cm_per_yr_est_los": -10.7,
+  "valid_fraction": 0.364,
+  "ref_range_cm": [
+    -7.3,
+    -3.5
+  ],
+  "ref_sensitivity_ratio": 1.09,
+  "literature_vertical_cm_per_yr": "-15 to > -20 basin average; -25 to -36 peak in SW Tehran/Shahriar/Varamin",
+  "literature_sources": [
+    "Haghighi & Motagh (2019), Remote Sensing of Environment",
+    "Mahmoudpour et al. (2016), Engineering Geology"
+  ],
+  "agreement_note": "Headline -3.5 cm LOS (-4.7 cm vert est.) understates literature 4-6x because primary reference (51.200E, 35.545N) sits inside the Shahriar SW subsidence cone. Re-referencing to alt_reference (51.489E, 35.702N) yields -7.3 cm LOS (-9.7 cm vert est. over 120 d, ~-29.6 cm/yr vert est.), matching literature (ratio 1.09).",
+  "recommended_confidence": "low",
+  "press_summary_approved": false,
+  "press_summary_gate_note": "Exclude -3.5 cm from press summary until PC10 re-runs with off-basin northern Alborz/bedrock reference.",
+  "first_nisar_measurement": {
+    "city_measured_by_nisar_before": false,
+    "evidence": "No peer-reviewed NISAR Tehran subsidence paper found as of 2026-11-14.",
+    "atlas_first_claim_note": "Multi-basin standardized atlas phrasing must use qualified (to our knowledge) only after excluding Mexico City from any individual-first claim."
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "id": "delta",
+  "name": "Sacramento-San Joaquin Delta",
+  "data_path": "data/delta/",
+  "atlas_los_cm": -1.3,
+  "atlas_vertical_cm_est": -1.6,
+  "atlas_period": [
+    "2026-06-17",
+    "2026-10-15"
+  ],
+  "n_days": 120,
+  "rate_cm_per_100d_los": -1.08,
+  "rate_cm_per_yr_est_los": -4.0,
+  "valid_fraction": 0.434,
+  "ref_range_cm": [
+    -1.3,
+    -1.1
+  ],
+  "ref_sensitivity_ratio": 0.15,
+  "literature_vertical_cm_per_yr": "-1.2 to -2.2 recent peat oxidation (Sherman/Bacon islands; up to -3.0 locally)",
+  "literature_sources": [
+    "Deverel & Leighton (2010), San Francisco Estuary & Watershed Science / USGS",
+    "Deverel et al. (2016) SUBCALC peat subsidence"
+  ],
+  "agreement_note": "120-day LOS (-1.3 cm, -1.6 cm vertical est., -4.0 cm/yr LOS est.) matches magnitude order of peat oxidation; valid fraction 43.4% (>=40%) and tight 3-ref sensitivity [-1.3, -1.1] cm (ratio 0.15 < 0.30).",
+  "recommended_confidence": "high",
+  "press_summary_approved": true,
+  "press_summary_gate_note": "Approved for press summary under Quality Standard s4 (high confidence: valid_fraction 43.4%, ref ratio 0.15, literature match).",
+  "first_nisar_measurement": {
+    "city_measured_by_nisar_before": false,
+    "evidence": "No peer-reviewed NISAR Delta subsidence paper found as of 2026-11-14.",
+    "atlas_first_claim_note": "Multi-basin standardized atlas phrasing must use qualified (to our knowledge) only after excluding Mexico City from any individual-first claim."
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "id": "karapinar",
+  "name": "Karapinar, Konya",
+  "data_path": "data/karapinar/",
+  "atlas_los_cm": -5.9,
+  "atlas_vertical_cm_est": -8.0,
+  "atlas_period": [
+    "2026-06-26",
+    "2026-10-12"
+  ],
+  "n_days": 108,
+  "rate_cm_per_100d_los": -5.46,
+  "rate_cm_per_yr_est_los": -20.0,
+  "valid_fraction": 0.145,
+  "ref_range_cm": null,
+  "ref_sensitivity_ratio": null,
+  "literature_vertical_cm_per_yr": "-1.2 to -5.2 regional GNSS; > -7.0 in agricultural bowls",
+  "literature_sources": [
+    "Orhan et al. (2021), Sensors 21(3):774",
+    "Ustun, Tusat & Yalvac (2010), NHESS 10:1151-1164"
+  ],
+  "agreement_note": "108-day summer LOS peak (-5.9 cm, -8.0 cm vertical est.) exceeds multi-year annual rate due to summer pumping; independently supported by 29-sinkhole proximity contrast (-4.15 cm within 1 km vs -0.65 cm >5 km, permutation p=0.021). Valid fraction 14.5%, single reference.",
+  "recommended_confidence": "low",
+  "press_summary_approved": true,
+  "press_summary_gate_note": "Sinkhole proximity contrast (-4.15 vs -0.65 cm, p=0.021) approved with provisional caveat; do not cite -20.0 cm/yr as an annual permanent rate.",
+  "first_nisar_measurement": {
+    "city_measured_by_nisar_before": false,
+    "evidence": "No peer-reviewed NISAR Karapinar paper found as of 2026-11-14.",
+    "atlas_first_claim_note": "Multi-basin standardized atlas phrasing must use qualified (to our knowledge) only after excluding Mexico City from any individual-first claim."
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "id": "central_valley",
+  "name": "Central Valley (Tulare Basin)",
+  "data_path": "data/central_valley/",
+  "atlas_los_cm": -7.8,
+  "atlas_vertical_cm_est": -10.1,
+  "atlas_period": [
+    "2026-06-28",
+    "2026-10-14"
+  ],
+  "n_days": 108,
+  "rate_cm_per_100d_los": -7.22,
+  "rate_cm_per_yr_est_los": -26.4,
+  "valid_fraction": 0.642,
+  "ref_range_cm": [
+    -7.8,
+    -4.7
+  ],
+  "ref_sensitivity_ratio": 0.4,
+  "literature_vertical_cm_per_yr": "-17.7 to -34.5 peak (2015-2017); up to -60.0 in 2015-2016 drought; > 100 cm UAVSAR 2013-2017",
+  "literature_sources": [
+    "Neely et al. (2021), Water Resources Research",
+    "Ojha, Werth & Shirzaei (2019), JGR Solid Earth",
+    "Peacock et al. (2024) NASA NISAR StoryMap / UAVSAR"
+  ],
+  "agreement_note": "108-day summer LOS peak (-7.8 cm; -10.1 cm vertical est.) matches upper drought literature; 11-month mixed full-year chain at Earlimart separates -16.8 cm/yr permanent LOS from 5.8 cm seasonal amplitude and agrees with 10 NGL GPS stations (RMSE 1.0 cm, r=0.68). Ref sensitivity ratio is 0.40 (>=0.30).",
+  "recommended_confidence": "medium",
+  "press_summary_approved": true,
+  "press_summary_gate_note": "Approved for press summary with explicit LOS/vertical est., 108-day summer vs 11-month full-year permanent distinction, and GPS RMSE 1.0 cm.",
+  "first_nisar_measurement": {
+    "city_measured_by_nisar_before": false,
+    "evidence": "Airborne L-band UAVSAR mapped Central Valley (2013-2017) in NASA NISAR StoryMap; no peer-reviewed spaceborne NISAR time-series paper found as of 2026-11-14.",
+    "atlas_first_claim_note": "Multi-basin standardized atlas phrasing must use qualified (to our knowledge) only after excluding Mexico City from any individual-first claim."
+  }
+}
