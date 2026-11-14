@@ -7,7 +7,7 @@ const corners = ([w, s, e, n]) => [[w, n], [e, n], [e, s], [w, s]];
 const fmtDate = d => new Date(d + 'T00:00:00Z').toLocaleDateString('en-GB', {day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC'});
 const fmtShort = d => new Date(d + 'T00:00:00Z').toLocaleDateString('en-GB', {day: 'numeric', month: 'short', timeZone: 'UTC'});
 const minus = v => (v < 0 ? '−' : '+') + Math.abs(v).toFixed(1);
-async function J(p){ try{ const r = await fetch(ROOT + p, {cache: 'no-cache'}); return r.ok ? await r.json() : null; }catch(e){ return null; } }
+async function J(p){ try{ const r = await fetch(ROOT + p); return r.ok ? await r.json() : null; }catch(e){ return null; } }
 function setK(k, v){ document.querySelectorAll(`[data-k="${k}"]`).forEach(e => e.textContent = v); }
 const STYLE = {version: 8,
   sources: {sat: {type: 'raster', tiles: [ESRI], tileSize: 256, attribution: 'Imagery © Esri, Maxar, Earthstar Geographics'}},
@@ -41,7 +41,7 @@ async function load(){
 /* ---------- what we found: docs/story/key_findings_public.md (numbered list) ---------- */
 const esc = s => s.replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
 async function findings(){
-  let md; try{ const r = await fetch(ROOT + 'docs/story/key_findings_public.md', {cache: 'no-cache'}); if (!r.ok) return; md = await r.text(); }catch(e){ return; }
+  let md; try{ const r = await fetch(ROOT + 'docs/story/key_findings_public.md'); if (!r.ok) return; md = await r.text(); }catch(e){ return; }
   const items = [...md.matchAll(/^\d+\.\s+\*\*(.+?)\*\*\s*(.+)$/gm)].map(m => ({
     title: m[1].replace(/:\s*$/, '').replace(/\s*\([^)]*\d{4}\)\s*$/, ''),
     text: m[2].replace(/\s*\([^()]*`[^`]+`[^()]*\)/g, '').replace(/`/g, '').trim()}));
@@ -57,12 +57,11 @@ function hero(){
   const m = D.cvMeta;
   // flat view: a tilted map shows the horizon, which MapLibre paints light grey behind the hero text
   const heroStyle = {...STYLE, layers: [{id: 'bg', type: 'background', paint: {'background-color': '#05080f'}}, ...STYLE.layers]};
-  const hm = new maplibregl.Map({container: 'heroMap', style: heroStyle, center: [-119.45, 36.1], zoom: 8.4, interactive: false, attributionControl: false, pitch: 0, bearing: -12});
+  const hm = new maplibregl.Map({container: 'heroMap', style: heroStyle, center: [-119.45, 36.1], zoom: 8.4, interactive: false, attributionControl: false, pitch: 0, bearing: -12, fadeDuration: 0, renderWorldCopies: false});
   hm.on('load', () => {
     const W = hm.getContainer().clientWidth, wide = W > 860;
     hm.fitBounds([[m.bbox[0], m.bbox[1]], [m.bbox[2], m.bbox[3]]], {duration: 0, bearing: -12,
       padding: wide ? {left: Math.round(W * 0.48), right: 40, top: 90, bottom: 70} : {left: 20, right: 20, top: 70, bottom: Math.round(hm.getContainer().clientHeight * 0.55)}});
-    let b = -12; setInterval(() => { b += 0.04; hm.setBearing(b); }, 60);
   });
 }
 
@@ -82,51 +81,63 @@ const fc = feats => ({type: 'FeatureCollection', features: feats});
 const pt = (props, c) => ({type: 'Feature', properties: props, geometry: {type: 'Point', coordinates: c}});
 
 function storyMap(){
-  map = new maplibregl.Map({container: 'map', style: STYLE, center: VIEWS.intro.center, zoom: VIEWS.intro.zoom, attributionControl: {compact: true}, scrollZoom: false});
-  map.addControl(new maplibregl.NavigationControl({showCompass: false}), 'top-left');
-  map.on('load', () => {
-    map.addSource('sites', {type: 'geojson', data: fc([pt({}, [0.0, 52.6]), pt({}, [-119.5, 36.1]), pt({}, [33.55, 37.75])])});
-    map.addLayer({id: 'sites', type: 'circle', source: 'sites', paint: {'circle-radius': 9, 'circle-color': '#ff5a47', 'circle-stroke-color': '#fff', 'circle-stroke-width': 2}});
-    if (D.uk){ map.addSource('uk', {type: 'image', url: ROOT + `data/uk/radar_${D.uk.date}.png`, coordinates: corners(D.uk.bbox)}); map.addLayer({id: 'uk-radar', type: 'raster', source: 'uk', paint: {'raster-opacity': 0.9}}); }
-    if (D.cvMeta){
-      const m = D.cvMeta; cvIdx = m.dates.length - 1;
-      map.addSource('cv', {type: 'image', url: ROOT + `data/central_valley/disp/${m.dates[cvIdx]}.png`, coordinates: corners(m.bbox)});
-      map.addLayer({id: 'cv-disp', type: 'raster', source: 'cv', paint: {'raster-opacity': 0.85, 'raster-fade-duration': 0}});
-    }
-    if (D.cvPts){
-      map.addSource('cvp', {type: 'geojson', data: fc(D.cvPts.map(p => pt({id: p.id}, [p.lon, p.lat])))});
-      map.addLayer({id: 'cv-pts', type: 'circle', source: 'cvp', paint: {'circle-radius': 6, 'circle-color': '#fff', 'circle-stroke-color': '#1a1f29', 'circle-stroke-width': 2}});
-      map.on('click', 'cv-pts', e => pickPoint(e.features[0].properties.id));
-    }
-    if (D.val){
-      map.addSource('gnss', {type: 'geojson', data: fc(D.val.map(s => pt({st: s.station, r: s.corr}, [s.lon, s.lat])))});
-      map.addLayer({id: 'gnss', type: 'circle', source: 'gnss', paint: {'circle-radius': 8, 'circle-color': ['case', ['>=', ['get', 'r'], 0.6], '#3fb950', '#6b7a96'], 'circle-stroke-color': '#fff', 'circle-stroke-width': 2}});
-      map.on('click', 'gnss', e => pickStation(e.features[0].properties.st));
-    }
-    if (D.assets){
-      map.addSource('risk', {type: 'geojson', data: D.assets});
-      map.addLayer({id: 'risk', type: 'line', source: 'risk', paint: {'line-width': ['match', ['get', 'risk'], 'high', 3.5, 'medium', 2.2, 1.1],
-        'line-color': ['match', ['get', 'risk'], 'high', '#ff5a47', 'medium', '#e3b341', '#3fb950'], 'line-opacity': 0.95}});
-      map.on('click', 'risk', e => { const p = e.features[0].properties; popup(e.lngLat, `<b>${p.name || p.type}</b><br>${p.type} · risk <b>${p.risk}</b><br>gradient ${(+p.gradient_mm_per_km).toFixed(1)} mm/km · max ${(+p.max_cm).toFixed(1)} cm`); });
-    }
-    if (D.kpMeta){
-      const m = D.kpMeta;
-      map.addSource('kp', {type: 'image', url: ROOT + `data/karapinar/disp/${m.dates.at(-1)}.png`, coordinates: corners(m.bbox)});
-      map.addLayer({id: 'kp-disp', type: 'raster', source: 'kp', paint: {'raster-opacity': 0.8}});
-    }
-    if (D.sinks){
-      map.addSource('sinks', {type: 'geojson', data: D.sinks});
-      map.addLayer({id: 'sinks', type: 'circle', source: 'sinks', paint: {'circle-radius': 6, 'circle-color': '#ff5a47', 'circle-stroke-color': '#fff', 'circle-stroke-width': 1.5}});
-      map.on('click', 'sinks', e => { const p = e.features[0].properties; popup(e.lngLat, `<b>${p.name}</b>${p.year_formed ? ' · ' + p.year_formed : ''}<br><a href="${p.source_url}" target="_blank" rel="noopener">${p.source_title || 'source'}</a>`); });
-    }
-    for (const id of ['cv-pts', 'gnss', 'risk', 'sinks']) if (map.getLayer(id)){ map.on('mouseenter', id, () => map.getCanvas().style.cursor = 'pointer'); map.on('mouseleave', id, () => map.getCanvas().style.cursor = ''); }
-    show('intro'); observe();
-  });
+  const el = document.getElementById('map');
+  if (!el) return;
+  let started = false;
+  const init = () => {
+    if (started) return;
+    started = true;
+    map = new maplibregl.Map({container: 'map', style: STYLE, center: VIEWS.intro.center, zoom: VIEWS.intro.zoom, attributionControl: {compact: true}, scrollZoom: false, fadeDuration: 0, renderWorldCopies: false});
+    map.addControl(new maplibregl.NavigationControl({showCompass: false}), 'top-left');
+    map.on('load', () => {
+      map.addSource('sites', {type: 'geojson', data: fc([pt({}, [0.0, 52.6]), pt({}, [-119.5, 36.1]), pt({}, [33.55, 37.75])])});
+      map.addLayer({id: 'sites', type: 'circle', source: 'sites', paint: {'circle-radius': 9, 'circle-color': '#ff5a47', 'circle-stroke-color': '#fff', 'circle-stroke-width': 2}});
+      if (D.uk){ map.addSource('uk', {type: 'image', url: ROOT + `data/uk/radar_${D.uk.date}.png`, coordinates: corners(D.uk.bbox)}); map.addLayer({id: 'uk-radar', type: 'raster', source: 'uk', paint: {'raster-opacity': 0.9}}); }
+      if (D.cvMeta){
+        const m = D.cvMeta; cvIdx = m.dates.length - 1;
+        map.addSource('cv', {type: 'image', url: ROOT + `data/central_valley/disp/${m.dates[cvIdx]}.png`, coordinates: corners(m.bbox)});
+        map.addLayer({id: 'cv-disp', type: 'raster', source: 'cv', paint: {'raster-opacity': 0.85, 'raster-fade-duration': 0}});
+      }
+      if (D.cvPts){
+        map.addSource('cvp', {type: 'geojson', data: fc(D.cvPts.map(p => pt({id: p.id}, [p.lon, p.lat])))});
+        map.addLayer({id: 'cv-pts', type: 'circle', source: 'cvp', paint: {'circle-radius': 6, 'circle-color': '#fff', 'circle-stroke-color': '#1a1f29', 'circle-stroke-width': 2}});
+        map.on('click', 'cv-pts', e => pickPoint(e.features[0].properties.id));
+      }
+      if (D.val){
+        map.addSource('gnss', {type: 'geojson', data: fc(D.val.map(s => pt({st: s.station, r: s.corr}, [s.lon, s.lat])))});
+        map.addLayer({id: 'gnss', type: 'circle', source: 'gnss', paint: {'circle-radius': 8, 'circle-color': ['case', ['>=', ['get', 'r'], 0.6], '#3fb950', '#6b7a96'], 'circle-stroke-color': '#fff', 'circle-stroke-width': 2}});
+        map.on('click', 'gnss', e => pickStation(e.features[0].properties.st));
+      }
+      if (D.assets){
+        map.addSource('risk', {type: 'geojson', data: D.assets});
+        map.addLayer({id: 'risk', type: 'line', source: 'risk', paint: {'line-width': ['match', ['get', 'risk'], 'high', 3.5, 'medium', 2.2, 1.1],
+          'line-color': ['match', ['get', 'risk'], 'high', '#ff5a47', 'medium', '#e3b341', '#3fb950'], 'line-opacity': 0.95}});
+        map.on('click', 'risk', e => { const p = e.features[0].properties; popup(e.lngLat, `<b>${p.name || p.type}</b><br>${p.type} · risk <b>${p.risk}</b><br>gradient ${(+p.gradient_mm_per_km).toFixed(1)} mm/km · max ${(+p.max_cm).toFixed(1)} cm`); });
+      }
+      if (D.kpMeta){
+        const m = D.kpMeta;
+        map.addSource('kp', {type: 'image', url: ROOT + `data/karapinar/disp/${m.dates.at(-1)}.png`, coordinates: corners(m.bbox)});
+        map.addLayer({id: 'kp-disp', type: 'raster', source: 'kp', paint: {'raster-opacity': 0.8}});
+      }
+      if (D.sinks){
+        map.addSource('sinks', {type: 'geojson', data: D.sinks});
+        map.addLayer({id: 'sinks', type: 'circle', source: 'sinks', paint: {'circle-radius': 6, 'circle-color': '#ff5a47', 'circle-stroke-color': '#fff', 'circle-stroke-width': 1.5}});
+        map.on('click', 'sinks', e => { const p = e.features[0].properties; popup(e.lngLat, `<b>${p.name}</b>${p.year_formed ? ' · ' + p.year_formed : ''}<br><a href="${p.source_url}" target="_blank" rel="noopener">${p.source_title || 'source'}</a>`); });
+      }
+      for (const id of ['cv-pts', 'gnss', 'risk', 'sinks']) if (map.getLayer(id)){ map.on('mouseenter', id, () => map.getCanvas().style.cursor = 'pointer'); map.on('mouseleave', id, () => map.getCanvas().style.cursor = ''); }
+      show('intro'); observe();
+    });
+  };
+  if ('IntersectionObserver' in window){
+    const io = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)){ io.disconnect(); init(); } }, {rootMargin: '300px'});
+    io.observe(el);
+  } else init();
 }
-function popup(ll, html){ new maplibregl.Popup().setLngLat(ll).setHTML(html).addTo(map); }
+function popup(ll, html){ if (map) new maplibregl.Popup().setLngLat(ll).setHTML(html).addTo(map); }
 let current = '';
-function inView(v){ if (!v.bbox) return map.getZoom() < 3; const c = map.getCenter(); return c.lng > v.bbox[0] && c.lng < v.bbox[2] && c.lat > v.bbox[1] && c.lat < v.bbox[3] && map.getZoom() > 6; }
+function inView(v){ if (!map) return false; if (!v.bbox) return map.getZoom() < 3; const c = map.getCenter(); return c.lng > v.bbox[0] && c.lng < v.bbox[2] && c.lat > v.bbox[1] && c.lat < v.bbox[3] && map.getZoom() > 6; }
 function show(step, force){
+  if (!map) return;
   const v = VIEWS[step]; if (!v || (step === current && !force)) return;
   if (force && step === current && inView(v)) return;
   current = step;
@@ -161,7 +172,7 @@ function cvControls(){
   if (!D.cvMeta) return;
   const m = D.cvMeta, s = document.getElementById('slider'), lbl = document.getElementById('dateLbl'), btn = document.getElementById('cvPlay');
   s.max = m.dates.length - 1; s.value = m.dates.length - 1; lbl.textContent = fmtDate(m.dates.at(-1));
-  const go = i => { cvIdx = i; s.value = i; lbl.textContent = fmtDate(m.dates[i]); const src = map?.getSource('cv'); if (src) src.updateImage({url: ROOT + `data/central_valley/disp/${m.dates[i]}.png`, coordinates: corners(m.bbox)}); };
+  const go = i => { cvIdx = i; s.value = i; lbl.textContent = fmtDate(m.dates[i]); const src = map?.getSource('cv'); if (src){ src.updateImage({url: ROOT + `data/central_valley/disp/${m.dates[i]}.png`, coordinates: corners(m.bbox)}); const nxt = new Image(); nxt.src = ROOT + `data/central_valley/disp/${m.dates[(i + 1) % m.dates.length]}.png`; } };
   s.addEventListener('input', () => go(+s.value));
   btn.addEventListener('click', () => { if (timer){ clearInterval(timer); timer = null; btn.textContent = '▶'; return; } btn.textContent = '❚❚'; timer = setInterval(() => go((cvIdx + 1) % m.dates.length), 900); });
   if (D.cvPts?.length){ const worst = D.cvPts.reduce((a, b) => (b.disp_cm.at(-1) ?? 0) < (a.disp_cm.at(-1) ?? 0) ? b : a); pickPoint(worst.id); }

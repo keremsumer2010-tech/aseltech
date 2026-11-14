@@ -46,6 +46,29 @@ jobs:
           touch _site/.nojekyll
           echo "Site contents:" && find _site -maxdepth 2 | head -50
 
+      - name: Optimize published images (Pages copy only)
+        run: |
+          python3 -m pip install --quiet pillow
+          python3 - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+          root = Path("_site")
+          for p in list(root.glob("data/*/disp/*.png")) + list(root.glob("docs/story/media/*.png")):
+              try:
+                  with Image.open(p) as im:
+                      rgba = im.convert("RGBA")
+                      q = rgba.quantize(colors=128, method=Image.Quantize.FASTOCTREE)
+                      q.save(p, optimize=True)
+              except Exception as exc:
+                  print(f"skip {p}: {exc}")
+          for p in root.glob("data/*/*.jpg"):
+              try:
+                  with Image.open(p) as im:
+                      im.convert("RGB").save(p, quality=82, optimize=True)
+              except Exception as exc:
+                  print(f"skip {p}: {exc}")
+          PY
+
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site

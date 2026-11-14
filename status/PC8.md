@@ -1,4 +1,4 @@
 # PC8 durum
 
-- Durum: çalışıyor: B02 (S-22 Kritik) — hero dönmesini kapatma, harita tembel başlatma, kare/cache/video optimizasyonu ve Pages görsel sıkıştırma
-- Alan: BUGFIX (`tasks/QUEUE.md` B01–B15)
+- Tamamlandı: B02 (S-22 Kritik) — hero dönmesi kapatıldı, ana harita tembel başlatıldı, `cache: 'no-cache'` kaldırıldı, video `preload="none"` ve `pages.yml` `_site` görsel sıkıştırma eklendi
+- Sıradaki: B03 (S-06 Kritik)

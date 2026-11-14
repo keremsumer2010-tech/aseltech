@@ -62,7 +62,7 @@
     <div><p class="chapter">108 days in seconds</p><h2>The Central Valley, 28 June to 14 October 2026</h2>
     <p class="narrow">Each frame adds one more pair of NISAR radar images, taken 12 to 24 days apart. Red areas are sinking as the clay underground is squeezed. A second, independent satellite pass from the other direction sees sinking in the same places, so it is not a quirk of one orbit.</p>
     <p><a class="btn ghost" style="color:var(--acc)" href="science.html#findings">Key findings and uncertainties →</a></p></div>
-    <figure style="margin:0"><video id="cvVideo" muted loop playsinline autoplay controls preload="metadata" style="width:100%;border:1px solid var(--line);border-radius:3px;background:#000"></video>
+    <figure style="margin:0"><video id="cvVideo" muted loop playsinline controls preload="none" style="width:100%;border:1px solid var(--line);border-radius:3px;background:#000"></video>
     <figcaption>Figure 0. Ground motion added up over 7 consecutive NISAR radar image pairs. <span class="qbadge provisional">PROVISIONAL</span><span class="figcredit">Data: NASA-ISRO NISAR via ASF DAAC. Analysis and animation: Team Taykut.</span></figcaption></figure>
   </div>
 </section>
@@ -286,7 +286,7 @@
 <script src="app.js"></script>
 <script>
 (async()=>{
-  const ok=async f=>{try{return (await fetch(ROOT+f,{method:'HEAD',cache:'no-cache'})).ok}catch(e){return false}};
+  const ok=async f=>{try{return (await fetch(ROOT+f,{method:'HEAD'})).ok}catch(e){return false}};
   for(const c of document.querySelectorAll('.newcard')){
     if(await ok(c.dataset.file)){const a=c.querySelector('.newlink');a.href='science.html';a.textContent='Read more →'}
   }
