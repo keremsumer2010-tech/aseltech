@@ -22,7 +22,7 @@
 - **On-Screen Anchor:** VIIRS optical (`20 Oct 2026`, `~98%` cloud) vs. same-day NISAR L2 GCOV radar preview (`Figure 2a/2b`), Holme Fen (`1–2 cm/yr` modern rate), Fens dual-pol `HH`/`HV` (`4.27` vs `3.49 dB`), and London Clay negative-control test (`status: below_detection`, `3σ = 3.62 cm`, `data/uk_clay/detection.json`).
 - **30-Second Jury Caption:**  
   *Passive optical sensors fail under persistent cloud cover, whereas NISAR's 24 cm L-band radar images The Wash coastline and Fens drainage on the same day. Equally important, we report a negative control honestly: over Greater London (21 Jun–19 Oct 2026, 9 pairs), single-season atmospheric noise (1.21 cm 1-sigma, 3.62 cm 3-sigma) exceeds expected 0.5–2.0 cm seasonal clay motion.*
-- **Live Presenter Cue (`0:25–0:50`):** Point to the cloudy VIIRS frame vs. sharp NISAR coastline, then note that reporting London Clay as `"below detection limit for one season"` proves we do not overclaim noise as signal.
+- **Live Presenter Cue (`0:25–0:50`):** Point to the cloudy VIIRS frame vs. sharp NISAR coastline, then note that reporting London Clay as `"below detection limit for one season"` shows we do not overclaim noise as signal.
 
 ### Slide 3 / 7 — California Central Valley & Infrastructure Tilt (`Central Valley`)
 - **On-Screen Anchor:** `2026-10-14` cumulative LOS map (`Figure 3`, `−7.8 cm` LOS / `−10.1 cm` vertical *estimate* at `6 km N of Terra Bella`, `1,578.27 km² <= −2 cm`, `239.54 km² <= −5 cm`), `p01` time series, and `Tulare Irrigation District Canal` profile (`Figure 4`, `57.01 mm/km`, `California Aqueduct` `49.12 mm/km`, `81/645` high-risk segments).
@@ -30,7 +30,7 @@
   *Extending NASA's Land Subsidence StoryMap (2013–2017 airborne UAVSAR) into 2026 from space, 7 provisional Track 34 NISAR pairs show 1,578 km² of the San Joaquin Valley sinking more than 2 cm LOS in 108 days. Differential tilt reaches 57.01 mm/km along the Tulare Irrigation District Canal and 49.12 mm/km along 102.8 km of the California Aqueduct, with top-10 rankings 100% invariant under ±25% threshold tests.*
 - **Live Presenter Cue (`0:50–1:20`):** Connect directly to NASA's own Land Subsidence StoryMap (`Peacock et al., 2024`), then highlight that `79.2%` (`1,251.4 km²`) of California's `> 2 cm` sinking footprint is active farmland (`Citrus 355.6 km²`, `Pistachios 230.9 km²`) and `71,701` residents live on those valid pixels (`data/central_valley/exposure.json`).
 
-### Slide 4 / 7 — Independent Ground Truth & Multi-Geometry Checks (`GNSS Validation`)
+### Slide 4 / 7 — Independent GPS Comparison & Multi-Geometry Checks (`GNSS Comparison`)
 - **On-Screen Anchor:** 10-station NGL GPS scatter (`Figure 5`, `r = 0.924`, `1.37 cm` final RMSE, `1.00 cm` median TS RMSE), `CAHA` trace (`Figure 6`, `RMSE = 0.75 cm`, `r = 0.90`), Track 34 vs. Track 114 cross-check (`6,719` 1-km blocks, `85%` sign agreement for `|d| > 3 cm`), and two-orbit vector inversion (`−7.2 cm` vertical vs. `−0.1 cm` east-west at Alpaugh).
 - **30-Second Jury Caption:**  
   *Every radar map is checked three independent ways: against 10 continuous Nevada Geodetic Laboratory GPS gauges (r = 0.924, 1.00 cm median RMSE), against descending Track 114 across 6,719 blocks (85% sign agreement for |d| > 3 cm), and by inverting ascending and descending LOS vectors to confirm that Alpaugh sank −7.2 cm vertically with negligible sideways drift.*
@@ -45,13 +45,13 @@
 ### Slide 6 / 7 — Interactive Tools & 11-Month Decomposition (`Simulator & 3D`)
 - **On-Screen Anchor:** `web/` 2D Story Map, `web3d/` Three.js 3D Surface Explorer (`10,000×–150,000×`), and `game/` *Valley Under Pressure* 24-month Terzaghi compaction simulator (`Figure 9`, `N = 1,000` Monte Carlo sensitivity, `k = 0.6232`).
 - **30-Second Jury Caption:**  
-  *Static maps alone do not change pumping behavior. Our browser suite pairs a multi-region 2D explorer (`web/explorer.html`) and a Three.js 3D basin viewer (`web3d/`) with Valley Under Pressure, a 24-month Terzaghi consolidation simulator calibrated to NISAR's Terra Bella summer measurement (−10.1 cm vertical) so growers and water boards can test pumping limits against irreversible clay collapse.*
+  *Static maps alone do not change pumping behavior. Our browser suite pairs a multi-region 2D explorer (`web/explorer.html`) and a Three.js 3D basin viewer (`web3d/`) with Valley Under Pressure, a 24-month Terzaghi consolidation simulator matched to NISAR's Terra Bella summer measurement (−10.1 cm vertical) so growers and water boards can test pumping limits against irreversible clay collapse.*
 - **Live Presenter Cue (`2:20–2:40`):** Point to the Monte Carlo uncertainty band (`Figure 9`) and mention our experimental 11-month `mixed` chain (`24 Nov 2025–14 Oct 2026`) separating `−16.8 cm/yr` LOS permanent compaction from `11.7 cm` peak-to-peak seasonal rebound near Earlimart (`data/central_valley_fullyear/decomp.json`).
 
 ### Slide 7 / 7 — Provenance, Global Transferability & Open Science (`Integrity & AI`)
 - **On-Screen Anchor:** Mandatory NISAR provisional attribution (`Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team`), strict `beta-precal` vs. `provisional` separation, `pytest` coverage, zero AI-generated scientific imagery, and GitHub link.
 - **30-Second Jury Caption:**  
-  *NISAR data are provisional and calibrated by NASA–JPL and ISRO, not our team. We keep pre-calibration beta pairs strictly separated from post-17 June 2026 provisional baselines, verify phase math with automated pytest suites, report limited coverage honestly (e.g., 2.9% valid pixels in Jakarta alongside Mexico City −4.4 cm and Tehran −3.5 cm), and publish every dataset and script openly.*
+  *NISAR data are provisional; calibration and validation are carried out by NASA–JPL and ISRO, not our team. We keep pre-calibration beta pairs strictly separated from post-17 June 2026 provisional baselines, verify phase math with automated pytest suites, report limited coverage honestly (e.g., 2.9% valid pixels in Jakarta alongside Mexico City −4.4 cm and Tehran −3.5 cm), and publish every dataset and script openly.*
 - **Live Presenter Cue (`2:40–3:00`):** Close on scientific honesty, open-source reproducibility (`github.com/keremsumer2010-tech/aseltech`), and readiness for Q&A.
 
 ---

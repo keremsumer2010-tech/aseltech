@@ -256,3 +256,14 @@
 - **`python -m pytest -q`:** **`70 passed, 1 warning in 22.21s`**.
 - **§9 Madde 1 Netleştirme (`docs/qa/PC7.md` §7 ile teyit):** `web/index.html:117` içindeki `data-src="docs/story/media/pc9_fullyear_point.png"` çalışma zamanında `web/app.js` `fullYear()` fonksiyonu tarafından `ROOT + im.dataset.src` ile çözülüyor; sorun yalnızca boş `src=""` niteliğinin tarayıcı/statik tarayıcıda ekstra sayfa isteğine yol açmasıdır (yalnızca `src=""` niteliği kaldırılmalı).
 - **Karapınar Tam Yıl (`data/karapinar_fullyear/decomp.json`):** Henüz oluşturulmamış (`False`), sonraki döngüde kontrol edilecek.
+
+---
+
+## 14. 14 Nov 20:36 TR — Tur 5 QA & `docs/qa/PC4.md` `REVIEW_1500.md` Bulgularının Kapatılması
+
+- **[DÜZELTİLDİ — `docs/qa/PC4.md` satır 279–281]:** PC4'ün kardeş dosya `REVIEW_1500.md` taramasında PC8 dosyaları için bildirdiği ifadelerin tamamı temizlendi:
+  - `docs/story/narration_script.md` L28 & L41: `calibrated by NASA-JPL and ISRO` → `calibration by NASA-JPL and ISRO`
+  - `docs/story/slides_notes.md` L25 (`proves` → `shows`), L33 (`Ground Truth` → `GPS Comparison`), L48 (`calibrated to` → `matched to`), L54 (`calibrated by` → `calibration and validation are carried out by`)
+  - `docs/story/submission_form.md` L33: `validated against 10 GPS stations` → `compared against 10 GPS stations` (`492 chars / 73 words`)
+- **`docs/story/slides.html` & `docs/story/technical_note.html` Link Taraması:** `0` kırık göreli bağlantı.
+- **`python -m pytest -q`:** **`70 passed, 1 warning in 22.41s`**.
