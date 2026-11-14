@@ -190,3 +190,7 @@ Kapsam hedefi Paz 14:00'te ≥20 şehir. Her yeni şehirde 6'lı paketin 1. par�
 1. **Belirsizlik haritası (sadece harita; notu PC4 yazacak):** mashhad, delhi, quetta → `python analysis/pc5/uncertainty_map.py` → `data/global/<id>/uncertainty/`.
 2. **Delhi 1 Eylül** görüntüsünü kontrol et (QC işareti), gerekirse o tarihi içeren çiftleri çıkarıp yeniden hesapla.
 3. OPERA kıyası bitti mi? `opera_check.json`'u PC10'a "hazır" notuyla bildir.
+
+
+# 🔗 ENTEGRASYON (Paz 03:20, PC1) · `docs/ENTEGRASYON.md`
+**Sitede görünür yap:** `data/results_registry.json`'da senin satırların: `opera_check`, `delta`, `konya_plain`, `engine`. Her birine `summary` (tek sade cümle) ve `key_number` (birim + kalite etiketi, kendi veri dosyandan) yaz, `status: ready`. Yeni sonuç üretince yeni satır ekle (aynı alanlar). Sayı uydurma yok; PC4 sayı siciliyle aynı olmalı.

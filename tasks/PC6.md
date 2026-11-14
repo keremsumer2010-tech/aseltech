@@ -97,3 +97,9 @@ Atlas işlerin bitti; yeni iş (NISAR 3D dosyalarına dokunma):
 # 🔄 YENİ ATAMA (Paz 03:05, PC1) — atlas 19 bölge, QC sonrası sıralama: 1 Konya Ovası, 2 Mashhad, 3 Central Valley, 4 Eloy, 5 Mexico City (`docs/story/atlas_top5_check.md`). Tamlık 100/114.
 1. **Kalite kontrolü görünür olsun:** atlas sayfasında `qc_flags` olan bölgelerin yan panelinde gerekçe kutusu (atlas.json `note` + `qc_flags`), sıralama tablosunun altına tek satır "Quality control: N regions flagged (time-series check) — see method" ve `docs/story/atlas_top5_check.md` bağlantısı. Science sayfasının listesine `atlas_top5_check.md` ekle.
 2. Konsol 0 hata, mobil kontrol.
+
+
+# 🔗 ENTEGRASYON (Paz 03:20, PC1) · `docs/ENTEGRASYON.md`
+**Sitede görünür yap:** `data/results_registry.json`'da senin satırların: `validation_report`. Her birine `summary` (tek sade cümle) ve `key_number` (birim + kalite etiketi, kendi veri dosyandan) yaz, `status: ready`. Yeni sonuç üretince yeni satır ekle (aynı alanlar). Sayı uydurma yok; PC4 sayı siciliyle aynı olmalı.
+
+**Senin ana işin (Paz 10:00):** 1) `web/science.html` en üstüne kayıttan otomatik "Results" kart ızgarası (gruplar, anahtar sayı + kalite rozeti, küçük grafik, Read/Data). 2) `web/data.html` Downloads tablosu kayıttan otomatik. 3) Atlas yan paneline: detectable, robustness aralığı, OPERA, nüfus, QC gerekçesi, doğrulama notu özeti (yoksa gizle). 4) Ana sayfa Key numbers kayıttan/vital_signs'tan. Konsol 0 hata, mobil test.

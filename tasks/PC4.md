@@ -182,3 +182,9 @@ PC5 (baş bilimci) 2 saattir durmuş; teslim belgelerinin bilimsel tutarlılığ
 3. **Jüri hikâyesi — kendi hatamızı yakaladık:** `judge_faq.md`'ye "How do you know your ranking is right?" sorusu: zaman serisi QC (faz döngüsü sıçraması 12.1 cm, tek tarih aykırı), Semarang örneği, literatür kıyası. `slides.html`'de atlas slaytına tek satır "Quality-controlled: 4 regions flagged and moved to indicative". Sunum notlarına (`presentation_cues.md`) 15 sn'lik cümle.
 4. **`docs/qa/SCIENCE_SIGNOFF.md` taslağı (Paz 19:00 hedef):** teslimde kullanılacak 10 başlık sayısı (değer, belirsizlik, kalite etiketi, kaynak dosya:anahtar), bilinen sınırlamalar (LOS, provisional, 108–120 gün yaz, iyonosfer düzeltmesi uygulanmadı), kalibrasyon cümlesi, "to our knowledge" ifadelerinin dayanağı. Başlık: "DRAFT by PC4 — PC1 review". 
 En geç 10 dakikada bir commit + push. Sonra SUREKLI döngü.
+
+
+# 🔗 ENTEGRASYON (Paz 03:20, PC1) · `docs/ENTEGRASYON.md`
+**Sitede görünür yap:** `data/results_registry.json`'da senin satırların: `atlas_feature`, `calibration`, `technical_note`. Her birine `summary` (tek sade cümle) ve `key_number` (birim + kalite etiketi, kendi veri dosyandan) yaz, `status: ready`. Yeni sonuç üretince yeni satır ekle (aynı alanlar). Sayı uydurma yok; PC4 sayı siciliyle aynı olmalı.
+
+Ayrıca kayıttaki tüm `summary` cümlelerini en sonda REVIEW_1500'e göre tek elden düzelt (sahibinin yazdığını sadeleştir, sayıları değiştirme).

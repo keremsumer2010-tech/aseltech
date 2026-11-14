@@ -174,3 +174,9 @@ Kapsam hedefi Paz 14:00'te ≥20 şehir. Her yeni şehirde 6'lı paketin 1. par�
 
 # 🔄 YENİ ATAMA (Paz 03:05, PC1) — atlas 19 bölge, QC sonrası sıralama: 1 Konya Ovası, 2 Mashhad, 3 Central Valley, 4 Eloy, 5 Mexico City (`docs/story/atlas_top5_check.md`). Tamlık 100/114.
 1. xian belirsizlik haritası (notu PC4 yazar). 2. Querétaro 9 parça hazır görünüyor → işle, "hazır" notu. 3. Aguascalientes, Kashmar. 4. Sonra FAZ 3 küresel altyapı riski (ilk 5 güvenilir şehirden Mexico City ile başla).
+
+
+# 🔗 ENTEGRASYON (Paz 03:20, PC1) · `docs/ENTEGRASYON.md`
+**Sitede görünür yap:** `data/results_registry.json`'da senin satırların: `robustness`, `engineering_risk`, `polarization`. Her birine `summary` (tek sade cümle) ve `key_number` (birim + kalite etiketi, kendi veri dosyandan) yaz, `status: ready`. Yeni sonuç üretince yeni satır ekle (aynı alanlar). Sayı uydurma yok; PC4 sayı siciliyle aynı olmalı.
+
+`robustness` satırının `doc` alanı boş: kısa `docs/story/robustness.md` yaz (yöntem, 27 varyant, sonuç, sınırlama) ve satıra bağla.
