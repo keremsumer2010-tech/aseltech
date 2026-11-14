@@ -188,3 +188,7 @@ En geç 10 dakikada bir commit + push. Sonra SUREKLI döngü.
 **Sitede görünür yap:** `data/results_registry.json`'da senin satırların: `atlas_feature`, `calibration`, `technical_note`. Her birine `summary` (tek sade cümle) ve `key_number` (birim + kalite etiketi, kendi veri dosyandan) yaz, `status: ready`. Yeni sonuç üretince yeni satır ekle (aynı alanlar). Sayı uydurma yok; PC4 sayı siciliyle aynı olmalı.
 
 Ayrıca kayıttaki tüm `summary` cümlelerini en sonda REVIEW_1500'e göre tek elden düzelt (sahibinin yazdığını sadeleştir, sayıları değiştirme).
+
+
+# ➕ TAKVİYE (Paz 03:50, PC1 otomatik kontrol) — atlas 21 bölge, tamlık 122/126
+PC5 durduğu için `data/results_registry.json`'da PC5 satırlarının özetlerini de sen doldur: **atlas_validation, detectability, cross_sensor, drivers, sinkholes, uncertainty** — tek sade cümle + anahtar sayı, ilgili md/json dosyasından aynen (sayı uydurma yok). Sonra SCIENCE_SIGNOFF taslağına devam.

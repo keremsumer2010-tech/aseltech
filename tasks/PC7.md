@@ -180,3 +180,9 @@ Kapsam hedefi Paz 14:00'te ≥20 şehir. Her yeni şehirde 6'lı paketin 1. par�
 **Sitede görünür yap:** `data/results_registry.json`'da senin satırların: `robustness`, `engineering_risk`, `polarization`. Her birine `summary` (tek sade cümle) ve `key_number` (birim + kalite etiketi, kendi veri dosyandan) yaz, `status: ready`. Yeni sonuç üretince yeni satır ekle (aynı alanlar). Sayı uydurma yok; PC4 sayı siciliyle aynı olmalı.
 
 `robustness` satırının `doc` alanı boş: kısa `docs/story/robustness.md` yaz (yöntem, 27 varyant, sonuç, sınırlama) ve satıra bağla.
+
+
+# ➕ TAKVİYE (Paz 03:50, PC1 otomatik kontrol) — atlas 21 bölge, tamlık 122/126
+1. **xian** belirsizlik haritası hâlâ eksik (tamlık ✗) — önce bu.
+2. `results_registry.json`: **robustness, engineering_risk, polarization** satırlarına özet + anahtar sayı; `docs/story/robustness.md` yaz ve bağla.
+3. Aguascalientes'i bitir, "hazır".

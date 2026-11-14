@@ -73,3 +73,11 @@ Yazma alanı: `tools/bulletin.py`, `docs/bulletins/`, `data/global/exposure_atla
 
 # 🔗 ENTEGRASYON (Paz 03:20, PC1) · `docs/ENTEGRASYON.md`
 **Sitede görünür yap:** `data/results_registry.json`'da senin satırların: `exposure`, `storage_loss`, `uk_findings`. Her birine `summary` (tek sade cümle) ve `key_number` (birim + kalite etiketi, kendi veri dosyandan) yaz, `status: ready`. Yeni sonuç üretince yeni satır ekle (aynı alanlar). Sayı uydurma yok; PC4 sayı siciliyle aynı olmalı.
+
+
+# ➕ TAKVİYE (Paz 03:50, PC1 otomatik kontrol) — atlas 21 bölge, tamlık 122/126
+"Yeni görev yok" yazma; işler:
+1. **Bülten indeksi + basın paketi sayfası:** `docs/bulletins/index.html`'i atlas sıralamasıyla (QC sonrası, güvenilirler önce) yeniden üret; her bültenin üstüne ortak zaman penceresi değeri (`rate_cm_per_100d_common`) ve güven aralığı (`rate_ci_cm_per_100d`) satırı.
+2. **Teslim formu son hâl:** `submission_form.md`'de atlas paragrafını v2'ye göre güncelle (21 bölge, ortak 93 günlük pencere, QC ile 4 bölge indicative), karakter sınırlarını yeniden say.
+3. **Değişiklik günlüğünü bültenlere bağla:** bölgenin `atlas_changelog.json` kaydı varsa bültende "Revision history" kutusu.
+4. Tamlık tablosunu 30 dk'da bir yenile.

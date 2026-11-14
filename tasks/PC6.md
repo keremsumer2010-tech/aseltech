@@ -103,3 +103,9 @@ Atlas işlerin bitti; yeni iş (NISAR 3D dosyalarına dokunma):
 **Sitede görünür yap:** `data/results_registry.json`'da senin satırların: `validation_report`. Her birine `summary` (tek sade cümle) ve `key_number` (birim + kalite etiketi, kendi veri dosyandan) yaz, `status: ready`. Yeni sonuç üretince yeni satır ekle (aynı alanlar). Sayı uydurma yok; PC4 sayı siciliyle aynı olmalı.
 
 **Senin ana işin (Paz 10:00):** 1) `web/science.html` en üstüne kayıttan otomatik "Results" kart ızgarası (gruplar, anahtar sayı + kalite rozeti, küçük grafik, Read/Data). 2) `web/data.html` Downloads tablosu kayıttan otomatik. 3) Atlas yan paneline: detectable, robustness aralığı, OPERA, nüfus, QC gerekçesi, doğrulama notu özeti (yoksa gizle). 4) Ana sayfa Key numbers kayıttan/vital_signs'tan. Konsol 0 hata, mobil test.
+
+
+# ➕ TAKVİYE (Paz 03:50, PC1 otomatik kontrol) — atlas 21 bölge, tamlık 122/126
+1. Science sayfasında Results bölümü kayıttan çalışıyor mu kontrol et; kayıtta artık `atlas_changelog` ve yeni satırlar olabilir — otomatik görünmeli.
+2. **"What changed" kutusu:** atlas sayfasında `data/global/atlas_changelog.json`'dan son 10 değişiklik (tarih, bölge, eski→yeni, neden).
+3. **Hata çubukları:** sıralama tablosunda `rate_ci_cm_per_100d` varsa küçük aralık çubuğu; sıralama metriği artık ortak pencere (`rate_cm_per_100d_common`) — tablo başlığında belirt.

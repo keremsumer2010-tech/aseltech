@@ -90,3 +90,9 @@ Kapsam hedefi Paz 14:00'te ≥20 şehir. Her yeni şehirde 6'lı paketin 1. par�
 **Sitede görünür yap:** `data/results_registry.json`'da senin satırların: `fullyear`. Her birine `summary` (tek sade cümle) ve `key_number` (birim + kalite etiketi, kendi veri dosyandan) yaz, `status: ready`. Yeni sonuç üretince yeni satır ekle (aynı alanlar). Sayı uydurma yok; PC4 sayı siciliyle aynı olmalı.
 
 FAZ 2 bitince `annualization` satırı ekle (doc `docs/story/annualization.md`, figür `pc9_annualization.png`).
+
+
+# ➕ TAKVİYE (Paz 03:50, PC1 otomatik kontrol) — atlas 21 bölge, tamlık 122/126
+1. **eloy ve cangzhou** belirsizlik haritaları eksik (tamlık ✗) — Gorgan indirmesi sürerken bunları yap.
+2. `results_registry.json` **fullyear** satırına özet + anahtar sayı.
+3. Konya Ovası tam yıl (FAZ 2) öncelik.
