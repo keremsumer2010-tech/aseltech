@@ -172,3 +172,14 @@ table.mini tr{cursor:pointer}table.mini tr.sel td{background:#e8eef8}
 .stat .num{color:var(--acc)}
 .riskbars div:nth-child(1) b{color:var(--hot)}
 .figcredit{display:block;color:var(--dim);font-size:.74rem;margin-top:3px}
+/* science page: summary + folded documents */
+.inshort{background:#eef3fb;border:1px solid #c9d6ea;border-left:4px solid var(--acc);border-radius:3px;padding:18px 22px 10px;margin:22px 0 8px}
+.inshort h2{font-size:1.15rem;margin:0 0 .4em}
+.inshort ol{margin:0;padding-left:1.2em}.inshort li{margin:.45em 0;color:#2d3748}
+details.fold{border-top:1px solid var(--line);margin-top:1.4em}
+details.fold>summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:10px;padding:.6em 0}
+details.fold>summary::-webkit-details-marker{display:none}
+details.fold>summary::before{content:"+";font:700 1.2rem/1 var(--mono);color:var(--acc);width:1em}
+details.fold[open]>summary::before{content:"−"}
+details.fold>summary h2{margin:0;font-size:1.35rem}
+details.fold>summary:focus-visible{outline:3px solid #9cc3ff;outline-offset:2px}

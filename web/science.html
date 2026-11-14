@@ -16,6 +16,16 @@
   <p class="kicker">Science &amp; method</p>
   <h1>From radar phase to centimetres</h1>
   <p class="lede">Everything we show is computed from NASA-ISRO NISAR Level-2 products with open, tested code. This page explains each step, the corrections we apply, how we checked the result, and what it cannot tell you.</p>
+  <section class="inshort" aria-label="In short">
+    <h2>In short</h2>
+    <ol>
+      <li><b>What was measured.</b> NISAR radar image pairs over California, Türkiye and the UK, June–October 2026, turned into centimetres of ground motion with tested, open code.</li>
+      <li><b>The main result.</b> Parts of California's Central Valley moved up to <b data-k="cv.max">−7.8</b> cm away from the satellite in 108 days; depending on the stable area used as reference the value lies between <b data-k="cv.range">−4.7 and −7.8</b> cm.</li>
+      <li><b>How we checked it.</b> Against <span data-k="gnss.n">10</span> GPS stations (typical difference about <span data-k="gnss.med">1</span> cm where the ground sinks) and against a second, independent satellite pass from the opposite direction.</li>
+      <li><b>What it means.</b> Uneven sinking tilts canals and roads; in Karapınar the ground sank faster close to documented sinkholes. Over London no movement above the noise was found.</li>
+      <li><b>What it cannot tell.</b> One summer only, so yearly rates are estimates; the satellite sees the ground at a slant; NISAR data are still provisional.</li>
+    </ol>
+  </section>
   <div class="toc"><a href="#findings">Key findings</a><a href="#data">1 Data</a><a href="#conv">2 Phase → cm</a><a href="#chain">3 Time series</a><a href="#valid">4 Validation</a><a href="#risk">5 Risk index</a><a href="#limits">6 Limits</a><a href="#cal">7 Calibration status</a><a href="#refs">8 Sources</a><a href="#lit">Literature</a><a href="#unc">Uncertainty</a><a href="#vreport">Validation report</a><a href="#dossier">Risk dossier</a></div>
 
   <h2 id="findings">Key findings</h2>
@@ -23,18 +33,18 @@
 
   <h2 id="data">1 · Data</h2>
   <table class="data"><thead><tr><th>Product</th><th>What it is</th><th>Use here</th></tr></thead><tbody>
-    <tr><td><b>GUNW</b> (L2)</td><td>Geocoded unwrapped interferogram, 80 m UTM grid, HH polarisation, with coherence, connected components and ionosphere phase screen</td><td>Ground motion: Central Valley (track 34, 7 pairs), Karapınar (track 7, 8 pairs)</td></tr>
+    <tr><td><b>GUNW</b> (L2)</td><td>Geocoded unwrapped interferogram, 80 m UTM grid, HH polarisation, with coherence, connected components and ionosphere phase screen</td><td>Ground motion: Central Valley (track 34, 7 pairs; check with track 114, 8 pairs), Karapınar (track 7, 8 pairs), London (track 101, 9 pairs)</td></tr>
     <tr><td><b>GCOV</b> (L2)</td><td>Radiometrically terrain-corrected backscatter (γ⁰)</td><td>Radar view of the Fens (quick-look)</td></tr>
-    <tr><td><b>SME2</b> (L3)</td><td>Soil moisture</td><td>Cause-and-effect panel (in progress)</td></tr>
+    <tr><td><b>SME2</b> (L3)</td><td>Soil moisture</td><td>Irrigation timing vs sinking (<code>data/central_valley/drivers.json</code>)</td></tr>
   </tbody></table>
   <p>All products come from NASA's Alaska Satellite Facility DAAC (search: <code>platform=NISAR</code>). Measurements on the main page use only <b>PROVISIONAL</b> products (composite release P05023) whose two dates are on or after 17 June 2026.</p>
 
   <h2 id="conv">2 · Phase → centimetres</h2>
   <div class="eq">λ = c / f<sub>center</sub> &nbsp;&nbsp;(read from each file; 1239 MHz → 0.24196 m for track 34)<br>d<sub>LOS</sub> = −λ / (4π) · (φ<sub>unw</sub> − φ<sub>iono</sub>)<br>negative d<sub>LOS</sub> = motion away from the satellite (subsidence)</div>
-  <p>The sign convention follows ISCE3 (interferogram = reference × conj(secondary)) and MintPy's NISAR reader. Pixels with coherence &lt; 0.3 or connected component 0 are masked. A planar ramp is removed and each pair is referenced to a stable, highly coherent area. Vertical estimates assume no horizontal motion: d<sub>vert</sub> ≈ d<sub>LOS</sub> / cos θ<sub>inc</sub>.</p>
+  <p>The sign convention follows ISCE3 (interferogram = reference × conj(secondary)) and MintPy's NISAR reader. Pixels with coherence &lt; 0.3 or connected component 0 are masked, as are small isolated patches and pixels that jump by half a phase cycle from their 720 m neighbourhood (unwrapping errors). From each pair a plane plus a linear elevation term (Copernicus DEM) is removed to reduce long-wavelength and height-dependent atmospheric delay. Every pair is referenced to the same stable, highly coherent area. Vertical estimates assume no horizontal motion: d<sub>vert</sub> ≈ d<sub>LOS</sub> / cos θ<sub>inc</sub>.</p>
 
   <h2 id="chain">3 · Time series</h2>
-  <p>Consecutive 12-day pairs (28 Jun → 14 Oct 2026 for track 34) are summed into a cumulative map. A chain with any gap is not joined. Headline numbers are the most negative median of ~1 km blocks with ≥ 50 % valid pixels and within-block standard deviation ≤ 2 cm, so single-pixel unwrapping errors cannot set the headline. Changing the reference area moves the Central Valley maximum between −6.2 and −7.8 cm (line of sight); we report the range.</p>
+  <p>Consecutive pairs (12 to 36 days apart; 28 Jun → 14 Oct 2026 for track 34) are summed into a cumulative map. A chain with any gap is not joined. Headline numbers are the most negative median of ~1 km blocks with ≥ 50 % valid pixels and within-block standard deviation ≤ 2 cm, so single-pixel unwrapping errors cannot set the headline. Re-referencing the whole chain to up to two other stable areas at least 30 km away moves the Central Valley maximum between <span data-k="cv.range">−4.7 and −7.8</span> cm (line of sight); we report the range. Two orbits looking from opposite sides (tracks 34 and 114) let us also separate vertical from east–west motion (<code>data/central_valley/vertical.json</code>).</p>
 
   <h2 id="valid">4 · Validation against GPS</h2>
   <p>We compared the NISAR vertical estimate with daily "up" positions from 10 continuous GPS stations (Nevada Geodetic Laboratory) over the same dates.</p>
@@ -48,24 +58,25 @@
   <ul>
     <li>Radar measures along its slanted line of sight; horizontal motion would bias the vertical estimate.</li>
     <li>Troposphere and ionosphere add centimetre-level noise per pair; summing pairs accumulates it.</li>
+    <li>Over London's clay the same method found no motion above the 3σ noise level (about 3.6 cm): small seasonal clay movement is below what one summer of data can resolve.</li>
     <li>Yearly rates extrapolated from one irrigation season overstate the net annual rate, because part of summer subsidence recovers in winter.</li>
     <li>Data are provisional and may change when the NISAR project releases validated products.</li>
   </ul>
 
-  <h2 id="cal">7 · Calibration status</h2>
-  <div class="md" id="calMd"></div>
+  <details class="fold" id="cal"><summary><h2>7 · Calibration status</h2></summary>
+  <div class="md" id="calMd"></div></details>
 
-  <h2 id="refs">8 · Sources</h2>
-  <div class="md" id="srcMd"></div>
+  <details class="fold" id="refs"><summary><h2>8 · Sources</h2></summary>
+  <div class="md" id="srcMd"></div></details>
 
-  <h2 id="lit">Comparison with published studies</h2>
-  <div class="md" id="litMd"></div>
-  <h2 id="unc">Uncertainty budget</h2>
-  <div class="md" id="uncMd"></div>
-  <h2 id="vreport">Validation report</h2>
-  <div class="md" id="vrMd"></div>
-  <h2 id="dossier">Infrastructure risk dossier</h2>
-  <div class="md" id="rdMd"></div>
+  <details class="fold" id="lit"><summary><h2>Comparison with published studies</h2></summary>
+  <div class="md" id="litMd"></div></details>
+  <details class="fold" id="unc"><summary><h2>Uncertainty budget</h2></summary>
+  <div class="md" id="uncMd"></div></details>
+  <details class="fold" id="vreport"><summary><h2>Validation report</h2></summary>
+  <div class="md" id="vrMd"></div></details>
+  <details class="fold" id="dossier"><summary><h2>Infrastructure risk dossier</h2></summary>
+  <div class="md" id="rdMd"></div></details>
 </main>
 <footer class="site-footer"><div class="wrap foot"><div><b>Team Taykut</b> · NASA Space Apps Challenge 2026</div><div><a href="https://github.com/keremsumer2010-tech/aseltech">Open source on GitHub</a></div></div></footer>
 <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
@@ -78,8 +89,20 @@ md('litMd', 'docs/story/literature_comparison.md', true);
 md('uncMd', 'docs/story/uncertainty.md', true);
 md('vrMd', 'docs/story/validation_report.md', true);
 md('rdMd', 'docs/story/risk_dossier.md', true);
+J('data/central_valley/summary.json').then(sm => {
+  if (!sm) return; const f = x => (x < 0 ? '−' : '+') + Math.abs(x).toFixed(1);
+  document.querySelectorAll('[data-k="cv.max"]').forEach(e => e.textContent = f(sm.max_subsidence_cm));
+  const r = sm.range_cm || sm.max_subsidence_range_cm;
+  if (r) document.querySelectorAll('[data-k="cv.range"]').forEach(e => e.textContent = `${f(r[1]).replace('+', '')} and ${f(r[0])}`);
+});
+// open a folded section when the table of contents links to it
+document.querySelectorAll('.toc a').forEach(a => a.addEventListener('click', () => { const d = document.querySelector(a.getAttribute('href')); if (d?.tagName === 'DETAILS') d.open = true; }));
+if (location.hash){ const d = document.querySelector(location.hash); if (d?.tagName === 'DETAILS') d.open = true; }
 J('data/central_valley/validation.json').then(v => {
   if (!v) return;
+  document.querySelectorAll('[data-k="gnss.n"]').forEach(e => e.textContent = v.length);
+  const sinking = v.filter(s => s.corr >= 0.4).map(s => s.rmse_cm).sort((a, b) => a - b);
+  if (sinking.length) document.querySelectorAll('[data-k="gnss.med"]').forEach(e => e.textContent = sinking[Math.floor(sinking.length / 2)].toFixed(1));
   const f = x => (x < 0 ? '−' : '+') + Math.abs(x).toFixed(1);
   document.querySelector('#valTable tbody').innerHTML = v.slice().sort((a, b) => b.corr - a.corr).map(s =>
     `<tr><td>${s.station}</td><td class="${s.corr >= 0.4 ? 'good' : 'weak'}">${s.corr.toFixed(2)}</td><td>${s.rmse_cm.toFixed(2)}</td><td>${f(s.gnss.at(-1))}</td><td>${f(s.insar.at(-1))}</td></tr>`).join('');
