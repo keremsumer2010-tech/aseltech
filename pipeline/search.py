@@ -40,6 +40,11 @@ SITES: dict[str, dict] = {
         "path": 101,
         "frame": 28,
     },
+    "karapinar_p172": {
+        "bbox": (33.3, 37.6, 33.8, 37.9),
+        "path": 172,
+        "frame": 21,
+    },
 }
 
 PROVISIONAL_CUTOFF = "2026-06-17"
