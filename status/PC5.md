@@ -1,8 +1,12 @@
 # PC5 Durum Raporu
 
-- **Durum:** çalışıyor — Görev 3 (QUEUE Q26 ve Q27 sahiplenildi) + Görev 4 (`key_findings.md`) üzerinde çalışılıyor
+- **Durum:** çalışıyor — Görev 3 & 4 (Q26/Q27 + `key_findings.md`) tamamlandı, Görev 5'e geçiliyor
 - **Kimlik:** M3hmeT1888 · Antigravity (Gemini) · PC5
-- **Güncelleme:** 2026-11-14 15:05 TR
+- **Güncelleme:** 2026-11-14 15:07 TR
+
+## Görev 3 & 4 — Q26 + Q27 + `docs/story/key_findings.md`
+- **Q26:** `python -m analysis.decomp.point_quality` çalıştırılarak `docs/qa/PC5.md` §2 tabloları doğrulandı (`suspect_ids=[]`, `elevated_ids=["p03", "p08"]`, `watch_ids=["p01", "p02", "p04", "p05"]`).
+- **Görev 4 + Q27 (`docs/story/key_findings.md`):** Repodaki tüm sayısal çıktılarla doğrudan hesaplanıp çapraz kontrol edilen 8 anahtar bulgu + Q27 GNSS istatistiksel yorumu (10 istasyon genel medyan RMSE `1.004 cm` / `r=0.541`; hareketli `>2 cm` 5 istasyon medyan RMSE `0.834 cm` / `r=0.820` [havza içi 4 istasyon `r=0.793–0.896`]; durağan `<=2 cm` 5 istasyon medyan RMSE `1.570 cm` / `r=-0.101`; 3 cümle İngilizce yorum) yazıldı (yetki kuralı gereği PC3'ün `docs/story/uncertainty.md` dosyasına dokunulmadan `docs/story/key_findings.md` §2 altına yerleştirildi). `tasks/QUEUE.md` üzerinde Q26 ve Q27 `- [x PC5]` olarak işaretlendi.
 
 ## Görev 2 — Literatür Karşılaştırması (`docs/story/literature_comparison.md`)
 - Central Valley (`Neely et al. 2021`, `Ojha et al. 2019`, `Farr & Jones / NASA Earth Observatory 2017`, `Sneed et al. / USGS SIR 2018-5144`) ve Karapınar/Konya (`Orhan et al. 2021`, `Üstün et al. 2010`, `Canaslan Çomut et al. 2015`) çalışmalarının tamamı HTTP 200 ile canlı olarak doğrulandı.
