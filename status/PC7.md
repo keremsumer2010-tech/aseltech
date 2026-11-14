@@ -26,5 +26,6 @@
 - PC7'ye atlas şehri atanmadığından PC11 şehirlerini veya PC11 status/görev dosyalarını değiştirmedim.
 - A tamamlandı: `pipeline/pc7/atlas_robustness.py` üç test boyutunu yerel provisional GUNW zincirlerinde taradı. Sekiz atlas şehrinin ikisinde 3 referans adayı bulundu; Central Valley 27/27, Beijing 9/27 tam varyant verdi. Diğer şehirlerde kutu kapsaması veya üç ortak-geçerli referans adayı yetersiz; ilk üç sıra ve Kendall tau bu verilerle sonuçlandırılamadı. Referansların jeolojik sabitliği bağımsız doğrulanmadı.
 - A çıktıları: `data/global/robustness.json`, `docs/story/media/pc7_atlas_robustness.png`; ağsız testler 4/4, tüm pytest 79/79 geçti (bir deprecation uyarısı); 93 JSON'da parse/non-finite/eksik-quality bulgusu 0. `atlas.json` değişmedi. Ayrıntı `docs/qa/PC7.md` §16.
-- B sonraki: Xi'an, Taiyuan, Querétaro provisional GUNW kapsama kontrolü ve NISAR Pulse analizleri; henüz indirme yapılmadı.
-- BLOCKED: yok
+- B başladı: indirmesiz NISAR Pulse ön kontrolü Xi'an (P076/F071), Taiyuan (P068/F020) ve Querétaro (P041/F078) için 9'ar kesintisiz provisional çift buldu. ASF indirme henüz yapılmadı.
+- Referans engeli: literatür araştırmasıyla Xi'an/Querétaro için koordinatlı, havza-dışı sabit referans; Taiyuan için de kutu ve basin exclusion koşullarını karşılayan koordinat doğrulanamadı. Koordinat uydurmadım veya şehir verisini `ready` ilan etmedim. Ayrıntı `docs/qa/PC7.md` §17.
+- BLOCKED: `git pull --rebase origin main` failed — `error: cannot pull with rebase: You have unstaged changes. error: Please commit or stash them.` Per repository rules, stopping Git operations; local QA/status edits remain untouched.

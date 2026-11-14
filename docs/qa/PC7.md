@@ -424,3 +424,17 @@ Doğrulayıcı: `tools/validate_atlas.py` (çevrimdışı, salt-okunur). `python
 Ağsız testler: `python -m pytest -q pipeline/pc7/tests/test_atlas_robustness.py` — 4 passed. Tam depo: `python -m pytest -q` (Python 3.12.10) — 79 passed, 1 `PendingDeprecationWarning`. Çıktılar: `data/global/robustness.json`, `docs/story/media/pc7_atlas_robustness.png`; ağ/veri indirmesi yapılmadı.
 
 Son JSON doğrulaması `python pipeline/pc7/validate_json.py`: 93 JSON, 0 parse hatası, 0 NaN/Infinity, 0 eksik `quality`; 15 points dosyası kalitesini kardeş `meta.json`'dan alıyor.
+
+## 17. B yeni şehirler — kapsam ve referans ön incelemesi
+
+NISAR Pulse `--dry-run` (2026-06-17–2026-10-31, ±0.25°, provisional) indirme yapmadan üç şehirde de 9 zincir çifti buldu; kapsama var, dolayısıyla `no coverage` sonucu değil:
+
+| Şehir | ASF path/frame | Tarih aralığı | Tahmini toplam ham veri | Durum |
+|---|---|---|---:|---|
+| Xi'an | P076 F071 | 2026-06-19–2026-10-17 | 20,976.1 MB | zincir tam; referans doğrulaması gerekiyor |
+| Taiyuan | P068 F020 | 2026-06-18–2026-10-16 | 20,247.7 MB | zincir tam; referans doğrulaması gerekiyor |
+| Querétaro | P041 F078 | 2026-06-17–2026-10-15 | 20,053.5 MB | zincir tam; referans doğrulaması gerekiyor |
+
+Referans kaynağı kontrolü henüz savunulabilir birer havza-dışı koordinat vermiyor. Xi'an SBAS çalışması kararlı bir referans bölgesini haritada işaretliyor, fakat metin koordinat yayımlamıyor ([Shi et al. 2020](https://www.mdpi.com/2072-4292/12/22/3756), §4.1/Fig. 3). Taiyuan çalışmasında K001 (112.7°E, 37.7°N) düşük düşey hızla kararlı yer olarak tanımlanıyor; ancak koordinat hedef ±0.25° kutunun içinde ve çalışmada referans noktası havza dışında diye belirtilmiyor ([Zhao et al. 2018](https://www.mdpi.com/2072-4292/10/9/1499)). INEGI Querétaro için 2015–2018 PSI haritası yayımlıyor fakat özet kaydı belirli bir kararlı referans koordinatı sağlamıyor ([INEGI, 2019](https://www.inegi.org.mx/app/biblioteca/ficha.html?upc=889463849674)); ek bir çalışmada şehrin doğu kesimi kararlı alan diye tarif ediliyor, yine de tekil koordinat doğrulanmıyor ([Pacheco-Martínez et al.](https://doczz.net/doc/986787/dinsar-analysis-of-differential-ground-subsidence-affecti...)). Bu yüzden bu aşamada koordinat uydurulmadı ve `ready` denmedi.
+
+`python -m pipeline.nisarpulse run --dry-run` çıktıları yalnız katalog/ASF kapsama ön kontrolüdür; dosya indirme ve üretim analizi henüz yapılmadı. B kalite standardı havza-dışı, bilinen sabit referans gerektirdiğinden bu kanıt tamamlanmadan sonuçları yayımlamak uygun değil. A sağlamlık çıktıları ve `data/global/atlas.json` değiştirilmedi.
