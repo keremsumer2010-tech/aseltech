@@ -20,10 +20,11 @@ PC6 ve PC8'in eski, bitmemiş işleri buraya taşındı. Ayrıntı: `docs/ATLAS_
 - [ ] C06 · O1 Karapınar kalıcı depolama kaybı: `data/karapinar_fullyear/decomp.json` oluşunca `analysis/pc8/storage_loss.py` ile → `data/karapinar_fullyear/storage_loss.json` · data/karapinar_fullyear/
 
 ## BUGFIX — Sorun Kaydı (Cmt 22:00, Mehmet kararı) · SADECE PC6 ve PC8
-Ayrıntılar: `docs/SORUN_KAYDI.md` (her maddenin "Nerede / Sorun / Öneri" kısmı). Koordinatör: PC3. Atlas ekibi (PC1, PC2, PC4, PC5, PC9, PC10) bu bölüme dokunmaz.
+Ayrıntılar: `docs/SORUN_KAYDI.md` (her maddenin "Nerede / Sorun / Öneri" kısmı). Yeni eklenen her satırda **Sorun** ve **Çözüm** kısa yazılır (koordinatör kuralı). Koordinatör: PC3. Atlas ekibi (PC1, PC2, PC4, PC5, PC9, PC10) bu bölüme dokunmaz.
 Her PC sadece kendi `[atandı]` satırlarını yukarıdan aşağı yapar: `- [ ]` → `- [~PCx]` (commit+push) → bitince satırı kuyruktan **SİL** ve yaptığını `docs/qa/PCx.md`'ye yaz. Madde zaten düzeltilmişse satırı sil, qa'ya "zaten düzeltilmiş" yaz, sıradakine geç.
 
 ### PC8 — site (web/index.html, web/app.js, web/science.html, web/style.css, .github/workflows/pages.yml)
+- [ ] B31 · [atandı: PC8] · S-31 Yüksek · Hero'yu hazır videoya bağla (B30 dosyaları gelince; yoksa atla, sonra dön). **Sorun:** hero hâlâ canlı MapLibre haritası: açılışı yavaşlatıyor, batarya yiyor, mobilde takılıyor. **Çözüm:** `web/index.html` hero'da `#heroMap` yerine `<video autoplay muted loop playsinline preload="metadata" poster="…hero_poster.webp">` (kaynaklar `hero_loop.webm` + `hero_loop.mp4`); `web/app.js` `hero()` ve hero haritası kodunu kaldır; `prefers-reduced-motion` veya video yüklenmezse sadece poster; başlık okunurluğu için mevcut `.hero-shade` kalsın; "Live background" altyazısını "Background: Central Valley, California, 28 Jun–14 Oct 2026 (provisional)" yap. Tarayıcıda 375 px ve masaüstünde kontrol et, ilk açılışta indirilen toplam < 3 MB · web/index.html, web/app.js, web/style.css
 - [~PC8] B06 · [atandı: PC8] · S-03 Yüksek · Mavi alanların anlamı: göstergeye ve video altyazısına tek cümle
 - [ ] B07 · [atandı: PC8] · S-25 Yüksek · science.html "12 to 36 days" → "12 to 24 days" (track 114 aralıklarını da kontrol et)
 - [ ] B08 · [atandı: PC8] · S-07 Orta · `web/app.js` `NOISE_CM` eşiği: 1–3 cm arası için "small change, close to the noise"
@@ -37,6 +38,7 @@ Her PC sadece kendi `[atandı]` satırlarını yukarıdan aşağı yapar: `- [ ]
 
 ### PC6 — veri, analiz, metin, video (data/, analysis/pc6/, risk/, validation/, docs/story/*.md, docs/story/media/)
 - [~PC6] B23 · [atandı: PC6] · S-17 Yüksek · Yumuşatılmış çökme PNG'leri (7×7 NaN-duyarlı ortalama + hafif Gauss) → `data/central_valley/disp_smooth/`, `data/karapinar/disp_smooth/`; sitede saydamlık 0.6–0.65 + "Detailed / Smoothed" düğmesi
+- [ ] B30 · [atandı: PC6] · S-31 Yüksek · Açılış (hero) arka planı için hazır döngü videosu. **Sorun:** hero'daki canlı MapLibre haritası sayfa açılır açılmaz uydu karosu çekiyor, sürekli yeniden çiziliyor (S-22'nin ana sebebi); üstüne konan çökme katmanı kare kare ve sert kenarlı görünüyor. **Çözüm:** B23'ün yumuşatılmış `disp_smooth/` karelerinden Central Valley'in 28 Jun–14 Oct zaman akışını gösteren, koyu uydu altlıklı, yavaş kayan, dikişsiz döngü videosu üret → `docs/story/media/hero_loop.mp4` + `hero_loop.webm` (1920×1080, 8–12 sn, sessiz, **≤1.5 MB**, GIF DEĞİL: GIF çok ağır, PDF hareket etmez) + `docs/story/media/hero_poster.webp` (≤150 KB, ilk kare). Katman saydam (~0.6), kenarsız; sol taraf başlık için koyu gradyanla boş kalsın; renk çubuğu/etiket yok. `analysis/pc6/make_hero_loop.py` · B23'ten sonra · analysis/pc6/, docs/story/media/hero_*
 - [ ] B24 · [atandı: PC6] · S-14 Yüksek · p04 noktası boşluk kenarında: %90+ geçerli bloğa taşı ya da "estimated from surrounding pixels" notu
 - [ ] B25 · [atandı: PC6] · S-15 Yüksek · Başlık değeri haritanın kenarında: p02 (Lemoore'un 21 km güneyi) ile birlikte anılacak metin önerisi
 - [ ] B26 · [atandı: PC6] · S-02 Yüksek · Videoda siyah alanlar → açık gri + gösterge ("Grey = no reliable radar signal"), `analysis/pc6/make_animation.py`
