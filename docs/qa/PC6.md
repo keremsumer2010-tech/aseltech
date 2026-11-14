@@ -88,3 +88,13 @@ Tüm 3 bölge ve 12 `.json`/`.geojson` dosyası tarandı (`NaN`/`Infinity`: **0 
   - `d_measured` (NISAR 108 gün dikey eşdeğer): **`-10.1 cm`** (`-7.8 cm` LOS, `cos(39.1°)`)
   - Ölçek katsayısı (`extractionScaleFactor k`): **`0.623`**
   - `game/test_model.html`: **5/5 PASS**, 108 gün simülasyonu **`-10.1 cm`** dikey (`-7.84 cm` LOS), hata **`0%`** (`≤ ±10%`), tarayıcıda **0 konsol / 0 ağ hatası**.
+
+## Oyun v2 Canlı Site Kontrolü (`14:45 Paket — Adım 4`)
+
+- **Kontrol Tarihi / Ortamı:** `https://keremsumer2010-tech.github.io/aseltech/#play` (iframe) ve `https://keremsumer2010-tech.github.io/aseltech/game/` (tam ekran), canlı GitHub Pages tarayıcı denetimi.
+- **Veri ve Ağ Durumu:** `../data/central_valley/summary.json`, `assets.json` ve `points.json` **HTTP 200 OK** ile yüklendi; **0 konsol hatası**, **0 HTTP 4xx/5xx** hatası (yalnızca hızlı harita kaydırmada beklenen Esri tile `net::ERR_ABORTED` iptalleri).
+- **Tam Ekran Masaüstü (`1280x850`) & Mobil (`390x844`):**
+  - Bağımsız `/aseltech/game/` mobil `scrollWidth = 390 px` (yatay taşma **0 px**).
+  - Tüm sürgüler (`Groundwater Pumping`, `Surface Water Allocation`, `Temporary Land Fallowing`), önayarlar (`2026 Baseline`, `Over-Pump`, `SGMA Balance`), 7 ilçe seçicisi, `Next Month →` / `+6 Mo` / `Reset`, 24 ay audit penceresi ve harita katmanları (`Live Simulation`, `Blend`, `2026 NISAR Raster`) doğrulandı.
+- **`game/` İyileştirmesi:** `#play` içindeki `535x300 px` gömülü iframe'de açılış diyaloğunun altındaki `"Start 24-Month Simulation →"` düğmesi kaydırma gerektiriyordu; yalnızca `game/style.css` dosyasına `@media (max-height: 460px)` kompakt iframe/modal kuralları eklendi (`web/`'e dokunulmadı).
+- **Bilgi Notu (`web/` kapsam dışı):** Canlı ana sayfanın (`aseltech/`) `390x844` mobil kontrolünde Chapter 4 tablosu (`487 px`) ve iframe kutusu (`535 px`) nedeniyle ana sayfa `scrollWidth = 569 px` ölçüldü (`web/` PC6 yazma yetkisi dışında olduğu için yalnızca raporlandı).

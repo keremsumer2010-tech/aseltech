@@ -1,10 +1,11 @@
 # PC6 durum
 
-- Görev: 14:45 YENİ PAKET (`tasks/PC6.md`) adım 3/5 tamamlandı, adım 4'e geçiliyor.
-- Durum: Önceki tüm işler (`Q05`, `Q06`, `Q19` v2, `Q20`, `Q28`, `Q14`) tamamlandı. 14:45 paketi ilk 3 adım tamamlandı:
-  - Adım 1 (`analysis/pc6/make_animation.py`): `docs/story/media/cv_subsidence.{mp4,gif}` (`3.07 MB` / `4.23 MB`) ve `docs/story/media/kp_subsidence.{mp4,gif}` (`0.88 MB` / `1.36 MB`) pushlandı (`7369686`).
-  - Adım 2 (`analysis/pc6/make_validation_plots.py`): `docs/story/validation_report.md`, `docs/story/media/validation_scatter.png` (`r=0.924`, `RMSE=1.37 cm`) ve `10` `gnss_<station>.png` grafiği pushlandı (`823cb74`).
-  - Adım 3 (`analysis/pc6/make_risk_profiles.py`): `docs/story/risk_dossier.md` ve `10` profil grafiği (`docs/story/media/risk_1.png`..`risk_10.png`) üretildi ve doğrulandı (California Aqueduct `49.12 mm/km`, Tulare ID Canal `57.01 mm/km`, Friant-Kern Canal `#7/#9`, Alta East Branch Canal `#5` vurguları + `game_model.md` kaynaklı kanal kapasite kaybı özeti).
+- Görev: 14:45 YENİ PAKET (`tasks/PC6.md`) adım 4/5 tamamlandı, adım 5'e (Pazar hazırlığı) geçiliyor.
+- Durum: Önceki tüm işler (`Q05`, `Q06`, `Q19` v2, `Q20`, `Q28`, `Q14`) tamamlandı. 14:45 paketi ilk 4 adım tamamlandı:
+  - Adım 1 (`analysis/pc6/make_animation.py`): `docs/story/media/cv_subsidence.{mp4,gif}` ve `docs/story/media/kp_subsidence.{mp4,gif}` pushlandı (`7369686`).
+  - Adım 2 (`analysis/pc6/make_validation_plots.py`): `docs/story/validation_report.md`, `validation_scatter.png` ve 10 istasyon grafiği pushlandı (`823cb74`).
+  - Adım 3 (`analysis/pc6/make_risk_profiles.py`): `docs/story/risk_dossier.md` ve `risk_1..10.png` profilleri pushlandı (`5248279`).
+  - Adım 4 (Canlı Oyun v2 QA): `https://keremsumer2010-tech.github.io/aseltech/game/` ve `#play` doğrulandı (`summary.json`/`assets.json`/`points.json` HTTP 200, 0 konsol hatası, mobil `/game/` `scrollWidth = 390 px`); kısa iframe yüksekliği için `game/style.css`'e `@media (max-height: 460px)` eklendi (`docs/qa/PC6.md`).
 - Çıktılar:
   - Görev 1 (GNSS): `validation/gnss_stations.csv` (23 istasyon), `validation/gnss/*.csv` (10 istasyon, 2025-11 → 2026-11), `validation/README.md`
   - Görev 2 & 3 (OSM): `risk/central_valley_infra.geojson` (3238 hat, 1.07 MB), `risk/karapinar_infra.geojson` (64 hat, 0.04 MB), `risk/README.md`
