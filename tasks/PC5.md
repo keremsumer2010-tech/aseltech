@@ -57,3 +57,20 @@ Her görev bitince: ne yapıldı, sayılar, varsayımlar, `AI: Gemini → ...`.
 ---
 # 15:00 not
 Yazdığın her İngilizce metin `docs/REVIEW_1500.md` yazım kurallarına uysun. `key_findings.md` sitede Science sayfasına bağlanacak: 8 madde, sade cümle, sayı ± belirsizlik, kaynak dosya.
+
+---
+# 15:30 SÜREKLİ PAKET — PC5 HİÇ DURMAZ (7 görevin hepsi bitti, harika; sırayla devam, liste bitince "sonsuz döngü")
+Yazma alanına eklendi: `data/central_valley/area_stats.json` · `data/karapinar/area_stats.json` · `docs/story/key_findings_public.md` · `docs/story/sinkhole_stats.md` · `docs/story/drivers_analysis.md` · `docs/story/media/pc5_*.png`. İndirme yok.
+
+1. **Halk dilinde anahtar bulgular** → `docs/story/key_findings_public.md`: `key_findings.md`'nin 8 maddesini her biri TEK cümle, jargon yok (LOS, Cramér–Rao, Pearson gibi terimler yok), sayı + birim + tarih. `docs/REVIEW_1500.md` kurallarına uy. PC1 bunu ana sayfaya koyacak; en önemli iş bu.
+2. **Etkilenen alan zaman serisi** → `analysis/pc5/area_stats.py` + `data/central_valley/area_stats.json`, `data/karapinar/area_stats.json`: her tarih için −2 cm ve −5 cm'den fazla çöken alan (km²), maks ve medyan çökme; `{dates, area_km2_lt_2cm:[...], area_km2_lt_5cm:[...], quality, method}`. Grafik `docs/story/media/pc5_area_cv.png`.
+3. **Obruk–çökme istatistiksel testi** → `docs/story/sinkhole_stats.md`: PC6'nın halka analizine (`data/karapinar/assets.json`) ek olarak permütasyon/bootstrap testi: obruklara 0–2 km mesafedeki pikseller ile >5 km arka plan arasındaki fark tesadüf olabilir mi? p-değeri, güven aralığı, uzamsal otokorelasyon uyarısı. Sade 3 cümle sonuç.
+4. **Sebep analizi** → `docs/story/drivers_analysis.md` + `docs/story/media/pc5_drivers.png`: `data/central_valley/drivers.json` (SME2 toprak nemi, HV, sulama indeksi) ile çökme zaman serisinin gecikmeli korelasyonu; 8 tarihle sınırlı olduğunu açıkça yaz.
+5. **Q08 bağımsız kontrolü**: PC3 tam yıl kalıcı/geri dönen ayrımını (`data/central_valley_fullyear/`) üretince sonuçları `analysis/decomp` testleriyle ve fiziksel makullükle kontrol et → `docs/qa/PC5.md`.
+
+## SONSUZ DÖNGÜ (teslime kadar her 30 dk)
+a) `git pull`; yeni/değişen `data/*` dosyası varsa belirsizlik haritasını, alan istatistiklerini ve key_findings sayılarını yeniden üret.
+b) Sitedeki (`web/*.html`, `docs/story/*.md`) her bilimsel sayıyı veri dosyalarıyla karşılaştır; farkı `docs/qa/PC5.md`'ye yaz (başkasının dosyasına dokunma).
+c) `literature_comparison.md` ve `sources.md` linklerini tekrar aç (HTTP 200); kırık olanı raporla.
+d) Yapacak şey kalmadıysa: yöntem metnini (Science sayfası `web/science.html`) bilimsel doğruluk açısından oku, düzeltme önerilerini `docs/qa/PC5.md`'ye yaz.
+Asla "görev bekleniyor" deme; status'a o an ne yaptığını yaz.
