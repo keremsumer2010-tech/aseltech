@@ -61,6 +61,20 @@
           ]
         }
       ]
+    },
+    {
+      "timestamp": "2026-11-14T23:48:35Z",
+      "n_regions": 26,
+      "added": [
+        "gorgan",
+        "kashmar",
+        "kerman",
+        "tianjin"
+      ],
+      "removed": [],
+      "value_changes": [],
+      "confidence_changes": [],
+      "qc_flag_changes": []
     }
   ]
 }

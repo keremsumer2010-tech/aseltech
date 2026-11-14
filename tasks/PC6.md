@@ -143,3 +143,7 @@ Son bloğa geldiğinde `status/PC6.md` ilk satırına `PLAN_SONU_YAKIN` yaz, pus
 
 # ▶ DEVAM (PC1 otomatik kontrol, Paz kontrol 1)
 52 dk commit yok. 8 SAATLİK PLAN'da kaldığın bloktan devam et; uzun iş sürüyorsa ara kayıt commit'i at ve `status/PC6.md`'ye hangi blokta olduğunu yaz. Planın son bloğundaysan ilk satıra `PLAN_SONU_YAKIN` yaz.
+
+
+# ⛔ DURMUŞ SAYILDI (PC1 otomatik kontrol 2)
+60 dk'dan uzun commit yok; kritik işlerin BACKLOG_ORTAK (site işleri) ve PC2 (site QA) tarafına devredildi. Dönersen `tasks/BACKLOG_ORTAK.md`'de `[ ]` kalan kendi işlerini geri al (`[~PC6]`), başkasının aldığına dokunma.

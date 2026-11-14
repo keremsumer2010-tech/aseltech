@@ -225,3 +225,5 @@ Evet. PC1 rolleri saat başı kontrolde değiştirebilir; değişiklik önce bu 
 - (Paz 04:15) Celaya: PC11 → PC2; PC2 ek: `data/global/kabudarahang/`. PC10 ek: `data/global/atlas.schema.json`, `data/global/releases/`, `tests/test_atlas_schema.py`, `data/global/*/thumb.png`. PC6 ek: `web/present.html`. PC8 ek: `tools/vital_signs.py`, `docs/story/submission_package.md`. PC11 ek: `data/global/literature_rates.json`, `docs/story/literature_atlas.md`. PC7 ek: `data/global/kashmar/`, `risk/global/`, `data/risk_global/`, `docs/story/global_risk.md`, `docs/story/robustness.md`.
 
 - (otomatik kontrol 1) Pekin tam kutu yeniden hesap: PC11 → PC7 (`data/global/beijing/` artık PC7).
+
+- (otomatik kontrol 2) Durmuş: PC4, PC6, PC8, PC11. Devir: results_registry özetleri → PC10; teknik not + slayt → PC7; bülten/vital_signs + site QA → PC2; kalan site, teslim paketi, Cakarta, Bulacan, literatür tablosu → BACKLOG_ORTAK §E. SCIENCE_SIGNOFF son hâli → PC1.

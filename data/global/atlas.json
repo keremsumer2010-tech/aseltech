@@ -9,9 +9,9 @@
     "2026-09-29"
   ],
   "common_window_days": 93,
-  "n_regions": 22,
-  "n_reliable": 9,
-  "n_indicative": 13,
+  "n_regions": 26,
+  "n_reliable": 12,
+  "n_indicative": 14,
   "regions": [
     {
       "id": "konya_plain",
@@ -97,6 +97,46 @@
       "rank": 2
     },
     {
+      "id": "kashmar",
+      "name": "Kashmar",
+      "country": "",
+      "lon": 58.21629,
+      "lat": 35.23011,
+      "max_cm_los": -6.2,
+      "p2_cm": -3.17,
+      "rate_cm_per_100d": -5.2,
+      "max_cm_vertical_est": -7.6,
+      "period": [
+        "2026-06-19",
+        "2026-10-17"
+      ],
+      "days": 120,
+      "n_pairs": 9,
+      "quality": "provisional",
+      "rate_cm_per_yr_estimate": -18.9,
+      "valid_fraction": 0.728,
+      "ref_range_cm": [
+        -7.0,
+        -6.2
+      ],
+      "detectable": null,
+      "robustness_spread": 2.5463,
+      "people_exposed": null,
+      "opera_check": null,
+      "sigma_cm_median": null,
+      "rate_ci_cm_per_100d": [
+        -6.1,
+        -4.0
+      ],
+      "confidence": "high",
+      "indicative_only": false,
+      "coverage": "ok",
+      "path": "data/global/kashmar/",
+      "note": "",
+      "rate_cm_per_100d_common": -7.0,
+      "rank": 3
+    },
+    {
       "id": "mashhad",
       "name": "Mashhad",
       "country": "Iran",
@@ -134,7 +174,7 @@
       "path": "data/global/mashhad/",
       "note": "",
       "rate_cm_per_100d_common": -6.9,
-      "rank": 3
+      "rank": 4
     },
     {
       "id": "mexico_city",
@@ -180,7 +220,7 @@
       "path": "data/global/mexico_city/",
       "note": "",
       "rate_cm_per_100d_common": -6.3,
-      "rank": 4
+      "rank": 5
     },
     {
       "id": "semarang",
@@ -189,7 +229,7 @@
       "lon": 110.60795,
       "lat": -6.80998,
       "max_cm_los": -6.2,
-      "p2_cm": -5.2,
+      "p2_cm": null,
       "rate_cm_per_100d": -6.5,
       "max_cm_vertical_est": -8.1,
       "period": [
@@ -200,7 +240,7 @@
       "n_pairs": 7,
       "quality": "provisional",
       "rate_cm_per_yr_estimate": -23.6,
-      "valid_fraction": 0.515,
+      "valid_fraction": null,
       "ref_range_cm": [
         -9.9,
         -6.2
@@ -220,7 +260,47 @@
       "path": "data/global/semarang/",
       "note": "",
       "rate_cm_per_100d_common": -5.5,
-      "rank": 5
+      "rank": 6
+    },
+    {
+      "id": "kerman",
+      "name": "Kerman",
+      "country": "",
+      "lon": 57.05276,
+      "lat": 30.16798,
+      "max_cm_los": -6.1,
+      "p2_cm": -3.19,
+      "rate_cm_per_100d": -5.1,
+      "max_cm_vertical_est": -7.8,
+      "period": [
+        "2026-06-19",
+        "2026-10-17"
+      ],
+      "days": 120,
+      "n_pairs": 9,
+      "quality": "provisional",
+      "rate_cm_per_yr_estimate": -18.6,
+      "valid_fraction": 0.968,
+      "ref_range_cm": [
+        -6.1,
+        -5.6
+      ],
+      "detectable": null,
+      "robustness_spread": null,
+      "people_exposed": null,
+      "opera_check": null,
+      "sigma_cm_median": 0.258,
+      "rate_ci_cm_per_100d": [
+        -5.5,
+        -4.7
+      ],
+      "confidence": "high",
+      "indicative_only": false,
+      "coverage": "ok",
+      "path": "data/global/kerman/",
+      "note": "",
+      "rate_cm_per_100d_common": -5.3,
+      "rank": 7
     },
     {
       "id": "rafsanjan",
@@ -260,7 +340,47 @@
       "path": "data/global/rafsanjan/",
       "note": "",
       "rate_cm_per_100d_common": -4.2,
-      "rank": 6
+      "rank": 8
+    },
+    {
+      "id": "tianjin",
+      "name": "Tianjin",
+      "country": "",
+      "lon": 117.34078,
+      "lat": 38.87608,
+      "max_cm_los": -2.9,
+      "p2_cm": -3.5,
+      "rate_cm_per_100d": -2.4,
+      "max_cm_vertical_est": -3.6,
+      "period": [
+        "2026-06-21",
+        "2026-10-19"
+      ],
+      "days": 120,
+      "n_pairs": 8,
+      "quality": "provisional",
+      "rate_cm_per_yr_estimate": -8.7,
+      "valid_fraction": 0.634,
+      "ref_range_cm": [
+        -2.9,
+        -1.3
+      ],
+      "detectable": null,
+      "robustness_spread": null,
+      "people_exposed": null,
+      "opera_check": null,
+      "sigma_cm_median": 0.329,
+      "rate_ci_cm_per_100d": [
+        -3.0,
+        -1.9
+      ],
+      "confidence": "medium",
+      "indicative_only": false,
+      "coverage": "ok",
+      "path": "data/global/tianjin/",
+      "note": "",
+      "rate_cm_per_100d_common": -2.8,
+      "rank": 9
     },
     {
       "id": "cangzhou",
@@ -287,7 +407,7 @@
       ],
       "detectable": null,
       "robustness_spread": null,
-      "people_exposed": null,
+      "people_exposed": 16737,
       "opera_check": null,
       "sigma_cm_median": null,
       "rate_ci_cm_per_100d": null,
@@ -297,7 +417,7 @@
       "path": "data/global/cangzhou/",
       "note": "",
       "rate_cm_per_100d_common": -2.4,
-      "rank": 7
+      "rank": 10
     },
     {
       "id": "delta",
@@ -337,7 +457,7 @@
       "path": "data/delta/",
       "note": "",
       "rate_cm_per_100d_common": -1.4,
-      "rank": 8
+      "rank": 11
     },
     {
       "id": "quetta",
@@ -377,7 +497,47 @@
       "path": "data/global/quetta/",
       "note": "",
       "rate_cm_per_100d_common": -0.7,
-      "rank": 9
+      "rank": 12
+    },
+    {
+      "id": "gorgan",
+      "name": "Gorgan",
+      "country": "",
+      "lon": 54.39541,
+      "lat": 36.59262,
+      "max_cm_los": -34.6,
+      "p2_cm": -33.1,
+      "rate_cm_per_100d": -28.8,
+      "max_cm_vertical_est": -41.8,
+      "period": [
+        "2026-06-21",
+        "2026-10-19"
+      ],
+      "days": 120,
+      "n_pairs": 9,
+      "quality": "provisional",
+      "rate_cm_per_yr_estimate": -105.2,
+      "valid_fraction": 0.267,
+      "ref_range_cm": [
+        -34.6,
+        -13.8
+      ],
+      "detectable": null,
+      "robustness_spread": null,
+      "people_exposed": null,
+      "opera_check": null,
+      "sigma_cm_median": null,
+      "rate_ci_cm_per_100d": null,
+      "confidence": "low",
+      "indicative_only": true,
+      "coverage": "ok",
+      "path": "data/global/gorgan/",
+      "note": "QC: step 2 (2026-07-03→2026-07-15) = -10.26 cm ≈ one phase cycle (12.1 cm) Without the flagged step(s) the headline point shows -24.39 cm. Under revision.",
+      "rate_cm_per_100d_common": -22.7,
+      "qc_flags": [
+        "phase_cycle_jump"
+      ],
+      "rank": 13
     },
     {
       "id": "delhi",
@@ -420,7 +580,7 @@
       "qc_flags": [
         "phase_cycle_jump"
       ],
-      "rank": 10
+      "rank": 14
     },
     {
       "id": "bangkok",
@@ -429,7 +589,7 @@
       "lon": 100.73741,
       "lat": 13.81368,
       "max_cm_los": -7.5,
-      "p2_cm": -6.9,
+      "p2_cm": null,
       "rate_cm_per_100d": -6.2,
       "max_cm_vertical_est": -9.0,
       "period": [
@@ -440,7 +600,7 @@
       "n_pairs": 8,
       "quality": "provisional",
       "rate_cm_per_yr_estimate": -22.8,
-      "valid_fraction": 0.303,
+      "valid_fraction": null,
       "ref_range_cm": [
         -7.9,
         -7.5
@@ -464,7 +624,7 @@
         "literature_mismatch",
         "noisy_series"
       ],
-      "rank": 11
+      "rank": 15
     },
     {
       "id": "pekalongan",
@@ -473,7 +633,7 @@
       "lon": 109.48137,
       "lat": -6.86996,
       "max_cm_los": -22.2,
-      "p2_cm": -20.9,
+      "p2_cm": null,
       "rate_cm_per_100d": -18.5,
       "max_cm_vertical_est": -31.9,
       "period": [
@@ -484,7 +644,7 @@
       "n_pairs": 9,
       "quality": "provisional",
       "rate_cm_per_yr_estimate": -67.7,
-      "valid_fraction": 0.266,
+      "valid_fraction": null,
       "ref_range_cm": [
         -22.2,
         -12.4
@@ -507,7 +667,7 @@
       "qc_flags": [
         "phase_cycle_jump"
       ],
-      "rank": 12
+      "rank": 16
     },
     {
       "id": "central_valley",
@@ -553,7 +713,7 @@
       "path": "data/central_valley/",
       "note": "",
       "rate_cm_per_100d_common": -7.3,
-      "rank": 13
+      "rank": 17
     },
     {
       "id": "tehran",
@@ -593,7 +753,7 @@
       "path": "data/global/tehran/",
       "note": "",
       "rate_cm_per_100d_common": -6.4,
-      "rank": 14
+      "rank": 18
     },
     {
       "id": "jakarta",
@@ -602,7 +762,7 @@
       "lon": 107.01151,
       "lat": -6.14056,
       "max_cm_los": -6.8,
-      "p2_cm": -10.2,
+      "p2_cm": null,
       "rate_cm_per_100d": -6.3,
       "max_cm_vertical_est": -9.3,
       "period": [
@@ -613,7 +773,7 @@
       "n_pairs": 8,
       "quality": "provisional",
       "rate_cm_per_yr_estimate": -23.2,
-      "valid_fraction": 0.029,
+      "valid_fraction": null,
       "ref_range_cm": null,
       "detectable": true,
       "robustness_spread": null,
@@ -630,7 +790,7 @@
       "path": "data/global/jakarta/",
       "note": "",
       "rate_cm_per_100d_common": -5.6,
-      "rank": 15
+      "rank": 19
     },
     {
       "id": "karapinar",
@@ -667,7 +827,7 @@
       "path": "data/karapinar/",
       "note": "",
       "rate_cm_per_100d_common": -3.7,
-      "rank": 16
+      "rank": 20
     },
     {
       "id": "beijing",
@@ -676,7 +836,7 @@
       "lon": 116.83974,
       "lat": 39.79989,
       "max_cm_los": -1.4,
-      "p2_cm": -1.3,
+      "p2_cm": null,
       "rate_cm_per_100d": -1.2,
       "max_cm_vertical_est": -2.1,
       "period": [
@@ -687,7 +847,7 @@
       "n_pairs": 9,
       "quality": "provisional",
       "rate_cm_per_yr_estimate": -4.3,
-      "valid_fraction": 0.711,
+      "valid_fraction": null,
       "ref_range_cm": [
         -7.6,
         -1.4
@@ -710,7 +870,7 @@
       "qc_flags": [
         "single_date_outlier"
       ],
-      "rank": 17
+      "rank": 21
     },
     {
       "id": "isfahan",
@@ -750,7 +910,7 @@
       "path": "data/global/isfahan/",
       "note": "",
       "rate_cm_per_100d_common": -2.1,
-      "rank": 18
+      "rank": 22
     },
     {
       "id": "yunlin",
@@ -759,7 +919,7 @@
       "lon": 120.56021,
       "lat": 23.62433,
       "max_cm_los": -2.7,
-      "p2_cm": -3.0,
+      "p2_cm": null,
       "rate_cm_per_100d": -2.5,
       "max_cm_vertical_est": -3.4,
       "period": [
@@ -770,7 +930,7 @@
       "n_pairs": 8,
       "quality": "provisional",
       "rate_cm_per_yr_estimate": -9.2,
-      "valid_fraction": 0.282,
+      "valid_fraction": null,
       "ref_range_cm": [
         -3.5,
         -1.1
@@ -787,7 +947,7 @@
       "path": "data/global/yunlin/",
       "note": "",
       "rate_cm_per_100d_common": -1.6,
-      "rank": 19
+      "rank": 23
     },
     {
       "id": "xian",
@@ -824,7 +984,7 @@
       "path": "data/global/xian/",
       "note": "",
       "rate_cm_per_100d_common": -1.4,
-      "rank": 20
+      "rank": 24
     },
     {
       "id": "hanoi",
@@ -833,7 +993,7 @@
       "lon": 105.71463,
       "lat": 20.98307,
       "max_cm_los": -2.5,
-      "p2_cm": -3.0,
+      "p2_cm": null,
       "rate_cm_per_100d": -2.1,
       "max_cm_vertical_est": -3.6,
       "period": [
@@ -844,7 +1004,7 @@
       "n_pairs": 9,
       "quality": "provisional",
       "rate_cm_per_yr_estimate": -7.5,
-      "valid_fraction": 0.257,
+      "valid_fraction": null,
       "ref_range_cm": [
         -6.7,
         -2.2
@@ -864,7 +1024,7 @@
       "path": "data/global/hanoi/",
       "note": "",
       "rate_cm_per_100d_common": -0.9,
-      "rank": 21
+      "rank": 25
     },
     {
       "id": "ho_chi_minh",
@@ -873,7 +1033,7 @@
       "lon": 106.91207,
       "lat": 10.9967,
       "max_cm_los": -4.2,
-      "p2_cm": -1.8,
+      "p2_cm": null,
       "rate_cm_per_100d": -3.5,
       "max_cm_vertical_est": -5.8,
       "period": [
@@ -884,7 +1044,7 @@
       "n_pairs": 9,
       "quality": "provisional",
       "rate_cm_per_yr_estimate": -12.8,
-      "valid_fraction": 0.321,
+      "valid_fraction": null,
       "ref_range_cm": [
         -9.9,
         -4.2
@@ -904,7 +1064,7 @@
       "path": "data/global/ho_chi_minh/",
       "note": "",
       "rate_cm_per_100d_common": 4.6,
-      "rank": 22
+      "rank": 26
     }
   ],
   "reliable": [
@@ -994,6 +1154,47 @@
       "rank_reliable": 2
     },
     {
+      "id": "kashmar",
+      "name": "Kashmar",
+      "country": "",
+      "lon": 58.21629,
+      "lat": 35.23011,
+      "max_cm_los": -6.2,
+      "p2_cm": -3.17,
+      "rate_cm_per_100d": -5.2,
+      "max_cm_vertical_est": -7.6,
+      "period": [
+        "2026-06-19",
+        "2026-10-17"
+      ],
+      "days": 120,
+      "n_pairs": 9,
+      "quality": "provisional",
+      "rate_cm_per_yr_estimate": -18.9,
+      "valid_fraction": 0.728,
+      "ref_range_cm": [
+        -7.0,
+        -6.2
+      ],
+      "detectable": null,
+      "robustness_spread": 2.5463,
+      "people_exposed": null,
+      "opera_check": null,
+      "sigma_cm_median": null,
+      "rate_ci_cm_per_100d": [
+        -6.1,
+        -4.0
+      ],
+      "confidence": "high",
+      "indicative_only": false,
+      "coverage": "ok",
+      "path": "data/global/kashmar/",
+      "note": "",
+      "rate_cm_per_100d_common": -7.0,
+      "rank": 3,
+      "rank_reliable": 3
+    },
+    {
       "id": "mashhad",
       "name": "Mashhad",
       "country": "Iran",
@@ -1031,8 +1232,8 @@
       "path": "data/global/mashhad/",
       "note": "",
       "rate_cm_per_100d_common": -6.9,
-      "rank": 3,
-      "rank_reliable": 3
+      "rank": 4,
+      "rank_reliable": 4
     },
     {
       "id": "mexico_city",
@@ -1078,8 +1279,8 @@
       "path": "data/global/mexico_city/",
       "note": "",
       "rate_cm_per_100d_common": -6.3,
-      "rank": 4,
-      "rank_reliable": 4
+      "rank": 5,
+      "rank_reliable": 5
     },
     {
       "id": "semarang",
@@ -1088,7 +1289,7 @@
       "lon": 110.60795,
       "lat": -6.80998,
       "max_cm_los": -6.2,
-      "p2_cm": -5.2,
+      "p2_cm": null,
       "rate_cm_per_100d": -6.5,
       "max_cm_vertical_est": -8.1,
       "period": [
@@ -1099,7 +1300,7 @@
       "n_pairs": 7,
       "quality": "provisional",
       "rate_cm_per_yr_estimate": -23.6,
-      "valid_fraction": 0.515,
+      "valid_fraction": null,
       "ref_range_cm": [
         -9.9,
         -6.2
@@ -1119,8 +1320,49 @@
       "path": "data/global/semarang/",
       "note": "",
       "rate_cm_per_100d_common": -5.5,
-      "rank": 5,
-      "rank_reliable": 5
+      "rank": 6,
+      "rank_reliable": 6
+    },
+    {
+      "id": "kerman",
+      "name": "Kerman",
+      "country": "",
+      "lon": 57.05276,
+      "lat": 30.16798,
+      "max_cm_los": -6.1,
+      "p2_cm": -3.19,
+      "rate_cm_per_100d": -5.1,
+      "max_cm_vertical_est": -7.8,
+      "period": [
+        "2026-06-19",
+        "2026-10-17"
+      ],
+      "days": 120,
+      "n_pairs": 9,
+      "quality": "provisional",
+      "rate_cm_per_yr_estimate": -18.6,
+      "valid_fraction": 0.968,
+      "ref_range_cm": [
+        -6.1,
+        -5.6
+      ],
+      "detectable": null,
+      "robustness_spread": null,
+      "people_exposed": null,
+      "opera_check": null,
+      "sigma_cm_median": 0.258,
+      "rate_ci_cm_per_100d": [
+        -5.5,
+        -4.7
+      ],
+      "confidence": "high",
+      "indicative_only": false,
+      "coverage": "ok",
+      "path": "data/global/kerman/",
+      "note": "",
+      "rate_cm_per_100d_common": -5.3,
+      "rank": 7,
+      "rank_reliable": 7
     },
     {
       "id": "rafsanjan",
@@ -1160,8 +1402,49 @@
       "path": "data/global/rafsanjan/",
       "note": "",
       "rate_cm_per_100d_common": -4.2,
-      "rank": 6,
-      "rank_reliable": 6
+      "rank": 8,
+      "rank_reliable": 8
+    },
+    {
+      "id": "tianjin",
+      "name": "Tianjin",
+      "country": "",
+      "lon": 117.34078,
+      "lat": 38.87608,
+      "max_cm_los": -2.9,
+      "p2_cm": -3.5,
+      "rate_cm_per_100d": -2.4,
+      "max_cm_vertical_est": -3.6,
+      "period": [
+        "2026-06-21",
+        "2026-10-19"
+      ],
+      "days": 120,
+      "n_pairs": 8,
+      "quality": "provisional",
+      "rate_cm_per_yr_estimate": -8.7,
+      "valid_fraction": 0.634,
+      "ref_range_cm": [
+        -2.9,
+        -1.3
+      ],
+      "detectable": null,
+      "robustness_spread": null,
+      "people_exposed": null,
+      "opera_check": null,
+      "sigma_cm_median": 0.329,
+      "rate_ci_cm_per_100d": [
+        -3.0,
+        -1.9
+      ],
+      "confidence": "medium",
+      "indicative_only": false,
+      "coverage": "ok",
+      "path": "data/global/tianjin/",
+      "note": "",
+      "rate_cm_per_100d_common": -2.8,
+      "rank": 9,
+      "rank_reliable": 9
     },
     {
       "id": "cangzhou",
@@ -1188,7 +1471,7 @@
       ],
       "detectable": null,
       "robustness_spread": null,
-      "people_exposed": null,
+      "people_exposed": 16737,
       "opera_check": null,
       "sigma_cm_median": null,
       "rate_ci_cm_per_100d": null,
@@ -1198,8 +1481,8 @@
       "path": "data/global/cangzhou/",
       "note": "",
       "rate_cm_per_100d_common": -2.4,
-      "rank": 7,
-      "rank_reliable": 7
+      "rank": 10,
+      "rank_reliable": 10
     },
     {
       "id": "delta",
@@ -1239,8 +1522,8 @@
       "path": "data/delta/",
       "note": "",
       "rate_cm_per_100d_common": -1.4,
-      "rank": 8,
-      "rank_reliable": 8
+      "rank": 11,
+      "rank_reliable": 11
     },
     {
       "id": "quetta",
@@ -1280,11 +1563,52 @@
       "path": "data/global/quetta/",
       "note": "",
       "rate_cm_per_100d_common": -0.7,
-      "rank": 9,
-      "rank_reliable": 9
+      "rank": 12,
+      "rank_reliable": 12
     }
   ],
   "indicative": [
+    {
+      "id": "gorgan",
+      "name": "Gorgan",
+      "country": "",
+      "lon": 54.39541,
+      "lat": 36.59262,
+      "max_cm_los": -34.6,
+      "p2_cm": -33.1,
+      "rate_cm_per_100d": -28.8,
+      "max_cm_vertical_est": -41.8,
+      "period": [
+        "2026-06-21",
+        "2026-10-19"
+      ],
+      "days": 120,
+      "n_pairs": 9,
+      "quality": "provisional",
+      "rate_cm_per_yr_estimate": -105.2,
+      "valid_fraction": 0.267,
+      "ref_range_cm": [
+        -34.6,
+        -13.8
+      ],
+      "detectable": null,
+      "robustness_spread": null,
+      "people_exposed": null,
+      "opera_check": null,
+      "sigma_cm_median": null,
+      "rate_ci_cm_per_100d": null,
+      "confidence": "low",
+      "indicative_only": true,
+      "coverage": "ok",
+      "path": "data/global/gorgan/",
+      "note": "QC: step 2 (2026-07-03→2026-07-15) = -10.26 cm ≈ one phase cycle (12.1 cm) Without the flagged step(s) the headline point shows -24.39 cm. Under revision.",
+      "rate_cm_per_100d_common": -22.7,
+      "qc_flags": [
+        "phase_cycle_jump"
+      ],
+      "rank": 13,
+      "rank_indicative": 1
+    },
     {
       "id": "delhi",
       "name": "Delhi",
@@ -1326,8 +1650,8 @@
       "qc_flags": [
         "phase_cycle_jump"
       ],
-      "rank": 10,
-      "rank_indicative": 1
+      "rank": 14,
+      "rank_indicative": 2
     },
     {
       "id": "bangkok",
@@ -1336,7 +1660,7 @@
       "lon": 100.73741,
       "lat": 13.81368,
       "max_cm_los": -7.5,
-      "p2_cm": -6.9,
+      "p2_cm": null,
       "rate_cm_per_100d": -6.2,
       "max_cm_vertical_est": -9.0,
       "period": [
@@ -1347,7 +1671,7 @@
       "n_pairs": 8,
       "quality": "provisional",
       "rate_cm_per_yr_estimate": -22.8,
-      "valid_fraction": 0.303,
+      "valid_fraction": null,
       "ref_range_cm": [
         -7.9,
         -7.5
@@ -1371,8 +1695,8 @@
         "literature_mismatch",
         "noisy_series"
       ],
-      "rank": 11,
-      "rank_indicative": 2
+      "rank": 15,
+      "rank_indicative": 3
     },
     {
       "id": "pekalongan",
@@ -1381,7 +1705,7 @@
       "lon": 109.48137,
       "lat": -6.86996,
       "max_cm_los": -22.2,
-      "p2_cm": -20.9,
+      "p2_cm": null,
       "rate_cm_per_100d": -18.5,
       "max_cm_vertical_est": -31.9,
       "period": [
@@ -1392,7 +1716,7 @@
       "n_pairs": 9,
       "quality": "provisional",
       "rate_cm_per_yr_estimate": -67.7,
-      "valid_fraction": 0.266,
+      "valid_fraction": null,
       "ref_range_cm": [
         -22.2,
         -12.4
@@ -1415,8 +1739,8 @@
       "qc_flags": [
         "phase_cycle_jump"
       ],
-      "rank": 12,
-      "rank_indicative": 3
+      "rank": 16,
+      "rank_indicative": 4
     },
     {
       "id": "central_valley",
@@ -1462,8 +1786,8 @@
       "path": "data/central_valley/",
       "note": "",
       "rate_cm_per_100d_common": -7.3,
-      "rank": 13,
-      "rank_indicative": 4
+      "rank": 17,
+      "rank_indicative": 5
     },
     {
       "id": "tehran",
@@ -1503,8 +1827,8 @@
       "path": "data/global/tehran/",
       "note": "",
       "rate_cm_per_100d_common": -6.4,
-      "rank": 14,
-      "rank_indicative": 5
+      "rank": 18,
+      "rank_indicative": 6
     },
     {
       "id": "jakarta",
@@ -1513,7 +1837,7 @@
       "lon": 107.01151,
       "lat": -6.14056,
       "max_cm_los": -6.8,
-      "p2_cm": -10.2,
+      "p2_cm": null,
       "rate_cm_per_100d": -6.3,
       "max_cm_vertical_est": -9.3,
       "period": [
@@ -1524,7 +1848,7 @@
       "n_pairs": 8,
       "quality": "provisional",
       "rate_cm_per_yr_estimate": -23.2,
-      "valid_fraction": 0.029,
+      "valid_fraction": null,
       "ref_range_cm": null,
       "detectable": true,
       "robustness_spread": null,
@@ -1541,8 +1865,8 @@
       "path": "data/global/jakarta/",
       "note": "",
       "rate_cm_per_100d_common": -5.6,
-      "rank": 15,
-      "rank_indicative": 6
+      "rank": 19,
+      "rank_indicative": 7
     },
     {
       "id": "karapinar",
@@ -1579,8 +1903,8 @@
       "path": "data/karapinar/",
       "note": "",
       "rate_cm_per_100d_common": -3.7,
-      "rank": 16,
-      "rank_indicative": 7
+      "rank": 20,
+      "rank_indicative": 8
     },
     {
       "id": "beijing",
@@ -1589,7 +1913,7 @@
       "lon": 116.83974,
       "lat": 39.79989,
       "max_cm_los": -1.4,
-      "p2_cm": -1.3,
+      "p2_cm": null,
       "rate_cm_per_100d": -1.2,
       "max_cm_vertical_est": -2.1,
       "period": [
@@ -1600,7 +1924,7 @@
       "n_pairs": 9,
       "quality": "provisional",
       "rate_cm_per_yr_estimate": -4.3,
-      "valid_fraction": 0.711,
+      "valid_fraction": null,
       "ref_range_cm": [
         -7.6,
         -1.4
@@ -1623,8 +1947,8 @@
       "qc_flags": [
         "single_date_outlier"
       ],
-      "rank": 17,
-      "rank_indicative": 8
+      "rank": 21,
+      "rank_indicative": 9
     },
     {
       "id": "isfahan",
@@ -1664,8 +1988,8 @@
       "path": "data/global/isfahan/",
       "note": "",
       "rate_cm_per_100d_common": -2.1,
-      "rank": 18,
-      "rank_indicative": 9
+      "rank": 22,
+      "rank_indicative": 10
     },
     {
       "id": "yunlin",
@@ -1674,7 +1998,7 @@
       "lon": 120.56021,
       "lat": 23.62433,
       "max_cm_los": -2.7,
-      "p2_cm": -3.0,
+      "p2_cm": null,
       "rate_cm_per_100d": -2.5,
       "max_cm_vertical_est": -3.4,
       "period": [
@@ -1685,7 +2009,7 @@
       "n_pairs": 8,
       "quality": "provisional",
       "rate_cm_per_yr_estimate": -9.2,
-      "valid_fraction": 0.282,
+      "valid_fraction": null,
       "ref_range_cm": [
         -3.5,
         -1.1
@@ -1702,8 +2026,8 @@
       "path": "data/global/yunlin/",
       "note": "",
       "rate_cm_per_100d_common": -1.6,
-      "rank": 19,
-      "rank_indicative": 10
+      "rank": 23,
+      "rank_indicative": 11
     },
     {
       "id": "xian",
@@ -1740,8 +2064,8 @@
       "path": "data/global/xian/",
       "note": "",
       "rate_cm_per_100d_common": -1.4,
-      "rank": 20,
-      "rank_indicative": 11
+      "rank": 24,
+      "rank_indicative": 12
     },
     {
       "id": "hanoi",
@@ -1750,7 +2074,7 @@
       "lon": 105.71463,
       "lat": 20.98307,
       "max_cm_los": -2.5,
-      "p2_cm": -3.0,
+      "p2_cm": null,
       "rate_cm_per_100d": -2.1,
       "max_cm_vertical_est": -3.6,
       "period": [
@@ -1761,7 +2085,7 @@
       "n_pairs": 9,
       "quality": "provisional",
       "rate_cm_per_yr_estimate": -7.5,
-      "valid_fraction": 0.257,
+      "valid_fraction": null,
       "ref_range_cm": [
         -6.7,
         -2.2
@@ -1781,8 +2105,8 @@
       "path": "data/global/hanoi/",
       "note": "",
       "rate_cm_per_100d_common": -0.9,
-      "rank": 21,
-      "rank_indicative": 12
+      "rank": 25,
+      "rank_indicative": 13
     },
     {
       "id": "ho_chi_minh",
@@ -1791,7 +2115,7 @@
       "lon": 106.91207,
       "lat": 10.9967,
       "max_cm_los": -4.2,
-      "p2_cm": -1.8,
+      "p2_cm": null,
       "rate_cm_per_100d": -3.5,
       "max_cm_vertical_est": -5.8,
       "period": [
@@ -1802,7 +2126,7 @@
       "n_pairs": 9,
       "quality": "provisional",
       "rate_cm_per_yr_estimate": -12.8,
-      "valid_fraction": 0.321,
+      "valid_fraction": null,
       "ref_range_cm": [
         -9.9,
         -4.2
@@ -1822,8 +2146,8 @@
       "path": "data/global/ho_chi_minh/",
       "note": "",
       "rate_cm_per_100d_common": 4.6,
-      "rank": 22,
-      "rank_indicative": 13
+      "rank": 26,
+      "rank_indicative": 14
     }
   ]
 }

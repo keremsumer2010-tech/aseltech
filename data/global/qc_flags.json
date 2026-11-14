@@ -20,6 +20,28 @@
       ],
       "headline_without_flagged_steps_cm": -11.77
     },
+    "pekalongan": {
+      "flags": [
+        "phase_cycle_jump"
+      ],
+      "steps_cm": [
+        -13.03,
+        3.62,
+        -4.9,
+        -1.63,
+        -5.0,
+        0.16,
+        -0.41,
+        3.41,
+        -4.45
+      ],
+      "detail": "step 1 (2026-06-20→2026-07-02) = -13.03 cm ≈ one phase cycle (12.1 cm)",
+      "headline_point": [
+        109.48137,
+        -6.86996
+      ],
+      "headline_without_flagged_steps_cm": -9.2
+    },
     "beijing": {
       "flags": [
         "single_date_outlier"
@@ -42,27 +64,26 @@
       ],
       "headline_without_flagged_steps_cm": -0.14
     },
-    "pekalongan": {
+    "gorgan": {
       "flags": [
         "phase_cycle_jump"
       ],
       "steps_cm": [
-        -13.03,
-        3.62,
-        -4.9,
-        -1.63,
-        -5.0,
-        0.16,
-        -0.41,
-        3.41,
-        -4.45
+        -3.02,
+        -10.26,
+        1.71,
+        -1.68,
+        -8.85,
+        4.0,
+        -14.32,
+        -2.23
       ],
-      "detail": "step 1 (2026-06-20→2026-07-02) = -13.03 cm ≈ one phase cycle (12.1 cm)",
+      "detail": "step 2 (2026-07-03→2026-07-15) = -10.26 cm ≈ one phase cycle (12.1 cm)",
       "headline_point": [
-        109.48137,
-        -6.86996
+        54.39541,
+        36.59262
       ],
-      "headline_without_flagged_steps_cm": -9.2
+      "headline_without_flagged_steps_cm": -24.39
     },
     "bangkok": {
       "flags": [

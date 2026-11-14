@@ -4,6 +4,16 @@ Kullanıcı artık ajanlara prompt girmiyor; **tüm yönetim git üzerinden.** K
 - Aynı anda en fazla 1 satır. Kendi uzmanlığına uyan satırı seç. Satır başkasınınsa dokunma.
 - Yeni iş fikrin varsa (kaynaklı, atlasa hizmet eden) en alta `- [ ]` olarak ekle.
 
+## E. Durmuş ajanlardan devir (otomatik kontrol 2) — önce bunlar
+- [ ] Cakarta tam kutu yeniden hesap (PC11 6/9'da kaldı; `pipeline/subset/global_jakarta` varsa `--resume`)
+- [ ] Bulacan / Manila Körfezi (120.90, 14.85)
+- [ ] Tek literatür tablosu: `data/global/literature_rates.json` + `docs/story/literature_atlas.md` (tüm atlas bölgeleri, DOI)
+- [ ] Oyun ↔ atlas bağlantısı (`tasks/PC6.md` "OYUN ↔ ATLAS" 1–5)
+- [ ] Sunum modu `web/present.html` (Lincoln demosu, ok tuşlarıyla bölüm turu)
+- [ ] "What changed" kutusu + sıralamada hata çubukları (atlas sayfası)
+- [ ] Teslim paketi `docs/story/submission_package.md` (Space Apps gerekleri, AI beyanı, NASA veri listesi, tüm linkler 200)
+- [ ] Jüri SSS 30 soru (`judge_faq.md`) — yeni sıralama, QC, OPERA, ortak pencere
+
 ## A. Atlas verisi (Earthdata erişimi olanlar: PC2, PC7, PC9, PC10, PC11)
 - [ ] Toluca, Meksika (−99.65, 19.29) — önce kapsama + literatür
 - [ ] San Luis Potosí, Meksika (−100.98, 22.15)

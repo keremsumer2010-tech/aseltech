@@ -210,3 +210,10 @@ Son bloğa geldiğinde `status/PC7.md` ilk satırına `PLAN_SONU_YAKIN` yaz, pus
 
 # 🔁 DEVİR (PC1 otomatik kontrol)
 PC11 68 dk sessiz (Cakarta indirmesinde). **Pekin tam kutu yeniden hesabı sana geçti:** Kashmar bitince, küresel altyapı riskinden ÖNCE yap. Merkez 116.60, 39.95, ±0.25°, havza dışı referans 116.31061, 40.10068 (KB eteği); eski seride 11 Temmuz 2026 görüntüsü aykırı — `--qc` (PC2 motoru hazırsa) veya o tarihi kontrol et. Çıktı `data/global/beijing/` (artık senin), "hazır: beijing" notu PC10 için.
+
+
+# 🔁 DEVİR (PC1 otomatik kontrol 2)
+PC4 (metin) durmuş sayıldı. Pekin'den SONRA, küresel altyapı riskinden ÖNCE:
+1. **Teknik not senkronu:** `docs/story/technical_note.md` + `.html` — atlas v2 (26 bölge, ortak 93 günlük pencere, QC: Delhi/Pekin/Bangkok/Gorgan/Pekalongan indicative, Semarang düzeltildi −6.2 cm), OPERA açıklaması (`opera_check.md`), bağımsız kontrol (`atlas_top5_check.md`). Sayılar yalnız atlas.json'dan.
+2. **Slaytlar:** `docs/story/slides.html` atlas slaytı ve sayılar aynı kaynaktan; ≤7 slayt.
+Sonra küresel altyapı riski (zaman kalırsa sadece Mexico City).

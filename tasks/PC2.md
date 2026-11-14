@@ -226,3 +226,9 @@ Son bloğa geldiğinde `status/PC2.md` ilk satırına `PLAN_SONU_YAKIN` yaz, pus
 
 # ▶ DEVAM (PC1 otomatik kontrol, Paz kontrol 1)
 43 dk commit yok. 8 SAATLİK PLAN'da kaldığın bloktan devam et; uzun iş sürüyorsa ara kayıt commit'i at ve `status/PC2.md`'ye hangi blokta olduğunu yaz. Planın son bloğundaysan ilk satıra `PLAN_SONU_YAKIN` yaz.
+
+
+# 🔁 DEVİR (PC1 otomatik kontrol 2)
+PC6 (site) ve PC8 (bülten/teslim) durmuş sayıldı. Kerman bittikten ve `--qc` motorundan SONRA, Celaya'dan ÖNCE:
+1. **Bültenler + vital_signs:** `python tools/bulletin.py` ile yeni bölgelerin bültenlerini üret (Kashmar, Kerman, Tianjin, Gorgan, Pekalongan), indeks; `vital_signs.json`'u atlas.json'dan güncelle (fastest = güvenilir bölgelerden). `python -m pytest -q` geçmeli.
+2. **Site son QA (yarım saat):** canlı sitede her sayfa konsol 0 hata, kırık link 0 (atlas, science, data, game); bulgu + düzeltme `docs/qa/PC2.md` (web/ dosyalarında yalnız açık hata düzeltmesi).
