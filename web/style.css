@@ -217,3 +217,4 @@ details.fold>summary:focus-visible{outline:3px solid #9cc3ff;outline-offset:2px}
 .steps5{padding-left:1.3em}.steps5 li{margin:.8em 0;color:#2d3748}
 .steps5 pre{background:var(--bg2);border:1px solid var(--line);border-radius:4px;padding:10px 12px;font:12.5px/1.5 var(--mono);overflow-x:auto;margin:.6em 0 0}
 .learn li{margin:.45em 0;color:#2d3748}
+.note.fullyear img{display:block;width:100%;margin-top:10px;border:1px solid var(--line);border-radius:3px;background:#fff}

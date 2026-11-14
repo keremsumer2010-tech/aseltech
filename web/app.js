@@ -210,6 +210,15 @@ function riskList(){
   ol.querySelectorAll('li').forEach(li => li.addEventListener('click', () => { const c = top[+li.dataset.i].geometry.coordinates; map.flyTo({center: c[Math.floor(c.length / 2)], zoom: 12, duration: 1500}); }));
 }
 
+/* ---------- Chapter 3: full-year box (mixed series, data/central_valley_fullyear) ---------- */
+async function fullYear(){
+  const d = await J('data/central_valley_fullyear/decomp.json'); const p = d?.point_decompositions?.[0];
+  if (!p || d.status !== 'ok') return;
+  setK('fy.name', p.name); setK('fy.end', Math.abs(p.end_disp_cm).toFixed(1)); setK('fy.perm', Math.abs(p.permanent_cm_per_yr).toFixed(1)); setK('fy.swing', p.seasonal_peak_to_peak_cm.toFixed(1));
+  const im = document.getElementById('fyImg'); im.src = ROOT + im.dataset.src;
+  document.getElementById('fyBox').hidden = false;
+}
+
 /* ---------- Chapter 2: HH vs HV (Fens fields) ---------- */
 function polChart(){
   const f = D.fens; if (!f?.fields?.length) return;
@@ -252,4 +261,4 @@ function extras(){
   });
 }
 
-load().then(() => { hero(); storyMap(); compare(); cvControls(); gnssTable(); riskList(); sinkList(); ringChart(); polChart(); extras(); findings(); });
+load().then(() => { hero(); storyMap(); compare(); cvControls(); gnssTable(); riskList(); sinkList(); ringChart(); polChart(); fullYear(); extras(); findings(); });
