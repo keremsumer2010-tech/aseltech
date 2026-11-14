@@ -134,7 +134,9 @@ Kapsam: `web/index.html` (`1–163`). Genel İngilizce tonu akıcı ve tutarlı 
 
 ---
 
-## 11. Son Senkronizasyon & PC5 (`uncertainty.md` / `PC5.md`) Uyumu
+## 11. Son Senkronizasyon, `web3d/` Düzeltmeleri & `Q21` Çift-Yörünge Uyumu
 
+- **`web3d/generate_3d_data.py` & `web3d/surfaces.json` (`13×13` NaN-farkındalıklı blok medyanı):** Eski `scipy.ndimage.median_filter(..., size=5)` çağrısı `NaN` pikselleri dikkate almadığı ve tek-piksel uç sıçramalar (`−10.78 cm` CV, `−6.59 cm` Karapınar) ürettiği için `cumulative.py` (`BLOCK_PX=13`, `BLOCK_MIN_VALID=0.5`, `BLOCK_MAX_STD=2.0`) ölçütüne birebir uyan `nan_tile_median` eklendi; yeniden üretilen `web3d/surfaces.json` (`508,115 B` / `496.2 KB`, sıfır `NaN`) artık `−7.79 cm` (CV) ve `−5.93 cm` (Karapınar) yüzey minimumlarıyla `summary.json` başlık değerleriyle (`−7.8 cm` / `−5.9 cm`) tam uyumlu.
+- **`web3d/app.js` & `web3d/index.html`:** Referans/tepe pinleri ile 29 Karapınar obruk derinlik sütununun zaman kaydırıcısı veya dikey abartma değiştirildiğinde statik kalmayıp yerel yüzey yüksekliğini (`sampleSurfaceWorldY`) dinamik izlemesi sağlandı; ilk yükleme etiketleri (`-6 cm` / `+6 cm`) ve epok kaydırıcısı (`max="7" value="7"`) Central Valley verisiyle senkronize edilip alt bilgiye `7-Slide Deck` ve `Policy Game` bağlantıları eklendi.
 - **`docs/story/pitch.md:30`:** Son kalan `"Aquifer Manager"` ifadesi `"Valley Under Pressure"` olarak düzeltildi; tüm `docs/story/` dokümanlarında eski oyun adı **0** adede indirildi.
-- **`docs/story/judge_faq.md` (#3, #4, #8):** PC5 (`efecb4a`) tarafından üretilen `docs/story/uncertainty.md` ve `docs/qa/PC5.md` bulgularıyla (yerel çift RMS `0.66 cm`, zincir belirsizliği `1.74–2.87 cm`, SNR `2.7×–4.5×`, `2.93–17.26 cm` iyonosfer düzeltmesi, 5 aktif havza GNSS istasyonu ortalama RMSE `0.86 cm` / `r = 0.81` ve tüm `21` noktada sıfır yarı-döngü sıçrama) uyumlu hale getirildi.
+- **`docs/story/judge_faq.md` (#2, #3, #4, #8), `pitch.md`, `slides.html`, `project_page.md`:** PC5 `uncertainty.md` (`0.66 cm` yerel çift RMS, `1.74–2.87 cm` zincir belirsizliği, SNR `2.7×–4.5×`, 5 aktif havza GNSS ortalama `0.86 cm` RMSE / `r = 0.81`) ve PC3 `Q21` (`bfc4f66`: Track 34 yükselen ↔ Track 114 alçalan, `6,719` 1 km blok, `r = 0.49` / yerel `0.60`, `|d| > 3 cm` alanlarda `%85` işaret uyumu, `< −6 cm` bölgelerde Track 114 medyanı `−5.7 cm`) bulgularıyla uyumlu hale getirildi.

@@ -18,6 +18,7 @@
 | `{GNSS_N_STATIONS}` | `data/central_valley/validation.json` | `10` continuous NGL stations (`IGS20/NA` Up) |
 | `{GNSS_RMSE_CM}` | `data/central_valley/validation.json` | `1.33 cm` mean RMSE (`1.00 cm` median; `0.64 cm` best at `P566`) |
 | `{GNSS_CORR}` | `data/central_valley/validation.json` | Up to `r = 0.90` (`0.8957` at `CAHA`, `0.8955` at `HANF`; `0.38` 10-station mean) |
+| `{DUAL_ORBIT}` | `analysis/out/cv_p34_vs_p114.json`, `docs/qa/PC3.md` | Track 34 Asc. ↔ Track 114 Desc. (`6,719` 1 km blocks): `r = 0.49` (`0.60` local `< 15 km`), **`85%` sign agreement** (`\|d\| > 3 cm`), `−5.7 cm` T114 median where T34 `< −6 cm` |
 | `{TOP_CANAL_NAME}` / Slope | `data/central_valley/assets.json` | `Tulare Irrigation District Canal` (`57.01 mm/km`, `2.17 km`) & `California Aqueduct` (`49.12 mm/km`, `102.8 km`); `81/645` high-risk segments |
 | `{N_SINKHOLES}` | `data/karapinar/sinkholes.geojson`, `assets.json` | `29` verified Karapınar sinkholes (`0–1 km` ring mean **`−4.15 cm` LOS**, `6.4×` vs `>5 km` background; `19.74 mm/km` near `Köken Obruğu-II`) |
 
@@ -58,7 +59,7 @@
 ### 2:05 – 2:40 · How We Know (Physics, GNSS Validation & Scientific Honesty)
 - **[ON SCREEN — Scene 4 (`GNSS vs NISAR` summary & Scene 6 `How we built it` SVG diagram)]:** Show real daily vertical GNSS station traces from Nevada Geodetic Laboratory alongside NISAR pixel extractions.
 - **[SPEAKER]:**
-  "Every step follows open physical principles: L-band 24-centimetre radar penetrates canopy cover; our pipeline converts unwrapped phase via `−λ / 4π` using each granule's exact center wavelength, masks decoherent water (`coherence >= 0.3`), strips unwrapping glitches, removes the ionospheric screen and topographic plane, and checks itself against **10 continuous GNSS stations** across the valley — achieving **`1.00 cm` median RMSE** (`1.33 cm` mean RMSE, down to `0.64 cm` at `P566`) and **`r = 0.90` correlation** at peak stations **`CAHA`** and **`HANF`**.
+  "Every step follows open physical principles: L-band 24-centimetre radar penetrates canopy cover; our pipeline converts unwrapped phase via `−λ / 4π` using each granule's exact center wavelength, masks decoherent water (`coherence >= 0.3`), strips unwrapping glitches, removes the ionospheric screen and topographic plane, and verifies itself two independent ways: first against **10 continuous GNSS stations** across the valley (`1.00 cm` median RMSE, **`r = 0.90`** at **`CAHA`** and **`HANF`**), and second across **two independent NISAR orbits** (**Track 34 ascending ↔ Track 114 descending**): where one orbit sees more than 6 cm of sinking, the other sees a **`−5.7 cm` median**, with **`85%` sign agreement** across strongly moving areas (`r = 0.60` local).
   And we are explicit about limits: NISAR science data are currently marked **provisional** — sensor calibration is performed by NASA–JPL and ISRO, not our team."
 
 ### 2:40 – 3:00 · Road Ahead & Close
@@ -132,10 +133,10 @@ NISAR Pulse: Follow the Water. Provisional NISAR L2 GUNW data (NASA-JPL / ISRO c
 - **Critical Infrastructure:** Out of `645` evaluated corridors, `81` are high-risk, led by **Tulare Irrigation District Canal** (`57.01 mm/km`) and **California Aqueduct** (`49.12 mm/km` over `102.8 km`).
 - **Interactive UX:** Click any valley coordinate for cumulative displacement history in plain language (`web/` & 3D `web3d/`).
 
-### Slide 4 · How We Know: Independent GNSS Validation
+### Slide 4 · How We Know: Independent GNSS & Dual-Orbit Validation
 - **Ground Truth:** Daily `IGS20/NA` vertical time series from **10 Nevada Geodetic Laboratory stations** inside the NISAR frame.
-- **Method:** `3×3 px` pixel extraction projected from LOS to vertical via per-pixel incidence angle (`LOS / cos(θ)`).
-- **Agreement:** **1.00 cm median RMSE** (`1.33 cm` mean RMSE across 10 stations; `0.64 cm` RMSE at `P566`), with **`r = 0.90` correlation** at deforming valley sites `CAHA` (`0.75 cm` RMSE) and `HANF` (`0.83 cm` RMSE).
+- **Method & Agreement:** `3×3 px` pixel extraction projected from LOS to vertical via `LOS / cos(θ)` achieves **1.00 cm median RMSE** (`1.33 cm` mean RMSE across 10 stations; `0.64 cm` RMSE at `P566`), with **`r = 0.90` correlation** at deforming valley sites `CAHA` (`0.75 cm` RMSE) and `HANF` (`0.83 cm` RMSE).
+- **Dual-Orbit Cross-Check (`Q21`):** Independent **Track 34 Ascending ↔ Track 114 Descending** (`6,719` 1 km blocks, `2026-06-28 → 2026-10-14`) reach **`85%` sign agreement** across `|d| > 3 cm` zones (`r = 0.49` overall / `0.60` local; `−5.7 cm` Track 114 median where Track 34 `< −6 cm`).
 
 ### Slide 5 · Global Transferability: Karapınar Basin & Sinkholes (Türkiye)
 - **Observation (`2026-06-26 → 2026-10-12`):** `8` provisional descending Track 7 NISAR pairs measure up to **`−5.9 cm` LOS** (`~−8.0 cm` vertical est. at `42.0°`, `−20.0 cm/yr` summer rate est.) **`2 km W of Karapınar`**.
