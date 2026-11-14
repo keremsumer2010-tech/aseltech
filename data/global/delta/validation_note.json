@@ -30,5 +30,7 @@
     "city_measured_by_nisar_before": false,
     "evidence": "No peer-reviewed NISAR Delta subsidence paper found as of 2026-11-14.",
     "atlas_first_claim_note": "Multi-basin standardized atlas phrasing must use qualified (to our knowledge) only after excluding Mexico City from any individual-first claim."
-  }
+  },
+  "quality": "provisional",
+  "quality_note": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team."
 }

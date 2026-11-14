@@ -31,5 +31,7 @@
     "city_measured_by_nisar_before": true,
     "evidence": "NASA-JPL already released preliminary NISAR L-band InSAR subsidence results for Mexico City (Oct 2025-Jan 2026 acquisitions, >2 cm/month). Cannot claim first NISAR measurement.",
     "atlas_first_claim_note": "Multi-basin standardized atlas phrasing must use qualified (to our knowledge) only after excluding Mexico City from any individual-first claim."
-  }
+  },
+  "quality": "provisional",
+  "quality_note": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team."
 }
