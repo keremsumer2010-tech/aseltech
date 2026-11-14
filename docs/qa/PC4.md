@@ -1,6 +1,6 @@
 # PC4 QA Raporu
 
-Tarih: `2026-11-14` (`13:30 TR`) · Kapsam: PC4 çıktıları (`data/uk/`, `data/karapinar/sinkholes.geojson`, `docs/story/`, `web3d/`)
+Tarih: `2026-11-14` (`13:36 TR`) · Kapsam: PC4 çıktıları (`data/uk/`, `data/karapinar/sinkholes.geojson`, `docs/story/`, `web3d/`)
 
 ---
 
@@ -30,7 +30,7 @@ Tarih: `2026-11-14` (`13:30 TR`) · Kapsam: PC4 çıktıları (`data/uk/`, `data
 |---|---|---|
 | Kaynak doğrulama | `docs/story/sources.md`, `docs/story/calibration_note.md` | **GEÇTİ** — canlı **HTTP 200** doğrulandı; alıntılanan her sayı kaynak dokümanda birebir doğrulandı |
 | Zorunlu dipnot | `calibration_note.md`, `sources.md`, `project_page.md` | **GEÇTİ** — *"NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team."* tam metni yer alıyor; `BETA (<2026-06-17)` / `PROVISIONAL (P05023)` / `VALIDATED (>=2026-10-21)` ASF dokümanlarıyla doğrulandı |
-| Taslak & Kurallar (Q11, Q12) | `docs/story/project_page.md`, `docs/story/submission_rules.md` | **GEÇTİ** — doğrulanmış depo URL'si (`https://github.com/keremsumer2010-tech/aseltech`) ve `web3d/` 4-çift sonuçları işlendi; `data/central_valley/summary.json` gelene kadar tam zincir için `{CV_MAX_CM}` / `{CV_RATE_CM_YR}` yer tutucu korundu (`K-2`); `Space_Apps_2022_Project_Submission_Guide.pdf` HTTP 200 doğrulandı ve `www.spaceappschallenge.org/resources/participant-faq/` için TLS hatası dürüstçe raporlandı (`E-06`) |
+| Taslak & Kurallar (Q11, Q12) | `docs/story/project_page.md`, `docs/story/submission_rules.md` | **GEÇTİ** — doğrulanmış depo URL'si (`https://github.com/keremsumer2010-tech/aseltech`) ve `data/central_valley/summary.json` kaynaklı 7-çift bulguları (`2026-06-28` → `2026-10-14`, `108` gün, 1 km blok medyan tepe `−7.8 cm` LOS / `−10.1 cm` dikey tahmini `39.1°`, `6 km N of Terra Bella`, doğrusal yaz mevsimi tahmini `−26.4 cm/yıl`) işlendi; yalnızca `{PUBLIC_GITHUB_PAGES_URL}` ve `{PUBLIC_DEMO_LINK_30S_VIDEO_OR_7_SLIDES}` yayın yer tutucuları bırakıldı; `Space_Apps_2022_Project_Submission_Guide.pdf` HTTP 200 doğrulandı ve `www.spaceappschallenge.org/resources/participant-faq/` için TLS hatası dürüstçe raporlandı (`E-06`) |
 
 ---
 
@@ -38,8 +38,8 @@ Tarih: `2026-11-14` (`13:30 TR`) · Kapsam: PC4 çıktıları (`data/uk/`, `data
 
 | Kontrol | Detay | Sonuç |
 |---|---|---|
-| Veri üretimi (`web3d/generate_3d_data.py` -> `web3d/surfaces.json`) | `252,132 B` (`~246.2 KB`), valid UTF-8 JSON, `NaN` yok; Central Valley (`80×96`, `2026-06-28` → `2026-08-27`, `4` kesintisiz çift, `vmin=-6.0`, `vmax=+6.0`, `p2=-4.14`, `p50=-0.26`, `p98=+3.56`, 400 m medyan tepe `−15.4 cm` LOS) & Karapınar (`48×80`, `2026-09-18` → `2026-09-30`, `vmin=-3.0`, `vmax=+3.0`, `p2=-2.12`, `p50=-0.78`, `p98=+0.79` + `29` obruk) | **GEÇTİ** — `analysis/insar.py` ve `cumulative.py` fonksiyonları yeniden kullanıldı, `analysis/` / `data/central_valley/` değiştirilmedi |
-| Ön yüz & JS söz dizimi (`web3d/index.html`, `style.css`, `app.js`) | `node --check web3d/app.js` + lokal HTTP sunucu (`/web3d/`, `style.css`, `app.js`, `surfaces.json`) **HTTP 200** + Three.js `@0.160.0` & `OrbitControls.js` CDN **HTTP 200** | **GEÇTİ** — dikey abartma `10,000×–150,000×` (varsayılan `50,000×`), `RdBu` renk skalası ve zorunlu `provisional` dipnotu mevcut |
+| Veri üretimi (`web3d/generate_3d_data.py` -> `web3d/surfaces.json`) | `371,298 B` (`362.6 KB`), valid UTF-8 JSON, `NaN` yok; Central Valley (`80×96` × `8` epok, `2026-06-28` → `2026-10-14`, `7` çift, `vmin=-6.0`, `vmax=+6.0`, `p2=-5.83`, `p50=-0.51`, `p98=+3.26`, tepe `−7.8 cm` LOS `6 km N of Terra Bella`, `%62.9` geçerli) & Karapınar (`48×80` × `2` epok, `2026-09-18` → `2026-09-30`, `vmin=-3.0`, `vmax=+3.0`, `p2=-2.12`, `p50=-0.78`, `p98=+0.79` + `29` obruk) | **GEÇTİ** — `analysis/out/central_valley_cum_stack.npz` + `data/central_valley/summary.json` ve `analysis/cumulative.py` / `insar.py` fonksiyonları yeniden kullanıldı; `analysis/` / `data/central_valley/` değiştirilmedi |
+| Ön yüz & JS söz dizimi (`web3d/index.html`, `style.css`, `app.js`) | `node --check web3d/app.js` + lokal HTTP sunucu (`/web3d/`, `style.css`, `app.js`, `surfaces.json`) **HTTP 200** + Three.js `@0.160.0` & `OrbitControls.js` CDN **HTTP 200** | **GEÇTİ** — dikey abartma `10,000×–150,000×` (varsayılan `50,000×`), `RdBu` renk skalası, `Peak LOS Subsidence` etiketi ve zorunlu `provisional` dipnotu mevcut |
 
 ---
 

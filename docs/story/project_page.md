@@ -1,6 +1,6 @@
 # NASA Space Apps Project Page Draft (`Q11`)
 
-> **Status:** Ready-to-paste English draft aligned with the official Space Apps project submission form fields. Bracketed placeholders (`{...}`) mark values awaiting upstream pipeline outputs (e.g., `data/central_valley/summary.json`, final deployment URL, and demo link) and must be populated directly from generated files before final submission—never guessed or hard-coded.
+> **Status:** Ready-to-paste English draft aligned with the official Space Apps project submission form fields. Quantitative Central Valley, Karapınar, and UK Fens metrics come directly from repository data files (`data/central_valley/summary.json`, `web3d/surfaces.json`, `data/uk/meta.json`); bracketed URLs (`{...}`) mark public deployment and demo links to populate after final publishing.
 
 ---
 
@@ -53,8 +53,7 @@ Our web experience guides decision-makers and citizens through four synchronized
 
 | Site / Metric | Value | Period / Maturity | Source |
 |---|---|---|---|
-| **Central Valley 4-Pair Gap-Free Stack (`web3d/surfaces.json`)** | p2 `−4.14`, median `−0.26`, p98 `+3.56` cm LOS; 400 m median peak `−15.4 cm` LOS (`−19.7 cm` vert. est. at `38.6°` inc., `4 km SE of Woodlake`, `71.0%` valid) | `2026-06-28` to `2026-08-27` (`60` days, `4` pairs, `provisional`, `P05023`, iono + plane deramp) | `web3d/surfaces.json` / NISAR GUNW |
-| **Central Valley Full-Chain Summary (`summary.json`)** | `{CV_MAX_CM}` cm / `{CV_RATE_CM_YR}` cm/yr *(awaits `2026-08-27_2026-09-08` pair to close gap)* | `{CV_PERIOD}` (`provisional`) | `data/central_valley/summary.json` |
+| **Central Valley 7-Pair Cumulative Stack (`summary.json` & `web3d/surfaces.json`)** | Peak 1 km block median `−7.8 cm` LOS (`−10.1 cm` vert. est. at `39.1°` inc., `6 km N of Terra Bella`); linear irrigation-season estimate `−26.4 cm/yr` *(overstates net annual rate)*; stack percentiles p2 `−5.83`, p50 `−0.51`, p98 `+3.26` cm LOS (`62.9%` valid) | `2026-06-28` to `2026-10-14` (`108` days, `7` pairs, `provisional`, `P05023`, iono + plane + DEM deramp) | `data/central_valley/summary.json`, `web3d/surfaces.json` |
 | **Karapınar 12-Day Checkpoint (`λ = 0.24393 m`)** | With iono screen + deramp: p2 `−2.12`, median `−0.78`, p98 `+0.79` cm LOS (`41.3%` valid); unscreened check: p2 `−2.81`, median `−0.67`, p98 `+2.43` cm | `2026-09-18` to `2026-09-30` (`provisional`, `P05023`) | `web3d/surfaces.json`, `status/PC3.md` |
 | **UK Fens All-Weather Optical vs. Radar Pair** | 98%+ cloud optical vs. 100% valid radar preview (`700×500`) | `2026-10-20` (`preview`, `P05023`) | `data/uk/meta.json` |
 | **Verified Karapınar Sinkhole Inventory** | 29 mapped inside `[33.3, 37.6, 33.8, 37.9]` (from 104 regional inventory) | Field surveys (`1972–2014`) | `data/karapinar/sinkholes.geojson` |
