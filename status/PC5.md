@@ -1,8 +1,15 @@
 # PC5 Durum Raporu
 
-- **Durum:** çalışıyor — Atlas §3: tüm atlas şehirleri için `data/global/<şehir>/uncertainty/` üretimi ve doğrulaması (`analysis/pc5/uncertainty_map.py`)
+- **Durum:** bitti — Atlas §1–§3 tamamlandı (9 bölge belirsizlik haritaları + `atlas_validation.md` + `validation_note.json`). Yeni atlas şehirleri (`eloy`, `rafsanjan`, vb.) `data/global/` altına indikçe belirsizlik + doğrulama eklenecek.
 - **Kimlik:** M3hmeT1888 · Antigravity (Gemini) · PC5
-- **Güncelleme:** 2026-11-14 22:08 TR
+- **Güncelleme:** 2026-11-14 22:13 TR
+
+## Atlas §3 — 9 Atlas Bölgesi Belirsizlik Haritaları (`22:13 TR`)
+- `analysis/pc5/uncertainty_map.py` (`--meta-file` desteği eklendi) çalıştırılarak mevcut 9 atlas bölgesinin tamamı için `data/global/<şehir>/uncertainty/{sigma_cm.png,meta.json}` üretildi (`L = 208`, `coh >= 0.3`, `quality: "provisional"`):
+  - `beijing` (`9` çift, medyan `0.364 cm`, p90 `0.548 cm`, geçerli `%73.2`), `central_valley` (`7` çift, `0.294 cm`), `delta` (`9` çift, `0.347 cm`), `isfahan` (`9` çift, `0.347 cm`), `jakarta` (`8` çift, `0.332 cm`, `%3.0`), `karapinar` (`8` çift, `0.326 cm`), `konya_plain` (`8` çift, `0.332 cm`), `mexico_city` (`8` çift, `0.343 cm`, `%64.7`), `tehran` (`9` çift, `0.346 cm`).
+- **Doğrulama:** `pytest analysis/pc5 -q` → `22 passed in 28.62s`; 9 `meta.json` parse edildi, `sigma_cm.png` görselleri açılarak kontrol edildi (`docs/qa/PC5.md` §9).
+- **Mehmet'e Onay Notu (`docs/story/key_findings_public.md`):** `key_findings_public.md` Mehmet tarafından güncellendiği için doğrudan değiştirilmedi. İstersen 9. madde olarak şu sade atlas özeti eklenebilir: *"9. **Global Atlas Measures Subsidence Across Nine Basins Using One Method:** Using provisional NISAR observations between June and October 2026, our open-source pipeline measured up to 9.6 cm of line-of-sight sinking in the Konya Plain, 7.8 cm in California's Central Valley, 7.0 cm in Mexico City, and 2.5 cm in Isfahan, with per-pixel measurement noise near ±0.29–0.36 cm. (`data/global/atlas.json`, `docs/story/atlas_validation.md`)"*
+- **AI:** Gemini → `analysis/pc5/uncertainty_map.py`, `data/global/*/uncertainty/`, `docs/qa/PC5.md` §9
 
 ## `16:15 B1`, `16:25 Kaynaklar Entegrasyonu`, `Q08` ve `SONSUZ DÖNGÜ` Tur 2 (`16:48 TR`)
 - **16:15 B1 — Çapraz Sensör (`cross_sensor.py`, `cross_sensor.json`, `docs/story/cross_sensor.md`, `pc5_cross_sensor.png`):**

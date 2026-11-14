@@ -302,15 +302,19 @@ def generate_site_uncertainty(
     coh_thr: float = DEFAULT_COH_THR,
     subset_dir: Path | None = None,
     out_dir: Path | None = None,
+    meta_file: Path | None = None,
 ) -> dict:
     """Compute sigma_cm.png and meta.json for a site and write outputs cleanly."""
-    meta_file = ROOT / "data" / site / "meta.json"
+    if meta_file is None:
+        cand_std = ROOT / "data" / site / "meta.json"
+        cand_global = ROOT / "data" / "global" / site / "meta.json"
+        meta_file = cand_std if cand_std.exists() else cand_global
     if site in SITE_BBOX:
         bbox = list(SITE_BBOX[site])
     elif meta_file.exists():
         bbox = list(json.loads(meta_file.read_text(encoding="utf-8"))["bbox"])
     else:
-        raise ValueError(f"Unknown site '{site}'. Known: {list(SITE_BBOX)}")
+        raise ValueError(f"Unknown site '{site}' and meta.json not found at {meta_file}")
 
     used, notes = load_site_provisional_chain(site, subset_dir=subset_dir)
     d0 = used[0][3]
@@ -422,11 +426,12 @@ def generate_site_uncertainty(
 
 def main() -> None:
     ap = argparse.ArgumentParser(description="Generate per-pixel Cramér-Rao uncertainty map.")
-    ap.add_argument("site", choices=sorted(SITE_BBOX.keys()))
+    ap.add_argument("site", help="Site identifier (e.g. central_valley, karapinar, beijing)")
     ap.add_argument("--looks", type=float, default=DEFAULT_LOOKS, help="Effective looks L (default 208)")
     ap.add_argument("--thr", type=float, default=DEFAULT_COH_THR, help="Coherence mask threshold (default 0.3)")
     ap.add_argument("--subset-dir", type=Path, default=None)
     ap.add_argument("--out-dir", type=Path, default=None)
+    ap.add_argument("--meta-file", type=Path, default=None)
     args = ap.parse_args()
 
     meta = generate_site_uncertainty(
@@ -435,6 +440,7 @@ def main() -> None:
         coh_thr=args.thr,
         subset_dir=args.subset_dir,
         out_dir=args.out_dir,
+        meta_file=args.meta_file,
     )
     print(
         f"[{meta['site']}] pairs={meta['n_pairs']} L={meta['effective_looks_L']:g} "

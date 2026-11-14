@@ -215,3 +215,23 @@ PC2 **Q07** kapsamında tam yıl Central Valley zincirini (`2025-11-24 → 2026-
 4. **PC10 İçin Önerilen Düzeltme ve Paralel Uyarı (`Tehran`, `Beijing`):**
    - **Mexico City:** `bbox` değerini `±0.25°` standardına genişlet (`[-99.28, 19.15, -98.78, 19.65]`) ve `--ref-lonlat` ile havza dışındaki yüksek koherensli volkanik kaya zeminine (ör. güneybatı Tlalpan/Ajusco `-99.18, 19.27` veya batı Sierra de las Cruces `-99.22, 19.40`) sabitle.
    - **Aynı sorun `tehran` ve `beijing` için de saptandı:** `tehran` birincil referansı `(51.19991, 35.5448)` Şehriyar çökme konisinin içinde (`-3.5 cm` vs `alt_reference -7.3 cm`, oran `1.09`), `beijing` birincil referansı `(116.70834, 39.93371)` Tongzhou çökme hunisinin içinde (`-1.4 cm` vs `alt_reference -7.6 cm`, oran `4.43`). Üç şehir de havza dışı `--ref-lonlat` ile yeniden çalıştırılana kadar `confidence = "low"` (`indicative only`) tutulmalı ve başlık sayıları basın özetine alınmamalıdır.
+
+---
+
+## 9. Atlas §3 — Tüm Atlas Şehirleri İçin Cramér–Rao Belirsizlik Haritaları (`22:12 TR`)
+
+`analysis/pc5/uncertainty_map.py` (`--meta-file` desteği eklendi) ile mevcut 9 atlas bölgesinin tamamı için `data/global/<şehir>/uncertainty/{sigma_cm.png,meta.json}` üretildi (`L = 208`, `coh >= 0.3`, `quality: "provisional"`, atmosferik gecikme hariç Cramér–Rao faz gürültüsü alt sınırı):
+
+| Bölge (`data/global/<şehir>/`) | Çift (`N`) | Medyan `σ` (cm) | p90 `σ` (cm) | Maks `σ` (cm) | Geçerli Piksel (%) |
+|---|---:|---:|---:|---:|---:|
+| `beijing` | 9 | 0.364 | 0.548 | 0.791 | 73.2% |
+| `central_valley` | 7 | 0.294 | 0.471 | 0.763 | 64.7% |
+| `delta` | 9 | 0.347 | 0.542 | 0.799 | 43.8% |
+| `isfahan` | 9 | 0.347 | 0.559 | 0.820 | 33.6% |
+| `jakarta` | 8 | 0.332 | 0.562 | 0.762 | 3.0% |
+| `karapinar` | 8 | 0.326 | 0.548 | 0.765 | 15.4% |
+| `konya_plain` | 8 | 0.332 | 0.535 | 0.790 | 12.4% |
+| `mexico_city` | 8 | 0.343 | 0.528 | 0.788 | 64.7% |
+| `tehran` | 9 | 0.346 | 0.571 | 0.826 | 36.5% |
+
+- **Doğrulama:** `C:\Users\celik\AppData\Local\Programs\Python\Python312\python.exe -m pytest analysis/pc5 -q` → `22 passed in 28.62s`. Tüm 9 `meta.json` ayrıştırıldı; `isfahan`, `mexico_city`, `jakarta` `sigma_cm.png` dosyaları açılarak saydamlık ve konum hizalaması görsel olarak kontrol edildi.
