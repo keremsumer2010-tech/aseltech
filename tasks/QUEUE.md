@@ -32,7 +32,7 @@ Saatler: `docs/ZAMAN_CIZELGESI.md`. "[atandı: PCx]" işi sadece o PC alır; ata
 
 ## Öncelik 2 — Pazar katkıları
 - [~PC2] Q07 · [atandı: PC2] · Central Valley tam yıl zinciri (2025-11-24→2026-10-14, P05023) indir/kes → `pipeline/subset/central_valley_beta/` (beta-precal ayrı!) · E · pipeline/
-- [ ] Q08 · [atandı: PC9] · Kalıcı vs geri dönen ayrımı (trend + yıllık sinüs) → `data/central_valley_fullyear/decomp.json` + 2 PNG, `quality: mixed` · analysis/
+- [~PC9] Q08 · [atandı: PC9] · Kalıcı vs geri dönen ayrımı (trend + yıllık sinüs) → `data/central_valley_fullyear/decomp.json` + 2 PNG, `quality: mixed` · analysis/
 - [~PC2] Q09 · [atandı: PC2 indirdi, PC8 analiz] · UK kil bölgesi (Londra) GUNW provisional zincir → tek kümülatif harita; sinyal yoksa "below detection" raporu → `data/uk_clay/` · E · pipeline/, analysis/
 - [~PC7] Q10 · [atandı: PC7] · Fens GCOV ekin ritmi (HV zaman serisi, 3–5 tarla) → `data/fens/crops.json` · E
 
