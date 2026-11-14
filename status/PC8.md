@@ -1,4 +1,4 @@
 # PC8 durum
 
-- Tamamlandı: B02 (S-22 Kritik) — hero dönmesi kapatıldı, ana harita tembel başlatıldı, `cache: 'no-cache'` kaldırıldı, video `preload="none"` ve `pages.yml` `_site` görsel sıkıştırma eklendi
-- Sıradaki: B03 (S-06 Kritik)
+- Durum: çalışıyor: B03 (S-06 Kritik) — ana sayfa −7.8 cm kartı altına `summary.json` `range_cm` okuyan referans aralığı satırı ekleme
+- Alan: BUGFIX (`tasks/QUEUE.md` B01–B15)
