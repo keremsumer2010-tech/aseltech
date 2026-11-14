@@ -92,3 +92,32 @@ Yazma alanına eklendi: `pipeline/subset/opera_disp/`, `data/central_valley_s1/`
 ---
 # 20:50 PC1 — BÜYÜK GÖREV: `docs/ATLAS_PLANI.md`
 Şu anki küçük işini bitir, sonra SORMADAN `docs/ATLAS_PLANI.md` içindeki kendi bölümüne geç ve yukarıdan aşağı yap. Teslime kadar durma; bitince ASLA BOŞ KALMA döngüsü (hata ayıklama dahil).
+
+## 🔴 YENİ BÜYÜK GÖREV (Cmt 22:50, PC1) — PC5 = PROJENİN BAŞ BİLİMCİSİ (Chief Scientist)
+Bu senin kendi alanın; başkasının işini devralmıyorsun. **Teslimde jüriye giden her sayı senden geçer.** Bir sayı yanlışsa proje düşer; bu sorumluluk sende. Diğer ajanlar senin kararına uyar (onaylanmayan sayı = "preliminary" veya çıkarılır).
+
+### 1. Sayı Sicili (Numbers Registry) — en önemli iş, hemen başla
+- `analysis/pc5/numbers_registry.py`: `web/*.html`, `web/*.js`, `docs/story/*.md`, `docs/story/slides.html`, `docs/story/technical_note.html`, `docs/story/submission_form.md`, `docs/story/press_summary.md` içindeki tüm başlık sayılarını (cm, cm/100d, cm/yr, km³, km², %, r, RMSE, kişi sayısı) tara.
+- Her sayıyı kaynağı olan veri dosyasıyla eşle (`data/*/summary.json`, `decomp.json`, `storage_loss.json`, `assets_prob.json`, `data/global/atlas.json`, `exposure`, `validation`). Çıktı:
+  - `data/numbers_registry.json`: `{id, value, unit, meaning, source_file, source_key, quality, verdict: approved|preliminary|rejected, used_in:[dosya:satır], note}`
+  - `docs/story/numbers_registry.md`: okunur tablo (jüri sorusu gelirse "bu sayı nereden?" cevabı).
+- **Uyumsuzluk raporu** `docs/qa/PC5.md` §10: "dosya:satır → yazılan değer → veri dosyasındaki değer → kimin dosyası → düzeltme". Aynı sayı farklı dosyalarda farklıysa (ör. −7.8 / −7.2 / −6.2) hangisi doğru, karar sen. Sahiplerine (PC2/4/6/7/8/9/10/11) bu bölümden iş çıkar; kendin onların dosyasını değiştirme.
+- Test: `analysis/pc5/test_numbers_registry.py` (ağsız). Script her 1 saatte yeniden çalışır; yeni sayı gelince sicil büyür.
+
+### 2. Tespit edilebilirlik (Detectability) — atlasın bilimsel omurgası
+- Her atlas şehri için senin `uncertainty/meta.json` σ değerlerin + PC7'nin `data/global/robustness.json` aralığı (geldiyse) ile: `rate ± σ_toplam`, sinyal/gürültü `|rate|/σ`, `detectable: true` (≥ 2σ, %95).
+- **NISAR'ın 108 günde ölçebildiği en küçük çökme hızı** (minimum detectable rate, cm/100d) — bölge bazında ve genel. Bu jüriye "NISAR'ın gücü" cümlesini verir.
+- Çıktı: `data/global/detectability.json`, `docs/story/detectability.md` (≤1 sayfa, sade İngilizce), `docs/story/media/pc5_detectability.png` (şehir başına hız ± 2σ çubuğu, eşik çizgisi). **PC10:** `confidence` için `detectable` alanını okur (false → low).
+
+### 3. Atlas bilimsel kararı — her şehir için
+- Yeni gelen her şehirde (PC2, PC7, PC9, PC10, PC11): belirsizlik haritası + `validation_note.json` + literatür kıyası + detectability → karar: **reliable / indicative / reject**. Reject = atlastan çıkar (PC10'a not). Gerekçe `atlas_validation.md`'de tek satır.
+- Sıralamanın ilk 5'i için "rank stability" yorumu (PC7 robustness ile).
+
+### 4. Bilimsel onay belgesi — Pazar 19:00 (veri dondurmadan 1 saat önce)
+- `docs/qa/SCIENCE_SIGNOFF.md`: teslimde kullanılacak 10 başlık sayısının son listesi (değer, belirsizlik, kalite etiketi, kaynak), bilinen sınırlamalar (LOS, provisional, iyonosfer düzeltmesi yok, 108 gün), kalibrasyon cümlesi, "to our knowledge" ifadelerinin dayanağı. Sonuna: "Science sign-off: PC5, <saat>". Bu belge yoksa PC8 teslim formunu kapatmaz.
+
+### 5. Döngü (bitince durma)
+Her saat: `git pull` → sicili yeniden çalıştır → yeni uyumsuzlukları §10'a yaz → yeni şehirlere karar ver → detectability güncelle. Arada `python -m pytest -q`.
+
+**Yazma alanın (ek):** `analysis/pc5/numbers_registry.py`, `analysis/pc5/test_numbers_registry.py`, `analysis/pc5/detectability.py` (+ test), `data/numbers_registry.json`, `data/global/detectability.json`, `data/global/<şehir>/uncertainty/`, `data/global/<şehir>/validation_note.json`, `docs/story/numbers_registry.md`, `docs/story/detectability.md`, `docs/story/atlas_validation.md`, `docs/story/media/pc5_*.png`, `docs/qa/PC5.md`, `docs/qa/SCIENCE_SIGNOFF.md`, `status/PC5.md`.
+Kurallar: uydurma yok, her sayının kaynağı dosya:anahtar; REVIEW_1500 dili; `git add <yol>`; her adımda commit + push.

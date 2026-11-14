@@ -86,6 +86,8 @@ Mevcut: Mexico City, Tahran, Cakarta, Pekin (PC10), Central Valley, Karapınar, 
 3. Her şehir için belirsizlik (`analysis/pc5/uncertainty_map.py`) → `data/global/<şehir>/uncertainty/`.
 4. Önceki işlerden kalan: `key_findings_public.md` güncellemesi (atlas dahil).
 
+**(22:50) PC5 = Baş Bilimci:** Sayı Sicili (`data/numbers_registry.json`, her sayı = kaynak dosya:anahtar + onay), tespit edilebilirlik (`data/global/detectability.json`, ≥2σ; NISAR'ın 108 günde ölçebildiği en küçük hız), her yeni şehir için reliable/indicative/reject kararı, **Paz 19:00 `docs/qa/SCIENCE_SIGNOFF.md`** (bu olmadan teslim formu kapanmaz). Ayrıntı `tasks/PC5.md`. Herkes: PC5'in `docs/qa/PC5.md` §10 uyumsuzluk listesindeki kendi satırlarını düzeltir.
+
 ## PC4 — anlatım
 1. `technical_note.md/html`'e "Global atlas" bölümü ve tablo (PC10 atlas.json'dan).
 2. `slides.html`: 1 atlas slaytı (küre görseli + ilk 5 sıralama).
