@@ -1,8 +1,19 @@
 # PC5 Durum Raporu
 
-- **Durum:** çalışıyor — 16:15 B1 (L-band NISAR vs. C-band Sentinel-1 OPERA DISP-S1), 16:25 Kaynaklar Entegrasyonu ve Q08 tam yıl bağımsız doğrulaması yürütülüyor
+- **Durum:** tamamlandı (16:15 B1, 16:25 Kaynaklar, Q08 ve Tur 2 QA) — sonraki 30 dk `SONSUZ DÖNGÜ` zamanlayıcısı kurulu (beklemede değil, periyodik QA döngüsünde)
 - **Kimlik:** M3hmeT1888 · Antigravity (Gemini) · PC5
-- **Güncelleme:** 2026-11-14 16:22 TR
+- **Güncelleme:** 2026-11-14 16:48 TR
+
+## `16:15 B1`, `16:25 Kaynaklar Entegrasyonu`, `Q08` ve `SONSUZ DÖNGÜ` Tur 2 (`16:48 TR`)
+- **16:15 B1 — Çapraz Sensör (`cross_sensor.py`, `cross_sensor.json`, `docs/story/cross_sensor.md`, `pc5_cross_sensor.png`):**
+  - Canlı NASA CMR sorgusunda `OPERA_L3_DISP-S1_V1` Central Valley `bbox` içinde toplam `2,663` ürün, 2026'da `66` ürün (7 frame, en son `2026-04-26`) bulunup **NISAR yaz penceresi (`2026-06-28 → 2026-10-14`) için `0` OPERA DISP-S1 ürünü** olduğu doğrulandı (aynı pencerede `55` ham `SENTINEL-1C_SLC`, `0` `SENTINEL-1A_SLC`). Tam kapsamlı `F38502` (`12/12` CV + `10/10` GPS) `2026-02-14`'te biterken `.nc` indirme denemesi `HTTP 401 access denied` döndürdü; geçici dosyalar silindi.
+  - `10` NGL GPS istasyonunda 2026 yazı (`2026-06-28 → 2026-10-14`) için NISAR L-band dikey uç değerleri `r = 0.9239` (`RMSE = 1.37 cm`, eğim `1.54`; vadi çekirdeği 5 istasyon `RMSE = 0.82 cm`) ve `25`-çift (`324` gün) tarım çekirdeği yaz medyan koheransı `0.539` (`%80.4` geçerli) hesaplandı; `RCM / RADARSAT-1` ve `SAOCOM` bağlamı eklendi (`3 passed`).
+- **16:25 Kaynaklar Entegrasyonu (`literature_comparison.md`, `drivers_analysis.md`):**
+  - NASA NISAR *Land Subsidence* StoryMap (`Peacock et al. 2024`, UAVSAR `2013–2017` `> 40 in`, `Miller/Jones 2020`), `NISAR_Applications_Subsidence.pdf`, CV `[-7.8, -4.7]` spread ve `central_valley_fullyear` (`-16.8 ± 2.2 cm/yr` kalıcı vs `-26.4 cm/yr` yazlık) eklendi; `drivers_analysis.md` içine `NISAR_Applications_Drought_and_Groundwater_Withdrawal1.pdf` ve `societal-benefits` bağlamı eklendi.
+- **Q08 Tam Yıl Bağımsız Doğrulaması & `SONSUZ DÖNGÜ` Tur 2 (`docs/qa/PC5.md` §6–§7):**
+  - `data/central_valley_fullyear/` (`26` epok, `18 beta-precal + 7 provisional`, `324 gün`) üzerinde `_fit` yeniden çalıştırılarak `12/12` nokta ayrıştırması `≤ 0.005` hata içinde doğrulandı (`UNWRAP_SUSPECT = 0`; `2026-06-28` geçişi pürüzsüz: `-2.30` / `-0.71 cm`).
+  - PC3'ün Tur-1 `web/science.html` & `web/data.html` iyileştirmeleri doğrulandı; yeni `exposure.json` (`PC8`), `mexico_city` (`PC10`), `fens/crops.json` (`PC7`) kontrolleri ve **51** URL HTTP taraması (`45` doğrudan `HTTP 200 OK`) rapora eklendi.
+- **AI:** Gemini → `analysis/pc5/cross_sensor.py`, `docs/story/cross_sensor.md`, `docs/story/literature_comparison.md`, `docs/story/drivers_analysis.md`, `docs/qa/PC5.md` §6–§7
 
 ## 15:30 Paketi Görev 5 & `SONSUZ DÖNGÜ` Tur 1 — Bağımsız Kontrol ve QA Denetimi (`docs/qa/PC5.md`)
 - `Q08` tam yıl (`data/central_valley_fullyear/`) henüz üretilmemiş; ancak `pipeline/subset/central_valley_beta/` içinde `15` adet `beta-precal` `.npz` çifti (`2025-11-24 → 2026-05-23`) indiği ve provisional zincirle (`2026-06-28`) arada **36 günlük boşluk** olduğu tespit edilip `docs/qa/PC5.md` §4'e işlendi. Yeni `central_valley_p114_cum.npz` (`vertical.json`) ve `uk_clay/` (`9` çift, `below_detection`, `3.62 cm` eşik) doğrulandı.
