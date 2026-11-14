@@ -276,3 +276,14 @@
 - **`python pipeline/pc7/validate_json.py`:** `61` JSON dosyası tarandı (`Parse errors: 0`, `Non-finite numeric values: 0`, `Missing quality field: 0`).
 - **`python analysis/pc8/fix_nan_json.py`:** `61/61` JSON temiz.
 - **`python -m pytest -q`:** **`70 passed, 1 warning in 23.41s`**.
+
+---
+
+## 16. 14 Nov 20:57 TR — `docs/ATLAS_PLANI.md` PC8 Görevleri (`tools/bulletin.py` & `submission_form.md`)
+
+- **Operasyonel Erken Uyarı Bülteni (`tools/bulletin.py` + `analysis/pc8/test_bulletin.py`):**
+  - `data/global/atlas.json` içindeki tüm aktif bölgeler için yazdırılabilir tek sayfalık HTML bültenleri (`docs/bulletins/<bölge>.html` + `docs/bulletins/index.html`) üreten araç yazıldı; `O2` (`assets_prob.json`) gelince otomatik okuyacak biçimde tasarlandı, mevcut durumda `assets.json` ilk 5 segmenti, `points.json` son çift adımı, `validation.json` GNSS uyumu, `exposure.json` ve `disp/<son_tarih>.png` haritalarını içeriyor.
+  - Üretilen **8 bölge bülteni** (`konya_plain`, `central_valley`, `jakarta`, `karapinar`, `mexico_city`, `tehran`, `beijing`, `delta`) + `index.html`: tüm gömülü görsel/link kontrollerinde **`0` kırık bağlantı**.
+  - `analysis/pc8/test_bulletin.py`: `1 passed in 0.24s`.
+- **`docs/story/submission_form.md`:** `data/global/atlas.json` (8 aktif bölge sıralaması) ve `tools/bulletin.py` (`docs/bulletins/*.html`) eklendi (`§5: 5,239 chars / 746 words`, `§6: 1,956 chars / 256 words`).
+- **O1 Karapınar Durumu:** `data/karapinar_fullyear/decomp.json` henüz oluşturulmamış (`False`), sonraki `git pull` döngülerinde takip edilecek.
