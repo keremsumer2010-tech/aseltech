@@ -1,5 +1,5 @@
 # PC1 — keremsumer2010-tech — Yönetmen  ·  BUGÜN: docs/TODAY_PLAN.md
-- [ ] Aquifer Manager oyunu → PCG (Gemini/Antigravity) yapıyor; ben kontrol edip birleştiririm
+- [ ] Aquifer Manager oyunu + sunum metni (tasks/PCG.md içeriği) → PC4 başlamazsa ben yaparım
 - [ ] Sahne 1: bulutlu GIBS optik + aynı gün NISAR GCOV browse (PREVIEW etiketli) → web/assets/
 - [ ] Karapınar obruk noktaları (kaynaklı) → data/karapinar/sinkholes.geojson
 - [ ] Holme Fen + kaynak listesi → docs/story/sources.md
