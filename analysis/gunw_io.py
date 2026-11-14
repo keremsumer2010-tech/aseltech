@@ -24,6 +24,8 @@ BBOX = {  # [w, s, e, n]  rules/VERI_SOZLESMESI.md section 1
     "karapinar": (33.3, 37.6, 33.8, 37.9),
     # second geometry over the same box (Q21: track 114 descending vs track 34 ascending); outputs kept separate
     "central_valley_p114": (-120.2, 35.6, -119.0, 36.6),
+    # Q09 London clay; box as defined by PC2 in pipeline/search.py (not yet in rules/VERI_SOZLESMESI.md section 1)
+    "uk_clay": (-0.5, 51.3, 0.2, 51.7),
 }
 G = "science/LSAR/GUNW"
 PROVISIONAL_START = "2026-06-17"

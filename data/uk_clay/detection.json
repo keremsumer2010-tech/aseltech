@@ -1,0 +1,40 @@
+{
+  "site": "uk_clay",
+  "status": "below_detection",
+  "chain_sigma_cm": 1.21,
+  "per_pair_block_std_cm": [
+    0.4,
+    0.46,
+    0.31,
+    0.45,
+    0.44,
+    0.31,
+    0.34,
+    0.4,
+    0.47
+  ],
+  "detection_threshold_cm": 3.62,
+  "extreme_plane_elevation_corrected": {
+    "cm": -5.29,
+    "lon": -0.3796,
+    "lat": 51.2978,
+    "km_from_edge": 2.0
+  },
+  "extreme_after_quadratic": {
+    "cm": -3.57,
+    "lon": -0.3184,
+    "lat": 51.3244,
+    "km_from_edge": 5.1
+  },
+  "after_quadratic_block_p2_p50_p98_cm": [
+    -1.47,
+    0.19,
+    1.26
+  ],
+  "fraction_blocks_within_1p5cm": 0.977,
+  "n_detected_blocks": 0,
+  "statement": "No ground motion above the noise was detected over London in this one-season provisional NISAR chain (21 Jun - 19 Oct 2026, 9 pairs): after removing residual long-wavelength atmosphere, 98 % of 1 km areas lie within +/-1.5 cm and no area away from the scene edge exceeds the 3-sigma threshold of 3.6 cm. Seasonal clay shrinkage of about a centimetre or less would be below what this chain can resolve.",
+  "quality": "provisional",
+  "quality_note": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.",
+  "notes": "Study box (-0.5, 51.3, 0.2, 51.7) as defined by PC2 in pipeline/search.py; track 101 ascending frame 28. Maps in data/uk_clay/disp/ are real data but should be labelled 'below detection'."
+}

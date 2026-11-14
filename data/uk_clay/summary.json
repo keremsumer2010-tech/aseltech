@@ -1,0 +1,58 @@
+{
+  "max_subsidence_cm": -5.2,
+  "max_subsidence_range_cm": [
+    -5.3,
+    -5.1
+  ],
+  "range_cm": [
+    -5.3,
+    -5.1
+  ],
+  "n_references": 3,
+  "reference_sensitivity": {
+    "alt_reference": {
+      "lon": -0.40048,
+      "lat": 51.57741
+    },
+    "max_subsidence_cm_at_same_location": -5.3
+  },
+  "reference_sensitivity_all": [
+    {
+      "alt_reference": {
+        "lon": -0.40048,
+        "lat": 51.57741
+      },
+      "max_subsidence_cm_at_same_location": -5.3
+    },
+    {
+      "alt_reference": {
+        "lon": 0.00513,
+        "lat": 51.68644
+      },
+      "max_subsidence_cm_at_same_location": -5.1
+    }
+  ],
+  "period": [
+    "2026-06-21",
+    "2026-10-19"
+  ],
+  "rate_cm_per_yr_estimate": -15.7,
+  "reference_point": {
+    "lon": -0.09804,
+    "lat": 51.37603
+  },
+  "quality": "provisional",
+  "quality_note": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.",
+  "component": "LOS",
+  "max_subsidence_location": {
+    "lon": -0.31835,
+    "lat": 51.32444
+  },
+  "max_subsidence_vertical_cm_estimate": -6.9,
+  "incidence_deg_at_max": 41.6,
+  "n_pairs": 9,
+  "method_note": "Headline value = most negative median of ~1 km blocks (13x13 px, >= 50 % valid pixels, within-block std <= 2 cm) of the cumulative LOS map. Rate = linear extrapolation of 120 days (2026-06-21 to 2026-10-19, summer season) to one year: an ESTIMATE that likely overstates the annual net rate because part of summer subsidence recovers in winter. Vertical value assumes purely vertical motion (LOS / cos(incidence)). range_cm = spread of the headline value when the whole chain is re-referenced to up to two other stable windows >= 30 km away.",
+  "detection_status": "below_detection",
+  "detection_threshold_cm": 3.62,
+  "detection_note": "No ground motion above the noise was detected over London in this one-season provisional NISAR chain (21 Jun - 19 Oct 2026, 9 pairs): after removing residual long-wavelength atmosphere, 98 % of 1 km areas lie within +/-1.5 cm and no area away from the scene edge exceeds the 3-sigma threshold of 3.6 cm. Seasonal clay shrinkage of about a centimetre or less would be below what this chain can resolve."
+}

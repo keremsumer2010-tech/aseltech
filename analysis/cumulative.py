@@ -416,7 +416,7 @@ def main():
         "incidence_deg_at_max": round(inc_at, 1) if inc_at else None,
         "n_pairs": len(used),
         "method_note": (f"Headline value = most negative median of ~1 km blocks (13x13 px, >= 50 % valid pixels, within-block std <= 2 cm) of the cumulative LOS map. Rate = linear "
-                        f"extrapolation of {days} days ({dates[0]} to {dates[-1]}, irrigation season) to one year: an ESTIMATE "
+                        f"extrapolation of {days} days ({dates[0]} to {dates[-1]}, summer season) to one year: an ESTIMATE "
                         "that likely overstates the annual net rate because part of summer subsidence recovers in winter. "
                         "Vertical value assumes purely vertical motion (LOS / cos(incidence)). range_cm = spread of the headline value "
                         "when the whole chain is re-referenced to up to two other stable windows >= 30 km away."),

@@ -1,0 +1,161 @@
+{
+  "pairs": [
+    {
+      "pair": [
+        "2026-06-21",
+        "2026-07-03"
+      ],
+      "file": "pipeline/subset/uk_clay/2026-06-21_2026-07-03.npz",
+      "lambda_m": 0.24393202441008952,
+      "ionosphere_applied": true,
+      "cycle_outlier_px": 1,
+      "elev_coef_cm_per_km": -7.52,
+      "valid_frac_after_masks": 0.9231853566168735,
+      "p2_p50_p98_cm": [
+        -1.11,
+        0.18,
+        1.07
+      ]
+    },
+    {
+      "pair": [
+        "2026-07-03",
+        "2026-07-15"
+      ],
+      "file": "pipeline/subset/uk_clay/2026-07-03_2026-07-15.npz",
+      "lambda_m": 0.24393202441008952,
+      "ionosphere_applied": true,
+      "cycle_outlier_px": 0,
+      "elev_coef_cm_per_km": 2.68,
+      "valid_frac_after_masks": 0.8510928770133483,
+      "p2_p50_p98_cm": [
+        -2.62,
+        -0.87,
+        0.17
+      ]
+    },
+    {
+      "pair": [
+        "2026-07-15",
+        "2026-07-27"
+      ],
+      "file": "pipeline/subset/uk_clay/2026-07-15_2026-07-27.npz",
+      "lambda_m": 0.24393202441008952,
+      "ionosphere_applied": true,
+      "cycle_outlier_px": 1,
+      "elev_coef_cm_per_km": -0.7,
+      "valid_frac_after_masks": 0.877609463029198,
+      "p2_p50_p98_cm": [
+        -0.57,
+        0.3,
+        1.51
+      ]
+    },
+    {
+      "pair": [
+        "2026-07-27",
+        "2026-08-20"
+      ],
+      "file": "pipeline/subset/uk_clay/2026-07-27_2026-08-20.npz",
+      "lambda_m": 0.24393202441008952,
+      "ionosphere_applied": true,
+      "cycle_outlier_px": 2,
+      "elev_coef_cm_per_km": -4.69,
+      "valid_frac_after_masks": 0.8959721345582907,
+      "p2_p50_p98_cm": [
+        -0.99,
+        0.26,
+        1.61
+      ]
+    },
+    {
+      "pair": [
+        "2026-08-20",
+        "2026-09-01"
+      ],
+      "file": "pipeline/subset/uk_clay/2026-08-20_2026-09-01.npz",
+      "lambda_m": 0.24393202441008952,
+      "ionosphere_applied": true,
+      "cycle_outlier_px": 0,
+      "elev_coef_cm_per_km": 2.75,
+      "valid_frac_after_masks": 0.8985506229983402,
+      "p2_p50_p98_cm": [
+        -1.41,
+        -0.13,
+        0.87
+      ]
+    },
+    {
+      "pair": [
+        "2026-09-01",
+        "2026-09-13"
+      ],
+      "file": "pipeline/subset/uk_clay/2026-09-01_2026-09-13.npz",
+      "lambda_m": 0.24393202441008952,
+      "ionosphere_applied": true,
+      "cycle_outlier_px": 2,
+      "elev_coef_cm_per_km": -1.8,
+      "valid_frac_after_masks": 0.8942024919933609,
+      "p2_p50_p98_cm": [
+        -1.09,
+        -0.03,
+        0.95
+      ]
+    },
+    {
+      "pair": [
+        "2026-09-13",
+        "2026-09-25"
+      ],
+      "file": "pipeline/subset/uk_clay/2026-09-13_2026-09-25.npz",
+      "lambda_m": 0.24393202441008952,
+      "ionosphere_applied": true,
+      "cycle_outlier_px": 1,
+      "elev_coef_cm_per_km": 2.15,
+      "valid_frac_after_masks": 0.8669238141992192,
+      "p2_p50_p98_cm": [
+        -1.64,
+        -0.48,
+        0.49
+      ]
+    },
+    {
+      "pair": [
+        "2026-09-25",
+        "2026-10-07"
+      ],
+      "file": "pipeline/subset/uk_clay/2026-09-25_2026-10-07.npz",
+      "lambda_m": 0.24393202441008952,
+      "ionosphere_applied": true,
+      "cycle_outlier_px": 2,
+      "elev_coef_cm_per_km": -1.66,
+      "valid_frac_after_masks": 0.9193445075624752,
+      "p2_p50_p98_cm": [
+        -0.44,
+        0.44,
+        1.49
+      ]
+    },
+    {
+      "pair": [
+        "2026-10-07",
+        "2026-10-19"
+      ],
+      "file": "pipeline/subset/uk_clay/2026-10-07_2026-10-19.npz",
+      "lambda_m": 0.24393202441008952,
+      "ionosphere_applied": true,
+      "cycle_outlier_px": 1,
+      "elev_coef_cm_per_km": -0.53,
+      "valid_frac_after_masks": 0.8754938401477429,
+      "p2_p50_p98_cm": [
+        -2.26,
+        -0.84,
+        0.31
+      ]
+    }
+  ],
+  "notes": [],
+  "reference_mean_coh": 0.9228668808937073,
+  "valid_frac_full_chain": 0.7360871496364869,
+  "outlier_px_removed": 0
+}

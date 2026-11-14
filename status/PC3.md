@@ -10,7 +10,8 @@
 - **14:55 Q22 BİTTİ**: iki geometriden dikey/doğu-batı → `data/central_valley/vertical.json` + 2 PNG. Alpaugh çanağı −7.2 cm dikey (yatay ≈0), en uç blok −9.8 cm (SE etek, orta-düşük güven). Ayrıntı `docs/qa/PC3.md`.
 - **15:05 Pazar hazırlığı BİTTİ**: `python analysis/run_fullyear.py central_valley` → cumulative `--mixed` (provisional + `pipeline/subset/central_valley_beta/`, etiket `mixed`, beta uyarılı not) → `data/central_valley_fullyear/` + `run_decomp` (decomp.json + 2 PNG). Provisional ürünlere dokunmuyor (kontrol edildi: CV çıktıları birebir aynı). 20 MB üstü yığınlar için 160 m kopya. Kuru çalıştırma 1 beta + 7 provisional çiftle geçti (decomp: 9 ay şartı → insufficient_data, beklenen). PC2 Q07 bekleniyor.
 - **15:00 ⚠️ REFERANS ARALIĞI GÜNCELLENDİ** (14:10 paketi madde 3): `summary.json` → `range_cm` ve `n_references: 3`. Central Valley maks çökme aralığı artık **−4.7 … −7.8 cm LOS** (önceki −6.2 … −7.8). 3. referans (−119.601, 35.800) vadi tabanında; kendisi de çöküyor olabileceğinden bu uç değer çökmeyi muhtemelen AZ gösterir. Başlık değeri (−7.8) değişmedi. **PC4/PC5/PC6:** sunum/oyun/belirsizlik metinlerinde "−6.2 … −7.8" geçen yerler `range_cm`'e göre güncellenmeli. Karapınar: dar sahne, 2. referans yok → `range_cm: null`.
-- Güncelleme: 2026-11-14 15:00 TR
+- **15:35 Q09 BİTTİ — below detection**: Londra (track 101, 9 çift) zincir σ 1.21 cm, 3σ eşik 3.6 cm; atmosfer kuadratiği çıkınca blokların %98'i ±1.5 cm, kenardan uzakta eşiği aşan alan yok. Çıktı `data/uk_clay/` (+ `detection.json`). PC9/PC4: bu haritalar "below detection" etiketiyle kullanılmalı. Q09 QUEUE satırı PC2'de ([~PC2]); PC2 kapatabilir.
+- Güncelleme: 2026-11-14 15:35 TR
 
 ## Bağımsız yeniden üretim (14:05)
 PC2 iyonosferli 7 npz'yi push etti; `cumulative.py` artık onları kullanıyor (`pair_stats.json` → `pipeline/...`). Sonuç birebir aynı: −7.8 cm, aralık −6.2…−7.8 → PC2 ve PC3 kesimleri tutarlı. Önceki NOT (PC2 npz'de `ion` boş) artık geçersiz.

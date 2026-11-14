@@ -68,3 +68,28 @@ Yorum: LOS/cos(geliş) ile yapılan tek-yörünge dikey tahmini (summary: −10.
 çözüm aynı mertebede. Doğu-batı bileşeni çoğu yerde ±3 cm içinde; doğu etekteki kırmızı/benekli bölgeler (bahçeler)
 gürültü ağırlıklı. Sunumda güvenle söylenebilecek: "Combining two orbits, the Alpaugh bowl sank about 7 cm vertically
 in 3½ months, with almost no sideways motion at its centre."
+
+## Q09 · Londra kil bölgesi: sonuç "below detection" · 2026-11-14 15:35 TR
+
+Veri: PC2'nin `pipeline/subset/uk_clay/` (track 101 yükselen, frame 28; 9 ardışık provisional çift 2026-06-21 → 10-19,
+120 gün; iyonosfer katmanlı; koherens > 0.3 olan alan %85–92). Bölge kutusu (−0.5, 51.3, 0.2, 51.7) PC2'nin
+`pipeline/search.py` tanımı (veri sözleşmesi §1'de henüz yok → PC1/PC9'a not).
+Hat: `analysis/cumulative.py uk_clay` (Central Valley ile aynı adımlar) + `analysis/uk_clay_detection.py`.
+
+| Ölçüt | Değer |
+|---|---|
+| Çift başı gürültü (1 km blok std) | 0.31 – 0.47 cm |
+| Zincir gürültüsü σ (√Σσ²) | **1.21 cm** |
+| Tespit eşiği (3σ) | **3.6 cm** |
+| Ham en uç blok (düzlem + yükseklik sonrası) | −5.3 cm, sahne kenarına 2 km |
+| Kuadratik yüzey de çıkarılınca en uç blok | −3.6 cm, kenara 5 km (eşiğin altında) |
+| Kuadratik sonrası blok p2 / p50 / p98 | −1.5 / +0.2 / +1.3 cm; blokların **%98'i ±1.5 cm içinde** |
+| Kenardan ≥ 10 km uzakta eşiği aşan blok | **0** |
+
+Neden ham −5 cm gerçek değil: en uç değerler sahne kenarında; hepsi aynı iki çiftte (07-03→07-15 ve 10-07→10-19)
+birden sıçrıyor ve o çiftlerde tüm sahnenin medyanı da −0.9 cm kayıyor → atmosfer artığı; kuadratik yüzey çıkarılınca kayboluyor.
+
+**Sonuç:** bu tek mevsimlik provisional zincirde Londra'da gürültünün üstünde yer hareketi yok. Santimetre ve altındaki
+mevsimsel kil büzülmesi bu zincirin çözebileceğinin altında. Site/sunum için cümle `data/uk_clay/detection.json`
+→ `statement`. `data/uk_clay/disp/` haritaları gerçek veridir ama "below detection" etiketiyle gösterilmeli; `summary.json`'daki
+`max_subsidence_cm` tek başına kullanılmamalı (`detection_status: below_detection` alanına bakılmalı).
