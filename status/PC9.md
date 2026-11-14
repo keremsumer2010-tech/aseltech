@@ -1,7 +1,7 @@
 # PC9 durum
 
 - Görev: `docs/ATLAS_PLANI.md` PC9 — 5 bölge (`eloy`, `gorgan`, `cangzhou`, `houston`, `lagos`) NISAR Pulse + Karapınar tam yıl koordinasyonu
-- Durum: çalışıyor: `eloy` (Öncelik A) `--dry-run` kapsama kontrolü ve `data/global/eloy/` işleme
+- Durum: çalışıyor: `eloy` (Öncelik A) `--resume` indirme/işleme (`3/9` `.npz` alt küme hazır, `4–9` sürüyor)
 - Görev 1 (Tam yıl kümülatif — **TAMAMLANDI**, commit `6b4a510`):
   - Komut: `python analysis/pc9/run_fullyear.py --step cumulative` (25 kesintisiz çift: 18 `beta-precal` `2025-11-24 → 2026-06-28` + 7 `provisional` `2026-06-28 → 2026-10-14`, `plane-only` deramp sarmalayıcı).
   - Çıktılar: `data/central_valley_fullyear/{meta,points,summary}.json` (`quality: "mixed"`) + 26 adet `disp/*.png`.
