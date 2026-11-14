@@ -25,10 +25,11 @@ from scipy.ndimage import median_filter, minimum_filter
 
 sys.path.insert(0, str(Path(__file__).parent))
 from gunw_io import BBOX  # noqa: E402
-from insar import choose_reference, cycle_outliers, deramp, remove_islands, mask_coherence, mask_components, phase_to_cm, reference  # noqa: E402
+from insar import choose_reference, cycle_outliers, deramp, deramp_elevation, remove_islands, mask_coherence, mask_components, phase_to_cm, reference  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 RADIUS = 3
+BLOCK_PX, BLOCK_MIN_VALID, BLOCK_MAX_STD = 13, 0.5, 2.0  # ~1 km blocks for headline numbers and points
 ISLAND_MIN_PX = 200  # 200 px * 80 m * 80 m = 1.28 km^2
 PAIR_OUTLIER_CM = 15.0  # |per-pair LOS| above this in a 12-24 day pair = unwrapping error (documented)
 CMAP = "RdBu"
@@ -40,12 +41,46 @@ def iso(d):
     return str(d)
 
 
+def block_median(arr, block, min_valid, max_std=None):
+    """NaN-median over block x block tiles (tiles with < min_valid valid fraction -> NaN), expanded to full size."""
+    import warnings
+    H, W = arr.shape
+    Hp, Wp = -(-H // block) * block, -(-W // block) * block
+    pad = np.full((Hp, Wp), np.nan, np.float32)
+    pad[:H, :W] = arr
+    t = pad.reshape(Hp // block, block, Wp // block, block)
+    frac = np.isfinite(t).mean(axis=(1, 3))
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore", RuntimeWarning)
+        med = np.nanmedian(t, axis=(1, 3))
+    med[frac < min_valid] = np.nan
+    if max_std is not None:
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore", RuntimeWarning)
+            sd = np.nanstd(t, axis=(1, 3))
+        med[~(sd <= max_std)] = np.nan  # speckled (noisy) blocks are not eligible
+    full = np.repeat(np.repeat(med, block, 0), block, 1)[:H, :W]
+    centre = np.zeros((H, W), bool)
+    centre[block // 2::block, block // 2::block] = True  # one representative pixel per block
+    return np.where(centre & np.isfinite(arr), full, np.nan).astype(np.float32)
+
+
 def load_pairs(site):
-    for src in (ROOT / "pipeline" / "subset" / site, ROOT / "analysis" / "out" / "subset" / site):
-        files = sorted(src.glob("*.npz"))
-        if files:
-            return src, files
-    raise SystemExit(f"no npz for {site}")
+    """Union of PC2 (pipeline/subset) and PC3 backup (analysis/out/subset) npz files, one per pair.
+    Same pair in both: prefer the file that carries the ionosphere screen (`ion`), else PC2's."""
+    best = {}
+    for rank, src in enumerate((ROOT / "pipeline" / "subset" / site, ROOT / "analysis" / "out" / "subset" / site)):
+        for f in sorted(src.glob("*.npz")):
+            d = np.load(f, allow_pickle=False)
+            key = (str(d["date1"]), str(d["date2"])) if "date1" in d else tuple(f.stem.split("_"))
+            has_ion = "ion" in d and d["ion"].size > 0
+            score = (has_ion, -rank)
+            if key not in best or score > best[key][0]:
+                best[key] = (score, f)
+    files = [v[1] for _, v in sorted(best.items())]
+    if not files:
+        raise SystemExit(f"no npz for {site}")
+    return "pipeline+analysis/out", files
 
 
 def chain(files):
@@ -138,10 +173,10 @@ def pick_points(cum_s, valid, ref_rc, x, y, epsg, min_sep_px=60):
         if all(abs(r - p[1]) > min_sep_px or abs(c - p[2]) > min_sep_px for p in pts):
             pts.append(("median", int(r), int(c)))
     rr, rc = ref_rc
-    for dr, dc in ((-12, 0), (0, 12)):
-        r, c = rr + dr, rc + dc
-        if 0 <= r < valid.shape[0] and 0 <= c < valid.shape[1] and valid[r, c]:
-            pts.append(("near_reference", r, c))
+    cand = np.argwhere(valid)
+    dist = (cand[:, 0] - rr) ** 2 + (cand[:, 1] - rc) ** 2
+    for r, c in cand[np.argsort(dist)[1:3]]:  # 2nd and 3rd nearest valid blocks (1st holds the reference)
+        pts.append(("near_reference", int(r), int(c)))
     out = []
     for k, r, c in pts:
         lon, lat = tr.transform(x[c], y[r])
@@ -161,12 +196,25 @@ def main():
     site, bbox = a.site, BBOX[a.site]
     src, files = load_pairs(site)
     used, notes = chain(files)
-    print(f"source {src.relative_to(ROOT)}: {len(used)} pairs", notes)
+    print(f"source {src}: {len(used)} pairs", [str(u[2].relative_to(ROOT)) for u in used], notes)
     if len(used) < 2:
         raise SystemExit("need >= 2 consecutive pairs")
 
     d0 = used[0][3]
     x, y, epsg = d0["x"], d0["y"], int(d0["epsg"])
+    dem = None
+    if a.deramp:
+        dem_f = ROOT / "analysis" / "out" / f"{site}_dem.npy"
+        if not dem_f.exists():
+            try:
+                from dem import dem_on_grid
+                np.save(dem_f, dem_on_grid(x, y, epsg))
+            except Exception as ex:
+                print("DEM unavailable, plane-only deramp:", ex)
+        if dem_f.exists():
+            dem = np.load(dem_f)
+            if dem.shape != d0["unw"].shape:
+                dem = None
     pair_cm, stats = [], []
     for d1, d2, f, d in used:
         if d["unw"].shape != d0["unw"].shape or not np.allclose(d["x"], x) or not np.allclose(d["y"], y):
@@ -183,13 +231,16 @@ def main():
             cm = mask_components(cm, d["conncomp"])
         cm = mask_coherence(cm, d["coh"], a.thr)
         cm = remove_islands(cm, ISLAND_MIN_PX)
-        if a.deramp:
+        k_elev = None
+        if a.deramp and dem is not None:
+            cm, k_elev = deramp_elevation(cm, dem)
+        elif a.deramp:
             cm = deramp(cm, order=a.deramp)
         n_before = int(np.isfinite(cm).sum())
         cm = cycle_outliers(cm, thr_cm=float(d["wavelength"]) / 4 * 100)
         cycle_px = n_before - int(np.isfinite(cm).sum())
         pair_cm.append(cm)
-        stats.append({"pair": [d1, d2], "lambda_m": float(d["wavelength"]), "ionosphere_applied": bool(ion_used), "cycle_outlier_px": cycle_px,
+        stats.append({"pair": [d1, d2], "file": str(f.relative_to(ROOT)).replace("\\", "/"), "lambda_m": float(d["wavelength"]), "ionosphere_applied": bool(ion_used), "cycle_outlier_px": cycle_px, "elev_coef_cm_per_km": None if k_elev is None else round(k_elev, 2),
                       "valid_frac_after_masks": float(np.isfinite(cm).mean())})
 
     valid_all = np.logical_and.reduce([np.isfinite(c) for c in pair_cm])
@@ -215,9 +266,12 @@ def main():
     valid = np.isfinite(final)
     print(f"valid in full chain: {valid.mean():.3f}; outlier px removed: {n_out}")
 
-    # robust extremes: 5x5 (400 m) median smoothing, so single pixels never set the headline number
-    sm = median_filter(np.where(valid, final, np.nan), size=5, mode="nearest")
-    sm = np.where(valid & np.isfinite(sm), sm, np.nan)
+    # robust extremes: ~1 km blocks (13x13 px), block median, only blocks with >= 50 % valid pixels,
+    # so small artefacts (rivers, canals, single fields) never set the headline number
+    XX, YY = np.meshgrid(x, y)
+    LON, LAT = Transformer.from_crs(epsg, 4326, always_xy=True).transform(XX, YY)
+    in_bbox = (LON >= bbox[0]) & (LON <= bbox[2]) & (LAT >= bbox[1]) & (LAT <= bbox[3])
+    sm = block_median(np.where(in_bbox, final, np.nan), BLOCK_PX, BLOCK_MIN_VALID, BLOCK_MAX_STD)
     rmin, cmin = np.unravel_index(np.nanargmin(sm), sm.shape)
     max_sub = float(sm[rmin, cmin])
     inc = d0["incidence"] if "incidence" in d0 and d0["incidence"].size else None
@@ -226,7 +280,7 @@ def main():
     lon_m, lat_m = Transformer.from_crs(epsg, 4326, always_xy=True).transform(x[cmin], y[rmin])
     vlim = float(np.ceil(np.nanpercentile(np.abs(sm), 99.5)))
     vmin, vmax = -vlim, vlim
-    print(f"max subsidence (LOS, 400 m median) {max_sub:.2f} cm at {lon_m:.4f},{lat_m:.4f}; days={days}; v=±{vlim}")
+    print(f"max subsidence (LOS, 1 km block median) {max_sub:.2f} cm at {lon_m:.4f},{lat_m:.4f}; days={days}; v=±{vlim}")
 
     # ---- outputs -------------------------------------------------------------------------------
     ddir = ROOT / "data" / site
@@ -235,11 +289,19 @@ def main():
         save_png(to_latlon_grid(g, x, y, epsg, bbox), ddir / "disp" / f"{dt}.png", vmin, vmax)
 
     out = ROOT / "analysis" / "out"
+    # data contract 4.1 fields (PC6 reads cum_cm); extras kept small (K-12: every repo file <= 20 MB)
     np.savez_compressed(out / f"{site}_cum.npz", cum_cm=final.astype(np.float32), x=x, y=y, epsg=np.int32(epsg),
                         dates=np.array(dates), quality="provisional",
-                        cum_stack_cm=np.stack(cum).astype(np.float32),
-                        incidence=inc if inc is not None else np.array([]),
+                        incidence=(inc.astype(np.float16) if inc is not None else np.array([])),
                         reference_rc=np.array([r, c]))
+    # per-date cumulative stack for GNSS comparison (Q05), float16 cm (step <= 0.008 cm below 16 cm)
+    np.savez_compressed(out / f"{site}_cum_stack.npz", cum_stack_cm=np.stack(cum).astype(np.float16),
+                        dates=np.array(dates), x=x, y=y, epsg=np.int32(epsg), quality="provisional")
+    for fn in (f"{site}_cum.npz", f"{site}_cum_stack.npz"):
+        mb = (out / fn).stat().st_size / 1e6
+        print(f"{fn}: {mb:.1f} MB")
+        if mb > 20:
+            print(f"WARNING {fn} > 20 MB: do not commit (K-12)")
 
     pairs_txt = ", ".join(f"{p[0]}_{p[1]}" for p in used)
     granules = [str(p[3]["granule"]) for p in used if "granule" in p[3]]
@@ -258,8 +320,11 @@ def main():
                   f"All pairs referenced to the same window at {lon_r:.4f}E {lat_r:.4f}N. "
                   + ("The ionosphere phase screen shipped in each GUNW was subtracted. " if a.ion else
                      "The ionosphere phase screen was NOT applied. ")
-                  + ({1: "A best-fit plane was removed from each pair (long-wavelength atmospheric residual; this can also "
-                         "remove part of any valley-wide tilt). ",
+                  + ({1: ("A best-fit plane plus a linear elevation term (Copernicus DEM GLO-90) was removed from each pair "
+                          "(long-wavelength and elevation-correlated troposphere residual; this can also remove part of any "
+                          "valley-wide tilt). " if dem is not None else
+                          "A best-fit plane was removed from each pair (long-wavelength atmospheric residual; this can also "
+                          "remove part of any valley-wide tilt). "),
                       2: "A best-fit quadratic surface was removed from each pair. "}.get(a.deramp, ""))
                   + "Troposphere and solid-earth-tide layers were NOT applied; residual atmospheric noise of a few cm "
                   "per pair is expected. " + " ".join(notes)),
@@ -270,10 +335,11 @@ def main():
     (ddir / "meta.json").write_text(json.dumps(meta, indent=2), encoding="utf-8")
 
     places = [] if a.no_names else load_places(site)
-    pts = pick_points(sm, valid & np.isfinite(sm), (r, c), x, y, epsg)
+    pts = pick_points(sm, np.isfinite(sm), (r, c), x, y, epsg)
     points = []
     for i, (kind, pr, pc, lon, lat) in enumerate(pts, 1):
-        win = np.stack(cum)[:, max(pr - 1, 0): pr + 2, max(pc - 1, 0): pc + 2]
+        hb = BLOCK_PX // 2
+        win = np.stack(cum)[:, max(pr - hb, 0): pr + hb + 1, max(pc - hb, 0): pc + hb + 1]
         ts = np.nanmedian(win.reshape(len(dates), -1), axis=1)
         name = place_label(lon, lat, places)
         points.append({"id": f"p{i:02d}", "name": name, "kind": kind, "lon": round(lon, 5), "lat": round(lat, 5),
@@ -293,7 +359,7 @@ def main():
         "max_subsidence_vertical_cm_estimate": round(max_sub / np.cos(np.deg2rad(inc_at)), 1) if inc_at else None,
         "incidence_deg_at_max": round(inc_at, 1) if inc_at else None,
         "n_pairs": len(used),
-        "method_note": (f"Headline value = minimum of 400 m (5x5 px) median-smoothed cumulative LOS map. Rate = linear "
+        "method_note": (f"Headline value = most negative median of ~1 km blocks (13x13 px, >= 50 % valid pixels, within-block std <= 2 cm) of the cumulative LOS map. Rate = linear "
                         f"extrapolation of {days} days ({dates[0]} to {dates[-1]}, irrigation season) to one year: an ESTIMATE "
                         "that likely overstates the annual net rate because part of summer subsidence recovers in winter. "
                         "Vertical value assumes purely vertical motion (LOS / cos(incidence))."),

@@ -144,6 +144,28 @@ def deramp(arr, order: int = 1, step: int = 4):
     return (a - (G @ coef).reshape(H, W)).astype(np.float32)
 
 
+def deramp_elevation(arr, height_m, step: int = 4):
+    """Jointly fit and remove  a + b*x + c*y + k*h  (plane + linear elevation term).
+
+    The k*h term is the empirical phase-elevation correction for stratified troposphere
+    (as MintPy `tropo_phase_elevation`: https://github.com/insarlab/MintPy/blob/main/src/mintpy/tropo_phase_elevation.py).
+    Returns (corrected, k_cm_per_km).
+    """
+    a = np.asarray(arr, dtype=np.float32)
+    h = np.asarray(height_m, dtype=np.float64)
+    H, W = a.shape
+    yy, xx = np.mgrid[0:H, 0:W].astype(np.float64)
+    G = np.stack([np.ones(H * W), (xx / W).ravel(), (yy / H).ravel(), (h / 1000.0).ravel()], axis=1)
+    sub = np.zeros((H, W), bool)
+    sub[::step, ::step] = True
+    ok = (np.isfinite(a) & np.isfinite(h) & sub).ravel()
+    if ok.sum() < 100:
+        raise ValueError("too few valid pixels to fit")
+    coef, *_ = np.linalg.lstsq(G[ok], a.ravel()[ok].astype(np.float64), rcond=None)
+    model = np.where(np.isfinite(h), (G @ coef).reshape(H, W), np.nan)
+    return (a - model).astype(np.float32), float(coef[3])
+
+
 def choose_reference(coh, valid=None, radius: int = 3, stride: int = 5, exclude=None):
     """Pick the (row, col) whose (2r+1)^2 window is fully valid and has the highest mean coherence.
 

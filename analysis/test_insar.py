@@ -2,7 +2,7 @@ import numpy as np
 import pytest
 
 from insar import (
-    choose_reference, coh_to_float, cycle_outliers, deramp, remove_islands, los_to_vertical, mask_coherence, mask_components, pair_to_cm,
+    choose_reference, coh_to_float, cycle_outliers, deramp, deramp_elevation, remove_islands, los_to_vertical, mask_coherence, mask_components, pair_to_cm,
     phase_to_cm, reference, wavelength_from_frequency,
 )
 
@@ -104,6 +104,18 @@ def test_deramp_removes_plane_keeps_local_bowl():
     assert (np.nanmedian(out[:, :20]) - out[50, 60]) == pytest.approx(4.0, abs=0.1)
     assert abs(np.nanmedian(out[:, :20]) - np.nanmedian(out[:, -20:])) < 0.05
     assert np.isnan(out[0, 0])
+
+
+def test_deramp_elevation_removes_height_term():
+    rng = np.random.default_rng(1)
+    yy, xx = np.mgrid[0:80, 0:90].astype(np.float32)
+    h = np.where(xx > 60, (xx - 60) * 30.0, 80.0) + rng.normal(0, 5, xx.shape)  # flat floor + foothills
+    bowl = -5.0 * np.exp(-((yy - 40) ** 2 + (xx - 30) ** 2) / 60.0)
+    a = bowl + 0.02 * xx + 3.0 * h / 1000.0 + 1.0
+    out, k = deramp_elevation(a, h, step=1)
+    assert k == pytest.approx(3.0, abs=0.3)
+    assert (np.median(out[:, :10]) - out[40, 30]) == pytest.approx(5.0, abs=0.3)
+    assert np.std(out[:, 70:]) < 0.3  # foothill gradient gone
 
 
 def test_pair_chain_synthetic_bowl():

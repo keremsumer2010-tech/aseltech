@@ -1,0 +1,23 @@
+{
+  "max_subsidence_cm": -7.8,
+  "period": [
+    "2026-06-28",
+    "2026-10-14"
+  ],
+  "rate_cm_per_yr_estimate": -26.4,
+  "reference_point": {
+    "lon": -119.14562,
+    "lat": 36.45323
+  },
+  "quality": "provisional",
+  "quality_note": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.",
+  "component": "LOS",
+  "max_subsidence_location": {
+    "lon": -119.02173,
+    "lat": 36.01119
+  },
+  "max_subsidence_vertical_cm_estimate": -10.1,
+  "incidence_deg_at_max": 39.1,
+  "n_pairs": 7,
+  "method_note": "Headline value = most negative median of ~1 km blocks (13x13 px, >= 50 % valid pixels, within-block std <= 2 cm) of the cumulative LOS map. Rate = linear extrapolation of 108 days (2026-06-28 to 2026-10-14, irrigation season) to one year: an ESTIMATE that likely overstates the annual net rate because part of summer subsidence recovers in winter. Vertical value assumes purely vertical motion (LOS / cos(incidence))."
+}
