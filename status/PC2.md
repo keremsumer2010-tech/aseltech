@@ -5,7 +5,7 @@
 - Görev: Q01 (Karapınar GUNW Path 7 Frame 69 provisional zinciri) — **TAMAMLANDI (8/8 tam `ion` katmanıyla `pipeline/subset/karapinar/` altına push edildi — PC3 için hazır!)**
 - Görev: Q04 (Central Valley SME2 toprak nemi → `data/central_valley/drivers.json`) — **TAMAMLANDI** (8 provisional SME2 granülü, `lag_corr=0.654`)
 - Görev: Q03 (Central Valley GCOV 6 provisional tarih HV dB → `data/central_valley/gcov/`) — **TAMAMLANDI (8 provisional tarih HV dB PNG + `meta.json` `data/central_valley/gcov/` altına push edildi)**
-- Görev: Q09 (UK kil bölgesi Londra GUNW provisional zinciri → `pipeline/subset/uk_clay/`) & Q07 (Central Valley tam yıl zinciri → `pipeline/subset/central_valley_beta/`) — **DEVAM EDİYOR**
+- Görev: Q09 (UK kil bölgesi Londra GUNW provisional zinciri → `pipeline/subset/uk_clay/`), Karapınar Path 172 (`pipeline/subset/karapinar_p172/`), Q07 (Central Valley tam yıl zinciri → `pipeline/subset/central_valley_beta/`) ve 15:05 Ek İş (`pipeline/subset/fens_gcov/`) — **TAMAMLANDI**
 - Çıktılar:
   - `pipeline/search.py`, `pipeline/download.py` (PCQ `docs/code_review.md` bulgusu düzeltildi: `netrc` üzerinden `urs.earthdata.nasa.gov` ve `EARTHDATA_TOKEN` desteği), `pipeline/inspect_gunw.py`, `pipeline/subset.py`, `pipeline/sme2_drivers.py`, `pipeline/gcov_subset.py`
   - `data/central_valley/gcov/meta.json` + 8 adet `*.png` (`2026-06-28` → `2026-10-14`, `vmin=-28 dB`, `vmax=-10 dB`, `mean_dB=[-19.80..-19.09] dB`)
@@ -47,3 +47,20 @@
   - `2026-09-20_2026-10-14.npz`: `np.load` ile açıldı; `unw` [-4.230, 7.051] rad, `ion` [-8.020, -4.661] rad (`(1473, 1438)` float32), `coh` ort=0.579, `epsg=32611`, `λ=0.24196324 m`.
 - BLOCKED: yok (GitHub push oturumu doğrulandı)
 - AI: Antigravity (Gemini) → `pipeline/*.py` veri arama/indirme/inceleme/kesme scriptleri ve `docs/gunw_structure.md` üretimi
+
+## 15:45 Güncelleme — Q07 (18/18), Q09 (9/9), Karapınar Path 172 (8/8) ve fens_gcov (8/8) TAMAMLANDI
+
+- **15:05 Ek İş (PC7 için) — fens_gcov hazır:**
+  - `pipeline/subset/fens_gcov/<YYYY-MM-DD>.npz` altında 8 adet `provisional` GCOV alt kümesi push edildi (`16c1219`, `7828c74`).
+  - Orbit: **Path 124 Descending Frame 62** (ör. `NISAR_L2_PR_GCOV_023_124_D_062_2005_DHDH_A_20260622T192240_20260622T192316_P05023_N_F_J_001`); Fens bbox `(-0.3, 52.4, 0.4, 52.9)` için tam kapsama sağlar (`shape=(1440, 1243)`, `epsg=32630`, `quality="provisional"`, anahtarlar: `hh_db`, `hv_db`, `x`, `y`, `epsg`, `date`, `granule`, `quality`).
+  - Tarihler ve boyutlar (8/8): `2026-06-22.npz` (6.49 MB), `2026-07-04.npz` (6.48 MB), `2026-07-16.npz` (6.47 MB), `2026-08-21.npz` (6.60 MB), `2026-09-02.npz` (6.58 MB), `2026-09-14.npz` (6.57 MB), `2026-09-26.npz` (6.52 MB), `2026-10-08.npz` (6.54 MB).
+
+- **Q07 (Central Valley tam yıl zinciri, P05023) — TAMAMLANDI (18/18 `beta-precal` + 7 `provisional`):**
+  - `pipeline/subset/central_valley_beta/` altında `2025-11-24 → 2026-06-28` arası kesintisiz **18/18** `beta-precal` alt kümesi push edildi (`1cd9ad9`, `5c289ba`, `2c23e3b`, `d176a84`, `b3cba45`, `a9250d7`; `shape=(1473, 1438)`, dosya boyutları `14.55–16.12 MB`).
+  - Devamındaki `2026-06-28 → 2026-10-14` arası **7 adet** `provisional` çift (`Path 34 Frame 20`, aynı kesit) `pipeline/subset/central_valley/` altında hazırdır; ikisi birlikte `2025-11-24 → 2026-10-14` tam yıl zincirini oluşturur (`PC9` Q08 için hazır).
+
+- **Q09 (UK kil / Londra provisional GUNW zinciri) — TAMAMLANDI (9/9):**
+  - `pipeline/uk_clay_gunw.csv` + `pipeline/subset/uk_clay/` altında `2026-06-21 → 2026-10-19` arası **9/9** `provisional` çift push edildi (`629011f`; dosya boyutları `2.85–3.20 MB`).
+
+- **Karapınar ikinci geçiş (Path 172 Frame 21, provisional GUNW) — TAMAMLANDI (8/8):**
+  - `pipeline/karapinar_p172_gunw.csv` + `pipeline/subset/karapinar_p172/` altında `2026-06-26 → 2026-10-12` arası **8/8** `provisional` çift push edildi (`4136995`; dosya boyutları `1.93–2.14 MB`).
