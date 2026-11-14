@@ -24,7 +24,7 @@ Ayrıntılar: `docs/SORUN_KAYDI.md` (her maddenin "Nerede / Sorun / Öneri" kıs
 Her PC sadece kendi `[atandı]` satırlarını yukarıdan aşağı yapar: `- [ ]` → `- [~PCx]` (commit+push) → bitince satırı kuyruktan **SİL** ve yaptığını `docs/qa/PCx.md`'ye yaz. Madde zaten düzeltilmişse satırı sil, qa'ya "zaten düzeltilmiş" yaz, sıradakine geç.
 
 ### PC8 — site (web/index.html, web/app.js, web/science.html, web/style.css, .github/workflows/pages.yml)
-- [ ] B01 · [atandı: PC8] · S-18 Kritik · Açılış (hero) haritasında çökme katmanını ve görüntü döngüsünü kaldır, "Live background" altyazısını düzelt
+- [~PC8] B01 · [atandı: PC8] · S-18 Kritik · Açılış (hero) haritasında çökme katmanını ve görüntü döngüsünü kaldır, "Live background" altyazısını düzelt
 - [ ] B02 · [atandı: PC8] · S-22 Kritik · Site hızı: hero dönmesini kapat, ana haritayı tembel başlat, kareleri gerektikçe yükle, `cache: 'no-cache'` kaldır, videolara `preload="none"`, Pages akışına görsel sıkıştırma (repodaki orijinallere dokunma)
 - [ ] B03 · [atandı: PC8] · S-06 Kritik · Ana sayfa "−7.8 cm" kartının altına referans aralığı satırı (`summary.json` `range_cm`'den oku, elle yazma)
 - [ ] B04 · [atandı: PC8] · S-13 Kritik · Central Valley haritası göstergesine boşluk açıklaması + Corcoran metnini dürüstleştir
