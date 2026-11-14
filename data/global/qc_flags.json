@@ -64,6 +64,7 @@
       ],
       "headline_without_flagged_steps_cm": -0.14
     },
+<<<<<<< HEAD
     "gorgan": {
       "flags": [
         "phase_cycle_jump"
@@ -85,6 +86,8 @@
       ],
       "headline_without_flagged_steps_cm": -24.39
     },
+=======
+>>>>>>> 699dbc5 ([PC10] Can Tho (Mekong Delta) provisional GUNW subset, uncertainty, and 23-region ATLAS v2)
     "bangkok": {
       "flags": [
         "literature_mismatch",
