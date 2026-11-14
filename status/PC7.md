@@ -1,7 +1,7 @@
 # PC7 durum
 
 - Görev: Fens GCOV ritmi, polarizasyon karşılaştırması, çevrimdışı site QA ve Node oyun testi
-- Durum: Pekin devir görevinde; mevcut kesitlerde 11 Temmuz 2026 tarih etkisini QC ile doğruluyorum, ardından tam kutu gereksinimini karşılayacağım.
+- Durum: Pekin tam kutu dry-run 9/9 provisional çift ve sıfır boşluk verdi; eski kesitler eksik kutulu. Runner QC açık şekilde scratch kesit alanını kullanacak; sıradaki adım tam-kutu üretimi.
 - ASF araması: platform=NISAR, processingLevel=GCOV, bbox [-0.3, 52.4, 0.4, 52.9], başlangıç 2026-06-17; 49 P05023 GCOV ürünü HH/HV ile eşleşti.
 - Tekrarlı seri: path 52, frame 61, 10 benzersiz tarih: 2026-06-17–2026-10-15. Granül listesi `pipeline/pc7/fens_gcov_catalog.json` içinde.
 - Doğrulama: `pipeline/pc7/search_fens_gcov.py` çalıştırıldı; katalog JSON olarak tekrar açılıp parse edildi.

@@ -161,6 +161,7 @@ def _write_quality_metrics(data_dir: Path, cum_npz: Path,
 def process_city(name: str, bbox: tuple[float, float, float, float],
                  reference_anchor: tuple[float, float], reference_source: str,
                  reference_outside_basin: bool,
+                 subset_dir: Path | None = None,
                  start: str = PROVISIONAL_START, end: str = "2026-10-31") -> dict[str, Any]:
     from pipeline.nisarpulse.fetch import fetch_subsets
     from pipeline.nisarpulse.search import search_granules
@@ -174,7 +175,10 @@ def process_city(name: str, bbox: tuple[float, float, float, float],
                 "chain_pairs": 0, "error": "No provisional GUNW coverage"}
     if gaps:
         raise ValueError(f"temporal chain has gaps: {gaps}")
-    out_subset = ROOT / "pipeline" / "subset" / f"global_{name}"
+    # Callers may direct new cuts to scratch so PC7 does not overwrite PC2's
+    # shared pipeline/subset ownership. The cumulative worker copies inputs to
+    # its isolated work root below.
+    out_subset = subset_dir or (ROOT / "pipeline" / "subset" / f"global_{name}")
     files = fetch_subsets(name, subset_bbox, chain, out_dir=out_subset, resume=True)
     if len(files) != len(chain):
         raise ValueError(f"subset count {len(files)} differs from chain count {len(chain)}")
@@ -256,6 +260,8 @@ def main() -> int:
     parser.add_argument("--reference", required=True, help="Published stable locality lon,lat")
     parser.add_argument("--reference-source", required=True, help="Source text and URL for the reference locality")
     parser.add_argument("--reference-outside-basin", choices=("yes", "no"), required=True)
+    parser.add_argument("--subset-dir", type=Path,
+                        help="Optional scratch directory for cuts; avoids writing PC2-owned pipeline/subset paths")
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args()
     from pipeline.nisarpulse.search import search_granules
@@ -267,7 +273,7 @@ def main() -> int:
                           "chain_pairs": len(chain), "gaps": gaps, "total_raw_mb": round(total, 1)}, indent=2))
         return 0 if chain and not gaps else 2
     result = process_city(args.name, bbox, ref, args.reference_source,
-                          args.reference_outside_basin == "yes")
+                          args.reference_outside_basin == "yes", subset_dir=args.subset_dir)
     print(json.dumps(result, indent=2, allow_nan=False))
     return 0 if result["coverage"] == "ok" else 2
 
