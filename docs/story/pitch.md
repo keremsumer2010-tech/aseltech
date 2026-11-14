@@ -27,7 +27,7 @@
 
 **Roles (`MASTER_PLAN.md §7`):**
 - **Speaker:** Kerem (walks through the narrative and live site)
-- **Live Demo Pilot:** Co-presenter (drives the sliders, map click, and Aquifer Manager)
+- **Live Demo Pilot:** Co-presenter (drives the sliders, map click, and Valley Under Pressure)
 - **Data Q&A Lead:** Mehmet (handles technical questions on NISAR GUNW math, GNSS validation, and limitations)
 
 ### 0:00 – 0:20 · Hook (The Iron Post)

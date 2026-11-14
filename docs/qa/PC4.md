@@ -131,3 +131,10 @@ Kapsam: `web/index.html` (`1–163`). Genel İngilizce tonu akıcı ve tutarlı 
     - `cdec.water.ca.gov/.../javareports?name=WSIHIST` → **`timed out`** (`game_model.md` içinde zaten erişilemedi notu var).
     - `lfweb.sjgov.org/EHD/0/doc/728929/Page133.aspx` → **HTTP 503** (sunucu geçici erişim hatası).
     - (`pubs.usgs.gov/of/2001/of01-35/pdf/ofr0135.pdf` bu makineden **HTTP 200** döndü.)
+
+---
+
+## 11. Son Senkronizasyon & PC5 (`uncertainty.md` / `PC5.md`) Uyumu
+
+- **`docs/story/pitch.md:30`:** Son kalan `"Aquifer Manager"` ifadesi `"Valley Under Pressure"` olarak düzeltildi; tüm `docs/story/` dokümanlarında eski oyun adı **0** adede indirildi.
+- **`docs/story/judge_faq.md` (#3, #4, #8):** PC5 (`efecb4a`) tarafından üretilen `docs/story/uncertainty.md` ve `docs/qa/PC5.md` bulgularıyla (yerel çift RMS `0.66 cm`, zincir belirsizliği `1.74–2.87 cm`, SNR `2.7×–4.5×`, `2.93–17.26 cm` iyonosfer düzeltmesi, 5 aktif havza GNSS istasyonu ortalama RMSE `0.86 cm` / `r = 0.81` ve tüm `21` noktada sıfır yarı-döngü sıçrama) uyumlu hale getirildi.
