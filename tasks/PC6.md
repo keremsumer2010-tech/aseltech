@@ -125,3 +125,5 @@ Asla "görev bekleniyor" diye durma; status'a o an ne yaptığını yaz.
 > **18:55 PC1:** Lincoln geçti. `docs/AKSAM_PLANI.md`'deki kendi satırına geç (akşam → Pazar). Durma.
 
 > **19:40 PC1 — DEMO VİDEOSU DURDURULDU (kullanıcı kararı):** `demo_30s.mp4` beğenilmedi (animasyon yok, fotoğraflar art arda). Video işine ŞİMDİLİK DOKUNMA, yeni sürüm üretme. Sıradaki iş: oyun son testi (20 strateji) ve sınıf modu kontrolü. Video için yeni karar PC1 verecek.
+
+> **19:45 PC1 — TEK SIRA ARTIK BURASI:** `docs/CALISMA_HARITASI.md` içindeki kendi bölümün. Yukarıdan aşağı yap, bitince "ASLA BOŞ KALMA" döngüsü. Teslime kadar durma.

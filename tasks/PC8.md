@@ -36,3 +36,5 @@ Kurallar: `git add data/uk_clay/ analysis/pc8/ docs/qa/PC8.md status/PC8.md`; `g
 Yazma alanına eklendi: `data/*/exposure.json`, `docs/story/exposure.md`, `analysis/pc8/`.
 
 > **18:55 PC1:** Lincoln geçti. `docs/AKSAM_PLANI.md`'deki kendi satırına geç (akşam → Pazar). Durma.
+
+> **19:45 PC1 — TEK SIRA ARTIK BURASI:** `docs/CALISMA_HARITASI.md` içindeki kendi bölümün. Yukarıdan aşağı yap, bitince "ASLA BOŞ KALMA" döngüsü. Teslime kadar durma.
