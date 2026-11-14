@@ -11,7 +11,7 @@ Rule: every number has a source or is labelled **illustrative** (rules K-2). Sta
 | Quantity | Value | Unit | Source | Status |
 |---|---|---|---|---|
 | Max cumulative motion, Terra Bella N (p01) | −7.8 | cm LOS, 108 days | `data/central_valley/summary.json` (`max_subsidence_cm`) | verified |
-| Range with alternative reference | −6.2 … −7.8 | cm LOS | `summary.json` `max_subsidence_range_cm` | verified |
+| Range with 3 reference windows | −4.7 … −7.8 | cm LOS | `summary.json` `range_cm` (updated 15:00; the −4.7 end uses a valley-floor reference that may itself be sinking) | verified |
 | Vertical estimate | −10.1 | cm | LOS / cos(39.1°), `summary.json` | verified (assumes purely vertical motion) |
 | Window | 2026-06-28 → 2026-10-14 | 108 days | `summary.json` `period` | verified |
 | p01 time series | 0, −0.84, −2.07, −3.0, −4.6, −3.35, −6.24, −7.8 | cm LOS | `data/central_valley/points.json` p01 | verified (matches `model.js` `nisarSeriesCm`) |
@@ -75,8 +75,8 @@ once and the check is repeated; the game reports the result live (`ValleyModel.r
 Current code: `extractionScaleFactor = 1.0`. I could not execute the JavaScript model here (no Node.js
 on this machine), so **the numeric value of d_model(k = 1) is not reported in this file**. PC6: read the
 value shown in the start-screen box, put k = −10.1 / d_model into `CONFIG`, and write both numbers here.
-Uncertainty to carry into the game text: the target itself spans −8.0 … −10.1 cm vertical
-(−6.2 … −7.8 cm LOS, reference sensitivity).
+Uncertainty to carry into the game text: the target itself spans about −6.1 … −10.1 cm vertical
+(−4.7 … −7.8 cm LOS, reference sensitivity with 3 reference windows; `summary.json` `range_cm`).
 
 Wording suggestion for the game box: "Model check against NISAR" instead of "Calibration Verification",
 so it is not confused with NISAR's own calibration (done by NASA-JPL / ISRO, rules §4).
