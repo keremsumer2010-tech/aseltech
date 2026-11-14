@@ -138,3 +138,75 @@ Ana site verilerini doğrudan güncellemek gerektiğinde `--data-dir data/centra
 - `python risk/karapinar_risk.py --self-test` → `PASS self-test: 0-1km=-6.564 cm < 1-2km=-3.05 cm < 2-5km=-0.178 cm | line dist=0.0 m`
 - `python -m pytest analysis -q` → `42 passed, 1 warning in 7.60s`
 - Geçici `--data-dir` + `--quality mixed` testi (`validation/compare.py`, `risk/compute_risk.py`, `risk/karapinar_risk.py`) → `10` istasyon, `81` yüksek riskli CV segmenti ve `64` Karapınar segmenti `quality="mixed"` ile ayrı klasöre temiz JSON olarak üretildi (geçici dizin silindi).
+
+---
+
+## 7. SONSUZ DÖNGÜ — Tur 1 & 16:15/16:25 Challenge Uyum Güncellemesi
+
+### 7.1 16:15 & 16:25 Yeni Görevler (Classroom Mode, NASA StoryMap / UAVSAR Kıyası, Kaynaklar & Demo Videosu)
+
+- **Oyun Sınıf Modu (`Classroom Mode` — `game/index.html`, `game/game.js`, `game/style.css`):**
+  - Sağ kontrol paneline (`#classroomCard`) ve üst çubuğa (`#classroomModeBtn`) **Classroom Mode (3 Scenarios)** eklendi:
+    1. **Scenario 1 — Normal Year:** `Below Normal → Above Normal`, `%100` pompalama, `%70` yüzey suyu, `%0` nadas.
+    2. **Scenario 2 — Multi-Year Drought:** `Dry → Critical`, `%140` pompalama, `%20` yüzey suyu, `%0` nadas (ön-konsolidasyon eşiği $h_{pc}$ altına inerek kalıcı kil sıkışması, kanal kapasite kaybı ve Konya'da obruk risk göstergesini tetikler).
+    3. **Scenario 3 — Sustainable Pumping:** `Below Normal → Dry`, `%55` pompalama, `%85` yüzey suyu, `%25` nadas (su seviyesini $h_{pc}$ civarında tutarak kalıcı çökmeyi önler).
+  - Hem sağ paneldeki açılır bölümde (`.classroom-q-details`) hem de 24 ay sonu karne penceresinde (`#endClassroomBox`) **3 tartışma sorusu** (1. Elastik geri tepme vs kalıcı kil sıkışması, 2. Diferansiyel kanal eğimi `mm/km` vs toplam çökme, 3. Tulare ve Konya havzalarında 12 günlük NISAR verisiyle yönetim kararları) gösterilmektedir.
+- **Oyun `Sources & Parameters` Sekmesine NASA StoryMap + White Papers Entegrasyonu (`game/game.js`):**
+  - `#paramsModal` penceresinin en üstüne **NASA Space Apps Challenge Resources & Land Subsidence StoryMap Framework** kutusu eklendi:
+    - **NASA NISAR Land Subsidence StoryMap:** Peacock, A., An, K., Pinto, N., & Lou, Y. (2024), *NISAR ArcGIS Storymaps*, Zenodo (`https://doi.org/10.5281/zenodo.10818833`, StoryMap: `https://storymaps.arcgis.com/stories/109e602e748346f3be8dc89124619828`); Miller et al. (2020) & Jones et al. (2020) UAVSAR `>40 inç` (`>100 cm`) California Aqueduct çökme bulguları ile 2026 NISAR uzaydan ölçümümüzün bağlantısı.
+    - **NASA NISAR Applications White Papers (`https://science.nasa.gov/mission/nisar/societal-benefits/`):** *Subsidence*, *Drought and Groundwater Withdrawal*, *Sinkholes and Cavern Collapse*, *Levees and Dams*, *Soil Moisture and Water Resources*.
+    - **Eğitim & Kılavuz Bağlantıları:** ASF NISAR Data User Guide (`https://nisar-docs.asf.alaska.edu/`), NASA Earthdata Intro to SAR, NASA ARSET SAR Trainings, NASA/JPL UAVSAR Postcards.
+- **Altyapı Risk Dosyasında (`docs/story/risk_dossier.md` & `analysis/pc6/make_risk_profiles.py`) California Aqueduct vs. NASA UAVSAR (2013–2017) Kıyası:**
+  - `#4 California Aqueduct` (`102.82 km`, tepe eğim `49.12 mm/km`, 108 günde maks `-7.42 cm` LOS / `~-9.6 cm` dikey *estimate*, yıllıklandırılmış yaz hızı `~-25.1 cm/yr` LOS *estimate*) ile NASA NISAR StoryMap'te raporlanan 2013–2017 UAVSAR havadan L-bant ölçümleri (`>40 inç` / `>101.6 cm` kümülatif, `~20–25 cm/yr`, Miller et al. 2020; Jones et al. 2020) karşılaştırma tablosuyla (§2.1) eklendi. İki ölçüm aynı büyüklük mertebesindedir (`~20–25 cm/yr` yaz çekimi).
+- **30 Saniyelik Demo Videosu (`analysis/pc6/make_demo_video.py` → `docs/story/media/demo_30s.mp4`):**
+  - Sahne başlıkları Space Apps Challenge diline (`"Track and Visualize Surface Change"`, `"Patterns and Rhythms"`, `"Actionable Insights"`, `"Interactive Simulator & Classroom Mode"`) güncellendi (`1920x1080`, `h264`, `yuv420p`, `29.62 s < 30.0 s`).
+
+### 7.2 `data/central_valley_fullyear/` Tam Yıl Animasyonu (`SONSUZ DÖNGÜ` c maddesi)
+
+- `analysis/pc6/make_animation.py central_valley_fullyear` çalıştırılarak `docs/story/media/cv_fullyear.mp4` (`1920x1080`, `h264`, `yuv420p`, `24 fps`, `14.25 s`, `4.22 MB`, `26` tarih `2025-11-24` → `2026-10-14`, `18 beta-precal + 7 provisional`, `p01` Earlimart `-20.32 cm` LOS) üretildi ve `ffprobe` ile doğrulandı.
+- Not: `analysis/out/central_valley_fullyear_cum_stack.npz` (`50.8 MB`) `docs/qa/PC9.md` §3 gereği `rules/RULES.md` K-12 sınırından ötürü repoya eklenmemiştir (PC9 yerel diskindedir); `.npz` paylaşıldığında §6'daki `--data-dir data/central_valley_fullyear --quality mixed` komutları doğrudan çalıştırılmaya hazırdır.
+
+### 7.3 `docs/qa/*.md` Bulgularının Çözümü ve İngiltere (`UK`) Bilimsel Gerçekçilik Denetimi
+
+- **Kapatılan PC6 QA Bulguları (`docs/qa/PCQ.md`):**
+  - `game/model.js:750`: Konya Kapalı Havzası'nda `sinkholeRiskActive` bayrağının `d.headM <= d.preconsolidationHeadM` katı eşitsizliği yüzünden tetiklenmemesi düzeltildi (`d.headM <= d.preconsolidationHeadM + 0.05 && Math.abs(d.totalCm) >= CONFIG.thresholds.sinkholeAlertCm`). `game/test_model.html` içinde `6/6 tests passed` (`sinkholeRiskActive=true`) doğrulandı.
+  - `game/game.js:1035`: Başlangıç kalibrasyon kutusunun `summaryData.range_cm || summaryData.max_subsidence_range_cm` alanını dinamik okuması sağlandı (`ref range -4.7…-7.8 cm LOS`).
+- **İngiltere (`data/uk`, `data/fens`, `data/uk_clay`, `docs/story/uk_findings.md`, `docs/story/holme_fen.md`) Bilimsel Gerçekçilik Denetimi:**
+  1. **The Fens & Holme Fen (`data/uk/meta.json`, `docs/story/holme_fen.md` — `quality: "preview"`):** `2026-10-20` tarihinde VIIRS optik görüntüsü `%98` bulutla kaplıyken NISAR L-bant (`24 cm`) `GCOV` geri saçılımı bulutları aşarak The Wash kıyı çizgisini ve drenaj kanallarını net göstermektedir. Holme Fen demir direğinin **1851**'den beri **~4 metre** açığa çıkması, zeminin deniz seviyesinin **2.75 m altına** inmesi ve güncel **1–2 cm/yıl** turba oksidasyonu birincil kaynaklarla (`The Great Fen`, `UKCEH / Defra SP1218 WP2`) birebir uyumludur.
+  2. **The Fens L-Bant `GCOV` HV Zaman Serisi (`Q10`, `data/fens/crops.json`, `data/fens/hv_timeseries.png` — `quality: "provisional"`):** 8 tarihte (`2026-06-22` → `2026-10-08`) 4 ayrı `480 m × 480 m` pencerede (`f01..f04`) `2026-08-21` tarihinde eşzamanlı `+1.4` ile `+4.2 dB` HV artışı ve sezon sonunda `+0.23` ile `+1.13 dB` net değişim ölçülmüştür. Veri uydurulmamış, net bir hasat düşüşü olmadığı dürüstçe raporlanmıştır.
+  3. **Greater London Kil (`London Clay`) Algılama Sınırı (`Q09`, `data/uk_clay/detection.json`, `summary.json`, `docs/story/uk_findings.md` — `quality: "provisional"`):** 9 ardışık çiftte (`2026-06-21` → `2026-10-19`, 120 gün) çift başına 1 km blok standart sapması `0.31–0.47 cm` olup 9 çiftlik zincir gürültüsü $\sigma_{\text{chain}} = \mathbf{1.21\text{ cm}}$ ve **$3\sigma$ algılama eşiği $3.62\text{ cm}$**'dir. Kuadratik atmosferik yüzey çıkarıldıktan sonra 1 km blokların **`%97.7`'si (`%98`) $\pm 1.5\text{ cm}$ içinde** kalmakta (`p2 = -1.47 cm`, `p50 = +0.19 cm`, `p98 = +1.26 cm`), sahne kenarından $\ge 10\text{ km}$ içeride $3.62\text{ cm}$ eşiğini aşan blok sayısı **`0` (`n_detected_blocks: 0`, `status: "below_detection"`)** olmaktadır. BGS literatüründe Londra Kili mevsimsel genliği `0.5–2.0 cm` olduğundan tek sezonda `"below_detection"` çıkması %100 gerçekçi ve güçlü bir negatif kontroldür.
+  4. **PC8 / PC9 İçin Tespit Edilen 4 Küçük Görsel/Metin Notu (PC6 yazma alanı dışında olduğundan burada raporlanmıştır):**
+     - `docs/story/media/pc8_uk_detection.png` Panel B'de sağ alt lejant kutusu yeşil çubuğun `"1.21 cm/yr (est.)"` yazısıyla kısmen çakışıyor ve 3 yıllık hız eşiği aynı panelde üç farklı yuvarlamayla (`~1.1`, `1.21`, `~1.2 cm/yr`) yazılmış.
+     - `data/uk_clay/summary.json` içinde `max_subsidence_cm: -5.2` (`-6.9 cm` dikey), `docs/qa/PC8.md` içinde ise `-5.3 cm LOS (-7.1 cm dikey)` geçiyor (0.1–0.2 cm yuvarlama farkı).
+     - `web/index.html` satır 99–100'de `#holmeText` ve `#ukClay` (`±3.6 cm`) yayında; ancak `docs/story/media/pc8_uk_detection.png` ile `data/fens/hv_timeseries.png` görselleri ve `web/data.html` indirme tablosundaki `uk_clay/{detection,summary}.json` + `fens/crops.json` bağlantıları PC9 tarafından eklenebilir.
+     - `data/uk_clay/points.json` içindeki nokta `name` alanları ham koordinat dizgesi (`"51.324N 0.318W"`) olarak bırakılmış.
+
+### 7.4 20 Farklı Strateji × 2 Havza (40 Koşu) Otomatik Oyun Testi (`analysis/pc6/test_20_strategies.py --self-test`)
+
+Komut: `python analysis/pc6/test_20_strategies.py --self-test`
+- **Tulare Kalibrasyonu:** `k = 0.623`, simüle `-10.1 cm` dikey (`-7.84 cm` LOS) vs NISAR `-10.1 cm` dikey (`-7.8 cm` LOS) → **Hata: `%0.0`**
+- **Konya Kalibrasyonu:** `k = 0.621`, simüle `-8.0 cm` dikey (`-5.95 cm` LOS) vs NISAR `-8.0 cm` dikey (`-5.9 cm` LOS) → **Hata: `%0.0`**
+- **Sonuç:** `40/40` 24-aylık simülasyon koşusu **PASS** (`0 NaN/Infinity`, `PC7` Node.js referans tablosuyla `<= 0.01 cm` birebir uyum, monoton pompalama tepkisi ve Konya obruk göstergesi doğrulandı).
+
+| Strategy | WY (Y1/Y2) | Pump | Fallow | Tulare Tot/Perm (cm) | Tulare Rev (\$M) | Konya Tot/Perm (cm) | Konya Obruk Ind. |
+|---|---|---:|---:|---:|---:|---:|:---:|
+| `S01-D0` | Dry | 0% | 0% | 0.08 / 0.00 | 452.1 | 0.07 / 0.00 | Safe |
+| `S02-D50` | Dry | 50% | 0% | 6.05 / 6.03 | 849.9 | 4.11 / 4.09 | Elevated |
+| `S03-D100` | Dry | 100% | 0% | 28.87 / 28.84 | 1308.9 | 22.34 / 22.32 | Elevated |
+| `S04-D150` | Dry | 150% | 0% | 51.68 / 51.66 | 1748.5 | 40.57 / 40.55 | Elevated |
+| `S05-W100` | Wet | 100% | 0% | 0.04 / 0.00 | 1748.1 | 0.10 / 0.00 | Safe |
+| `S06-BN100` | Below Normal | 100% | 0% | 17.62 / 17.60 | 1529.8 | 12.87 / 12.85 | Elevated |
+| `S07-D100-F30` | Dry | 100% | 30% | 15.18 / 15.15 | 898.6 | 11.40 / 11.38 | Elevated |
+| `S08-W0-F30` | Wet | 0% | 30% | 0.24 / 0.00 | 572.1 | 0.20 / 0.00 | Safe |
+| `S09-W150-F30` | Wet | 150% | 30% | 0.41 / 0.39 | 1292.4 | 0.04 / 0.00 | Safe |
+| `S10-BN50-F30` | Below Normal | 50% | 30% | 0.09 / 0.00 | 739.8 | 0.09 / 0.00 | Safe |
+| `S11-C0-F50` | Critical | 0% | 50% | 0.04 / 0.00 | 215.2 | 0.04 / 0.00 | Safe |
+| `S12-C150` | Critical | 150% | 0% | 59.42 / 59.40 | 1576.5 | 47.08 / 47.06 | Elevated |
+| `S13-C100-F25` | Critical | 100% | 25% | 25.20 / 25.17 | 828.6 | 19.74 / 19.72 | Elevated |
+| `S14-AN75` | Above Normal | 75% | 0% | 0.09 / 0.00 | 1447.4 | 0.11 / 0.00 | Safe |
+| `S15-BN-SGMA` | Below Normal | 40% | 25% | 0.10 / 0.00 | 726.2 | 0.10 / 0.00 | Safe |
+| `S16-BN-OverPump` | Below Normal | 145% | 0% | 43.50 / 43.47 | 1575.7 | 33.77 / 33.75 | Elevated |
+| `S17-WetToCrit120` | Wet/Critical | 120% | 10% | 21.02 / 20.99 | 1435.1 | 15.57 / 15.55 | Elevated |
+| `S18-CritToWet60` | Critical/Wet | 60% | 20% | 5.92 / 6.07 | 602.4 | 4.50 / 4.64 | Elevated |
+| `S19-DryToAN90-F15` | Dry/Above Normal | 90% | 15% | 10.77 / 10.75 | 1028.7 | 7.56 / 7.55 | Elevated |
+| `S20-CritToBN-NoSurf` | Critical/Below Normal | 80% | 0% | 22.04 / 22.02 | 836.1 | 16.98 / 16.96 | Elevated |

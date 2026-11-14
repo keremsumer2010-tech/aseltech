@@ -995,7 +995,32 @@
       ['Canal Capacity Loss Curve', 'Up to 60% above 10 mm/km', '% conveyance drop', 'Friant-Kern >60% capacity loss verified (FWA/KVPR); onset threshold illustrative', true],
       ['Well Failure Depths & Crop Prices', 'Representative depths & $/ha', 'wells / USD', 'Stylized regional baseline per district', true],
     ];
-    return `<table class="param-table">
+    return `<div class="sources-ref-box">
+      <h3>NASA Space Apps Challenge Resources &amp; Land Subsidence StoryMap Framework</h3>
+      <p style="margin:0 0 6px;">
+        <strong>1. NASA NISAR Land Subsidence StoryMap (2013–2017 UAVSAR → 2026 Spaceborne NISAR):</strong>
+        NASA's official <a href="https://storymaps.arcgis.com/stories/109e602e748346f3be8dc89124619828" target="_blank" rel="noopener">NISAR Land Subsidence StoryMap</a>
+        (Peacock, A., An, K., Pinto, N., &amp; Lou, Y., 2024, <em>NISAR ArcGIS Storymaps</em>, Zenodo, <a href="https://doi.org/10.5281/zenodo.10818833" target="_blank" rel="noopener">doi:10.5281/zenodo.10818833</a>)
+        demonstrated with airborne L-band UAVSAR that groundwater pumping in California's Central Valley formed a deep subsidence bowl and sank segments of the <strong>California Aqueduct</strong> by more than 40 inches (&gt;100 cm, or ~20–25 cm/yr) between 2013 and 2017 (Miller et al. 2020; Jones et al. 2020).
+        Our 2026 simulator and risk dossier extend that exact framework from space using provisional NISAR L2 GUNW radar (recording −7.42 cm LOS / 49.12 mm/km tilt along the California Aqueduct in 108 summer days), GPS validation, and OpenStreetMap conveyance networks.
+      </p>
+      <ul>
+        <li><strong>NISAR Applications White Papers (<a href="https://science.nasa.gov/mission/nisar/societal-benefits/" target="_blank" rel="noopener">NASA Societal Benefits</a>):</strong>
+          <a href="https://assets.science.nasa.gov/content/dam/science/missions/nisar/nisar-jpl/pdf/NISAR_Applications_Subsidence.pdf" target="_blank" rel="noopener">Subsidence</a> (early centimetre-scale deformation monitoring),
+          <a href="https://assets.science.nasa.gov/content/dam/science/missions/nisar/nisar-jpl/pdf/NISAR_Applications_Drought_and_Groundwater_Withdrawal1.pdf" target="_blank" rel="noopener">Drought &amp; Groundwater Withdrawal</a> (surface-water curtailment → pumping → clay compaction),
+          <a href="https://assets.science.nasa.gov/content/dam/science/missions/nisar/nisar-jpl/pdf/NISAR_Applications_Sinkholes1.pdf" target="_blank" rel="noopener">Sinkholes &amp; Cavern Collapse</a> (precursor deformation in carbonate terrains such as Karapınar, indicator only),
+          <a href="https://assets.science.nasa.gov/content/dam/science/missions/nisar/nisar-jpl/pdf/NISAR_Applications_Levees_and_Dams1.pdf" target="_blank" rel="noopener">Levees &amp; Dams</a>, and
+          <a href="https://assets.science.nasa.gov/content/dam/science/missions/nisar/nisar-jpl/pdf/NISAR_Applications_Soil_Moisture_and_Water_Resources.pdf" target="_blank" rel="noopener">Soil Moisture &amp; Water Resources</a>.
+        </li>
+        <li><strong>NISAR Data User Guide &amp; SAR Education:</strong>
+          <a href="https://nisar-docs.asf.alaska.edu/" target="_blank" rel="noopener">ASF NISAR Data User Guide</a>,
+          <a href="https://www.earthdata.nasa.gov/learn/earth-observation-data-basics/sar" target="_blank" rel="noopener">NASA Earthdata Intro to SAR</a>,
+          <a href="https://appliedsciences.nasa.gov/get-involved/training" target="_blank" rel="noopener">NASA ARSET SAR Trainings</a>, and
+          <a href="https://uavsar.jpl.nasa.gov/education/postcards.html" target="_blank" rel="noopener">NASA/JPL UAVSAR Postcards</a>.
+        </li>
+      </ul>
+    </div>
+    <table class="param-table">
       <thead><tr><th>Parameter</th><th>Value</th><th>Provenance / Tag</th></tr></thead>
       <tbody>${rows
         .map(
@@ -1008,6 +1033,65 @@
         .join('')}
       </tbody>
     </table>`;
+  }
+
+  const CLASSROOM_SCENARIOS = {
+    normal: {
+      id: 'normal',
+      label: 'Scenario 1: Normal Year (Below Normal → Above Normal · 100% Pump)',
+      year1WaterYear: 'Below Normal',
+      year2WaterYear: 'Above Normal',
+      pumpingPct: 100,
+      surfaceAllocPct: 70,
+      fallowPct: 0,
+    },
+    drought: {
+      id: 'drought',
+      label: 'Scenario 2: Multi-Year Drought (Dry → Critical · 140% Pump)',
+      year1WaterYear: 'Dry',
+      year2WaterYear: 'Critical',
+      pumpingPct: 140,
+      surfaceAllocPct: 20,
+      fallowPct: 0,
+    },
+    sustainable: {
+      id: 'sustainable',
+      label: 'Scenario 3: Sustainable Pumping (Below Normal → Dry · 55% Pump · 25% Fallow)',
+      year1WaterYear: 'Below Normal',
+      year2WaterYear: 'Dry',
+      pumpingPct: 55,
+      surfaceAllocPct: 85,
+      fallowPct: 25,
+    },
+  };
+
+  function runClassroomScenario(scenKey) {
+    const spec = CLASSROOM_SCENARIOS[scenKey];
+    if (!spec) return;
+    const ui = BASIN_UI[activeBasinId] || BASIN_UI.tulare;
+    const hydrated = ValleyModel.hydrateFromRepoData(pointsData, summaryData, activeBasinId);
+    simState = ValleyModel.createSimulationState({
+      basinId: activeBasinId,
+      districts: hydrated.districts,
+      summaryData: hydrated.summaryData,
+      year1WaterYear: spec.year1WaterYear,
+      year2WaterYear: spec.year2WaterYear,
+    });
+    selectedDistrictId = simState.districts[0].id;
+    applyAll = true;
+    if ($('applyAllChk')) $('applyAllChk').checked = true;
+    ValleyModel.setDistrictControls(simState, 'ALL', {
+      pumpingPct: spec.pumpingPct,
+      surfaceAllocPct: spec.surfaceAllocPct,
+      fallowPct: spec.fallowPct,
+    });
+    document.querySelectorAll('.classroom-scen-btn').forEach((b) => {
+      b.classList.toggle('active', b.dataset.classroom === scenKey);
+    });
+    if ($('endClassroomScenarioTag')) {
+      $('endClassroomScenarioTag').textContent = `${ui.shortLabel} · ${spec.label}`;
+    }
+    advanceMonths(24);
   }
 
   function resetSimulation(keepModalHidden) {
@@ -1270,6 +1354,27 @@
         }
       });
     }
+
+    const classroomCard = $('classroomCard');
+    const classroomBtn = $('classroomModeBtn');
+    if (classroomBtn && classroomCard) {
+      classroomBtn.addEventListener('click', () => {
+        const willShow = classroomCard.hidden;
+        classroomCard.hidden = !willShow;
+        classroomBtn.setAttribute('aria-expanded', String(willShow));
+        if (willShow) {
+          classroomCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      });
+    }
+
+    document.querySelectorAll('.classroom-scen-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        if (btn.dataset.classroom) {
+          runClassroomScenario(btn.dataset.classroom);
+        }
+      });
+    });
   }
 
   async function boot() {

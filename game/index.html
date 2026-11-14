@@ -23,6 +23,7 @@
       </div>
       <div class="topbar-meta">
         <button id="howToPlayBtn" class="btn-ghost" type="button" aria-expanded="true" aria-controls="howToPlayGuide">How to play</button>
+        <button id="classroomModeBtn" class="btn-ghost" type="button" aria-expanded="true" aria-controls="classroomCard">Classroom Mode</button>
         <button id="audioToggleBtn" class="btn-ghost" type="button" aria-pressed="false" title="Toggle subtle synthesized UI click and warning tones">Audio: Off</button>
         <button id="paramsBtn" class="btn-ghost" type="button">Sources &amp; Parameters</button>
         <a class="btn-ghost" href="./test_model.html" target="_blank" rel="noopener">Model Tests</a>
@@ -90,6 +91,36 @@
             <li><strong>Set water balance:</strong> Adjust monthly groundwater pumping, canal deliveries, and temporary crop fallowing.</li>
             <li><strong>Advance 1 month:</strong> Press <strong>Advance one month</strong> (<code>Space</code>) to compare clay collapse and canal slope against NISAR.</li>
           </ol>
+        </section>
+
+        <section id="classroomCard" class="section-card classroom-card" aria-label="Classroom Mode scenarios and discussion questions">
+          <div class="section-head">
+            <h2 class="section-title">Classroom Mode (3 Scenarios)</h2>
+            <span class="pill" style="background:rgba(86,180,233,0.16);color:#56b4e9;border:1px solid rgba(86,180,233,0.4);">Educator Activity</span>
+          </div>
+          <p class="classroom-intro">One-click 24-month experiments for classroom comparison and discussion:</p>
+          <div class="classroom-btn-grid" role="group" aria-label="One-click classroom scenarios">
+            <button type="button" class="classroom-scen-btn" data-classroom="normal">
+              <strong>1. Normal Year</strong>
+              <span>100% pump · 70% canal · 0% fallow</span>
+            </button>
+            <button type="button" class="classroom-scen-btn" data-classroom="drought">
+              <strong>2. Multi-Year Drought</strong>
+              <span>140% pump · 20% canal · Dry/Crit</span>
+            </button>
+            <button type="button" class="classroom-scen-btn" data-classroom="sustainable">
+              <strong>3. Sustainable Pumping</strong>
+              <span>55% pump · 85% canal · 25% fallow</span>
+            </button>
+          </div>
+          <details class="classroom-q-details">
+            <summary>3 Classroom Discussion Questions</summary>
+            <ol class="classroom-q-list">
+              <li><strong>Patterns &amp; Rhythms (Elastic vs. Permanent):</strong> Compare Scenario 1 (Normal) and Scenario 2 (Drought). Why does winter recharge recover elastic motion above the historical low water level (<em>h<sub>pc</sub></em>), while clay compaction below <em>h<sub>pc</sub></em> is permanent?</li>
+              <li><strong>Infrastructure Tilt vs. Total Sinking:</strong> Why does a steep differential gradient (mm/km of uneven sinking across a canal) cut flow capacity in the California Aqueduct and Friant-Kern Canal by up to 60%, even where total sinking is under 30 cm?</li>
+              <li><strong>Actionable Insights Across Basins:</strong> Switch between Tulare (USA) and Konya (Türkiye) and run Scenario 3 (Sustainable). How do 12-day NISAR passes help water managers balance farm revenue against permanent storage loss and sinkhole risk?</li>
+            </ol>
+          </details>
         </section>
 
         <div class="section-card">
@@ -299,6 +330,18 @@
           <div class="stat-line"><span>High-Risk Assets Mapped</span><strong class="mono color-warn" id="endNisarAssets">81 / 645 segments</strong></div>
           <div class="stat-line"><span id="endNisarValLabel">Validation GNSS r (CAHA)</span><strong class="mono color-ok" id="endNisarVal">0.90 (RMSE 0.75 cm)</strong></div>
         </div>
+      </div>
+
+      <div id="endClassroomBox" class="classroom-end-box">
+        <div class="classroom-end-head">
+          <strong>Classroom Mode — 3 Discussion Questions</strong>
+          <span id="endClassroomScenarioTag" class="pill mono">24-Month Comparison</span>
+        </div>
+        <ol class="classroom-q-list">
+          <li><strong>1. Patterns &amp; Rhythms (Elastic vs. Permanent Collapse):</strong> Why did winter recharge recover only the elastic fraction of sinking, while virgin clay compaction below the historical low water level (<em>h<sub>pc</sub></em>) stayed locked in permanently?</li>
+          <li><strong>2. Infrastructure Tilt vs. Total Sinking:</strong> Why does uneven sinking gradient (mm/km along a canal) reduce water delivery capacity in gravity-fed canals like the California Aqueduct and Friant-Kern Canal?</li>
+          <li><strong>3. Actionable Insights Across Basins:</strong> Comparing Tulare Basin (USA) and Konya Closed Basin (Türkiye), how can 12-day spaceborne NISAR monitoring guide pumping limits and crop fallowing before irreversible damage occurs?</li>
+        </ol>
       </div>
 
       <div style="display:flex; gap:8px; justify-content:flex-end; margin-top:14px; flex-wrap:wrap;">

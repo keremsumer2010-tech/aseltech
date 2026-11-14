@@ -155,7 +155,7 @@ def build_title_card() -> Image.Image:
     draw.text((220, 305), "NISAR Pulse — Team Taykut", font=font_title, fill=TEXT_HEX)
     draw.text(
         (220, 415),
-        "Tracking Groundwater Depletion, Land Subsidence, and Canal Risk from Space",
+        "Track and Visualize Surface Change: Patterns and Rhythms of Subsidence",
         font=font_sub,
         fill=ACCENT_HEX,
     )
@@ -309,19 +309,19 @@ def main() -> int:
     # Total = 2.0 + 8.0 + 4.0 + 4.0 + 6.0 + 3.0 + 2.6 = 29.6 s (strictly <= 29.8 s < 30.0 s)
     total_dur = 29.6
     scenes = [
-        ("01_title", 0.0, 2.0, "SCENE 1/7  ·  OVERVIEW",
+        ("01_title", 0.0, 2.0, "SCENE 1/7  ·  TRACK AND VISUALIZE SURFACE CHANGE",
          "When deep groundwater is pumped faster than rain refills it, the ground itself sinks."),
-        ("02_cv_anim", 2.0, 8.0, "SCENE 2/7  ·  TULARE BASIN, CALIFORNIA (2026-06-28 → 2026-10-14)",
+        ("02_cv_anim", 2.0, 8.0, "SCENE 2/7  ·  PATTERNS AND RHYTHMS: TULARE BASIN, CA (2026-06-28 → 2026-10-14)",
          "In California's Tulare Basin, provisional NISAR tracks up to -7.8 cm LOS (-10.1 cm vertical) across 108 days."),
-        ("03_validation", 10.0, 4.0, "SCENE 3/7  ·  NGL GPS VALIDATION (10 STATIONS)",
+        ("03_validation", 10.0, 4.0, "SCENE 3/7  ·  GROUND-TRUTH VALIDATION: 10 NGL GPS STATIONS",
          "Independent NGL GPS stations agree across 10 sites (Pearson r = 0.924, final RMSE = 1.37 cm)."),
-        ("04_risk4", 14.0, 4.0, "SCENE 4/7  ·  INFRASTRUCTURE EXPOSURE PROFILE",
+        ("04_risk4", 14.0, 4.0, "SCENE 4/7  ·  ACTIONABLE INSIGHTS: CALIFORNIA AQUEDUCT RISK PROFILE",
          "Sinking warps major canals: California Aqueduct gradient hits 49.12 mm/km (-7.42 cm LOS); Tulare Canal hits 57.01 mm/km."),
-        ("05_kp_anim", 18.0, 6.0, "SCENE 5/7  ·  KONYA CLOSED BASIN / KARAPINAR, TURKIYE",
+        ("05_kp_anim", 18.0, 6.0, "SCENE 5/7  ·  PATTERNS AND RHYTHMS: KONYA CLOSED BASIN / KARAPINAR, TURKIYE",
          "In Turkiye's Konya Closed Basin, Karapinar sank -5.9 cm LOS (-8.0 cm vertical) near 29 mapped sinkholes."),
-        ("06_game", 24.0, 3.0, "SCENE 6/7  ·  VALLEY UNDER PRESSURE SIMULATOR",
-         "Valley Under Pressure turns NISAR observations into a 24-month trade-off between crop revenue and permanent clay collapse."),
-        ("07_closing", 27.0, 2.6, "SCENE 7/7  ·  SOURCES & ATTRIBUTION",
+        ("06_game", 24.0, 3.0, "SCENE 6/7  ·  INTERACTIVE SIMULATOR & CLASSROOM MODE",
+         "Valley Under Pressure turns NISAR observations into a 24-month trade-off with Classroom Mode scenarios and discussion."),
+        ("07_closing", 27.0, 2.6, "SCENE 7/7  ·  OPEN DATA, NASA STORYMAP FRAMEWORK & ATTRIBUTION",
          "Data: NASA-ISRO NISAR (provisional, JPL/ISRO calibration), ASF DAAC, NGL GNSS, and OpenStreetMap."),
     ]
 

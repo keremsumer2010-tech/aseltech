@@ -9,6 +9,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import textwrap
 from datetime import datetime
 from pathlib import Path
 
@@ -49,6 +50,21 @@ SITE_CONFIGS = {
         "palette": ["#ff5c57", "#ff8c42", "#fbbf24", "#38bdf8", "#94a3b8"],
         "tick_step": 0.1,
         "extra_note": "OSM infrastructure · Sinkholes: Tapur & Bozyigit (2015)",
+    },
+    "central_valley_fullyear": {
+        "out_prefix": "cv_fullyear",
+        "title": "San Joaquin Valley, CA — Full-Year Cumulative LOS (MIXED)",
+        "subtitle": "NISAR L2 GUNW Track 34 Ascending · 25 Pairs (18 Beta-Precal + 7 Provisional) · Ref 2025-11-24",
+        "badge_text": "NASA-ISRO NISAR · MIXED (BETA + PROVISIONAL)",
+        "infra_geojson": RISK_ROOT / "central_valley_infra.geojson",
+        "highlight_ids": ["p01", "p02", "p03", "p04", "p06", "p11"],
+        "palette": ["#ff5c57", "#ff8c42", "#fbbf24", "#f472b6", "#38bdf8", "#94a3b8"],
+        "tick_step": 0.2,
+        "extra_note": "MIXED QUALITY (pre-2026-06-17 beta-precal + provisional) · OSM canals, rail, highways",
+        "mp4_only": True,
+        "hold_frames": 8,
+        "fade_frames": 4,
+        "final_hold": 42,
     },
 }
 
@@ -176,11 +192,11 @@ def render_epoch_frame(
         va="top",
     )
 
-    # Top-right Provisional pill badge + Epoch counter pill cleanly separated above right chart
+    # Top-right quality pill badge + Epoch counter pill cleanly separated above right chart
     fig.text(
         0.968,
         0.956,
-        "NASA-ISRO NISAR \u00b7 PROVISIONAL",
+        cfg.get("badge_text", "NASA-ISRO NISAR \u00b7 PROVISIONAL"),
         color="#fef3c7",
         fontsize=10,
         fontweight="bold",
@@ -379,8 +395,12 @@ def render_epoch_frame(
     ax_ts.set_title("Tracked Sample Points — Cumulative LOS (cm)", color=text_main, fontsize=11.0, fontweight="bold", pad=10)
     ax_ts.set_xlabel(f"Days since {dates[0]}", color=text_muted, fontsize=9.2)
     ax_ts.set_ylabel("LOS displacement (cm)", color=text_muted, fontsize=9.2)
-    ax_ts.set_xticks(x_days)
-    ax_ts.set_xticklabels([f"{int(dx)}d" for dx in x_days], fontsize=8.0)
+    if len(dates) > 12:
+        tick_indices = sorted({int(round(v)) for v in np.linspace(0, len(dates) - 1, 7)})
+    else:
+        tick_indices = list(range(len(dates)))
+    ax_ts.set_xticks([x_days[i] for i in tick_indices])
+    ax_ts.set_xticklabels([f"{int(x_days[i])}d" for i in tick_indices], fontsize=8.0)
     ax_ts.tick_params(colors=text_muted, labelsize=8.8)
     ax_ts.grid(True, color="#1e293b", linestyle="--", linewidth=0.65, zorder=0)
     for spine in ax_ts.spines.values():
@@ -417,38 +437,43 @@ def render_epoch_frame(
         c = "#ff5c57" if active else ("#f8fafc" if done else "#475569")
         sz = 88 if active else 38
         ax_tl.scatter([xs[i]], [0.58], s=sz, color=c, edgecolors="#080d14", linewidths=1.0, zorder=3)
-        ax_tl.text(
-            xs[i],
-            0.22,
-            d_str[5:],
-            color="#f8fafc" if active else "#94a3b8",
-            fontsize=7.3,
-            fontweight="bold" if active else "normal",
-            ha="center",
-            va="center",
-            family="DejaVu Sans Mono",
-        )
+        if i in tick_indices:
+            ax_tl.text(
+                xs[i],
+                0.22,
+                d_str[5:],
+                color="#f8fafc" if active else "#94a3b8",
+                fontsize=7.3,
+                fontweight="bold" if active else "normal",
+                ha="center",
+                va="center",
+                family="DejaVu Sans Mono",
+            )
 
     # Footer
+    raw_q_note = meta.get(
+        "quality_note",
+        "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.",
+    )
+    q_wrapped = textwrap.fill(raw_q_note, width=165) if len(raw_q_note) > 165 else raw_q_note
+    is_multiline = "\n" in q_wrapped
     fig.text(
         0.032,
-        0.048,
+        0.062 if is_multiline else 0.048,
         f"Source: {meta.get('source', 'NASA-ISRO NISAR L2 GUNW')}  |  {cfg['extra_note']}",
         color="#cbd5e1",
-        fontsize=8.8,
+        fontsize=8.5 if is_multiline else 8.8,
         family="DejaVu Sans",
     )
     fig.text(
         0.032,
-        0.022,
-        meta.get(
-            "quality_note",
-            "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.",
-        ),
+        0.045 if is_multiline else 0.022,
+        q_wrapped,
         color="#fbbf24",
-        fontsize=8.8,
+        fontsize=8.3 if is_multiline else 8.8,
         fontweight="bold",
         family="DejaVu Sans",
+        va="top" if is_multiline else "baseline",
     )
 
     out_png.parent.mkdir(parents=True, exist_ok=True)
@@ -460,11 +485,13 @@ def build_site_media(site: str) -> dict:
     bundle = load_site_bundle(site)
     infra_groups = _group_infra_lines(bundle["infra"])
     dates = bundle["meta"]["dates"]
-    prefix = bundle["cfg"]["out_prefix"]
+    cfg = bundle["cfg"]
+    prefix = cfg["out_prefix"]
+    mp4_only = bool(cfg.get("mp4_only", False))
 
     MEDIA_ROOT.mkdir(parents=True, exist_ok=True)
     mp4_path = MEDIA_ROOT / f"{prefix}.mp4"
-    gif_path = MEDIA_ROOT / f"{prefix}.gif"
+    gif_path = None if mp4_only else (MEDIA_ROOT / f"{prefix}.gif")
 
     with tempfile.TemporaryDirectory(prefix=f"nisar_anim_{site}_") as tmp:
         tmp_dir = Path(tmp)
@@ -475,25 +502,26 @@ def build_site_media(site: str) -> dict:
             epoch_pngs.append(ep_png)
 
         pil_epochs = [Image.open(p).convert("RGB") for p in epoch_pngs]
-        gif_frames = [im.quantize(colors=256, method=Image.Quantize.MEDIANCUT) for im in pil_epochs]
-        durations = [900] * (len(gif_frames) - 1) + [2400]
-        gif_frames[0].save(
-            gif_path,
-            save_all=True,
-            append_images=gif_frames[1:],
-            duration=durations,
-            loop=0,
-            optimize=True,
-        )
+        if gif_path is not None:
+            gif_frames = [im.quantize(colors=256, method=Image.Quantize.MEDIANCUT) for im in pil_epochs]
+            durations = [900] * (len(gif_frames) - 1) + [2400]
+            gif_frames[0].save(
+                gif_path,
+                save_all=True,
+                append_images=gif_frames[1:],
+                duration=durations,
+                loop=0,
+                optimize=True,
+            )
 
         # Pipe raw RGB24 frames directly to ffmpeg stdin for fast 1080p encoding
         ffmpeg_bin = shutil.which("ffmpeg")
         if ffmpeg_bin:
             w, h = pil_epochs[0].size
             fps = 24
-            hold_frames = 22
-            fade_frames = 6
-            final_hold = 54
+            hold_frames = int(cfg.get("hold_frames", 22))
+            fade_frames = int(cfg.get("fade_frames", 6))
+            final_hold = int(cfg.get("final_hold", 54))
             cmd = [
                 ffmpeg_bin,
                 "-y",
@@ -545,19 +573,22 @@ def build_site_media(site: str) -> dict:
     return {
         "site": site,
         "frames": len(dates),
-        "gif": str(gif_path),
-        "gif_mb": round(gif_path.stat().st_size / (1024 * 1024), 2),
+        "gif": str(gif_path) if gif_path is not None else None,
+        "gif_mb": round(gif_path.stat().st_size / (1024 * 1024), 2) if (gif_path is not None and gif_path.exists()) else None,
         "mp4": str(mp4_path) if mp4_path.exists() else None,
         "mp4_mb": round(mp4_path.stat().st_size / (1024 * 1024), 2) if mp4_path.exists() else None,
     }
 
 
 def main() -> int:
-    for site in ("central_valley", "karapinar"):
+    req_sites = [arg for arg in sys.argv[1:] if arg in SITE_CONFIGS]
+    sites = req_sites if req_sites else ["central_valley", "karapinar"]
+    for site in sites:
         info = build_site_media(site)
+        gif_desc = f"GIF={info['gif_mb']} MB" if info["gif_mb"] is not None else "GIF=skipped"
         print(
             f"[OK] {site}: {info['frames']} epochs | "
-            f"GIF={info['gif_mb']} MB | MP4={info['mp4_mb']} MB"
+            f"{gif_desc} | MP4={info['mp4_mb']} MB"
         )
     return 0
 
