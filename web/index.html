@@ -27,8 +27,9 @@
   <div class="hero-content">
     <p class="kicker">NASA Space Apps Challenge 2026 · Dancing with the SARs</p>
     <h1>The ground beneath<br>our food is sinking.</h1>
-    <p class="lede">In 108 days of 2026, NASA-ISRO's NISAR radar measured parts of California's Central Valley dropping by up to <b data-k="cv.max">7.8 cm</b>. We turned those measurements into a story anyone can read — and a simulator anyone can play.</p>
-    <div class="hero-cta"><a class="btn primary" href="#story">Follow the water</a><a class="btn ghost" href="#play">Run the simulator</a></div>
+    <p class="lede">Between 28 June and 14 October 2026, NASA-ISRO's NISAR radar measured parts of California's Central Valley moving up to <b data-k="cv.max">7.8</b> cm away from the satellite as groundwater was pumped for irrigation. This page explains the measurement, how we checked it, and what it means for canals, roads and farms in California, Türkiye and the United Kingdom.</p>
+    <div class="hero-cta"><a class="btn primary" href="#story">Read the story</a><a class="btn ghost" href="#play">Open the simulator</a></div>
+    <p class="byline">14 November 2026 · Team Taykut, Ankara · Data: NASA-ISRO NISAR (provisional), NASA ASF DAAC, Nevada Geodetic Laboratory, OpenStreetMap</p>
   </div>
   <p class="hero-caption">Live background: cumulative ground motion measured by NISAR over the Central Valley, 28 Jun – 14 Oct 2026 (red = sinking). <span class="qbadge provisional">PROVISIONAL</span></p>
 </section>
@@ -53,15 +54,15 @@
 
     <article class="step" data-step="intro">
       <p class="chapter">Chapter 1</p>
-      <h2>A radar that sees the ground move</h2>
-      <p>NISAR, launched in July 2025 by NASA and ISRO, sends its own microwave pulses. Comparing two passes 12 days apart, it measures how far the ground moved towards or away from the satellite — to within millimetres to centimetres — day or night, through any cloud.</p>
+      <h2>A satellite radar that measures ground motion</h2>
+      <p>NISAR, launched in July 2025 by NASA and ISRO, sends its own microwave pulses. Comparing two passes 12 days apart, it measures how far the ground moved towards or away from the satellite — with centimetre-level precision, by day or night and through cloud.</p>
       <p>We used its newly released <b>provisional</b> data to follow one chain of cause and effect across three countries.</p>
       <div class="chain"><span>Irrigation</span><i></i><span>Groundwater pumping</span><i></i><span>Clay compaction</span><i></i><span>Sinking ground</span></div>
     </article>
 
     <article class="step" data-step="uk">
       <p class="chapter">Chapter 2 · United Kingdom</p>
-      <h2>Britain, under the clouds</h2>
+      <h2>Seeing the Fens through cloud</h2>
       <p>On <span data-k="uk.date">20 Oct 2026</span>, NASA's VIIRS camera saw mostly cloud over the Fens. NISAR's radar, the same day, saw the fields. Drag the line to compare.</p>
       <figure class="compare" id="compare">
         <img id="ukOptical" alt="VIIRS true-colour image of the Fens on a cloudy day">
@@ -75,27 +76,27 @@
 
     <article class="step" data-step="cv">
       <p class="chapter">Chapter 3 · California</p>
-      <h2>The dancing ground</h2>
-      <p>The Central Valley grows a large share of America's fruit, nuts and vegetables. Through the 2026 irrigation season, NISAR caught the valley floor sinking in broad bowls around Tulare and Corcoran.</p>
+      <h2>Central Valley: up to <span data-k="cv.max">−7.8</span> cm in 108 days</h2>
+      <p>The Central Valley grows a large share of America's fruit, nuts and vegetables. Through the 2026 irrigation season, NISAR recorded the valley floor sinking in broad bowls around Tulare and Corcoran. The ground moves down each summer as groundwater is pumped and partly recovers in winter; this record covers one summer.</p>
       <div class="timebar"><button id="play" class="playbtn" aria-label="Play animation">▶</button><input id="slider" type="range" min="0" max="0" value="0" aria-label="Date"><span id="dateLbl" class="mono"></span></div>
       <p class="hint">Press play, or tap a white dot on the map.</p>
       <div class="readout" id="readout">—</div>
       <div class="chartbox"><canvas id="pointChart" height="180"></canvas></div>
-      <figcaption>Figure 2. Cumulative line-of-sight motion from <span data-k="cv.pairs">7</span> consecutive NISAR GUNW pairs (track 34). Negative = moving away from the satellite (sinking). <span class="qbadge provisional">PROVISIONAL</span></figcaption>
+      <figcaption>Figure 2. Cumulative line-of-sight motion from <span data-k="cv.pairs">7</span> consecutive NISAR GUNW pairs (track 34). Negative = moving away from the satellite (sinking). <span class="qbadge provisional">PROVISIONAL</span><span class="figcredit">Data: NASA-ISRO NISAR via ASF DAAC. Analysis: Team Taykut.</span></figcaption>
     </article>
 
     <article class="step" data-step="gnss">
       <p class="chapter">Chapter 4 · Checking our work</p>
-      <h2>Does it match the ground?</h2>
+      <h2>Checking NISAR against GPS</h2>
       <p>We compared NISAR with <b>10 permanent GPS stations</b> (Nevada Geodetic Laboratory). Where the ground is clearly sinking, satellite and GPS tell the same story. At stable stations the signal is smaller than the noise, so agreement is weak — which is exactly what we would expect.</p>
       <div class="chartbox"><canvas id="gnssChart" height="190"></canvas></div>
       <table class="mini" id="gnssTable"><thead><tr><th>Station</th><th>r</th><th>RMSE</th><th>GPS</th><th>NISAR</th></tr></thead><tbody></tbody></table>
-      <figcaption>Figure 3. Vertical estimate (LOS / cos incidence) vs GPS "up". Tap a station on the map. RMSE in cm.</figcaption>
+      <figcaption>Figure 3. Vertical estimate (LOS / cos incidence) vs GPS "up". Tap a station on the map. RMSE in cm.<span class="figcredit">GPS: Nevada Geodetic Laboratory. NISAR: NASA-ISRO via ASF DAAC. Analysis: Team Taykut.</span></figcaption>
     </article>
 
     <article class="step" data-step="risk">
       <p class="chapter">Chapter 5 · What is at risk</p>
-      <h2>When the ground tilts, canals fail</h2>
+      <h2>Infrastructure on uneven ground</h2>
       <p>Uniform sinking is slow damage. <b>Uneven</b> sinking tilts canals and roads. We measured the gradient of sinking along <span data-k="risk.evaluated">645</span> canal, road and rail segments from OpenStreetMap.</p>
       <div class="riskbars"><div><b data-k="risk.high">81</b><span>high</span></div><div><b data-k="risk.med">131</b><span>medium</span></div><div><b data-k="risk.low">433</b><span>low</span></div></div>
       <ol class="toplist" id="riskList"></ol>
@@ -104,10 +105,10 @@
 
     <article class="step" data-step="kp">
       <p class="chapter">Chapter 6 · Türkiye — our home</p>
-      <h2>Konya's sinkholes</h2>
+      <h2>Karapınar, Konya: subsidence and sinkholes</h2>
       <p>On the Konya Plain, falling groundwater has been linked to sudden sinkholes (<i>obruk</i>) in farmland around Karapınar. NISAR measured up to <b data-k="kp.max">−5.9</b> cm of line-of-sight sinking here between <span data-k="kp.period">26 Jun – 12 Oct 2026</span>.</p>
       <ul class="sinklist" id="sinkList"></ul>
-      <figcaption>Figure 5. NISAR cumulative motion (track 7, <span data-k="kp.pairs">8</span> pairs) with documented sinkholes (red). Each point links to its source. <span class="qbadge provisional">PROVISIONAL</span></figcaption>
+      <figcaption>Figure 5. NISAR cumulative motion (track 7, <span data-k="kp.pairs">8</span> pairs) with documented sinkholes (red). Each point links to its source. <span class="qbadge provisional">PROVISIONAL</span><span class="figcredit">Data: NASA-ISRO NISAR via ASF DAAC. Analysis: Team Taykut.</span></figcaption>
     </article>
 
   </div>
@@ -118,7 +119,7 @@
   <div class="wrap two">
     <div>
       <p class="chapter">The physics</p>
-      <h2>Why pumped ground does not come back</h2>
+      <h2>Why part of the subsidence is permanent</h2>
       <p>Aquifers are layers of sand and clay saturated with water. Pumping lowers the water pressure, and the clay squeezes. Above the lowest level the aquifer has ever reached, that squeeze is elastic — the ground rebounds a little when wet winters recharge it. Below that level, clay compacts <b>permanently</b>: storage is lost forever and the surface stays down.</p>
       <p>That is the "dance" NISAR records: the ground falls each summer and only partly rises each winter.</p>
     </div>
@@ -138,7 +139,7 @@
         <defs><marker id="ah" markerWidth="8" markerHeight="8" refX="4" refY="7" orient="auto"><path d="M0 0 L8 0 L4 8Z" fill="#ff6b5a"/></marker></defs>
         <text x="14" y="70" class="dl">Surface sinks</text><text x="14" y="150" class="dl">Clay — compacts (part is permanent)</text><text x="14" y="300" class="dl">Sand &amp; gravel aquifer</text><text x="360" y="236" class="dl blue">Water table falls</text>
       </svg>
-      <figcaption>Figure 6. Schematic (not to scale).</figcaption>
+      <figcaption>Figure 6. Schematic of aquifer compaction (not to scale). Illustration: Team Taykut.</figcaption>
     </figure>
   </div>
 </section>
@@ -148,7 +149,7 @@
   <div class="wrap">
     <p class="chapter">Simulator</p>
     <h2>Valley Under Pressure</h2>
-    <p class="narrow">Run a farming valley for two years on a physics model calibrated to NISAR's measurement. Pump more, earn more — and watch what it costs the ground. At the end, compare your valley with what NISAR actually saw.</p>
+    <p class="narrow">Manage groundwater for seven districts of the Tulare Basin over 24 months. The model follows the standard USGS description of aquifer compaction and is calibrated to the subsidence NISAR measured in 2026. At the end, your result is compared with the measurement.</p>
     <div class="gameframe"><iframe id="gameFrame" title="Valley Under Pressure simulator" loading="lazy"></iframe></div>
     <p class="small"><a id="gameOpen" href="#" target="_blank" rel="noopener">Open full screen ↗</a> · <a id="view3d" href="#" target="_blank" rel="noopener">3D view of the sinking ground ↗</a></p>
   </div>

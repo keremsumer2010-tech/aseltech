@@ -14,8 +14,8 @@ const STYLE = {version: 8,
   layers: [{id: 'sat', type: 'raster', source: 'sat', paint: {'raster-brightness-max': 0.72, 'raster-saturation': -0.25}}]};
 const SCALE = [[8.56, 'the width of a bank card'], [14.7, 'the length of a smartphone'], [21.0, 'the short side of an A4 sheet'], [29.7, 'the long side of an A4 sheet']];
 const human = cm => { const a = Math.abs(cm); return SCALE.reduce((b, s) => Math.abs(s[0] - a) < Math.abs(b[0] - a) ? s : b)[1]; };
-const chartOpts = yTitle => ({responsive: true, animation: {duration: 300}, plugins: {legend: {labels: {color: '#9aa8c1', boxWidth: 12, font: {family: 'Inter', size: 11}}}},
-  scales: {x: {ticks: {color: '#6b7a96', font: {size: 10}}, grid: {color: '#1c2740'}}, y: {ticks: {color: '#6b7a96', font: {size: 10}}, grid: {color: '#1c2740'}, title: {display: true, text: yTitle, color: '#6b7a96'}}}});
+const chartOpts = yTitle => ({responsive: true, animation: {duration: 300}, plugins: {legend: {labels: {color: '#2d3748', boxWidth: 12, font: {family: 'Inter', size: 11}}}},
+  scales: {x: {ticks: {color: '#4a5568', font: {size: 10}}, grid: {color: '#e5e9f0'}}, y: {ticks: {color: '#4a5568', font: {size: 10}}, grid: {color: '#e5e9f0'}, title: {display: true, text: yTitle, color: '#4a5568'}}}});
 
 const D = {};
 async function load(){
@@ -73,7 +73,7 @@ function storyMap(){
     }
     if (D.cvPts){
       map.addSource('cvp', {type: 'geojson', data: fc(D.cvPts.map(p => pt({id: p.id}, [p.lon, p.lat])))});
-      map.addLayer({id: 'cv-pts', type: 'circle', source: 'cvp', paint: {'circle-radius': 6, 'circle-color': '#fff', 'circle-stroke-color': '#05080f', 'circle-stroke-width': 2}});
+      map.addLayer({id: 'cv-pts', type: 'circle', source: 'cvp', paint: {'circle-radius': 6, 'circle-color': '#fff', 'circle-stroke-color': '#1a1f29', 'circle-stroke-width': 2}});
       map.on('click', 'cv-pts', e => pickPoint(e.features[0].properties.id));
     }
     if (D.val){
