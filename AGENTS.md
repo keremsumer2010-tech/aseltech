@@ -18,3 +18,6 @@ If your clone folder is `aseltech-pc7` you are **PC7**: task file `tasks/PC7.md`
 
 ## PC8 (Antigravity #3 on M3hmeT1888)
 If your clone folder is `aseltech-gemini3` you are **PC8**: task file `tasks/PC8.md`, status `status/PC8.md`, commit prefix `[PC8]`. Do not download data.
+
+## PC9 (site owner from 15:35)
+If your clone folder is `aseltech-pc9` you are **PC9**: task file `tasks/PC9.md`, status `status/PC9.md`, commit prefix `[PC9]`. You own `web/` (except `web/panel.html`).

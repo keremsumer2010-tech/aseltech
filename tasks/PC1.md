@@ -1,3 +1,6 @@
+# PC1 — 15:35 itibarıyla SADECE DENETİM
+Site PC9'a devredildi. PC1: durum kontrolü, görev yazma, kural/sözleşme, panel (`web/panel.html`), engelleri çözme, teslim günü son kontrol.
+
 ---
 type: gorev
 id: PC1

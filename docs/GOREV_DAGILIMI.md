@@ -48,7 +48,7 @@ Her yolun tek sahibi var (`rules/RULES.md` K-7). Burada olmayan bir yere yazman 
 
 | Sahip | Yazma izni olan yollar |
 |---|---|
-| **PC1** | `web/` · `data/catalog.json` · `CLAUDE.md` `AGENTS.md` `GEMINI.md` `README.md` `LICENSE` `.gitignore` `.gitattributes` · `.github/` · `rules/` · `tasks/` · `docs/*.md` (kök seviye) · `status/PC1.md` |
+| **PC1** | (15:35: sadece denetim) `web/panel.html` · `CLAUDE.md` `AGENTS.md` `GEMINI.md` `README.md` `LICENSE` `.gitignore` `.gitattributes` · `.github/` · `rules/` · `tasks/` · `docs/*.md` (kök seviye) · `status/PC1.md` |
 | **PC2** | `pipeline/` (script, csv, `subset/`) · `docs/gunw_structure.md` · `data/<site>/drivers.json` (Pazar) · `status/PC2.md` |
 | **PC3** | `analysis/` (kod, test, `out/`) · `data/<site>/meta.json` · `data/<site>/disp/` · `data/<site>/points.json` · `data/<site>/summary.json` · `data/<site>/decomp.json` · `data/*_fullyear/` · `docs/karapinar_checkpoint_cm.png` · `status/PC3.md` |
 | **PC4** | `data/uk/` · `data/karapinar/sinkholes.geojson` · `docs/story/sources.md` · `docs/story/calibration_note.md` · `status/PC4.md` |
@@ -57,6 +57,7 @@ Her yolun tek sahibi var (`rules/RULES.md` K-7). Burada olmayan bir yere yazman 
 | **PCQ** (14:20, bağımsız kontrol ajanı, ASF erişimi yok; 15:10 PC8 işleri) | `docs/story/submission_form.md` · `video_subtitles.srt` · `narration_script.md` · `presentation_cues.md` · `rehearsal_checklist.md` · `docs/qa/PCQ.md` · `README.md` (Q13) · `docs/code_review.md` (Q15) · `status/PCQ.md` |
 | **PC7** (14:35, Codex) | `pipeline/pc7/` · `data/fens/` · `data/water/` · `docs/qa/PC7.md` · `status/PC7.md` |
 | **PC8** (15:20, Mehmet Antigravity #3, `aseltech-gemini3`) | `docs/qa/PC8.md` · `status/PC8.md` (test) |
+| **PC9** (15:35, site sahibi) | `web/` (panel.html hariç) · `data/catalog.json` · `docs/qa/PC9.md` · `status/PC9.md` |
 | **Herkes** | `tasks/QUEUE.md` içinde **sadece sahiplendiği satır** · sahiplendiği QUEUE işinin "Klasör" sütunundaki yollar · `docs/qa/PCx.md` (kendi QA notları) |
 
 Dikkat: `data/karapinar/` klasörüne hem PC3 hem PC4 yazar; `docs/story/`'ye PC4 ve PC5 yazar.
