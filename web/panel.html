@@ -71,7 +71,7 @@ async function loadCards(){
   const box=document.getElementById('cards'); const parts=[];
   for(const p of PCS){
     let st='(okunamadı)'; try{st=await txt(`status/${p.id}.md`);}catch(e){}
-    const mine=commits.filter(c=>c.msg.startsWith(`[${p.id}]`)); const last=mine[0];
+    const re=new RegExp('^\\[?'+p.id+'(\\]|:|\\s)'); const mine=commits.filter(c=>re.test(c.msg)); const last=mine[0];
     const blocked=st.split(/\r?\n/).some(l=>{const m=l.match(/BLOCKED:\s*(.*)$/i); if(!m) return false; const v=m[1].replace(/[*_`]/g,'').trim().toLowerCase(); return v!=='' && !/^(yok|none|no|-|—|hayır|n\/a)/.test(v);});
     const mins=last?Math.round((Date.now()-last.date)/60000):null;
     const color=blocked?'var(--bad)':(mins===null?'var(--mut)':mins<45?'var(--ok)':'var(--warn)');
