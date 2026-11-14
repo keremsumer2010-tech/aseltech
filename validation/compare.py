@@ -192,8 +192,14 @@ def run_comparison(
     quality = str(d["quality"]) if "quality" in d else "provisional"
     inc = np.asarray(d["incidence"], dtype=np.float64) if "incidence" in d else None
 
+    stack_path = npz_path.with_name(npz_path.stem + "_stack.npz")
     if "cum_stack_cm" in d and d["cum_stack_cm"].ndim == 3:
         stack = np.asarray(d["cum_stack_cm"], dtype=np.float64)
+    elif stack_path.exists():
+        ds = np.load(stack_path, allow_pickle=False)
+        stack = np.asarray(ds["cum_stack_cm"], dtype=np.float64)
+        if "dates" in ds and len(ds["dates"]) == stack.shape[0]:
+            dates = [str(s) for s in ds["dates"]]
     else:
         cum_cm = np.asarray(d["cum_cm"], dtype=np.float64)
         zeros = np.where(np.isfinite(cum_cm), 0.0, np.nan)

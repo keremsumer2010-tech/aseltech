@@ -9,8 +9,8 @@ Saatler: `docs/ZAMAN_CIZELGESI.md`. "[atandı: PCx]" işi sadece o PC alır; ata
 - [~PC3] Q02 · [atandı: PC3] · Karapınar kümülatif cm haritası + points.json (veri sözleşmesi) → `data/karapinar/` · analysis/, data/karapinar/
 - [ ] Q03 · [atandı: PC2] · Central Valley GCOV (provisional, 6 tarih) bbox kes → HV dB PNG'leri (`quality: provisional`) → `data/central_valley/gcov/` · E · pipeline/, data/central_valley/gcov/
 - [ ] Q04 · [atandı: PC2] · Central Valley SME2 (provisional) bölge ortalaması → `data/central_valley/drivers.json` (soil_moisture) · E · pipeline/, data/central_valley/drivers.json
-- [~PC6] Q05 · [atandı: PC6 (+PC3)] · GNSS ↔ NISAR karşılaştırma scripti (istasyon pikselinde LOS→dikey, RMSE, korelasyon) → `validation/compare.py`, `data/central_valley/validation.json` · validation/
-- [~PC6] Q06 · [atandı: PC6] · Altyapı risk indeksi: `risk/central_valley_infra.geojson` hatları boyunca çökme eğimi (mm/km), en riskli 10 segment → `data/central_valley/assets.json` · risk/
+- [x PC6] Q05 · [atandı: PC6 (+PC3)] · GNSS ↔ NISAR karşılaştırma scripti (istasyon pikselinde LOS→dikey, RMSE, korelasyon) → `validation/compare.py`, `data/central_valley/validation.json` · validation/
+- [x PC6] Q06 · [atandı: PC6] · Altyapı risk indeksi: `risk/central_valley_infra.geojson` hatları boyunca çökme eğimi (mm/km), en riskli 10 segment → `data/central_valley/assets.json` · risk/
 
 - [~PC6] Q18 · [atandı: PC6] · SİTE ENTEGRASYONU (PC1'den devir, 13:20): PC3'ün `data/central_valley/`, `data/karapinar/` ve PC4'ün `data/uk/`, `sinkholes.geojson`, PC5'in `game/` dosyaları geldikçe sitede yerel test (`python -m http.server` → /web/), placeholder rozeti kalkıyor mu, konsol temiz mi; `data/catalog.json` yaz; Holme Fen metnini PC4'ün kaynaklı rakamıyla güncelle; `docs/URUN_TANIMI.md` §4 tablosunu işaretle · web/app.js, web/index.html, data/catalog.json, docs/URUN_TANIMI.md
 

@@ -34,15 +34,16 @@ DEFAULT_INFRA = ROOT / "risk" / "central_valley_infra.geojson"
 DEFAULT_NPZ = ROOT / "analysis" / "out" / "central_valley_cum.npz"
 DEFAULT_OUT = ROOT / "data" / "central_valley" / "assets.json"
 
-STEP_M = 100.0
-MIN_SPAN_M = 200.0
+STEP_M = 200.0
+MIN_SPAN_M = 1000.0
+BLOCK_RADIUS_M = 480.0
 MAX_SAMPLES_PER_FEATURE = 400
 
 
 def classify_risk(gradient_mm_per_km: float, max_cm: float) -> str:
-    if gradient_mm_per_km >= 10.0 or abs(max_cm) >= 10.0:
+    if (gradient_mm_per_km >= 10.0 and max_cm <= -2.0) or max_cm <= -10.0:
         return "high"
-    if gradient_mm_per_km >= 5.0 or abs(max_cm) >= 5.0:
+    if (gradient_mm_per_km >= 5.0 and max_cm <= -1.0) or max_cm <= -5.0:
         return "medium"
     return "low"
 
@@ -74,10 +75,19 @@ def densify_utm_line(pts_x: np.ndarray, pts_y: np.ndarray, step_m: float = STEP_
     return np.asarray(out_x), np.asarray(out_y), np.asarray(out_d)
 
 
-def sample_3x3_median(grid: np.ndarray, x_axis: np.ndarray, y_axis: np.ndarray, sx: np.ndarray, sy: np.ndarray) -> np.ndarray:
-    """Sample 3x3 NaN-median around nearest grid pixel for arrays of projected coordinates."""
+def sample_block_median(
+    grid: np.ndarray,
+    x_axis: np.ndarray,
+    y_axis: np.ndarray,
+    sx: np.ndarray,
+    sy: np.ndarray,
+    radius_m: float = BLOCK_RADIUS_M,
+) -> np.ndarray:
+    """Sample ~1 km NaN-median block around each coordinate to suppress InSAR pixel speckle."""
     dx = float(x_axis[1] - x_axis[0])
     dy = float(y_axis[1] - y_axis[0])
+    half_win = max(1, int(round(radius_m / max(abs(dx), 1.0))))
+    min_valid = max(4, ((2 * half_win + 1) ** 2) // 4)
     h, w = grid.shape
     cols = np.rint((sx - float(x_axis[0])) / dx).astype(int)
     rows = np.rint((sy - float(y_axis[0])) / dy).astype(int)
@@ -85,9 +95,9 @@ def sample_3x3_median(grid: np.ndarray, x_axis: np.ndarray, y_axis: np.ndarray, 
     vals = np.full(len(sx), np.nan, dtype=np.float64)
     for i, (r, c) in enumerate(zip(rows, cols)):
         if 0 <= r < h and 0 <= c < w:
-            win = grid[max(r - 1, 0) : min(r + 2, h), max(c - 1, 0) : min(c + 2, w)]
+            win = grid[max(r - half_win, 0) : min(r + half_win + 1, h), max(c - half_win, 0) : min(c + half_win + 1, w)]
             finite = win[np.isfinite(win)]
-            if finite.size > 0:
+            if finite.size >= min_valid:
                 vals[i] = float(np.median(finite))
     return vals
 
@@ -114,7 +124,7 @@ def evaluate_feature(
     if len(sd) < 2 or sd[-1] < MIN_SPAN_M:
         return None
 
-    vals = sample_3x3_median(grid, x_axis, y_axis, sx, sy)
+    vals = sample_block_median(grid, x_axis, y_axis, sx, sy)
     ok = np.isfinite(vals)
     if int(ok.sum()) < 2:
         return None
@@ -238,12 +248,12 @@ def self_test() -> None:
     xs = np.arange(200000.0, 330000.0, 160.0, dtype=np.float64)
     ys = np.arange(4060000.0, 3940000.0, -160.0, dtype=np.float64)
     XX, YY = np.meshgrid(xs, ys)
-    # Two Gaussian subsidence bowls: Tulare Basin (-8 cm, sigma=6 km) & Corcoran/Friant-Kern edge (-5 cm, sigma=5 km)
+    # Two Gaussian subsidence bowls: Tulare Basin (-12 cm, sigma=5 km) & Friant-Kern edge (-9 cm, sigma=4 km)
     bx1, by1 = project_to_crs(-119.50, 36.00, 32611)
     bx2, by2 = project_to_crs(-119.15, 36.15, 32611)
     cum = (
-        -8.0 * np.exp(-((XX - bx1) ** 2 + (YY - by1) ** 2) / (2.0 * 6000.0**2))
-        - 5.0 * np.exp(-((XX - bx2) ** 2 + (YY - by2) ** 2) / (2.0 * 5000.0**2))
+        -12.0 * np.exp(-((XX - bx1) ** 2 + (YY - by1) ** 2) / (2.0 * 5000.0**2))
+        - 9.0 * np.exp(-((XX - bx2) ** 2 + (YY - by2) ** 2) / (2.0 * 4000.0**2))
     ).astype(np.float32)
 
     with tempfile.TemporaryDirectory() as tmp:
@@ -301,6 +311,12 @@ def main() -> None:
         f"Wrote {args.out}: evaluated={s['evaluated_segments']}, "
         f"high={s['high_risk_count']}, medium={s['medium_risk_count']}, low={s['low_risk_count']}"
     )
+    for rank, feat in enumerate(out["features"], 1):
+        p = feat["properties"]
+        print(
+            f"  #{rank:2d} [{p['risk']:6s}] {p['type']:8s} grad={p['gradient_mm_per_km']:6.2f} mm/km "
+            f"max={p['max_cm']:6.2f} cm len={p['length_km']:5.2f} km | {p['name']}"
+        )
 
 
 if __name__ == "__main__":
