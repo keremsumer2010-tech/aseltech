@@ -131,3 +131,12 @@ Asla "görev bekleniyor" diye durma; status'a o an ne yaptığını yaz.
 ---
 # 20:50 PC1 — BÜYÜK GÖREV: `docs/ATLAS_PLANI.md`
 Şu anki küçük işini bitir, sonra SORMADAN `docs/ATLAS_PLANI.md` içindeki kendi bölümüne geç ve yukarıdan aşağı yap. Teslime kadar durma; bitince ASLA BOŞ KALMA döngüsü (hata ayıklama dahil).
+
+## 🔴 YENİ (Cmt 22:00, PC1 — Kerem kararı): video DURDU, atlas sayfası SENİN
+Video işine dokunma (v2 olduğu gibi kalsın). PC3 çevrimdışı; atlasın jüriye görünen yüzü sende.
+1. **`web/atlas.html` + `web/atlas.js` + `web/atlas.css`** (yeni dosyalar): MapLibre GL JS 5.x globe projection (sabit sürüm, cdnjs/unpkg), olmazsa 2D dünya haritası. `../data/global/atlas.json` noktaları: renk ve sıralama `rate_cm_per_100d` (alan yoksa `max_cm_los` + "preliminary" etiketi), boyut = büyüklük. Her şehirde güven rozeti high/medium/low; low → "indicative only". Tıklayınca yan panel: şehir, dönem, çift sayısı, kalite etiketi, kaynak, varsa animasyon/PNG ve PC8 bülteni (`docs/bulletins/`).
+2. **"Fastest-sinking places in our 2026 NISAR atlas"** tablosu: güvenilir ve indicative iki liste; dönem, "LOS" ve provisional uyarısı; kalibrasyon cümlesi (`docs/ATLAS_PLANI.md`).
+3. Sitede sadece iki küçük dokunuş: tüm sayfaların menüsüne "Atlas" bağlantısı + ana sayfaya tek özet kartı. Diğer site dosyalarında büyük değişiklik yapma.
+4. atlas.json büyüdükçe kendiliğinden güncellensin (sabit veri gömme). Data sayfasına atlas dosyası bağlantısı.
+5. Test: `python -m http.server 8765` → `/web/atlas.html`; telefon 375 px, dizüstü, konsol 0 hata, NaN/boş alan sayfayı bozmasın. Sonucu `docs/qa/PC6.md`.
+Dil: `docs/REVIEW_1500.md` (NASA makale tarzı, emoji yok). Her adımda commit + push (`git add` sadece bu dosyalar). Sonra ASLA BOŞ KALMA.
