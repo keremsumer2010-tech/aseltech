@@ -1,7 +1,7 @@
 # PC7 durum
 
 - Görev: Fens GCOV ritmi, polarizasyon karşılaştırması, çevrimdışı site QA ve Node oyun testi
-- Durum: Xi'an tamamlandı ve push edildi. Taiyuan dry-run 9 provisional çift/0 boşluk verdi; bulunan K001/J004 GPS noktaları havza içi kaynaklı olduğundan Taiyuan üretimi uygun dış referans doğrulanana dek beklemede. Querétaro dry-run 9 çift/0 boşluk verdi; belgeli El Cimatario adayına göre tek ürünlü indirme/kesme işlemi çalışıyor, başka indirme başlatılmadı.
+- Durum: Xi'an tamamlandı/push edildi. Taiyuan, havza dışı kaynaklı sabit referans bulunana dek beklemede. Querétaro 9/9 kesit hazır fakat El Cimatario yakınında 7×7 ortak-valid referans bulunamadığından analiz üretilemedi. Aguascalientes dry-run 9 çift/0 boşluk verdi; kaynaklı Cerro del Muerto koordinatıyla sıradaki adım indirme ve analiz. Son kontroller: robustness 13 şehir (yalnız 1 şehir 27/27; top-3 sırası sonuçsuz), atlas validator 15 region/19 şehir/211 bulgu, JSON validator 142 dosyada parse/NaN 0 ve başka sahibin `data/nisar_tle.json` quality eksiği. Ayrıntı `docs/qa/PC7.md` §24–25.
 - ASF araması: platform=NISAR, processingLevel=GCOV, bbox [-0.3, 52.4, 0.4, 52.9], başlangıç 2026-06-17; 49 P05023 GCOV ürünü HH/HV ile eşleşti.
 - Tekrarlı seri: path 52, frame 61, 10 benzersiz tarih: 2026-06-17–2026-10-15. Granül listesi `pipeline/pc7/fens_gcov_catalog.json` içinde.
 - Doğrulama: `pipeline/pc7/search_fens_gcov.py` çalıştırıldı; katalog JSON olarak tekrar açılıp parse edildi.

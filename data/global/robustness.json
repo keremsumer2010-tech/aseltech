@@ -18,7 +18,7 @@
     "box_coverage_rule": "A requested box is only scored when the local subset covers at least 98% of its lon/lat extent; incomplete boxes remain explicit invalid variants.",
     "reference_limit": "Corner candidates are selected from high-coherence, low-relative-motion windows. No geological basin polygon or independent GNSS/stable-ground evidence is available to prove they lie outside each basin."
   },
-  "n_cities": 12,
+  "n_cities": 13,
   "n_common_cities_with_27_variants": 1,
   "top3_all_variants_stable": null,
   "top3_conclusion": "inconclusive: fewer than three cities have all 27 complete variants",
@@ -729,6 +729,47 @@
       "variants": []
     },
     {
+      "id": "hanoi",
+      "base_rate_cm_per_100d": -2.1,
+      "min": null,
+      "max": null,
+      "spread_cm": null,
+      "min_rate_cm_per_100d": null,
+      "max_rate_cm_per_100d": null,
+      "rank_min": null,
+      "rank_max": null,
+      "n_variants": 0,
+      "n_variants_attempted": 0,
+      "bbox_center_lonlat": [
+        105.83,
+        21.0
+      ],
+      "reference_candidates": [
+        {
+          "id": "northwest",
+          "lon": 105.706236,
+          "lat": 21.162362,
+          "mean_coherence": 0.8763,
+          "relative_motion_cm": 1.059,
+          "evidence": "corner low-motion proxy; geology/GNSS stability not independently verified"
+        },
+        {
+          "id": "northeast",
+          "lon": 105.951696,
+          "lat": 21.10912,
+          "mean_coherence": 0.8444,
+          "relative_motion_cm": -0.784,
+          "evidence": "corner low-motion proxy; geology/GNSS stability not independently verified"
+        }
+      ],
+      "reference_selection": {
+        "coverage_fraction": 1.0,
+        "reference_candidates_found": 2,
+        "reference_selection": "three separated corners in +/-0.20 degree box; highest coherence and lowest relative motion"
+      },
+      "variants": []
+    },
+    {
       "id": "ho_chi_minh",
       "base_rate_cm_per_100d": -3.5,
       "min": null,
@@ -925,23 +966,13 @@
       "n_variants": 0,
       "n_variants_attempted": 0,
       "bbox_center_lonlat": [
-        51.375,
-        35.65
+        51.3,
+        35.55
       ],
-      "reference_candidates": [
-        {
-          "id": "southwest",
-          "lon": 51.178663,
-          "lat": 35.517419,
-          "mean_coherence": 0.9342,
-          "relative_motion_cm": 0.244,
-          "evidence": "corner low-motion proxy; geology/GNSS stability not independently verified"
-        }
-      ],
+      "reference_candidates": [],
       "reference_selection": {
-        "coverage_fraction": 1.0,
-        "reference_candidates_found": 1,
-        "reference_selection": "three separated corners in +/-0.20 degree box; highest coherence and lowest relative motion"
+        "reason": "local subset does not cover the full +/-0.20 degree test box",
+        "coverage_fraction": 0.7954
       },
       "variants": []
     },
