@@ -101,7 +101,7 @@ function storyMap(){
   const init = () => {
     if (started) return;
     started = true;
-    map = new maplibregl.Map({container: 'map', style: STYLE, center: VIEWS.intro.center, zoom: VIEWS.intro.zoom, attributionControl: {compact: true}, scrollZoom: false, fadeDuration: 0, renderWorldCopies: false});
+    map = new maplibregl.Map({container: 'map', style: STYLE, center: VIEWS.intro.center, zoom: VIEWS.intro.zoom, attributionControl: {compact: true}, scrollZoom: false, cooperativeGestures: true, fadeDuration: 0, renderWorldCopies: false});
     map.addControl(new maplibregl.NavigationControl({showCompass: false}), 'top-left');
     map.on('load', () => {
       map.addSource('sites', {type: 'geojson', data: fc([pt({}, [0.0, 52.6]), pt({}, [-119.5, 36.1]), pt({}, [33.55, 37.75])])});
@@ -192,7 +192,7 @@ function popup(ll, html){ if (map) new maplibregl.Popup().setLngLat(ll).setHTML(
 let current = '';
 function inView(v){ if (!map) return false; if (!v.bbox) return map.getZoom() < 3; const c = map.getCenter(); return c.lng > v.bbox[0] && c.lng < v.bbox[2] && c.lat > v.bbox[1] && c.lat < v.bbox[3] && map.getZoom() > 6; }
 function show(step, force){
-  if (!map) return;
+  if (!map || document.hidden) return;
   const v = VIEWS[step]; if (!v || (step === current && !force)) return;
   if (force && step === current && inView(v)) return;
   current = step;
@@ -244,7 +244,7 @@ function cvControls(){
     });
   }
   s.addEventListener('input', () => go(+s.value));
-  btn.addEventListener('click', () => { if (timer){ clearInterval(timer); timer = null; btn.textContent = '▶'; return; } btn.textContent = '❚❚'; timer = setInterval(() => go((cvIdx + 1) % m.dates.length), 900); });
+  btn.addEventListener('click', () => { if (timer){ clearInterval(timer); timer = null; btn.textContent = '▶'; return; } btn.textContent = '❚❚'; timer = setInterval(() => { if (!document.hidden) go((cvIdx + 1) % m.dates.length); }, 900); });
   if (D.cvPts?.length){ const worst = D.cvPts.reduce((a, b) => (b.disp_cm.at(-1) ?? 0) < (a.disp_cm.at(-1) ?? 0) ? b : a); pickPoint(worst.id); }
 }
 function pickPoint(id){
@@ -353,8 +353,17 @@ function extras(){
   document.getElementById('gamePlay')?.addEventListener('click', () => {
     const box = document.getElementById('gameBox'), f = document.createElement('iframe');
     f.title = 'Valley Under Pressure simulator'; f.src = g; f.allow = 'fullscreen';
-    box.replaceChildren(f); f.focus();
+    box.replaceChildren(f);
   });
+  document.addEventListener('visibilitychange', () => {
+    const hv = document.getElementById('heroVideo'), cv = document.getElementById('cvVideo');
+    if (document.hidden){ map?.stop(); hv?.pause(); cv?.pause(); }
+    else if (hv && !(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) hv.play().catch(() => {});
+  });
+  document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', ev => {
+    const id = a.getAttribute('href').slice(1), el = id && document.getElementById(id);
+    if (el){ ev.preventDefault(); el.scrollIntoView({behavior: 'smooth'}); history.replaceState(null, '', '#' + id); }
+  }));
 }
 
 heroVideo();
