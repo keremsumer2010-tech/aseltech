@@ -8,6 +8,7 @@ const fmtDate = d => new Date(d + 'T00:00:00Z').toLocaleDateString('en-GB', {day
 const fmtShort = d => new Date(d + 'T00:00:00Z').toLocaleDateString('en-GB', {day: 'numeric', month: 'short', timeZone: 'UTC'});
 const minus = v => (v < 0 ? '−' : '+') + Math.abs(v).toFixed(1);
 async function J(p){ try{ const r = await fetch(ROOT + p); return r.ok ? await r.json() : null; }catch(e){ return null; } }
+async function T(p){ try{ const r = await fetch(ROOT + p); return r.ok ? await r.text() : null; }catch(e){ return null; } }
 function setK(k, v){ document.querySelectorAll(`[data-k="${k}"]`).forEach(e => e.textContent = v); }
 const STYLE = {version: 8,
   sources: {sat: {type: 'raster', tiles: [ESRI], tileSize: 256, attribution: 'Imagery © Esri, Maxar, Earthstar Geographics'}},
@@ -22,11 +23,16 @@ const chartOpts = yTitle => ({responsive: true, animation: {duration: 300}, plug
 
 const D = {};
 async function load(){
-  [D.cvMeta, D.cvSum, D.cvPts, D.val, D.assets, D.kpMeta, D.kpSum, D.sinks, D.uk, D.kpAssets, D.cvArea, D.ukClay, D.fens] = await Promise.all([
+  let gnssCsv, holmeMd;
+  [D.cvMeta, D.cvSum, D.cvPts, D.val, D.assets, D.kpMeta, D.kpSum, D.sinks, D.uk, D.kpAssets, D.cvArea, D.ukClay, D.ukClayMeta, D.fens, gnssCsv, holmeMd] = await Promise.all([
     J('data/central_valley/meta.json'), J('data/central_valley/summary.json'), J('data/central_valley/points.json'),
     J('data/central_valley/validation.json'), J('data/central_valley/assets.json'),
     J('data/karapinar/meta.json'), J('data/karapinar/summary.json'), J('data/karapinar/sinkholes.geojson'), J('data/uk/meta.json'),
-    J('data/karapinar/assets.json'), J('data/central_valley/area_stats.json'), J('data/uk_clay/detection.json'), J('data/fens/crops.json')]);
+    J('data/karapinar/assets.json'), J('data/central_valley/area_stats.json'), J('data/uk_clay/detection.json'), J('data/uk_clay/meta.json'), J('data/fens/crops.json'),
+    T('validation/gnss_stations.csv'), T('docs/story/holme_fen.md')]);
+  D.gnssUrls = {};
+  if (gnssCsv) gnssCsv.trim().split(/\r?\n/).slice(1).forEach(line => { const cols = line.split(','); if (cols[0] && cols[3]) D.gnssUrls[cols[0].trim()] = cols[3].trim(); });
+  D.holmeUrl = (holmeMd?.match(/https:\/\/www\.greatfen\.org\.uk\/\S+/) || ['https://www.greatfen.org.uk/about-great-fen/heritage/holme-fen-posts'])[0].replace(/[);,]+$/, '');
   if (D.cvSum){ setK('cv.max', minus(D.cvSum.max_subsidence_cm)); setK('cv.maxabs', Math.abs(D.cvSum.max_subsidence_cm).toFixed(1)); setK('cv.vert', '≈' + minus(D.cvSum.max_subsidence_vertical_cm_estimate)); setK('cv.pairs', D.cvSum.n_pairs);
     setK('cv.period', `${fmtShort(D.cvSum.period[0])} – ${fmtDate(D.cvSum.period[1])}`);
     const rng = D.cvSum.range_cm || D.cvSum.max_subsidence_range_cm;
@@ -108,18 +114,24 @@ function storyMap(){
         const rc = corners(D.uk.bbox);
         map.addSource('uk-frame', {type: 'geojson', data: {type: 'Feature', geometry: {type: 'LineString', coordinates: [...rc, rc[0]]}}});
         map.addLayer({id: 'uk-frame', type: 'line', source: 'uk-frame', paint: {'line-color': '#94a3b8', 'line-width': 1.5, 'line-opacity': 0.75}});
+        const ukCtr = [(D.uk.bbox[0] + D.uk.bbox[2]) / 2, (D.uk.bbox[1] + D.uk.bbox[3]) / 2];
+        const clayCtr = D.ukClayMeta?.bbox ? [(D.ukClayMeta.bbox[0] + D.ukClayMeta.bbox[2]) / 2, (D.ukClayMeta.bbox[1] + D.ukClayMeta.bbox[3]) / 2] : [-0.15, 51.50];
+        const ukClayUrl = (D.ukClayMeta?.source?.match(/https?:\/\/\S+/) || ['https://nisar-docs.asf.alaska.edu/gunw'])[0];
         const ukPlaces = [
-          ['The Wash', [0.250, 52.880]],
-          ['Peterborough', [-0.248, 52.574]],
-          ["King's Lynn", [0.395, 52.752]],
-          ['Holme Fen', [-0.217, 52.483]],
+          {lbl: 'The Wash', coords: [0.250, 52.880]},
+          {lbl: 'Peterborough', coords: [-0.248, 52.574]},
+          {lbl: "King's Lynn", coords: [0.395, 52.752]},
+          {lbl: 'Holme Fen', coords: [-0.217, 52.483], html: `<b>Holme Fen</b><br>Peat subsidence benchmark (post driven 1851; nearly 4 m exposed, 2.75 m below sea level; 1–2 cm/yr)<br>Source: <a href="${esc(D.holmeUrl || 'https://www.greatfen.org.uk/about-great-fen/heritage/holme-fen-posts')}" target="_blank" rel="noopener">The Great Fen</a>`},
+          {lbl: 'NISAR GCOV frame', coords: ukCtr, html: `<b>NISAR GCOV radar frame</b><br>${esc(D.uk.radar_granule || '')}<br>${esc(fmtDate(D.uk.date))} · ${esc(D.uk.quality || 'preview')}<br>Source: <a href="https://nisar-docs.asf.alaska.edu/gcov" target="_blank" rel="noopener">ASF NISAR GCOV</a>`},
+          {lbl: 'London Clay', coords: clayCtr, html: `<b>London Clay study area</b><br>NISAR GUNW (${esc(D.ukClay?.quality || 'provisional')}): ${D.ukClay?.status === 'below_detection' ? `below single-season detection (±${D.ukClay.detection_threshold_cm.toFixed(1)} cm 3σ threshold)` : 'measured'}<br>Source: <a href="${esc(ukClayUrl)}" target="_blank" rel="noopener">NASA-ISRO NISAR GUNW · ASF DAAC</a>`},
         ];
-        ukMarkers = ukPlaces.map(([lbl, coords]) => {
-          const el = document.createElement('div');
-          el.className = 'uk-lbl';
-          el.textContent = lbl;
-          el.style.display = 'none';
-          return new maplibregl.Marker({element: el, anchor: 'center'}).setLngLat(coords).addTo(map);
+        ukMarkers = ukPlaces.map(p => {
+          const mel = document.createElement('div');
+          mel.className = p.html ? 'uk-lbl uk-pin' : 'uk-lbl';
+          mel.textContent = p.lbl;
+          mel.style.display = 'none';
+          if (p.html) mel.addEventListener('click', ev => { ev.stopPropagation(); popup(p.coords, p.html); });
+          return new maplibregl.Marker({element: mel, anchor: 'center'}).setLngLat(p.coords).addTo(map);
         });
       }
       if (D.cvMeta){
@@ -130,18 +142,32 @@ function storyMap(){
       if (D.cvPts){
         map.addSource('cvp', {type: 'geojson', data: fc(D.cvPts.map(p => pt({id: p.id}, [p.lon, p.lat])))});
         map.addLayer({id: 'cv-pts', type: 'circle', source: 'cvp', paint: {'circle-radius': 6, 'circle-color': '#fff', 'circle-stroke-color': '#1a1f29', 'circle-stroke-width': 2}});
-        map.on('click', 'cv-pts', e => pickPoint(e.features[0].properties.id));
+        map.on('click', 'cv-pts', e => {
+          const id = e.features[0].properties.id;
+          pickPoint(id);
+          const p = D.cvPts.find(q => q.id === id); if (!p) return;
+          const v = p.disp_cm.at(-1);
+          const srcUrl = (D.cvMeta?.source?.match(/https?:\/\/\S+/) || ['https://nisar-docs.asf.alaska.edu/gunw'])[0];
+          const valTxt = v == null ? 'no reliable data' : `${minus(v)} cm (${fmtShort(p.dates[0])} – ${fmtDate(p.dates.at(-1))})`;
+          popup(e.lngLat, `<b>${esc(p.name)}</b><br>NISAR measurement point<br>${esc(valTxt)}<br>Source: <a href="${esc(srcUrl)}" target="_blank" rel="noopener">NASA-ISRO NISAR GUNW (${esc(D.cvMeta?.quality || 'provisional')}) · ASF DAAC</a>`);
+        });
       }
       if (D.val){
         map.addSource('gnss', {type: 'geojson', data: fc(D.val.map(s => pt({st: s.station, r: s.corr}, [s.lon, s.lat])))});
         map.addLayer({id: 'gnss', type: 'circle', source: 'gnss', paint: {'circle-radius': 8, 'circle-color': ['case', ['>=', ['get', 'r'], 0.6], '#3fb950', '#6b7a96'], 'circle-stroke-color': '#fff', 'circle-stroke-width': 2}});
-        map.on('click', 'gnss', e => pickStation(e.features[0].properties.st));
+        map.on('click', 'gnss', e => {
+          const st = e.features[0].properties.st;
+          pickStation(st);
+          const s = D.val.find(x => x.station === st); if (!s) return;
+          const srcUrl = D.gnssUrls?.[st] || 'https://geodesy.unr.edu/';
+          popup(e.lngLat, `<b>${esc(s.station)}</b><br>GPS reference station<br>r = ${s.corr.toFixed(2)} · RMSE ${s.rmse_cm.toFixed(1)} cm<br>Source: <a href="${esc(srcUrl)}" target="_blank" rel="noopener">Nevada Geodetic Laboratory</a>`);
+        });
       }
       if (D.assets){
         map.addSource('risk', {type: 'geojson', data: D.assets});
         map.addLayer({id: 'risk', type: 'line', source: 'risk', paint: {'line-width': ['match', ['get', 'risk'], 'high', 3.5, 'medium', 2.2, 1.1],
           'line-color': ['match', ['get', 'risk'], 'high', '#ff5a47', 'medium', '#e3b341', '#3fb950'], 'line-opacity': 0.95}});
-        map.on('click', 'risk', e => { const p = e.features[0].properties; popup(e.lngLat, `<b>${p.name || p.type}</b><br>${p.type} · risk <b>${p.risk}</b><br>gradient ${(+p.gradient_mm_per_km).toFixed(1)} mm/km · max ${(+p.max_cm).toFixed(1)} cm`); });
+        map.on('click', 'risk', e => { const p = e.features[0].properties, lic = D.assets?.license || '© OpenStreetMap contributors'; popup(e.lngLat, `<b>${esc(p.name || p.type)}</b><br>${esc(p.type)} · risk <b>${esc(p.risk)}</b><br>gradient ${(+p.gradient_mm_per_km).toFixed(1)} mm/km · max ${(+p.max_cm).toFixed(1)} cm<br>Source: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">${esc(lic)}</a>`); });
       }
       if (D.kpMeta){
         const m = D.kpMeta;
