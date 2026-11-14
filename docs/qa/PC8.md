@@ -364,3 +364,7 @@
   - `yunlin` eklendi (`27,204` `< -2 cm`, `902` `< -5 cm`, `2.39 km²` `< -5 cm`, GHSL `R7_C31`). Toplam (`karapinar` hariç): **20 bölge**, `591.31 km²`, `1,508,817` kişi (`< -5 cm`), `8,047,490` kişi (`< -2 cm`), `fastest = konya_plain (-8.9 cm/100d)`.
   - **20 bülten + `index.html`** (`docs/bulletins/yunlin.html` dahil) ve `docs/qa/ATLAS_COMPLETENESS.md` (`PC8: 0 eksik`) güncellendi (`pytest` → `6 passed`).
   - `docs/story/submission_form.md`, `docs/story/slides_notes.md` ve `docs/story/exposure.md` yeni Top 5 (`1 Konya Plain, 2 Mashhad, 3 Central Valley, 4 Eloy, 5 Mexico City`), tek cümle QC hikâyesi ve `Tahran -7.4 cm` ile güncellendi.
+
+- **ENTEGRASYON 03:20 & Semarang Düzeltmesi:**
+  - `semarang` faz atlaması düzeltmesi sonrası `exposure_atlas.json`, `vital_signs.json` (`548.49 km²`, `1,479,410` `< -5 cm`, `8,235,174` `< -2 cm`), 20 bülten (`semarang.html` üzerindeki `"Under revision"` bayrağı kaldırıldı) ve `ATLAS_COMPLETENESS.md` (`PC8: 0 eksik`, `PC4: 0 eksik`) güncellendi (`pytest` → `6 passed`).
+  - `data/results_registry.json` içinde PC8 satırları (`exposure`, `storage_loss`, `uk_findings`) `summary`, `key_number` ve `status: ready` ile dolduruldu; `docs/story/exposure.md`, `docs/story/submission_form.md`, `docs/story/slides_notes.md` senkronize edildi.

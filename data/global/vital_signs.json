@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-11-14T22:16:19Z",
+  "generated_utc": "2026-11-14T22:24:36Z",
   "quality": "provisional",
   "quality_note": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.",
   "cities_measured": 20,
@@ -11,10 +11,10 @@
     "rate_cm_per_100d": -8.9,
     "source": "data/global/atlas.json (fastest among reliable regions; QC-flagged regions excluded, tools/atlas_qc.py)"
   },
-  "area_km2_lt_minus5cm": 591.31,
+  "area_km2_lt_minus5cm": 548.49,
   "area_km2_lt_minus5cm_source": "data/global/exposure_atlas.json (sum excluding nested karapinar)",
-  "people_on_sinking_ground": 1508817,
+  "people_on_sinking_ground": 1479410,
   "people_on_sinking_ground_threshold": "< -5 cm (108-day equivalent, |disp| >= 2*sigma)",
-  "people_on_sinking_ground_gt2cm": 8047490,
+  "people_on_sinking_ground_gt2cm": 8235174,
   "people_on_sinking_ground_source": "data/global/exposure_atlas.json (GHSL GHS-POP E2025 R2023A 3ss, excluding nested karapinar)"
 }

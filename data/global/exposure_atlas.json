@@ -1,14 +1,14 @@
 {
   "title": "Global Atlas Population and Area Exposure on Sinking Ground (108-day equivalent)",
-  "generated_utc": "2026-11-14T22:16:19Z",
+  "generated_utc": "2026-11-14T22:24:36Z",
   "source": "GHSL GHS-POP E2025 R2023A 3-arcsecond (~100 m, WGS84, European Commission JRC) intersected with provisional NISAR L2 GUNW cumulative LOS displacement scaled to 108 days, excluding pixels with |disp| < 2*sigma (data/global/detectability.json)",
   "quality": "provisional",
   "quality_note": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.",
   "notes": "karapinar is reported separately as a local subset inside konya_plain; totals exclude karapinar to prevent double-counting.",
   "totals_excluding_nested_karapinar": {
-    "people_lt_minus2cm": 8047490,
-    "people_lt_minus5cm": 1508817,
-    "area_km2_lt_minus5cm": 591.31
+    "people_lt_minus2cm": 8235174,
+    "people_lt_minus5cm": 1479410,
+    "area_km2_lt_minus5cm": 548.49
   },
   "cities": [
     {
@@ -84,42 +84,6 @@
       "quality": "provisional"
     },
     {
-      "id": "central_valley",
-      "name": "Central Valley (Tulare Basin)",
-      "country": "USA",
-      "people_lt_minus2cm": 92134,
-      "people_lt_minus5cm": 3004,
-      "area_km2_lt_minus5cm": 239.84,
-      "area_km2_lt_minus2cm": 1579.2,
-      "bbox_population_ghsl": 785624,
-      "two_sigma_threshold_cm": 0.588,
-      "two_sigma_source": "data/global/detectability.json",
-      "days_measured": 108,
-      "normalized_window_days": 108,
-      "top_subsiding_areas": [
-        {
-          "lon": -119.0217,
-          "lat": 36.0112,
-          "cum_cm_los": -7.8,
-          "rate_cm_per_100d": -7.22
-        },
-        {
-          "lon": -119.8447,
-          "lat": 36.1163,
-          "cum_cm_los": -7.78,
-          "rate_cm_per_100d": -7.21
-        },
-        {
-          "lon": -120.157,
-          "lat": 36.1272,
-          "cum_cm_los": -7.22,
-          "rate_cm_per_100d": -6.68
-        }
-      ],
-      "source": "GHSL GHS-POP E2025 R2023A 3-arcsecond (~100 m, WGS84, European Commission JRC) intersected with provisional NISAR L2 GUNW cumulative LOS displacement scaled to 108 days, excluding pixels with |disp| < 2*sigma (data/global/detectability.json)",
-      "quality": "provisional"
-    },
-    {
       "id": "eloy",
       "name": "Eloy",
       "country": "",
@@ -150,6 +114,42 @@
           "lat": 32.5928,
           "cum_cm_los": -4.92,
           "rate_cm_per_100d": -4.1
+        }
+      ],
+      "source": "GHSL GHS-POP E2025 R2023A 3-arcsecond (~100 m, WGS84, European Commission JRC) intersected with provisional NISAR L2 GUNW cumulative LOS displacement scaled to 108 days, excluding pixels with |disp| < 2*sigma (data/global/detectability.json)",
+      "quality": "provisional"
+    },
+    {
+      "id": "semarang",
+      "name": "Semarang",
+      "country": "Indonesia",
+      "people_lt_minus2cm": 780050,
+      "people_lt_minus5cm": 37731,
+      "area_km2_lt_minus5cm": 58.05,
+      "area_km2_lt_minus2cm": 364.13,
+      "bbox_population_ghsl": 3840570,
+      "two_sigma_threshold_cm": 0.707,
+      "two_sigma_source": "Cramer-Rao 2*sigma computed from pipeline/subset",
+      "days_measured": 96,
+      "normalized_window_days": 108,
+      "top_subsiding_areas": [
+        {
+          "lon": 110.6079,
+          "lat": -6.81,
+          "cum_cm_los": -6.2,
+          "rate_cm_per_100d": -6.46
+        },
+        {
+          "lon": 110.655,
+          "lat": -6.8288,
+          "cum_cm_los": -5.46,
+          "rate_cm_per_100d": -5.68
+        },
+        {
+          "lon": 110.4947,
+          "lat": -7.1391,
+          "cum_cm_los": -5.4,
+          "rate_cm_per_100d": -5.62
         }
       ],
       "source": "GHSL GHS-POP E2025 R2023A 3-arcsecond (~100 m, WGS84, European Commission JRC) intersected with provisional NISAR L2 GUNW cumulative LOS displacement scaled to 108 days, excluding pixels with |disp| < 2*sigma (data/global/detectability.json)",
@@ -294,36 +294,36 @@
       "quality": "provisional"
     },
     {
-      "id": "semarang",
-      "name": "Semarang",
-      "country": "Indonesia",
-      "people_lt_minus2cm": 592366,
-      "people_lt_minus5cm": 67138,
-      "area_km2_lt_minus5cm": 100.87,
-      "area_km2_lt_minus2cm": 506.53,
-      "bbox_population_ghsl": 3840570,
-      "two_sigma_threshold_cm": 0.742,
-      "two_sigma_source": "Cramer-Rao 2*sigma computed from pipeline/subset",
+      "id": "central_valley",
+      "name": "Central Valley (Tulare Basin)",
+      "country": "USA",
+      "people_lt_minus2cm": 92134,
+      "people_lt_minus5cm": 3004,
+      "area_km2_lt_minus5cm": 239.84,
+      "area_km2_lt_minus2cm": 1579.2,
+      "bbox_population_ghsl": 785624,
+      "two_sigma_threshold_cm": 0.588,
+      "two_sigma_source": "data/global/detectability.json",
       "days_measured": 108,
       "normalized_window_days": 108,
       "top_subsiding_areas": [
         {
-          "lon": 110.2874,
-          "lat": -7.1577,
-          "cum_cm_los": -12.05,
-          "rate_cm_per_100d": -11.16
+          "lon": -119.0217,
+          "lat": 36.0112,
+          "cum_cm_los": -7.8,
+          "rate_cm_per_100d": -7.22
         },
         {
-          "lon": 110.6079,
-          "lat": -6.81,
-          "cum_cm_los": -7.02,
-          "rate_cm_per_100d": -6.5
+          "lon": -119.8447,
+          "lat": 36.1163,
+          "cum_cm_los": -7.78,
+          "rate_cm_per_100d": -7.21
         },
         {
-          "lon": 110.4004,
-          "lat": -7.1672,
-          "cum_cm_los": -6.2,
-          "rate_cm_per_100d": -5.74
+          "lon": -120.157,
+          "lat": 36.1272,
+          "cum_cm_los": -7.22,
+          "rate_cm_per_100d": -6.68
         }
       ],
       "source": "GHSL GHS-POP E2025 R2023A 3-arcsecond (~100 m, WGS84, European Commission JRC) intersected with provisional NISAR L2 GUNW cumulative LOS displacement scaled to 108 days, excluding pixels with |disp| < 2*sigma (data/global/detectability.json)",

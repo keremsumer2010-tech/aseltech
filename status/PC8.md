@@ -1,3 +1,3 @@
 # PC8 durum
 
-- Durum: %100 (01:20 TR; 20 bölge güncel, yeni şehir/görev yok); sıradaki: 3 dk sonra kontrol.
+- Durum: %100 (01:25 TR; results_registry 3 PC8 satırı dolduruldu, Semarang düzeltmesi sonrası 20 bülten/maruziyet/vital_signs yenilendi, 6 test geçti); sıradaki: 3 dk sonra kontrol.
