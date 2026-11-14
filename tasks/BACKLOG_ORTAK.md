@@ -13,6 +13,8 @@ Kullanıcı artık ajanlara prompt girmiyor; **tüm yönetim git üzerinden.** K
 - [ ] Ankara–Konya arası diğer Türkiye havzası adayı: literatürde InSAR çökmesi yayımlanmış bir havza bul (kaynakla), sonra işle
 - [ ] Atlas bölgelerinden QC işaretlilerin (`data/global/qc_flags.json`) `--qc` ile yeniden işlenmesi (sahibine haber vererek)
 
+- [~PC7] Pekin tam kutu yeniden hesap (PC11'den devir, otomatik kontrol 1)
+
 ## B. Bilim ve doğrulama (PC4, PC5, PC11, boşta kalan herkes)
 - [ ] Her güvenilir bölge için 1 paragraf "neden çöküyor" (yeraltı suyu / kil / tarım), kaynaklı → şehir kartlarına ek (PC4 ile koordineli)
 - [ ] `docs/story/detectability.md`'yi 21+ bölgeye güncelle (yeni bölgelerin σ haritaları geldikçe)

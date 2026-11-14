@@ -206,3 +206,7 @@ Kullanıcı artık prompt girmiyor; bu dosyanın sonu ve `tasks/SUREKLI.md` seni
 
 # ⏳ PLAN SONU SİNYALİ (Paz 04:35, PC1)
 Son bloğa geldiğinde `status/PC7.md` ilk satırına `PLAN_SONU_YAKIN` yaz, pushla. PC1 20 dk içinde bu dosyanın sonuna yeni 6–8 saatlik plan ekler; o arada `tasks/BACKLOG_ORTAK.md`. Teslime (Paz 22:00) kadar durmak yok.
+
+
+# 🔁 DEVİR (PC1 otomatik kontrol)
+PC11 68 dk sessiz (Cakarta indirmesinde). **Pekin tam kutu yeniden hesabı sana geçti:** Kashmar bitince, küresel altyapı riskinden ÖNCE yap. Merkez 116.60, 39.95, ±0.25°, havza dışı referans 116.31061, 40.10068 (KB eteği); eski seride 11 Temmuz 2026 görüntüsü aykırı — `--qc` (PC2 motoru hazırsa) veya o tarihi kontrol et. Çıktı `data/global/beijing/` (artık senin), "hazır: beijing" notu PC10 için.

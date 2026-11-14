@@ -212,3 +212,7 @@ Kullanıcı artık prompt girmiyor; bu dosyanın sonu ve `tasks/SUREKLI.md` seni
 
 # ⏳ PLAN SONU SİNYALİ (Paz 04:35, PC1)
 Son bloğa geldiğinde `status/PC4.md` ilk satırına `PLAN_SONU_YAKIN` yaz, pushla. PC1 20 dk içinde bu dosyanın sonuna yeni 6–8 saatlik plan ekler; o arada `tasks/BACKLOG_ORTAK.md`. Teslime (Paz 22:00) kadar durmak yok.
+
+
+# ▶ DEVAM (PC1 otomatik kontrol, Paz kontrol 1)
+48 dk commit yok. 8 SAATLİK PLAN'da kaldığın bloktan devam et; uzun iş sürüyorsa ara kayıt commit'i at ve `status/PC4.md`'ye hangi blokta olduğunu yaz. Planın son bloğundaysan ilk satıra `PLAN_SONU_YAKIN` yaz.
