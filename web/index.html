@@ -63,14 +63,14 @@
     <p class="narrow">Each frame adds one more pair of NISAR radar images, taken 12 to 24 days apart. Red areas are sinking as the clay underground is squeezed. A second, independent satellite pass from the other direction sees sinking in the same places, so it is not a quirk of one orbit.</p>
     <p><a class="btn ghost" style="color:var(--acc)" href="science.html#findings">Key findings and uncertainties →</a></p></div>
     <figure style="margin:0"><video id="cvVideo" muted loop playsinline controls preload="none" style="width:100%;border:1px solid var(--line);border-radius:3px;background:#000"></video>
-    <figcaption>Figure 0. Ground motion added up over 7 consecutive NISAR radar image pairs. <span class="qbadge provisional">PROVISIONAL</span><span class="figcredit">Data: NASA-ISRO NISAR via ASF DAAC. Analysis and animation: Team Taykut.</span></figcaption></figure>
+    <figcaption>Figure 0. Ground motion added up over 7 consecutive NISAR radar image pairs. Blue = less sinking than the stable reference area; changes under about ±2 cm are within the noise. <span class="qbadge provisional">PROVISIONAL</span><span class="figcredit">Data: NASA-ISRO NISAR via ASF DAAC. Analysis and animation: Team Taykut.</span></figcaption></figure>
   </div>
 </section>
 
 <!-- STORY: sticky map + steps -->
 <section id="story" class="story">
   <div class="story-map"><div id="map"></div>
-    <div class="map-legend" id="mapLegend"><span class="lg-title">Ground motion (cm)</span><div class="lg-ramp"></div><div class="lg-ticks"><span id="lgMin">−6</span><span>0</span><span id="lgMax">+6</span></div><div class="lg-note" id="lgGapNote">Gaps: no reliable radar signal (fields ploughed, irrigated or flooded between passes), not "no sinking".</div><div style="margin-top:6px"><button type="button" id="dispModeBtn" style="width:100%;padding:4px 7px;border:1px solid #cbd5e1;border-radius:3px;background:#f8fafc;color:#1e293b;font-size:.7rem;font-weight:600;cursor:pointer">View: Detailed</button></div></div>
+    <div class="map-legend" id="mapLegend"><span class="lg-title">Ground motion (cm)</span><div class="lg-ramp"></div><div class="lg-ticks"><span id="lgMin">−6</span><span>0</span><span id="lgMax">+6</span></div><div class="lg-note" id="lgBlueNote">Blue = less sinking than the stable reference area; changes under about ±2 cm are within the noise.</div><div class="lg-note" id="lgGapNote">Gaps: no reliable radar signal (fields ploughed, irrigated or flooded between passes), not "no sinking".</div><div style="margin-top:6px"><button type="button" id="dispModeBtn" style="width:100%;padding:4px 7px;border:1px solid #cbd5e1;border-radius:3px;background:#f8fafc;color:#1e293b;font-size:.7rem;font-weight:600;cursor:pointer">View: Detailed</button></div></div>
     <div class="map-tag" id="mapTag"></div>
   </div>
   <div class="story-steps">
