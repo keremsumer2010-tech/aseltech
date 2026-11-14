@@ -49,7 +49,7 @@ Her yolun tek sahibi var (`rules/RULES.md` K-7). Burada olmayan bir yere yazman 
 | Sahip | Yazma izni olan yollar |
 |---|---|
 | **PC1** | (15:35: sadece denetim) `web/panel.html` · `CLAUDE.md` `AGENTS.md` `GEMINI.md` `README.md` `LICENSE` `.gitignore` `.gitattributes` · `.github/` · `rules/` · `tasks/` · `docs/*.md` (kök seviye) · `status/PC1.md` |
-| **PC2** | `pipeline/` (script, csv, `subset/`) · `docs/gunw_structure.md` · `data/<site>/drivers.json` (Pazar) · `status/PC2.md` |
+| **PC2** | (15:50 ek) `data/delta/` · `data/konya_plain/` · `data/karapinar_fullyear/` · `data/karapinar/drivers.json` · `docs/story/delta.md` · `docs/story/konya_plain.md` · `docs/story/media/pc2_*.png` · `pipeline/` (script, csv, `subset/`) · `docs/gunw_structure.md` · `data/<site>/drivers.json` (Pazar) · `status/PC2.md` |
 | **PC3** | `analysis/` (kod, test, `out/`) · `data/<site>/meta.json` · `data/<site>/disp/` · `data/<site>/points.json` · `data/<site>/summary.json` · `data/<site>/decomp.json` · `data/*_fullyear/` · `docs/karapinar_checkpoint_cm.png` · `status/PC3.md` |
 | **PC4** | `data/uk/` · `data/karapinar/sinkholes.geojson` · `docs/story/sources.md` · `docs/story/calibration_note.md` · `status/PC4.md` |
 | **PC5** | (14:40) `analysis/pc5/` · `data/*/uncertainty/` · `docs/story/literature_comparison.md` · `key_findings.md` · `game_sensitivity.md` · `risk_sensitivity.md` · `docs/qa/PC5.md` · `status/PC5.md` |

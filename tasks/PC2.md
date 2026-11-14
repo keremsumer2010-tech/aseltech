@@ -100,3 +100,16 @@ Her adımda status/PC2.md'yi güncelle (panel commit mesajını `[PC2] ...` biç
 ---
 # 15:05 EK İŞ (PC7 Earthdata kullanamıyor) — Q07'den önce, kısa
 **Fens GCOV alt kümeleri**: `fens` bbox (-0.3, 52.4, 0.4, 52.9), 2026-06-17 sonrası provisional GCOV tarihleri (en fazla 8 tarih, mümkünse aynı path), HH ve HV gamma0 → dB, bbox kes → `pipeline/subset/fens_gcov/<YYYY-MM-DD>.npz` (`hh_db`, `hv_db`, `x`, `y`, `epsg`, `date`, `granule`, `quality`). Her dosya < 20 MB. Bitince status'ta "fens_gcov hazır" yaz (PC7 analiz edecek). Sonra Q07'ye dön.
+
+---
+# 15:50 BÜYÜK PAKET — "Handbook'un kendi örneği + Konya'nın tamamı" (PC2 tüm veri işlerini bitirdi, mükemmel. Sırayla; bitince sormadan sıradakine)
+Artık sadece indirmiyorsun: PC3'ün hattını (`analysis/cumulative.py ... --data-dir <klasör>`) KENDİN çalıştırıp haritayı da üretiyorsun (PC3 dosyalarını değiştirme; gerekirse `pipeline/pc2/` altında sarmalayıcı).
+Yazma alanına eklendi: `pipeline/subset/delta/` · `data/delta/` · `pipeline/subset/konya_plain/` · `data/konya_plain/` · `pipeline/subset/karapinar_fullyear/` · `data/karapinar_fullyear/` · `data/karapinar/drivers.json` · `docs/story/delta.md` · `docs/story/konya_plain.md` · `docs/story/media/pc2_*.png`.
+Aynı bilgisayarda PC10 da indiriyor: aynı anda en fazla 1 dosya, ham dosyayı kesince sil, boş disk < 20 GB ise dur. Sadece provisional (≥2026-06-17) — tam yıl işi hariç (orada beta ayrı etiketli).
+
+1. **Sacramento–San Joaquin Delta setleri (NISAR Handbook Şekil 2-4'ün kendisi!)** — Handbook §2.4'te NISAR'ın izleyeceği örnek olarak bu setlerin çökmesi gösteriliyor. Bbox yaklaşık −121.85, 37.95, −121.45, 38.20 (kontrol et). ASF'de GUNW provisional kapsama → ardışık çiftler → kes → `data/delta/` (meta, disp, points, summary). Ardından OSM'den set (levee/dike) hatları (Overpass: `man_made=dyke` veya `embankment`) ve setler boyunca çökme profili → `docs/story/delta.md` + `docs/story/media/pc2_delta.png`. Sade İngilizce 4–5 cümle: "Handbook bunu örnek verdi, biz 2026 verisiyle ölçtük."
+2. **Konya Ovası'nın tamamı** — bbox 32.4, 37.4, 33.9, 38.1 (CLAUDE.md `konya`), path 108 (veya kapsamı en iyi path) provisional zincir → `data/konya_plain/`. Konya şehri ve ova genelindeki çökme alanlarını göster. `docs/story/konya_plain.md` + `docs/story/media/pc2_konya_plain.png`. Türkiye'nin "Local Impact" bölümü için en güçlü görsel bu olacak.
+3. **Karapınar tam yıl** — path 7, 2025-10-17 → 2026-10-12 tam zincir (beta-precal + provisional, her npz'de doğru quality) → `pipeline/subset/karapinar_fullyear/` → `data/karapinar_fullyear/` (`quality: mixed`). Kış–yaz "dansı" Türkiye için de görülsün; PC9 kalıcı/geri dönen ayrımını buna da uygulayabilir.
+4. **Karapınar sebep verisi** — SME2 toprak nemi + GCOV HV (provisional tarihler) → `data/karapinar/drivers.json` (Central Valley'deki biçimin aynısı).
+5. **Sürekli:** her 30 dk `git pull`; `docs/qa/*.md` içinde veri dosyaların hakkındaki bulguları düzelt; boş kalırsa Delta için ikinci path ile çapraz kontrol.
+Her dosyada push; status/PC2.md'yi `[PC2]` önekli commit'lerle güncelle.
