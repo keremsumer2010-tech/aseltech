@@ -17,6 +17,19 @@
   <h1>Every number, downloadable</h1>
   <p class="lede">All derived datasets are plain JSON, GeoJSON and PNG files you can open in any tool. The code that produced them is in the <a href="https://github.com/keremsumer2010-tech/aseltech">repository</a> (MIT licence).</p>
   <table class="data" id="files"><thead><tr><th>Dataset</th><th>Region</th><th>Quality</th><th>File</th></tr></thead><tbody></tbody></table>
+  <h2 id="reproduce">Reproduce our data in 5 steps</h2>
+  <ol class="steps5">
+    <li><b>Get a free NASA Earthdata login</b> at <a href="https://urs.earthdata.nasa.gov/" target="_blank" rel="noopener">urs.earthdata.nasa.gov</a> and put it in your <code>~/.netrc</code> file (instructions in the <a href="https://github.com/keremsumer2010-tech/aseltech#setup">README</a>).</li>
+    <li><b>Find the radar pairs.</b> In <a href="https://search.asf.alaska.edu/" target="_blank" rel="noopener">ASF Vertex</a> (or with Python) search for NISAR <b>GUNW</b> products over your area, with both dates on or after 17 June 2026 and release <b>P05023</b> (provisional). Our list: <code>python pipeline/search.py central_valley</code>.
+      <pre>import asf_search as asf
+asf.search(platform="NISAR", processingLevel="GUNW",
+           intersectsWith="POLYGON((-120.2 35.6,-119 35.6,-119 36.6,-120.2 36.6,-120.2 35.6))",
+           start="2026-06-17", end="2026-10-31")</pre></li>
+    <li><b>Download and cut</b> each pair to the study box (about 2.4 GB in, 20 MB out): <code>python analysis/fetch_subset.py central_valley 34 020 100</code> (track 34, frame 20).</li>
+    <li><b>Turn phase into centimetres and add the pairs up:</b> <code>python analysis/cumulative.py central_valley</code>. This writes the maps, points and summary listed above.</li>
+    <li><b>Check your result</b> against ours (<code>summary.json</code>) and against GPS: <code>python validation/compare.py</code>. All tests: <code>python -m pytest analysis -q</code>.</li>
+  </ol>
+  <p class="small">Needs Python 3.11+ and <code>pip install asf_search h5py numpy scipy matplotlib pyproj rasterio shapely requests pytest</code>. Without an Earthdata login you can still open every file on this page.</p>
   <h2>Source data</h2>
   <p>NASA-ISRO NISAR L2 GUNW / GCOV and L3 SME2 products from the <a href="https://search.asf.alaska.edu/" target="_blank" rel="noopener">Alaska Satellite Facility DAAC</a>. GPS time series: <a href="https://geodesy.unr.edu/" target="_blank" rel="noopener">Nevada Geodetic Laboratory</a>. Infrastructure: © OpenStreetMap contributors (ODbL). Optical imagery: NASA GIBS / Worldview (VIIRS).</p>
   <p class="disclaimer"><b>NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.</b></p>
@@ -24,25 +37,14 @@
 <footer class="site-footer"><div class="wrap foot"><div><b>Team Taykut</b> · NASA Space Apps Challenge 2026</div><div><a href="https://github.com/keremsumer2010-tech/aseltech">Open source on GitHub</a></div></div></footer>
 <script src="docs.js"></script>
 <script>
-const F = [
- ['Cumulative ground motion — metadata', 'Central Valley', 'data/central_valley/meta.json'],
- ['Summary (headline numbers & method)', 'Central Valley', 'data/central_valley/summary.json'],
- ['Point time series', 'Central Valley', 'data/central_valley/points.json'],
- ['GPS validation', 'Central Valley', 'data/central_valley/validation.json'],
- ['Infrastructure risk segments', 'Central Valley', 'data/central_valley/assets.json'],
- ['Cumulative ground motion — metadata', 'Karapınar', 'data/karapinar/meta.json'],
- ['Summary', 'Karapınar', 'data/karapinar/summary.json'],
- ['Point time series', 'Karapınar', 'data/karapinar/points.json'],
- ['Documented sinkholes (with sources)', 'Karapınar', 'data/karapinar/sinkholes.geojson'],
- ['Optical vs radar image pair — metadata', 'The Fens, UK', 'data/uk/meta.json'],
- ['Data catalogue', 'All', 'data/catalog.json']];
-Promise.all(F.map(f => J(f[2]))).then(rs => {
-  document.querySelector('#files tbody').innerHTML = F.map((f, i) => {
-    const d = rs[i]; if (!d) return '';
-    const q = (Array.isArray(d) ? d[0]?.quality : d.quality) || (f[2].includes('sinkholes') ? 'reference' : '—');
-    const cls = {provisional: 'provisional', preview: 'preview', 'beta-precal': 'beta', mixed: 'beta'}[q];
-    return `<tr><td>${f[0]}</td><td>${f[1]}</td><td>${cls ? `<span class="qbadge ${cls}">${q.toUpperCase()}</span>` : q}</td><td><a class="mono" href="${ROOT + f[2]}" download>${f[2].split('/').pop()}</a></td></tr>`;
-  }).join('');
+// file list comes from data/catalog.json (analysis/build_catalog.py): new datasets appear here automatically
+const CLS = {provisional: 'provisional', preview: 'preview', 'beta-precal': 'beta', mixed: 'beta'};
+J('data/catalog.json').then(cat => {
+  if (!cat) return;
+  const rows = [];
+  for (const s of cat) for (const l of s.layers) rows.push(`<tr><td>${l.title}</td><td>${s.title}</td><td>${CLS[l.quality] ? `<span class="qbadge ${CLS[l.quality]}">${String(l.quality).toUpperCase()}</span>` : (l.quality || '—')}</td><td><a class="mono" href="${ROOT + l.file}" download>${l.file.split('/').slice(-2).join('/')}</a></td></tr>`);
+  rows.push(`<tr><td>Data catalogue (everything above)</td><td>All</td><td>—</td><td><a class="mono" href="${ROOT}data/catalog.json" download>data/catalog.json</a></td></tr>`);
+  document.querySelector('#files tbody').innerHTML = rows.join('');
 });
 </script>
 </body>
