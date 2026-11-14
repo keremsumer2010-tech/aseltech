@@ -74,3 +74,39 @@ def test_chunked_equals_unchunked():
     b = fit(T, d, chunk=97)
     for k in ("v_cm_per_yr", "amp_cm", "r2", "reason"):
         assert np.allclose(a[k], b[k], equal_nan=True)
+
+
+def test_run_decomp_end_to_end(tmp_path):
+    from run_decomp import run
+    # tiny UTM 11N grid inside the central_valley bbox, 28 epochs over a year
+    x = np.arange(260000, 268000, 80.0)
+    y = np.arange(3990000, 3982000, -80.0)
+    dates = np.array([f"{2025 + int(tt)}-{max(1, min(12, int((tt % 1) * 12) + 1)):02d}-15" for tt in T - 2025])
+    # monthly-ish ISO dates over one year; stack computed on their exact decimal years
+    from decompose import decimal_year as dy
+    tt = np.array([dy(s) for s in dates])
+    phi = 2 * np.pi * ((9 - 0.5) / 12 - 0.5)
+    A, B = 3.0 * np.sin(phi), 3.0 * np.cos(phi)
+    base = -18.0 * (tt - tt.mean()) + A * np.sin(2 * np.pi * tt) + B * np.cos(2 * np.pi * tt)
+    st = (base[:, None, None] + np.zeros((1, len(y), len(x)))).astype(np.float32)
+    f = tmp_path / "s.npz"
+    np.savez_compressed(f, cum_stack_cm=st, dates=dates, x=x, y=y, epsg=np.int32(32611), quality="mixed")
+    doc = run("central_valley", f, tmp_path / "out")
+    assert doc["status"] == "ok" and doc["quality"] == "mixed"
+    assert doc["permanent_cm_per_yr"]["p50"] == pytest.approx(-18.0, abs=0.2)
+    assert doc["seasonal_amp_cm"]["p50"] == pytest.approx(3.0, abs=0.2)
+    assert (tmp_path / "out" / "decomp_permanent.png").exists()
+
+
+def test_run_decomp_insufficient(tmp_path):
+    from run_decomp import run
+    x = np.arange(260000, 261600, 80.0)
+    y = np.arange(3990000, 3988400, -80.0)
+    dates = np.array(["2026-06-28", "2026-07-10", "2026-07-22", "2026-08-15", "2026-08-27", "2026-09-08",
+                      "2026-09-20", "2026-10-14"])
+    st = np.zeros((8, len(y), len(x)), np.float32)
+    f = tmp_path / "s.npz"
+    np.savez_compressed(f, cum_stack_cm=st, dates=dates, x=x, y=y, epsg=np.int32(32611), quality="provisional")
+    doc = run("central_valley", f, tmp_path / "out")
+    assert doc["status"] == "insufficient_data"
+    assert doc["reason_counts"] == {"valid span shorter than 9 months": len(x) * len(y)}
