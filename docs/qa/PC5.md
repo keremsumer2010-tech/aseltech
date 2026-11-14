@@ -89,5 +89,50 @@ Her nokta için doğrusal en küçük kareler uyumu $d(t) = a + v \cdot t$, aç�
 **Doğrulama Komutu:**
 ```bash
 python -m analysis.decomp.point_quality
-python -m pytest analysis/decomp -q   # 15 passed
+python -m pytest analysis/decomp -q   # 16 passed, 2 failed (pyproj ortamda yok; PC3 ortaminda pyproj ile 18/18)
 ```
+
+---
+
+## 3. Görev 7 — Tam Yıl Veri Hazırlık Kontrol Listesi (`Q07` / `Q08` Sonrası)
+
+PC2 **Q07** kapsamında tam yıl Central Valley zincirini (`2025-11-24 → 2026-10-14`, `pipeline/subset/central_valley_beta/` veya güncellenmiş tam yığın) ve PC3 `analysis/out/central_valley_cum_stack.npz` yığınını ürettiğinde (`docs/REVIEW_1500.md` notu uyarınca bu akşam / Pazar) çalıştırılacak eksiksiz doğrulama ve kalite kapısı listesi aşağıdadır:
+
+### 3.1 Ön Koşul ve Bağımlılık Kontrolü
+1. **Ortam bağımlılığı (`pyproj` uyarısı):** Yerel PC5 Python (`Python 3.12`) kurulumunda `pyproj` yüklü değildir; bu nedenle `analysis/cumulative.py` (`import pyproj`) üzerinden `to_latlon_grid` çağıran `analysis/decomp/run_decomp.py` ve `test_run_decomp_*` testleri `pyproj` kurulmadan hata verir. Pazar günü `run_decomp.py` çalıştırılmadan önce `python -c "import pyproj"` doğrulanmalı (yoksa PC3 ortamı kullanılmalı veya `pip install pyproj`). PC5'in `analysis/pc5/*` modülleri ise dahili saf-NumPy WGS84↔UTM dönüşümü ile `pyproj` olmadan da çalışır (`12 passed`).
+2. **Kalite sınıfı kuralı (`rules/VERI_SOZLESMESI.md` §3):** `2026-06-28` öncesi `beta-precal` çiftleri varsa kümülatif tam-yıl ayrıştırma çıktısında `--quality mixed` bayrağı zorunludur (`quality: "provisional"` yalnız P05023 provisional zincirinde kalır; tam yıl beta içerdiğinde `"mixed"`, 2026-10-21 sonrası tamamen kalibreli veri setinde `"validated"` olabilir).
+
+### 3.2 Pazar Çalıştırma Sırası (Birebir CLI Komutları)
+1. **Tam yıl mevsimsel/kalıcı ayrıştırma (`analysis/decomp/run_decomp.py`):**
+   ```bash
+   python analysis/decomp/run_decomp.py central_valley --stack analysis/out/central_valley_cum_stack.npz --out data/central_valley_fullyear --quality mixed
+   ```
+   - *Beklenen çıktılar:* `data/central_valley_fullyear/decomp.json`, `data/central_valley_fullyear/decomp_permanent.png`, `data/central_valley_fullyear/decomp_seasonal.png`.
+   - *Kalite kapısı:* `status == "ok"` (`span >= 9 ay`, `n_epochs >= 10`, geçerli piksel oranı `valid_fraction > 0.30`), `quality == "mixed"`, kalıcı hız medyan/p2 (`permanent_cm_per_yr.p2`) Central Valley literatür aralığı (`-17` ile `-35 cm/yr`, Neely et al. 2021) ile uyumlu, mevsimsel genlik (`seasonal_amp_cm`) `p01`/`p04` gibi tarım havzasında pozitif ve kış geri sıçramasını yakalıyor.
+2. **Nokta bazında zaman serisi QA (`analysis/decomp/point_quality.py`):**
+   ```bash
+   python -m analysis.decomp.point_quality
+   ```
+   - *Kalite kapısı:* `suspect_ids == []` (hiçbir noktada `|Δd| > λ/4 = 6.05 cm` yarım-döngü faz açma atlaması olmamalı); `p08` (Richgrove) tek sahne sıçramasının tam yıl zincirinde artıp artmadığı kontrol edilmeli.
+3. **Piksel bazında Cramér–Rao belirsizlik haritası (`analysis/pc5/uncertainty_map.py`):**
+   ```bash
+   python analysis/pc5/uncertainty_map.py central_valley --looks 208
+   python analysis/pc5/uncertainty_map.py karapinar --looks 208
+   ```
+   - *Beklenen çıktılar:* `data/central_valley/uncertainty/{sigma_cm.png,meta.json}` ve `data/karapinar/uncertainty/{sigma_cm.png,meta.json}`.
+   - *Kalite kapısı:* `fraction_above_vmax`, `valid_pixel_fraction` (~`%65` CV, ~`%15` Karapınar) ve $\sigma_{\text{toplam}} \propto \sqrt{N}$ büyümesi beklenen mertebede mi (`108` günlük 7 çift `0.294 cm` → ~30 çiftlik tam yılda `~0.61 cm` beklenir); `L = 100` duyarlılık bloğu güncellenmiş olmalı.
+4. **Altyapı risk duyarlılığı ve GNSS karşılaştırması (`analysis/pc5/risk_sensitivity.py` & `validation/compare.py`):**
+   ```bash
+   python analysis/pc5/risk_sensitivity.py --write-doc
+   python validation/compare.py
+   ```
+   - *Kalite kapısı:* İlk 10 altyapı segmenti tam-yıl yığınında da yüksek risk (`gradient >= 10 mm/km` veya `<= -10 cm`) statüsünü koruyor mu; GNSS RMSE / Pearson $r$ değerleri tam yıl mevsimsel döngü eklendikten sonra özellikle kararlı/kenar istasyonlarda (`CAD1`, `P564`, `CAFP`) iyileşiyor mu kontrol edilmeli.
+5. **Son test doğrulaması (`pytest`):**
+   ```bash
+   python -m pytest analysis/pc5 analysis/decomp -q
+   ```
+   - *Hedef:* `pyproj` kurulu ortamda `30 passed` (veya `pyproj` yoksa `analysis/pc5` `12 passed`, `analysis/decomp` `16 passed` + `run_decomp` için PC3 ortamı).
+
+### 3.3 Bilinen Açıklar ve Geri Dönüş (Rollback) Notları
+- `analysis/decomp/run_decomp.py` içinde `valid < 100` veya zaman aralığı `< 0.75 yıl` kalırsa script otomatik olarak `status: "insufficient_data"` yazar ve PNG üretmez — site bozulmaz.
+- `game/model.js` kalibrasyon verisi tam yıl gelirse yalnız `data/central_valley/summary.json` (108-günlük yaz hedefi) ile uyumlu olduğu için oyun modeli `k_cal = 0.6232` katsayısı aynı yaz penceresi hedefine bağlı kalmaya devam eder; yıllık net oran oyunu etkilemek üzere değiştirilecekse `game_sensitivity.py` yeniden çalıştırılmalıdır.

@@ -494,6 +494,8 @@ def render_markdown(res: dict) -> str:
             "",
             "![Monte Carlo Sensitivity of ValleyModel](game_sensitivity.png)",
             "",
+            "*Figure 1. Two-panel Monte Carlo sensitivity diagnostic (`N = 1,000` trials) for Terra Bella (`p01`) in `game/model.js` (`28 Jun–14 Oct 2026` calibration target and 24-month projections): (A) 24-month cumulative vertical subsidence distribution with `p10/p50/p90` quantiles; (B) clay thickness `b0` vs. inelastic specific storage `S_skv` showing the `-10.1 cm / 108-day` NISAR iso-subsidence contour (`b0 · S_skv = 0.02356`) and nominal model parameters. Data: NASA-ISRO NISAR, ASF DAAC. Analysis: Team Taykut.*",
+            "",
             "## 3. Where Does the `-10.1 cm / 108-Day` Target Sit in Parameter Space?",
             "",
             f"- **Percentile rank in parameter space:** Under the uniform `(S_skv, S_ske, b0)` prior (`108`-day `p10–p90` range `{s108['p10_severe']:.2f}` to `{s108['p90_mild']:.2f} cm`, median `{s108['p50_median']:.2f} cm`), **`{res['summary']['target_108d_more_severe_pct']:.1f}%`** of parameter draws produce subsidence equal to or deeper than the `-10.1 cm` NISAR vertical observation, and **`{n_within}/1,000` (`{res['summary']['within_10pct_fraction']*100:.1f}%`)** fall within `±10%` (`-9.09` to `-11.11 cm`).",

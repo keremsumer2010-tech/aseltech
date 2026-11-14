@@ -1,8 +1,16 @@
 # PC5 Durum Raporu
 
-- **Durum:** çalışıyor — Görev 6 (`game_sensitivity` 1000 Monte Carlo) tamamlandı, Görev 7'ye (Pazar tam yıl kontrol listesi) geçiliyor
+- **Durum:** tamamlandı (Görev 1–7 + 15:00 inceleme kuralları uyumu; PC5 testleri 12 passed)
 - **Kimlik:** M3hmeT1888 · Antigravity (Gemini) · PC5
-- **Güncelleme:** 2026-11-14 15:11 TR
+- **Güncelleme:** 2026-11-14 15:13 TR
+
+## Görev 7 & `docs/REVIEW_1500.md` Uyumu (`docs/qa/PC5.md` §3, `docs/story/key_findings.md`, `docs/story/game_sensitivity.md`)
+- `docs/qa/PC5.md` §3'e tam yıl zinciri (`Q07`/`Q08`) geldiğinde çalıştırılacak komut sırası, beklenen çıktılar (`decomp.json`, `decomp_permanent.png`, `decomp_seasonal.png`, `sigma_cm.png`), kalite kapıları (`--quality mixed`, `suspect_ids == []`) ve `pyproj` ortam uyarısı eklendi.
+- `tasks/PC5.md` 15:00 notu ve `docs/REVIEW_1500.md` yazım kuralları gereği tüm İngilizce metinler (`docs/story/key_findings.md`, `game_sensitivity.md`) sade NASA Earth Observatory üslubuna çekildi; terimler (LOS, coherence, Cramér–Rao) ilk geçişte açıklandı, tarihsiz sayı bırakılmadı ve `Figure 1.` kredisi eklendi.
+- **Doğrulama:** `pytest analysis/pc5 -q` → **12 passed** (`test_uncertainty_map.py`, `test_risk_sensitivity.py`, `test_game_sensitivity.py`); `pytest analysis/decomp -q` → **16 passed, 2 failed** (`test_run_decomp_*` yerel Python 3.12'de `pyproj` kurulu olmadığı için `analysis/cumulative.py` içinde başarısız — kontrol listesinde belgelendi).
+- **AI:** Gemini → `analysis/pc5/{uncertainty_map.py,risk_sensitivity.py,game_sensitivity.py}`, `test_*.py`, `data/*/uncertainty/`, `docs/story/{literature_comparison.md,key_findings.md,risk_sensitivity.md,game_sensitivity.md,game_sensitivity.png}`, `docs/qa/PC5.md`
+
+---
 
 ## Görev 6 — Oyun Modeli Monte Carlo Duyarlılığı (`analysis/pc5/game_sensitivity.py`, `docs/story/game_sensitivity.md`, `.png`)
 - `game/model.js` (`ValleyModel` v2) denklemleri değiştirilmeden Python'a aktarıldı; Terra Bella (`p01`) kalibrasyon noktasında kalibresiz çıktı `d_model(k=1) = -17.18 cm`, kalibre çarpan `k_cal = 0.6232` ile 108 gün hedefi `-10.10 cm` (`%0.00` artık).
