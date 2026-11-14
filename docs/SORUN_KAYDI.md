@@ -284,6 +284,21 @@ Görev dağılımı: `tasks/QUEUE.md` → "BUGFIX" bölümü. S-21 (simülatör 
 - Öneri: Web sayfalarındaki tüm geçişleri değiştir (grep ile 0'a indir). `docs/story/*`, `analysis/*` içindeki grafik kredileri başka PC'lerin; ayrıca karar verilecek.
 - Görev: B32.
 
+## S-33 · Haritadaki noktalar: basınca "bu nedir + kaynak" yalnızca Konya'da var
+*Öncelik: Yüksek · Yer: Bölüm haritaları (California, UK) · Sahip: PC8*
+- Sorun: Konya obruk noktalarında popup (ad, yıl, kaynak bağlantısı) var; California noktaları, GPS istasyonları, altyapı hatları ve UK bölümünde yok.
+- Öneri: Aynı popup kalıbı, bilgi JSON'dan: `points.json`, `validation/gnss_stations.csv`, `assets.json`; UK'e Holme Fen, Londra kil bölgesi ve radar çerçevesi işaretleri. Görev: B33 (B12 ile birlikte).
+
+## S-34 · Sekme değiştirip dönünce kaydırma çalışmıyor
+*Öncelik: Yüksek · Yer: Tüm site · Sahip: PC8*
+- Sorun: Sekmeden dönünce tekerlek/dokunma kaydırma tepkisiz; tıklayınca sayfa birden kayıyor.
+- Öneri: Önce yeniden üret; şüpheliler: `scroll-behavior:smooth`, gizli sekmede biriken zamanlayıcı/animasyonlar, MapLibre `scrollZoom`, iframe odağı. Görev: B34.
+
+## S-35 · "Play the simulator" kapak görseli eski tasarımdan
+*Öncelik: Yüksek · Yer: Ana sayfa simülatör bölümü · Sahip: PC6*
+- Sorun: `web/assets/simulator.jpg` eski koyu simülatörün görüntüsü.
+- Öneri: Yeni açık temalı simülatörden 1600×900 görüntü, aynı dosya adı, ≤150 KB. Görev: B35.
+
 ## Uygulanmaması gerekenler (dış inceleme PDF'inden)
 - "#findings çapası yok": yanlış; index.html ve science.html'de id="findings" var.
 - "Haritalar, grafikler, tablolar, Data/Explore satırları boş; href=\"#\" bağlantılar çalışmıyor": Bu öğeler JavaScript ile dolduruluyor (app.js gameOpen/view3d bağlantılarını ve videoyu sonradan atıyor). İnceleme büyük ihtimalle JavaScript çalıştırmayan bir araçla yapılmış. Ekran görüntülerimizde veri yükleniyor. Yine de: canlı siteyi telefonda ve gizli pencerede bir kez açıp kontrol edin; JS kapalıyken en azından "Loading…" / açıklama metni gösterilmesi iyi olur.
