@@ -20,4 +20,8 @@
 - 20:00 hata ayıklama 5: `pipeline/pc7/validate_json.py` eklendi ve çalıştırıldı; 61 JSON'da 0 parse hatası, 0 non-finite değer, 0 eksik quality; 12 points.json kaliteyi kardeş meta.json'dan miras alıyor. `docs/qa/PC7.md` §12.
 - 20:10 O2 tamamlandı: `risk/probabilistic_risk.py`, iki test, `data/central_valley/assets_prob.json`, `docs/story/engineering_risk.md`, `docs/story/media/pc7_risk_prob.png`; 3.238 kaynaktan skorlanabilir 2.082 hat, 1000 Monte Carlo. `docs/qa/PC7.md` §13.
 - Atlas QA: `tools/validate_atlas.py` güncel atlasla yeniden çalıştırıldı; 8 atlas kaydı, 9 şehir dizini, 128 bulgu (119 hata, 9 referans uyarısı); Isfahan atlas dışında. Ayrıntı `docs/qa/PC7.md` §14.
-- BLOCKED: yok
+- Güncel devam turu: Fens yerel analizini tekrar koştum (JSON semantik olarak değişmedi, indirme yok); 10 stratejili Node testi PASS; O2 birim testleri 2/2 PASS. Atlas denetimi 128 bulgu, genel JSON denetimi 83 JSON'da 0 parse/NaN ve 4 başka sahip dosyasında quality eksiği.
+- Site QA tekrarlandı: 89 yerel yolun tamamı mevcut; 84 JSON/GeoJSON parse hatasız ve tarihler uyumlu. Metin taraması 27 aday verdi; çoğu kod/koordinat/sayım false positive, olası bilimsel birim bulgusu `web/science.html` `−4.7` (site sahibi PC3/PC1'e not edildi).
+- Tam pytest toplaması bu ortamda `requests` modülü eksik olduğu için iki test dosyasında import aşamasında başarısız oldu; indirme veya paket kurulumu yapmadım. Ayrıntı `docs/qa/PC7.md` §15.
+- PC7'ye atlas şehri atanmadığından PC11 şehirlerini veya PC11 status/görev dosyalarını değiştirmedim.
+- BLOCKED: git add/commit → `.git/index.lock` oluşturma izni reddedildi (Permission denied); depo kuralı gereği Git işlemleri durduruldu.

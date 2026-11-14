@@ -16,6 +16,7 @@ Yayımlama eşlemesi: `web/` site kökü; `data/`, `game/`, `web3d/` ve `docs/st
 | `web/app.js` | 27 | `data/karapinar/summary.json` | `data/karapinar/summary.json` | OK |
 | `web/app.js` | 27 | `data/uk/meta.json` | `data/uk/meta.json` | OK |
 | `web/app.js` | 28 | `data/central_valley/area_stats.json` | `data/central_valley/area_stats.json` | OK |
+| `web/app.js` | 28 | `data/fens/crops.json` | `data/fens/crops.json` | OK |
 | `web/app.js` | 28 | `data/karapinar/assets.json` | `data/karapinar/assets.json` | OK |
 | `web/app.js` | 28 | `data/uk_clay/detection.json` | `data/uk_clay/detection.json` | OK |
 | `web/app.js` | 44 | `docs/story/key_findings_public.md` | `docs/story/key_findings_public.md` | OK |
@@ -26,72 +27,76 @@ Yayımlama eşlemesi: `web/` site kökü; `data/`, `game/`, `web3d/` ve `docs/st
 | `web/app.js` | 157 | `data/uk/optical_${D.uk.date}.jpg` | `data/uk/optical_*.jpg` | OK (dynamic pattern has matches) |
 | `web/app.js` | 158 | `data/uk/radar_${D.uk.date}.png` | `data/uk/radar_*.png` | OK (dynamic pattern has matches) |
 | `web/app.js` | 168 | `data/central_valley/disp/${m.dates[i]}.png` | `data/central_valley/disp/*.png` | OK (dynamic pattern has matches) |
-| `web/app.js` | 232 | `game/index.html` | `game/index.html` | OK |
-| `web/app.js` | 232 | `web3d/index.html` | `web3d/index.html` | OK |
-| `web/app.js` | 233 | `docs/story/media/cv_subsidence.mp4` | `docs/story/media/cv_subsidence.mp4` | OK |
+| `web/app.js` | 215 | `data/central_valley_fullyear/decomp.json` | `data/central_valley_fullyear/decomp.json` | OK |
+| `web/app.js` | 253 | `game/index.html` | `game/index.html` | OK |
+| `web/app.js` | 253 | `web3d/index.html` | `web3d/index.html` | OK |
+| `web/app.js` | 254 | `docs/story/media/cv_subsidence.mp4` | `docs/story/media/cv_subsidence.mp4` | OK |
 | `web/data.html` | 8 | `style.css` | `web/style.css` | OK |
 | `web/data.html` | 12 | `index.html` | `web/index.html` | OK |
 | `web/data.html` | 13 | `data.html` | `web/data.html` | OK |
+| `web/data.html` | 13 | `explorer.html` | `web/explorer.html` | OK |
 | `web/data.html` | 13 | `faq.html` | `web/faq.html` | OK |
 | `web/data.html` | 13 | `index.html#play` | `web/index.html` | OK |
 | `web/data.html` | 13 | `index.html#story` | `web/index.html` | OK |
 | `web/data.html` | 13 | `science.html` | `web/science.html` | OK |
-| `web/data.html` | 25 | `docs.js` | `web/docs.js` | OK |
-| `web/data.html` | 28 | `data/central_valley/meta.json` | `data/central_valley/meta.json` | OK |
-| `web/data.html` | 29 | `data/central_valley/summary.json` | `data/central_valley/summary.json` | OK |
-| `web/data.html` | 30 | `data/central_valley/points.json` | `data/central_valley/points.json` | OK |
-| `web/data.html` | 31 | `data/central_valley/validation.json` | `data/central_valley/validation.json` | OK |
-| `web/data.html` | 32 | `data/central_valley/assets.json` | `data/central_valley/assets.json` | OK |
-| `web/data.html` | 33 | `data/karapinar/meta.json` | `data/karapinar/meta.json` | OK |
-| `web/data.html` | 34 | `data/karapinar/summary.json` | `data/karapinar/summary.json` | OK |
-| `web/data.html` | 35 | `data/karapinar/points.json` | `data/karapinar/points.json` | OK |
-| `web/data.html` | 36 | `data/karapinar/sinkholes.geojson` | `data/karapinar/sinkholes.geojson` | OK |
-| `web/data.html` | 37 | `data/uk/meta.json` | `data/uk/meta.json` | OK |
-| `web/data.html` | 38 | `data/catalog.json` | `data/catalog.json` | OK |
+| `web/data.html` | 38 | `docs.js` | `web/docs.js` | OK |
+| `web/data.html` | 42 | `data/catalog.json` | `data/catalog.json` | OK |
 | `web/faq.html` | 8 | `style.css` | `web/style.css` | OK |
 | `web/faq.html` | 12 | `index.html` | `web/index.html` | OK |
 | `web/faq.html` | 13 | `data.html` | `web/data.html` | OK |
+| `web/faq.html` | 13 | `explorer.html` | `web/explorer.html` | OK |
 | `web/faq.html` | 13 | `faq.html` | `web/faq.html` | OK |
 | `web/faq.html` | 13 | `index.html#play` | `web/index.html` | OK |
 | `web/faq.html` | 13 | `index.html#story` | `web/index.html` | OK |
 | `web/faq.html` | 13 | `science.html` | `web/science.html` | OK |
-| `web/faq.html` | 24 | `docs.js` | `web/docs.js` | OK |
-| `web/faq.html` | 25 | `docs/story/judge_faq.md` | `docs/story/judge_faq.md` | OK |
+| `web/faq.html` | 26 | `docs.js` | `web/docs.js` | OK |
+| `web/faq.html` | 27 | `docs/story/judge_faq.md` | `docs/story/judge_faq.md` | OK |
 | `web/index.html` | 13 | `style.css` | `web/style.css` | OK |
 | `web/index.html` | 17 | `index.html` | `web/index.html` | OK |
 | `web/index.html` | 19 | `data.html` | `web/data.html` | OK |
+| `web/index.html` | 19 | `explorer.html` | `web/explorer.html` | OK |
 | `web/index.html` | 19 | `faq.html` | `web/faq.html` | OK |
 | `web/index.html` | 19 | `science.html` | `web/science.html` | OK |
 | `web/index.html` | 56 | `data.html` | `web/data.html` | OK |
 | `web/index.html` | 56 | `science.html` | `web/science.html` | OK |
 | `web/index.html` | 64 | `science.html#findings` | `web/science.html` | OK |
-| `web/index.html` | 112 | `science.html` | `web/science.html` | OK |
-| `web/index.html` | 132 | `science.html#risk` | `web/science.html` | OK |
-| `web/index.html` | 194 | `science.html` | `web/science.html` | OK |
-| `web/index.html` | 198 | `assets/simulator.jpg` | `web/assets/simulator.jpg` | OK |
-| `web/index.html` | 219 | `data.html` | `web/data.html` | OK |
-| `web/index.html` | 219 | `science.html` | `web/science.html` | OK |
-| `web/index.html` | 226 | `faq.html` | `web/faq.html` | OK |
-| `web/index.html` | 232 | `app.js` | `web/app.js` | OK |
+| `web/index.html` | 116 | `explorer.html#central_valley_fullyear` | `web/explorer.html` | OK |
+| `web/index.html` | 117 | `docs/story/media/pc9_fullyear_point.png` | `docs/story/media/pc9_fullyear_point.png` | OK |
+| `web/index.html` | 121 | `science.html` | `web/science.html` | OK |
+| `web/index.html` | 141 | `science.html#risk` | `web/science.html` | OK |
+| `web/index.html` | 197 | `docs/story/storage_loss.md` | `docs/story/storage_loss.md` | OK |
+| `web/index.html` | 198 | `docs/story/engineering_risk.md` | `docs/story/engineering_risk.md` | OK |
+| `web/index.html` | 199 | `docs/story/engine.md` | `docs/story/engine.md` | OK |
+| `web/index.html` | 211 | `data.html` | `web/data.html` | OK |
+| `web/index.html` | 212 | `explorer.html#central_valley` | `web/explorer.html` | OK |
+| `web/index.html` | 232 | `science.html` | `web/science.html` | OK |
+| `web/index.html` | 236 | `assets/simulator.jpg` | `web/assets/simulator.jpg` | OK |
+| `web/index.html` | 273 | `data.html` | `web/data.html` | OK |
+| `web/index.html` | 273 | `science.html` | `web/science.html` | OK |
+| `web/index.html` | 280 | `faq.html` | `web/faq.html` | OK |
+| `web/index.html` | 286 | `app.js` | `web/app.js` | OK |
+| `web/index.html` | 293 | `docs/story/technical_note.md` | `docs/story/technical_note.md` | OK |
 | `web/science.html` | 8 | `style.css` | `web/style.css` | OK |
 | `web/science.html` | 12 | `index.html` | `web/index.html` | OK |
 | `web/science.html` | 13 | `data.html` | `web/data.html` | OK |
+| `web/science.html` | 13 | `explorer.html` | `web/explorer.html` | OK |
 | `web/science.html` | 13 | `faq.html` | `web/faq.html` | OK |
 | `web/science.html` | 13 | `index.html#play` | `web/index.html` | OK |
 | `web/science.html` | 13 | `index.html#story` | `web/index.html` | OK |
 | `web/science.html` | 13 | `science.html` | `web/science.html` | OK |
-| `web/science.html` | 83 | `docs.js` | `web/docs.js` | OK |
-| `web/science.html` | 85 | `docs/story/calibration_note.md` | `docs/story/calibration_note.md` | OK |
-| `web/science.html` | 86 | `docs/story/sources.md` | `docs/story/sources.md` | OK |
-| `web/science.html` | 87 | `docs/story/key_findings.md` | `docs/story/key_findings.md` | OK |
-| `web/science.html` | 88 | `docs/story/literature_comparison.md` | `docs/story/literature_comparison.md` | OK |
-| `web/science.html` | 89 | `docs/story/uncertainty.md` | `docs/story/uncertainty.md` | OK |
-| `web/science.html` | 90 | `docs/story/validation_report.md` | `docs/story/validation_report.md` | OK |
-| `web/science.html` | 91 | `docs/story/risk_dossier.md` | `docs/story/risk_dossier.md` | OK |
-| `web/science.html` | 92 | `data/central_valley/summary.json` | `data/central_valley/summary.json` | OK |
-| `web/science.html` | 101 | `data/central_valley/validation.json` | `data/central_valley/validation.json` | OK |
+| `web/science.html` | 90 | `data.html#reproduce` | `web/data.html` | OK |
+| `web/science.html` | 95 | `docs.js` | `web/docs.js` | OK |
+| `web/science.html` | 97 | `docs/story/calibration_note.md` | `docs/story/calibration_note.md` | OK |
+| `web/science.html` | 98 | `docs/story/sources.md` | `docs/story/sources.md` | OK |
+| `web/science.html` | 99 | `docs/story/key_findings.md` | `docs/story/key_findings.md` | OK |
+| `web/science.html` | 100 | `docs/story/literature_comparison.md` | `docs/story/literature_comparison.md` | OK |
+| `web/science.html` | 101 | `docs/story/uncertainty.md` | `docs/story/uncertainty.md` | OK |
+| `web/science.html` | 102 | `docs/story/validation_report.md` | `docs/story/validation_report.md` | OK |
+| `web/science.html` | 103 | `docs/story/risk_dossier.md` | `docs/story/risk_dossier.md` | OK |
+| `web/science.html` | 104 | `data/central_valley/summary.json` | `data/central_valley/summary.json` | OK |
+| `web/science.html` | 113 | `data/central_valley/validation.json` | `data/central_valley/validation.json` | OK |
 
-Kontrol edilen yerel yol: 84. Eksik: 0.
+Kontrol edilen yerel yol: 89. Eksik: 0.
 Eksik yerel yol bulunmadı.
 ## 2. Veri sözleşmesi (offline)
 
@@ -100,8 +105,11 @@ Eksik yerel yol bulunmadı.
 | `data/catalog.json` | OK | records | records | OK |
 | `data/central_valley/area_stats.json` | OK | root | root | not specified |
 | `data/central_valley/assets.json` | OK | root | root | OK |
+| `data/central_valley/assets_prob.json` | OK | root | root | not specified |
 | `data/central_valley/drivers.json` | OK | root | root | OK |
+| `data/central_valley/exposure.json` | OK | root | root | not specified |
 | `data/central_valley/gcov/meta.json` | OK | root | root | OK |
+| `data/central_valley/grid.json` | OK | root | root | not specified |
 | `data/central_valley/meta.json` | OK | root | root | OK |
 | `data/central_valley/points.json` | OK | missing | missing | OK |
 | `data/central_valley/summary.json` | OK | root | root | OK |
@@ -111,20 +119,70 @@ Eksik yerel yol bulunmadı.
 | `data/central_valley_fullyear/decomp.json` | OK | root | root | not specified |
 | `data/central_valley_fullyear/meta.json` | OK | root | root | OK |
 | `data/central_valley_fullyear/points.json` | OK | missing | missing | OK |
+| `data/central_valley_fullyear/storage_loss.json` | OK | root | root | not specified |
 | `data/central_valley_fullyear/summary.json` | OK | root | root | OK |
+| `data/central_valley_p114_fullyear/meta.json` | OK | root | root | OK |
+| `data/central_valley_p114_fullyear/points.json` | OK | missing | missing | OK |
+| `data/central_valley_p114_fullyear/segments.json` | OK | root | missing | not specified |
+| `data/central_valley_p114_fullyear/summary.json` | OK | root | root | OK |
+| `data/central_valley_p114_fullyear/winter/meta.json` | OK | root | root | OK |
+| `data/central_valley_p114_fullyear/winter/points.json` | OK | missing | missing | OK |
+| `data/central_valley_p114_fullyear/winter/summary.json` | OK | root | root | OK |
+| `data/central_valley_s1/cross_sensor.json` | OK | root | root | not specified |
+| `data/delta/meta.json` | OK | root | root | OK |
+| `data/delta/points.json` | OK | missing | missing | OK |
+| `data/delta/summary.json` | OK | root | root | OK |
 | `data/fens/crops.json` | OK | root | root | not specified |
+| `data/global/atlas.json` | OK | root | root | not specified |
+| `data/global/beijing/meta.json` | OK | root | root | OK |
+| `data/global/beijing/points.json` | OK | missing | missing | OK |
+| `data/global/beijing/summary.json` | OK | root | root | OK |
+| `data/global/beijing/validation_note.json` | OK | missing | missing | not specified |
+| `data/global/central_valley/validation_note.json` | OK | missing | missing | not specified |
+| `data/global/delta/validation_note.json` | OK | missing | missing | not specified |
+| `data/global/isfahan/coverage.json` | OK | root | missing | not specified |
+| `data/global/isfahan/meta.json` | OK | root | root | OK |
+| `data/global/isfahan/points.json` | OK | missing | missing | OK |
+| `data/global/isfahan/summary.json` | OK | root | root | OK |
+| `data/global/isfahan/validation_note.json` | OK | missing | missing | not specified |
+| `data/global/jakarta/meta.json` | OK | root | root | OK |
+| `data/global/jakarta/points.json` | OK | missing | missing | OK |
+| `data/global/jakarta/summary.json` | OK | root | root | OK |
+| `data/global/jakarta/validation_note.json` | OK | missing | missing | not specified |
+| `data/global/karapinar/validation_note.json` | OK | missing | missing | not specified |
+| `data/global/konya_plain/validation_note.json` | OK | missing | missing | not specified |
+| `data/global/mexico_city/meta.json` | OK | root | root | OK |
+| `data/global/mexico_city/points.json` | OK | missing | missing | OK |
+| `data/global/mexico_city/summary.json` | OK | root | root | OK |
+| `data/global/mexico_city/validation_note.json` | OK | missing | missing | not specified |
+| `data/global/tehran/meta.json` | OK | root | root | OK |
+| `data/global/tehran/points.json` | OK | missing | missing | OK |
+| `data/global/tehran/summary.json` | OK | root | root | OK |
+| `data/global/tehran/validation_note.json` | OK | missing | missing | not specified |
 | `data/karapinar/area_stats.json` | OK | root | root | not specified |
 | `data/karapinar/assets.json` | OK | root | root | OK |
+| `data/karapinar/drivers.json` | OK | root | root | OK |
+| `data/karapinar/exposure.json` | OK | root | root | not specified |
+| `data/karapinar/grid.json` | OK | root | root | not specified |
 | `data/karapinar/meta.json` | OK | root | root | OK |
 | `data/karapinar/points.json` | OK | missing | missing | OK |
 | `data/karapinar/sinkholes.geojson` | OK | root | root | OK |
 | `data/karapinar/summary.json` | OK | root | root | OK |
 | `data/karapinar/uncertainty/meta.json` | OK | root | root | not specified |
+| `data/karapinar_fullyear/meta.json` | OK | root | root | OK |
+| `data/karapinar_fullyear/points.json` | OK | missing | missing | OK |
+| `data/karapinar_fullyear/segments.json` | OK | root | missing | not specified |
+| `data/karapinar_fullyear/summary.json` | OK | root | root | OK |
 | `data/karapinar_p172/meta.json` | OK | root | root | OK |
 | `data/karapinar_p172/points.json` | OK | missing | missing | OK |
 | `data/karapinar_p172/summary.json` | OK | root | root | OK |
+| `data/konya_plain/exposure.json` | OK | root | root | not specified |
+| `data/konya_plain/meta.json` | OK | root | root | OK |
+| `data/konya_plain/points.json` | OK | missing | missing | OK |
+| `data/konya_plain/summary.json` | OK | root | root | OK |
 | `data/uk/meta.json` | OK | root | root | OK |
 | `data/uk_clay/detection.json` | OK | root | root | not specified |
+| `data/uk_clay/grid.json` | OK | root | root | not specified |
 | `data/uk_clay/meta.json` | OK | root | root | OK |
 | `data/uk_clay/points.json` | OK | missing | missing | OK |
 | `data/uk_clay/summary.json` | OK | root | root | OK |
@@ -134,23 +192,90 @@ Eksik yerel yol bulunmadı.
 - `data/central_valley/points.json`: dataset-level `quality_note` missing
 - `data/central_valley_fullyear/points.json`: dataset-level `quality` missing
 - `data/central_valley_fullyear/points.json`: dataset-level `quality_note` missing
+- `data/central_valley_p114_fullyear/points.json`: dataset-level `quality` missing
+- `data/central_valley_p114_fullyear/points.json`: dataset-level `quality_note` missing
+- `data/central_valley_p114_fullyear/segments.json`: dataset-level `quality_note` missing
+- `data/central_valley_p114_fullyear/winter/points.json`: dataset-level `quality` missing
+- `data/central_valley_p114_fullyear/winter/points.json`: dataset-level `quality_note` missing
+- `data/delta/points.json`: dataset-level `quality` missing
+- `data/delta/points.json`: dataset-level `quality_note` missing
+- `data/global/beijing/points.json`: dataset-level `quality` missing
+- `data/global/beijing/points.json`: dataset-level `quality_note` missing
+- `data/global/beijing/validation_note.json`: dataset-level `quality` missing
+- `data/global/beijing/validation_note.json`: dataset-level `quality_note` missing
+- `data/global/central_valley/validation_note.json`: dataset-level `quality` missing
+- `data/global/central_valley/validation_note.json`: dataset-level `quality_note` missing
+- `data/global/delta/validation_note.json`: dataset-level `quality` missing
+- `data/global/delta/validation_note.json`: dataset-level `quality_note` missing
+- `data/global/isfahan/coverage.json`: dataset-level `quality_note` missing
+- `data/global/isfahan/points.json`: dataset-level `quality` missing
+- `data/global/isfahan/points.json`: dataset-level `quality_note` missing
+- `data/global/isfahan/validation_note.json`: dataset-level `quality` missing
+- `data/global/isfahan/validation_note.json`: dataset-level `quality_note` missing
+- `data/global/jakarta/points.json`: dataset-level `quality` missing
+- `data/global/jakarta/points.json`: dataset-level `quality_note` missing
+- `data/global/jakarta/validation_note.json`: dataset-level `quality` missing
+- `data/global/jakarta/validation_note.json`: dataset-level `quality_note` missing
+- `data/global/karapinar/validation_note.json`: dataset-level `quality` missing
+- `data/global/karapinar/validation_note.json`: dataset-level `quality_note` missing
+- `data/global/konya_plain/validation_note.json`: dataset-level `quality` missing
+- `data/global/konya_plain/validation_note.json`: dataset-level `quality_note` missing
+- `data/global/mexico_city/points.json`: dataset-level `quality` missing
+- `data/global/mexico_city/points.json`: dataset-level `quality_note` missing
+- `data/global/mexico_city/validation_note.json`: dataset-level `quality` missing
+- `data/global/mexico_city/validation_note.json`: dataset-level `quality_note` missing
+- `data/global/tehran/points.json`: dataset-level `quality` missing
+- `data/global/tehran/points.json`: dataset-level `quality_note` missing
+- `data/global/tehran/validation_note.json`: dataset-level `quality` missing
+- `data/global/tehran/validation_note.json`: dataset-level `quality_note` missing
 - `data/karapinar/points.json`: dataset-level `quality` missing
 - `data/karapinar/points.json`: dataset-level `quality_note` missing
+- `data/karapinar_fullyear/points.json`: dataset-level `quality` missing
+- `data/karapinar_fullyear/points.json`: dataset-level `quality_note` missing
+- `data/karapinar_fullyear/segments.json`: dataset-level `quality_note` missing
 - `data/karapinar_p172/points.json`: dataset-level `quality` missing
 - `data/karapinar_p172/points.json`: dataset-level `quality_note` missing
+- `data/konya_plain/points.json`: dataset-level `quality` missing
+- `data/konya_plain/points.json`: dataset-level `quality_note` missing
 - `data/uk_clay/points.json`: dataset-level `quality` missing
 - `data/uk_clay/points.json`: dataset-level `quality_note` missing
 
-JSON/GeoJSON dosyası: 31; parse hatası: 0; tarih dizisi: 83; points/meta tarih karşılaştırması: 60, uyumsuzluk: 0; bulgu satırı: 10.
+JSON/GeoJSON dosyası: 84; parse hatası: 0; tarih dizisi: 218; points/meta tarih karşılaştırması: 175, uyumsuzluk: 0; bulgu satırı: 51.
 ## 3. İngilizce metin ve yazım kontrolü (offline)
 
-Kaynak: `web/*.html` (5 dosya). Script/style/noscript içerikleri görünür metin sayılmadı. Dinamik JS ve dış markdown bu statik HTML taramasına dahil değil.
+Kaynak: `web/*.html` (6 dosya). Script/style/noscript içerikleri görünür metin sayılmadı. Dinamik JS ve dış markdown bu statik HTML taramasına dahil değil.
 
 | Satır | Kaynak | Metin | Sorun | Öneri |
 |---:|---|---|---|---|
+| 20 | `web/data.html` | Reproduce our data in 5 steps | birimsiz sayı: 5 | Ölçümse birim/tarih ekle; sayım veya kimlikse açıkça adlandır |
+| 24 | `web/data.html` | import asf_search as asf asf.search(platform="NISAR", processingLevel="GUNW", intersectsWith="POLYGON((-120.2 35.6,-119 35.6,-119 36.6,-120.2 36.6,-120.2 35.6))", start="2026-06-17", end="2026-10-31") | birimsiz sayı: -120.2 | Ölçümse birim/tarih ekle; sayım veya kimlikse açıkça adlandır |
+| 24 | `web/data.html` | import asf_search as asf asf.search(platform="NISAR", processingLevel="GUNW", intersectsWith="POLYGON((-120.2 35.6,-119 35.6,-119 36.6,-120.2 36.6,-120.2 35.6))", start="2026-06-17", end="2026-10-31") | birimsiz sayı: 35.6 | Ölçümse birim/tarih ekle; sayım veya kimlikse açıkça adlandır |
+| 24 | `web/data.html` | import asf_search as asf asf.search(platform="NISAR", processingLevel="GUNW", intersectsWith="POLYGON((-120.2 35.6,-119 35.6,-119 36.6,-120.2 36.6,-120.2 35.6))", start="2026-06-17", end="2026-10-31") | birimsiz sayı: -119 | Ölçümse birim/tarih ekle; sayım veya kimlikse açıkça adlandır |
+| 24 | `web/data.html` | import asf_search as asf asf.search(platform="NISAR", processingLevel="GUNW", intersectsWith="POLYGON((-120.2 35.6,-119 35.6,-119 36.6,-120.2 36.6,-120.2 35.6))", start="2026-06-17", end="2026-10-31") | birimsiz sayı: 35.6 | Ölçümse birim/tarih ekle; sayım veya kimlikse açıkça adlandır |
+| 24 | `web/data.html` | import asf_search as asf asf.search(platform="NISAR", processingLevel="GUNW", intersectsWith="POLYGON((-120.2 35.6,-119 35.6,-119 36.6,-120.2 36.6,-120.2 35.6))", start="2026-06-17", end="2026-10-31") | birimsiz sayı: -119 | Ölçümse birim/tarih ekle; sayım veya kimlikse açıkça adlandır |
+| 24 | `web/data.html` | import asf_search as asf asf.search(platform="NISAR", processingLevel="GUNW", intersectsWith="POLYGON((-120.2 35.6,-119 35.6,-119 36.6,-120.2 36.6,-120.2 35.6))", start="2026-06-17", end="2026-10-31") | birimsiz sayı: 36.6 | Ölçümse birim/tarih ekle; sayım veya kimlikse açıkça adlandır |
+| 24 | `web/data.html` | import asf_search as asf asf.search(platform="NISAR", processingLevel="GUNW", intersectsWith="POLYGON((-120.2 35.6,-119 35.6,-119 36.6,-120.2 36.6,-120.2 35.6))", start="2026-06-17", end="2026-10-31") | birimsiz sayı: -120.2 | Ölçümse birim/tarih ekle; sayım veya kimlikse açıkça adlandır |
+| 24 | `web/data.html` | import asf_search as asf asf.search(platform="NISAR", processingLevel="GUNW", intersectsWith="POLYGON((-120.2 35.6,-119 35.6,-119 36.6,-120.2 36.6,-120.2 35.6))", start="2026-06-17", end="2026-10-31") | birimsiz sayı: 36.6 | Ölçümse birim/tarih ekle; sayım veya kimlikse açıkça adlandır |
+| 24 | `web/data.html` | import asf_search as asf asf.search(platform="NISAR", processingLevel="GUNW", intersectsWith="POLYGON((-120.2 35.6,-119 35.6,-119 36.6,-120.2 36.6,-120.2 35.6))", start="2026-06-17", end="2026-10-31") | birimsiz sayı: -120.2 | Ölçümse birim/tarih ekle; sayım veya kimlikse açıkça adlandır |
+| 24 | `web/data.html` | import asf_search as asf asf.search(platform="NISAR", processingLevel="GUNW", intersectsWith="POLYGON((-120.2 35.6,-119 35.6,-119 36.6,-120.2 36.6,-120.2 35.6))", start="2026-06-17", end="2026-10-31") | birimsiz sayı: 35.6 | Ölçümse birim/tarih ekle; sayım veya kimlikse açıkça adlandır |
+| 24 | `web/data.html` | import asf_search as asf asf.search(platform="NISAR", processingLevel="GUNW", intersectsWith="POLYGON((-120.2 35.6,-119 35.6,-119 36.6,-120.2 36.6,-120.2 35.6))", start="2026-06-17", end="2026-10-31") | birimsiz sayı: 06 | Ölçümse birim/tarih ekle; sayım veya kimlikse açıkça adlandır |
+| 24 | `web/data.html` | import asf_search as asf asf.search(platform="NISAR", processingLevel="GUNW", intersectsWith="POLYGON((-120.2 35.6,-119 35.6,-119 36.6,-120.2 36.6,-120.2 35.6))", start="2026-06-17", end="2026-10-31") | birimsiz sayı: 17 | Ölçümse birim/tarih ekle; sayım veya kimlikse açıkça adlandır |
+| 24 | `web/data.html` | import asf_search as asf asf.search(platform="NISAR", processingLevel="GUNW", intersectsWith="POLYGON((-120.2 35.6,-119 35.6,-119 36.6,-120.2 36.6,-120.2 35.6))", start="2026-06-17", end="2026-10-31") | birimsiz sayı: 10 | Ölçümse birim/tarih ekle; sayım veya kimlikse açıkça adlandır |
+| 24 | `web/data.html` | import asf_search as asf asf.search(platform="NISAR", processingLevel="GUNW", intersectsWith="POLYGON((-120.2 35.6,-119 35.6,-119 36.6,-120.2 36.6,-120.2 35.6))", start="2026-06-17", end="2026-10-31") | birimsiz sayı: 31 | Ölçümse birim/tarih ekle; sayım veya kimlikse açıkça adlandır |
+| 28 | `web/data.html` | Download and cut each pair to the study box (about 2.4 GB in, 20 MB out): python analysis/fetch_subset.py central_valley 34 020 100 (track 34, frame 20). | birimsiz sayı: 2.4 | Ölçümse birim/tarih ekle; sayım veya kimlikse açıkça adlandır |
+| 28 | `web/data.html` | Download and cut each pair to the study box (about 2.4 GB in, 20 MB out): python analysis/fetch_subset.py central_valley 34 020 100 (track 34, frame 20). | birimsiz sayı: 020 | Ölçümse birim/tarih ekle; sayım veya kimlikse açıkça adlandır |
+| 28 | `web/data.html` | Download and cut each pair to the study box (about 2.4 GB in, 20 MB out): python analysis/fetch_subset.py central_valley 34 020 100 (track 34, frame 20). | birimsiz sayı: 100 | Ölçümse birim/tarih ekle; sayım veya kimlikse açıkça adlandır |
+| 32 | `web/data.html` | Needs Python 3.11+ and pip install asf_search h5py numpy scipy matplotlib pyproj rasterio shapely requests pytest . Without an Earthdata login you can still open every file on this page. | birimsiz sayı: 3.11 | Ölçümse birim/tarih ekle; sayım veya kimlikse açıkça adlandır |
+| 101 | `web/index.html` | Two radar “colours”. NISAR sends and receives its pulses in different orientations. In 4 field-like areas of the Fens, the HH signal is about 7 dB brighter than HV, which comes mostly from the 3-D … | birimsiz sayı: 7 | Ölçümse birim/tarih ekle; sayım veya kimlikse açıkça adlandır |
+| 101 | `web/index.html` | Two radar “colours”. NISAR sends and receives its pulses in different orientations. In 4 field-like areas of the Fens, the HH signal is about 7 dB brighter than HV, which comes mostly from the 3-D … | birimsiz sayı: 3 | Ölçümse birim/tarih ekle; sayım veya kimlikse açıkça adlandır |
+| 117 | `web/index.html` | Mixed series: 18 pre-calibration beta + 7 provisional radar image pairs. Analysis: Team Taykut. | birimsiz sayı: 18 | Ölçümse birim/tarih ekle; sayım veya kimlikse açıkça adlandır |
+| 117 | `web/index.html` | Mixed series: 18 pre-calibration beta + 7 provisional radar image pairs. Analysis: Team Taykut. | birimsiz sayı: + 7 | Ölçümse birim/tarih ekle; sayım veya kimlikse açıkça adlandır |
+| 118 | `web/index.html` | From the air to space. NASA's NISAR StoryMap on land subsidence shows a “subsidence bowl” along the California Aqueduct in the Central Valley, measured with NASA's airborne radar UAVSAR between 201… | birimsiz sayı: 40 | Ölçümse birim/tarih ekle; sayım veya kimlikse açıkça adlandır |
+| 119 | `web/index.html` | Land Subsidence StoryMap — Peacock, A., An, K., Pinto, N. & Lou, Y. (2024), NISAR ArcGIS StoryMaps, Zenodo, doi:10.5281/zenodo.10818833 . UAVSAR data courtesy NASA/JPL-Caltech. | birimsiz sayı: 10818833 | Ölçümse birim/tarih ekle; sayım veya kimlikse açıkça adlandır |
 | 23 | `web/science.html` | The main result. Parts of California's Central Valley moved up to −7.8 cm away from the satellite in 108 days; depending on the stable area used as reference the value lies between −4.7 and −7.8 cm. | birimsiz sayı: −4.7 | İlk değerin yanına da `cm` birimini ekle |
+| 90 | `web/science.html` | Find and download NISAR data yourself: ASF Vertex · our guide “Reproduce our data in 5 steps” . | birimsiz sayı: 5 | Ölçümse birim/tarih ekle; sayım veya kimlikse açıkça adlandır |
 
-Toplam bulgu: 1.
+Toplam bulgu: 27.
 ## 4. Oyun modeli: 24 aylık strateji testi (Node, offline)
 
 `game/model.js` değiştirilmedi. `pipeline/pc7/game_strategy_test.js` modeli doğrudan çalıştırdı; her satırda toplam çökme ve kalıcı çökme, 24. ay sonunda en çok çöken bölgenin mutlak dikey değeri; gelir ise modelin vadi toplamı (milyon USD).
@@ -266,3 +391,15 @@ Hiçbir şehirde açık `reference_outside_basin` kanıt alanı yok. Bu yüzden 
 O2 yeniden kontrolü: olasılıksal risk kodu/verisi/raporu/grafiği mevcut; `technical_note.md/html` ve `project_page.md` sonuçları içeriyor. `python -m pytest -q risk/test_probabilistic_risk.py`: **2 passed**. Eşik kaynaklarının tam bibliyografisi yerel kaynak kaydında hâlâ yok; O2 raporunda eşikler yalnız tarama/sensitivity değeri olarak sunuluyor.
 
 Doğrulayıcı: `tools/validate_atlas.py` (çevrimdışı, salt-okunur). `python -m py_compile tools/validate_atlas.py` başarılı. Yeni şehir eklendiğinde `python tools/validate_atlas.py` yeniden çalıştırılmalı. PC10 atlas/verileri ve PC5 validation notları değiştirilmedi.
+
+## 15. ASLA BOŞ KALMA — güncel yerel doğrulama turu
+
+- Pull sonrası web yolları denetimi: `python pipeline/pc7/offline_site_qa.py paths` başarılı; 89 yerel yol bulundu, eksik yok.
+- Veri sözleşmesi taraması: `python pipeline/pc7/offline_site_qa.py data` 84 JSON/GeoJSON dosyasında 0 parse hatası, 218 sıralı tarih dizisi ve 175 `points.json`/`meta.json` tarih karşılaştırmasında 0 uyumsuzluk buldu. Ayrıntılı kalite alanı uyarıları bu raporun §2 tablosunda; eksikler diğer sahiplerin dosyalarında olduğundan değiştirilmedi.
+- `python pipeline/pc7/validate_json.py`: 83 JSON; 0 parse/non-standard constant hatası, 0 non-finite sayı; 4 eksik `quality` (`data/global/{central_valley,delta,karapinar,konya_plain}/validation_note.json`). 20 dosyada kalite kardeş `meta.json` üzerinden miras alınıyor.
+- Atlas denetimi `python tools/validate_atlas.py`: 8 atlas kaydı ve 9 şehir klasörü; 128 bulgu (119 hata, 9 uyarı). Esas kalanlar şehir bbox'larının 0.50° standardına uymaması, eksik özet/atlas metrikleri, referans havzası kanıtı, boş `note` alanları ve Isfahan'ın atlas kaydının olmaması. Şehir klasörleri ve `atlas.json` PC10/diğer veri sahiplerine ait olduğundan değiştirilmedi.
+- Genel `python -m pytest -q` toplama aşamasında durdu: `analysis/pc5/test_cross_sensor.py` ve `pipeline/nisarpulse/tests/test_nisarpulse.py`, eksik `requests` modülü yüzünden import edilemedi. Bu çevrimdışı turda paket kurulmadı/indirilmedi. PC7 O2 testi ayrı olarak `2 passed`.
+- Fens analizi yerel `pipeline/subset/fens_gcov/` kesitlerinden tekrar üretildi; `data/fens/crops.json` önceki sürümle semantik olarak aynı. Veri indirme yapılmadı.
+- `node pipeline/pc7/game_strategy_test.js`: 10 stratejinin tamamı 24 ay çalıştı; kuru yıl %0–150 pompalama serisi monoton, kalıcı çökme toplamı aşmıyor, gelir ve çökme değerleri sonlu ve negatif değil.
+- `python pipeline/pc7/offline_site_qa.py text` 27 statik metin uyarısı verdi. Bunların çoğu kod örneklerindeki koordinat/ürün kimliği, tarih veya sayım değerleri; olası gerçek birimsiz metin bulgusu `web/science.html` içindeki `−4.7` değeridir. Site sahipliği PC3/PC1'de olduğundan düzenleme yapılmadı; bulgu sahibi dosyasında düzeltilecek.
+- PC7'nin atlas şehir klasörü ataması yok; PC11 şehirlerini yeniden çalıştırmadım ve PC11 status/görev dosyalarına yazmadım. Fens, risk ve QA çıktıları dışında başka sahiplerin dosyaları değiştirilmedi.
