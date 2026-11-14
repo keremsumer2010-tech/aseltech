@@ -1,0 +1,549 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NISAR Pulse — Follow the Water · 7-Slide Pitch Deck</title>
+  <style>
+    :root {
+      --bg: #08111c;
+      --panel: #101d2e;
+      --border: #24364d;
+      --ink: #ecf2f8;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --red: #ef4444;
+      --amber: #f59e0b;
+      --green: #22c55e;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      height: 100%;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      overflow: hidden;
+      user-select: none;
+    }
+    .deck {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+    }
+    .slide {
+      position: absolute;
+      inset: 0 0 54px 0;
+      padding: 36px 56px 24px;
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 20px;
+      background: radial-gradient(circle at 88% 14%, rgba(56, 189, 248, 0.11), transparent 44%), var(--bg);
+      cursor: pointer;
+    }
+    .slide.active { display: flex; }
+    .eyebrow {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+    h1 { font-size: clamp(28px, 3.6vw, 48px); line-height: 1.1; font-weight: 800; }
+    h2 { font-size: clamp(22px, 2.8vw, 36px); line-height: 1.15; font-weight: 800; }
+    .lead { font-size: clamp(15px, 1.4vw, 19px); color: #cbd5e1; line-height: 1.45; margin-top: 8px; max-width: 960px; }
+    .two-col {
+      display: grid;
+      grid-template-columns: 1.05fr 1fr;
+      gap: 26px;
+      align-items: center;
+      flex: 1;
+      min-height: 0;
+    }
+    .three-col {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      flex: 1;
+      align-items: stretch;
+    }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px 20px;
+    }
+    .card h3 { font-size: 16px; color: var(--accent); margin-bottom: 8px; }
+    .card p, .card li { font-size: 14.5px; color: #dbeafe; line-height: 1.48; }
+    ul { padding-left: 18px; display: flex; flex-direction: column; gap: 8px; }
+    .kpi-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .kpi {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 18px;
+    }
+    .kpi .num { font-size: clamp(24px, 2.6vw, 34px); font-weight: 800; color: #f8fafc; }
+    .kpi .num.neg { color: #f87171; }
+    .kpi .num.acc { color: var(--accent); }
+    .kpi .lbl { font-size: 13px; color: var(--muted); margin-top: 4px; line-height: 1.35; }
+    .img-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      height: 100%;
+      max-height: 410px;
+    }
+    figure {
+      background: #050b12;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 8px;
+      min-height: 0;
+    }
+    figure img {
+      width: 100%;
+      height: 100%;
+      max-height: 320px;
+      object-fit: contain;
+      border-radius: 6px;
+      background: #02060c;
+    }
+    figcaption { font-size: 12.5px; color: var(--muted); line-height: 1.35; }
+    .badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-right: 6px;
+    }
+    .badge.prov { background: rgba(245, 158, 11, 0.16); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.4); }
+    .badge.prev { background: rgba(56, 189, 248, 0.16); color: #7dd3fc; border: 1px solid rgba(56, 189, 248, 0.4); }
+    .badge.real { background: rgba(34, 197, 94, 0.16); color: #86efac; border: 1px solid rgba(34, 197, 94, 0.4); }
+    .svg-box {
+      width: 100%;
+      background: #060e18;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px;
+    }
+    .bar-row { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
+    .bar-item .top { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 4px; }
+    .bar-track { height: 10px; background: #1e293b; border-radius: 99px; overflow: hidden; }
+    .bar-fill { height: 100%; background: linear-gradient(90deg, #f59e0b, #ef4444); }
+    .foot {
+      font-size: 12px;
+      color: var(--muted);
+      border-top: 1px solid rgba(148, 163, 184, 0.16);
+      padding-top: 8px;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .controls {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 54px;
+      background: #050b12;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+      z-index: 20;
+    }
+    .nav-btns { display: flex; gap: 8px; }
+    button {
+      background: var(--panel);
+      color: var(--ink);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 7px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    button:hover { border-color: var(--accent); color: #fff; }
+    .dots { display: flex; gap: 8px; }
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #334155;
+      cursor: pointer;
+    }
+    .dot.active { background: var(--accent); transform: scale(1.2); }
+    .counter { font-family: ui-monospace, SFMono-Regular, monospace; font-size: 13px; color: var(--muted); }
+    a { color: var(--accent); }
+    @media (max-width: 900px) {
+      .slide { padding: 20px; }
+      .two-col, .three-col, .kpi-row, .img-pair { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main class="deck" id="deck">
+
+    <!-- SLIDE 1 -->
+    <section class="slide active" data-title="Hook">
+      <div>
+        <div class="eyebrow">Slide 1 / 7 · NASA Space Apps 2026 · Team Taykut · Ankara → Lincoln</div>
+        <h1>NISAR Pulse: Follow the Water</h1>
+        <p class="lead">When farms pump confined aquifers or drain organic peat faster than rain refills them, the land collapses silently beneath canals, railways, and fields.</p>
+      </div>
+      <div class="kpi-row">
+        <div class="kpi">
+          <div class="num acc">~4.0 m</div>
+          <div class="lbl">Holme Fen Iron Post (UK, 1851 benchmark) standing above drained peat; now 2.75 m below sea level.</div>
+        </div>
+        <div class="kpi">
+          <div class="num neg">−7.8 cm</div>
+          <div class="lbl">Peak Central Valley LOS subsidence across 7 provisional NISAR pairs (108 summer days, ~−10.1 cm vertical).</div>
+        </div>
+        <div class="kpi">
+          <div class="num neg">−5.9 cm</div>
+          <div class="lbl">Peak Karapınar LOS subsidence across 8 provisional NISAR pairs overlaid with 29 verified sinkholes.</div>
+        </div>
+      </div>
+      <div class="two-col">
+        <div class="card">
+          <h3>The Barrier We Remove</h3>
+          <ul>
+            <li>Raw NASA–ISRO NISAR Level-2 GUNW interferograms ship as multi-gigabyte HDF5 granules requiring SAR expertise.</li>
+            <li>Our zero-backend web explorer, Three.js 3D viewer, and 10-year <em>Aquifer Manager</em> physics simulator translate radar phase directly into actionable infrastructure insight.</li>
+          </ul>
+        </div>
+        <div class="svg-box">
+          <svg viewBox="0 0 460 155" width="100%" role="img" aria-label="Aquifer compaction schematic">
+            <rect x="0" y="0" width="460" height="44" fill="#0d1e30"/>
+            <path d="M0 44 Q230 74 460 44 L460 80 L0 80 Z" fill="#6b4f35"/>
+            <rect x="0" y="80" width="460" height="34" fill="#52525b"/>
+            <rect x="0" y="114" width="460" height="41" fill="#0e4a6e"/>
+            <rect x="225" y="20" width="10" height="118" fill="#cbd5e1"/>
+            <path d="M135 52 L135 76 M325 52 L325 76" stroke="#f87171" stroke-width="2.5"/>
+            <polygon points="135,79 130,71 140,71" fill="#f87171"/>
+            <polygon points="325,79 320,71 330,71" fill="#f87171"/>
+            <text x="16" y="26" fill="#7dd3fc" font-size="12" font-weight="700">1. Groundwater Pumped ↓</text>
+            <text x="16" y="101" fill="#f8fafc" font-size="12">2. Compressible Clay Compacts (Irreversible Storage Loss)</text>
+            <text x="275" y="138" fill="#bae6fd" font-size="12">Aquifer Drawdown Bowl</text>
+          </svg>
+        </div>
+      </div>
+      <div class="foot">
+        <span>Real data &amp; schematics only · Zero AI images in deck</span>
+        <span>Click anywhere or press → for Slide 2</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 2 -->
+    <section class="slide" data-title="UK Clouds">
+      <div>
+        <div class="eyebrow">Slide 2 / 7 · All-Weather L-Band Advantage · The Wash &amp; Cambridgeshire Fens, UK</div>
+        <h2>Seeing Through Clouds: Same-Day Optical vs. NISAR Radar (2026-10-20)</h2>
+        <p class="lead">While passive optical sensors stall under northern European cloud decks, NISAR's 24 cm L-band microwave beam resolves coastlines and arable peatlands on the exact same date.</p>
+      </div>
+      <div class="img-pair">
+        <figure>
+          <img src="../../data/uk/optical_2026-10-20.jpg" alt="VIIRS optical image over The Wash and UK Fens under heavy cloud cover on 2026-10-20" />
+          <figcaption><span class="badge prev">Optical</span>VIIRS SNPP True Color (`2026-10-20`, `700×500`, `[−0.3, 52.4, 0.4, 52.9]`): ~98% cloud cover obscures farmland and coastal inlets.</figcaption>
+        </figure>
+        <figure>
+          <img src="../../data/uk/radar_2026-10-20.png" alt="Same-day NISAR L-band GCOV radar preview of The Wash on 2026-10-20" />
+          <figcaption><span class="badge prev">preview</span>NISAR L2 GCOV Browse (`2026-10-20`, CRID `P05023`): 100% valid pixels, coastline aligned pixel-for-pixel with GIBS reference.</figcaption>
+        </figure>
+      </div>
+      <div class="card">
+        <p><strong>Historic Ground Benchmark:</strong> Drained UK arable fens still oxidize at <strong>1–2 cm/yr</strong> (UKCEH / Defra WP2), continuing the <strong>~4 m</strong> peat loss recorded at Holme Fen since 1851.</p>
+      </div>
+      <div class="foot">
+        <span>Sources: NASA GIBS VIIRS SNPP · ASF NISAR L2 GCOV Preview (`data/uk/meta.json`)</span>
+        <span>Slide 2 / 7</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 3 -->
+    <section class="slide" data-title="Central Valley">
+      <div>
+        <div class="eyebrow">Slide 3 / 7 · California San Joaquin Valley · 7 Provisional Track 34 Pairs</div>
+        <h2>Sinking Valley (−7.8 cm LOS), Tilting Canals (57.0 mm/km)</h2>
+        <p class="lead">Across 108 summer days (<strong>2026-06-28 → 2026-10-14</strong>), L-band cumulative interferograms map concentrated drawdown bowls intersecting vital aqueducts and rail lines.</p>
+      </div>
+      <div class="two-col">
+        <figure style="height: 390px;">
+          <img src="../../data/central_valley/disp/2026-10-14.png" alt="Cumulative NISAR LOS displacement map of California Central Valley on 2026-10-14" />
+          <figcaption><span class="badge prov">provisional</span>Cumulative LOS displacement relative to 2026-06-28 (`RdBu` ±6 cm, ref. `-119.1456°E 36.4532°N`). Peak 1 km block median: <strong>−7.8 cm LOS</strong> (<strong>~−10.1 cm vertical</strong> at 39.1°) at <strong>6 km N of Terra Bella</strong>.</figcaption>
+        </figure>
+        <div style="display:flex; flex-direction:column; gap:14px;">
+          <div class="svg-box">
+            <div style="font-size:13px; color:#94a3b8; margin-bottom:6px;"><strong style="color:#ecf2f8">Peak Hotspot Time Series (`p01 · 6 km N of Terra Bella`)</strong> · Linear 108-day rate: −26.4 cm/yr*</div>
+            <svg viewBox="0 0 420 140" width="100%" role="img" aria-label="Central Valley p01 cumulative LOS chart">
+              <line x1="40" y1="15" x2="40" y2="115" stroke="#334155"/>
+              <line x1="40" y1="15" x2="405" y2="15" stroke="#334155"/>
+              <line x1="40" y1="65" x2="405" y2="65" stroke="#1e293b" stroke-dasharray="4 4"/>
+              <line x1="40" y1="115" x2="405" y2="115" stroke="#1e293b"/>
+              <text x="6" y="19" fill="#94a3b8" font-size="10">0</text>
+              <text x="6" y="69" fill="#94a3b8" font-size="10">−4</text>
+              <text x="6" y="117" fill="#94a3b8" font-size="10">−8 cm</text>
+              <polyline fill="none" stroke="#ef4444" stroke-width="3"
+                points="40,15 80,25.5 121,40.9 202,52.5 243,72.5 284,56.9 324,93.0 405,112.5"/>
+              <g fill="#f87171">
+                <circle cx="40" cy="15" r="3.5"/><circle cx="80" cy="25.5" r="3.5"/><circle cx="121" cy="40.9" r="3.5"/>
+                <circle cx="202" cy="52.5" r="3.5"/><circle cx="243" cy="72.5" r="3.5"/><circle cx="284" cy="56.9" r="3.5"/>
+                <circle cx="324" cy="93.0" r="3.5"/><circle cx="405" cy="112.5" r="4.5"/>
+              </g>
+              <text x="40" y="133" fill="#94a3b8" font-size="10">06-28</text>
+              <text x="190" y="133" fill="#94a3b8" font-size="10">08-15</text>
+              <text x="368" y="133" fill="#94a3b8" font-size="10">10-14 (−7.8)</text>
+            </svg>
+          </div>
+          <div class="card">
+            <h3>Infrastructure Differential Slope (`81 / 645` High-Risk Segments)</h3>
+            <div class="bar-row">
+              <div class="bar-item">
+                <div class="top"><span>Tulare Irrigation District Canal (2.17 km)</span><strong>57.01 mm/km</strong></div>
+                <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
+              </div>
+              <div class="bar-item">
+                <div class="top"><span>Exeter Subdivision Rail (10.07 km)</span><strong>55.61 mm/km</strong></div>
+                <div class="bar-track"><div class="bar-fill" style="width:97.5%"></div></div>
+              </div>
+              <div class="bar-item">
+                <div class="top"><span>California Aqueduct (102.82 km corridor)</span><strong>49.12 mm/km</strong></div>
+                <div class="bar-track"><div class="bar-fill" style="width:86%"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="foot">
+        <span>*108-day irrigation-season extrapolation likely overstates net annual subsidence (`data/central_valley/summary.json`).</span>
+        <span>Slide 3 / 7</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 4 -->
+    <section class="slide" data-title="GNSS Validation">
+      <div>
+        <div class="eyebrow">Slide 4 / 7 · Independent Ground Truth · Nevada Geodetic Laboratory IGS20/NA</div>
+        <h2>Validated Against 10 Continuous GNSS Stations</h2>
+        <p class="lead">Single-pixel NISAR LOS values projected vertically via exact per-pixel incidence angle (`LOS / cos θ`) track continuous valley subsidence at sub-centimetre error.</p>
+      </div>
+      <div class="two-col">
+        <div class="svg-box">
+          <div style="font-size:13.5px; margin-bottom:8px;"><strong>Station `CAHA` Vertical Comparison</strong> · <span style="color:#38bdf8">GNSS (IGS20/NA)</span> vs. <span style="color:#f87171">NISAR (LOS / cos θ)</span> · RMSE <strong>0.752 cm</strong> · <strong>r = 0.8957</strong></div>
+          <svg viewBox="0 0 460 210" width="100%" role="img" aria-label="CAHA GNSS vs NISAR validation plot">
+            <line x1="45" y1="25" x2="435" y2="25" stroke="#334155"/>
+            <line x1="45" y1="95" x2="435" y2="95" stroke="#1e293b" stroke-dasharray="4 4"/>
+            <line x1="45" y1="165" x2="435" y2="165" stroke="#1e293b"/>
+            <text x="10" y="29" fill="#94a3b8" font-size="11">0 cm</text>
+            <text x="6" y="99" fill="#94a3b8" font-size="11">−2.5</text>
+            <text x="6" y="169" fill="#94a3b8" font-size="11">−5.0</text>
+            <!-- GNSS CAHA: [0, -0.575, -1.071, -2.354, -2.937, -2.922, -3.436, -3.228] -->
+            <polyline fill="none" stroke="#38bdf8" stroke-width="3"
+              points="45,25 88,41.1 131,55.0 218,90.9 261,107.2 305,106.8 348,121.2 435,115.4"/>
+            <!-- NISAR CAHA: [0, -1.368, -0.679, -3.303, -2.536, -4.542, -3.485, -3.446] -->
+            <polyline fill="none" stroke="#f87171" stroke-width="2.5" stroke-dasharray="6 4"
+              points="45,25 88,63.3 131,44.0 218,117.5 261,96.0 305,152.2 348,122.6 435,121.5"/>
+            <text x="45" y="192" fill="#94a3b8" font-size="10.5">2026-06-28</text>
+            <text x="200" y="192" fill="#94a3b8" font-size="10.5">2026-08-15</text>
+            <text x="382" y="192" fill="#94a3b8" font-size="10.5">2026-10-14</text>
+          </svg>
+        </div>
+        <div class="card">
+          <h3>10-Station Summary (`data/central_valley/validation.json`)</h3>
+          <ul>
+            <li><strong>Median RMSE:</strong> `1.00 cm` (`1.33 cm` mean across all 10 stations; lowest `0.639 cm` at `P566`).</li>
+            <li><strong>Strong Tracking in Active Bowls:</strong> `CAHA` (`r = 0.90`, `0.75 cm` RMSE), `HANF` (`r = 0.90`, `0.83 cm` RMSE), `QCAP` (`r = 0.82`, `0.77 cm` RMSE), `TLBN` (`r = 0.79`, `1.17 cm` RMSE).</li>
+            <li><strong>Honest Outlier Accounting:</strong> Zero/low-signal margin sites (`CAD1`, `P564`, `P565`) sit near the troposphere noise floor (~1–2 cm per pair), lowering 10-station mean `r` to `0.38`.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="foot">
+        <span>Method: `3×3 px` NISAR median at station coordinate vs. 7-day GNSS median (`±3 d`), zeroed at `2026-06-28`.</span>
+        <span>Slide 4 / 7</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 5 -->
+    <section class="slide" data-title="Karapınar">
+      <div>
+        <div class="eyebrow">Slide 5 / 7 · Global Transferability · Konya–Karapınar, Türkiye (8 Pairs · Track 7)</div>
+        <h2>Basin Drawdown (−5.9 cm LOS) &amp; 29 Verified Sinkholes</h2>
+        <p class="lead">Across <strong>2026-06-26 → 2026-10-12</strong> (108 days), the exact same pipeline reveals localized settling in agricultural Konya beside catalogued karst collapse craters (*obruks*).</p>
+      </div>
+      <div class="two-col">
+        <figure style="height: 390px;">
+          <img src="../../data/karapinar/disp/2026-10-12.png" alt="Cumulative NISAR LOS displacement map of Karapinar basin on 2026-10-12" />
+          <figcaption><span class="badge prov">provisional</span>Cumulative LOS (`RdBu` ±5 cm, ref. `33.7442°E 37.7466°N`). Peak 1 km block median: <strong>−5.9 cm LOS</strong> (<strong>~−8.0 cm vertical</strong> at 42.0°) at <strong>2 km W of Karapınar</strong>.</figcaption>
+        </figure>
+        <div style="display:flex; flex-direction:column; gap:14px;">
+          <div class="svg-box">
+            <div style="font-size:13px; color:#94a3b8; margin-bottom:6px;"><strong style="color:#ecf2f8">Peak Basin Point (`p01 · 2 km W of Karapınar`)</strong> · 8 pairs (`−20.0 cm/yr` est.)</div>
+            <svg viewBox="0 0 420 140" width="100%" role="img" aria-label="Karapinar p01 cumulative LOS chart">
+              <line x1="40" y1="15" x2="40" y2="115" stroke="#334155"/>
+              <line x1="40" y1="15" x2="405" y2="15" stroke="#334155"/>
+              <line x1="40" y1="65" x2="405" y2="65" stroke="#1e293b" stroke-dasharray="4 4"/>
+              <text x="6" y="19" fill="#94a3b8" font-size="10">0</text>
+              <text x="6" y="69" fill="#94a3b8" font-size="10">−3</text>
+              <text x="6" y="117" fill="#94a3b8" font-size="10">−6 cm</text>
+              <!-- KP p01: [0, -1.06, -0.78, -2.1, -2.27, -2.78, -2.51, -3.69, -5.93] mapped y = 15 + (-v)/6 * 100 -->
+              <polyline fill="none" stroke="#f59e0b" stroke-width="3"
+                points="40,15 80,32.7 121,28.0 202,50.0 243,52.8 284,61.3 324,56.8 365,76.5 405,113.8"/>
+              <g fill="#fbbf24">
+                <circle cx="40" cy="15" r="3.5"/><circle cx="80" cy="32.7" r="3.5"/><circle cx="121" cy="28.0" r="3.5"/>
+                <circle cx="202" cy="50.0" r="3.5"/><circle cx="243" cy="52.8" r="3.5"/><circle cx="284" cy="61.3" r="3.5"/>
+                <circle cx="324" cy="56.8" r="3.5"/><circle cx="365" cy="76.5" r="3.5"/><circle cx="405" cy="113.8" r="4.5"/>
+              </g>
+              <text x="40" y="133" fill="#94a3b8" font-size="10">06-26</text>
+              <text x="190" y="133" fill="#94a3b8" font-size="10">08-13</text>
+              <text x="364" y="133" fill="#94a3b8" font-size="10">10-12 (−5.9)</text>
+            </svg>
+          </div>
+          <div class="card">
+            <h3>Sourced Obruk Catalog (`data/karapinar/sinkholes.geojson`)</h3>
+            <ul>
+              <li><strong>29 peer-reviewed coordinates</strong> (Tapur &amp; Bozyiğit 2015) inside `[33.3, 37.6, 33.8, 37.9]`; depths reach <strong>80 m</strong> (`Akviran`) &amp; <strong>76 m</strong> (`Yarımoğlu`).</li>
+              <li><strong>Scientific Guardrail:</strong> Radar maps regional aquifer stress alongside known sinkholes—it does <em>not</em> claim day-before collapse prediction.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="foot">
+        <span>Sources: `data/karapinar/summary.json`, `points.json`, `sinkholes.geojson` (`104` Konya total; `29` inside radar bbox)</span>
+        <span>Slide 5 / 7</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 6 -->
+    <section class="slide" data-title="Simulator & 3D">
+      <div>
+        <div class="eyebrow">Slide 6 / 7 · Interactive Tools · Zero-Backend Web Stack</div>
+        <h2>From Gigabytes of Radar Math to 10-Year Water Choices</h2>
+        <p class="lead">Decision-makers and citizens explore cumulative displacement in 2D/3D and test real groundwater trade-offs in <em>Aquifer Manager</em>.</p>
+      </div>
+      <div class="three-col">
+        <div class="card">
+          <h3><span class="badge real">Interactive</span>2D Story Map (`web/`)</h3>
+          <ul>
+            <li>Synchronized optical/radar cloud swipe for UK Fens.</li>
+            <li>Epoch time-slider across Central Valley &amp; Karapınar GeoTIFF/PNG tiles + clickable location charts in plain English.</li>
+            <li>Overlay of 29 verified obruk points and top-10 high-slope canals/rails.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3><span class="badge real">Interactive</span>3D Breathing Earth (`web3d/`)</h3>
+          <ul>
+            <li>Three.js `@0.160.0` surface mesh interpolated smoothly across all `8` CV and `9` Karapınar epochs.</li>
+            <li>Adjustable vertical exaggeration (`10,000×–150,000×`) so centimetre-scale deformation pops visually alongside 3D obruk depth columns.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3><span class="badge prev">Illustrative</span>Aquifer Manager (`game/`)</h3>
+          <ul>
+            <li>Single-file physics simulator seeded dynamically by `data/central_valley/summary.json` (`−26.4 cm/yr` summer rate).</li>
+            <li>Zero AI illustrations: balance `0%–150%` pumping across `wet`/`normal`/`drought` years vs. permanent clay compaction &amp; canal tilt damage.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="foot">
+        <span>Zero backend server required · Hosted cleanly from static repository assets</span>
+        <span>Slide 6 / 7</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 7 -->
+    <section class="slide" data-title="Integrity & AI">
+      <div>
+        <div class="eyebrow">Slide 7 / 7 · Provenance, Uncertainty &amp; AI Disclosure</div>
+        <h2>Open Science, Honest Limits &amp; Transparency</h2>
+        <p class="lead">Every number traces back to a verifiable HDF5 granule, peer-reviewed table, or unit test—never guessed or obscured.</p>
+      </div>
+      <div class="two-col">
+        <div class="card">
+          <h3>Mandatory NISAR Attribution &amp; Maturity Policy</h3>
+          <ul>
+            <li><strong>Official Notice:</strong> <em>NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA–JPL and ISRO), not by our team.</em></li>
+            <li><strong>Strict Gatekeeping:</strong> Pre-calibration `beta` granules (`&lt; 2026-06-17`) excluded from cumulative stacks; single-day GCOV optical comparison labeled `preview`; `Aquifer Manager` labeled `illustrative`.</li>
+            <li><strong>Pipeline Reproducibility:</strong> Phase conversion (`−λ/4π`), masking, and unwrapping checks covered by `pytest` (`analysis/test_insar.py`).</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>AI &amp; Tool Transparency</h3>
+          <ul>
+            <li><strong>Visual Assets:</strong> Scene background illustrations in `web/assets/` (Higgsfield AI) carry explicit `"AI-generated illustration"` tags and never appear as radar data. <strong>Zero AI images</strong> appear in this deck or `game/` v2.</li>
+            <li><strong>Software Assistance:</strong> Claude and Gemini/Antigravity assisted code scaffolding and QA checks.</li>
+            <li><strong>Verification:</strong> All `22/22` cited external links confirmed live **HTTP 200**; coordinates cross-checked verbatim against primary PDFs.</li>
+            <li><strong>Repository:</strong> <a href="https://github.com/keremsumer2010-tech/aseltech" target="_blank" rel="noopener">github.com/keremsumer2010-tech/aseltech</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="foot">
+        <span>Team Taykut · ASELSAN MTAL, Ankara · NASA Space Apps Challenge 2026 (Lincoln, UK)</span>
+        <span>Slide 7 / 7</span>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="controls">
+    <div class="nav-btns">
+      <button type="button" id="prevBtn">← Prev</button>
+      <button type="button" id="nextBtn">Next →</button>
+    </div>
+    <div class="dots" id="dots" aria-label="Slide selector"></div>
+    <div class="counter" id="counter">1 / 7</div>
+  </footer>
+
+  <script>
+    const slides = Array.from(document.querySelectorAll(".slide"));
+    const dotsWrap = document.getElementById("dots");
+    const counter = document.getElementById("counter");
+    let current = 0;
+
+    function showSlide(idx) {
+      current = (idx + slides.length) % slides.length;
+      slides.forEach((el, i) => el.classList.toggle("active", i === current));
+      Array.from(dotsWrap.children).forEach((d, i) => d.classList.toggle("active", i === current));
+      counter.textContent = `${current + 1} / ${slides.length}`;
+    }
+
+    slides.forEach((_, i) => {
+      const dot = document.createElement("span");
+      dot.className = "dot" + (i === 0 ? " active" : "");
+      dot.title = `Slide ${i + 1}`;
+      dot.addEventListener("click", (e) => { e.stopPropagation(); showSlide(i); });
+      dotsWrap.appendChild(dot);
+    });
+
+    document.getElementById("prevBtn").addEventListener("click", () => showSlide(current - 1));
+    document.getElementById("nextBtn").addEventListener("click", () => showSlide(current + 1));
+    document.getElementById("deck").addEventListener("click", (e) => {
+      if (e.target.closest("a, button")) return;
+      showSlide(current + 1);
+    });
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight" || e.key === " " || e.key === "PageDown") {
+        e.preventDefault();
+        showSlide(current + 1);
+      } else if (e.key === "ArrowLeft" || e.key === "PageUp") {
+        e.preventDefault();
+        showSlide(current - 1);
+      }
+    });
+  </script>
+</body>
+</html>
