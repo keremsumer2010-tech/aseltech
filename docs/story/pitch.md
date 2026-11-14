@@ -130,7 +130,7 @@ NISAR Pulse: Follow the Water. Provisional NISAR L2 GUNW data (NASA-JPL / ISRO c
 - **Data barrier removed:** Pure-Python pipeline distills ~2 GB GUNW HDF5 granules into lightweight web tiles and plain-English cards.
 
 ### Slide 3 · Central Valley: Sinking Valley, Tilting Canals
-- **Observation (`2026-06-28 → 2026-10-14`):** `7` provisional ascending Track 34 NISAR pairs show peak LOS subsidence of **`−7.8 cm`** (`~−10.1 cm` vertical est. at `39.1°` near `6 km N of Terra Bella`; linear summer rate est. `−26.4 cm/yr`).
+- **Observation (`2026-06-28 → 2026-10-14`):** `7` provisional ascending Track 34 NISAR pairs show peak LOS subsidence of **`−7.8 cm`** (`~−10.1 cm` vertical est. at `39.1°` near `6 km N of Terra Bella`; linear summer rate est. `−26.4 cm/yr`), with common-valid-pixel affected area reaching **`239.54 km² <= −5 cm`** and **`1,578.27 km² <= −2 cm`** (`data/central_valley/area_stats.json`).
 - **Critical Infrastructure & Sensitivity:** Out of `645` evaluated corridors, `81` are high-risk (`12.6%`), led by **Tulare Irrigation District Canal** (`57.01 mm/km`) and **California Aqueduct** (`49.12 mm/km` over `102.8 km`); varying thresholds by `±25%` shifts totals (`72–115`) while keeping the **top-10 priority corridor ranking 100% invariant** (`docs/story/risk_sensitivity.md`).
 - **Interactive UX:** Click any valley coordinate for cumulative displacement history in plain language (`web/` & 3D `web3d/`).
 
@@ -140,8 +140,8 @@ NISAR Pulse: Follow the Water. Provisional NISAR L2 GUNW data (NASA-JPL / ISRO c
 - **Dual-Orbit & Vertical Inversion (`Q21` + `Q22`):** **Track 34 Asc. ↔ Track 114 Desc.** (`6,719` 1 km blocks, `2026-06-28 → 2026-10-14`) reach **`85%` sign agreement** across `|d| > 3 cm` zones (**`r = 0.489`** overall / `0.60` local `< 15 km`, **`RMSE = 2.65 cm`**, **`median diff = −1.29 cm`**, slope `0.514`, `−5.7 cm` T114 median where T34 `< −6 cm`), while two-orbit vector inversion proves the **Alpaugh / Earlimart bowl sank `−7.2 cm` vertically with `−0.1 cm` east-west motion** (max `−9.8 cm` vertical block).
 
 ### Slide 5 · Global Transferability: Karapınar Basin & Sinkholes (Türkiye)
-- **Observation (`2026-06-26 → 2026-10-12`):** `8` provisional descending Track 7 NISAR pairs measure up to **`−5.9 cm` LOS** (`~−8.0 cm` vertical est. at `42.0°`, `−20.0 cm/yr` summer rate est.) **`2 km W of Karapınar`**.
-- **Karst Inventory & Ring Analysis (`assets.json`):** Overlays **29 field-verified sinkholes** strictly inside `[33.3, 37.6, 33.8, 37.9]`; pixels inside `0–1 km` of mapped sinkholes average **`−4.15 cm` LOS (`6.4×` background `−0.65 cm`)** with highways tilting up to `19.74 mm/km` near `Köken Obruğu-II`.
+- **Observation (`2026-06-26 → 2026-10-12`):** `8` provisional descending Track 7 NISAR pairs measure up to **`−5.9 cm` LOS** (`~−8.0 cm` vertical est. at `42.0°`, `−20.0 cm/yr` summer rate est.) **`2 km W of Karapınar`**, with **`3.10 km² <= −5 cm`** and **`28.66 km² <= −2 cm`** across common valid pixels (`data/karapinar/area_stats.json`).
+- **Karst Inventory & Spatial Significance (`assets.json` & `sinkhole_stats.md`):** Overlays **29 field-verified sinkholes** strictly inside `[33.3, 37.6, 33.8, 37.9]`; pixels inside `0–1 km` average **`−4.15 cm` LOS (`6.4×` background `−0.65 cm`)** and `0–2 km` (`n = 236` px) average `−4.06 cm` (`−3.41 cm` diff)—confirmed statistically via **`1.04 km` block permutations (`−3.04 cm` diff, `p = 0.0001`)** and **`3,423` rigid `29`-sinkhole constellation shifts (`p = 0.0207`)**, with highways tilting up to `19.74 mm/km` near `Köken Obruğu-II`.
 - **Honesty Guard:** Explicitly shows regional groundwater drawdown context without claiming InSAR predicts exact sudden roof-collapse dates.
 
 ### Slide 6 · Decision Tool: Valley Under Pressure (Physical Simulator)

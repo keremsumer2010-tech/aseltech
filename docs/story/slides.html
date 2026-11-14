@@ -299,7 +299,7 @@
       <div class="two-col">
         <figure style="height: 390px;">
           <img src="../../data/central_valley/disp/2026-10-14.png" alt="Cumulative NISAR LOS displacement map of California Central Valley on 2026-10-14" />
-          <figcaption><span class="badge prov">provisional</span>Figure 3. Cumulative line-of-sight displacement across the Central Valley, 28 Jun–14 Oct 2026 (7 pairs, Track 34, RdBu ±6 cm; ref. <code>119.1456°W, 36.4532°N</code>; peak −7.8 cm LOS, −10.1 cm vertical estimate at 39.1°, 6 km N of Terra Bella; 3-reference spread −7.8 to −4.7 cm). Data: NASA-ISRO NISAR, ASF DAAC. Analysis: Team Taykut.</figcaption>
+          <figcaption><span class="badge prov">provisional</span>Figure 3. Cumulative line-of-sight displacement across the Central Valley, 28 Jun–14 Oct 2026 (7 pairs, Track 34, RdBu ±6 cm; ref. <code>119.1456°W, 36.4532°N</code>; peak −7.8 cm LOS, −10.1 cm vertical estimate at 39.1°, 6 km N of Terra Bella; 3-reference spread −7.8 to −4.7 cm; common-valid-pixel footprint 239.54 km² ≤ −5 cm and 1,578.27 km² ≤ −2 cm in <code>area_stats.json</code>). Data: NASA-ISRO NISAR, ASF DAAC. Analysis: Team Taykut.</figcaption>
         </figure>
         <div class="stack-figs">
           <div class="svg-box">
@@ -409,7 +409,7 @@
             <h3>Sourced Obruk Inventory &amp; 1 km Ring Analysis</h3>
             <ul>
               <li><strong>29 peer-reviewed coordinates</strong> (Tapur &amp; Bozyiğit 2015) inside <code>[33.3, 37.6, 33.8, 37.9]</code>; surveyed depths reach <strong>80 m</strong> (Akviran) &amp; <strong>76 m</strong> (Yarımoğlu).</li>
-              <li><strong>Spatial Signal (<code>data/karapinar/assets.json</code>):</strong> Pixels within 0–1 km of mapped sinkholes average <strong>−4.15 cm</strong> LOS—<strong>6.4×</strong> the &gt;5 km background (−0.65 cm), with nearby roads tilting up to <strong>19.74 mm/km</strong> (597 m from Köken Obruğu-II)—regional context only, not day-ahead collapse forecasting.</li>
+              <li><strong>Spatial Signal &amp; Permutation Check (<code>assets.json</code> &amp; <code>sinkhole_stats.md</code>):</strong> Pixels within 0–1 km of mapped sinkholes average <strong>−4.15 cm</strong> LOS (<strong>6.4×</strong> the &gt;5 km background −0.65 cm), 0–2 km averages <strong>−4.06 cm</strong> (diff <strong>−3.41 cm</strong>; 1.04 km block permutation <strong>p = 0.0001</strong>; 3,423 rigid 29-sinkhole constellation shifts <strong>p = 0.0207</strong>), and roads tilt up to <strong>19.74 mm/km</strong> (597 m from Köken Obruğu-II)—regional context only, not day-ahead collapse forecasting.</li>
             </ul>
           </div>
         </div>
