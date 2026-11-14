@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import netrc
 import os
 import shutil
 import time
@@ -16,15 +17,26 @@ CHUNK_SIZE = 4 * 1024 * 1024  # 4 MB
 
 
 def read_earthdata_token() -> str:
-    """Read Bearer token/password from ~/.netrc or ~/_netrc without logging it."""
+    """Read Earthdata secret for urs.earthdata.nasa.gov from env or ~/.netrc (~/_netrc) without logging it."""
+    env_tok = os.environ.get("EARTHDATA_TOKEN", "").strip()
+    if env_tok:
+        return env_tok
     for name in (".netrc", "_netrc"):
         p = Path.home() / name
         if p.exists():
+            try:
+                auth = netrc.netrc(str(p)).authenticators("urs.earthdata.nasa.gov")
+                if auth and auth[2]:
+                    return auth[2]
+            except Exception:
+                pass
             tokens = p.read_text(encoding="utf-8").split()
             for i, tok in enumerate(tokens):
                 if tok == "password" and i + 1 < len(tokens):
                     return tokens[i + 1]
-    raise RuntimeError("No Earthdata credentials found in ~/.netrc or ~/_netrc")
+    raise RuntimeError(
+        "No Earthdata credentials found for urs.earthdata.nasa.gov in EARTHDATA_TOKEN or ~/.netrc"
+    )
 
 
 def check_disk_space(target_dir: Path, min_free_gb: float = MIN_FREE_GB) -> float:

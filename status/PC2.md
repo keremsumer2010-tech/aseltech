@@ -3,9 +3,12 @@
 - Görev: 1 (Hesap, liste, ilk dosya, gunw_structure.md) — **TAMAMLANDI**
 - Görev: 2 (Central Valley provisional çiftleri) — **TAMAMLANDI (7/7 tam `ion` katmanıyla push edildi)**
 - Görev: Q01 (Karapınar GUNW Path 7 Frame 69 provisional zinciri) — **TAMAMLANDI (8/8 tam `ion` katmanıyla `pipeline/subset/karapinar/` altına push edildi — PC3 için hazır!)**
-- Görev: Q04 (Central Valley SME2 toprak nemi → `data/central_valley/drivers.json`) — **DEVAM EDİYOR**
+- Görev: Q04 (Central Valley SME2 toprak nemi → `data/central_valley/drivers.json`) — **TAMAMLANDI** (8 provisional SME2 granülü, `lag_corr=0.654`)
+- Görev: Q03 (Central Valley GCOV 6 provisional tarih HV dB → `data/central_valley/gcov/`) — **DEVAM EDİYOR**
 - Çıktılar:
-  - `pipeline/search.py`, `pipeline/download.py`, `pipeline/inspect_gunw.py`, `pipeline/subset.py` (`incidence` 12-bit mantissa yuvarlama ile `ion` tam `(1473, 1438) float32` olarak ≤20 MB içinde korunuyor)
+  - `pipeline/search.py`, `pipeline/download.py` (PCQ `docs/code_review.md` bulgusu düzeltildi: `netrc` üzerinden `urs.earthdata.nasa.gov` ve `EARTHDATA_TOKEN` desteği), `pipeline/inspect_gunw.py`, `pipeline/subset.py`, `pipeline/sme2_drivers.py`
+  - `data/central_valley/drivers.json` (Q04: 8 provisional `P05023` SME2 Path 34 Frame 20 tarihinin bölge ortalaması toprak nemi `[0.1555..0.1844] m³/m³`, HV dB `[-18.624..-18.169] dB`, `irrigation_index` ve `lag_corr=0.654`)
+  - `pipeline/central_valley_p114_gunw.csv` (PC3 Q21 desteği: Central Valley Path 114 Frame 70 — 24 GUNW ürünü, 8 provisional `P05023` çifti `2026-06-22 → 2026-10-20` hazır; ek destek gerekirse bildirin)
   - `pipeline/central_valley_gunw.csv` (27 Path 34 Frame 20 ürünü; 7 provisional `P05023`, 20 beta-precal)
   - `pipeline/karapinar_gunw.csv` (15 Path 7 Frame 69 ürünü; 8 benzersiz provisional `P05023` çifti: `2026-06-26` → `2026-10-12`)
   - `docs/gunw_structure.md` (gerçek `2026-09-08 → 2026-09-20` P05023 HDF5'inden üretildi; λ = 0.24196324 m)

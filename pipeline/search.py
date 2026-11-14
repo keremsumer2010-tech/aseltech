@@ -15,6 +15,11 @@ SITES: dict[str, dict] = {
         "path": 34,
         "frame": 20,
     },
+    "central_valley_p114": {
+        "bbox": (-120.2, 35.6, -119.0, 36.6),
+        "path": 114,
+        "frame": 70,
+    },
     "karapinar": {
         "bbox": (33.3, 37.6, 33.8, 37.9),
         "path": 7,

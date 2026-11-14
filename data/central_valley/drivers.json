@@ -1,0 +1,105 @@
+{
+  "site": "central_valley",
+  "bbox": [
+    -120.2,
+    35.6,
+    -119.0,
+    36.6
+  ],
+  "dates": [
+    "2026-06-28",
+    "2026-07-10",
+    "2026-07-22",
+    "2026-08-15",
+    "2026-08-27",
+    "2026-09-08",
+    "2026-09-20",
+    "2026-10-14"
+  ],
+  "subsidence_cm": [
+    0.0,
+    -0.84,
+    -2.07,
+    -3.0,
+    -4.6,
+    -3.35,
+    -6.24,
+    -7.8
+  ],
+  "subsidence_top5_mean_cm": [
+    0.0,
+    -1.16,
+    -1.54,
+    -2.73,
+    -4.77,
+    -4.9,
+    -6.33,
+    -7.21
+  ],
+  "soil_moisture": [
+    0.1821,
+    0.1844,
+    0.1555,
+    0.1752,
+    0.1651,
+    0.161,
+    0.159,
+    0.1659
+  ],
+  "soil_moisture_median": [
+    0.195,
+    0.1993,
+    0.1594,
+    0.1775,
+    0.1663,
+    0.1628,
+    0.1611,
+    0.1663
+  ],
+  "hv_backscatter_db": [
+    -18.415,
+    -18.397,
+    -18.414,
+    -18.169,
+    -18.287,
+    -18.443,
+    -18.524,
+    -18.624
+  ],
+  "irrigation_index": [
+    0.69,
+    0.749,
+    0.231,
+    0.841,
+    0.536,
+    0.294,
+    0.17,
+    0.18
+  ],
+  "lag_corr": 0.654,
+  "lag_corr_detail": {
+    "corr_soil_moisture_vs_subsidence": 0.573,
+    "corr_irrigation_index_vs_subsidence": 0.654,
+    "lag1_12d_soil_moisture_vs_subsidence": 0.638
+  },
+  "units": {
+    "subsidence_cm": "cm (LOS, negative = subsidence, from p01 6 km N of Terra Bella in points.json)",
+    "soil_moisture": "m^3/m^3 (volumetric soil moisture, Central Valley bbox mean from NISAR L3 SME2)",
+    "hv_backscatter_db": "dB (10*log10(sigma0_HV) from NISAR L3 SME2 frequencyA)",
+    "irrigation_index": "0-1 normalized composite of volumetric soil moisture and HV crop canopy backscatter"
+  },
+  "granules": [
+    "NISAR_L3_PR_SME2_024_034_A_020_4005_DHDH_A_20260628T130859_20260628T130934_P05023_N_F_J_001",
+    "NISAR_L3_PR_SME2_025_034_A_020_4005_DHDH_A_20260710T130859_20260710T130933_P05023_N_F_J_001",
+    "NISAR_L3_PR_SME2_026_034_A_020_4005_DHDH_A_20260722T130858_20260722T130933_P05023_N_F_J_001",
+    "NISAR_L3_PR_SME2_028_034_A_020_4005_DHDH_A_20260815T130857_20260815T130931_P05023_N_F_J_001",
+    "NISAR_L3_PR_SME2_029_034_A_020_4005_DHDH_A_20260827T130856_20260827T130931_P05023_N_F_J_001",
+    "NISAR_L3_PR_SME2_030_034_A_020_4005_DHDH_A_20260908T130856_20260908T130931_P05023_N_F_J_001",
+    "NISAR_L3_PR_SME2_031_034_A_020_4005_DHDH_A_20260920T130856_20260920T130931_P05023_N_F_J_001",
+    "NISAR_L3_PR_SME2_033_034_A_020_4005_DHDH_A_20261014T130856_20261014T130931_P05023_N_F_J_001"
+  ],
+  "source": "NISAR L3 SME2 (PROVISIONAL, CRID P05023, track 34 ascending frame 20, 200 m EASE-Grid 2.0) + NISAR L2 GUNW cumulative subsidence (PC3 points.json)",
+  "notes": "Bbox [-120.2, 35.6, -119.0, 36.6] mean volumetric soil moisture (grids/soilMoisture, 0 < sm <= 0.6 m^3/m^3, ~287k valid 200 m pixels per date) and L-band HV radar backscatter (grids/radarData/frequencyA/sigma0HV in dB). Peak surface moisture (0.184 m^3/m^3 on 2026-07-10 and 0.175 m^3/m^3 with peak HV crop canopy -18.17 dB on 2026-08-15) coincides with active summer irrigation and rapid groundwater drawdown, while late-summer dry-down (0.159 m^3/m^3 by 2026-09-20) accompanies cumulative LOS subsidence reaching -7.8 cm by 2026-10-14.",
+  "quality": "provisional",
+  "quality_note": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team."
+}
