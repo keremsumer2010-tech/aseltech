@@ -1,0 +1,53 @@
+[
+ {
+  "id": "central_valley",
+  "r": 0.399,
+  "rmse_cm": 2.95,
+  "rmse_cm_per_100d": 2.95,
+  "slope": 0.362,
+  "n": 7571,
+  "period": [
+   "2026-06-22",
+   "2026-10-20"
+  ],
+  "opera_period": [
+   "2025-07-19",
+   "2025-10-17"
+  ],
+  "note": "Same-season summer pumping comparison (NISAR Path 114 120 d vs OPERA F38502 90 d, 1 km blocks, cm/100d); NISAR incidence ~39.2 deg vs Sentinel-1 IW ~39 deg LOS."
+ },
+ {
+  "id": "eloy",
+  "r": 0.091,
+  "rmse_cm": 1.03,
+  "rmse_cm_per_100d": 1.03,
+  "slope": 0.102,
+  "n": 581,
+  "period": [
+   "2026-06-19",
+   "2026-10-17"
+  ],
+  "opera_period": [
+   "2026-01-24",
+   "2026-04-30"
+  ],
+  "note": "Same-box rate comparison (cm/100d, 1 km blocks); OPERA ends 2026-04-30 (spring) while NISAR spans 2026-06-19..2026-10-17 (summer pumping); NISAR inc ~38.9 deg vs S1 ~39 deg LOS."
+ },
+ {
+  "id": "mexico_city",
+  "r": 0.912,
+  "rmse_cm": 5.09,
+  "rmse_cm_per_100d": 5.09,
+  "slope": 1.278,
+  "n": 10,
+  "period": [
+   "2026-06-22",
+   "2026-10-20"
+  ],
+  "opera_period": [
+   "2025-12-25",
+   "2026-03-25"
+  ],
+  "note": "Co-located 12-point comparison (300 m OPERA F01088 median around NISAR points, cm/100d); OPERA ends 2026-03-25 while NISAR spans 2026-06-22..2026-10-20 (year-round clay compaction); S1 vs NISAR LOS incidence geometry differs slightly."
+ }
+]
