@@ -525,7 +525,11 @@ function updateReveal(s){
   u.glow.value = revealState.frac > 0 && revealState.frac < 1 ? 1 : 0;
   if (revealState.frac >= 1 && !revealState.done){
     revealState.done = true;
-    setCaption(`Recorded. This is the ground motion our pipeline measured over ${esc(region.name)} from NISAR pairs taken on this same track, 12 days apart: comparing the phase of the radar echoes from each visit gives centimetre-scale motion. Red = moving away from the satellite (sinking). <span class="n3d-q">PROVISIONAL</span>`);
+    const ds = regionMeta?.dates || [];
+    const list = ds.map(d => d.slice(5)).join(' · ');
+    setCaption(`Recorded. This map is the ground motion our pipeline measured over ${esc(region.name)} from ${ds.length} NISAR acquisitions on this same track, 12 days apart (${esc(ds[0] || '')} → ${esc(ds[ds.length - 1] || '')}: ${esc(list)}). `
+      + `How: the L-band wavelength is 24.2 cm, so a 1 cm change in the ground-to-satellite distance shifts the echo phase by about 30°; comparing the phase of consecutive visits gives centimetre-scale motion. `
+      + `Red = moving away from the satellite (sinking), line of sight. <span class="n3d-q">PROVISIONAL</span>`);
   }
 }
 
