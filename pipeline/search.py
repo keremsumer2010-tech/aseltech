@@ -35,6 +35,11 @@ SITES: dict[str, dict] = {
         "path": None,
         "frame": None,
     },
+    "uk_clay": {
+        "bbox": (-0.5, 51.3, 0.2, 51.7),
+        "path": 101,
+        "frame": 28,
+    },
 }
 
 PROVISIONAL_CUTOFF = "2026-06-17"
