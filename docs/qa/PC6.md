@@ -346,3 +346,7 @@ Komut: `python analysis/pc6/test_20_strategies.py --self-test`
   6. `window.atlasSelect(id)` ve `atlas:select` olayı korundu; `web/atlas_sat.*` dosyalarına dokunulmadı.
   - Doğrulama (`1920×1080` & `#central_valley` `375×812` headless Chrome): `rc=0`, `vital=True`, `svg=True`, `search=True`, `compare=True`, `unit=True`, `cite=True`, `0` konsol hatası.
 - **`SUREKLI.md` Tur 1 (`23:49 TR`):** `python -m pytest -q` → **83 passed**, 1 `PendingDeprecationWarning` (`23.71 s`).
+- **ATLAS KUSURSUZLUK (`tasks/PC6.md` 1–3, `00:33 TR`):**
+  1. `web/atlas.js` içindeki 404 üreten `okHead()` (`HEAD`) yoklamaları kaldırıldı: bültenler tek seferlik `docs/bulletins/index.html` (`200 OK`) taramasından (`bulletinIds`), şehir kartları ve `sigma_cm.png` ise `atlas.json` alanları ile bilinen kümelerden (`KNOWN_CARDS`/`KNOWN_SIGMA`), `atlas.geojson`/`atlas.csv` indirme linkleri ise `atlasData.exports || github.io` kontrolünden türetildi.
+  2. PC1'in varsayılan `NISAR 3D` (`web/nisar3d.js`, `web/atlas_sat.*`) görünümü açıkken sol panel listesi, filtreler, yan panel ve `#hanoi` şehir seçimi test edildi (`web/nisar3d.js` ve `atlas_sat.*` dosyalarına dokunulmadı).
+  3. `1920×1080` ve `375×812` (`#hanoi`) headless Chrome + HTTP sunucu denetiminde: `rc=0`, `console_errs=[]`, `HTTP 404 requests: []`.

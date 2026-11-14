@@ -26,7 +26,20 @@ const fmtInt = v => (typeof v === 'number' && Number.isFinite(v)) ? Math.round(v
 const fmtDate = d => d ? new Date(d + 'T00:00:00Z').toLocaleDateString('en-GB', {day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC'}) : '—';
 const fmtShort = d => d ? new Date(d + 'T00:00:00Z').toLocaleDateString('en-GB', {day: 'numeric', month: 'short', timeZone: 'UTC'}) : '—';
 async function J(p){ try{ const r = await fetch(ROOT + p); return r.ok ? await r.json() : null; }catch(e){ return null; } }
-async function okHead(p){ try{ const r = await fetch(ROOT + p, {method: 'HEAD'}); return r.ok; }catch(e){ return false; } }
+const KNOWN_CARDS = new Set(['bangkok','beijing','central_valley','delta','ho_chi_minh','isfahan','jakarta','karapinar','konya_plain','mashhad','mexico_city','rafsanjan','tehran']);
+const KNOWN_SIGMA = new Set(['bangkok','beijing','central_valley','delta','ho_chi_minh','isfahan','jakarta','karapinar','konya_plain','mexico_city','rafsanjan','tehran']);
+let bulletinIds = new Set();
+
+async function initBulletins(){
+  try{
+    const r = await fetch(ROOT + 'docs/bulletins/index.html');
+    if (!r.ok) return;
+    const html = await r.text();
+    const re = /href=['"]([a-z0-9_]+)\.html['"]/g;
+    let m;
+    while ((m = re.exec(html)) !== null) bulletinIds.add(m[1]);
+  }catch(e){}
+}
 
 function rateColor(rate){
   if (typeof rate !== 'number' || !Number.isFinite(rate)) return '#64748b';
@@ -203,12 +216,11 @@ async function initVitalSigns(){
 async function initDataBox(){
   const box = document.getElementById('atlasDataLinks');
   if (!box) return;
-  const [hasGeo, hasCsv] = await Promise.all([
-    okHead('data/global/atlas.geojson'),
-    okHead('data/global/atlas.csv')
-  ]);
-  if (hasGeo) box.insertAdjacentHTML('afterbegin', `<a href="${ROOT}data/global/atlas.geojson" download>atlas.geojson</a>`);
-  if (hasCsv) box.insertAdjacentHTML('afterbegin', `<a href="${ROOT}data/global/atlas.csv" download>atlas.csv</a>`);
+  const hasExports = Boolean(atlasData?.exports || location.hostname.endsWith('github.io'));
+  if (hasExports){
+    box.insertAdjacentHTML('afterbegin', `<a href="${ROOT}data/global/atlas.geojson" download>atlas.geojson</a>`);
+    box.insertAdjacentHTML('afterbegin', `<a href="${ROOT}data/global/atlas.csv" download>atlas.csv</a>`);
+  }
 }
 
 function startTour(){
@@ -397,8 +409,9 @@ async function loadGnssLayer(){
 
 async function initAtlas(){
   initVitalSigns();
-  initDataBox();
+  await initBulletins();
   atlasData = await J('data/global/atlas.json');
+  initDataBox();
   if (!atlasData || !Array.isArray(atlasData.regions)){
     document.getElementById('atlasList').innerHTML = '<p class="small">Could not load data/global/atlas.json.</p>';
     return;
@@ -552,19 +565,15 @@ async function selectRegion(id, fly, updateHash){
 
   const base = r.path ? (r.path.endsWith('/') ? r.path : r.path + '/') : `data/global/${r.id}/`;
   activeBase = base;
-  const sigmaCand1 = `${base}uncertainty/sigma_cm.png`;
-  const sigmaCand2 = `data/global/${r.id}/uncertainty/sigma_cm.png`;
-  const [meta, pts, hasBul, hasCard, hasSig1, hasSig2] = await Promise.all([
+  const [meta, pts] = await Promise.all([
     J(base + 'meta.json'),
-    J(base + 'points.json'),
-    okHead(`docs/bulletins/${r.id}.html`),
-    okHead(`docs/story/atlas_cities/${r.id}.md`),
-    okHead(sigmaCand1),
-    sigmaCand1 === sigmaCand2 ? Promise.resolve(false) : okHead(sigmaCand2)
+    J(base + 'points.json')
   ]);
+  const hasBul = Boolean(r.bulletin || bulletinIds.has(r.id));
+  const hasCard = Boolean(r.city_card || KNOWN_CARDS.has(r.id));
 
   activeBboxCoords = bboxToCoords(meta?.bbox);
-  activeSigmaUrl = hasSig1 ? sigmaCand1 : (hasSig2 ? sigmaCand2 : null);
+  activeSigmaUrl = r.sigma_png ? r.sigma_png : (KNOWN_SIGMA.has(r.id) ? ((r.id === 'central_valley' || r.id === 'karapinar') ? `data/${r.id}/uncertainty/sigma_cm.png` : `data/global/${r.id}/uncertainty/sigma_cm.png`) : null);
   animDates = Array.isArray(meta?.dates) ? meta.dates : [];
   animIdx = animDates.length ? animDates.length - 1 : 0;
 
