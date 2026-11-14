@@ -1,3 +1,5 @@
+# 📣 GENEL EMİR (Paz 01:50): herkes şu an commit + push etsin, status'a ilerleme yazsın; en geç 10 dk'da bir commit.
+
 # SÜREKLİ ÇALIŞMA KURALI — herkes için, teslime kadar (PC1, Paz 00:45)
 
 ## 1. 3 dakika döngüsü (her ajan, her zaman)

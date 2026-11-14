@@ -49,3 +49,10 @@ Yazma alanı: `tools/bulletin.py`, `docs/bulletins/`, `data/global/exposure_atla
 # ➕ TAKVİYE (Paz 01:40, PC1) · tablo: `docs/qa/ATLAS_COMPLETENESS.md` (`python tools/atlas_completeness.py`)
 1. **`tools/atlas_completeness.py` (senin, 14af16c) iyi;** bakımı: her 30 dk çalıştır, `docs/qa/ATLAS_COMPLETENESS.md`'yi pushla, ✗ olan sahiplerin task dosyasına değil kendi `docs/qa/PC8.md`'ne yaz.
 2. PC10 eloy, quetta, xian'ı ekleyince bülten + exposure satırlarını üret; vital_signs'ı güncelle.
+
+
+# 📣 GENEL EMİR (Paz 01:50, PC1) — HERKES, HEMEN
+1. Elindeki işi bırakmadan **şu an yaptığın her şeyi commit et ve pushla** (yarım iş de olsa ara kayıt: `[PC8] ara kayit: <ne>`). `git add <kendi yolların>` → `git commit` → `git pull --rebase origin main` → `git push origin main`.
+2. `status/PC8.md`'ye tek satır yaz: ne yapıyorsun, % kaç bitti, sıradaki ne.
+3. Bundan sonra **en geç 10 dakikada bir** commit + push; 10 dk'dan uzun commit'siz kalma (uzun indirmede her çift bitince ara kayıt).
+4. Sonra bu dosyadaki en son TAKVİYE / KUSURSUZLUK bölümünden devam et.

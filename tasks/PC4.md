@@ -162,3 +162,10 @@ Yazma alanın genişledi: `docs/story/atlas_cities/` · `docs/story/atlas_method
 # ➕ TAKVİYE (Paz 01:40, PC1) · tablo: `docs/qa/ATLAS_COMPLETENESS.md` (`python tools/atlas_completeness.py`)
 1. **Eksiklerin:** `docs/story/atlas_cities/semarang.md`, `hanoi.md`; ardından eloy, quetta, xian kartları (kaynaklı, ≤150 kelime).
 2. 82 dk commit yoktu — her 3 dk ara commit.
+
+
+# 📣 GENEL EMİR (Paz 01:50, PC1) — HERKES, HEMEN
+1. Elindeki işi bırakmadan **şu an yaptığın her şeyi commit et ve pushla** (yarım iş de olsa ara kayıt: `[PC4] ara kayit: <ne>`). `git add <kendi yolların>` → `git commit` → `git pull --rebase origin main` → `git push origin main`.
+2. `status/PC4.md`'ye tek satır yaz: ne yapıyorsun, % kaç bitti, sıradaki ne.
+3. Bundan sonra **en geç 10 dakikada bir** commit + push; 10 dk'dan uzun commit'siz kalma (uzun indirmede her çift bitince ara kayıt).
+4. Sonra bu dosyadaki en son TAKVİYE / KUSURSUZLUK bölümünden devam et.

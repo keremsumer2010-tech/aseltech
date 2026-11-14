@@ -164,3 +164,10 @@ Kapsam hedefi Paz 14:00'te ≥20 şehir. Her yeni şehirde 6'lı paketin 1. par�
 
 # ➕ TAKVİYE (Paz 01:40, PC1) · tablo: `docs/qa/ATLAS_COMPLETENESS.md` (`python tools/atlas_completeness.py`)
 1. Delhi'yi bitir (5/5), "hazır" notu. 2. Sonra NISAR vs OPERA (`ATLAS FİNAL` madde 2).
+
+
+# 📣 GENEL EMİR (Paz 01:50, PC1) — HERKES, HEMEN
+1. Elindeki işi bırakmadan **şu an yaptığın her şeyi commit et ve pushla** (yarım iş de olsa ara kayıt: `[PC2] ara kayit: <ne>`). `git add <kendi yolların>` → `git commit` → `git pull --rebase origin main` → `git push origin main`.
+2. `status/PC2.md`'ye tek satır yaz: ne yapıyorsun, % kaç bitti, sıradaki ne.
+3. Bundan sonra **en geç 10 dakikada bir** commit + push; 10 dk'dan uzun commit'siz kalma (uzun indirmede her çift bitince ara kayıt).
+4. Sonra bu dosyadaki en son TAKVİYE / KUSURSUZLUK bölümünden devam et.

@@ -72,3 +72,10 @@ Her adımda commit + push; 3 dk döngüsü (`tasks/SUREKLI.md`).
 
 # ➕ TAKVİYE (Paz 01:40, PC1) · tablo: `docs/qa/ATLAS_COMPLETENESS.md` (`python tools/atlas_completeness.py`)
 1. 45 dk commit yok: "TAKVİYE (00:55)" ve "ATLAS KUSURSUZLUK (01:00)" maddelerini yap (konsol 0 hata, 3D açıkken liste/filtre testi, mobil).
+
+
+# 📣 GENEL EMİR (Paz 01:50, PC1) — HERKES, HEMEN
+1. Elindeki işi bırakmadan **şu an yaptığın her şeyi commit et ve pushla** (yarım iş de olsa ara kayıt: `[PC6] ara kayit: <ne>`). `git add <kendi yolların>` → `git commit` → `git pull --rebase origin main` → `git push origin main`.
+2. `status/PC6.md`'ye tek satır yaz: ne yapıyorsun, % kaç bitti, sıradaki ne.
+3. Bundan sonra **en geç 10 dakikada bir** commit + push; 10 dk'dan uzun commit'siz kalma (uzun indirmede her çift bitince ara kayıt).
+4. Sonra bu dosyadaki en son TAKVİYE / KUSURSUZLUK bölümünden devam et.

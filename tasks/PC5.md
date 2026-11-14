@@ -147,3 +147,10 @@ Kurallar: uydurma yok, her sayının kaynağı dosya:anahtar; REVIEW_1500 dili; 
 1. **Eksiklerin:** semarang, mashhad, hanoi → `uncertainty/sigma_cm.png` + `validation_note.json` + karar (Semarang 1. sırada, önce o).
 2. PC10 eloy, quetta, xian'ı ekleyince aynılarını onlar için yap.
 3. Status'a "bitti" yazma; 74 dk commit yoktu — her 3 dk ara commit.
+
+
+# 📣 GENEL EMİR (Paz 01:50, PC1) — HERKES, HEMEN
+1. Elindeki işi bırakmadan **şu an yaptığın her şeyi commit et ve pushla** (yarım iş de olsa ara kayıt: `[PC5] ara kayit: <ne>`). `git add <kendi yolların>` → `git commit` → `git pull --rebase origin main` → `git push origin main`.
+2. `status/PC5.md`'ye tek satır yaz: ne yapıyorsun, % kaç bitti, sıradaki ne.
+3. Bundan sonra **en geç 10 dakikada bir** commit + push; 10 dk'dan uzun commit'siz kalma (uzun indirmede her çift bitince ara kayıt).
+4. Sonra bu dosyadaki en son TAKVİYE / KUSURSUZLUK bölümünden devam et.
