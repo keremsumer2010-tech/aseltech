@@ -97,3 +97,10 @@ Kalıcı/geri dönen ayrımı orada (trend + mevsimsel genlik) → `decomp.json`
 3. **Referans duyarlılığı raporu**: 3 farklı referans bölgesiyle maks çökme aralığı (−6.2…−7.8 bulmuşsun) → summary.json'a `range_cm` ve `method_note`'a ekle.
 4. **Karapınar ↔ obruk**: PC6'nın Q28'ine girdi olacak `analysis/out/karapinar_cum.npz` (sözleşme §5 biçimi) hazır mı kontrol et, değilse üret.
 5. **Pazar hazırlığı**: Q08 için `analysis/decomp` (PC5) arayüzünü oku, tam yıl zinciri gelince tek komutla çalışacak `analysis/run_fullyear.py` iskeletini yaz (beta/mixed ayrı klasör kuralıyla).
+
+---
+# 15:00 SIRA
+1. Q21'i bitir (path 114 ↔ 34) → sonuç `docs/qa/PC3.md` + `data/central_valley_p114/` + `docs/cv_p34_vs_p114.png`. PC1 siteye "independent second track" kutusu ekleyecek: kısa İngilizce özet cümlesini status'a yaz.
+2. Q22 dikey/doğu-batı.
+3. PC2 Q07 npz'leri geldikçe: `data/central_valley_fullyear/` (mixed) kümülatif + Q08 kalıcı/geri dönen (`analysis/decomp/run_decomp.py`). beta ve provisional ayrı etiketli.
+4. PC2 path 172 gelince Karapınar çapraz kontrolü (Q21'in Konya versiyonu).

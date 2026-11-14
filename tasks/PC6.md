@@ -89,3 +89,8 @@ Yazma alanı bu paket için: `game/` · `analysis/pc6/` · `docs/story/media/` �
    - California Aqueduct ve büyük kanallar varsa ayrıca vurgula. "Ne anlama geliyor" 2 cümle (kaynaklı: kanal kapasite kaybı örnekleri `docs/story/game_model.md`'de).
 4. **Oyun v2 son kontrol** (17:00–17:30): canlı sitede (https://keremsumer2010-tech.github.io/aseltech/ → Simulator) iframe içinde ve tam ekran çalışıyor mu, `data/central_valley/summary.json` okunuyor mu, telefonda kontroller kullanılabilir mi. Sorun varsa sadece `game/` içinde düzelt.
 5. **Pazar hazırlığı** (17:30 sonrası): PC2'nin Q07 tam yıl verisi gelince risk indeksini ve doğrulamayı tam yıl (mixed) için yeniden çalıştıracak komutları `docs/qa/PC6.md`'ye hazırla; mevcut scriptler `--data-dir` gibi parametrelerle ayrı klasöre yazabilsin (sadece kendi scriptlerin: `risk/`, `validation/`).
+
+---
+# 15:00 ÖNCELİK DEĞİŞİKLİĞİ — ÖNCE OYUN CİLASI (sonra 14:45 paketine dön)
+`docs/REVIEW_1500.md` "Oyun" bölümündeki 7 maddeyi `game/` içinde uygula (sırayla, her madde ayrı commit). Ardından canlı sitede iframe ve tam ekran testi, `docs/game_v3.png`. Bitince 14:45 paketinin 1. maddesine (animasyon) geç.
+Kural: sade, olgusal İngilizce; emoji/ünlem/abartı yok; "Zero AI" vb. rozetleri kaldır.

@@ -28,3 +28,7 @@ Beta (2026-06-17 öncesi) veri kullanma · `.h5`/`.netrc` commit etme · başka 
 
 ## Rapor (`status/PC7.md`)
 Ne bitti, nasıl doğrulandı, sınırlamalar, `AI: Codex → ...` satırı.
+
+---
+# 15:00 not
+Görev 2 (site QA) için PC1 siteyi açık "makale" temasına geçiriyor; QA'yı 16:00 sonrası yeni temada yap. `docs/REVIEW_1500.md` yazım kurallarına göre metinlerde AI kokan ifadeleri de raporla.

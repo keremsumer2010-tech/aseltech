@@ -88,3 +88,11 @@ Sırayla (her biri bittikçe push, K-13):
 4. **path 114 desteği**: PC3 Q21 için kendi indirmesini yapıyor; isterse `pipeline/central_valley_p114_gunw.csv` listesini sen üret (status'ta sor).
 5. **Q07 tam yıl zinciri** — 22:00'de başlat, gece sürsün (`pipeline/subset/central_valley_beta/`, `quality: beta-precal` / provisional ayrı). Bilgisayar uykuya geçmesin.
 6. **Q10 Fens ekin ritmi** (zaman kalırsa).
+
+---
+# 15:00 ÖNCELİK DEĞİŞİKLİĞİ
+1. **Q07 tam yıl zincirini ŞİMDİ başlat** (22:00 değil). 2025-11-24 → 2026-10-14, sadece P05023, `pipeline/subset/central_valley_beta/`; 17 Haziran öncesi çiftler `quality: beta-precal`, sonrası `provisional` (her npz'de). İndirme hızı yüksek; sırayla indir-kes-sil.
+2. Q01 Karapınar bitti mi kontrol et (son çift); bitmediyse önce onu bitir.
+3. Q03 GCOV (6 tarih) → `data/central_valley/gcov/`.
+4. **Karapınar ikinci geçiş (path 172)** provisional çiftleri → `pipeline/subset/karapinar_p172/` (PC3'ün Konya çapraz kontrolü için).
+Her adımda status/PC2.md'yi güncelle (panel commit mesajını `[PC2] ...` biçiminde bekliyor).

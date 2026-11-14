@@ -26,3 +26,7 @@ Dosyalar var ve geçerli (SRT zaman damgaları sıralı, karakter sınırları s
 
 ## Rapor (`status/PC8.md`)
 Ne bitti, kontrol sonucu, `AI: Gemini CLI → ...`.
+
+---
+# 15:00 not
+Tüm metinlerde `docs/REVIEW_1500.md` yazım kurallarına uy (sade, olgusal, abartısız, emojisiz). Sunum kartlarında site bölüm adları: Story 1–6, Simulator, Science, Data, FAQ.

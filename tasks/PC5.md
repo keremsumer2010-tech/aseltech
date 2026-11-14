@@ -53,3 +53,7 @@ Her görevde: kod çalıştı, testler (varsa) geçti, çıktı açılıp kontro
 
 ## Rapor (`status/PC5.md`)
 Her görev bitince: ne yapıldı, sayılar, varsayımlar, `AI: Gemini → ...`.
+
+---
+# 15:00 not
+Yazdığın her İngilizce metin `docs/REVIEW_1500.md` yazım kurallarına uysun. `key_findings.md` sitede Science sayfasına bağlanacak: 8 madde, sade cümle, sayı ± belirsizlik, kaynak dosya.
