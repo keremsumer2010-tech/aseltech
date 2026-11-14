@@ -1,4 +1,4 @@
-# PC6 — Çelik (Antigravity) — Doğrulama + altyapı verisi  ·  Ana plan: docs/MASTER_PLAN.md
+# PC6 — M3hmeT1888 bilgisayarında 2. Antigravity (klasör aseltech-gemini2) — Doğrulama + altyapı verisi  ·  Ana plan: docs/MASTER_PLAN.md
 Klasörlerin: `validation/`, `risk/`. Başka yere yazma. Uydurma koordinat, sayı veya link YASAK.
 Bu iş Pazar günkü özgün katkılar #3 (risk indeksi) ve #4 (GNSS doğrulama) için veriyi BUGÜNDEN hazırlar.
 

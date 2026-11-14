@@ -7,7 +7,8 @@ Which worker are you? Ask the human if unsure.
 - Antigravity on **M3hmeT1888**'s computer = **PC5** → task `tasks/PC5.md`, status `status/PC5.md`.
   (M3hmeT1888's Claude Code is PC3 and works in a DIFFERENT clone folder; never touch `analysis/`.)
 - Antigravity on **acikgozibrahim032-hub**'s computer = **PC4** → task `tasks/PC4.md`, status `status/PC4.md`.
-- Antigravity on **Çelik**'s computer = **PC6** → task `tasks/PC6.md`, status `status/PC6.md`.
+- SECOND Antigravity on **M3hmeT1888**'s computer (clone folder `aseltech-gemini2`) = **PC6** → task `tasks/PC6.md`, status `status/PC6.md`.
+  On M3hmeT1888's computer: folder `aseltech-claude` = PC3 (Claude Code), `aseltech-gemini` = PC5, `aseltech-gemini2` = PC6. Your folder name tells you who you are.
 
 - Start: `git pull` → read `CLAUDE.md`, `docs/TODAY_PLAN.md`, your task file → do the task → update your status file → `git pull --rebase` → commit `[PCx] ...` → push.
 - Only write inside the folders listed in your task file. Commit only your own files (`git add <paths>`, never `git add -A`).
