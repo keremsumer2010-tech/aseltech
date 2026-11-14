@@ -24,5 +24,5 @@
   - `python risk/karapinar_risk.py --self-test` PASS (`--data-dir --quality mixed` doğrulandı)
   - `game/test_model.html`: `6/6 tests passed` (`0%` 108-gün baz hata: Tulare `-10.1 cm` dikey / `-7.84 cm` LOS, Konya `-8.0 cm` dikey / `-5.94 cm` LOS, `sinkholeRiskActive=true`)
   - Tarayıcı canlı testi: Konya `Over-Pump` → `#sinkholeStatusBanner` (`Elevated`), 3 adımlı `How to play` + dinamik `range_cm` (`-4.7...-7.8`), masaüstü `1280x850` ve mobil `390x844` (`scrollWidth === 390`, `44 px` dokunma hedefleri) doğrulandı
-- BLOCKED: yok. (15:25 SÜREKLİ PAKET 5/5 tamamlandı; SONSUZ DÖNGÜ Tur 1 yürütülüyor.)
+- BLOCKED: yok. (BUGFIX + C03 tamamlandı; 3 dakikalık kontrol döngüsünde.)
 - AI: Kod ve analiz üretimi + tarayıcı doğrulaması; ölçümler NASA-ISRO NISAR (provisional), NGL ve OpenStreetMap kaynaklıdır.
