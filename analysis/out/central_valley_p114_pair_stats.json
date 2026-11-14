@@ -1,0 +1,144 @@
+{
+  "pairs": [
+    {
+      "pair": [
+        "2026-06-22",
+        "2026-07-04"
+      ],
+      "file": "analysis/out/subset/central_valley_p114/2026-06-22_2026-07-04.npz",
+      "lambda_m": 0.2419632429378531,
+      "ionosphere_applied": true,
+      "cycle_outlier_px": 21,
+      "elev_coef_cm_per_km": -0.64,
+      "valid_frac_after_masks": 0.7968575763841875,
+      "p2_p50_p98_cm": [
+        -3.22,
+        2.45,
+        6.81
+      ]
+    },
+    {
+      "pair": [
+        "2026-07-04",
+        "2026-07-16"
+      ],
+      "file": "analysis/out/subset/central_valley_p114/2026-07-04_2026-07-16.npz",
+      "lambda_m": 0.2419632429378531,
+      "ionosphere_applied": true,
+      "cycle_outlier_px": 14,
+      "elev_coef_cm_per_km": 4.73,
+      "valid_frac_after_masks": 0.8217077539427828,
+      "p2_p50_p98_cm": [
+        -7.07,
+        -3.55,
+        -0.12
+      ]
+    },
+    {
+      "pair": [
+        "2026-07-16",
+        "2026-08-21"
+      ],
+      "file": "analysis/out/subset/central_valley_p114/2026-07-16_2026-08-21.npz",
+      "lambda_m": 0.2419632429378531,
+      "ionosphere_applied": true,
+      "cycle_outlier_px": 21,
+      "elev_coef_cm_per_km": 2.49,
+      "valid_frac_after_masks": 0.63745188072368,
+      "p2_p50_p98_cm": [
+        -1.95,
+        0.45,
+        3.04
+      ]
+    },
+    {
+      "pair": [
+        "2026-08-21",
+        "2026-09-02"
+      ],
+      "file": "analysis/out/subset/central_valley_p114/2026-08-21_2026-09-02.npz",
+      "lambda_m": 0.2419632429378531,
+      "ionosphere_applied": true,
+      "cycle_outlier_px": 8,
+      "elev_coef_cm_per_km": 6.77,
+      "valid_frac_after_masks": 0.7808272597057654,
+      "p2_p50_p98_cm": [
+        -2.18,
+        -0.24,
+        2.4
+      ]
+    },
+    {
+      "pair": [
+        "2026-09-02",
+        "2026-09-14"
+      ],
+      "file": "analysis/out/subset/central_valley_p114/2026-09-02_2026-09-14.npz",
+      "lambda_m": 0.2419632429378531,
+      "ionosphere_applied": true,
+      "cycle_outlier_px": 5,
+      "elev_coef_cm_per_km": -4.19,
+      "valid_frac_after_masks": 0.7832652086183666,
+      "p2_p50_p98_cm": [
+        -2.6,
+        1.0,
+        3.62
+      ]
+    },
+    {
+      "pair": [
+        "2026-09-14",
+        "2026-09-26"
+      ],
+      "file": "analysis/out/subset/central_valley_p114/2026-09-14_2026-09-26.npz",
+      "lambda_m": 0.2419632429378531,
+      "ionosphere_applied": true,
+      "cycle_outlier_px": 6,
+      "elev_coef_cm_per_km": 0.77,
+      "valid_frac_after_masks": 0.7992936368778013,
+      "p2_p50_p98_cm": [
+        -2.54,
+        -0.83,
+        1.39
+      ]
+    },
+    {
+      "pair": [
+        "2026-09-26",
+        "2026-10-08"
+      ],
+      "file": "analysis/out/subset/central_valley_p114/2026-09-26_2026-10-08.npz",
+      "lambda_m": 0.2419632429378531,
+      "ionosphere_applied": true,
+      "cycle_outlier_px": 588,
+      "elev_coef_cm_per_km": 1.27,
+      "valid_frac_after_masks": 0.797928782054732,
+      "p2_p50_p98_cm": [
+        -1.45,
+        0.19,
+        1.71
+      ]
+    },
+    {
+      "pair": [
+        "2026-10-08",
+        "2026-10-20"
+      ],
+      "file": "analysis/out/subset/central_valley_p114/2026-10-08_2026-10-20.npz",
+      "lambda_m": 0.2419632429378531,
+      "ionosphere_applied": true,
+      "cycle_outlier_px": 15,
+      "elev_coef_cm_per_km": 2.57,
+      "valid_frac_after_masks": 0.7842382165015717,
+      "p2_p50_p98_cm": [
+        -2.63,
+        -0.57,
+        1.16
+      ]
+    }
+  ],
+  "notes": [],
+  "reference_mean_coh": 0.962795078754425,
+  "valid_frac_full_chain": 0.5371626693557753,
+  "outlier_px_removed": 10
+}

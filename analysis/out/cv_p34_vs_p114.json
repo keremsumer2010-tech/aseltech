@@ -1,0 +1,20 @@
+{
+  "common_period": [
+    "2026-06-28",
+    "2026-10-14"
+  ],
+  "n_blocks_1km": 6719,
+  "pearson_r": 0.489,
+  "rmse_cm": 2.65,
+  "median_diff_cm": -1.29,
+  "slope_p114_vs_p34": 0.514,
+  "p34_vertical_p2_p50": [
+    -6.47,
+    -0.66
+  ],
+  "p114_vertical_p2_p50": [
+    -7.13,
+    -2.14
+  ],
+  "note": "vertical estimate = LOS/cos(incidence) for each track; track 114 interpolated in time to track 34 dates and re-zeroed at the first common date; ~1 km block means"
+}

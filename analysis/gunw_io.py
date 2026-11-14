@@ -58,10 +58,12 @@ def _crop_slices(xs, ys, epsg, bbox, pad_m=2000.0):
     return slice(iy[0], iy[-1] + 1), slice(ix[0], ix[-1] + 1)
 
 
-def _incidence(f, x, y, ref_height_m=None):
-    """Interpolate the incidence cube (heights, y, x) onto the subset grid at one height."""
+def _incidence(f, x, y, ref_height_m=None, name="incidenceAngle"):
+    """Interpolate a radarGrid cube (heights, y, x) onto the subset grid at one height.
+    name: incidenceAngle (deg) or losUnitVectorX / losUnitVectorY (east / north components of the unit
+    vector from target to sensor, GUNW spec D-102272)."""
     rg = f[f"{G}/metadata/radarGrid"]
-    cube = rg["incidenceAngle"][()]
+    cube = rg[name][()]
     cx, cy = rg["xCoordinates"][()], rg["yCoordinates"][()]
     hts = rg["heightAboveEllipsoid"][()] if "heightAboveEllipsoid" in rg else np.arange(cube.shape[0])
     k = int(np.argmin(np.abs(hts - ref_height_m))) if ref_height_m is not None else cube.shape[0] // 2
@@ -103,6 +105,8 @@ def subset(h5path, site, pol="HH", ref_height_m=None):
             wavelength=np.float64(wavelength_from_frequency(fa["centerFrequency"][()])),
         )
         out["incidence"], h_used = _incidence(f, out["x"], out["y"], ref_height_m)
+        out["los_e"] = _incidence(f, out["x"], out["y"], ref_height_m, "losUnitVectorX")[0].astype(np.float16)
+        out["los_n"] = _incidence(f, out["x"], out["y"], ref_height_m, "losUnitVectorY")[0].astype(np.float16)
     d1, d2 = dates_from_name(gname if "_P0" in gname else granule)
     out.update(date1=d1, date2=d2, granule=gname, crid=crid, quality=quality_for(d1, d2, crid),
                incidence_height_m=np.float64(h_used))
@@ -116,3 +120,20 @@ if __name__ == "__main__":
     np.savez_compressed(dst, **o)
     print(dst, o["unw"].shape, o["epsg"], o["wavelength"], o["date1"], o["date2"], o["quality"],
           f"{Path(dst).stat().st_size/1e6:.1f} MB")
+
+
+def los_only(h5path, site, ref_height_m=None, pol="HH"):
+    """Geometry only (incidence + LOS unit vector E/N/U) on the site subset grid; for stacks cut before
+    los_e/los_n were stored. Up component = sqrt(1 - e^2 - n^2) (unit vector pointing to the sensor)."""
+    with h5py.File(h5path, "r") as f:
+        g = f[f"{G}/grids/frequencyA/unwrappedInterferogram/{pol}"]
+        xs, ys = g["xCoordinates"][()], g["yCoordinates"][()]
+        epsg = int(g["projection"].attrs.get("epsg_code", g["projection"][()]))
+        sy, sx = _crop_slices(xs, ys, epsg, BBOX[site])
+        x, y = xs[sx], ys[sy]
+        e = _incidence(f, x, y, ref_height_m, "losUnitVectorX")[0]
+        n = _incidence(f, x, y, ref_height_m, "losUnitVectorY")[0]
+        inc = _incidence(f, x, y, ref_height_m)[0]
+    u = np.sqrt(np.clip(1 - e ** 2 - n ** 2, 0, 1))
+    return dict(x=x, y=y, epsg=np.int32(epsg), los_e=e.astype(np.float32), los_n=n.astype(np.float32),
+                los_u=u.astype(np.float32), incidence=inc)
