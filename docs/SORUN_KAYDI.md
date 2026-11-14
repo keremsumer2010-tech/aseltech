@@ -277,6 +277,13 @@ Görev dağılımı: `tasks/QUEUE.md` → "BUGFIX" bölümü. S-21 (simülatör 
 - Öneri: Koyu, sade uydu görüntüsü üzerinde yavaş kayma/yakınlaşma yapan dikişsiz, sessiz, ≤1.5 MB döngü videosu (MP4+WebM) ve ≤150 KB poster (WebP). GIF önerilmez (S-22: 4 MB+), PDF hareket etmez. Sayfa videoyu `autoplay muted loop playsinline` ile oynatır; reduced-motion ve yükleme hatasında poster. Başlık için sol taraf koyu kalır. Çökme verisi, renk çubuğu, yazı yok (S-18 ile uyumlu).
 - Görevler: B30 (video), B31 (sayfa).
 
+## S-32 · Takım adı: "Team Taykut" → "Team Aseltech"
+*Öncelik: Yüksek · Yer: Kapak ve site · Sahip: PC8*
+- Nerede: `web/index.html` hero `.byline`, Figure 6 kredisi, sayfa sonu satırı; `web/data.html`, `web/faq.html`, `web/science.html` alt bilgi.
+- Sorun: Takım adı Aseltech oldu; kapakta ve alt bilgilerde Taykut yazıyor.
+- Öneri: Web sayfalarındaki tüm geçişleri değiştir (grep ile 0'a indir). `docs/story/*`, `analysis/*` içindeki grafik kredileri başka PC'lerin; ayrıca karar verilecek.
+- Görev: B32.
+
 ## Uygulanmaması gerekenler (dış inceleme PDF'inden)
 - "#findings çapası yok": yanlış; index.html ve science.html'de id="findings" var.
 - "Haritalar, grafikler, tablolar, Data/Explore satırları boş; href=\"#\" bağlantılar çalışmıyor": Bu öğeler JavaScript ile dolduruluyor (app.js gameOpen/view3d bağlantılarını ve videoyu sonradan atıyor). İnceleme büyük ihtimalle JavaScript çalıştırmayan bir araçla yapılmış. Ekran görüntülerimizde veri yükleniyor. Yine de: canlı siteyi telefonda ve gizli pencerede bir kez açıp kontrol edin; JS kapalıyken en azından "Loading…" / açıklama metni gösterilmesi iyi olur.
