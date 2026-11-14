@@ -94,6 +94,17 @@
 <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
 <script src="docs.js"></script>
 <script>
+const _origParse = marked.parse.bind(marked);
+marked.parse = t => {
+  const clean = t
+    .replace(/^(\|.*)$/gm, row => row.replace(/`([^`]*)`/g, (_, code) => '`' + code.replace(/\|/g, '&#124;') + '`'))
+    .replace(/\$d_\{\\text\{cum\}\}\s*=\s*\\sum_\{i=1\}\^N\s*\\Delta d_i\$/g, '<i>d</i><sub>cum</sub> = &Sigma;<sub><i>i</i>=1..<i>N</i></sub> &Delta;<i>d</i><sub><i>i</i></sub>')
+    .replace(/\$R\^2\s*=\s*([^$]+)\$/g, '<i>R</i><sup>2</sup> = $1')
+    .replace(/\$\\theta\$/g, '&theta;')
+    .replace(/\$([nNrN])(=[^$]+)?\$/g, (_, v, rest) => `<i>${v}</i>${rest || ''}`)
+    .replace(/\$([^$\n]{1,40})\$/g, '$1');
+  return _origParse(clean);
+};
 md('calMd', 'docs/story/calibration_note.md', true);
 md('srcMd', 'docs/story/sources.md', true);
 md('kfMd', 'docs/story/key_findings.md', true);
