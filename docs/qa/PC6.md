@@ -241,3 +241,13 @@ Komut: `python analysis/pc6/test_20_strategies.py --self-test`
 - **Tekrar Test Sonucu:**
   - **Telefon (`375×812`):** Başlangıç kutusu `scrollWidth = 360 ≤ 375`, ana simülatör `scrollWidth = 375 === 375` (**0 px taşma**), `< 44 px` dokunmatik hedef sayısı: **0** (tümü `>= 44 px`), **0 konsol hatası, 0 ağ hatası**.
   - **Projektör (`1280×720`):** `1280×720` tam sığma (yatay/dikey taşma **0 px**), harita + alt grafik/okuma + sağ kontrol paneli çakışmasız ve okunaklı, **0 konsol hatası**.
+
+### 8.4 Görev 4 · Oyunda "Sources" Sekmesi Kontrolü
+- **Tarih / Saat:** `2026-11-14 19:50 TR`
+- **Kod & Canlı Tarayıcı Kontrolü (`game/game.js` `buildParamsTableHtml()` + `game/model.js` `CONFIG.physics` + `#paramsModal`):**
+  - **NASA NISAR Land Subsidence StoryMap:** Peacock et al. (2024, Zenodo `doi:10.5281/zenodo.10818833`), Miller et al. (2020) & Jones et al. (2020) UAVSAR (`>40 inç` / `>100 cm`) vs. 2026 NISAR California Aqueduct (`-7.42 cm` LOS / `49.12 mm/km`) güncel.
+  - **NASA NISAR Applications White Papers:** `Subsidence`, `Drought & Groundwater Withdrawal`, `Sinkholes & Cavern Collapse`, `Levees & Dams`, `Soil Moisture & Water Resources` + ASF NISAR Data User Guide + NASA Earthdata Intro to SAR + NASA ARSET + JPL UAVSAR Postcards bağlantıları mevcut ve güncel.
+  - **`docs/story/game_model.md` §6 Uyumu:** `S_y = 0.10` (`SOURCED`, USGS PP 1401-D), `S_ske = 1.0e-5` & `S_skv = 3.1e-4` (`ILLUSTRATIVE`, Sneed 2001 OFR 01-35 büyüklük mertebesi notu), `b0` (`12–82 m` CVHM SUB aggregate interbeds, Corcoran Clay `<= 61 m` notu), su-yılı olasılıkları (`ILLUSTRATIVE`), canlı kalibrasyon katsayısı `k` (`0.623` Tulare / `0.621` Konya) hepsi güncel ve tutarlı.
+
+### 8.5 Görev 5 · Demo Videosu (`demo_30s.mp4`)
+- **Durum:** `CALISMA_HARITASI.md` gereği DURDURULDU — dokunulmadı (`analysis/pc6/make_demo_video.py` ve `docs/story/media/demo_30s.mp4` değiştirilmedi).
