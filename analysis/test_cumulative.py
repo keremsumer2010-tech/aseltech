@@ -38,3 +38,13 @@ def test_latlon_resample_is_north_up():
     col = g[:, g.shape[1] // 2]
     col = col[np.isfinite(col)]
     assert col[0] < col[-1]
+
+
+def test_chain_mixed_mode_accepts_beta(tmp_path):
+    files = [_mk(tmp_path, "2026-06-04", "2026-06-16", "beta-precal"),
+             _mk(tmp_path, "2026-06-16", "2026-06-28", "beta-precal"),
+             _mk(tmp_path, "2026-06-28", "2026-07-10")]
+    used, _ = chain(sorted(files), ("provisional", "beta-precal"))
+    assert [u[0] for u in used] == ["2026-06-04", "2026-06-16", "2026-06-28"]
+    used, _ = chain(sorted(files))
+    assert [u[0] for u in used] == ["2026-06-28"]

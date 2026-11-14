@@ -64,11 +64,12 @@ def block_median(arr, block, min_valid, max_std=None):
     return np.where(centre & np.isfinite(arr), full, np.nan).astype(np.float32)
 
 
-def load_pairs(site):
+def load_pairs(site, extra=()):
     """Union of PC2 (pipeline/subset) and PC3 backup (analysis/out/subset) npz files, one per pair.
     Same pair in both: prefer the file that carries the ionosphere screen (`ion`), else PC2's."""
     best = {}
-    for rank, src in enumerate((ROOT / "pipeline" / "subset" / site, ROOT / "analysis" / "out" / "subset" / site)):
+    srcs = [ROOT / "pipeline" / "subset" / s for s in (site, *extra)] +            [ROOT / "analysis" / "out" / "subset" / s for s in (site, *extra)]
+    for rank, src in enumerate(srcs):
         for f in sorted(src.glob("*.npz")):
             d = np.load(f, allow_pickle=False)
             key = (str(d["date1"]), str(d["date2"])) if "date1" in d else tuple(f.stem.split("_"))
@@ -82,13 +83,13 @@ def load_pairs(site):
     return "pipeline+analysis/out", files
 
 
-def chain(files):
+def chain(files, accept=("provisional",)):
     pairs, notes = [], []
     for f in files:
         d = np.load(f, allow_pickle=False)
         q = str(d["quality"])
         d1, d2 = (str(d["date1"]), str(d["date2"])) if "date1" in d else tuple(f.stem.split("_"))
-        if q != "provisional":
+        if q not in accept:
             notes.append(f"skipped {f.name}: quality={q}")
             continue
         pairs.append((d1, d2, f, d))
@@ -188,6 +189,9 @@ def main():
     ap.add_argument("site")
     ap.add_argument("--thr", type=float, default=0.3)
     ap.add_argument("--no-names", action="store_true")
+    ap.add_argument("--mixed", action="store_true",
+                    help="full-year run: also accept beta-precal pairs (from <site>_beta folders); outputs labelled "
+                         "'mixed' and written to data/<site>_fullyear/ + analysis/out/<site>_fullyear_* (rules K-3)")
     ap.add_argument("--data-dir", help="write meta/points/summary/disp here instead of data/<site>/ (QA runs)")
     ap.add_argument("--ref-radius", type=int, default=RADIUS, help="reference window half-size in px")
     ap.add_argument("--deramp", type=int, default=1, choices=[0, 1, 2],
@@ -195,8 +199,12 @@ def main():
     ap.add_argument("--no-ion", dest="ion", action="store_false", help="do not subtract the product ionosphere screen")
     a = ap.parse_args()
     site, bbox = a.site, BBOX[a.site]
-    src, files = load_pairs(site)
-    used, notes = chain(files)
+    QUALITY = "mixed" if a.mixed else "provisional"
+    QNOTE = DISCLAIMER + (" This series MIXES provisional products with pre-calibration BETA products (dates before "
+                          "2026-06-17); treat amplitudes before that date with extra caution." if a.mixed else "")
+    tag = f"{site}_fullyear" if a.mixed else site  # output name; never overwrite the provisional products
+    src, files = load_pairs(site, (f"{site}_beta",) if a.mixed else ())
+    used, notes = chain(files, ("provisional", "beta-precal") if a.mixed else ("provisional",))
     print(f"source {src}: {len(used)} pairs", [str(u[2].relative_to(ROOT)) for u in used], notes)
     if len(used) < 2:
         raise SystemExit("need >= 2 consecutive pairs")
@@ -303,21 +311,27 @@ def main():
     print(f"max subsidence (LOS, 1 km block median) {max_sub:.2f} cm at {lon_m:.4f},{lat_m:.4f}; days={days}; v=±{vlim}")
 
     # ---- outputs -------------------------------------------------------------------------------
-    ddir = Path(a.data_dir) if a.data_dir else ROOT / "data" / site
+    ddir = Path(a.data_dir) if a.data_dir else ROOT / "data" / tag
     (ddir / "disp").mkdir(parents=True, exist_ok=True)
     for dt, g in zip(dates, cum):
         save_png(to_latlon_grid(g, x, y, epsg, bbox), ddir / "disp" / f"{dt}.png", vmin, vmax)
 
     out = ROOT / "analysis" / "out"
     # data contract 4.1 fields (PC6 reads cum_cm); extras kept small (K-12: every repo file <= 20 MB)
-    np.savez_compressed(out / f"{site}_cum.npz", cum_cm=final.astype(np.float32), x=x, y=y, epsg=np.int32(epsg),
-                        dates=np.array(dates), quality="provisional",
+    np.savez_compressed(out / f"{tag}_cum.npz", cum_cm=final.astype(np.float32), x=x, y=y, epsg=np.int32(epsg),
+                        dates=np.array(dates), quality=QUALITY,
                         incidence=(inc.astype(np.float16) if inc is not None else np.array([])),
                         reference_rc=np.array([r, c]))
     # per-date cumulative stack for GNSS comparison (Q05), float16 cm (step <= 0.008 cm below 16 cm)
-    np.savez_compressed(out / f"{site}_cum_stack.npz", cum_stack_cm=np.stack(cum).astype(np.float16),
+    np.savez_compressed(out / f"{tag}_cum_stack.npz", cum_stack_cm=np.stack(cum).astype(np.float16),
                         dates=np.array(dates), x=x, y=y, epsg=np.int32(epsg), quality="provisional")
-    for fn in (f"{site}_cum.npz", f"{site}_cum_stack.npz"):
+    names = [f"{tag}_cum.npz", f"{tag}_cum_stack.npz"]
+    if (out / f"{tag}_cum_stack.npz").stat().st_size > 20e6:
+        # long chains: keep full resolution locally, commit a 160 m (every 2nd pixel) copy instead (K-12)
+        np.savez_compressed(out / f"{tag}_cum_stack_160m.npz", cum_stack_cm=np.stack(cum)[:, ::2, ::2].astype(np.float16),
+                            dates=np.array(dates), x=x[::2], y=y[::2], epsg=np.int32(epsg), quality=QUALITY)
+        names.append(f"{tag}_cum_stack_160m.npz")
+    for fn in names:
         mb = (out / fn).stat().st_size / 1e6
         print(f"{fn}: {mb:.1f} MB")
         if mb > 20:
@@ -353,8 +367,8 @@ def main():
                   + "Troposphere and solid-earth-tide layers were NOT applied; residual atmospheric noise of a few cm "
                   "per pair is expected. " + " ".join(notes)),
         "reference_point": {"lon": round(lon_r, 5), "lat": round(lat_r, 5)},
-        "quality": "provisional",
-        "quality_note": DISCLAIMER,
+        "quality": QUALITY,
+        "quality_note": QNOTE,
     }
     (ddir / "meta.json").write_text(json.dumps(meta, indent=2), encoding="utf-8")
 
@@ -379,8 +393,8 @@ def main():
         "period": [dates[0], dates[-1]],
         "rate_cm_per_yr_estimate": round(rate, 1),
         "reference_point": {"lon": round(lon_r, 5), "lat": round(lat_r, 5)},
-        "quality": "provisional",
-        "quality_note": DISCLAIMER,
+        "quality": QUALITY,
+        "quality_note": QNOTE,
         "component": "LOS",
         "max_subsidence_location": {"lon": round(lon_m, 5), "lat": round(lat_m, 5)},
         "max_subsidence_vertical_cm_estimate": round(max_sub / np.cos(np.deg2rad(inc_at)), 1) if inc_at else None,
@@ -392,7 +406,7 @@ def main():
                         "Vertical value assumes purely vertical motion (LOS / cos(incidence))."),
     }
     (ddir / "summary.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
-    (out / f"{site}_pair_stats.json").write_text(json.dumps({"pairs": stats, "notes": notes,
+    (out / f"{tag}_pair_stats.json").write_text(json.dumps({"pairs": stats, "notes": notes,
                                                               "reference_mean_coh": mcoh,
                                                               "valid_frac_full_chain": float(valid.mean()),
                                                               "outlier_px_removed": n_out}, indent=2), encoding="utf-8")
