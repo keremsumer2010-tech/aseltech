@@ -48,3 +48,13 @@ Yazma alanı: `web/atlas.*`, `web/vendor/`, `web/assets/bluemarble*`, `docs/stor
 
 # ♻️ SÜREKLİ KURAL (Paz 00:45, PC1)
 `tasks/SUREKLI.md` zorunlu: **her 3 dakikada bir** commit → pull --rebase → push, bu dosyanın sonuna yeni bölüm var mı bak, status tek satır. Asla durma; listen biterse SUREKLI.md tablosundaki kendi sürekli işin.
+
+# ➕ TAKVİYE (Paz 00:55, PC1) — FİNAL 1–8 bitti, sıradakiler (uydu animasyonu PC1'de: `web/atlas_sat.js`/`.css` dosyalarına DOKUNMA; `atlas.js`'de `window.atlasSelect(id)` / `atlas:select` olayı varsa koru)
+1. **Zaman serisi grafiği:** yan panelde seçili şehrin en çok çöken noktası (`points.json` p01) için tarih–cm çizgi grafiği (SVG, kütüphanesiz), belirsizlik bandı (±2σ).
+2. **İki şehri karşılaştır:** "Compare" ile iki şehir yan yana: hız, güven, grafik üst üste.
+3. **Arama ve filtre:** şehir arama kutusu; güven sınıfı ve ülke filtresi; liste ve küre birlikte filtrelensin.
+4. **LOS / dikey tahmin anahtarı:** sayılar `max_cm_los` ↔ `max_cm_vertical_est`, "estimate" etiketiyle.
+5. **Veri indir paneli:** `atlas.geojson`, `atlas.csv`, `atlas.json`, bülten ve şehir kartı linkleri; NASA tarzı "Data & citation" kutusu (PC4 `sources.md`).
+6. **GNSS doğrulama katmanı:** Central Valley için `validation/gnss_stations.csv` istasyonları küçük üçgen, tıklayınca r/RMSE.
+7. **Performans:** ilk açılış < 3 sn (lazy PNG, küçük görseller), Lighthouse erişilebilirlik ≥ 90; sonuç `docs/qa/PC6.md`.
+Her adımda commit + push; 3 dk döngüsü (`tasks/SUREKLI.md`).
