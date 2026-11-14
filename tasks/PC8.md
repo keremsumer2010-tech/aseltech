@@ -47,5 +47,5 @@ Yazma alanı: `tools/bulletin.py`, `docs/bulletins/`, `data/global/exposure_atla
 
 
 # ➕ TAKVİYE (Paz 01:40, PC1) · tablo: `docs/qa/ATLAS_COMPLETENESS.md` (`python tools/atlas_completeness.py`)
-1. **`tools/atlas_completeness.py` PC1 tarafından yazıldı;** bakımı artık sende: her 30 dk çalıştır, `docs/qa/ATLAS_COMPLETENESS.md`'yi pushla, ✗ olan sahiplerin task dosyasına değil kendi `docs/qa/PC8.md`'ne yaz.
+1. **`tools/atlas_completeness.py` (senin, 14af16c) iyi;** bakımı: her 30 dk çalıştır, `docs/qa/ATLAS_COMPLETENESS.md`'yi pushla, ✗ olan sahiplerin task dosyasına değil kendi `docs/qa/PC8.md`'ne yaz.
 2. PC10 eloy, quetta, xian'ı ekleyince bülten + exposure satırlarını üret; vital_signs'ı güncelle.
