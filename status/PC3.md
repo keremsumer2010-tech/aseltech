@@ -1,8 +1,8 @@
 # PC3 durum
 
-- Görev: 1 BİTTİ (insar.py + Karapınar kontrol) → Görev 2 Central Valley (PC2 npz bekleniyor)
+- Görev: 2 Central Valley — kod hazır (13 test geçti), path 34 frame 20 provisional zincir yedek olarak iniyor (PC2 npz yok)
 - Durum: çalışıyor
-- Güncelleme: 2026-11-14 13:22 TR
+- Güncelleme: 2026-11-14 13:40 TR
 
 ## Bitenler
 ### `analysis/insar.py` + `analysis/test_insar.py`
