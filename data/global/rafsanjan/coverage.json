@@ -1,0 +1,22 @@
+{
+  "site": "rafsanjan",
+  "bbox": [
+    55.74,
+    30.15,
+    56.24,
+    30.65
+  ],
+  "quality": "provisional",
+  "coverage": "ok",
+  "granules": 9,
+  "chain_pairs": 9,
+  "path": 128,
+  "frame": 17,
+  "period": [
+    "2026-06-23",
+    "2026-10-21"
+  ],
+  "gaps": [],
+  "total_raw_mb": 20623.8,
+  "error": null
+}

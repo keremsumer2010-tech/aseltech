@@ -105,4 +105,5 @@
   - Delta (`--dry-run` `1.20s`, `--resume` uçtan uca `6.9s`, `max_subsidence_cm=-1.3`) kanıtı `docs/story/engine.md`'ye yazıldı.
 - **Küresel Atlas (`docs/ATLAS_PLANI.md` — PC2 A Önceliği):**
   - **1/5 `isfahan`** (Path 56 Frame 18, `2026-06-18 → 2026-10-16`, 9/9 `provisional` çift): `data/global/isfahan/` hazır — `max_subsidence_cm=-2.5`, `p2_cm=-2.9`, `rate_cm_per_100d=-2.08`, `valid_fraction=0.325`, `confidence=medium`.
-  - Sıradaki: `rafsanjan` → `mashhad` → `quetta` → `delhi`.
+  - **2/5 `rafsanjan`** (Path 128 Frame 17, `2026-06-23 → 2026-10-21`, 9/9 `provisional` çift, `--ref-lonlat 56.23647,30.64582`): `data/global/rafsanjan/` hazır — `max_subsidence_cm=-5.8`, `p2_cm=-4.3`, `rate_cm_per_100d=-4.83`, `valid_fraction=0.847`, `confidence=medium`.
+  - Sıradaki: `mashhad` → `quetta` → `delhi`.
