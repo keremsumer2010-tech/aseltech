@@ -543,3 +543,9 @@ The latest PC1 handoff assigns Beijing’s full-box rerun to PC7. An elevated NI
 The existing `pipeline/subset/global_beijing/` stack is not a full-box input: the PC11 QA record gives common coverage `[116.2226, 39.7297, 116.8735, 40.1697]`, while the requested target box is `[116.35, 39.70, 116.85, 40.20]`. Fresh cuts are therefore required for the standardized box. `run_atlas_city.py` gained `--subset-dir` so the new cuts stay in scratch rather than PC2’s shared subset path. The production command was launched with QC enabled by the cumulative engine defaults; the raw-data transfer/result is still pending, so there is no “ready” claim yet.
 
 Pre-rerun `python tools/validate_atlas.py`: **26 atlas regions / 26 city folders, 262 findings (238 errors, 24 warnings)**. Most findings concern other owners’ atlas fields and city outputs; no shared atlas file was edited.
+
+### Existing-stack July 11 QC diagnostic (not a standardized result)
+
+The current `pipeline/nisarpulse.qc.qc_stack` was exercised through `analysis/cumulative.py` in a temporary work root on the existing 9-pair Beijing cuts. The run kept all 9 pairs and reported **0 corrected pairs, 0 dropped dates, 0.0% affected pixels**; its in-basin automatic reference produced `valid_fraction=0.711` and a −2.2 cm old-stack headline, so those are diagnostic only and must not replace the handoff result. The supplied NW foothill anchor had no all-pair common-valid 7×7 window within 3 km in those old cuts.
+
+As a separate date-level check of the stored 12-point series, only **1 of 12** points had opposite July-adjacent steps both above 5 cm (`p01`: −8.26 cm, then +7.00 cm); the other 11 points did not meet that criterion. This is below the QC engine’s >30% scene threshold and does not support dropping 2026-07-11 scene-wide. Full-box fresh cuts remain necessary before final reference/QC judgment.
