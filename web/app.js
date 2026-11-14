@@ -30,7 +30,7 @@ async function load(){
     setK('cv.period', `${fmtShort(D.cvSum.period[0])} – ${fmtDate(D.cvSum.period[1])}`); }
   if (D.cvArea?.area_km2_lt_5cm) setK('cv.area5', Math.round(D.cvArea.area_km2_lt_5cm.at(-1)));
   if (D.assets?.summary){ const s = D.assets.summary; setK('risk.high', s.high_risk_count); setK('risk.med', s.medium_risk_count); setK('risk.low', s.low_risk_count); setK('risk.evaluated', s.evaluated_segments); }
-  if (D.val){ setK('gnss.good', D.val.filter(s => s.corr >= 0.4).length); setK('gnss.n', D.val.length);
+  if (D.val){ setK('gnss.good', D.val.filter(s => s.corr >= 0.6).length); setK('gnss.n', D.val.length);
     const r = D.val.map(s => s.rmse_cm).sort((a, b) => a - b), n = r.length; setK('gnss.mederr', (n % 2 ? r[(n - 1) / 2] : (r[n / 2 - 1] + r[n / 2]) / 2).toFixed(1)); }
   if (D.ukClay?.status === 'below_detection'){ setK('uk.clayThr', D.ukClay.detection_threshold_cm.toFixed(1)); const e = document.getElementById('ukClay'); if (e) e.hidden = false; }
   if (D.kpSum){ setK('kp.max', minus(D.kpSum.max_subsidence_cm)); setK('kp.pairs', D.kpSum.n_pairs); setK('kp.period', `${fmtShort(D.kpSum.period[0])} – ${fmtDate(D.kpSum.period[1])}`); }
@@ -77,7 +77,7 @@ const VIEWS = {
   intro: {center: [-45, 42], zoom: 1.4, layers: ['sites']},
   uk:    {bbox: [-0.3, 52.4, 0.4, 52.9], layers: ['uk-radar'], tag: 'NISAR radar image, 20 Oct 2026 · PREVIEW'},
   cv:    {bbox: CVB, layers: ['cv-disp', 'cv-pts'], tag: 'NISAR ground motion · PROVISIONAL', legend: true},
-  gnss:  {bbox: CVB, layers: ['cv-disp', 'gnss'], dim: true, tag: 'GPS stations (green: r ≥ 0.4)', legend: true},
+  gnss:  {bbox: CVB, layers: ['cv-disp', 'gnss'], dim: true, tag: 'GPS stations (green: r ≥ 0.6)', legend: true},
   risk:  {bbox: CVB, layers: ['cv-disp', 'risk'], dim: true, tag: 'Infrastructure tilt risk', legend: true},
   kp:    {bbox: [33.3, 37.6, 33.8, 37.9], layers: ['kp-disp', 'sinks'], tag: 'NISAR ground motion · PROVISIONAL', legend: true},
 };
@@ -104,7 +104,7 @@ function storyMap(){
     }
     if (D.val){
       map.addSource('gnss', {type: 'geojson', data: fc(D.val.map(s => pt({st: s.station, r: s.corr}, [s.lon, s.lat])))});
-      map.addLayer({id: 'gnss', type: 'circle', source: 'gnss', paint: {'circle-radius': 8, 'circle-color': ['case', ['>=', ['get', 'r'], 0.4], '#3fb950', '#6b7a96'], 'circle-stroke-color': '#fff', 'circle-stroke-width': 2}});
+      map.addLayer({id: 'gnss', type: 'circle', source: 'gnss', paint: {'circle-radius': 8, 'circle-color': ['case', ['>=', ['get', 'r'], 0.6], '#3fb950', '#6b7a96'], 'circle-stroke-color': '#fff', 'circle-stroke-width': 2}});
       map.on('click', 'gnss', e => pickStation(e.features[0].properties.st));
     }
     if (D.assets){
@@ -188,7 +188,7 @@ function pickPoint(id){
 function gnssTable(){
   if (!D.val) return;
   const sorted = D.val.slice().sort((a, b) => b.corr - a.corr), tb = document.querySelector('#gnssTable tbody');
-  tb.innerHTML = sorted.map(s => `<tr data-st="${s.station}"><td>${s.station}</td><td class="${s.corr >= 0.4 ? 'good' : 'weak'}">${s.corr.toFixed(2)}</td><td>${s.rmse_cm.toFixed(1)}</td><td>${minus(s.gnss.at(-1))}</td><td>${minus(s.insar.at(-1))}</td></tr>`).join('');
+  tb.innerHTML = sorted.map(s => `<tr data-st="${s.station}"><td>${s.station}</td><td class="${s.corr >= 0.6 ? 'good' : 'weak'}">${s.corr.toFixed(2)}</td><td>${s.rmse_cm.toFixed(1)}</td><td>${minus(s.gnss.at(-1))}</td><td>${minus(s.insar.at(-1))}</td></tr>`).join('');
   tb.querySelectorAll('tr').forEach(tr => tr.addEventListener('click', () => pickStation(tr.dataset.st)));
   pickStation(sorted[0].station);
 }

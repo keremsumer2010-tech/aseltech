@@ -306,3 +306,8 @@ Komut: `python analysis/pc6/test_20_strategies.py --self-test`
 - `git pull`: `a9a28a6` çekildi (`CALISMA_HARITASI.md` / `tasks/PC6.md` / `ATLAS_PLANI.md` PC6 satırı değişmedi).
 - **`python -m pytest -q`:** **74 passed**, 1 uyarı (`22.99 s`).
 - **`python pipeline/pc7/validate_json.py`:** **70** JSON dosyası, `0` parse hatası, `0` sonlu olmayan sayı (`NaN`/`Infinity`), `0` eksik `quality` alanı.
+
+---
+
+## 17. BUGFIX (`tasks/QUEUE.md` B16–B29)
+- **B16 (`S-19 Kritik`):** `data/central_valley/validation.json` üzerinden 5 sabit kenar istasyonunda (`CAD1, CAFP, P564, P565, P566`) NISAR − GPS sapması `+1.26` ile `+2.09 cm` (ort. `+1.73 cm`) ölçüldü. `web/index.html` Bölüm 4 metnine bu sistematik sapma cümlesi eklendi ve `#gnssTable` başlığı `Diff.` → `RMSE (cm)` yapıldı; `web/app.js` içinde yeşil `r` eşiği `0.4` → `0.6` (`gnss.good`, `gnss` görünüm/katman, `gnssTable`) güncellendi (`P566` `0.42` artık gri `weak`, `5` çöken istasyon `>= 0.66` yeşil `good`). `http://127.0.0.1:8765/web/index.html` tarayıcı testinde 0 konsol hatası ile doğrulandı.
