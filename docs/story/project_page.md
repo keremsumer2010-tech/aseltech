@@ -18,8 +18,8 @@ Over-pumped aquifers, draining lowland peats, shrinking clays, and dissolving ka
 
 ## Link to Final Project
 
-`{PUBLIC_WEB_APP_AND_REPO_URL}`  
-*(Verify incognito/unauthenticated public access before submission.)*
+- **Source Code & Data Repository:** https://github.com/keremsumer2010-tech/aseltech  
+- **Live Interactive Web App / 3D Viewer:** `{PUBLIC_GITHUB_PAGES_URL}` *(verify incognito/unauthenticated public access before submission)*
 
 ---
 
@@ -46,21 +46,22 @@ Our web experience guides decision-makers and citizens through four synchronized
 3. **Infrastructure Under Quiet Strain (Aqueducts, Levees & Shrink–Swell):** Contextualizes millimeter-to-centimeter radar deformation gradients against aqueduct freeboard limits, Delta levee stability, and urban shallow-foundation risk.
 4. **Mapping Active Sinkhole Clusters (Karapınar, Konya):** Overlays **29 field-verified sinkhole coordinates** (from peer-reviewed Turkish geographical surveys strictly within the regional radar swath) onto NISAR InSAR displacement tiles, with clickable depth, diameter, formation year, and source links.
 5. **Interactive Simulator Mini-Game:** Translates physical aquifer drawdown, peat oxidation, and infrastructure strain into an accessible resource-management game grounded in measured Central Valley subsidence metrics.
+6. **3D "Breathing Earth" Surface Explorer (`web3d/`):** Renders time-interpolated Three.js 3D displacement surfaces with interactive vertical exaggeration (`10,000×–150,000×`), epoch animation across the summer 2026 San Joaquin Valley stack, and 3D depth columns (`0.5–80 m`) for the 29 mapped Karapınar sinkholes.
 
 ### Quantitative Results & Calibration Transparency
 *(All quantitative InSAR numbers come strictly from NISAR **Provisional** Level-2 `GUNW` collections acquired on or after **2026-06-17**, while same-day UK Fens GCOV browse imagery is strictly labeled **`preview`**).*
 
 | Site / Metric | Value | Period / Maturity | Source |
 |---|---|---|---|
-| **Central Valley Cumulative Peak LOS** | `{CV_MAX_CM}` cm | `{CV_PERIOD}` (`provisional`) | `data/central_valley/summary.json` |
-| **Central Valley Estimated Rate** | `{CV_RATE_CM_YR}` cm/yr | `{CV_PERIOD}` (`provisional`) | `data/central_valley/summary.json` |
-| **Karapınar 12-Day Checkpoint (`λ = 0.24393 m`)** | p2 `−2.81`, median `−0.67`, p98 `+2.43` cm LOS (`44.3%` valid pixels at `coh ≥ 0.3`) | `2026-09-18` to `2026-09-30` (`provisional`, `P05023`, before ionospheric screen removal) | `status/PC3.md` / NISAR GUNW |
+| **Central Valley 4-Pair Gap-Free Stack (`web3d/surfaces.json`)** | p2 `−4.14`, median `−0.26`, p98 `+3.56` cm LOS; 400 m median peak `−15.4 cm` LOS (`−19.7 cm` vert. est. at `38.6°` inc., `4 km SE of Woodlake`, `71.0%` valid) | `2026-06-28` to `2026-08-27` (`60` days, `4` pairs, `provisional`, `P05023`, iono + plane deramp) | `web3d/surfaces.json` / NISAR GUNW |
+| **Central Valley Full-Chain Summary (`summary.json`)** | `{CV_MAX_CM}` cm / `{CV_RATE_CM_YR}` cm/yr *(awaits `2026-08-27_2026-09-08` pair to close gap)* | `{CV_PERIOD}` (`provisional`) | `data/central_valley/summary.json` |
+| **Karapınar 12-Day Checkpoint (`λ = 0.24393 m`)** | With iono screen + deramp: p2 `−2.12`, median `−0.78`, p98 `+0.79` cm LOS (`41.3%` valid); unscreened check: p2 `−2.81`, median `−0.67`, p98 `+2.43` cm | `2026-09-18` to `2026-09-30` (`provisional`, `P05023`) | `web3d/surfaces.json`, `status/PC3.md` |
 | **UK Fens All-Weather Optical vs. Radar Pair** | 98%+ cloud optical vs. 100% valid radar preview (`700×500`) | `2026-10-20` (`preview`, `P05023`) | `data/uk/meta.json` |
 | **Verified Karapınar Sinkhole Inventory** | 29 mapped inside `[33.3, 37.6, 33.8, 37.9]` (from 104 regional inventory) | Field surveys (`1972–2014`) | `data/karapinar/sinkholes.geojson` |
 
 ### How We Built It
-- **Data Acquisition & Processing (Python):** Queried ASF Search API & NASA Earthdata (`earthaccess` / `.netrc`) for NISAR L2 GUNW (`unwrappedPhase`, `coherenceMagnitude`, `connectedComponents`, per-granule `centerFrequency`) and GCOV browse imagery; converted phase to LOS displacement via $\Delta r_{\text{LOS}} = -\frac{\lambda}{4\pi}\Delta\phi$ with `RdBu` symmetric color ramps and `connectedComponents != 0` masking (`analysis/insar.py`, `cumulative.py`).
-- **Front-End Visualization:** Lightweight static HTML/CSS/JavaScript with **MapLibre GL**, synchronized optical-vs-radar split slider, GeoJSON sinkhole popups, and responsive educational game canvas.
+- **Data Acquisition & Processing (Python):** Queried ASF Search API & NASA Earthdata (`earthaccess` / `.netrc`) for NISAR L2 GUNW (`unwrappedPhase`, `coherenceMagnitude`, `connectedComponents`, ionosphere screen, per-granule `centerFrequency`) and GCOV browse imagery; converted phase to LOS displacement via $\Delta r_{\text{LOS}} = -\frac{\lambda}{4\pi}\Delta\phi$ with `RdBu` symmetric color ramps and `connectedComponents != 0` masking (`analysis/insar.py`, `cumulative.py`).
+- **Front-End & 3D Visualization:** Lightweight static HTML/CSS/JavaScript with **MapLibre GL**, synchronized optical-vs-radar split slider, **Three.js (`0.160.0`)** 3D surface explorer (`web3d/`), GeoJSON sinkhole popups, and responsive educational game canvas.
 - **Verification & Data Contracts:** Cross-team JSON/GeoJSON/PNG contracts (`rules/VERI_SOZLESMESI.md`), automated pytest checks on phase-conversion physics, visual shoreline registration verification, and programmatic HTTP-200 link verification on all cited literature and API endpoints.
 
 ---

@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Breathing Earth — 3D NISAR InSAR Viewer</title>
+  <link rel="stylesheet" href="style.css" />
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <a href="../web/" class="back-link">← Main Story</a>
+      <div>
+        <h1>The Breathing Earth <span class="badge" id="qualityBadge">quality: provisional · CRID P05023</span></h1>
+        <p class="subtitle" id="regionSubtitle">Loading NISAR L2 GUNW 3D displacement surfaces...</p>
+      </div>
+    </div>
+    <div class="region-tabs" role="tablist" aria-label="Region selector">
+      <button class="tab active" data-site="central_valley" role="tab" aria-selected="true">California · San Joaquin Valley</button>
+      <button class="tab" data-site="karapinar" role="tab" aria-selected="false">Türkiye · Karapınar Obruk Plateau</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="viewport-wrap">
+      <div id="canvasHost" aria-label="Interactive 3D NISAR displacement terrain"></div>
+
+      <div class="hud-top-left">
+        <div class="stat-pill">
+          <span class="lbl">Window</span>
+          <strong id="statDates">—</strong>
+        </div>
+        <div class="stat-pill">
+          <span class="lbl">Peak Subsidence (400 m median)</span>
+          <strong id="statPeak">—</strong>
+        </div>
+        <div class="stat-pill">
+          <span class="lbl">Valid p2 / p50 / p98</span>
+          <strong id="statPercentiles">—</strong>
+        </div>
+      </div>
+
+      <div class="hud-legend">
+        <div class="legend-title">Cumulative LOS Displacement (cm) · Negative = Subsidence</div>
+        <div class="ramp-bar"></div>
+        <div class="ramp-labels">
+          <span id="minLbl">-12 cm</span>
+          <span>0 cm</span>
+          <span id="maxLbl">+12 cm</span>
+        </div>
+      </div>
+
+      <div class="hud-help">Drag to orbit · Scroll to zoom · Right-drag to pan · Click sinkhole or terrain to inspect</div>
+    </section>
+
+    <aside class="sidebar">
+      <div class="panel">
+        <h2>Time &amp; Breathing Controls</h2>
+        <div class="control-group">
+          <div class="row-between">
+            <label for="epochSlider">Acquisition Epoch</label>
+            <span class="mono" id="epochLabel">—</span>
+          </div>
+          <input type="range" id="epochSlider" min="0" max="4" step="0.02" value="4" />
+          <div class="date-ticks" id="dateTicks"></div>
+        </div>
+
+        <div class="btn-row">
+          <button id="playBtn" class="primary">Play Breathing Loop</button>
+          <button id="resetCamBtn">Reset Camera</button>
+        </div>
+
+        <div class="control-group">
+          <div class="row-between">
+            <label for="exagSlider">Vertical Exaggeration</label>
+            <span class="mono" id="exagLabel">50,000×</span>
+          </div>
+          <input type="range" id="exagSlider" min="10000" max="150000" step="5000" value="50000" />
+          <p class="hint">Centimeter-scale radar displacements are scaled vertically relative to swath width for 3D legibility.</p>
+        </div>
+
+        <div class="toggle-row">
+          <label><input type="checkbox" id="wireToggle" /> Mesh wireframe</label>
+          <label id="sinkholeToggleWrap"><input type="checkbox" id="sinkholeToggle" checked /> 3D obruk depth columns</label>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>Selected Point / Feature</h2>
+        <div id="inspectorBox" class="inspector-empty">
+          Hover or click anywhere on the 3D radar surface (or click a red sinkhole column in Karapınar mode) to inspect coordinates and measurements.
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>Scene Provenance</h2>
+        <dl class="kv" id="metaList">
+          <dt>Collection</dt><dd>NISAR L2 GUNW (Provisional)</dd>
+          <dt>Reference</dt><dd id="metaRef">—</dd>
+          <dt>Coverage</dt><dd id="metaCov">—</dd>
+          <dt>Notes</dt><dd id="metaNotes">—</dd>
+        </dl>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="footer">
+    <p id="disclaimerText">NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.</p>
+    <p class="footer-links">
+      <a href="../docs/story/calibration_note.md">Calibration Note</a> ·
+      <a href="../docs/story/sources.md">Verified Sources</a> ·
+      <a href="https://nisar-docs.asf.alaska.edu/gunw" target="_blank" rel="noopener">ASF GUNW Spec</a>
+    </p>
+  </footer>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
