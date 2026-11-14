@@ -61,7 +61,7 @@ function clock(){
 }
 async function txt(path){const r=await fetch(RAW+path+'?t='+Date.now(),{cache:'no-store'}); if(!r.ok) throw new Error(path+' '+r.status); return r.text();}
 async function loadCommits(){
-  const r=await fetch(`https://api.github.com/repos/${REPO}/commits?per_page=40`); if(!r.ok) throw new Error('commits '+r.status);
+  const r=await fetch(`https://api.github.com/repos/${REPO}/commits?per_page=100`); if(!r.ok) throw new Error('commits '+r.status);
   commits=(await r.json()).map(c=>({sha:c.sha.slice(0,7),msg:c.commit.message.split('\n')[0],who:c.author?c.author.login:c.commit.author.name,date:new Date(c.commit.author.date)}));
   const today=new Date().toDateString(); document.getElementById('ncommit').textContent=commits.filter(c=>c.date.toDateString()===today).length;
   const tb=document.getElementById('commits'); tb.innerHTML='<tr><th>Saat</th><th>Kim</th><th>Mesaj</th></tr>'+commits.slice(0,15).map(c=>`<tr><td>${trTime(c.date)}</td><td>${c.who}</td><td>${esc(c.msg)}</td></tr>`).join('');
