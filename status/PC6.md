@@ -1,7 +1,7 @@
 # PC6 durum
 
-- Görev: 15:25 SÜREKLİ PAKET (`tasks/PC6.md`) — Adım 1/5 TAMAMLANDI (Oyun Cilası 7/7 + `docs/game_v3.png`). Adım 2/5 (30 saniyelik demo videosu `demo_30s.mp4`) başlıyor.
-- Durum: `REVIEW_1500.md` oyun cilası 7/7 madde ayrı ayrı commit edilerek tamamlandı (`game/test_model.html` 5/5 PASS; masaüstü `1280x850` & mobil `390x844` `>=44px` hedefler doğrulandı; `docs/game_v3.png` üretildi). Şimdi `analysis/pc6/make_demo_video.py` ile `demo_30s.mp4` üretiliyor. Önceki 14:45 paketi (5/5) tamamlanmıştı.
+- Görev: 15:25 SÜREKLİ PAKET (`tasks/PC6.md`) — Adım 1/5 & 2/5 TAMAMLANDI (`demo_30s.mp4`: 29.62 s, 1080p, 3.34 MB). Adım 3/5 (Oyuna ikinci vadi olarak Konya Kapalı Havzası ekleme) başlıyor.
+- Durum: `REVIEW_1500.md` oyun cilası (7/7), `docs/game_v3.png` ve 30 sn gerçek verili demo videosu (`analysis/pc6/make_demo_video.py` -> `docs/story/media/demo_30s.mp4`, altyazılı, logosuz, `29.62 s`) tamamlandı. Şimdi `game/` içine Konya Kapalı Havzası (`data/karapinar/`) ve obruk riski göstergesi ekleniyor. Önceki 14:45 paketi (5/5) tamamlanmıştı.
   - Adım 1 (`analysis/pc6/make_animation.py`): `docs/story/media/cv_subsidence.{mp4,gif}` (`3.07 MB` / `4.23 MB`, 8 epok, 1080p) ve `docs/story/media/kp_subsidence.{mp4,gif}` (`0.88 MB` / `1.36 MB`, 9 epok, 1080p) pushlandı (`7369686`).
   - Adım 2 (`analysis/pc6/make_validation_plots.py`): `docs/story/validation_report.md`, `validation_scatter.png` (`r=0.924`, `RMSE=1.37 cm`) ve 10 `gnss_<station>.png` grafiği pushlandı (`823cb74`).
   - Adım 3 (`analysis/pc6/make_risk_profiles.py`): `docs/story/risk_dossier.md` ve `risk_1..10.png` profilleri (California Aqueduct #4, Tulare ID Canal #1, Alta East Branch Canal #5, Friant-Kern Canal #7/#9 vurgulu + `game_model.md` kaynaklı 2 cümlelik özet) pushlandı (`5248279`).
