@@ -12,6 +12,8 @@ ROOT = Path(__file__).resolve().parent.parent.parent
 DATA_DIR = ROOT / "data" / "central_valley_fullyear"
 STORY_MD = ROOT / "docs" / "story" / "fullyear.md"
 PLOT_PNG = ROOT / "docs" / "story" / "media" / "pc9_fullyear_point.png"
+PLOT_12D_PNG = ROOT / "docs" / "story" / "media" / "pc9_fullyear_12day_steps.png"
+PLOT_MONTHLY_PNG = ROOT / "docs" / "story" / "media" / "pc9_fullyear_monthly_steps.png"
 
 
 def test_mixed_quality_labels_and_provenance():
@@ -75,3 +77,42 @@ def test_story_and_figure_exist_and_no_exclamations():
     assert "provisional" in text
     assert "-20.3 cm" in text
     assert "-16.8" in text or "-16.77" in text
+
+
+def test_timestep_charts_and_a6_section():
+    import sys
+
+    pc9_dir = str(Path(__file__).resolve().parent)
+    if pc9_dir not in sys.path:
+        sys.path.insert(0, pc9_dir)
+    from plot_fullyear_timesteps import compute_monthly_bins, compute_pair_steps
+
+    for img_path in (PLOT_12D_PNG, PLOT_MONTHLY_PNG):
+        assert img_path.exists()
+        assert 50_000 < img_path.stat().st_size <= 20_000_000
+        with Image.open(img_path) as im:
+            assert im.format == "PNG"
+            assert im.mode == "RGBA"
+            im.load()
+
+    text = STORY_MD.read_text(encoding="utf-8")
+    assert "pc9_fullyear_12day_steps.png" in text
+    assert "pc9_fullyear_monthly_steps.png" in text
+    assert "patterns and rhythms at different time steps" in text.lower()
+
+    points = {p["id"]: p for p in json.loads((DATA_DIR / "points.json").read_text(encoding="utf-8"))}
+    for pid in ("p01", "p06", "p11"):
+        pt = points[pid]
+        steps = compute_pair_steps(pt)
+        assert len(steps) == 25
+        assert abs(sum(s["dv_cm"] for s in steps) - pt["disp_cm"][-1]) < 1e-9
+
+        bins = compute_monthly_bins(pt)
+        assert len(bins) == 11
+        assert bins[0]["ym"] == "2025-12"
+        assert bins[-1]["ym"] == "2026-10"
+        assert abs(sum(b["dv_cm"] for b in bins) - pt["disp_cm"][-1]) < 1e-9
+
+    p01_bins = {b["ym"]: b for b in compute_monthly_bins(points["p01"])}
+    assert round(p01_bins["2026-03"]["dv_cm"], 2) == 2.63
+    assert round(p01_bins["2026-04"]["dv_cm"], 2) == -9.51

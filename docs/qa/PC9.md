@@ -27,7 +27,8 @@
 
 - `data/central_valley_fullyear/disp/2026-10-14.png`, `decomp_permanent.png` ve `decomp_seasonal.png` görsel olarak açılıp incelendi: Tulare Gölü yatağı koherens maskesiyle saydam, Corcoran/Earlimart/Tulare/Huron çanakları tutarlı kırmızı çökme ve belirgin mevsimsel genlik (`magma`), Woodlake referans bölgesi sıfır civarında.
 - `docs/story/media/pc9_fullyear_point.png` görsel olarak açılıp incelendi: `beta-precal` dönemi kesikli turuncu çizgi ve sarı arka plan etiketiyle, `provisional` dönemi düz koyu kırmızı çizgiyle net ayrıldı; etiketlerde çakışma veya kesilme yok; birim/tarih/kredi ve kalibrasyon bildirimi mevcut.
-- `docs/story/fullyear.md`: `docs/REVIEW_1500.md` kurallarına göre kontrol edildi (sıfır ünlem işareti, sıfır emoji, yasaklı AI kelimesi yok, her sayı birimli ve tarihli, `estimate`/`LOS` etiketli).
+- `docs/story/media/pc9_fullyear_12day_steps.png` (`370.1 KB`) ve `docs/story/media/pc9_fullyear_monthly_steps.png` (`343.1 KB`) görsel olarak açılıp incelendi: eksen üst boşluğu ayarlandıktan (`ax1.set_ylim(-6.1, 6.6)` ve `(-11.4, 7.3)`) sonra Mart `+4.09 cm` çubuğu ve başlık bandı çakışmasız, 12 günlük ve aylık adımlarda `beta-precal` / `provisional` ayrımı ve birim/tarih/kredi açık.
+- `docs/story/fullyear.md` (`15,373` karakter), `docs/story/presentation_cues.md` ve `docs/story/rehearsal_checklist.md`: `docs/REVIEW_1500.md` kurallarına göre kontrol edildi (düz yazı bölümünde sıfır `!`, yasaklı AI kelimesi `0`, her sayı birimli ve tarihli, tam yıl için `includes pre-calibration data` / `beta-precal` + `provisional` etiketli, A6 zaman adımı tabloları ve Karapınar hazırlık notu eklendi).
 
 ---
 
@@ -35,7 +36,7 @@
 
 Komut: `python -m pytest analysis/pc9 analysis/decomp analysis/test_insar.py analysis/test_cumulative.py -v`
 
-- Sonuç: **`40 passed, 1 warning in 8.56s`** (`analysis/pc9` 3/3, `analysis/decomp` 18/18, `analysis/test_insar.py` 15/15, `analysis/test_cumulative.py` 4/4).
+- Sonuç: **`41 passed, 1 warning in 23.31s`** (`analysis/pc9` 4/4, `analysis/decomp` 18/18, `analysis/test_insar.py` 15/15, `analysis/test_cumulative.py` 4/4).
 - Üretilen ve yerel bırakılan ara çıktı (`analysis/out/central_valley_fullyear_cum_stack.npz` `50.8 MB`): `rules/RULES.md` K-12 gereği repoya eklenmedi.
 
 ---

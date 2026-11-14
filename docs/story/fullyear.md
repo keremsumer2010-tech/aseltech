@@ -44,7 +44,45 @@ Both spatial parameter maps (`1200 x 1000` RGBA, aligned to `[-120.2, 35.6, -119
 
 ---
 
-## 4. Pair Provenance (`quality: "mixed"`, Gap-Free 25-Pair Chain)
+## 4. Patterns and Rhythms at Different Time Steps (12-Day Passes vs. Monthly Aggregates)
+
+Ground motion in the Tulare Basin follows **patterns and rhythms at different time steps**, depending on whether we observe individual 12-day NISAR orbital intervals (with two 24-day summer/autumn bridges) or aggregate those same unwrapped pairs into monthly recharge and pumping steps (`Figure 2` and `Figure 3`). All increments below are measured in line-of-sight (`LOS`) centimeters (`cm`) from the mixed `beta-precal` (`2025-11-24` to `2026-06-28`, pre-calibration caution) and `provisional` (`2026-06-28` to `2026-10-14`) chain; no values are interpolated across unacquired dates.
+
+![12-day and 24-day incremental LOS displacement steps across Earlimart, Delano, and Woodlake from November 2025 to October 2026](media/pc9_fullyear_12day_steps.png)
+
+*Figure 2. Incremental LOS displacement per NISAR pair (`12-day` intervals except two `24-day` bridges on `2026-07-22` to `2026-08-15` and `2026-09-20` to `2026-10-14`, `beta-precal` data before `2026-06-28` and `provisional` data after `2026-06-28`). Fine-scale bars isolate abrupt transitions such as the spring pumping onset (`2026-03-24` to `2026-04-05`: `-4.30 cm` at `p01`; `2026-04-17` to `2026-04-29`: `-4.72 cm` at `p01`) and a brief late-summer recovery pulse (`2026-08-15` to `2026-08-27`: `+2.84 cm` at `p01`, `+4.37 cm` at `p06`). Data credit: NASA-JPL / ISRO NISAR L-band Beta & Provisional GCOV/GUNW products (processed by AselTech).*
+
+1. **Short time step (`12-day` pairs, `2025-11-24` to `2026-10-14`):**  
+   Individual pass-to-pass differences expose short-lived hydrological switches and atmospheric/phase excursions that smoothed annual rates hide. At Earlimart (`p01`), winter steps stay within `-0.5 cm` to `+1.9 cm` per pass before flipping sharply to `-4.30 cm` during `2026-03-24` to `2026-04-05` and `-4.72 cm` during `2026-04-17` to `2026-04-29` as spring irrigation pumping starts. Later, in the `provisional` period, a single 12-day pair (`2026-08-15` to `2026-08-27`) registers `+2.84 cm` at `p01` and `+4.37 cm` at `p06` (compared with `-0.07 cm` at the Woodlake control point `p11`), showing localized late-summer elastic pore-pressure recovery or transient moisture change before autumn drawdown resumes (`-3.13 cm` at `p01` across September).
+
+![Monthly aggregated LOS displacement steps across Earlimart, Delano, and Woodlake from December 2025 to October 2026](media/pc9_fullyear_monthly_steps.png)
+
+*Figure 3. Monthly epoch-binned LOS displacement steps (`cm`, zero-interpolated sum of exact pair increments grouped by end-date `YYYY-MM`, mixed `beta-precal` and `provisional` chain; spans are `24 d` or `36 d` matching NISAR 12-day pass cadence). Monthly totals reveal the winter recharge uplift in March 2026 (`+2.63 cm` at `p01`, `+4.09 cm` at `p06`) followed by sustained irrigation drawdown from April through July 2026 (`-19.83 cm` at `p01`). Data credit: NASA-JPL / ISRO NISAR L-band Beta & Provisional GCOV/GUNW products (processed by AselTech).*
+
+2. **Monthly time step (`11` calendar-month bins, `Dec 2025` to `Oct 2026`):**  
+   Grouping the 25 unwrapped pairs by pair end-date dampens 12-day noise and highlights the basin's two-phase annual rhythm: near-zero winter equilibration (`Dec 2025`–`Feb 2026`), a distinct March winter-rebound peak (`+2.63 cm` LOS uplift at `p01`, `+4.09 cm` at `p06`), an abrupt four-month pumping drawdown (`Apr`–`Jul 2026`, `-19.83 cm` cumulative LOS drop at `p01`, nearly `-9.51 cm` in April alone), a muted August pause (`+0.17 cm` at `p01`, `+2.58 cm` at `p06`), a secondary September drawdown (`-3.13 cm` at `p01`, `-2.87 cm` at `p06`), and weak autumn stabilization in October (`+0.34 cm` at `p01`, `+0.14 cm` at `p06`). Over the same 11 monthly bins, the Woodlake bedrock/margin control (`p11`) stays between `-0.29 cm` and `+0.17 cm` per month (`-0.64 cm` total), confirming that the monthly cadence reflects valley-floor aquifer stress rather than sensor drift.
+
+| Month (`YYYY-MM`) | Exact Pair Span (`days`, `pairs`) | Quality Tier | `p01` Earlimart (`cm` LOS) | `p06` Delano (`cm` LOS) | `p11` Woodlake Control (`cm` LOS) | Dominant Phase |
+|---|---|---|---|---|---|---|
+| `2025-12` | `2025-11-24` to `2025-12-30` (`36 d`, `3`) | `beta-precal` | `+0.35` | `-0.31` | `-0.29` | Early-winter equilibrium |
+| `2026-01` | `2025-12-30` to `2026-01-23` (`24 d`, `2`) | `beta-precal` | `-0.26` | `+0.29` | `-0.18` | Mid-winter equilibrium |
+| `2026-02` | `2026-01-23` to `2026-02-28` (`36 d`, `3`) | `beta-precal` | `-0.59` | `-0.62` | `+0.08` | Late-winter transition |
+| `2026-03` | `2026-02-28` to `2026-03-24` (`24 d`, `2`) | `beta-precal` | `+2.63` | `+4.09` | `+0.04` | Winter recharge rebound peak |
+| `2026-04` | `2026-03-24` to `2026-04-29` (`36 d`, `3`) | `beta-precal` | `-9.51` | `-4.21` | `+0.05` | Spring pumping onset |
+| `2026-05` | `2026-04-29` to `2026-05-23` (`24 d`, `2`) | `beta-precal` | `-3.18` | `-0.74` | `+0.17` | Early-summer drawdown |
+| `2026-06` | `2026-05-23` to `2026-06-28` (`36 d`, `3`) | `beta-precal` | `-4.43` | `-1.79` | `-0.21` | Peak summer drawdown |
+| `2026-07` | `2026-06-28` to `2026-07-22` (`24 d`, `2`) | `provisional` | `-2.71` | `-1.05` | `+0.07` | Mid-summer drawdown |
+| `2026-08` | `2026-07-22` to `2026-08-27` (`36 d`, `2`) | `provisional` | `+0.17` | `+2.58` | `-0.27` | Late-summer elastic pause |
+| `2026-09` | `2026-08-27` to `2026-09-20` (`24 d`, `2`) | `provisional` | `-3.13` | `-2.87` | `-0.02` | Autumn drawdown |
+| `2026-10` | `2026-09-20` to `2026-10-14` (`24 d`, `1`) | `provisional` | `+0.34` | `+0.14` | `-0.08` | Post-harvest stabilization |
+| **Total (`324 d`)** | **`2025-11-24` to `2026-10-14` (`25` pairs)** | **`mixed`** | **`-20.32`** | **`-4.49`** | **`-0.64`** | **Net permanent + residual** |
+
+3. **Karapinar cross-basin readiness:**  
+   The Central Valley time-step script (`analysis/pc9/plot_fullyear_timesteps.py`) is structured to run identically on Konya-Karapinar once the multi-month Karapinar subset (`pipeline/subset/karapinar_fullyear/`, prepared by PC2) is uploaded to the repository, enabling direct comparison of winter recharge versus summer drawdown timing across both semi-arid agricultural basins.
+
+---
+
+## 5. Pair Provenance (`quality: "mixed"`, Gap-Free 25-Pair Chain)
 
 1. **`beta-precal` (18 pairs, `2025-11-24` to `2026-06-28`, pre-calibration caution):**  
    `2025-11-24_2025-12-06`, `2025-12-06_2025-12-18`, `2025-12-18_2025-12-30`, `2025-12-30_2026-01-11`, `2026-01-11_2026-01-23`, `2026-01-23_2026-02-04`, `2026-02-04_2026-02-16`, `2026-02-16_2026-02-28`, `2026-02-28_2026-03-12`, `2026-03-12_2026-03-24`, `2026-03-24_2026-04-05`, `2026-04-05_2026-04-17`, `2026-04-17_2026-04-29`, `2026-04-29_2026-05-11`, `2026-05-11_2026-05-23`, `2026-05-23_2026-06-04`, `2026-06-04_2026-06-16`, `2026-06-16_2026-06-28`.

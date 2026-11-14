@@ -16,5 +16,8 @@
 - **16:35 ACİL Sunum & Prova Paketi (PC4 yedek — TAMAMLANDI):**
   - `docs/story/presentation_cues.md`: `https://keremsumer2010-tech.github.io/aseltech/` güncel bölümleri ve tıklama ipuçlarıyla 6 × 30 sn'lik `3:00` Lincoln konuşma metni (Kerem anlatır, Memir demo sürer, Mehmet ve İbrahim soruları alır), `data/*/summary.json` kaynaklı doğrulanmış sayılar (tam yıl için `"includes pre-calibration data"` bildirimi) ve `docs/story/judge_faq.md`'den 5 jüri sorusuna 1'er cümlelik yanıt.
   - `docs/story/rehearsal_checklist.md`: Lincoln `17:30` provası için sekme sırası (Tab 1–5), internet kesilirse yerel `docs/story/slides.html` + `docs/story/media/demo_30s.mp4` (`3.49 MB`) yedek planı, ekran paylaşımı/ses kontrolleri, süre tutma sinyalleri ve ekip görev dağılımı.
+- **16:15 Challenge Uyumlu A6 Zaman Adımları (`fullyear.md` + 2 grafik — TAMAMLANDI):**
+  - `analysis/pc9/plot_fullyear_timesteps.py`, `docs/story/media/pc9_fullyear_12day_steps.png` (`370.1 KB`), `docs/story/media/pc9_fullyear_monthly_steps.png` (`343.1 KB`): 12 günlük geçiş adımları ve 11 aylık (`2025-12`–`2026-10`, sıfır interpolasyon) kış toparlanması / yaz çekimi ritmi.
+  - `docs/story/fullyear.md` §4 (`"patterns and rhythms at different time steps"` + 11 aylık tablo + Karapınar hazırlık notu) ve `analysis/pc9/test_fullyear.py` (4/4 test dahil toplam `41 passed, 1 warning in 23.31s`).
 - BLOCKED: yok
-- AI: Antigravity (Gemini) → PC3 `analysis/` sarmalayıcı, Q08 ayrıştırma/grafik, `docs/story/fullyear.md`, doğrulama testleri ve `16:35` sunum/prova paketi
+- AI: Antigravity (Gemini) → PC3 `analysis/` sarmalayıcı, Q08 ayrıştırma/grafik, `docs/story/fullyear.md` (A6 dahil), doğrulama testleri (`41 passed`) ve `16:35` sunum/prova paketi
