@@ -511,6 +511,13 @@ input[type="range"] {
   color: var(--muted);
 }
 
+.kpi-footnote {
+  margin: 6px 0 0;
+  font-size: 10.5px;
+  color: var(--muted);
+  font-style: italic;
+}
+
 .color-perm { color: var(--danger); }
 .color-elast { color: var(--accent); }
 .color-ok { color: var(--ok); }
