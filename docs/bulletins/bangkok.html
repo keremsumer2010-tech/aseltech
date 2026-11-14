@@ -38,10 +38,17 @@
   .notice { margin-top:14px; padding:10px 12px; background:#fffbeb; border-left:4px solid var(--warn); font-size:.82rem; }
   ul { margin:6px 0 0 18px; padding:0; font-size:.86rem; }
   @media (max-width:760px) { .grid { grid-template-columns:repeat(2,1fr); } .two { grid-template-columns:1fr; } }
+  .pkg-bar { display:grid; grid-template-columns:repeat(4,1fr); gap:6px 12px; background:#0f172a; color:#f8fafc; border-radius:6px; padding:8px 12px; margin-bottom:12px; font-size:.76rem; }
+  .pkg-bar div span { display:block; color:#94a3b8; font-size:.66rem; text-transform:uppercase; letter-spacing:.04em; }
+  .pkg-bar div strong { font-weight:600; }
+  .wtm { background:#eff6ff; border:1px solid #bfdbfe; border-radius:8px; padding:10px 14px; margin-top:12px; }
+  .wtm h2 { margin-top:0; border-bottom-color:#bfdbfe; color:#1e3a8a; }
+  @page { size: A4 portrait; margin: 12mm; }
   @media print {
     body { background:#fff; padding:0; }
-    .sheet { border:none; box-shadow:none; padding:10px; max-width:100%; }
+    .sheet { border:none; box-shadow:none; padding:6px; max-width:100%; }
     .actions { display:none; }
+    .pkg-bar { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
   }
 </style>
 </head>
@@ -50,7 +57,7 @@
   <div class="topbar">
     <div>
       <h1>NISAR Pulse Bulletin &mdash; Bangkok (Thailand) &mdash; 2026-10-19</h1>
-      <div class="meta">Observation window: 2026-06-21 to 2026-10-19 (8 pairs) &middot; Atlas Rank #5 &middot; Coverage: ok</div>
+      <div class="meta">Atlas Rank #5 &middot; Coverage: ok &middot; 8 pairs</div>
     </div>
     <div class="actions">
       <span class="badge conf-medium">CONFIDENCE: MEDIUM</span>
@@ -58,6 +65,17 @@
       <a class="btn" href="index.html">All Bulletins</a>
       <button class="btn btn-primary" onclick="window.print()">Print / PDF</button>
     </div>
+  </div>
+
+  <div class="pkg-bar">
+    <div><span>Product ID</span><strong>NP-BANGKOK-2026-001</strong></div>
+    <div><span>Issue Time (UTC)</span><strong>2026-11-14 20:40 UTC</strong></div>
+    <div><span>Data Window</span><strong>2026-06-21 to 2026-10-19</strong></div>
+    <div><span>Sensor</span><strong>NISAR L-band GUNW, provisional</strong></div>
+    <div><span>Quality Class</span><strong>PROVISIONAL</strong></div>
+    <div><span>Confidence</span><strong>MEDIUM</strong></div>
+    <div><span>Version</span><strong>v2.0</strong></div>
+    <div><span>Format</span><strong>A4 Operational Map Package</strong></div>
   </div>
 
   <div class="grid">
@@ -73,8 +91,11 @@
       <ul>
         <li><strong>Latest Consecutive Pair Step:</strong> <strong>+2.88 cm LOS</strong> (2026-10-07 to 2026-10-19 at p01: 13.814N 100.737E; cumulative at point: -7.48 cm)</li>
         
-        
+        <li><strong>Affected Population (GHSL GHS-POP E2025, 108d eq., &ge; 0.65 cm 2&sigma;):</strong> 1,119,303 residents (&lt; -2 cm), 261,087 residents across 48.85 km&sup2; (&lt; -5 cm).</li>
       </ul>
+
+      <h2>Top 3 Most-Subsiding Areas</h2>
+      <table><thead><tr><th>Rank</th><th>1 km Block Center (Lat, Lon)</th><th class='num'>Cumulative LOS</th><th class='num'>Rate</th></tr></thead><tbody><tr><td>#1</td><td>13.8137, 100.7374</td><td class='num'>-7.48 cm</td><td class='num'>-6.24 cm/100d</td></tr><tr><td>#2</td><td>13.7666, 100.7467</td><td class='num'>-7.20 cm</td><td class='num'>-6.00 cm/100d</td></tr><tr><td>#3</td><td>13.8415, 100.7857</td><td class='num'>-6.93 cm</td><td class='num'>-5.77 cm/100d</td></tr></tbody></table>
 
       <h2>Top 5 At-Risk Infrastructure Segments</h2>
       <p class='muted'>Infrastructure corridor ranking (OSM canal/road overlay) has not been computed for this regional subset yet.</p>
@@ -85,12 +106,16 @@
     <div>
       <h2>Cumulative Displacement Map</h2>
       <figure class='map'><img src='../../data/global/bangkok/disp/2026-10-19.png' alt='Cumulative LOS displacement map for Bangkok (Thailand) ending 2026-10-19'><figcaption>Cumulative LOS displacement (2026-06-21 to 2026-10-19, 8 NISAR L2 GUNW pairs).</figcaption></figure>
+      <div class="wtm">
+        <h2>What This Means</h2>
+        <ul><li>Ground in Bangkok (Thailand) subsided up to -7.5 cm LOS (-6.2 cm/100d) between 2026-06-21 and 2026-10-19, consistent with active seasonal compaction.</li><li>About 1,119,303 residents live on ground sinking faster than 2 cm per 108 days (and 261,087 residents across 48.85 km2 faster than 5 cm per 108 days, above the 0.65 cm 2-sigma noise floor).</li><li>No local GNSS or canal-tilt overlay is bundled for this subset; field inspection and local piezometer records are needed to confirm infrastructure impacts.</li></ul>
+      </div>
     </div>
   </div>
 
   <div class="notice">
     <strong>Calibration &amp; Quality Notice (PROVISIONAL):</strong> NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.<br>
-    <strong>Sources:</strong> NASA-ISRO NISAR L2 GUNW (CRID P05023 via ASF DAAC); Nevada Geodetic Laboratory GNSS; OpenStreetMap (ODbL); WorldPop 100 m (CC BY 4.0) / USDA CDL 30 m / ESA WorldCover 10 m where noted.
+    <strong>Sources:</strong> NASA-ISRO NISAR L2 GUNW (CRID P05023 via ASF DAAC); GHSL GHS-POP E2025 R2023A (JRC, CC BY 4.0); Nevada Geodetic Laboratory GNSS; OpenStreetMap (ODbL).
   </div>
 </div>
 </body>

@@ -38,10 +38,17 @@
   .notice { margin-top:14px; padding:10px 12px; background:#fffbeb; border-left:4px solid var(--warn); font-size:.82rem; }
   ul { margin:6px 0 0 18px; padding:0; font-size:.86rem; }
   @media (max-width:760px) { .grid { grid-template-columns:repeat(2,1fr); } .two { grid-template-columns:1fr; } }
+  .pkg-bar { display:grid; grid-template-columns:repeat(4,1fr); gap:6px 12px; background:#0f172a; color:#f8fafc; border-radius:6px; padding:8px 12px; margin-bottom:12px; font-size:.76rem; }
+  .pkg-bar div span { display:block; color:#94a3b8; font-size:.66rem; text-transform:uppercase; letter-spacing:.04em; }
+  .pkg-bar div strong { font-weight:600; }
+  .wtm { background:#eff6ff; border:1px solid #bfdbfe; border-radius:8px; padding:10px 14px; margin-top:12px; }
+  .wtm h2 { margin-top:0; border-bottom-color:#bfdbfe; color:#1e3a8a; }
+  @page { size: A4 portrait; margin: 12mm; }
   @media print {
     body { background:#fff; padding:0; }
-    .sheet { border:none; box-shadow:none; padding:10px; max-width:100%; }
+    .sheet { border:none; box-shadow:none; padding:6px; max-width:100%; }
     .actions { display:none; }
+    .pkg-bar { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
   }
 </style>
 </head>
@@ -50,7 +57,7 @@
   <div class="topbar">
     <div>
       <h1>NISAR Pulse Bulletin &mdash; Karapınar, Konya (Türkiye) &mdash; 2026-10-12</h1>
-      <div class="meta">Observation window: 2026-06-26 to 2026-10-12 (8 pairs) &middot; Atlas Rank #7 &middot; Coverage: ok</div>
+      <div class="meta">Atlas Rank #7 &middot; Coverage: ok &middot; 8 pairs</div>
     </div>
     <div class="actions">
       <span class="badge conf-low">CONFIDENCE: LOW (indicative only)</span>
@@ -58,6 +65,17 @@
       <a class="btn" href="index.html">All Bulletins</a>
       <button class="btn btn-primary" onclick="window.print()">Print / PDF</button>
     </div>
+  </div>
+
+  <div class="pkg-bar">
+    <div><span>Product ID</span><strong>NP-KARAPINAR-2026-001</strong></div>
+    <div><span>Issue Time (UTC)</span><strong>2026-11-14 20:40 UTC</strong></div>
+    <div><span>Data Window</span><strong>2026-06-26 to 2026-10-12</strong></div>
+    <div><span>Sensor</span><strong>NISAR L-band GUNW, provisional</strong></div>
+    <div><span>Quality Class</span><strong>PROVISIONAL</strong></div>
+    <div><span>Confidence</span><strong>LOW (indicative only)</strong></div>
+    <div><span>Version</span><strong>v2.0</strong></div>
+    <div><span>Format</span><strong>A4 Operational Map Package</strong></div>
   </div>
 
   <div class="grid">
@@ -73,8 +91,11 @@
       <ul>
         <li><strong>Latest Consecutive Pair Step:</strong> <strong>-2.24 cm LOS</strong> (2026-09-30 to 2026-10-12 at p01: 2 km W of Karapınar; cumulative at point: -5.93 cm)</li>
         
-        <li><strong>Population Exposure (WorldPop 100 m, 2020 estimate):</strong> ~11,572 residents on &gt;2 cm LOS subsiding pixels (~2,214 on &gt;5 cm LOS).</li>
+        <li><strong>Affected Population (GHSL GHS-POP E2025, 108d eq., &ge; 0.65 cm 2&sigma;):</strong> 23,424 residents (&lt; -2 cm), 3,734 residents across 3.10 km&sup2; (&lt; -5 cm).</li>
       </ul>
+
+      <h2>Top 3 Most-Subsiding Areas</h2>
+      <table><thead><tr><th>Rank</th><th>1 km Block Center (Lat, Lon)</th><th class='num'>Cumulative LOS</th><th class='num'>Rate</th></tr></thead><tbody><tr><td>#1</td><td>37.7182, 33.5306</td><td class='num'>-5.94 cm</td><td class='num'>-5.50 cm/100d</td></tr><tr><td>#2</td><td>37.7448, 33.7905</td><td class='num'>-2.57 cm</td><td class='num'>-2.38 cm/100d</td></tr><tr><td>#3</td><td>37.6887, 33.7781</td><td class='num'>-1.82 cm</td><td class='num'>-1.68 cm/100d</td></tr></tbody></table>
 
       <h2>Top 5 At-Risk Infrastructure Segments</h2>
       <p class='sub'>Source: Infrastructure tilt ranking (assets.json)</p><table><thead><tr><th>#</th><th>Segment</th><th>Type</th><th class='num'>Length (km)</th><th class='num'>Tilt (mm/km)</th><th class='num'>Max LOS (cm)</th><th>Risk / Flag</th></tr></thead><tbody><tr><td>1</td><td>Konya - Adana Yolu</td><td>trunk</td><td class='num'>5.15</td><td class='num'>34.50</td><td class='num'>-6.03</td><td>4886 m to sinkhole</td></tr><tr><td>2</td><td>Adana - Konya Yolu</td><td>trunk</td><td class='num'>5.15</td><td class='num'>33.50</td><td class='num'>-6.03</td><td>4869 m to sinkhole</td></tr><tr><td>3</td><td>Konya Caddesi</td><td>secondary</td><td class='num'>1.40</td><td class='num'>32.29</td><td class='num'>-5.83</td><td>5982 m to sinkhole</td></tr><tr><td>4</td><td>Unnamed secondary (osm:104381254)</td><td>secondary</td><td class='num'>1.20</td><td class='num'>22.27</td><td class='num'>-4.55</td><td>6155 m to sinkhole</td></tr><tr><td>5</td><td>42-42</td><td>secondary</td><td class='num'>9.42</td><td class='num'>19.74</td><td class='num'>-5.07</td><td>597 m to sinkhole</td></tr></tbody></table>
@@ -85,12 +106,16 @@
     <div>
       <h2>Cumulative Displacement Map</h2>
       <figure class='map'><img src='../../data/karapinar/disp/2026-10-12.png' alt='Cumulative LOS displacement map for Karapınar, Konya (Türkiye) ending 2026-10-12'><figcaption>Cumulative LOS displacement (2026-06-26 to 2026-10-12, 8 NISAR L2 GUNW pairs).</figcaption></figure>
+      <div class="wtm">
+        <h2>What This Means</h2>
+        <ul><li>Peak measured ground motion in Karapınar, Konya (Türkiye) reached -5.9 cm LOS (-5.5 cm/100d) from 2026-06-26 to 2026-10-12, but low coverage or wide reference spread makes this an indicative estimate.</li><li>About 23,424 residents live on ground sinking faster than 2 cm per 108 days (and 3,734 residents across 3.10 km2 faster than 5 cm per 108 days, above the 0.65 cm 2-sigma noise floor).</li><li>Infrastructure screening flags Konya - Adana Yolu as the highest-differential segment in this footprint; pair satellite tracking with local leveling or groundwater head checks before field action.</li></ul>
+      </div>
     </div>
   </div>
 
   <div class="notice">
     <strong>Calibration &amp; Quality Notice (PROVISIONAL):</strong> NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.<br>
-    <strong>Sources:</strong> NASA-ISRO NISAR L2 GUNW (CRID P05023 via ASF DAAC); Nevada Geodetic Laboratory GNSS; OpenStreetMap (ODbL); WorldPop 100 m (CC BY 4.0) / USDA CDL 30 m / ESA WorldCover 10 m where noted.
+    <strong>Sources:</strong> NASA-ISRO NISAR L2 GUNW (CRID P05023 via ASF DAAC); GHSL GHS-POP E2025 R2023A (JRC, CC BY 4.0); Nevada Geodetic Laboratory GNSS; OpenStreetMap (ODbL).
   </div>
 </div>
 </body>

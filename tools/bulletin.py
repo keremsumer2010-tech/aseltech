@@ -11,7 +11,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
-from datetime import date
+from datetime import date, datetime, timezone
 import html
 import json
 import statistics
@@ -20,7 +20,9 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 ATLAS_PATH = ROOT / "data" / "global" / "atlas.json"
+EXPOSURE_ATLAS_PATH = ROOT / "data" / "global" / "exposure_atlas.json"
 OUT_DIR = ROOT / "docs" / "bulletins"
+BULLETIN_VERSION = "v2.0"
 
 CALIBRATION_NOTICE = (
     "NISAR data are provisional. Calibration and validation are carried out by the "
@@ -188,6 +190,68 @@ def _gnss_summary(region_dir: Path) -> dict[str, Any]:
     }
 
 
+def _exposure_atlas_map() -> dict[str, dict[str, Any]]:
+    data = _read_json(EXPOSURE_ATLAS_PATH)
+    if not isinstance(data, dict):
+        return {}
+    return {c["id"]: c for c in data.get("cities", []) if isinstance(c, dict) and "id" in c}
+
+
+def _what_this_means(
+    title_loc: str,
+    rate_100d: float | None,
+    max_los: Any,
+    conf_level: str,
+    exp_atlas: dict[str, Any] | None,
+    top_segs: list[dict[str, Any]],
+    gnss: dict[str, Any],
+    start_date: str,
+    last_date: str,
+) -> list[str]:
+    rate_txt = f"{rate_100d:+.1f} cm/100d" if rate_100d is not None else "undetermined rate"
+    max_txt = f"{max_los} cm" if max_los is not None else "N/A"
+    if conf_level == "low":
+        b1 = (
+            f"Peak measured ground motion in {title_loc} reached {max_txt} LOS ({rate_txt}) from "
+            f"{start_date} to {last_date}, but low coverage or wide reference spread makes this an indicative estimate."
+        )
+    else:
+        b1 = (
+            f"Ground in {title_loc} subsided up to {max_txt} LOS ({rate_txt}) between "
+            f"{start_date} and {last_date}, consistent with active seasonal compaction."
+        )
+
+    if exp_atlas:
+        p2 = exp_atlas.get("people_lt_minus2cm", 0)
+        p5 = exp_atlas.get("people_lt_minus5cm", 0)
+        a5 = exp_atlas.get("area_km2_lt_minus5cm", 0.0)
+        sig2 = exp_atlas.get("two_sigma_threshold_cm", 0.7)
+        b2 = (
+            f"About {p2:,} residents live on ground sinking faster than 2 cm per 108 days "
+            f"(and {p5:,} residents across {a5:.2f} km2 faster than 5 cm per 108 days, above the {sig2:.2f} cm 2-sigma noise floor)."
+        )
+    else:
+        b2 = "Population exposure on sinking ground has not yet been tabulated for this region in exposure_atlas.json."
+
+    if top_segs:
+        lead = top_segs[0].get("name") or "top-ranked corridor"
+        b3 = (
+            f"Infrastructure screening flags {lead} as the highest-differential segment in this footprint; "
+            "pair satellite tracking with local leveling or groundwater head checks before field action."
+        )
+    elif gnss.get("available"):
+        b3 = (
+            f"Comparison with {gnss['n_stations']} continuous GNSS stations (median RMSE {gnss['median_rmse_cm']:.2f} cm) "
+            "supports the radar trend; continue monitoring as new NISAR pairs arrive."
+        )
+    else:
+        b3 = (
+            "No local GNSS or canal-tilt overlay is bundled for this subset; "
+            "field inspection and local piezometer records are needed to confirm infrastructure impacts."
+        )
+    return [b1, b2, b3]
+
+
 def render_region_bulletin(region: dict[str, Any], out_dir: Path = OUT_DIR) -> Path | None:
     rid = region["id"]
     if region.get("coverage") == "none":
@@ -220,6 +284,14 @@ def render_region_bulletin(region: dict[str, Any], out_dir: Path = OUT_DIR) -> P
     last_pair = _format_last_pair(points)
     seg_kind, seg_source, top_segs = _top_segments(region_dir, limit=5)
     gnss = _gnss_summary(region_dir)
+    exp_atlas = _exposure_atlas_map().get(rid)
+    product_id = f"NP-{rid.upper().replace('_', '-')}-2026-001"
+    issue_utc = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+    sensor_label = "NISAR L-band GUNW, provisional"
+    wtm_bullets = _what_this_means(
+        title_loc, rate_100d, max_los, conf_level, exp_atlas, top_segs, gnss, start_date, last_date
+    )
+    wtm_html = "".join(f"<li>{_esc(b)}</li>" for b in wtm_bullets)
 
     disp_png_rel = f"../../{rel_data}/disp/{last_date}.png"
     has_disp_png = (region_dir / "disp" / f"{last_date}.png").exists()
@@ -299,7 +371,16 @@ def render_region_bulletin(region: dict[str, Any], out_dir: Path = OUT_DIR) -> P
         gnss_html = "<p class='muted'>Continuous GNSS time-series validation was not bundled for this regional subset.</p>"
 
     exp_html = ""
-    if isinstance(exposure, dict):
+    if exp_atlas:
+        p2a = exp_atlas.get("people_lt_minus2cm", 0)
+        p5a = exp_atlas.get("people_lt_minus5cm", 0)
+        a5a = exp_atlas.get("area_km2_lt_minus5cm", 0.0)
+        sig2a = exp_atlas.get("two_sigma_threshold_cm", 0.7)
+        exp_html = (
+            f"<li><strong>Affected Population (GHSL GHS-POP E2025, 108d eq., &ge; {sig2a:.2f} cm 2&sigma;):</strong> "
+            f"{p2a:,} residents (&lt; -2 cm), {p5a:,} residents across {a5a:.2f} km&sup2; (&lt; -5 cm).</li>"
+        )
+    elif isinstance(exposure, dict):
         pop = exposure.get("population", {})
         p2 = pop.get("population_subsidence_gt_2cm_los_estimate")
         p5 = pop.get("population_subsidence_gt_5cm_los_estimate")
@@ -308,6 +389,24 @@ def render_region_bulletin(region: dict[str, Any], out_dir: Path = OUT_DIR) -> P
                 f"<li><strong>Population Exposure (WorldPop 100 m, 2020 estimate):</strong> "
                 f"~{p2:,} residents on &gt;2 cm LOS subsiding pixels (~{p5:,} on &gt;5 cm LOS).</li>"
             )
+
+    top3_list = (exp_atlas or {}).get("top_subsiding_areas") or []
+    if top3_list:
+        t3_rows = []
+        for idx, pt in enumerate(top3_list[:3], 1):
+            t3_rows.append(
+                f"<tr><td>#{idx}</td>"
+                f"<td>{pt['lat']:.4f}, {pt['lon']:.4f}</td>"
+                f"<td class='num'>{pt['cum_cm_los']:+.2f} cm</td>"
+                f"<td class='num'>{pt['rate_cm_per_100d']:+.2f} cm/100d</td></tr>"
+            )
+        top3_section = (
+            "<table><thead><tr><th>Rank</th><th>1 km Block Center (Lat, Lon)</th>"
+            "<th class='num'>Cumulative LOS</th><th class='num'>Rate</th></tr></thead>"
+            f"<tbody>{''.join(t3_rows)}</tbody></table>"
+        )
+    else:
+        top3_section = "<p class='muted'>Top 3 1 km block-median peaks not yet computed for this region.</p>"
     area_html = ""
     if isinstance(area_stats, dict):
         a2 = area_stats.get("area_subsiding_gt_2cm_los_km2") or area_stats.get("gt_2cm_los_km2")
@@ -362,10 +461,17 @@ def render_region_bulletin(region: dict[str, Any], out_dir: Path = OUT_DIR) -> P
   .notice {{ margin-top:14px; padding:10px 12px; background:#fffbeb; border-left:4px solid var(--warn); font-size:.82rem; }}
   ul {{ margin:6px 0 0 18px; padding:0; font-size:.86rem; }}
   @media (max-width:760px) {{ .grid {{ grid-template-columns:repeat(2,1fr); }} .two {{ grid-template-columns:1fr; }} }}
+  .pkg-bar {{ display:grid; grid-template-columns:repeat(4,1fr); gap:6px 12px; background:#0f172a; color:#f8fafc; border-radius:6px; padding:8px 12px; margin-bottom:12px; font-size:.76rem; }}
+  .pkg-bar div span {{ display:block; color:#94a3b8; font-size:.66rem; text-transform:uppercase; letter-spacing:.04em; }}
+  .pkg-bar div strong {{ font-weight:600; }}
+  .wtm {{ background:#eff6ff; border:1px solid #bfdbfe; border-radius:8px; padding:10px 14px; margin-top:12px; }}
+  .wtm h2 {{ margin-top:0; border-bottom-color:#bfdbfe; color:#1e3a8a; }}
+  @page {{ size: A4 portrait; margin: 12mm; }}
   @media print {{
     body {{ background:#fff; padding:0; }}
-    .sheet {{ border:none; box-shadow:none; padding:10px; max-width:100%; }}
+    .sheet {{ border:none; box-shadow:none; padding:6px; max-width:100%; }}
     .actions {{ display:none; }}
+    .pkg-bar {{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }}
   }}
 </style>
 </head>
@@ -374,7 +480,7 @@ def render_region_bulletin(region: dict[str, Any], out_dir: Path = OUT_DIR) -> P
   <div class="topbar">
     <div>
       <h1>NISAR Pulse Bulletin &mdash; {_esc(title_loc)} &mdash; {_esc(last_date)}</h1>
-      <div class="meta">Observation window: {_esc(start_date)} to {_esc(last_date)} ({_esc(n_pairs)} pairs) &middot; Atlas Rank #{_esc(region.get('rank', '-'))} &middot; Coverage: {_esc(region.get('coverage', 'ok'))}</div>
+      <div class="meta">Atlas Rank #{_esc(region.get('rank', '-'))} &middot; Coverage: {_esc(region.get('coverage', 'ok'))} &middot; {_esc(n_pairs)} pairs</div>
     </div>
     <div class="actions">
       <span class="badge conf-{_esc(conf_level)}">CONFIDENCE: {_esc(conf_label)}</span>
@@ -382,6 +488,17 @@ def render_region_bulletin(region: dict[str, Any], out_dir: Path = OUT_DIR) -> P
       <a class="btn" href="index.html">All Bulletins</a>
       <button class="btn btn-primary" onclick="window.print()">Print / PDF</button>
     </div>
+  </div>
+
+  <div class="pkg-bar">
+    <div><span>Product ID</span><strong>{_esc(product_id)}</strong></div>
+    <div><span>Issue Time (UTC)</span><strong>{_esc(issue_utc)}</strong></div>
+    <div><span>Data Window</span><strong>{_esc(start_date)} to {_esc(last_date)}</strong></div>
+    <div><span>Sensor</span><strong>{_esc(sensor_label)}</strong></div>
+    <div><span>Quality Class</span><strong>{_esc(quality)}</strong></div>
+    <div><span>Confidence</span><strong>{_esc(conf_label)}</strong></div>
+    <div><span>Version</span><strong>{_esc(BULLETIN_VERSION)}</strong></div>
+    <div><span>Format</span><strong>A4 Operational Map Package</strong></div>
   </div>
 
   <div class="grid">
@@ -400,6 +517,9 @@ def render_region_bulletin(region: dict[str, Any], out_dir: Path = OUT_DIR) -> P
         {exp_html}
       </ul>
 
+      <h2>Top 3 Most-Subsiding Areas</h2>
+      {top3_section}
+
       <h2>Top 5 At-Risk Infrastructure Segments</h2>
       {seg_section}
 
@@ -409,12 +529,16 @@ def render_region_bulletin(region: dict[str, Any], out_dir: Path = OUT_DIR) -> P
     <div>
       <h2>Cumulative Displacement Map</h2>
       {img_block}
+      <div class="wtm">
+        <h2>What This Means</h2>
+        <ul>{wtm_html}</ul>
+      </div>
     </div>
   </div>
 
   <div class="notice">
     <strong>Calibration &amp; Quality Notice ({_esc(quality)}):</strong> {_esc(qnote)}<br>
-    <strong>Sources:</strong> NASA-ISRO NISAR L2 GUNW (CRID P05023 via ASF DAAC); Nevada Geodetic Laboratory GNSS; OpenStreetMap (ODbL); WorldPop 100 m (CC BY 4.0) / USDA CDL 30 m / ESA WorldCover 10 m where noted.
+    <strong>Sources:</strong> NASA-ISRO NISAR L2 GUNW (CRID P05023 via ASF DAAC); GHSL GHS-POP E2025 R2023A (JRC, CC BY 4.0); Nevada Geodetic Laboratory GNSS; OpenStreetMap (ODbL).
   </div>
 </div>
 </body>

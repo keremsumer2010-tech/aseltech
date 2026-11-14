@@ -38,10 +38,17 @@
   .notice { margin-top:14px; padding:10px 12px; background:#fffbeb; border-left:4px solid var(--warn); font-size:.82rem; }
   ul { margin:6px 0 0 18px; padding:0; font-size:.86rem; }
   @media (max-width:760px) { .grid { grid-template-columns:repeat(2,1fr); } .two { grid-template-columns:1fr; } }
+  .pkg-bar { display:grid; grid-template-columns:repeat(4,1fr); gap:6px 12px; background:#0f172a; color:#f8fafc; border-radius:6px; padding:8px 12px; margin-bottom:12px; font-size:.76rem; }
+  .pkg-bar div span { display:block; color:#94a3b8; font-size:.66rem; text-transform:uppercase; letter-spacing:.04em; }
+  .pkg-bar div strong { font-weight:600; }
+  .wtm { background:#eff6ff; border:1px solid #bfdbfe; border-radius:8px; padding:10px 14px; margin-top:12px; }
+  .wtm h2 { margin-top:0; border-bottom-color:#bfdbfe; color:#1e3a8a; }
+  @page { size: A4 portrait; margin: 12mm; }
   @media print {
     body { background:#fff; padding:0; }
-    .sheet { border:none; box-shadow:none; padding:10px; max-width:100%; }
+    .sheet { border:none; box-shadow:none; padding:6px; max-width:100%; }
     .actions { display:none; }
+    .pkg-bar { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
   }
 </style>
 </head>
@@ -50,7 +57,7 @@
   <div class="topbar">
     <div>
       <h1>NISAR Pulse Bulletin &mdash; Central Valley (Tulare Basin) (USA) &mdash; 2026-10-14</h1>
-      <div class="meta">Observation window: 2026-06-28 to 2026-10-14 (7 pairs) &middot; Atlas Rank #3 &middot; Coverage: ok</div>
+      <div class="meta">Atlas Rank #3 &middot; Coverage: ok &middot; 7 pairs</div>
     </div>
     <div class="actions">
       <span class="badge conf-medium">CONFIDENCE: MEDIUM</span>
@@ -58,6 +65,17 @@
       <a class="btn" href="index.html">All Bulletins</a>
       <button class="btn btn-primary" onclick="window.print()">Print / PDF</button>
     </div>
+  </div>
+
+  <div class="pkg-bar">
+    <div><span>Product ID</span><strong>NP-CENTRAL-VALLEY-2026-001</strong></div>
+    <div><span>Issue Time (UTC)</span><strong>2026-11-14 20:40 UTC</strong></div>
+    <div><span>Data Window</span><strong>2026-06-28 to 2026-10-14</strong></div>
+    <div><span>Sensor</span><strong>NISAR L-band GUNW, provisional</strong></div>
+    <div><span>Quality Class</span><strong>PROVISIONAL</strong></div>
+    <div><span>Confidence</span><strong>MEDIUM</strong></div>
+    <div><span>Version</span><strong>v2.0</strong></div>
+    <div><span>Format</span><strong>A4 Operational Map Package</strong></div>
   </div>
 
   <div class="grid">
@@ -73,8 +91,11 @@
       <ul>
         <li><strong>Latest Consecutive Pair Step:</strong> <strong>-1.56 cm LOS</strong> (2026-09-20 to 2026-10-14 at p01: 6 km N of Terra Bella; cumulative at point: -7.80 cm)</li>
         
-        <li><strong>Population Exposure (WorldPop 100 m, 2020 estimate):</strong> ~71,701 residents on &gt;2 cm LOS subsiding pixels (~3,407 on &gt;5 cm LOS).</li>
+        <li><strong>Affected Population (GHSL GHS-POP E2025, 108d eq., &ge; 0.59 cm 2&sigma;):</strong> 92,134 residents (&lt; -2 cm), 3,004 residents across 239.84 km&sup2; (&lt; -5 cm).</li>
       </ul>
+
+      <h2>Top 3 Most-Subsiding Areas</h2>
+      <table><thead><tr><th>Rank</th><th>1 km Block Center (Lat, Lon)</th><th class='num'>Cumulative LOS</th><th class='num'>Rate</th></tr></thead><tbody><tr><td>#1</td><td>36.0112, -119.0217</td><td class='num'>-7.80 cm</td><td class='num'>-7.22 cm/100d</td></tr><tr><td>#2</td><td>36.1163, -119.8447</td><td class='num'>-7.78 cm</td><td class='num'>-7.21 cm/100d</td></tr><tr><td>#3</td><td>36.1272, -120.1570</td><td class='num'>-7.22 cm</td><td class='num'>-6.68 cm/100d</td></tr></tbody></table>
 
       <h2>Top 5 At-Risk Infrastructure Segments</h2>
       <p class='sub'>Source: O2 probabilistic infrastructure risk (assets_prob.json)</p><table><thead><tr><th>#</th><th>Segment</th><th>Type</th><th class='num'>Max Diff (90% CI)</th><th class='num'>Beta Max</th><th class='num'>P(Diff &gt; 10 cm)</th><th class='num'>P(Beta &gt; 1/1000 | 1/500)</th></tr></thead><tbody><tr><td>1</td><td>Exeter Subdivision</td><td>rail</td><td class='num'>12.56 cm [11.8, 13.7]</td><td class='num'>5.00e-04</td><td class='num'>100.0%</td><td class='num'>0.0% / 0.0%</td></tr><tr><td>2</td><td>Goshen Subdivision</td><td>rail</td><td class='num'>9.78 cm [9.4, 11.0]</td><td class='num'>5.92e-04</td><td class='num'>60.0%</td><td class='num'>0.0% / 0.0%</td></tr><tr><td>3</td><td>Friant-Kern Canal</td><td>canal</td><td class='num'>9.88 cm [9.2, 11.1]</td><td class='num'>7.23e-04</td><td class='num'>56.3%</td><td class='num'>0.0% / 0.0%</td></tr><tr><td>4</td><td>CA 65</td><td>trunk</td><td class='num'>8.74 cm [7.7, 9.9]</td><td class='num'>4.57e-04</td><td class='num'>3.1%</td><td class='num'>0.0% / 0.0%</td></tr><tr><td>5</td><td>Alta East Branch Canal</td><td>canal</td><td class='num'>8.48 cm [7.8, 9.5]</td><td class='num'>3.67e-04</td><td class='num'>0.5%</td><td class='num'>0.0% / 0.0%</td></tr></tbody></table>
@@ -85,12 +106,16 @@
     <div>
       <h2>Cumulative Displacement Map</h2>
       <figure class='map'><img src='../../data/central_valley/disp/2026-10-14.png' alt='Cumulative LOS displacement map for Central Valley (Tulare Basin) (USA) ending 2026-10-14'><figcaption>Cumulative LOS displacement (2026-06-28 to 2026-10-14, 7 NISAR L2 GUNW pairs).</figcaption></figure>
+      <div class="wtm">
+        <h2>What This Means</h2>
+        <ul><li>Ground in Central Valley (Tulare Basin) (USA) subsided up to -7.8 cm LOS (-7.2 cm/100d) between 2026-06-28 and 2026-10-14, consistent with active seasonal compaction.</li><li>About 92,134 residents live on ground sinking faster than 2 cm per 108 days (and 3,004 residents across 239.84 km2 faster than 5 cm per 108 days, above the 0.59 cm 2-sigma noise floor).</li><li>Infrastructure screening flags Exeter Subdivision as the highest-differential segment in this footprint; pair satellite tracking with local leveling or groundwater head checks before field action.</li></ul>
+      </div>
     </div>
   </div>
 
   <div class="notice">
     <strong>Calibration &amp; Quality Notice (PROVISIONAL):</strong> NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.<br>
-    <strong>Sources:</strong> NASA-ISRO NISAR L2 GUNW (CRID P05023 via ASF DAAC); Nevada Geodetic Laboratory GNSS; OpenStreetMap (ODbL); WorldPop 100 m (CC BY 4.0) / USDA CDL 30 m / ESA WorldCover 10 m where noted.
+    <strong>Sources:</strong> NASA-ISRO NISAR L2 GUNW (CRID P05023 via ASF DAAC); GHSL GHS-POP E2025 R2023A (JRC, CC BY 4.0); Nevada Geodetic Laboratory GNSS; OpenStreetMap (ODbL).
   </div>
 </div>
 </body>

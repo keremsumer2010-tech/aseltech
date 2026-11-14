@@ -38,10 +38,17 @@
   .notice { margin-top:14px; padding:10px 12px; background:#fffbeb; border-left:4px solid var(--warn); font-size:.82rem; }
   ul { margin:6px 0 0 18px; padding:0; font-size:.86rem; }
   @media (max-width:760px) { .grid { grid-template-columns:repeat(2,1fr); } .two { grid-template-columns:1fr; } }
+  .pkg-bar { display:grid; grid-template-columns:repeat(4,1fr); gap:6px 12px; background:#0f172a; color:#f8fafc; border-radius:6px; padding:8px 12px; margin-bottom:12px; font-size:.76rem; }
+  .pkg-bar div span { display:block; color:#94a3b8; font-size:.66rem; text-transform:uppercase; letter-spacing:.04em; }
+  .pkg-bar div strong { font-weight:600; }
+  .wtm { background:#eff6ff; border:1px solid #bfdbfe; border-radius:8px; padding:10px 14px; margin-top:12px; }
+  .wtm h2 { margin-top:0; border-bottom-color:#bfdbfe; color:#1e3a8a; }
+  @page { size: A4 portrait; margin: 12mm; }
   @media print {
     body { background:#fff; padding:0; }
-    .sheet { border:none; box-shadow:none; padding:10px; max-width:100%; }
+    .sheet { border:none; box-shadow:none; padding:6px; max-width:100%; }
     .actions { display:none; }
+    .pkg-bar { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
   }
 </style>
 </head>
@@ -50,7 +57,7 @@
   <div class="topbar">
     <div>
       <h1>NISAR Pulse Bulletin &mdash; Beijing (China) &mdash; 2026-10-15</h1>
-      <div class="meta">Observation window: 2026-06-17 to 2026-10-15 (9 pairs) &middot; Atlas Rank #12 &middot; Coverage: ok</div>
+      <div class="meta">Atlas Rank #12 &middot; Coverage: ok &middot; 9 pairs</div>
     </div>
     <div class="actions">
       <span class="badge conf-low">CONFIDENCE: LOW (indicative only)</span>
@@ -58,6 +65,17 @@
       <a class="btn" href="index.html">All Bulletins</a>
       <button class="btn btn-primary" onclick="window.print()">Print / PDF</button>
     </div>
+  </div>
+
+  <div class="pkg-bar">
+    <div><span>Product ID</span><strong>NP-BEIJING-2026-001</strong></div>
+    <div><span>Issue Time (UTC)</span><strong>2026-11-14 20:40 UTC</strong></div>
+    <div><span>Data Window</span><strong>2026-06-17 to 2026-10-15</strong></div>
+    <div><span>Sensor</span><strong>NISAR L-band GUNW, provisional</strong></div>
+    <div><span>Quality Class</span><strong>PROVISIONAL</strong></div>
+    <div><span>Confidence</span><strong>LOW (indicative only)</strong></div>
+    <div><span>Version</span><strong>v2.0</strong></div>
+    <div><span>Format</span><strong>A4 Operational Map Package</strong></div>
   </div>
 
   <div class="grid">
@@ -73,8 +91,11 @@
       <ul>
         <li><strong>Latest Consecutive Pair Step:</strong> <strong>+0.23 cm LOS</strong> (2026-10-03 to 2026-10-15 at p01: 39.800N 116.840E; cumulative at point: -1.40 cm)</li>
         
-        
+        <li><strong>Affected Population (GHSL GHS-POP E2025, 108d eq., &ge; 0.73 cm 2&sigma;):</strong> 14,769 residents (&lt; -2 cm), 948 residents across 0.35 km&sup2; (&lt; -5 cm).</li>
       </ul>
+
+      <h2>Top 3 Most-Subsiding Areas</h2>
+      <table><thead><tr><th>Rank</th><th>1 km Block Center (Lat, Lon)</th><th class='num'>Cumulative LOS</th><th class='num'>Rate</th></tr></thead><tbody><tr><td>#1</td><td>39.7999, 116.8397</td><td class='num'>-1.59 cm</td><td class='num'>-1.33 cm/100d</td></tr><tr><td>#2</td><td>39.7717, 116.7791</td><td class='num'>-1.05 cm</td><td class='num'>-0.87 cm/100d</td></tr></tbody></table>
 
       <h2>Top 5 At-Risk Infrastructure Segments</h2>
       <p class='muted'>Infrastructure corridor ranking (OSM canal/road overlay) has not been computed for this regional subset yet.</p>
@@ -85,12 +106,16 @@
     <div>
       <h2>Cumulative Displacement Map</h2>
       <figure class='map'><img src='../../data/global/beijing/disp/2026-10-15.png' alt='Cumulative LOS displacement map for Beijing (China) ending 2026-10-15'><figcaption>Cumulative LOS displacement (2026-06-17 to 2026-10-15, 9 NISAR L2 GUNW pairs).</figcaption></figure>
+      <div class="wtm">
+        <h2>What This Means</h2>
+        <ul><li>Peak measured ground motion in Beijing (China) reached -1.4 cm LOS (-1.2 cm/100d) from 2026-06-17 to 2026-10-15, but low coverage or wide reference spread makes this an indicative estimate.</li><li>About 14,769 residents live on ground sinking faster than 2 cm per 108 days (and 948 residents across 0.35 km2 faster than 5 cm per 108 days, above the 0.73 cm 2-sigma noise floor).</li><li>No local GNSS or canal-tilt overlay is bundled for this subset; field inspection and local piezometer records are needed to confirm infrastructure impacts.</li></ul>
+      </div>
     </div>
   </div>
 
   <div class="notice">
     <strong>Calibration &amp; Quality Notice (PROVISIONAL):</strong> NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.<br>
-    <strong>Sources:</strong> NASA-ISRO NISAR L2 GUNW (CRID P05023 via ASF DAAC); Nevada Geodetic Laboratory GNSS; OpenStreetMap (ODbL); WorldPop 100 m (CC BY 4.0) / USDA CDL 30 m / ESA WorldCover 10 m where noted.
+    <strong>Sources:</strong> NASA-ISRO NISAR L2 GUNW (CRID P05023 via ASF DAAC); GHSL GHS-POP E2025 R2023A (JRC, CC BY 4.0); Nevada Geodetic Laboratory GNSS; OpenStreetMap (ODbL).
   </div>
 </div>
 </body>
