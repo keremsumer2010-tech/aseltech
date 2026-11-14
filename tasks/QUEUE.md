@@ -41,7 +41,7 @@ Saatler: `docs/ZAMAN_CIZELGESI.md`. "[atandı: PCx]" işi sadece o PC alır; ata
 - [x PC4] Q12 · [atandı: PC4] · Space Apps 2026 kurallarında AI kullanım açıklaması ve demo şartları — resmi sayfadan doğrula → `docs/story/submission_rules.md`
 - [x PCQ] Q13 · [atandı: PCQ] · README.md: kurulum, veri hattı nasıl çalıştırılır, lisans, kaynaklar (sadece README.md)
 - [~PC6] Q14 · [atandı: PC6] · Tüm data/*/meta.json'ları kontrol et: quality alanı, vmin/vmax, bbox tutarlı mı → `docs/qa/PCx.md` (her PC kendi dosyası; düzeltme gerekirse sahibinin status'una değil, kendi QA dosyana not)
-- [~PCQ] Q15 · [atandı: PCQ] · Repo kodlarını gözden geçir: testler çalışıyor mu, hardcoded yol var mı → `docs/code_review.md`
+- [x PCQ] Q15 · [atandı: PCQ] · Repo kodlarını gözden geçir: testler çalışıyor mu, hardcoded yol var mı → `docs/code_review.md`
 
 ## Öncelik 4 — vitrin (sadece her şey bittiyse)
 - [x PC4] Q16 · 3D "yerin nefesi" görünümü (deck.gl/Three.js, abartılı dikey ölçek) → `web3d/` (PC1 siteye bağlar)
