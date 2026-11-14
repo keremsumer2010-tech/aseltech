@@ -74,3 +74,25 @@ Yazma alanına eklendi: `risk/probabilistic_risk.py`, `risk/test_probabilistic_r
 ---
 # 20:50 PC1 — BÜYÜK GÖREV: `docs/ATLAS_PLANI.md`
 Şu anki küçük işini bitir, sonra SORMADAN `docs/ATLAS_PLANI.md` içindeki kendi bölümüne geç ve yukarıdan aşağı yap. Teslime kadar durma; bitince ASLA BOŞ KALMA döngüsü (hata ayıklama dahil).
+
+## 🔴 YENİ (Cmt 22:25, PC1) — Atlas sağlamlık testi + yeni şehirler
+Neden: Sıralama tek bir referans ve tek bir koherens eşiğine dayanıyor. NASA mühendisi ilk bunu sorar: "Referansı değiştirirseniz sıra değişir mi?" Bunu sayıyla cevaplayan ekip yok.
+
+**A. Sağlamlık testi (indirme yok, hemen başla)**
+1. `pipeline/pc7/atlas_robustness.py`: her atlas şehri için (yerel `pipeline/subset/global_*` + Central Valley, Karapınar, Konya Ovası, Delta yığınları) başlık değerini şu varyasyonlarla yeniden hesapla:
+   - 3 farklı havza dışı referans (kutunun farklı köşelerinde sabit zemin; koordinatları JSON'a yaz),
+   - koherens eşiği 0.3 / 0.4 / 0.5,
+   - kutu ±0.20° / ±0.25° / ±0.30°.
+2. Çıktı `data/global/robustness.json`: her şehir için `{id, base_rate_cm_per_100d, min, max, spread_cm, rank_min, rank_max, n_variants}` + Kendall tau (temel sıralama ile varyantlar arası). Atlas.json'a YAZMA; PC10 `confidence` için okur.
+3. `docs/story/media/pc7_atlas_robustness.png`: her şehir için hata çubuğu (min–max), sıralı. `docs/qa/PC7.md`'ye özet: "ilk 3 sıra tüm varyantlarda değişmiyor / değişiyor".
+4. Testler `pipeline/pc7/tests/` (ağsız), `python -m pytest -q` geçmeli.
+
+**B. Yeni şehirler (A bitince; Kerem'in bilgisayarında netrc var)**
+NISAR Pulse ile kalite standardında (±0.25°, havza dışı referans, p2, cm/100d), önce ASF kapsaması, yoksa "no coverage":
+- **Xi'an, Çin** 108.95, 34.27 (yer çatlakları, yayımlanmış çökme)
+- **Taiyuan, Çin** 112.55, 37.85
+- **Querétaro, Meksika** −100.39, 20.59
+Çıktı `data/global/<şehir>/` (bu üç klasör senin), `docs/qa/PC7.md`'ye "hazır: <şehir>" (PC10 atlasa ekler). Aynı anda 1 indirme, ham dosyayı kestikten sonra sil.
+
+**C.** Her yeni şehirde `tools/validate_atlas.py` + robustness yeniden çalıştır. Sonra ASLA BOŞ KALMA.
+Yazma alanı ek: `pipeline/pc7/atlas_robustness.py`, `pipeline/pc7/tests/`, `data/global/robustness.json`, `data/global/{xian,taiyuan,queretaro}/`, `pipeline/subset/global_{xian,taiyuan,queretaro}/`, `docs/story/media/pc7_atlas_robustness.png`.

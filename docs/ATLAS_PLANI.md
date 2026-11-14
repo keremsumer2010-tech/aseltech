@@ -77,6 +77,8 @@ Mevcut: Mexico City, Tahran, Cakarta, Pekin (PC10), Central Valley, Karapınar, 
 ## PC7 — O2 + atlas kalite kontrolü
 1. O2 olasılıksal mühendislik riskini bitir (`docs/OZGUN_KATKILAR.md` §O2).
 2. `pipeline/pc7/validate_atlas.py`: her `data/global/<şehir>/` sözleşmeye uygun mu, `atlas.json` sıralaması summary'lerle tutarlı mı, NaN yok mu → `docs/qa/PC7.md`; her yeni şehirde yeniden çalıştır.
+3. **(22:25)** Sağlamlık testi: referans × koherens × kutu varyantları → `data/global/robustness.json` (spread, rank_min/max, Kendall tau) + grafik. **PC10:** `confidence`'a robustness spread'i ekle (spread > |değer|/2 → low).
+4. **(22:25)** Yeni şehirler: Xi'an, Taiyuan, Querétaro (`tasks/PC7.md`).
 
 ## PC5 — atlas bilimsel doğrulaması
 1. **Literatür kontrolü:** NISAR verisiyle yayımlanmış küresel çökme sıralaması var mı? Sonuca göre "to our knowledge, the first …" cümlesi kullanılabilir mi — `docs/story/atlas_validation.md`.
