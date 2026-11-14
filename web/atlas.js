@@ -26,7 +26,7 @@ const fmtInt = v => (typeof v === 'number' && Number.isFinite(v)) ? Math.round(v
 const fmtDate = d => d ? new Date(d + 'T00:00:00Z').toLocaleDateString('en-GB', {day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC'}) : '—';
 const fmtShort = d => d ? new Date(d + 'T00:00:00Z').toLocaleDateString('en-GB', {day: 'numeric', month: 'short', timeZone: 'UTC'}) : '—';
 async function J(p){ try{ const r = await fetch(ROOT + p); return r.ok ? await r.json() : null; }catch(e){ return null; } }
-const KNOWN_CARDS = new Set(['bangkok','beijing','central_valley','delta','ho_chi_minh','isfahan','jakarta','karapinar','konya_plain','mashhad','mexico_city','rafsanjan','tehran']);
+const KNOWN_CARDS = new Set(['bangkok','beijing','central_valley','delhi','delta','eloy','hanoi','ho_chi_minh','isfahan','jakarta','karapinar','konya_plain','mashhad','mexico_city','quetta','rafsanjan','semarang','tehran','xian']);
 const KNOWN_SIGMA = new Set(['bangkok','beijing','central_valley','delta','ho_chi_minh','isfahan','jakarta','karapinar','konya_plain','mexico_city','rafsanjan','tehran']);
 let bulletinIds = new Set();
 
