@@ -220,6 +220,7 @@ function clearScene() {
   surfaceMesh = basePlane = frameLine = null;
   beaconGroup.clear();
   sinkholeGroup.clear();
+  pinLabelEls.splice(0).forEach(({ el }) => el.remove());
 }
 
 function buildSurfaceForSite(siteKey) {
@@ -286,13 +287,13 @@ function buildSurfaceForSite(siteKey) {
     lon: region.reference_point.lon,
     lat: region.reference_point.lat,
     detail: `Motion is measured relative to this stable area (mean coherence ${region.reference_point.mean_coh}).`,
-  });
+  }, "Reference area (assumed stable)");
   addPin(region.max_subsidence_location.lon, region.max_subsidence_location.lat, 0xe69f00, {
     title: `Largest sinking · ${region.max_subsidence_location.label}`,
     lon: region.max_subsidence_location.lon,
     lat: region.max_subsidence_location.lat,
     detail: `${region.max_subsidence_cm} cm along the line of sight, ${region.dates[0]} to ${region.dates.at(-1)}.`,
-  });
+  }, `Largest sinking ${String(region.max_subsidence_cm).replace("-", "−")} cm`);
 
   // Karapınar sinkholes
   const hasSinkholes = Array.isArray(region.sinkholes) && region.sinkholes.length > 0;
@@ -320,12 +321,14 @@ function buildSurfaceForSite(siteKey) {
   }
 
   // page text
-  $("regionTitle").textContent = region.title;
-  $("regionSubtitle").textContent = `${region.n_pairs} radar pairs · ${region.dates[0]} to ${region.dates.at(-1)} (${region.days} days)`;
+  const mFmt = (d) => new Date(d + "T00:00:00Z").toLocaleDateString("en-GB", { month: "long", timeZone: "UTC" });
+  const yr = region.dates.at(-1).slice(0, 4);
+  $("regionTitle").textContent = `Where the ground sank, ${mFmt(region.dates[0])} to ${mFmt(region.dates.at(-1))} ${yr}`;
+  $("regionSubtitle").textContent = `${region.title} · ${region.n_pairs} radar pairs, ${region.days} days`;
   $("minLbl").textContent = `${region.vmin} cm`;
   $("maxLbl").textContent = `+${region.vmax} cm`;
   $("legendNote").textContent =
-    "Red = moved away from the satellite (sinking). Bare satellite image = no reliable radar signal.";
+    "Red = ground sank. Blue = sank less than the reference area (not a rise). Bare satellite image = no reliable radar signal.";
   $("metaRef").textContent = `${fmtLatLon(region.reference_point.lat, region.reference_point.lon)} (coherence ${region.reference_point.mean_coh})`;
   $("metaCov").textContent = `${Math.round(region.valid_frac * 100)}% of the area has a reliable signal in every pair. Surface lightly smoothed (3×3). ${cols}×${rows} grid.`;
   $("metaNotes").textContent = region.notes;
@@ -338,7 +341,29 @@ function buildSurfaceForSite(siteKey) {
   updateSurfaceEpoch(maxIdx);
 }
 
-function addPin(lon, lat, colorHex, info) {
+const pinLabelEls = [];
+function addPinLabel(obj, text, color) {
+  const el = document.createElement("div");
+  el.className = "pin-label";
+  el.innerHTML = `<i style="background:#${color.toString(16).padStart(6, "0")}"></i>${text}`;
+  $("pinLabels").appendChild(el);
+  pinLabelEls.push({ el, obj });
+}
+function updatePinLabels() {
+  const w = host.clientWidth, h = host.clientHeight, v = new THREE.Vector3();
+  for (const { el, obj } of pinLabelEls) {
+    v.copy(obj.position).project(camera);
+    const on = v.z < 1 && Math.abs(v.x) < 1.05 && Math.abs(v.y) < 1.05;
+    el.classList.toggle("off", !on);
+    if (on) {
+      const half = el.offsetWidth / 2 + 6; // keep the label fully on screen
+      el.style.left = `${Math.max(half, Math.min(w - half, (v.x * 0.5 + 0.5) * w))}px`;
+      el.style.top = `${Math.max(30, (-v.y * 0.5 + 0.5) * h)}px`;
+    }
+  }
+}
+
+function addPin(lon, lat, colorHex, info, label) {
   const region = bundle.regions[activeSite];
   const wp = lonLatToWorld(lon, lat, region);
   const sphere = new THREE.Mesh(
@@ -355,6 +380,7 @@ function addPin(lon, lat, colorHex, info) {
   stem.position.set(wp.x, 0.2, wp.z);
   stem.userData.anchor = { lon, lat, offsetY: 0.2 };
   beaconGroup.add(sphere, stem);
+  if (label) addPinLabel(sphere, label, colorHex);
 }
 
 function cellAt(lon, lat, region) {
@@ -400,7 +426,7 @@ function updateSurfaceEpoch(epochFloat) {
   $("stampDate").textContent = new Date(region.dates[i0] + "T00:00:00Z")
     .toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric", timeZone: "UTC" })
     .toUpperCase();
-  $("stampSub").textContent = `Sinking since ${region.dates[0].slice(5)} · pair ${i0} of ${region.dates.length - 1}`;
+  $("stampSub").textContent = `Change since ${new Date(region.dates[0] + "T00:00:00Z").toLocaleDateString("en-GB", { day: "numeric", month: "short", timeZone: "UTC" })}`;
 }
 
 /* ---------- inspector ---------- */
@@ -544,6 +570,7 @@ function animate(now) {
   }
   controls.update();
   renderer.render(scene, camera);
+  updatePinLabels();
 }
 
 fetch("surfaces.json")

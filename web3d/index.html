@@ -43,13 +43,16 @@
       <div class="hud hud-title">
         <b id="regionTitle">Loading…</b>
         <span id="regionSubtitle">NISAR ground motion, 3D</span>
+        <span class="hud-how">Red patches are where the ground sank. Drag the date bar to watch them grow.</span>
       </div>
+
+      <div id="pinLabels" aria-hidden="true"></div>
 
       <div class="hud hud-legend">
         <strong>Ground motion</strong>
         <div class="ramp-bar"></div>
         <div class="ramp-labels"><span id="minLbl">−6 cm</span><span>0</span><span id="maxLbl">+6 cm</span></div>
-        <span class="lg-note" id="legendNote">Red = moved away from the satellite (sinking). Pale = no reliable signal.</span>
+        <span class="lg-note" id="legendNote"></span>
         <span class="lg-sink" id="sinkholeToggleWrap" hidden><label><input type="checkbox" id="sinkholeToggle" checked /> <span id="sinkCount">Show mapped sinkholes</span></label></span>
       </div>
 
@@ -67,8 +70,9 @@
           <div class="date-ticks" id="dateTicks"></div>
         </div>
         <div class="dock-exag">
-          <label for="exagSlider">Height ×<b id="exagLabel">50,000</b></label>
+          <label for="exagSlider" title="The surface is stretched upward so that centimetres can be seen. Real sinking is only a few centimetres.">Exaggerated ×<b id="exagLabel">50,000</b></label>
           <input type="range" id="exagSlider" min="10000" max="150000" step="5000" value="50000" aria-label="Height exaggeration" />
+          <small>Real sinking: only centimetres</small>
         </div>
         <button id="resetCamBtn" class="btn-quiet" type="button">Reset view</button>
       </div>
