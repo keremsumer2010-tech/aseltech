@@ -1,0 +1,303 @@
+{
+  "site": "central_valley",
+  "period": [
+    "2026-06-28",
+    "2026-10-14"
+  ],
+  "bbox": [
+    -120.2,
+    35.6,
+    -119.0,
+    36.6
+  ],
+  "quality": "provisional",
+  "quality_note": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.",
+  "population": {
+    "source": "WorldPop Open Population Repository (100 m / 3 arc-sec Gridded Population, 2020, UN-adjusted)",
+    "doi": "https://doi.org/10.5258/SOTON/WP00645",
+    "service_url": "https://worldpop.arcgis.com/arcgis/rest/services/WorldPop_Total_Population_100m/ImageServer",
+    "year": 2020,
+    "resolution_m": 100,
+    "license": "CC BY 4.0 (WorldPop, University of Southampton)",
+    "total_population_in_bbox_estimate": 613429,
+    "population_on_valid_insar_pixels_estimate": 578449,
+    "population_on_common_valid_pixels_estimate": 578449,
+    "population_subsidence_gt_2cm_los_estimate": 71701,
+    "population_subsidence_gt_5cm_los_estimate": 3407,
+    "population_subsidence_gt_2cm_los_common_mask_estimate": 71701,
+    "population_subsidence_gt_5cm_los_common_mask_estimate": 3407,
+    "population_subsidence_gt_2cm_los_interpolated_2p5km_estimate": 78464,
+    "population_subsidence_gt_5cm_los_interpolated_2p5km_estimate": 4270,
+    "population_subsidence_gt_2cm_vertical_estimate": 124561,
+    "population_subsidence_gt_5cm_vertical_estimate": 7067,
+    "population_subsidence_gt_2cm_vertical_interpolated_estimate": 133749,
+    "population_subsidence_gt_5cm_vertical_interpolated_estimate": 8890
+  },
+  "land_cover_and_crops": {
+    "source": "USDA NASS Cropland Data Layer (CDL, CropScape / Microsoft Planetary Computer STAC)",
+    "year": 2021,
+    "resolution_m": 30,
+    "license": "Public Domain (17 USC § 105, USDA National Agricultural Statistics Service)",
+    "url": "https://www.nass.usda.gov/Research_and_Science/Cropland/SARS1a.php",
+    "stac_collection": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/usda-cdl",
+    "subsiding_area_gt_2cm_los_km2": 1579.2,
+    "subsiding_area_gt_5cm_los_km2": 239.84,
+    "subsiding_area_gt_2cm_los_final_epoch_km2": 1579.2,
+    "subsiding_area_gt_5cm_los_final_epoch_km2": 239.84,
+    "cultivated_cropland_gt_2cm_los_km2": 1251.37,
+    "cultivated_cropland_gt_2cm_share_percent": 79.2,
+    "cultivated_cropland_gt_5cm_los_km2": 218.67,
+    "cultivated_cropland_gt_5cm_share_percent": 91.2,
+    "top5_crops_gt_2cm_los": [
+      {
+        "code": 72,
+        "name": "Citrus",
+        "is_cultivated_crop": true,
+        "area_km2": 355.64,
+        "share_percent": 22.5,
+        "pixels_80m": 55569
+      },
+      {
+        "code": 204,
+        "name": "Pistachios",
+        "is_cultivated_crop": true,
+        "area_km2": 230.92,
+        "share_percent": 14.6,
+        "pixels_80m": 36082
+      },
+      {
+        "code": 61,
+        "name": "Fallow/Idle Cropland",
+        "is_cultivated_crop": true,
+        "area_km2": 216.14,
+        "share_percent": 13.7,
+        "pixels_80m": 33772
+      },
+      {
+        "code": 24,
+        "name": "Winter Wheat",
+        "is_cultivated_crop": true,
+        "area_km2": 97.27,
+        "share_percent": 6.2,
+        "pixels_80m": 15199
+      },
+      {
+        "code": 75,
+        "name": "Almonds",
+        "is_cultivated_crop": true,
+        "area_km2": 73.74,
+        "share_percent": 4.7,
+        "pixels_80m": 11522
+      }
+    ],
+    "top5_all_classes_gt_2cm_los": [
+      {
+        "code": 72,
+        "name": "Citrus",
+        "is_cultivated_crop": true,
+        "area_km2": 355.64,
+        "share_percent": 22.5,
+        "pixels_80m": 55569
+      },
+      {
+        "code": 204,
+        "name": "Pistachios",
+        "is_cultivated_crop": true,
+        "area_km2": 230.92,
+        "share_percent": 14.6,
+        "pixels_80m": 36082
+      },
+      {
+        "code": 61,
+        "name": "Fallow/Idle Cropland",
+        "is_cultivated_crop": true,
+        "area_km2": 216.14,
+        "share_percent": 13.7,
+        "pixels_80m": 33772
+      },
+      {
+        "code": 176,
+        "name": "Grassland/Pasture",
+        "is_cultivated_crop": false,
+        "area_km2": 146.19,
+        "share_percent": 9.3,
+        "pixels_80m": 22842
+      },
+      {
+        "code": 24,
+        "name": "Winter Wheat",
+        "is_cultivated_crop": true,
+        "area_km2": 97.27,
+        "share_percent": 6.2,
+        "pixels_80m": 15199
+      }
+    ],
+    "top5_crops_gt_5cm_los": [
+      {
+        "code": 72,
+        "name": "Citrus",
+        "is_cultivated_crop": true,
+        "area_km2": 166.59,
+        "share_percent": 69.5,
+        "pixels_80m": 26030
+      },
+      {
+        "code": 61,
+        "name": "Fallow/Idle Cropland",
+        "is_cultivated_crop": true,
+        "area_km2": 10.0,
+        "share_percent": 4.2,
+        "pixels_80m": 1562
+      },
+      {
+        "code": 204,
+        "name": "Pistachios",
+        "is_cultivated_crop": true,
+        "area_km2": 7.78,
+        "share_percent": 3.2,
+        "pixels_80m": 1216
+      },
+      {
+        "code": 24,
+        "name": "Winter Wheat",
+        "is_cultivated_crop": true,
+        "area_km2": 5.52,
+        "share_percent": 2.3,
+        "pixels_80m": 862
+      },
+      {
+        "code": 75,
+        "name": "Almonds",
+        "is_cultivated_crop": true,
+        "area_km2": 4.71,
+        "share_percent": 2.0,
+        "pixels_80m": 736
+      }
+    ],
+    "top5_all_classes_gt_5cm_los": [
+      {
+        "code": 72,
+        "name": "Citrus",
+        "is_cultivated_crop": true,
+        "area_km2": 166.59,
+        "share_percent": 69.5,
+        "pixels_80m": 26030
+      },
+      {
+        "code": 61,
+        "name": "Fallow/Idle Cropland",
+        "is_cultivated_crop": true,
+        "area_km2": 10.0,
+        "share_percent": 4.2,
+        "pixels_80m": 1562
+      },
+      {
+        "code": 121,
+        "name": "Developed/Open Space",
+        "is_cultivated_crop": false,
+        "area_km2": 8.38,
+        "share_percent": 3.5,
+        "pixels_80m": 1309
+      },
+      {
+        "code": 204,
+        "name": "Pistachios",
+        "is_cultivated_crop": true,
+        "area_km2": 7.78,
+        "share_percent": 3.2,
+        "pixels_80m": 1216
+      },
+      {
+        "code": 24,
+        "name": "Winter Wheat",
+        "is_cultivated_crop": true,
+        "area_km2": 5.52,
+        "share_percent": 2.3,
+        "pixels_80m": 862
+      }
+    ],
+    "top10_crops_gt_2cm_los": [
+      {
+        "code": 72,
+        "name": "Citrus",
+        "is_cultivated_crop": true,
+        "area_km2": 355.64,
+        "share_percent": 22.5,
+        "pixels_80m": 55569
+      },
+      {
+        "code": 204,
+        "name": "Pistachios",
+        "is_cultivated_crop": true,
+        "area_km2": 230.92,
+        "share_percent": 14.6,
+        "pixels_80m": 36082
+      },
+      {
+        "code": 61,
+        "name": "Fallow/Idle Cropland",
+        "is_cultivated_crop": true,
+        "area_km2": 216.14,
+        "share_percent": 13.7,
+        "pixels_80m": 33772
+      },
+      {
+        "code": 24,
+        "name": "Winter Wheat",
+        "is_cultivated_crop": true,
+        "area_km2": 97.27,
+        "share_percent": 6.2,
+        "pixels_80m": 15199
+      },
+      {
+        "code": 75,
+        "name": "Almonds",
+        "is_cultivated_crop": true,
+        "area_km2": 73.74,
+        "share_percent": 4.7,
+        "pixels_80m": 11522
+      },
+      {
+        "code": 69,
+        "name": "Grapes",
+        "is_cultivated_crop": true,
+        "area_km2": 49.88,
+        "share_percent": 3.2,
+        "pixels_80m": 7794
+      },
+      {
+        "code": 217,
+        "name": "Pomegranates",
+        "is_cultivated_crop": true,
+        "area_km2": 36.95,
+        "share_percent": 2.3,
+        "pixels_80m": 5773
+      },
+      {
+        "code": 36,
+        "name": "Alfalfa",
+        "is_cultivated_crop": true,
+        "area_km2": 24.56,
+        "share_percent": 1.6,
+        "pixels_80m": 3837
+      },
+      {
+        "code": 21,
+        "name": "Barley",
+        "is_cultivated_crop": true,
+        "area_km2": 20.46,
+        "share_percent": 1.3,
+        "pixels_80m": 3197
+      },
+      {
+        "code": 211,
+        "name": "Olives",
+        "is_cultivated_crop": true,
+        "area_km2": 15.79,
+        "share_percent": 1.0,
+        "pixels_80m": 2467
+      }
+    ]
+  },
+  "method_note": "Population exposure is estimated by projecting WorldPop 100 m (3 arc-sec, 2020, UN-adjusted) grid cell centers onto the 80 m NISAR UTM grid (EPSG:32611) and summing population where cumulative 108-day LOS subsidence is <= -2.0 cm (> 2 cm sinking) and <= -5.0 cm (> 5 cm sinking). Both strictly valid InSAR pixels and a <= 2.5 km nearest-neighbor basin interpolation (covering vegetated rural parcels) are reported. Crop exposure samples the 30 m USDA NASS Cropland Data Layer (CDL 2021) across the 80 m NISAR common-valid-pixel grid (0.0064 km^2/pixel)."
+}

@@ -124,12 +124,58 @@
    - **PC9 Aksiyonu:** `web/science.html` satır 47'deki statik metni `<span data-k="cv.range">−4.7 cm and −7.8</span> cm` olarak güncelle (`offline_site_qa.py` uyarısını `0`'a indirir).
 
 6. **[DÜŞÜK — `web/data.html`] Yeni Üretilen JSON Veri Dosyalarının İndirme Tablosuna Eklenmesi (`docs/qa/PC7.md` & Katalog Tutarlılığı):**
-   - **Durum:** `web/data.html` şu anda yalnızca ilk faz dosyalarını (`central_valley`, `karapinar`, `uk` `meta/summary/points.json`) listeliyor; yeni eklenen `data/uk_clay/detection.json`, `data/uk_clay/summary.json`, `data/central_valley/area_stats.json`, `data/karapinar/area_stats.json` ve `data/karapinar_p172/summary.json` dosyaları tabloda yok.
-   - **PC9 Aksiyonu:** `web/data.html` içindeki "Processed web data" tablosuna `uk_clay/detection.json`, `uk_clay/summary.json`, `central_valley/area_stats.json`, `karapinar/area_stats.json` ve `karapinar_p172/summary.json` satırlarını ekle.
+   - **Durum:** `web/data.html` şu anda yalnızca ilk faz dosyalarını (`central_valley`, `karapinar`, `uk` `meta/summary/points.json`) listeliyor; yeni eklenen `data/uk_clay/detection.json`, `data/uk_clay/summary.json`, `data/central_valley/area_stats.json`, `data/karapinar/area_stats.json`, `data/central_valley/exposure.json`, `data/karapinar/exposure.json` ve `data/karapinar_p172/summary.json` dosyaları tabloda yok.
+   - **PC3 / PC9 Aksiyonu:** `web/data.html` içindeki "Processed web data" tablosuna bu yeni JSON dosyalarını ekle.
+
+7. **[YÜKSEK — `web/index.html` / `web/science.html` (`tasks/PC3.md` 16:15 Madde 6 — B3)] Nüfus ve Ürün Türü Maruziyeti (`docs/story/exposure.md` & `pc8_exposure.png`) Entegrasyonu:**
+   - **Durum:** `data/central_valley/exposure.json`, `data/karapinar/exposure.json`, `docs/story/exposure.md` ve `docs/story/media/pc8_exposure.png` üretildi.
+   - **PC3 Aksiyonu:** `docs/story/exposure.md` §5 içindeki hazır `<div class="callout exposure-box" id="exposureBox">` HTML bloğunu (`WorldPop 100 m` nüfus + `USDA CDL 30 m` Central Valley ilk 5 ürün + `ESA WorldCover 10 m` Karapınar ilk 5 arazi sınıfı + `pc8_exposure.png`) ilgili site bölümüne (`tasks/PC3.md` 16:15 Madde 6) bağla.
 
 ---
 
-## 4. Önceki Kontroller — Fens (`pipeline/subset/fens`) ve `docs/story/media/` Boyut Kontrolü (K-12)
+## 4. 16:10 Görev A–B — Teslim Formu Metinleri (`submission_form.md`), Video Altyazısı (`video_subtitles.srt`) ve Seslendirme (`narration_script.md`)
+
+- **`docs/story/submission_form.md`:** `docs/story/submission_rules.md` içindeki 13 resmi Space Apps proje sayfası alanı için kopyala-yapıştır hazır İngilizce metinler, her kutunun tam karakter ve kelime sayısı (`Project Title` `48 / 76 chars`, `High-Level Summary` `146 / 469 chars`, `Detailed Description` `2,384 chars / 348 words`, `How It Works` `1,492 chars`, `Benefits & Impact` `1,068 chars`, `Space Agency Data` `1,089 chars`, `Other Data` `748 chars`, `Tools & Software` `634 chars`, `Technical Challenges` `962 chars`, `AI Disclosure` `692 chars`, `References`) ve `docs/KAYNAKLAR_ANALIZI.md` §1 NASA Land Subsidence StoryMap (2013–2017 UAVSAR → 2026 NISAR) çerçevesi ile oluşturuldu.
+- **`docs/story/video_subtitles.srt` & `docs/story/narration_script.md`:** `docs/story/video_shotlist.md` içindeki 6 sahnenin (`00:00.0–00:30.0`) sürelerine birebir oturan standart `.srt` altyazı dosyası ve **76 kelimelik** (`~152 WPM` doğal okuma hızıyla `29.6 saniye`) seslendirme metni oluşturuldu.
+
+---
+
+## 5. 16:15 Challenge Uyumu B3 — Nüfus ve Bitki Örtüsü / Ürün Türü Maruziyeti (`analysis/pc8/exposure.py`)
+
+- **Üretilen Dosyalar:**
+  - `analysis/pc8/exposure.py`
+  - `data/central_valley/exposure.json`
+  - `data/karapinar/exposure.json`
+  - `docs/story/exposure.md`
+  - `docs/story/media/pc8_exposure.png` (`241.5 KB`, 2 panelli grafik — görsel olarak incelendi, sıfır metin çakışması)
+- **Nüfus Maruziyeti (`WorldPop 100 m`, `2020`, `CC BY 4.0`, `estimate`):**
+  - **Central Valley (`[-120.2, 35.6, -119.0, 36.6]`, toplam `613,429` kişi):**
+    - Çökme **`> 2 cm` LOS (`<= -2.0 cm`):** Doğrudan geçerli InSAR piksellerinde **`71,701` kişi** (`<= 2.5 km` havza enterpolasyonuyla **`78,464` kişi**; dikey *estimate* `> 2 cm` için **`124,561` kişi**).
+    - Çökme **`> 5 cm` LOS (`<= -5.0 cm`):** Doğrudan geçerli InSAR piksellerinde **`3,407` kişi** (`<= 2.5 km` havza enterpolasyonuyla **`4,270` kişi**; dikey *estimate* `> 5 cm` için **`7,067` kişi**).
+  - **Karapınar (`[33.3, 37.6, 33.8, 37.9]`, toplam `47,621` kişi):**
+    - Çökme **`> 2 cm` LOS (`<= -2.0 cm`):** Doğrudan geçerli InSAR piksellerinde **`11,572` kişi** (`<= 2.5 km` havza enterpolasyonuyla **`18,906` kişi**; dikey *estimate* `> 2 cm` için **`13,618` kişi**).
+    - Çökme **`> 5 cm` LOS (`<= -5.0 cm`):** Doğrudan geçerli InSAR piksellerinde **`2,214` kişi** (`<= 2.5 km` havza enterpolasyonuyla **`3,481` kişi**; dikey *estimate* `> 5 cm` için **`4,179` kişi**).
+- **Ürün ve Arazi Türü Maruziyeti (`km²`):**
+  - **Central Valley (`USDA NASS Cropland Data Layer 30 m`, `2021`, `Public Domain`):**
+    - `> 2 cm` LOS çöken **`1,579.20 km²`** ortak geçerli alanın **`%79.2`'si (`1,251.37 km²`)** ve `> 5 cm` LOS çöken **`239.84 km²`** alanın **`%91.2`'si (`218.67 km²`)** ekili tarım arazisidir.
+    - **İlk 5 ekili ürün (`> 2 cm` LOS / `> 5 cm` LOS):**
+      1. **Citrus (Narenciye):** **`355.64 km²` (`%22.5`)** / **`166.59 km²` (`%69.5`)**
+      2. **Pistachios (Antep fıstığı):** **`230.92 km²` (`%14.6`)** / **`7.78 km²` (`%3.2`)**
+      3. **Fallow / Idle Cropland (Nadas / boş tarla):** **`216.14 km²` (`%13.7`)** / **`10.00 km²` (`%4.2`)**
+      4. **Winter Wheat (Kışlık buğday):** **`97.27 km²` (`%6.2`)** / **`5.52 km²` (`%2.3`)**
+      5. **Almonds (Badem):** **`73.74 km²` (`%4.7`)** / **`4.71 km²` (`%2.0`)**
+      *(6. Grapes `49.88 km²`, 7. Pomegranates `36.95 km²`, 8. Alfalfa `24.56 km²`, 9. Barley `20.46 km²`, 10. Olives `15.79 km²`)*
+  - **Karapınar (`ESA WorldCover 10 m v200`, `2021`, `CC BY 4.0`):**
+    - **İlk 5 arazi sınıfı (`> 2 cm` LOS ortak geçerli `28.69 km²` / `> 5 cm` LOS `3.10 km²` / `<= 2.5 km` enterpolasyonlu havza `141.08 km²`):**
+      1. **Grassland (Step / mera):** **`16.54 km²` (`%57.7`)** / **`1.15 km²` (`%36.9`)** / havza geneli `58.79 km²` (`%41.7`)
+      2. **Built-up (Yerleşim ve yol dokusu):** **`7.24 km²` (`%25.2`)** / **`1.34 km²` (`%43.3`)** / havza geneli `8.65 km²` (`%6.1`)
+      3. **Bare / sparse vegetation (Çıplak / seyrek karstik yüzey):** **`3.92 km²` (`%13.7`)** / **`0.43 km²` (`%13.8`)** / havza geneli `47.46 km²` (`%33.6`)
+      4. **Tree cover (Ağaç örtüsü):** **`0.57 km²` (`%2.0`)** / **`0.10 km²` (`%3.3`)** / havza geneli `0.67 km²` (`%0.5`)
+      5. **Cropland (Ekili tarım alanı):** **`0.42 km²` (`%1.4`)** / **`0.08 km²` (`%2.7`)** / havza geneli **`24.99 km²` (`%17.7`)** *(yaz sulaması altındaki dairesel pivot tarlalar L-band koherensini kaybettiğinden doğrudan geçerli piksellerde düşük, enterpolasyonlu çökme çanağında `24.99 km²`)*
+
+---
+
+## 6. Önceki Kontroller — Fens (`pipeline/subset/fens`) ve `docs/story/media/` Boyut Kontrolü (K-12)
 
 - **Fens (`pipeline/subset/fens`) Kontrolü:** `pipeline/subset/` altında yalnızca `central_valley`, `karapinar`, `karapinar_p172` ve `uk_clay` alt kümeleri bulunmaktadır; `fens` GUNW alt kümesi yoktur. Holme Fen karşılaştırması `docs/story/holme_fen.md` literatür hızı (`1–2 cm/yıl`) üzerinden `docs/story/uk_findings.md` ve `docs/story/media/pc8_uk_detection.png` içine dahil edilmiştir.
 - **`docs/story/media/` Boyut Kontrolü (K-12):** Orijinal 25 medya dosyası + PC8 tarafından üretilen 2 yeni PNG (`pc8_uk_detection.png` `190.0 KB`, `pc8_kp_p7_vs_p172.png` `264.3 KB`) dahil toplam **27 dosya** kontrol edildi; hiçbir dosya **0 bayt** veya **20 MB** sınırının üzerinde değildir.
