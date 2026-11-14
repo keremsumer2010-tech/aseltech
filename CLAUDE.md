@@ -24,7 +24,7 @@ Teslim: Paz 15 Kas 23:59 UK (= Pzt 02:59 TR). Tüm çıktı metni İNGİLİZCE.
 
 ## Rol sistemi
 - **PC1 = yönetmen** (Kerem'in Claude'u). Görev yazar, denetler, birleştirir.
-- **PC2–PC5 = işçi.** Aynı bilgisayarda iki ajan varsa AYRI klon klasörü kullanır; sadece kendi dosyalarını commit eder ().
+- **PC2–PC5 = işçi.** Aynı bilgisayarda iki ajan varsa AYRI klon klasörü kullanır; sadece kendi dosyalarını commit eder (`git add <kendi yolların>`, asla `git add -A`).
 - **İşçiler:** Başlarken: `git pull` → `tasks/PCx.md` oku → yap → `status/PCx.md` güncelle → commit + push.
 - Ekip: PC1 keremsumer2010-tech · PC2 memir-erdogmus (veri, Antigravity/Gemini ile) · PC3 M3hmeT1888 (çökme analizi) · PC4 acikgozibrahim032-hub (web) · PC5 M3hmeT1888 bilgisayarında Antigravity (oyun + sunum metni).
 - Bonus işler `tasks/BACKLOG.md` içinde; görevi biten PC1'e sorup oradan alır.
