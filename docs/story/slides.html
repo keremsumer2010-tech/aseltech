@@ -326,7 +326,7 @@
           </div>
           <figure>
             <img src="media/risk_1.png" alt="Cumulative subsidence and gradient profile along Tulare Irrigation District Canal" />
-            <figcaption>Figure 4. Cumulative subsidence and tilt profile along Tulare Irrigation District Canal (57.01 mm/km, 28 Jun–14 Oct 2026; 81 of 645 segments high-risk; California Aqueduct reaches 49.12 mm/km over 102.82 km). Data: NASA-ISRO NISAR (ASF DAAC) and OpenStreetMap. Analysis: Team Taykut.</figcaption>
+            <figcaption>Figure 4. Cumulative subsidence and tilt profile along Tulare Irrigation District Canal (57.01 mm/km, 28 Jun–14 Oct 2026; 81 of 645 segments high-risk; top-10 ranking 100% invariant across ±25% threshold tests, 72–115 segments; California Aqueduct 49.12 mm/km). Data: NASA-ISRO NISAR (ASF DAAC) and OpenStreetMap. Analysis: Team Taykut.</figcaption>
           </figure>
         </div>
       </div>
@@ -427,29 +427,33 @@
         <h2>Interactive Web Map, 3D Surface Viewer and Two-Year Groundwater Simulator</h2>
         <p class="lead">Water managers and citizens inspect cumulative displacement in 2D/3D and compare 24-month pumping scenarios directly against NISAR measurements.</p>
       </div>
-      <div class="three-col">
-        <div class="card">
-          <h3><span class="badge real">Interactive</span>2D Story Map (<code>web/</code>)</h3>
-          <ul>
-            <li>Synchronized VIIRS optical vs. NISAR radar swipe for the UK Fens (20 Oct 2026).</li>
-            <li>Date slider across Central Valley (28 Jun–14 Oct 2026) and Karapınar (26 Jun–12 Oct 2026) maps with clickable time-series charts.</li>
-            <li>Overlay of 29 documented sinkhole locations and 645 evaluated infrastructure segments.</li>
-          </ul>
+      <div class="two-col">
+        <div class="stack-figs">
+          <div class="card" style="padding: 11px 14px;">
+            <h3 style="margin-bottom:4px;"><span class="badge real">Interactive</span>2D Story Map (<code>web/</code>)</h3>
+            <ul style="gap:3px;">
+              <li>Synchronized VIIRS optical vs. NISAR radar swipe for the UK Fens (20 Oct 2026).</li>
+              <li>Date slider across Central Valley (28 Jun–14 Oct 2026) and Karapınar (26 Jun–12 Oct 2026) with 29 sinkholes and 645 corridors.</li>
+            </ul>
+          </div>
+          <div class="card" style="padding: 11px 14px;">
+            <h3 style="margin-bottom:4px;"><span class="badge real">Interactive</span>3D Surface Viewer (<code>web3d/</code>)</h3>
+            <ul style="gap:3px;">
+              <li>Three.js <code>@0.160.0</code> surface mesh across 8 Central Valley and 9 Karapınar epochs on a 1 km block-median grid.</li>
+              <li>Adjustable vertical exaggeration (10,000×–150,000×) paired with 3D sinkhole depth columns (0.5–80 m).</li>
+            </ul>
+          </div>
+          <div class="card" style="padding: 11px 14px;">
+            <h3 style="margin-bottom:4px;"><span class="badge prev">Illustrative</span>Valley Under Pressure (<code>game/</code>)</h3>
+            <ul style="gap:3px;">
+              <li>1D Terzaghi consolidation model across 7 Tulare districts calibrated at Terra Bella (k = 0.6232, b0 · S_skv ≈ 0.02356) to −10.1 cm vertical (−7.8 cm LOS) over 108 days.</li>
+            </ul>
+          </div>
         </div>
-        <div class="card">
-          <h3><span class="badge real">Interactive</span>3D Surface Viewer (<code>web3d/</code>)</h3>
-          <ul>
-            <li>Three.js <code>@0.160.0</code> surface mesh interpolated across all 8 Central Valley and 9 Karapınar epochs on a 1 km block-median grid.</li>
-            <li>Adjustable vertical exaggeration (10,000×–150,000×) paired with 3D sinkhole depth columns (0.5–80 m).</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3><span class="badge prev">Illustrative</span>Valley Under Pressure (<code>game/</code>)</h3>
-          <ul>
-            <li>24-month groundwater and subsidence model across 7 Tulare Basin districts calibrated against <code>summary.json</code> (−7.8 cm LOS / −10.1 cm vertical estimate, 28 Jun–14 Oct 2026).</li>
-            <li>1D Terzaghi consolidation model: adjust 0%–150% pumping and surface water allocations vs. permanent clay collapse and canal slope loss.</li>
-          </ul>
-        </div>
+        <figure style="height: 390px;">
+          <img src="game_sensitivity.png" alt="Monte Carlo sensitivity analysis of ValleyModel consolidation parameters over 1,000 trials" style="max-height: 295px;" />
+          <figcaption>Figure 9. Monte Carlo sensitivity (N = 1,000 trials) of the Valley Under Pressure consolidation model at Terra Bella (108-day calibration target −10.1 cm vertical at k = 0.6232, p10–p90 −13.69 to −4.12 cm; 24-month stochastic p10–p90 −27.10 to −6.23 cm). Data: NASA-ISRO NISAR and USGS parameter priors. Analysis: Team Taykut.</figcaption>
+        </figure>
       </div>
       <div class="foot">
         <span>Static client-side HTML/JS hosted directly from repository datasets · Calibration: NASA-JPL / ISRO (provisional).</span>

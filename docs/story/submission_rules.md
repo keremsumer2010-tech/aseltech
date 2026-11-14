@@ -1,4 +1,4 @@
-# NASA Space Apps Project Submission Rules & Checklist (`Q12`)
+# NASA Space Apps Project Submission Rules and Checklist
 
 ## 1. Source Provenance & Verification Boundary
 
@@ -18,7 +18,7 @@
 - **Link to Project "Demo"** *(strictly ONE link to either a slide presentation OR a video)*
 - **Detailed Project Description** *(functionality, benefits, goals, tools, languages, hardware/software)*
 - **Space Agency Data** *(exact open-source datasets used from NASA and/or Space Agency Partners such as ISRO)*
-- **Hackathon Journey** *(learning, motivation, development approach, obstacles resolved)*
+- **Project Development and Technical Challenges** *(portal field: learning, motivation, development approach, obstacles resolved)*
 - **References** *(all code, data, text, and images used—even if open-source or freely available—plus permission verification for any copyrighted material)*
 
 ### B. Project Demo Format Limits ("Do Not Exceed")
@@ -37,7 +37,7 @@
 
 ---
 
-## 3. Team Pre-Submit Compliance Checklist (`RULES.md` Alignment)
+## 3. Team Pre-Submit Compliance Checklist
 
 - [ ] **No Fake Metrics (`K-2`):** Every `{...}` placeholder in `docs/story/project_page.md` replaced only with actual measured values from `data/central_valley/summary.json`, `data/karapinar/`, and `data/uk/`; zero invented statistics or unverified URLs.
 - [ ] **Mandatory NISAR Calibration Attribution (`K-3`):** *"NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team."* appears visibly in the project page, web footer, and slides/video.

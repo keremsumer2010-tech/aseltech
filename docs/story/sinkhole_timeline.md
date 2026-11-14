@@ -1,6 +1,6 @@
-# Karapınar Sinkhole (*Obruk*) Chronology & Groundwater Drivers (`docs/story/sinkhole_timeline.md`)
+# Karapınar Sinkhole (*Obruk*) Chronology & Groundwater Drivers
 
-> **Calibration Notice:** *NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.* All field coordinates, dimensions, and formation years below match [data/karapinar/sinkholes.geojson](../../data/karapinar/sinkholes.geojson) and peer-reviewed primary tables verbatim (`rules/RULES.md` K-2).
+**Calibration Notice:** *NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.* All field coordinates, dimensions, and formation years below match [data/karapinar/sinkholes.geojson](../../data/karapinar/sinkholes.geojson) and peer-reviewed primary tables verbatim (`rules/RULES.md` K-2).
 
 ---
 

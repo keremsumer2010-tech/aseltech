@@ -1,6 +1,6 @@
 # NISAR Calibration & Data Maturity Note
 
-> **Mandatory Attribution:** NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.
+**Mandatory Attribution:** *NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.*
 
 ---
 

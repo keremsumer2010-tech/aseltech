@@ -2,7 +2,7 @@
 
 All sources listed below were opened and verified directly against primary scientific, agency, or project documentation. Every numerical figure quoted here appears verbatim in the linked source document.
 
-> **Calibration Notice:** NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.
+**Calibration Notice:** *NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.*
 
 ---
 
@@ -40,6 +40,14 @@ All sources listed below were opened and verified directly against primary scien
   URL: https://www.kvpr.org/environment/2017-08-03/friant-kern-canal-slows-by-60-percent-subsidence-to-blame  
   Key finding: Citing the Friant Water Authority (Doug DeFlitch), a **25-mile** reach of the **152-mile** Friant-Kern Canal in Tulare County—built in the **1940s** to irrigate **1 million acres** and supply towns including Lindsey, Orange Cove, and **Terra Bella**—sank **two to three feet**, cutting flow capacity by about **60 percent** (from **4,000 cfs** design capacity down to **1,600 cfs**), with the **deepest sinking near Terra Bella** and estimated full-canal adjustment costs around **$400 million**.
 
+- **Neely et al. (2021), *Water Resources Research* 57(4):e2020WR028451 (PMC8047915)**  
+  URL: https://pmc.ncbi.nlm.nih.gov/articles/PMC8047915/  
+  Key finding: Sentinel-1 InSAR and cGPS (`Oct 2015 – Sep 2017`) across the San Joaquin Valley report dry `WY2016` mean subsidence of **-4.20 cm/yr** (`-42.0 mm/yr`) and peak **-34.5 cm/yr** (`-345 mm/yr`), wet `WY2017` mean **-2.04 cm/yr** and peak **-17.7 cm/yr**, and `Apr 2015–Oct 2017` peak **-27.0 cm/yr**.
+
+- **Ojha, Werth & Shirzaei (2019), *JGR Solid Earth* 124:3127–3143 (PMC6559157)**  
+  URL: https://pmc.ncbi.nlm.nih.gov/articles/PMC6559157/  
+  Key finding: Multi-sensor ALOS and Sentinel-1 InSAR, GPS, and GRACE inversions (`2007–2009` and `Jan 2015–Sep 2016`) document subsidence up to **-25.0 cm/yr** (`250 mm/yr`) in the Tule/Kaweah subbasins (`~ -15.0 cm/yr` near Chowchilla) and **~ -30.0** to **> -30.0 cm/yr** in the southern Central Valley.
+
 ---
 
 ## 3. Karapınar / Konya Basin Sinkholes (*Obruks*) & Subsidence
@@ -52,6 +60,18 @@ All sources listed below were opened and verified directly against primary scien
 - **Konya İli Obruklarının Turizm Potansiyeli (The Tourism Potential of Sinkholes in Konya Province) — Tapur & Bozyiğit (2016), *Marmara Coğrafya Dergisi* 34:253–267**  
   URL: https://dergipark.org.tr/tr/download/article-file/227372  
   Key finding: Notes **86** of Konya's **104** documented sinkholes are located in Karapınar district, documents recent **30-year** groundwater declines reflected in karstic lake drops, and measures iconic historical obruk lakes including **Kızören Obruğu** (**341 × 277 m** rim, **145 m** depth in 1992 reduced by **10 m**, designated a **127-hectare** Ramsar site in **2005**), **Meyil Obruğu** (**660 × 590 m**, **40 m** water depth), and **Çıralı Obruğu** (**354 × 303 m**).
+
+- **Orhan et al. (2021), *Sensors* 21(3):774 (PMC7865528)**  
+  URL: https://pmc.ncbi.nlm.nih.gov/articles/PMC7865528/  
+  Key finding: Sentinel-1 (`2014–2018`) and COSMO-SkyMed (`2016–2017`) SBAS-InSAR paired with cGNSS across Karapınar shows subsidence exceeding **-7.0 cm/yr** (`> 70 mm/yr`) across agricultural bowls with **> 80%** cross-correlation to groundwater decline.
+
+- **Üstün, Tuşat & Yalvaç (2010), *Natural Hazards and Earth System Sciences* 10:1151–1164**  
+  URL: https://nhess.copernicus.org/articles/10/1151/2010/  
+  Key finding: Continuous and campaign GNSS monitoring (`2006–2009`) measures **-1.2 to -5.2 cm/yr** (`-12 to -52 mm/yr`) vertical land subsidence across the Konya Closed Basin.
+
+- **Canaslan Çomut et al. (2015), *ISPRS Archives* XL-1/W5:115–119**  
+  URL: https://isprs-archives.copernicus.org/articles/XL-1-W5/115/2015/  
+  Key finding: Multi-band InSAR (`ERS-1/2`, `Envisat`, `ALOS L-band`, `1992–2010`) documents **-1.3 to -1.7 cm/yr** (`-13 to -17 mm/yr`) regional multi-decadal subsidence trends in the Konya Basin.
 
 ---
 

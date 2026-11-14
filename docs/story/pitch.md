@@ -47,7 +47,7 @@
 - **[ON SCREEN — Story Chapter 3 (`[data-step="cv"]`, `#play`, `#slider`, `#readout`, `#pointChart`)]:** Press `#play` on the date slider (**`28 Jun – 14 Oct 2026`**, **`7` provisional NISAR GUNW pairs**). Tap `p01` (`6 km N of Terra Bella`, `max_subsidence_location`) and show `#readout` + `#pointChart` + Chapter 4 GPS comparison.
 - **[SPEAKER]:**
   "Step one: California's San Joaquin Valley. Across **108 summer days (`2026-06-28` to `2026-10-14`)**, cumulative NISAR line-of-sight measurements over **7 provisional pairs** show the valley floor dropping by up to **`−7.8 centimetres` LOS** — roughly **`−10.1 centimetres`** vertical equivalent — near **Terra Bella**.
-  Tap any point on the map and the chart strips away radar jargon into one plain sentence for water managers. And when underground clay compacts irreversibly, surface canals tilt: evaluating **645 OpenStreetMap corridors** reveals **81 high-risk segments**, with differential slopes reaching **`57.01 mm/km`** on the **Tulare Irrigation District Canal** and **`49.12 mm/km`** along **102.8 km of the California Aqueduct**."
+  Tap any point on the map and the chart strips away radar jargon into one plain sentence for water managers. And when underground clay compacts irreversibly, surface canals tilt: evaluating **645 OpenStreetMap corridors** reveals **81 high-risk segments**, with differential slopes reaching **`57.01 mm/km`** on the **Tulare Irrigation District Canal** and **`49.12 mm/km`** along **102.8 km of the California Aqueduct**—and **`±25%`** threshold sensitivity tests (`72–115` high-risk segments) leave our top-10 priority ranking **100% invariant**."
 - **[ON SCREEN — Story Chapter 6 (`[data-step="kp"]`, `#sinkList`)]:** Scroll to Karapınar; highlight documented sinkhole markers (**`29` field-verified locations**) over the **`8`-pair (`26 Jun – 12 Oct 2026`)** L-band displacement map.
 - **[SPEAKER]:**
   "Step two: our home basin — **Karapınar in Konya, Türkiye** — where **8 provisional pairs** over the same **108-day** irrigation window reveal up to **`−5.9 centimetres` LOS** (`~−8.0 centimetres` vertical) just **2 kilometres west of Karapınar**, overlaid with **29 peer-reviewed karst sinkholes**—and valid pixels within 1 km of those sinkholes sink **6.4 times faster (`−4.15 cm`)** than the far-field plateau (`−0.65 cm`)."
@@ -55,7 +55,7 @@
 ### 1:45 – 2:05 · Interactive Decision Tool: Simulator (`#play`, `#gameFrame`) (15–20 sec)
 - **[ON SCREEN — Simulator (`#play`, `game/index.html` embedded in `#gameFrame`)]:** Pilot selects **Terra Bella**, triggers **Over-Pump** (`#pumpSlider` up toward `150%`), steps across the **24-month** timeline, and points to permanent coral clay compaction and canal conveyance warnings; then resets to `SGMA Balance`.
 - **[SPEAKER]:**
-  "Maps tell you what happened; our **Valley Under Pressure** simulator — calibrated directly against NISAR's Terra Bella summer subsidence (`−7.8 cm` LOS / `−10.1 cm` vertical) across seven Tulare Basin districts — lets growers and water boards test the **24-month** trade-off. Over-pumping boosts short-term revenue, but drops groundwater head past the preconsolidation threshold, permanently crushes deep clay, and bends canals toward Friant-Kern-scale flow losses."
+  "Maps tell you what happened; our **Valley Under Pressure** simulator — calibrated directly against NISAR's Terra Bella summer subsidence (`−7.8 cm` LOS / `−10.1 cm` vertical, `k = 0.6232`, `N = 1,000` Monte Carlo uncertainty `−18.69 cm` nominal / `p10–p90 −27.10` to `−6.23 cm` over 24 months) across seven Tulare Basin districts — lets growers and water boards test the **24-month** trade-off. Over-pumping boosts short-term revenue, but drops groundwater head past the preconsolidation threshold, permanently crushes deep clay, and bends canals toward Friant-Kern-scale flow losses."
 
 ### 2:05 – 2:40 · How We Know (Physics, GNSS Validation & Scientific Honesty)
 - **[ON SCREEN — Story Chapter 4 (`[data-step="gnss"]`, `#gnssChart`, `#gnssTable`) & Method (`#how` / `science.html`)]:** Show real daily vertical GNSS station traces from Nevada Geodetic Laboratory alongside NISAR pixel extractions.
@@ -131,7 +131,7 @@ NISAR Pulse: Follow the Water. Provisional NISAR L2 GUNW data (NASA-JPL / ISRO c
 
 ### Slide 3 · Central Valley: Sinking Valley, Tilting Canals
 - **Observation (`2026-06-28 → 2026-10-14`):** `7` provisional ascending Track 34 NISAR pairs show peak LOS subsidence of **`−7.8 cm`** (`~−10.1 cm` vertical est. at `39.1°` near `6 km N of Terra Bella`; linear summer rate est. `−26.4 cm/yr`).
-- **Critical Infrastructure:** Out of `645` evaluated corridors, `81` are high-risk, led by **Tulare Irrigation District Canal** (`57.01 mm/km`) and **California Aqueduct** (`49.12 mm/km` over `102.8 km`).
+- **Critical Infrastructure & Sensitivity:** Out of `645` evaluated corridors, `81` are high-risk (`12.6%`), led by **Tulare Irrigation District Canal** (`57.01 mm/km`) and **California Aqueduct** (`49.12 mm/km` over `102.8 km`); varying thresholds by `±25%` shifts totals (`72–115`) while keeping the **top-10 priority corridor ranking 100% invariant** (`docs/story/risk_sensitivity.md`).
 - **Interactive UX:** Click any valley coordinate for cumulative displacement history in plain language (`web/` & 3D `web3d/`).
 
 ### Slide 4 · How We Know: Independent GNSS & Dual-Orbit Validation
@@ -146,7 +146,7 @@ NISAR Pulse: Follow the Water. Provisional NISAR L2 GUNW data (NASA-JPL / ISRO c
 
 ### Slide 6 · Decision Tool: Valley Under Pressure (Physical Simulator)
 - **Interactive Policy Model:** Browser simulator (`game/index.html`) calibrated directly against `data/central_valley/summary.json` (`−7.8 cm` LOS / `−10.1 cm` vertical target across `108` summer days, `28 Jun–14 Oct 2026`).
-- **24-Month Trade-Off:** 1D Terzaghi consolidation model letting users test `0%–150%` pumping and surface water allocations across `7` Tulare Basin districts to weigh revenue against permanent clay collapse and canal loss.
+- **24-Month Trade-Off & Monte Carlo Check (`game_sensitivity.md`):** 1D Terzaghi consolidation model (`k = 0.6232`, `b0 · S_skv ≈ 0.02356`) letting users test `0%–150%` pumping across `7` Tulare Basin districts (`−18.69 cm` 24-month nominal vertical, `N = 1,000` stochastic `p10–p90` `−27.10` to `−6.23 cm`).
 
 ### Slide 7 · Scientific Integrity, Provenance & AI Disclosure
 - **Calibration Notice:** NISAR data used here are **provisional** (`CRID P05023`); sensor calibration and validation are performed by the NISAR project (NASA–JPL / ISRO), not by our team.
