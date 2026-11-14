@@ -1,3 +1,3 @@
 # PC8 durum
 
-- Durum: sürekli döngüde (00:34 TR) — tools/atlas_completeness.py ve ATLAS_COMPLETENESS.md üretildi (15 bölge, PC8: 0 eksik); sıradaki: 3 dk sonra kontrol.
+- Durum: sürekli döngüde (00:37 TR) — TAKVİYE okundu; 15 bölge senkron (PC8: 0 eksik; eloy/quetta/xian atlas.json bekliyor); sıradaki: 3 dk sonra kontrol.
