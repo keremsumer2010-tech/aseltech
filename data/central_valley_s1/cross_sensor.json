@@ -1,0 +1,751 @@
+{
+  "title": "L-band NISAR vs. C-band Sentinel-1 (OPERA DISP-S1) & Continuous GPS Synthesis",
+  "quality_note": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.",
+  "cmr_opera_disp_s1": {
+    "source": "live_cmr_earthdata",
+    "opera_total_bbox_hits": 2663,
+    "opera_2026_hits": 66,
+    "opera_2026_frames": [
+      "F11116",
+      "F16941",
+      "F16942",
+      "F36541",
+      "F36542",
+      "F38502",
+      "F38503"
+    ],
+    "opera_summer_2026_hits": 0,
+    "sentinel1a_slc_summer_2026_hits": 0,
+    "sentinel1c_slc_summer_2026_hits": 55,
+    "latest_opera_any_frame_end": "2026-04-26",
+    "full_coverage_frame": "F38502",
+    "f38502_total_since_2025_06": 39,
+    "f38502_coverage": {
+      "cv_points": "12/12",
+      "fullyear_points": "12/12",
+      "gps_stations": "10/10"
+    },
+    "f38502_summer2025_window": [
+      "2025-07-19",
+      "2025-10-17"
+    ],
+    "f38502_latest_winter_window": [
+      "2025-10-17",
+      "2026-02-14"
+    ],
+    "raw_download_status": "PermissionError: HTTP 401 access denied for _tmp_probe_opera.nc"
+  },
+  "nisar_vs_gnss_validation": {
+    "n_stations": 10,
+    "terminal_vertical_metrics": {
+      "n": 10,
+      "r": 0.9239,
+      "rmse_cm": 1.372,
+      "bias_cm": 0.636,
+      "slope": 1.539,
+      "intercept_cm": 1.541
+    },
+    "terminal_los_metrics": {
+      "n": 10,
+      "r": 0.9244,
+      "rmse_cm": 1.035,
+      "bias_cm": 0.478,
+      "slope": 1.5439,
+      "intercept_cm": 1.164
+    },
+    "pooled_70epochs_vertical_metrics": {
+      "n": 70,
+      "r": 0.6788,
+      "rmse_cm": 1.602,
+      "bias_cm": 0.616,
+      "slope": 1.0962,
+      "intercept_cm": 0.759
+    },
+    "valley_core_5stations_terminal_vertical": {
+      "n": 5,
+      "r": 0.7462,
+      "rmse_cm": 0.823,
+      "bias_cm": -0.458,
+      "slope": 0.6284,
+      "intercept_cm": -1.54
+    },
+    "stations": [
+      {
+        "station": "CAD1",
+        "lon": -119.2438,
+        "lat": 35.7594,
+        "incidence_deg": 40.62,
+        "valley_subsiding_core": false,
+        "temporal_corr": -0.4097,
+        "rmse_vertical_cm": 1.991,
+        "terminal_nisar_vertical_cm": 1.247,
+        "terminal_gnss_up_cm": -0.707,
+        "terminal_nisar_los_cm": 0.947,
+        "terminal_gnss_los_cm": -0.537
+      },
+      {
+        "station": "CAFP",
+        "lon": -120.102,
+        "lat": 36.424,
+        "incidence_deg": 43.34,
+        "valley_subsiding_core": false,
+        "temporal_corr": 0.0689,
+        "rmse_vertical_cm": 2.791,
+        "terminal_nisar_vertical_cm": 0.477,
+        "terminal_gnss_up_cm": -1.003,
+        "terminal_nisar_los_cm": 0.347,
+        "terminal_gnss_los_cm": -0.729
+      },
+      {
+        "station": "CAHA",
+        "lon": -119.6228,
+        "lat": 36.3234,
+        "incidence_deg": 41.38,
+        "valley_subsiding_core": true,
+        "temporal_corr": 0.8957,
+        "rmse_vertical_cm": 0.752,
+        "terminal_nisar_vertical_cm": -3.446,
+        "terminal_gnss_up_cm": -3.228,
+        "terminal_nisar_los_cm": -2.586,
+        "terminal_gnss_los_cm": -2.422
+      },
+      {
+        "station": "HANF",
+        "lon": -119.6591,
+        "lat": 36.2152,
+        "incidence_deg": 41.75,
+        "valley_subsiding_core": true,
+        "temporal_corr": 0.8955,
+        "rmse_vertical_cm": 0.834,
+        "terminal_nisar_vertical_cm": -3.511,
+        "terminal_gnss_up_cm": -2.223,
+        "terminal_nisar_los_cm": -2.619,
+        "terminal_gnss_los_cm": -1.658
+      },
+      {
+        "station": "P056",
+        "lon": -119.0629,
+        "lat": 36.0274,
+        "incidence_deg": 39.28,
+        "valley_subsiding_core": true,
+        "temporal_corr": 0.6613,
+        "rmse_vertical_cm": 0.788,
+        "terminal_nisar_vertical_cm": -2.496,
+        "terminal_gnss_up_cm": -1.451,
+        "terminal_nisar_los_cm": -1.932,
+        "terminal_gnss_los_cm": -1.123
+      },
+      {
+        "station": "P564",
+        "lon": -119.3494,
+        "lat": 35.6229,
+        "incidence_deg": 41.38,
+        "valley_subsiding_core": false,
+        "temporal_corr": -0.1009,
+        "rmse_vertical_cm": 1.57,
+        "terminal_nisar_vertical_cm": 1.921,
+        "terminal_gnss_up_cm": -0.167,
+        "terminal_nisar_los_cm": 1.441,
+        "terminal_gnss_los_cm": -0.125
+      },
+      {
+        "station": "P565",
+        "lon": -119.2367,
+        "lat": 35.7439,
+        "incidence_deg": 40.62,
+        "valley_subsiding_core": false,
+        "temporal_corr": -0.252,
+        "rmse_vertical_cm": 1.998,
+        "terminal_nisar_vertical_cm": 1.323,
+        "terminal_gnss_up_cm": -0.543,
+        "terminal_nisar_los_cm": 1.004,
+        "terminal_gnss_los_cm": -0.412
+      },
+      {
+        "station": "P566",
+        "lon": -119.2293,
+        "lat": 36.3245,
+        "incidence_deg": 39.56,
+        "valley_subsiding_core": false,
+        "temporal_corr": 0.4209,
+        "rmse_vertical_cm": 0.639,
+        "terminal_nisar_vertical_cm": 1.452,
+        "terminal_gnss_up_cm": 0.187,
+        "terminal_nisar_los_cm": 1.119,
+        "terminal_gnss_los_cm": 0.144
+      },
+      {
+        "station": "QCAP",
+        "lon": -119.6322,
+        "lat": 36.3136,
+        "incidence_deg": 41.44,
+        "valley_subsiding_core": true,
+        "temporal_corr": 0.8198,
+        "rmse_vertical_cm": 0.767,
+        "terminal_nisar_vertical_cm": -2.542,
+        "terminal_gnss_up_cm": -3.199,
+        "terminal_nisar_los_cm": -1.906,
+        "terminal_gnss_los_cm": -2.398
+      },
+      {
+        "station": "TLBN",
+        "lon": -119.4071,
+        "lat": 35.9347,
+        "incidence_deg": 41.09,
+        "valley_subsiding_core": true,
+        "temporal_corr": 0.7926,
+        "rmse_vertical_cm": 1.173,
+        "terminal_nisar_vertical_cm": -4.85,
+        "terminal_gnss_up_cm": -4.454,
+        "terminal_nisar_los_cm": -3.655,
+        "terminal_gnss_los_cm": -3.357
+      }
+    ]
+  },
+  "lband_coherence_25_pairs": {
+    "wavelength_cm": 24.1963,
+    "ag_core_bbox": [
+      -119.85,
+      35.85,
+      -119.3,
+      36.2
+    ],
+    "n_pairs_total": 25,
+    "seasonal_summary": {
+      "winter_dec_feb": {
+        "n_pairs": 8,
+        "mean_bbox_median_coh": 0.69,
+        "mean_ag_core_median_coh": 0.662,
+        "mean_ag_core_valid_frac": 0.927
+      },
+      "spring_mar_may": {
+        "n_pairs": 8,
+        "mean_bbox_median_coh": 0.548,
+        "mean_ag_core_median_coh": 0.493,
+        "mean_ag_core_valid_frac": 0.776
+      },
+      "summer_jun_oct": {
+        "n_pairs": 9,
+        "mean_bbox_median_coh": 0.621,
+        "mean_ag_core_median_coh": 0.539,
+        "mean_ag_core_valid_frac": 0.804
+      }
+    },
+    "pairs": [
+      {
+        "pair": "2025-11-24_2025-12-06",
+        "date1": "2025-11-24",
+        "date2": "2025-12-06",
+        "dt_days": 12,
+        "quality_class": "beta-precal",
+        "bbox_median_coh": 0.7059,
+        "bbox_p25_coh": 0.5608,
+        "bbox_p75_coh": 0.8275,
+        "bbox_valid_frac_ge_03": 0.9367,
+        "ag_core_median_coh": 0.6824,
+        "ag_core_p25_coh": 0.549,
+        "ag_core_valid_frac_ge_03": 0.9217
+      },
+      {
+        "pair": "2025-12-06_2025-12-18",
+        "date1": "2025-12-06",
+        "date2": "2025-12-18",
+        "dt_days": 12,
+        "quality_class": "beta-precal",
+        "bbox_median_coh": 0.7255,
+        "bbox_p25_coh": 0.5725,
+        "bbox_p75_coh": 0.8431,
+        "bbox_valid_frac_ge_03": 0.9271,
+        "ag_core_median_coh": 0.7137,
+        "ag_core_p25_coh": 0.5804,
+        "ag_core_valid_frac_ge_03": 0.9099
+      },
+      {
+        "pair": "2025-12-18_2025-12-30",
+        "date1": "2025-12-18",
+        "date2": "2025-12-30",
+        "dt_days": 12,
+        "quality_class": "beta-precal",
+        "bbox_median_coh": 0.651,
+        "bbox_p25_coh": 0.498,
+        "bbox_p75_coh": 0.7922,
+        "bbox_valid_frac_ge_03": 0.9244,
+        "ag_core_median_coh": 0.6235,
+        "ag_core_p25_coh": 0.4784,
+        "ag_core_valid_frac_ge_03": 0.9085
+      },
+      {
+        "pair": "2025-12-30_2026-01-11",
+        "date1": "2025-12-30",
+        "date2": "2026-01-11",
+        "dt_days": 12,
+        "quality_class": "beta-precal",
+        "bbox_median_coh": 0.7373,
+        "bbox_p25_coh": 0.5961,
+        "bbox_p75_coh": 0.8588,
+        "bbox_valid_frac_ge_03": 0.9646,
+        "ag_core_median_coh": 0.702,
+        "ag_core_p25_coh": 0.5804,
+        "ag_core_valid_frac_ge_03": 0.9568
+      },
+      {
+        "pair": "2026-01-11_2026-01-23",
+        "date1": "2026-01-11",
+        "date2": "2026-01-23",
+        "dt_days": 12,
+        "quality_class": "beta-precal",
+        "bbox_median_coh": 0.7176,
+        "bbox_p25_coh": 0.5725,
+        "bbox_p75_coh": 0.8431,
+        "bbox_valid_frac_ge_03": 0.9477,
+        "ag_core_median_coh": 0.698,
+        "ag_core_p25_coh": 0.5765,
+        "ag_core_valid_frac_ge_03": 0.9518
+      },
+      {
+        "pair": "2026-01-23_2026-02-04",
+        "date1": "2026-01-23",
+        "date2": "2026-02-04",
+        "dt_days": 12,
+        "quality_class": "beta-precal",
+        "bbox_median_coh": 0.7098,
+        "bbox_p25_coh": 0.5569,
+        "bbox_p75_coh": 0.8431,
+        "bbox_valid_frac_ge_03": 0.94,
+        "ag_core_median_coh": 0.6863,
+        "ag_core_p25_coh": 0.5725,
+        "ag_core_valid_frac_ge_03": 0.9476
+      },
+      {
+        "pair": "2026-02-04_2026-02-16",
+        "date1": "2026-02-04",
+        "date2": "2026-02-16",
+        "dt_days": 12,
+        "quality_class": "beta-precal",
+        "bbox_median_coh": 0.6706,
+        "bbox_p25_coh": 0.502,
+        "bbox_p75_coh": 0.8118,
+        "bbox_valid_frac_ge_03": 0.9138,
+        "ag_core_median_coh": 0.6314,
+        "ag_core_p25_coh": 0.4902,
+        "ag_core_valid_frac_ge_03": 0.9169
+      },
+      {
+        "pair": "2026-02-16_2026-02-28",
+        "date1": "2026-02-16",
+        "date2": "2026-02-28",
+        "dt_days": 12,
+        "quality_class": "beta-precal",
+        "bbox_median_coh": 0.6,
+        "bbox_p25_coh": 0.451,
+        "bbox_p75_coh": 0.7294,
+        "bbox_valid_frac_ge_03": 0.9164,
+        "ag_core_median_coh": 0.5569,
+        "ag_core_p25_coh": 0.4275,
+        "ag_core_valid_frac_ge_03": 0.9025
+      },
+      {
+        "pair": "2026-02-28_2026-03-12",
+        "date1": "2026-02-28",
+        "date2": "2026-03-12",
+        "dt_days": 12,
+        "quality_class": "beta-precal",
+        "bbox_median_coh": 0.5216,
+        "bbox_p25_coh": 0.3765,
+        "bbox_p75_coh": 0.6588,
+        "bbox_valid_frac_ge_03": 0.8422,
+        "ag_core_median_coh": 0.4588,
+        "ag_core_p25_coh": 0.3216,
+        "ag_core_valid_frac_ge_03": 0.7795
+      },
+      {
+        "pair": "2026-03-12_2026-03-24",
+        "date1": "2026-03-12",
+        "date2": "2026-03-24",
+        "dt_days": 12,
+        "quality_class": "beta-precal",
+        "bbox_median_coh": 0.5216,
+        "bbox_p25_coh": 0.3569,
+        "bbox_p75_coh": 0.6745,
+        "bbox_valid_frac_ge_03": 0.8142,
+        "ag_core_median_coh": 0.4902,
+        "ag_core_p25_coh": 0.3059,
+        "ag_core_valid_frac_ge_03": 0.7566
+      },
+      {
+        "pair": "2026-03-24_2026-04-05",
+        "date1": "2026-03-24",
+        "date2": "2026-04-05",
+        "dt_days": 12,
+        "quality_class": "beta-precal",
+        "bbox_median_coh": 0.5333,
+        "bbox_p25_coh": 0.3882,
+        "bbox_p75_coh": 0.6588,
+        "bbox_valid_frac_ge_03": 0.851,
+        "ag_core_median_coh": 0.5176,
+        "ag_core_p25_coh": 0.3725,
+        "ag_core_valid_frac_ge_03": 0.8302
+      },
+      {
+        "pair": "2026-04-05_2026-04-17",
+        "date1": "2026-04-05",
+        "date2": "2026-04-17",
+        "dt_days": 12,
+        "quality_class": "beta-precal",
+        "bbox_median_coh": 0.5216,
+        "bbox_p25_coh": 0.3804,
+        "bbox_p75_coh": 0.6471,
+        "bbox_valid_frac_ge_03": 0.8398,
+        "ag_core_median_coh": 0.4784,
+        "ag_core_p25_coh": 0.3176,
+        "ag_core_valid_frac_ge_03": 0.7726
+      },
+      {
+        "pair": "2026-04-17_2026-04-29",
+        "date1": "2026-04-17",
+        "date2": "2026-04-29",
+        "dt_days": 12,
+        "quality_class": "beta-precal",
+        "bbox_median_coh": 0.5529,
+        "bbox_p25_coh": 0.3922,
+        "bbox_p75_coh": 0.6824,
+        "bbox_valid_frac_ge_03": 0.8346,
+        "ag_core_median_coh": 0.4824,
+        "ag_core_p25_coh": 0.298,
+        "ag_core_valid_frac_ge_03": 0.7498
+      },
+      {
+        "pair": "2026-04-29_2026-05-11",
+        "date1": "2026-04-29",
+        "date2": "2026-05-11",
+        "dt_days": 12,
+        "quality_class": "beta-precal",
+        "bbox_median_coh": 0.5843,
+        "bbox_p25_coh": 0.4039,
+        "bbox_p75_coh": 0.7255,
+        "bbox_valid_frac_ge_03": 0.8351,
+        "ag_core_median_coh": 0.5059,
+        "ag_core_p25_coh": 0.298,
+        "ag_core_valid_frac_ge_03": 0.7468
+      },
+      {
+        "pair": "2026-05-11_2026-05-23",
+        "date1": "2026-05-11",
+        "date2": "2026-05-23",
+        "dt_days": 12,
+        "quality_class": "beta-precal",
+        "bbox_median_coh": 0.5686,
+        "bbox_p25_coh": 0.3882,
+        "bbox_p75_coh": 0.7059,
+        "bbox_valid_frac_ge_03": 0.8351,
+        "ag_core_median_coh": 0.498,
+        "ag_core_p25_coh": 0.3294,
+        "ag_core_valid_frac_ge_03": 0.7814
+      },
+      {
+        "pair": "2026-05-23_2026-06-04",
+        "date1": "2026-05-23",
+        "date2": "2026-06-04",
+        "dt_days": 12,
+        "quality_class": "beta-precal",
+        "bbox_median_coh": 0.5804,
+        "bbox_p25_coh": 0.4118,
+        "bbox_p75_coh": 0.7294,
+        "bbox_valid_frac_ge_03": 0.8514,
+        "ag_core_median_coh": 0.5137,
+        "ag_core_p25_coh": 0.3412,
+        "ag_core_valid_frac_ge_03": 0.7938
+      },
+      {
+        "pair": "2026-06-04_2026-06-16",
+        "date1": "2026-06-04",
+        "date2": "2026-06-16",
+        "dt_days": 12,
+        "quality_class": "beta-precal",
+        "bbox_median_coh": 0.5961,
+        "bbox_p25_coh": 0.4157,
+        "bbox_p75_coh": 0.749,
+        "bbox_valid_frac_ge_03": 0.8428,
+        "ag_core_median_coh": 0.5137,
+        "ag_core_p25_coh": 0.302,
+        "ag_core_valid_frac_ge_03": 0.7536
+      },
+      {
+        "pair": "2026-06-16_2026-06-28",
+        "date1": "2026-06-16",
+        "date2": "2026-06-28",
+        "dt_days": 12,
+        "quality_class": "beta-precal",
+        "bbox_median_coh": 0.6471,
+        "bbox_p25_coh": 0.4706,
+        "bbox_p75_coh": 0.7765,
+        "bbox_valid_frac_ge_03": 0.8848,
+        "ag_core_median_coh": 0.5608,
+        "ag_core_p25_coh": 0.349,
+        "ag_core_valid_frac_ge_03": 0.7994
+      },
+      {
+        "pair": "2026-06-28_2026-07-10",
+        "date1": "2026-06-28",
+        "date2": "2026-07-10",
+        "dt_days": 12,
+        "quality_class": "provisional",
+        "bbox_median_coh": 0.6471,
+        "bbox_p25_coh": 0.4824,
+        "bbox_p75_coh": 0.7765,
+        "bbox_valid_frac_ge_03": 0.8937,
+        "ag_core_median_coh": 0.5647,
+        "ag_core_p25_coh": 0.4,
+        "ag_core_valid_frac_ge_03": 0.851
+      },
+      {
+        "pair": "2026-07-10_2026-07-22",
+        "date1": "2026-07-10",
+        "date2": "2026-07-22",
+        "dt_days": 12,
+        "quality_class": "provisional",
+        "bbox_median_coh": 0.6235,
+        "bbox_p25_coh": 0.4667,
+        "bbox_p75_coh": 0.7647,
+        "bbox_valid_frac_ge_03": 0.8939,
+        "ag_core_median_coh": 0.5412,
+        "ag_core_p25_coh": 0.4039,
+        "ag_core_valid_frac_ge_03": 0.8543
+      },
+      {
+        "pair": "2026-07-22_2026-08-15",
+        "date1": "2026-07-22",
+        "date2": "2026-08-15",
+        "dt_days": 24,
+        "quality_class": "provisional",
+        "bbox_median_coh": 0.5098,
+        "bbox_p25_coh": 0.3373,
+        "bbox_p75_coh": 0.6745,
+        "bbox_valid_frac_ge_03": 0.787,
+        "ag_core_median_coh": 0.4353,
+        "ag_core_p25_coh": 0.2471,
+        "ag_core_valid_frac_ge_03": 0.6724
+      },
+      {
+        "pair": "2026-08-15_2026-08-27",
+        "date1": "2026-08-15",
+        "date2": "2026-08-27",
+        "dt_days": 12,
+        "quality_class": "provisional",
+        "bbox_median_coh": 0.6118,
+        "bbox_p25_coh": 0.451,
+        "bbox_p75_coh": 0.7451,
+        "bbox_valid_frac_ge_03": 0.8822,
+        "ag_core_median_coh": 0.5451,
+        "ag_core_p25_coh": 0.3961,
+        "ag_core_valid_frac_ge_03": 0.8458
+      },
+      {
+        "pair": "2026-08-27_2026-09-08",
+        "date1": "2026-08-27",
+        "date2": "2026-09-08",
+        "dt_days": 12,
+        "quality_class": "provisional",
+        "bbox_median_coh": 0.6627,
+        "bbox_p25_coh": 0.502,
+        "bbox_p75_coh": 0.7961,
+        "bbox_valid_frac_ge_03": 0.9061,
+        "ag_core_median_coh": 0.5843,
+        "ag_core_p25_coh": 0.4392,
+        "ag_core_valid_frac_ge_03": 0.859
+      },
+      {
+        "pair": "2026-09-08_2026-09-20",
+        "date1": "2026-09-08",
+        "date2": "2026-09-20",
+        "dt_days": 12,
+        "quality_class": "provisional",
+        "bbox_median_coh": 0.6667,
+        "bbox_p25_coh": 0.498,
+        "bbox_p75_coh": 0.8039,
+        "bbox_valid_frac_ge_03": 0.9001,
+        "ag_core_median_coh": 0.5725,
+        "ag_core_p25_coh": 0.4196,
+        "ag_core_valid_frac_ge_03": 0.8486
+      },
+      {
+        "pair": "2026-09-20_2026-10-14",
+        "date1": "2026-09-20",
+        "date2": "2026-10-14",
+        "dt_days": 24,
+        "quality_class": "provisional",
+        "bbox_median_coh": 0.6235,
+        "bbox_p25_coh": 0.4314,
+        "bbox_p75_coh": 0.7725,
+        "bbox_valid_frac_ge_03": 0.8487,
+        "ag_core_median_coh": 0.5373,
+        "ag_core_p25_coh": 0.302,
+        "ag_core_valid_frac_ge_03": 0.7512
+      }
+    ]
+  },
+  "radar_frequency_and_ambiguity": {
+    "wavelength_ratio_L_over_C": 4.362,
+    "sensors": [
+      {
+        "mission": "NISAR (NASA-ISRO)",
+        "band": "L-band",
+        "frequency_ghz": 1.257,
+        "wavelength_cm": 24.2,
+        "full_2pi_fringe_cm": 12.1,
+        "half_cycle_limit_cm": 6.05
+      },
+      {
+        "mission": "SAOCOM-1A/1B (CONAE, Argentina)",
+        "band": "L-band",
+        "frequency_ghz": 1.275,
+        "wavelength_cm": 23.51,
+        "full_2pi_fringe_cm": 11.76,
+        "half_cycle_limit_cm": 5.88
+      },
+      {
+        "mission": "Sentinel-1A/1C / OPERA DISP-S1 (ESA / NASA)",
+        "band": "C-band",
+        "frequency_ghz": 5.405,
+        "wavelength_cm": 5.55,
+        "full_2pi_fringe_cm": 2.77,
+        "half_cycle_limit_cm": 1.39
+      },
+      {
+        "mission": "RCM / RADARSAT-1 (CSA, Canada)",
+        "band": "C-band",
+        "frequency_ghz": "5.405 / 5.300",
+        "wavelength_cm": "5.55 / 5.66",
+        "full_2pi_fringe_cm": "2.77 / 2.83",
+        "half_cycle_limit_cm": "1.39 / 1.41"
+      }
+    ],
+    "cv_108d_top5": [
+      {
+        "id": "p01",
+        "name": "6 km N of Terra Bella",
+        "max_abs_step_cm": 2.89,
+        "signed_max_step_cm": -2.89,
+        "pair": "2026-09-08->2026-09-20",
+        "intervals_exceeding_c_band_half_fringe_1_39cm": 3,
+        "intervals_exceeding_c_band_full_fringe_2_77cm": 1,
+        "intervals_exceeding_l_band_half_fringe_6_05cm": 0
+      },
+      {
+        "id": "p02",
+        "name": "21 km S of Lemoore",
+        "max_abs_step_cm": 2.1,
+        "signed_max_step_cm": -2.1,
+        "pair": "2026-06-28->2026-07-10",
+        "intervals_exceeding_c_band_half_fringe_1_39cm": 3,
+        "intervals_exceeding_c_band_full_fringe_2_77cm": 0,
+        "intervals_exceeding_l_band_half_fringe_6_05cm": 0
+      },
+      {
+        "id": "p03",
+        "name": "10 km SW of Huron",
+        "max_abs_step_cm": 3.25,
+        "signed_max_step_cm": -3.25,
+        "pair": "2026-08-15->2026-08-27",
+        "intervals_exceeding_c_band_half_fringe_1_39cm": 4,
+        "intervals_exceeding_c_band_full_fringe_2_77cm": 1,
+        "intervals_exceeding_l_band_half_fringe_6_05cm": 0
+      },
+      {
+        "id": "p04",
+        "name": "15 km W of Corcoran",
+        "max_abs_step_cm": 2.38,
+        "signed_max_step_cm": -2.38,
+        "pair": "2026-07-22->2026-08-15",
+        "intervals_exceeding_c_band_half_fringe_1_39cm": 3,
+        "intervals_exceeding_c_band_full_fringe_2_77cm": 0,
+        "intervals_exceeding_l_band_half_fringe_6_05cm": 0
+      },
+      {
+        "id": "p05",
+        "name": "5 km NE of Ivanhoe",
+        "max_abs_step_cm": 2.39,
+        "signed_max_step_cm": -2.39,
+        "pair": "2026-08-15->2026-08-27",
+        "intervals_exceeding_c_band_half_fringe_1_39cm": 2,
+        "intervals_exceeding_c_band_full_fringe_2_77cm": 0,
+        "intervals_exceeding_l_band_half_fringe_6_05cm": 0
+      }
+    ],
+    "cv_fullyear_top5": [
+      {
+        "id": "p01",
+        "name": "7 km W of Earlimart",
+        "max_abs_step_cm": 4.72,
+        "signed_max_step_cm": -4.72,
+        "pair": "2026-04-17->2026-04-29",
+        "intervals_exceeding_c_band_half_fringe_1_39cm": 12,
+        "intervals_exceeding_c_band_full_fringe_2_77cm": 5,
+        "intervals_exceeding_l_band_half_fringe_6_05cm": 0
+      },
+      {
+        "id": "p02",
+        "name": "10 km W of Tulare",
+        "max_abs_step_cm": 5.1,
+        "signed_max_step_cm": -5.1,
+        "pair": "2026-03-24->2026-04-05",
+        "intervals_exceeding_c_band_half_fringe_1_39cm": 13,
+        "intervals_exceeding_c_band_full_fringe_2_77cm": 7,
+        "intervals_exceeding_l_band_half_fringe_6_05cm": 0
+      },
+      {
+        "id": "p03",
+        "name": "2 km W of Teviston",
+        "max_abs_step_cm": 4.16,
+        "signed_max_step_cm": -4.16,
+        "pair": "2026-03-24->2026-04-05",
+        "intervals_exceeding_c_band_half_fringe_1_39cm": 9,
+        "intervals_exceeding_c_band_full_fringe_2_77cm": 7,
+        "intervals_exceeding_l_band_half_fringe_6_05cm": 0
+      },
+      {
+        "id": "p04",
+        "name": "7 km SE of Huron",
+        "max_abs_step_cm": 3.27,
+        "signed_max_step_cm": -3.27,
+        "pair": "2026-04-17->2026-04-29",
+        "intervals_exceeding_c_band_half_fringe_1_39cm": 11,
+        "intervals_exceeding_c_band_full_fringe_2_77cm": 1,
+        "intervals_exceeding_l_band_half_fringe_6_05cm": 0
+      },
+      {
+        "id": "p05",
+        "name": "9 km S of Goshen",
+        "max_abs_step_cm": 4.5,
+        "signed_max_step_cm": -4.5,
+        "pair": "2026-03-24->2026-04-05",
+        "intervals_exceeding_c_band_half_fringe_1_39cm": 13,
+        "intervals_exceeding_c_band_full_fringe_2_77cm": 4,
+        "intervals_exceeding_l_band_half_fringe_6_05cm": 0
+      }
+    ]
+  },
+  "literature_cband_vs_lband_benchmarks": [
+    {
+      "source": "Neely et al. (2021), Water Resources Research 57(4)",
+      "sensor": "Sentinel-1 C-band (5.55 cm) + cGPS",
+      "period": "Oct 2015 - Sep 2017",
+      "rate_cm_per_yr": "Dry WY2016 mean -4.20, peak -34.5; Wet WY2017 mean -2.04, peak -17.7; Apr 2015-Oct 2017 peak -27.0",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8047915/"
+    },
+    {
+      "source": "Ojha, Werth & Shirzaei (2019), JGR Solid Earth 124:3127-3143",
+      "sensor": "ALOS L-band + Sentinel-1 C-band + GPS + GRACE",
+      "period": "2007-2009 & Jan 2015-Sep 2016",
+      "rate_cm_per_yr": "Up to -25.0 in Tule/Kaweah (~ -15.0 Chowchilla); ~ -30.0 to > -30.0 in southern Central Valley",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6559157/"
+    },
+    {
+      "source": "NASA NISAR StoryMap (Peacock et al. 2024) / JPL UAVSAR (Miller et al. 2020; Jones et al. 2020)",
+      "sensor": "UAVSAR Airborne L-band",
+      "period": "2013-2017",
+      "rate_cm_per_yr": "Cumulative subsidence bowl > 100 cm (> 40 in) along California Aqueduct",
+      "url": "https://storymaps.arcgis.com/stories/109e602e748346f3be8dc89124619828"
+    }
+  ]
+}

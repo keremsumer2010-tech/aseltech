@@ -1,0 +1,53 @@
+{
+  "dataset": "OPERA_L3_DISP-S1_V1",
+  "site": "central_valley",
+  "bbox": [
+    -120.2,
+    35.6,
+    -119.0,
+    36.6
+  ],
+  "nisar_summer_window": [
+    "2026-06-28",
+    "2026-10-14"
+  ],
+  "nisar_fullyear_window": [
+    "2025-11-24",
+    "2026-10-14"
+  ],
+  "cmr_status": {
+    "source": "live_cmr_earthdata",
+    "opera_total_bbox_hits": 2663,
+    "opera_2026_hits": 66,
+    "opera_2026_frames": [
+      "F11116",
+      "F16941",
+      "F16942",
+      "F36541",
+      "F36542",
+      "F38502",
+      "F38503"
+    ],
+    "opera_summer_2026_hits": 0,
+    "sentinel1a_slc_summer_2026_hits": 0,
+    "sentinel1c_slc_summer_2026_hits": 55,
+    "latest_opera_any_frame_end": "2026-04-26",
+    "full_coverage_frame": "F38502",
+    "f38502_total_since_2025_06": 39,
+    "f38502_coverage": {
+      "cv_points": "12/12",
+      "fullyear_points": "12/12",
+      "gps_stations": "10/10"
+    },
+    "f38502_summer2025_window": [
+      "2025-07-19",
+      "2025-10-17"
+    ],
+    "f38502_latest_winter_window": [
+      "2025-10-17",
+      "2026-02-14"
+    ],
+    "raw_download_status": "PermissionError: HTTP 401 access denied for _tmp_probe_opera.nc"
+  },
+  "quality_note": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team."
+}

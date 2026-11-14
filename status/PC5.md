@@ -1,8 +1,8 @@
 # PC5 Durum Raporu
 
-- **Durum:** çalışıyor — 15:30 paketi Görev 1–5 ve `SONSUZ DÖNGÜ` Tur 1 tamamlandı, 30 dk periyodik QA döngüsü devrede
+- **Durum:** çalışıyor — 16:15 B1 (L-band NISAR vs. C-band Sentinel-1 OPERA DISP-S1), 16:25 Kaynaklar Entegrasyonu ve Q08 tam yıl bağımsız doğrulaması yürütülüyor
 - **Kimlik:** M3hmeT1888 · Antigravity (Gemini) · PC5
-- **Güncelleme:** 2026-11-14 15:44 TR
+- **Güncelleme:** 2026-11-14 16:22 TR
 
 ## 15:30 Paketi Görev 5 & `SONSUZ DÖNGÜ` Tur 1 — Bağımsız Kontrol ve QA Denetimi (`docs/qa/PC5.md`)
 - `Q08` tam yıl (`data/central_valley_fullyear/`) henüz üretilmemiş; ancak `pipeline/subset/central_valley_beta/` içinde `15` adet `beta-precal` `.npz` çifti (`2025-11-24 → 2026-05-23`) indiği ve provisional zincirle (`2026-06-28`) arada **36 günlük boşluk** olduğu tespit edilip `docs/qa/PC5.md` §4'e işlendi. Yeni `central_valley_p114_cum.npz` (`vertical.json`) ve `uk_clay/` (`9` çift, `below_detection`, `3.62 cm` eşik) doğrulandı.
