@@ -73,3 +73,19 @@ OpenStreetMap Overpass API (girişsiz), Central Valley bbox:
 3. **Q13 README** — kurulum, veri hattının adım adım çalıştırılması (pipeline → analysis → data → site), lisans, kaynaklar, ekip.
 4. **Q15 kod gözden geçirme** → `docs/code_review.md`.
 5. **Q17 göl/baraj** (zaman kalırsa).
+
+---
+# 14:45 YENİ PAKET — "Jüriyi etkileyecek görseller ve kanıt dosyaları" (öncelik sırası; bitince sormadan sıradakine)
+Yazma alanı bu paket için: `game/` · `analysis/pc6/` · `docs/story/media/` · `docs/story/risk_dossier.md` · `docs/story/validation_report.md` · `docs/qa/PC6.md` · `status/PC6.md`. İNDİRME YAPMA (aynı bilgisayarda PC3 indiriyor). AI görseli YOK, hepsi gerçek veriden.
+
+1. **Gerçek veriden animasyon** (14:45–15:30) → `analysis/pc6/make_animation.py`
+   - `data/central_valley/disp/*.png` + Esri olmayan basit koyu arka plan (veya `pipeline/subset` koordinatlarından çizilmiş sınır) ile tarih etiketi, renk çubuğu (cm), "NASA-ISRO NISAR · PROVISIONAL" etiketi olan 1080p **MP4** (ffmpeg varsa) ve **GIF**.
+   - Aynısı Karapınar için. Çıktı: `docs/story/media/cv_subsidence.mp4|gif`, `docs/story/media/kp_subsidence.mp4|gif`. 30 sn video ve slaytlarda kullanılacak.
+2. **Doğrulama raporu** (15:30–16:15) → `docs/story/validation_report.md` + `docs/story/media/validation_scatter.png` + istasyon başına küçük grafikler (`docs/story/media/gnss_<station>.png`)
+   - Saçılım: tüm istasyonlarda NISAR son değer vs GPS son değer, 1:1 çizgisi, r ve RMSE yazılı. Hareketli (|GPS|>2 cm) ve sabit istasyonlar farklı renk.
+   - 4–5 cümle İngilizce yorum: neden hareketli istasyonlarda uyum iyi, sabitlerde zayıf.
+3. **Altyapı risk dosyası** (16:15–17:00) → `docs/story/risk_dossier.md` + `docs/story/media/risk_<n>.png`
+   - En riskli 10 segment (assets.json): her biri için ad, tür, uzunluk, gradyan (mm/km), maks çökme, segment boyunca çökme profili grafiği (mesafe–cm) PNG.
+   - California Aqueduct ve büyük kanallar varsa ayrıca vurgula. "Ne anlama geliyor" 2 cümle (kaynaklı: kanal kapasite kaybı örnekleri `docs/story/game_model.md`'de).
+4. **Oyun v2 son kontrol** (17:00–17:30): canlı sitede (https://keremsumer2010-tech.github.io/aseltech/ → Simulator) iframe içinde ve tam ekran çalışıyor mu, `data/central_valley/summary.json` okunuyor mu, telefonda kontroller kullanılabilir mi. Sorun varsa sadece `game/` içinde düzelt.
+5. **Pazar hazırlığı** (17:30 sonrası): PC2'nin Q07 tam yıl verisi gelince risk indeksini ve doğrulamayı tam yıl (mixed) için yeniden çalıştıracak komutları `docs/qa/PC6.md`'ye hazırla; mevcut scriptler `--data-dir` gibi parametrelerle ayrı klasöre yazabilsin (sadece kendi scriptlerin: `risk/`, `validation/`).
