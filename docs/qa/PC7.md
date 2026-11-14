@@ -108,3 +108,13 @@ Eksik yerel yol bulunmadı.
 - `data/karapinar/sinkholes.geojson`: dataset-level `quality_note` missing
 
 JSON/GeoJSON dosyası: 17; parse hatası: 0; tarih dizisi: 40; points/meta tarih karşılaştırması: 24, uyumsuzluk: 0; bulgu satırı: 6.
+
+## 3. İngilizce metin ve yazım kontrolü (offline)
+
+Kaynak: `web/*.html` (5 dosya). Script/style/noscript içerikleri görünür metin sayılmadı. Dinamik JS ve dış markdown bu statik HTML taramasına dahil değil.
+
+| Satır | Kaynak | Metin | Sorun | Öneri |
+|---:|---|---|---|---|
+| 37 | `web/science.html` | Consecutive 12-day pairs (28 Jun → 14 Oct 2026 for track 34) are summed into a cumulative map. A chain with any gap is not joined. Headline numbers are the most negative median of ~1 km blocks with… | birimsiz sayı: −6.2 | İlk değerin yanına da `cm` birimini ekle |
+
+Toplam bulgu: 1.

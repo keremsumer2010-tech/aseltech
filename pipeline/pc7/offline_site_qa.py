@@ -302,6 +302,131 @@ def _valid_iso_date(value: str) -> bool:
         return False
 
 
+
+class VisibleTextParser(html.parser.HTMLParser):
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.hidden = 0
+        self.parts = []
+
+    def handle_starttag(self, tag, attrs):
+        if tag.lower() in {"script", "style", "noscript"}:
+            self.hidden += 1
+
+    def handle_endtag(self, tag):
+        if tag.lower() in {"script", "style", "noscript"} and self.hidden:
+            self.hidden -= 1
+
+    def handle_data(self, data):
+        if not self.hidden and data.strip():
+            self.parts.append((self.getpos()[0], re.sub(r"\s+", " ", data).strip()))
+
+
+BANNED = re.compile(r"\b(revolutionary|cutting[- ]edge|unlock|harness|delve|seamless|journey|empower)\b", re.I)
+EMOJI = re.compile(r"[\U0001F1E6-\U0001FAFF\u2600-\u27BF]")
+NUMBER = re.compile(r"(?<![\w])(?:[+−-]\s*)?\d+(?:[.,]\d+)?(?![\w])")
+MONTHS = "jan feb mar apr may jun jul aug sep sept oct nov dec january february march april june july august september october november december"
+UNITS = re.compile(r"^\s*(?:%|percent\b|cm\b|mm\b|km\b|m\b|metres?\b|meters?\b|feet\b|ft\b|days?\b|weeks?\b|months?\b|years?\b|minutes?\b|hours?\b|pairs?\b|stations?\b|segments?\b|districts?\b|fields?\b|pixels?\b|products?\b|points?\b|sites?\b|layers?\b|mhz\b|hz\b|ha\b|mm/km\b|cm/yr\b|cm per year\b|water years?\b)", re.I)
+
+
+def number_is_contextual(text, match):
+    token = match.group(0).strip()
+    numeric = re.sub(r"^[+−-]\s*", "", token)
+    if numeric.isdigit() and len(numeric) == 4 and 1500 <= int(numeric) <= 2100:
+        return True  # historical/calendar year
+    before = text[max(0, match.start() - 70):match.start()]
+    after = text[match.end():match.end() + 70]
+    context = before + token + after
+    if re.match(r"\s*[-‐‑–]day\b", after, re.I):
+        return True
+    if re.match(r"\s*[–−-]\s*\d+(?:[.,]\d+)?\s*(?:%|cm\b|mm\b|km\b|m\b|metres?\b|meters?\b|days?\b|years?\b)", after, re.I):
+        return True  # both ends of a range share the following unit
+    if "coherence" in text.lower() and re.search(r"coherence\s*[<≤]\s*" + re.escape(token), text, re.I):
+        return True
+    if " high " in f" {text.lower()} " and " medium " in f" {text.lower()} " and " low " in f" {text.lower()} ":
+        return True
+    if "·" in text and re.match(r"^\s*\d+\s*·", text):
+        return True
+    if re.match(r"^\s*(?:\d+\s*[·.]\s*)?[A-Z]", text) and re.search(r"\b(?:data|phase|time series|validation|risk index|limits|sources|calibration)\b", text, re.I) and len(NUMBER.findall(text)) >= 4:
+        return True  # numbered table of contents
+    if re.search(r"\b(?:figure|chapter|section|level|track|l|wy|a4)\s*[-#:]?\s*$", before, re.I):
+        return True
+    if re.search(r"\b(?:figure|chapter|section)\s+" + re.escape(token) + r"\b", context, re.I):
+        return True
+    if re.search(r"\b(?:" + MONTHS.replace(" ", "|") + r")\b", context, re.I):
+        return True
+    if UNITS.match(after):
+        return True
+    if re.search(r"\b(?:canal|road|rail|sinkholes?|gps stations?|continuous stations?|consecutive(?:\s+\w+){0,2}\s+pairs?|districts?|fields?|segments?|products?|observations?)\b", after[:70], re.I):
+        return True  # explicit count noun
+    if re.search(r"\b\d+\s*/\s*" + re.escape(numeric) + r"\s+gps stations?\b", text, re.I):
+        return True
+    if re.search(r"\btracks?\b[^.]{0,70}\b" + re.escape(numeric) + r"\b", text, re.I):
+        return True  # orbit/track identifier
+    if re.search(r"\bconnected component\s+" + re.escape(numeric) + r"\b", text, re.I):
+        return True  # mask class identifier
+    if re.search(r"\b(?:cm|mm|km|metres?|meters?)\b", before[-24:], re.I) and re.search(r"Ground motion|ticks|legend", text, re.I):
+        return True  # values share an explicitly stated chart unit
+    if after.lstrip().startswith(("/10", "/", "of ")) or re.search(r"\bof\s*$", before, re.I):
+        return True
+    if re.search(r"\br\s*(?:[<>≤≥=]|is)?\s*$", before, re.I):
+        return True  # dimensionless correlation coefficient
+    if re.search(r"\b(?:L|Level-)\s*$", before, re.I):
+        return True
+    return False
+
+
+def text_report():
+    findings = []
+    html_files = sorted(WEB.glob("*.html"))
+    for path in html_files:
+        if path.name == "panel.html":  # Turkish status dashboard, outside the English copy review
+            continue
+        parser = VisibleTextParser()
+        parser.feed(path.read_text(encoding="utf-8"))
+        by_line = {}
+        for line, part in parser.parts:
+            by_line.setdefault(line, []).append(part)
+        for line, parts in sorted(by_line.items()):
+            text = " ".join(parts)
+            for match in BANNED.finditer(text):
+                word = match.group(1)
+                replacements = {"revolutionary": "measured", "cutting-edge": "new", "unlock": "show", "harness": "use", "delve": "examine", "seamless": "continuous", "journey": "record", "empower": "help"}
+                findings.append((path.relative_to(ROOT).as_posix(), line, text, f"yasak kelime: {word}", f"`{replacements[word.lower()]}` ile değiştir"))
+            if "!" in text:
+                findings.append((path.relative_to(ROOT).as_posix(), line, text, "ünlem işareti", "Ünlemi nokta ile değiştir veya cümleyi kaldır"))
+            emoji = EMOJI.search(text)
+            if emoji:
+                findings.append((path.relative_to(ROOT).as_posix(), line, text, f"emoji/sembol: {emoji.group(0)}", "Sembolü kaldır"))
+            for match in NUMBER.finditer(text):
+                if not number_is_contextual(text, match):
+                    if "coherence" in text.lower() or re.search(r"\br\s*[<>≤≥=]", text):
+                        suggestion = "Eşiğin boyutsuz olduğunu açıkça belirt"
+                    elif re.search(r"between\s+" + re.escape(match.group(0)) + r"\s+and\s+[−+-]?\d+(?:[.,]\d+)?\s*cm\b", text, re.I):
+                        suggestion = "İlk değerin yanına da `cm` birimini ekle"
+                    else:
+                        suggestion = "Ölçümse birim/tarih ekle; sayım veya kimlikse açıkça adlandır"
+                    findings.append((path.relative_to(ROOT).as_posix(), line, text, f"birimsiz sayı: {match.group(0)}", suggestion))
+
+    lines = [
+        "## 3. İngilizce metin ve yazım kontrolü (offline)",
+        "",
+        f"Kaynak: `web/*.html` ({len(html_files)} dosya). Script/style/noscript içerikleri görünür metin sayılmadı. Dinamik JS ve dış markdown bu statik HTML taramasına dahil değil.",
+        "",
+        "| Satır | Kaynak | Metin | Sorun | Öneri |",
+        "|---:|---|---|---|---|",
+    ]
+    if findings:
+        for source, line, text, issue, suggestion in findings:
+            excerpt = text.replace("|", "\\|")
+            if len(excerpt) > 200:
+                excerpt = excerpt[:197] + "…"
+            lines.append(f"| {line} | `{source}` | {excerpt} | {issue} | {suggestion} |")
+    else:
+        lines.append("| — | — | — | Yasak kelime, emoji, ünlem veya birimsiz sayı bulunmadı | — |")
+    lines.extend(["", f"Toplam bulgu: {len(findings)}."])
+    return "\n".join(lines)
+
 def write_section(section: str) -> None:
     QA.parent.mkdir(parents=True, exist_ok=True)
     old = QA.read_text(encoding="utf-8") if QA.exists() else "# PC7 QA notları\n"
@@ -317,9 +442,9 @@ def write_section(section: str) -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("mode", choices=("paths", "data"))
+    parser.add_argument("mode", choices=("paths", "data", "text"))
     args = parser.parse_args()
-    result = path_report() if args.mode == "paths" else data_report()
+    result = path_report() if args.mode == "paths" else (data_report() if args.mode == "data" else text_report())
     write_section(result)
     print(result)
 
