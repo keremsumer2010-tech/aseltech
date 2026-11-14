@@ -1,4 +1,5 @@
 # PC8 durum
 
-- Görev: `tasks/PC8.md` **20:00** maddeleri (`fix_nan_json.py`, `cross_sensor.json` quality, `submission_form.md` & `slides_notes.md` güncelleme, `MASTER_PLAN.md` §9 açık madde listesi) TAMAMLANDI
-- Sıradaki aktif görev: **20:10 ÖZGÜN KATKI O1** (`docs/OZGUN_KATKILAR.md` §O1) — Central Valley tam yıl kalıcı akifer depolama kaybı (`km³/yıl`) hesabı (`analysis/pc8/storage_loss.py`, `data/central_valley_fullyear/storage_loss.json`, `docs/story/storage_loss.md`, `docs/story/media/pc8_storage_loss.png`)
+- Görev: **20:10 ÖZGÜN KATKI O1** (`Central Valley` kalıcı akifer depolama kaybı `km³/yıl`) TAMAMLANDI (`0.3174 km³/yr`, aralık `0.0664–0.3198 km³/yr`, `0.49× Millerton Lake` / `126,966` Olimpik havuz)
+- Doğrulama: `test_storage_loss.py` (`1 passed`), `pc8_storage_loss.png` görsel kontrolü temiz, USGS Circular 1182 & PMC6136988 `HTTP 200`
+- Sonraki adım: 10 dakikalık döngüde `git pull` (Karapınar tam yıl `decomp.json` gelirse `data/karapinar_fullyear/storage_loss.json` üretilecek) + sürekli `pytest` & repo QA

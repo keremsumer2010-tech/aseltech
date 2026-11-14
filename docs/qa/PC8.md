@@ -226,3 +226,16 @@
   - [ ] **Web Hatalarının Kapatılması (PC3 / PC9):** `web/index.html:117` (`pc9_fullyear_point.png` boş `src=""` ve eksik `../` yolu) ile `web/explorer.html` eksik NISAR kalibrasyon/provisional notunu kapat.
   - [ ] **AI Kullanım Beyanı Son Eşitleme (PC1):** `submission_form.md` §12 içindeki kesinleşmiş PC1 AI beyanını portal formuna birebir kopyala (site/oyun AI görseli = 0, kod/metin = Claude, Gemini, Codex).
   - [ ] **Pazar 22:00 TR Ön-Teslim Son Kontrolü (PC8):** Tüm portaldaki alanlar doldurulduktan sonra son `pytest`, JSON temizliği ve link kontrolünü tekrar çalıştır.
+
+---
+
+## 11. 20:10 Özgün Katkı O1 — Central Valley Kalıcı Akifer Depolama Kaybı (`km³/yıl`)
+
+- **Üretilen Dosyalar:** `analysis/pc8/storage_loss.py`, `analysis/pc8/test_storage_loss.py`, `data/central_valley_fullyear/storage_loss.json`, `docs/story/storage_loss.md`, `docs/story/media/pc8_storage_loss.png`.
+- **Sonuçlar (`2025-11-24` → `2026-10-14`, `mixed` 25 çift, medyan geliş açısı `41.53°`):**
+  - `> 1.0 cm/yr` kalıcı dikey çökme alanı (`4,508.29 km²`, ortalama `7.041 cm/yr` dikey): **`0.3174 km³/yr`** (`317.41 milyon m³/yr`).
+  - Tüm geçerli pikseller (`5,384.88 km²`, `%46.04` geçerli): **`0.3110 km³/yr`** net kayıp.
+  - **Belirsizlik (3 referans + 1 km blok SE):** **`0.0664 – 0.3198 km³/yr`** (`Main ref`: `0.2891–0.3174`, `Alt ref 1`: `0.0688`, `Alt ref 2`: `0.0774`; `se_block = 0.00123 km³/yr`).
+  - **Karşılaştırmalar:** Millerton Lake (Friant Dam, `0.642 km³`) kapasitesinin **`0.49×`**'i / yılda **`126,966` Olimpik yüzme havuzu (`2,500 m³`)**; Smith et al. (2017) Güney San Joaquin `0.414–0.748 km³ / 3 yıl` (`0.138–0.249 km³/yr`) ile aynı büyüklük mertebesi.
+  - **Birim Testi (`analysis/pc8/test_storage_loss.py`):** Sabit `-5.0 cm/yr` × `64.0 km²` (`100×100` piksel) → tam `0.0032 km³/yr` (`PASSED`).
+  - **Karapınar Tam Yıl:** `data/karapinar_fullyear/decomp.json` henüz oluşmadığı için Karapınar tam yıl depolama kaybı sonraki döngüde eklenecek.

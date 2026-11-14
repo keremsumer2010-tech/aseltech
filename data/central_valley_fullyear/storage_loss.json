@@ -1,0 +1,81 @@
+{
+  "site": "central_valley_fullyear",
+  "period": [
+    "2025-11-24",
+    "2026-10-14"
+  ],
+  "quality": "mixed",
+  "quality_note": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team. This series MIXES provisional products with pre-calibration BETA products (dates before 2026-06-17); treat amplitudes before that date with extra caution.",
+  "volume_km3_per_yr": 0.3174,
+  "volume_million_m3_per_yr": 317.41,
+  "lower": 0.0664,
+  "upper": 0.3198,
+  "area_km2": 4508.29,
+  "mean_permanent_rate_cm_per_yr_estimate": 7.041,
+  "net_basin_km3_per_yr": 0.311,
+  "net_basin_million_m3_per_yr": 311.0,
+  "net_basin_area_km2": 5384.88,
+  "se_independent_km3_per_yr": 0.00012,
+  "se_block_km3_per_yr": 0.00123,
+  "incidence_median_deg": 41.53,
+  "reference_sensitivity_volumes": [
+    {
+      "label": "Main ref",
+      "lon": -119.14835,
+      "lat": 36.45534,
+      "ref_offset_v_cm_per_yr": -0.596,
+      "active_gt_1cm_km3_per_yr": 0.2891,
+      "active_gt_1cm_area_km2": 4300.56,
+      "net_basin_km3_per_yr": 0.2789
+    },
+    {
+      "label": "Alt ref 1",
+      "lon": -120.05908,
+      "lat": 35.77796,
+      "ref_offset_v_cm_per_yr": -7.228,
+      "active_gt_1cm_km3_per_yr": 0.0688,
+      "active_gt_1cm_area_km2": 1518.78,
+      "net_basin_km3_per_yr": -0.0782
+    },
+    {
+      "label": "Alt ref 2",
+      "lon": -119.59495,
+      "lat": 35.62664,
+      "ref_offset_v_cm_per_yr": -6.793,
+      "active_gt_1cm_km3_per_yr": 0.0774,
+      "active_gt_1cm_area_km2": 1678.3,
+      "net_basin_km3_per_yr": -0.0548
+    }
+  ],
+  "equivalents": {
+    "millerton_lake_fraction_estimate": 0.49,
+    "millerton_lake_capacity_km3": 0.64203,
+    "millerton_lake_source": "USBR Friant Dam / Millerton Lake (~520,500 acre-ft = 0.642 km3)",
+    "olympic_swimming_pools_per_yr_estimate": 126966,
+    "olympic_pool_m3": 2500.0
+  },
+  "literature_comparison": [
+    {
+      "source": "Galloway, Jones, & Ingebritsen (1999), USGS Circular 1182",
+      "url": "https://pubs.usgs.gov/circ/circ1182/",
+      "relevance": "Establishes that inelastic aquitard compaction volume equals permanent groundwater storage capacity loss."
+    },
+    {
+      "source": "Smith et al. (2017), Water Resources Research (Southern San Joaquin Valley 2007-2010)",
+      "relevance": "InSAR-derived permanent storage loss of 0.414-0.748 km3 over 3 years (~0.138-0.249 km3/yr annualized)."
+    },
+    {
+      "source": "Ojha et al. (2018), Scientific Reports (San Joaquin Valley 2012-2015 drought)",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6136988/",
+      "relevance": "0.4%-3.25% permanent storage-capacity reduction alongside ~24-29 km3 total groundwater depletion."
+    }
+  ],
+  "method": "Permanent aquifer storage loss V_loss = sum((-v_permanent_vertical) * A_pixel) integrated across valid decomposed pixels (reason == 0, within Central Valley bbox, active threshold v_vert < -1.0 cm/yr; net all-valid integral also reported). Line-of-sight permanent rates from 25-pair harmonic-linear fit (2025-11-24 to 2026-10-14) are projected to vertical via pixel-wise incidence angles (cos theta, median 41.5 deg). Uncertainty combines 1-km block-correlated standard error (13x13 px) with empirical 3-reference sensitivity re-referencing.",
+  "assumptions": [
+    "Assumes inelastic compaction dominates the linear permanent trend term (v_cm_per_yr), while seasonal elastic recovery is absorbed by the annual sin/cos terms.",
+    "Vertical projection assumes predominantly vertical compaction (v_vert = v_los / cos(theta)), neglecting minor horizontal tectonic/lateral motion.",
+    "Series mixes 18 pre-calibration beta pairs (before 2026-06-17) with 7 provisional pairs (quality='mixed'); pre-calibration amplitudes carry extra uncertainty.",
+    "Only valid coherent pixels (46.0% of bbox) are integrated; decorrelated irrigated fields inside the bowl are not extrapolated, making the integrated volume conservative where coherence drops.",
+    "Standard errors of cumulative InSAR epochs are temporally correlated; 1-km block aggregation reduces but does not eliminate spatial/temporal correlation."
+  ]
+}
