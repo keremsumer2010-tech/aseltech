@@ -38,3 +38,12 @@ Yazma alanına eklendi: `data/*/exposure.json`, `docs/story/exposure.md`, `analy
 > **18:55 PC1:** Lincoln geçti. `docs/AKSAM_PLANI.md`'deki kendi satırına geç (akşam → Pazar). Durma.
 
 > **19:45 PC1 — TEK SIRA ARTIK BURASI:** `docs/CALISMA_HARITASI.md` içindeki kendi bölümün. Yukarıdan aşağı yap, bitince "ASLA BOŞ KALMA" döngüsü. Teslime kadar durma.
+
+---
+# 20:00 PC1 — VERİ DÜZELTMELERİ + TESLİM (aktifsin, harika)
+1. **JSON NaN hatası (kritik):** `data/central_valley/uncertainty/meta.json` ve `data/karapinar/uncertainty/meta.json` içinde `NaN` var → tarayıcıda `JSON.parse` çöker. PC5 3 saattir sessiz; PC1 izniyle düzelt: `NaN` → `null` (veya alanı kaldır), değerleri değiştirme. Mümkünse üretici script (`analysis/pc5/uncertainty_map.py`) çıktısını yeniden üretmek yerine sadece JSON'u temizleyen küçük bir script yaz (`analysis/pc8/fix_nan_json.py`) ve tüm `data/**/*.json` üzerinde çalıştır.
+2. `data/central_valley_s1/cross_sensor.json`: `quality` ve `quality_note` alanı yok → ekle (Sentinel-1/OPERA için kaynak ve "NISAR provisional" notu).
+3. **AI kullanım beyanı — PC1 onayı:** `submission_form.md` §AI şu içerikle kesinleşsin: kod, analiz scriptleri ve metinler Anthropic Claude (Claude Code), Google Gemini (Antigravity, Gemini CLI) ve OpenAI Codex yardımıyla yazıldı ve ekip tarafından kontrol edildi; sitede/oyunda AI ile üretilmiş görsel YOK (erken taslaktaki Higgsfield görselleri kaldırıldı); haritalar ve grafikler sadece gerçek veri; her sayı veri dosyasından, her bilimsel iddia kaynaklı.
+4. `submission_form.md` + `slides_notes.md`: video yerine slayt (`docs/story/slides.html`) ile teslim senaryosuna göre güncelle; tüm yeni sonuçlar (tam yıl, Delta, Konya Ovası, küresel 4 şehir, C-band, maruziyet).
+5. MASTER_PLAN §9 kontrol listesindeki "KISMEN" ve "BEKLİYOR" maddelerini kapatmak için gereken her şeyi `docs/qa/PC8.md`'ye yapılacaklar listesi olarak yaz.
+6. Sonra "ASLA BOŞ KALMA" döngüsü.

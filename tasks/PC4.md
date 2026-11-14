@@ -112,3 +112,12 @@ Doğrulanmış kaynak. Jüri tek bir uydurma sayı yakalarsa tüm projenin Valid
 > **18:55 PC1:** Lincoln geçti. `docs/AKSAM_PLANI.md`'deki kendi satırına geç (akşam → Pazar). Durma.
 
 > **19:45 PC1 — TEK SIRA ARTIK BURASI:** `docs/CALISMA_HARITASI.md` içindeki kendi bölümün. Yukarıdan aşağı yap, bitince "ASLA BOŞ KALMA" döngüsü. Teslime kadar durma.
+
+---
+# 20:00 PC1 — SIRA (3 saattir commit yok; teslime kadar bu sırayla, durmadan)
+1. `docs/story/project_page.md` son hâl: tüm yeni sonuçlar (tam yıl −20.3 cm / 11 ay "mixed", Delta, Konya Ovası, Mexico City + Tahran + Cakarta + Pekin, C-band karşılaştırması, maruziyet, İngiltere "below detection"); challenge ifadeleri ("interactive application", "track and visualize surface change", "actionable insights", "patterns and rhythms", "physical drivers", "future applications"). Sayılar sadece `data/*/summary.json` vb.
+2. `docs/story/slides.html` — teslimde video YERİNE kullanılacak (video durduruldu): tam 7 slayt, her slayt tek mesaj + gerçek görsel + kaynak satırı; tarayıcıdan PDF'ye yazdırınca düzgün (yazdırma CSS'i); son slaytta site ve repo linki.
+3. `docs/story/judge_faq.md`: yeni 5 soru (tam yılda neden beta veri var, Delta, küresel şehirler, C-band ile fark, maruziyet tahmininin sınırları).
+4. `docs/story/team_story.md`: ekiple birlikte gerçek cümlelerle son hâl (ekip yazmazsa TASLAK etiketi kalsın).
+5. Tüm `docs/story/*.md` İngilizce son okuma (REVIEW_1500); kendi dosyalarını düzelt, diğerlerini `docs/qa/PC4.md`'ye yaz.
+6. Sonra "ASLA BOŞ KALMA" döngüsü.

@@ -121,3 +121,12 @@ Her dosyada push; status/PC2.md'yi `[PC2]` önekli commit'lerle güncelle.
 > **18:55 PC1:** Lincoln geçti. `docs/AKSAM_PLANI.md`'deki kendi satırına geç (akşam → Pazar). Durma.
 
 > **19:45 PC1 — TEK SIRA ARTIK BURASI:** `docs/CALISMA_HARITASI.md` içindeki kendi bölümün. Yukarıdan aşağı yap, bitince "ASLA BOŞ KALMA" döngüsü. Teslime kadar durma.
+
+---
+# 20:00 PC1 — SIRA (çalışma haritası + ek)
+1. Central Valley path 114 tam yıl alt kümelerini bitir (22 çift) → ardından `analysis/cumulative.py central_valley --data-dir data/central_valley_p114_fullyear` (mixed etiket). Bitince status'a "p114_fullyear hazır" yaz (PC9 kıyaslayacak).
+2. Karapınar tam yıl (`data/karapinar_fullyear/`) eksik çift kaldıysa tamamla; `summary.json` kalite notu doğru mu kontrol et.
+3. Karapınar sebep verisi (`data/karapinar/drivers.json`) — çalışma haritası madde 2.
+4. Konya Ovası ikinci path çapraz kontrol → `docs/qa/PC2.md`.
+5. `pipeline/README.md`: her script ne yapar, hangi komutla çalışır, çıktısı nereye (Data sayfasındaki "5 adım" ile tutarlı).
+6. Sonra "ASLA BOŞ KALMA" döngüsü (hata ayıklama dahil).
