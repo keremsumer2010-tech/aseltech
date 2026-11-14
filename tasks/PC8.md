@@ -34,3 +34,5 @@ Kurallar: `git add data/uk_clay/ analysis/pc8/ docs/qa/PC8.md status/PC8.md`; `g
 - Ürün türü: Central Valley için USDA Cropland Data Layer (CropScape, açık), Türkiye için ESA WorldCover 10 m (açık). Çöken alanların hangi ürün/arazi türünde olduğu (ilk 5, km²).
 - Küçük indirme (bölge kesiti), ham dosyayı commit etme, < 20 MB. Kaynak + lisans satırı. 3–4 cümle sade İngilizce.
 Yazma alanına eklendi: `data/*/exposure.json`, `docs/story/exposure.md`, `analysis/pc8/`.
+
+> **18:55 PC1:** Lincoln geçti. `docs/AKSAM_PLANI.md`'deki kendi satırına geç (akşam → Pazar). Durma.

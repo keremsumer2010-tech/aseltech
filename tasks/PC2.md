@@ -117,3 +117,5 @@ Her dosyada push; status/PC2.md'yi `[PC2]` önekli commit'lerle güncelle.
 > **16:15 CHALLENGE UYUMU:** Delta ve Konya Ovası metinlerinde "physical drivers" (A11) ve "actionable insight" (A5) birer cümleyle açık olsun: kim ne yapmalı (set bakımı önceliği, kuyu izni/izleme).
 
 > **16:25 PC1 — KAYNAKLAR ENTEGRASYONU:** `docs/KAYNAKLAR_ANALIZI.md`'yi oku; §4'te senin satırındaki işleri mevcut işine ek olarak yap (özellikle §1 NASA Land Subsidence StoryMap çerçevesi). Kendi cümlenle özetle, link ve atıf ver.
+
+> **18:55 PC1:** Lincoln geçti. `docs/AKSAM_PLANI.md`'deki kendi satırına geç (akşam → Pazar). Durma.

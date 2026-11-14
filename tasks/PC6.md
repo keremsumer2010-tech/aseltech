@@ -121,3 +121,5 @@ Asla "görev bekleniyor" diye durma; status'a o an ne yaptığını yaz.
 > **16:25 PC1 — KAYNAKLAR ENTEGRASYONU:** `docs/KAYNAKLAR_ANALIZI.md`'yi oku; §4'te senin satırındaki işleri mevcut işine ek olarak yap (özellikle §1 NASA Land Subsidence StoryMap çerçevesi). Kendi cümlenle özetle, link ve atıf ver.
 
 > **16:30 PC1 — demo_30s.mp4 geri bildirimi (izlendi: 29.6 sn, 1080p, altyazılı ✓):** (1) Altyazıda "LOS" geçiyor → sade dil: "moved up to 7.8 cm away from the satellite (about 10 cm down)". (2) Grafik sahnelerinde yazılar çok küçük; telefonda okunmuyor → başlık ve etiketler en az 2 kat büyük, gereksiz eksen yazıları kaldır. (3) Başlık kartındaki alt satırlar okunmuyor → tek satır. (4) Tam yıl sonucu (PC9: 11 ayda −20.3 cm, kalıcı ~−16.8 cm/yıl) için 3 sn'lik sahne ekle; "mixed: includes pre-calibration data" etiketiyle. (5) Video 30 sn'yi geçmesin. Yeni sürüm aynı dosya adıyla.
+
+> **18:55 PC1:** Lincoln geçti. `docs/AKSAM_PLANI.md`'deki kendi satırına geç (akşam → Pazar). Durma.
