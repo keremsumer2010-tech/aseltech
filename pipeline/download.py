@@ -144,7 +144,7 @@ if __name__ == "__main__":
     if not match:
         raise SystemExit(f"No match for {args.date1}->{args.date2} crid={args.crid}")
 
-    row = match[0]
+    row = match[-1]
     dest = args.raw_dir / f"{row['granule']}.h5"
     path, speed = download_file(row["url"], dest)
     size_mb = path.stat().st_size / (1024 * 1024)

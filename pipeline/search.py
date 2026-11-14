@@ -18,7 +18,7 @@ SITES: dict[str, dict] = {
     "karapinar": {
         "bbox": (33.3, 37.6, 33.8, 37.9),
         "path": 7,
-        "frame": None,
+        "frame": 69,
     },
     "konya": {
         "bbox": (32.4, 37.4, 33.9, 38.1),
