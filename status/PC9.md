@@ -1,7 +1,11 @@
 # PC9 durum
 
 - Görev: `docs/ATLAS_PLANI.md` PC9 — 5 bölge (`eloy`, `gorgan`, `cangzhou`, `houston`, `lagos`) NISAR Pulse + Karapınar tam yıl koordinasyonu
-- Durum: çalışıyor: `gorgan` (FAZ 1 #3, Öncelik A — `8/9` `.npz` alt küme hazır, `9/9` sürüyor; `eloy` + `cangzhou` TAMAMLANDI)
+- Durum: çalışıyor: `houston` başlıyor (FAZ 1 #4, Öncelik B; `eloy` + `cangzhou` + `gorgan` [`low` conf.] TAMAMLANDI)
+- **ATLAS_PLANI FAZ 1 — `gorgan` (`54.43, 36.84`, ±0.25° — TAMAMLANDI, `confidence: "low"`):**
+  - Komut: `python analysis/pc9/run_atlas_region.py run --name gorgan --center 54.43,36.84 --box-deg 0.25 --start 2026-06-17 --end 2026-10-31 --quality provisional --data-dir data/global/gorgan --no-catalog --resume` (`9` çift `2026-06-21 → 2026-10-19`, `120` gün, `gaps=0`, `1` çift QC'de elendi).
+  - Sayılar: `max_subsidence_cm = -34.6 cm` LOS (`p2_cm = -33.1 cm`, `valid_fraction = 0.267 < 0.40`, `range_cm = [-34.6, -13.8]`, oran `0.601`), `confidence = "low"` (swath kenarı + Elburz eteklerinde DEM-siz topografik/unwrapping artefaktı).
+  - Doğrulama: `data/global/gorgan/disp/2026-10-19.png` görsel kontrol + `summary.json` `confidence = "low"` olarak güncellendi (`docs/qa/PC9.md`: `hazır: gorgan`).
 - **ATLAS_PLANI FAZ 1 — `cangzhou` (`116.85, 38.30`, ±0.25° — TAMAMLANDI):**
   - Komut: `python analysis/pc9/run_atlas_region.py run --name cangzhou --center 116.85,38.30 --box-deg 0.25 --start 2026-06-17 --end 2026-10-31 --quality provisional --data-dir data/global/cangzhou --no-catalog --resume` (`8` çift `2026-06-21 → 2026-10-19`, `120` gün, `gaps=0`).
   - Sayılar: `max_subsidence_cm = -2.4 cm` LOS (`-3.2 cm` dikey `estimate`, `42.3°`), `p2_cm = -3.3 cm`, `rate_cm_per_100d = -2.0`, `valid_fraction = 0.432`, `range_cm = [-2.4, -1.6]` (3 referans, oran `0.333`), `confidence = "medium"`.

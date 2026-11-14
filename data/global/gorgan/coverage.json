@@ -1,0 +1,22 @@
+{
+  "site": "gorgan",
+  "bbox": [
+    54.18,
+    36.59,
+    54.68,
+    37.09
+  ],
+  "quality": "provisional",
+  "coverage": "ok",
+  "granules": 9,
+  "chain_pairs": 9,
+  "path": 107,
+  "frame": 70,
+  "period": [
+    "2026-06-21",
+    "2026-10-19"
+  ],
+  "gaps": [],
+  "total_raw_mb": 20517.7,
+  "error": null
+}
