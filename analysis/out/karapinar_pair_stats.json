@@ -1,0 +1,144 @@
+{
+  "pairs": [
+    {
+      "pair": [
+        "2026-06-26",
+        "2026-07-08"
+      ],
+      "file": "analysis/out/subset/karapinar/2026-06-26_2026-07-08.npz",
+      "lambda_m": 0.24393202441008952,
+      "ionosphere_applied": true,
+      "cycle_outlier_px": 0,
+      "elev_coef_cm_per_km": -1.17,
+      "valid_frac_after_masks": 0.1814191454077132,
+      "p2_p50_p98_cm": [
+        -1.75,
+        -0.29,
+        0.77
+      ]
+    },
+    {
+      "pair": [
+        "2026-07-08",
+        "2026-07-20"
+      ],
+      "file": "analysis/out/subset/karapinar/2026-07-08_2026-07-20.npz",
+      "lambda_m": 0.24393202441008952,
+      "ionosphere_applied": true,
+      "cycle_outlier_px": 0,
+      "elev_coef_cm_per_km": -0.31,
+      "valid_frac_after_masks": 0.2104724603930701,
+      "p2_p50_p98_cm": [
+        -1.93,
+        0.26,
+        3.02
+      ]
+    },
+    {
+      "pair": [
+        "2026-07-20",
+        "2026-08-13"
+      ],
+      "file": "analysis/out/subset/karapinar/2026-07-20_2026-08-13.npz",
+      "lambda_m": 0.24393202441008952,
+      "ionosphere_applied": true,
+      "cycle_outlier_px": 0,
+      "elev_coef_cm_per_km": 3.27,
+      "valid_frac_after_masks": 0.16885078155322678,
+      "p2_p50_p98_cm": [
+        -2.43,
+        0.2,
+        2.38
+      ]
+    },
+    {
+      "pair": [
+        "2026-08-13",
+        "2026-08-25"
+      ],
+      "file": "analysis/out/subset/karapinar/2026-08-13_2026-08-25.npz",
+      "lambda_m": 0.24393202441008952,
+      "ionosphere_applied": true,
+      "cycle_outlier_px": 0,
+      "elev_coef_cm_per_km": -0.36,
+      "valid_frac_after_masks": 0.4341695776436964,
+      "p2_p50_p98_cm": [
+        -1.31,
+        0.22,
+        1.61
+      ]
+    },
+    {
+      "pair": [
+        "2026-08-25",
+        "2026-09-06"
+      ],
+      "file": "analysis/out/subset/karapinar/2026-08-25_2026-09-06.npz",
+      "lambda_m": 0.24393202441008952,
+      "ionosphere_applied": true,
+      "cycle_outlier_px": 0,
+      "elev_coef_cm_per_km": -2.32,
+      "valid_frac_after_masks": 0.4957340954800466,
+      "p2_p50_p98_cm": [
+        -1.71,
+        0.04,
+        1.62
+      ]
+    },
+    {
+      "pair": [
+        "2026-09-06",
+        "2026-09-18"
+      ],
+      "file": "analysis/out/subset/karapinar/2026-09-06_2026-09-18.npz",
+      "lambda_m": 0.24393202441008952,
+      "ionosphere_applied": true,
+      "cycle_outlier_px": 10,
+      "elev_coef_cm_per_km": 4.74,
+      "valid_frac_after_masks": 0.375163191136516,
+      "p2_p50_p98_cm": [
+        -1.29,
+        0.28,
+        1.71
+      ]
+    },
+    {
+      "pair": [
+        "2026-09-18",
+        "2026-09-30"
+      ],
+      "file": "analysis/out/subset/karapinar/2026-09-18_2026-09-30.npz",
+      "lambda_m": 0.24393202441008952,
+      "ionosphere_applied": true,
+      "cycle_outlier_px": 16,
+      "elev_coef_cm_per_km": -1.12,
+      "valid_frac_after_masks": 0.41269891676369924,
+      "p2_p50_p98_cm": [
+        -2.31,
+        -0.9,
+        0.53
+      ]
+    },
+    {
+      "pair": [
+        "2026-09-30",
+        "2026-10-12"
+      ],
+      "file": "analysis/out/subset/karapinar/2026-09-30_2026-10-12.npz",
+      "lambda_m": 0.24393202441008952,
+      "ionosphere_applied": true,
+      "cycle_outlier_px": 0,
+      "elev_coef_cm_per_km": -0.22,
+      "valid_frac_after_masks": 0.4483433894357997,
+      "p2_p50_p98_cm": [
+        -2.28,
+        -0.58,
+        1.34
+      ]
+    }
+  ],
+  "notes": [],
+  "reference_mean_coh": 0.8602240681648254,
+  "valid_frac_full_chain": 0.14182280088917115,
+  "outlier_px_removed": 0
+}

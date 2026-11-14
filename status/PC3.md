@@ -2,8 +2,30 @@
 
 - Görev 1: BİTTİ (insar.py + testler + Karapınar kontrol haritası)
 - Görev 2: BİTTİ — **Central Valley kümülatif harita + points + summary + _cum.npz PUSH edildi** (13:30 TR)
-- Sıradaki: Q02 Karapınar kümülatif (path 7 frame 069, 8 provisional çift 06-26→10-12 tespit edildi)
-- Güncelleme: 2026-11-14 13:30 TR
+- Q02 Karapınar kümülatif: BİTTİ (13:55 TR) — aşağıda
+- Sıradaki: 17:00 QA (sitedeki sayılar = çıktılarım mı) → Q08 hazırlığı
+- Güncelleme: 2026-11-14 13:55 TR
+
+## Referans duyarlılığı (YENİ, önemli)
+Mutlak değer referans seçimine bağlı. `summary.json`'a eklendi: `max_subsidence_range_cm` + `reference_sensitivity`
+(≥30 km uzaktaki en iyi ikinci referansla aynı nokta yeniden hesaplanıyor).
+- Central Valley: Woodlake referansı −7.8 cm; alternatif referans (−120.059, 35.763) ile aynı noktada −6.2 cm → **aralık −6.2 … −7.8 cm LOS**. Çanakların YERİ değişmiyor.
+- Referans artık bbox içinde seçilmek zorunda (bbox dışına kaymıştı, düzeltildi).
+- Sunum önerisi: "about 6–8 cm (line of sight) in 3.5 months".
+
+## Q02 · Karapınar kümülatif → `data/karapinar/` (sinkholes.geojson'a dokunulmadı)
+| | |
+|---|---|
+| Dönem | 2026-06-26 → 2026-10-12 (108 gün), 8 ardışık provisional çift, path 7 descending frame 69 |
+| Maks çökme (LOS) | **−5.9 cm**, 2 km W of Karapınar (33.531E, 37.718N), dikey ≈ −8 cm (tahmin) |
+| Diğer noktalar | hepsi −2.6 … +0.5 cm (gürültü düzeyine yakın) |
+| Referans | 33.744E, 37.747N, 21×21 px pencere (~1.7 km). 7×7 pencerede son çiftte sahne geneli −2.1 cm ortak mod hatası vardı; büyük pencereyle çift medyanları ≤ 0.9 cm |
+| Kapsama | **tüm çiftlerde geçerli piksel sadece %14** (12 günlük L-bant, tarım alanı dekorelasyonu); kalan alan ilçe merkezi + doğu volkanik yayla |
+| Güven | **DÜŞÜK-ORTA**: tek belirgin sıcak nokta; ≥30 km alternatif referans yok (sahne dar) |
+
+Literatür: Konya havzasında Sentinel-1 InSAR (2014–2022) zirve hız ~9 cm/yıl; obruklar Karapınar'da yoğun (Orhan vd. 2024, Geosciences): https://zaguan.unizar.es/record/132155 · Karapınar çok-sensörlü InSAR+GNSS çalışması (Orhan vd. 2021, Sensors): https://www.mdpi.com/1424-8220/21/3/774 → mertebe tutuyor (bizimki yaz sezonu).
+Çıktılar: `data/karapinar/{meta,points,summary}.json`, `data/karapinar/disp/<9 tarih>.png`, `analysis/out/karapinar_cum.npz` (0.2 MB), `karapinar_cum_stack.npz` (0.7 MB), `karapinar_pair_stats.json`.
+Komut: `python analysis/cumulative.py karapinar --ref-radius 10`
 
 ## Central Valley sonucu (PC1 / PC5 / PC6 için)
 | | |

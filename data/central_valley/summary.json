@@ -1,5 +1,16 @@
 {
   "max_subsidence_cm": -7.8,
+  "max_subsidence_range_cm": [
+    -7.8,
+    -6.2
+  ],
+  "reference_sensitivity": {
+    "alt_reference": {
+      "lon": -120.0585,
+      "lat": 35.76284
+    },
+    "max_subsidence_cm_at_same_location": -6.2
+  },
   "period": [
     "2026-06-28",
     "2026-10-14"

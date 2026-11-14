@@ -189,6 +189,7 @@ def main():
     ap.add_argument("site")
     ap.add_argument("--thr", type=float, default=0.3)
     ap.add_argument("--no-names", action="store_true")
+    ap.add_argument("--ref-radius", type=int, default=RADIUS, help="reference window half-size in px")
     ap.add_argument("--deramp", type=int, default=1, choices=[0, 1, 2],
                     help="per-pair ramp removal: 0 none, 1 plane (default), 2 quadratic")
     ap.add_argument("--no-ion", dest="ion", action="store_false", help="do not subtract the product ionosphere screen")
@@ -245,7 +246,10 @@ def main():
 
     valid_all = np.logical_and.reduce([np.isfinite(c) for c in pair_cm])
     coh_mean = np.mean([np.load(f)["coh"].astype(np.float32) / 255 for _, _, f, _ in used], axis=0)
-    r, c, mcoh = choose_reference(coh_mean, valid_all, RADIUS, stride=3)
+    XX, YY = np.meshgrid(x, y)
+    LON, LAT = Transformer.from_crs(epsg, 4326, always_xy=True).transform(XX, YY)
+    in_bbox = (LON >= bbox[0]) & (LON <= bbox[2]) & (LAT >= bbox[1]) & (LAT <= bbox[3])
+    r, c, mcoh = choose_reference(coh_mean, valid_all & in_bbox, a.ref_radius, stride=3)
     lon_r, lat_r = Transformer.from_crs(epsg, 4326, always_xy=True).transform(x[c], y[r])
     print(f"reference row={r} col={c} lon={lon_r:.4f} lat={lat_r:.4f} mean_coh={mcoh:.2f}")
 
@@ -254,7 +258,7 @@ def main():
     cum[0][~valid_all] = np.nan
     n_out = 0
     for i, cm in enumerate(pair_cm):
-        cm = reference(cm, (r, c), RADIUS)
+        cm = reference(cm, (r, c), a.ref_radius)
         bad = np.abs(cm) > PAIR_OUTLIER_CM
         n_out += int(bad.sum())
         cm[bad] = np.nan
@@ -268,12 +272,28 @@ def main():
 
     # robust extremes: ~1 km blocks (13x13 px), block median, only blocks with >= 50 % valid pixels,
     # so small artefacts (rivers, canals, single fields) never set the headline number
-    XX, YY = np.meshgrid(x, y)
-    LON, LAT = Transformer.from_crs(epsg, 4326, always_xy=True).transform(XX, YY)
-    in_bbox = (LON >= bbox[0]) & (LON <= bbox[2]) & (LAT >= bbox[1]) & (LAT <= bbox[3])
     sm = block_median(np.where(in_bbox, final, np.nan), BLOCK_PX, BLOCK_MIN_VALID, BLOCK_MAX_STD)
     rmin, cmin = np.unravel_index(np.nanargmin(sm), sm.shape)
     max_sub = float(sm[rmin, cmin])
+
+    # reference sensitivity: redo the sum with the best window >= 30 km from the primary reference
+    far = np.hypot((np.arange(len(y))[:, None] - r) * abs(y[1] - y[0]), (np.arange(len(x))[None, :] - c) * abs(x[1] - x[0])) < 30000
+    try:
+        r2, c2, _ = choose_reference(coh_mean, valid_all & in_bbox, a.ref_radius, stride=3, exclude=far)
+        alt = np.zeros_like(final)
+        for cm in pair_cm:
+            q = reference(cm, (r2, c2), a.ref_radius)
+            q[np.abs(q) > PAIR_OUTLIER_CM] = np.nan
+            alt = alt + q
+        alt[~valid_all] = np.nan
+        sm_alt = block_median(np.where(in_bbox, alt, np.nan), BLOCK_PX, BLOCK_MIN_VALID, BLOCK_MAX_STD)
+        alt_max = float(sm_alt[rmin, cmin]) if np.isfinite(sm_alt[rmin, cmin]) else float(np.nanmin(sm_alt))
+        lon_r2, lat_r2 = Transformer.from_crs(epsg, 4326, always_xy=True).transform(x[c2], y[r2])
+        sens = {"alt_reference": {"lon": round(lon_r2, 5), "lat": round(lat_r2, 5)},
+                "max_subsidence_cm_at_same_location": round(alt_max, 1)}
+    except ValueError:
+        sens = None
+    print("reference sensitivity:", sens)
     inc = d0["incidence"] if "incidence" in d0 and d0["incidence"].size else None
     inc_at = float(inc[rmin, cmin]) if inc is not None else None
     days = (date.fromisoformat(dates[-1]) - date.fromisoformat(dates[0])).days
@@ -305,11 +325,15 @@ def main():
 
     pairs_txt = ", ".join(f"{p[0]}_{p[1]}" for p in used)
     granules = [str(p[3]["granule"]) for p in used if "granule" in p[3]]
+    geom = "GUNW track/frame unknown"
+    if granules:
+        g = granules[0].split("_")  # NISAR_L2_PR_GUNW_<cycle>_<track>_<A|D>_<frame>_...
+        geom = f"track {int(g[5])} {'ascending' if g[6] == 'A' else 'descending'} frame {int(g[7])}"
     meta = {
         "site": site, "bbox": list(bbox), "dates": dates, "units": "cm", "vmin": vmin, "vmax": vmax,
         "component": "LOS (line of sight); negative = away from satellite = subsidence",
         "colormap": "RdBu (red = subsidence, blue = uplift/toward satellite)",
-        "source": "NISAR L2 GUNW (PROVISIONAL, CRID P05023) via ASF DAAC, track 34 ascending frame 20; "
+        "source": f"NISAR L2 GUNW (PROVISIONAL, CRID P05023) via ASF DAAC, {geom}; "
                   "https://nisar-docs.asf.alaska.edu/gunw",
         "granules": granules,
         "notes": (f"Cumulative LOS displacement relative to {dates[0]}, sum of {len(used)} consecutive pairs ({pairs_txt}). "
@@ -349,6 +373,9 @@ def main():
     rate = max_sub / days * 365.25
     summary = {
         "max_subsidence_cm": round(max_sub, 1),
+        "max_subsidence_range_cm": (sorted([round(max_sub, 1), sens["max_subsidence_cm_at_same_location"]])
+                                    if sens else None),
+        "reference_sensitivity": sens,
         "period": [dates[0], dates[-1]],
         "rate_cm_per_yr_estimate": round(rate, 1),
         "reference_point": {"lon": round(lon_r, 5), "lat": round(lat_r, 5)},

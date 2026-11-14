@@ -1,0 +1,482 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.11 87bfad18",
+  "osm3s": {
+    "timestamp_osm_base": "2026-11-14T10:40:20Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+
+{
+  "type": "node",
+  "id": 105402136,
+  "lat": 37.7177584,
+  "lon": 33.5476273,
+  "tags": {
+    "name": "Karapınar",
+    "name:fa": "کاراپینار",
+    "name:ml": "കാറാപീനാർ",
+    "name:sr": "Карапинар",
+    "name:zh": "卡拉珀納爾",
+    "old_name": "Sultaniye;Hyda;Hyde",
+    "place": "town",
+    "population": "49636",
+    "population:date": "2016",
+    "wikidata": "Q1947554",
+    "wikimedia_commons": "Category:Karapınar",
+    "wikipedia": "tr:Karapınar"
+  }
+},
+{
+  "type": "node",
+  "id": 200805339,
+  "lat": 37.8531803,
+  "lon": 33.7219215,
+  "tags": {
+    "name": "Kayalı",
+    "place": "village",
+    "wikidata": "Q10778337",
+    "wikipedia": "tr:Kayalı, Karapınar"
+  }
+},
+{
+  "type": "node",
+  "id": 200809733,
+  "lat": 37.9035491,
+  "lon": 33.8359535,
+  "tags": {
+    "geonames:id": "315617",
+    "name": "Emirgazi",
+    "name:ml": "എമീർഗാസി",
+    "name:sr": "Емиргази",
+    "place": "town",
+    "population": "8762",
+    "population:date": "2016",
+    "salb:adm1name": "Konya",
+    "salb:adm2name": "Emirgazi",
+    "salb:id": "TUR054013",
+    "source": "Wikipedia (tr)",
+    "wikidata": "Q2218549",
+    "wikipedia": "tr:Emirgazi"
+  }
+},
+{
+  "type": "node",
+  "id": 1204258018,
+  "lat": 37.8273961,
+  "lon": 33.8947419,
+  "tags": {
+    "name": "Kızılgedik",
+    "place": "village",
+    "wikidata": "Q10783579",
+    "wikipedia": "tr:Kızılgedik, Ereğli"
+  }
+},
+{
+  "type": "node",
+  "id": 1204259097,
+  "lat": 37.8586302,
+  "lon": 33.8008758,
+  "tags": {
+    "name": "Meşeli",
+    "old_name": "Kıcan",
+    "place": "village",
+    "wikidata": "Q10793187",
+    "wikipedia": "tr:Meşeli, Emirgazi"
+  }
+},
+{
+  "type": "node",
+  "id": 1204260452,
+  "lat": 37.8137880,
+  "lon": 33.7898507,
+  "tags": {
+    "alt_name": "İkizler;İkizli",
+    "name": "Ekizli",
+    "place": "village",
+    "wikidata": "Q6088286",
+    "wikipedia": "tr:İkizli, Emirgazi"
+  }
+},
+{
+  "type": "node",
+  "id": 1204260731,
+  "lat": 37.8144658,
+  "lon": 33.7668374,
+  "tags": {
+    "name": "Öbektaş",
+    "place": "village",
+    "wikidata": "Q10839722",
+    "wikipedia": "tr:Öbektaş, Emirgazi"
+  }
+},
+{
+  "type": "node",
+  "id": 1204261926,
+  "lat": 37.8464130,
+  "lon": 33.8148099,
+  "tags": {
+    "name": "Karaören",
+    "place": "village",
+    "wikidata": "Q10777422",
+    "wikipedia": "tr:Karaören, Emirgazi"
+  }
+},
+{
+  "type": "node",
+  "id": 1204262516,
+  "lat": 37.7904468,
+  "lon": 33.8565531,
+  "tags": {
+    "name": "Beyören",
+    "place": "village",
+    "wikidata": "Q10739567",
+    "wikipedia": "tr:Beyören, Ereğli"
+  }
+},
+{
+  "type": "node",
+  "id": 1204262592,
+  "lat": 37.8917886,
+  "lon": 33.7654134,
+  "tags": {
+    "name": "Yamaç",
+    "old_name": "Kehil;Küheyl",
+    "place": "village",
+    "wikidata": "Q10836904",
+    "wikipedia": "tr:Yamaç, Emirgazi"
+  }
+},
+{
+  "type": "node",
+  "id": 1204263138,
+  "lat": 37.8477733,
+  "lon": 33.8540009,
+  "tags": {
+    "name": "Gölören",
+    "old_name": "Gölviran",
+    "place": "village",
+    "wikidata": "Q10763724",
+    "wikipedia": "tr:Gölören, Emirgazi"
+  }
+},
+{
+  "type": "node",
+  "id": 1204265687,
+  "lat": 37.8523306,
+  "lon": 33.7669068,
+  "tags": {
+    "name": "Işıklar",
+    "place": "village",
+    "wikidata": "Q10773476",
+    "wikipedia": "tr:Işıklar, Emirgazi"
+  }
+},
+{
+  "type": "node",
+  "id": 1204406701,
+  "lat": 37.5609070,
+  "lon": 33.3286190,
+  "tags": {
+    "name": "İslik",
+    "old_name": "Elislik",
+    "place": "village",
+    "wikidata": "Q10842663",
+    "wikipedia": "tr:İslik, Karapınar"
+  }
+},
+{
+  "type": "node",
+  "id": 1204407101,
+  "lat": 37.6422617,
+  "lon": 33.3192346,
+  "tags": {
+    "name": "Hotamış",
+    "place": "village",
+    "wikidata": "Q6662398",
+    "wikipedia": "tr:Hotamış, Karapınar"
+  }
+},
+{
+  "type": "node",
+  "id": 1205645622,
+  "lat": 37.5328478,
+  "lon": 33.8508494,
+  "tags": {
+    "name": "Tatlıkuyu",
+    "place": "village",
+    "population": "398",
+    "wikidata": "Q10824083",
+    "wikipedia": "tr:Tatlıkuyu, Ereğli"
+  }
+},
+{
+  "type": "node",
+  "id": 1205649391,
+  "lat": 37.6336708,
+  "lon": 33.7745050,
+  "tags": {
+    "name": "Kazanhüyüğü",
+    "place": "village",
+    "wikidata": "Q10778448",
+    "wikipedia": "tr:Kazanhüyüğü, Karapınar"
+  }
+},
+{
+  "type": "node",
+  "id": 1205650239,
+  "lat": 37.6521552,
+  "lon": 33.7331180,
+  "tags": {
+    "name": "Kesmez",
+    "old_name": "Keşmez",
+    "place": "village",
+    "wikidata": "Q10779101",
+    "wikipedia": "tr:Kesmez, Karapınar"
+  }
+},
+{
+  "type": "node",
+  "id": 1406773816,
+  "lat": 37.8826814,
+  "lon": 33.2178760,
+  "tags": {
+    "name": "Beşağıl",
+    "old_name": "Gene;Kánna",
+    "place": "village",
+    "wikidata": "Q10739582",
+    "wikipedia": "tr:Beşağıl, Karatay"
+  }
+},
+{
+  "type": "node",
+  "id": 1406773848,
+  "lat": 37.9641232,
+  "lon": 33.3167339,
+  "tags": {
+    "name": "Yenikent",
+    "place": "village",
+    "wikidata": "Q6064464",
+    "wikipedia": "tr:Yenikent, Karatay"
+  }
+},
+{
+  "type": "node",
+  "id": 1837693998,
+  "lat": 37.8289221,
+  "lon": 33.7218417,
+  "tags": {
+    "name": "Yağmapınar",
+    "place": "village",
+    "wikidata": "Q10837195",
+    "wikipedia": "tr:Yağmapınar, Karapınar"
+  }
+},
+{
+  "type": "node",
+  "id": 1837694008,
+  "lat": 37.7710645,
+  "lon": 33.7247160,
+  "tags": {
+    "name": "Yeşilyurt",
+    "place": "village",
+    "wikidata": "Q10837610",
+    "wikipedia": "tr:Yeşilyurt, Karapınar"
+  }
+},
+{
+  "type": "node",
+  "id": 1862653188,
+  "lat": 37.5194780,
+  "lon": 33.6078070,
+  "tags": {
+    "city": "Karaman",
+    "district": "Ayrancı",
+    "name": "Kavuklar",
+    "place": "village",
+    "wikidata": "Q10778205",
+    "wikipedia": "tr:Kavuklar, Ayrancı"
+  }
+},
+{
+  "type": "node",
+  "id": 2492117745,
+  "lat": 37.6999713,
+  "lon": 33.2557319,
+  "tags": {
+    "name": "Akçayazı",
+    "place": "village",
+    "wikidata": "Q10731542",
+    "wikipedia": "tr:Akçayazı, Karapınar"
+  }
+},
+{
+  "type": "node",
+  "id": 2492117746,
+  "lat": 37.6588089,
+  "lon": 33.8176076,
+  "tags": {
+    "name": "Akören",
+    "place": "village",
+    "wikidata": "Q10731563",
+    "wikipedia": "tr:Akören, Karapınar"
+  }
+},
+{
+  "type": "node",
+  "id": 2492117750,
+  "lat": 37.5866890,
+  "lon": 33.2824210,
+  "tags": {
+    "name": "Hasanoba",
+    "place": "village",
+    "wikidata": "Q10765949",
+    "wikipedia": "tr:Hasanoba, Karapınar"
+  }
+},
+{
+  "type": "node",
+  "id": 2492117752,
+  "lat": 37.5186390,
+  "lon": 33.2808950,
+  "tags": {
+    "name": "Karakışla",
+    "place": "village",
+    "wikidata": "Q10777184",
+    "wikipedia": "tr:Karakışla, Karapınar"
+  }
+},
+{
+  "type": "node",
+  "id": 2492117753,
+  "lat": 37.5934490,
+  "lon": 33.2104570,
+  "tags": {
+    "name": "Kayacık",
+    "place": "village",
+    "wikidata": "Q10778296",
+    "wikipedia": "tr:Kayacık, Karapınar"
+  }
+},
+{
+  "type": "node",
+  "id": 2492117755,
+  "lat": 37.6034850,
+  "lon": 33.2347340,
+  "tags": {
+    "name": "Ortaoba",
+    "place": "village",
+    "wikidata": "Q10803183",
+    "wikipedia": "tr:Ortaoba, Karapınar"
+  }
+},
+{
+  "type": "node",
+  "id": 2492117757,
+  "lat": 37.7472991,
+  "lon": 33.8267464,
+  "tags": {
+    "name": "Oymalı",
+    "place": "village",
+    "wikidata": "Q10803557",
+    "wikipedia": "tr:Oymalı, Karapınar"
+  }
+},
+{
+  "type": "node",
+  "id": 2492117760,
+  "lat": 37.5039370,
+  "lon": 33.3678250,
+  "tags": {
+    "name": "Yenikuyu",
+    "place": "village",
+    "wikidata": "Q10837353",
+    "wikipedia": "tr:Yenikuyu, Karapınar"
+  }
+},
+{
+  "type": "node",
+  "id": 11299475620,
+  "lat": 37.6817085,
+  "lon": 33.4672714,
+  "tags": {
+    "alt_name": "Apak Yaylası",
+    "name": "Gazi Osman Paşa",
+    "note": "Mahalle statüsünde",
+    "place": "village",
+    "turkey_class": "yayla"
+  }
+},
+{
+  "type": "node",
+  "id": 13730895501,
+  "lat": 37.9771415,
+  "lon": 33.6148839,
+  "tags": {
+    "name": "Kepez",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 14080512815,
+  "lat": 37.9772509,
+  "lon": 33.6772741,
+  "tags": {
+    "name": "Halilyurdu",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 14080512817,
+  "lat": 37.9529351,
+  "lon": 33.6836144,
+  "tags": {
+    "name": "Başin",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 14080512819,
+  "lat": 37.9415765,
+  "lon": 33.6527221,
+  "tags": {
+    "name": "Derekumca",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 14080512824,
+  "lat": 37.9375998,
+  "lon": 33.6640661,
+  "tags": {
+    "name": "Kuzin",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 14080512825,
+  "lat": 37.9141074,
+  "lon": 33.7256372,
+  "tags": {
+    "name": "Kurtburun",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 14148472959,
+  "lat": 37.9388186,
+  "lon": 33.6800469,
+  "tags": {
+    "name": "Işıklar Kasabası Başin Yaylası",
+    "place": "town"
+  }
+}
+
+  ]
+}
