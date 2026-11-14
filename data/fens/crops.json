@@ -1,0 +1,128 @@
+{
+  "dates": [
+    "2026-06-22",
+    "2026-07-04",
+    "2026-07-16",
+    "2026-08-21"
+  ],
+  "fields": [
+    {
+      "id": "f01",
+      "name": "Fens field-like sample 1",
+      "lon": -0.18328,
+      "lat": 52.77544,
+      "hv_db": [
+        -16.51,
+        -17.23,
+        -17.09,
+        -13.97
+      ],
+      "hh_db": [
+        -10.03,
+        -11.09,
+        -11.42,
+        -7.56
+      ],
+      "sample_window": {
+        "epsg": 32630,
+        "bounds_m": [
+          689750.0,
+          5850770.0,
+          690230.0,
+          5851250.0
+        ]
+      }
+    },
+    {
+      "id": "f02",
+      "name": "Fens field-like sample 2",
+      "lon": 0.00423,
+      "lat": 52.69889,
+      "hv_db": [
+        -20.45,
+        -21.56,
+        -21.42,
+        -17.25
+      ],
+      "hh_db": [
+        -11.63,
+        -13.47,
+        -13.83,
+        -8.9
+      ],
+      "sample_window": {
+        "epsg": 32630,
+        "bounds_m": [
+          702750.0,
+          5842770.0,
+          703230.0,
+          5843250.0
+        ]
+      }
+    },
+    {
+      "id": "f03",
+      "name": "Fens field-like sample 3",
+      "lon": 0.18911,
+      "lat": 52.59512,
+      "hv_db": [
+        -21.18,
+        -22.17,
+        -21.78,
+        -20.39
+      ],
+      "hh_db": [
+        -13.34,
+        -15.19,
+        -15.78,
+        -13.0
+      ],
+      "sample_window": {
+        "epsg": 32630,
+        "bounds_m": [
+          715750.0,
+          5831770.0,
+          716230.0,
+          5832250.0
+        ]
+      }
+    },
+    {
+      "id": "f04",
+      "name": "Fens field-like sample 4",
+      "lon": 0.34235,
+      "lat": 52.47397,
+      "hv_db": [
+        -22.65,
+        -22.24,
+        -21.61,
+        -18.19
+      ],
+      "hh_db": [
+        -17.01,
+        -15.86,
+        -15.39,
+        -11.5
+      ],
+      "sample_window": {
+        "epsg": 32630,
+        "bounds_m": [
+          726750.0,
+          5818770.0,
+          727230.0,
+          5819250.0
+        ]
+      }
+    }
+  ],
+  "quality": "provisional",
+  "quality_note": "Four local NISAR GCOV P05023 provisional acquisitions from 2026-06-22 through 2026-08-21. The 480 m sample windows are field-like sampling areas, not verified parcel boundaries; sparse dates limit crop-phenology interpretation.",
+  "source": "NASA-ISRO NISAR Level-2 PR GCOV Provisional (CRID P05023), local PC2 subsets under pipeline/subset/fens_gcov/.",
+  "granules": [
+    "NISAR_L2_PR_GCOV_023_124_D_062_2005_DHDH_A_20260622T192240_20260622T192316_P05023_N_F_J_001",
+    "NISAR_L2_PR_GCOV_024_124_D_062_2005_DHDH_A_20260704T192240_20260704T192315_P05023_N_F_J_001",
+    "NISAR_L2_PR_GCOV_025_124_D_062_2005_DHDH_A_20260716T192239_20260716T192315_P05023_N_F_J_001",
+    "NISAR_L2_PR_GCOV_028_124_D_062_2005_DHDH_A_20260821T192237_20260821T192313_P05023_N_F_J_001"
+  ],
+  "method": "Four provisional NISAR GCOV acquisitions (CRID P05023) were averaged in four separated 480 m by 480 m windows (12 by 12 40 m pixels) selected from field-like patterns in the local median-HV image; centers are WGS84 coordinates and window bounds are EPSG:32630. HV decreased through July and rose in August in windows 1 and 2, varied less before rising in window 3, and rose across all four dates in window 4; no uniform harvest or tillage signature is established. These four sparse dates cannot attribute backscatter changes to harvest or tillage, and the windows are sampling rectangles rather than verified cadastral field polygons."
+}

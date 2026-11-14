@@ -138,6 +138,17 @@ Toplam bulgu: 1.
 
 Kontroller: 0–150% pompalama serisinde çökme monoton arttı; kalıcı çökme toplam çökme değerini aşmadı; ölçümler sonlu ve negatif olmayan büyüklüklerdi. Bu model çalıştırmasında sayısal hata görülmedi. Daha fazla pompalama daha yüksek gelir de üretti; bu, modelin kısa dönem gelir fonksiyonunun sonucu ve gerçek dünya tahmini olarak yorumlanmamalı. Su yılı sınıfları ve bazı ekonomik/fiziksel parametreler modelde açıklayıcı/temsili olarak işaretlidir.
 
-## 5. Q10 Fens girdi kontrolü (offline)
+## 5. Q10 Fens GCOV zaman serisi (yerel kesitler, offline)
 
-Son `git pull --rebase origin main` sonrasında `pipeline/subset/fens_gcov/` dizini repoda yoktu. Bu yüzden PC2'nin beklenen `.npz` kesitleri yerel olarak bulunamadı; Q10 tarla zaman serisi üretilmedi. ASF sorgusu veya veri indirme yapılmadı. Bu bölüm, kesitler repoya geldiğinde yeniden kontrol edilecek.
+Son `git pull --rebase origin main` ile gelen PC2 kesitleri: 2026-06-22, 2026-07-04, 2026-07-16 ve 2026-08-21. Dördü de `quality: provisional`, aynı EPSG:32630 40 m ızgarasında ve HH/HV dB alanları içeriyor. `pipeline/pc7/analyze_fens_crops.py` her tarihte aynı dört ayrı 12 × 12 piksel (480 m × 480 m) pencerenin sonlu HH/HV piksellerini ortaladı; koordinatlar pencerelerin merkezinden dönüştürüldü.
+
+| Örnek pencere | 22 Jun HV (dB) | 4 Jul HV (dB) | 16 Jul HV (dB) | 21 Aug HV (dB) |
+|---|---:|---:|---:|---:|
+| f01 | −16.51 | −17.23 | −17.09 | −13.97 |
+| f02 | −20.45 | −21.56 | −21.42 | −17.25 |
+| f03 | −21.18 | −22.17 | −21.78 | −20.39 |
+| f04 | −22.65 | −22.24 | −21.61 | −18.19 |
+
+f01 ve f02 Temmuz boyunca daha negatif, Ağustos'ta daha az negatif oldu; f03 daha küçük değişti ve Ağustos'ta yükseldi; f04 dört tarihte de daha az negatif değerlere ilerledi. Bu dört seyrek tarihte tüm pencereler için hasat veya sürüme bağlanabilecek ortak bir HV düşüşü görülmüyor. Pencereler GCOV dokusundan seçilmiş örnekleme kareleri; kadastro parseli olarak doğrulanmadı.
+
+Çıktılar: `data/fens/crops.json` ve `data/fens/hv_timeseries.png`. JSON parse edildi; tarihler sıralı/benzersiz, alan dizileri tarihlerle aynı uzunlukta ve sonlu, kalite etiketi provisional, yöntem üç cümle. Grafik dosyası oluşturulup görsel olarak açıldı. ASF sorgusu veya veri indirme yapılmadı.
