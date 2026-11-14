@@ -21,7 +21,6 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 from pyproj import Transformer
-from scipy.ndimage import median_filter, minimum_filter
 
 sys.path.insert(0, str(Path(__file__).parent))
 from gunw_io import BBOX  # noqa: E402
@@ -189,6 +188,7 @@ def main():
     ap.add_argument("site")
     ap.add_argument("--thr", type=float, default=0.3)
     ap.add_argument("--no-names", action="store_true")
+    ap.add_argument("--data-dir", help="write meta/points/summary/disp here instead of data/<site>/ (QA runs)")
     ap.add_argument("--ref-radius", type=int, default=RADIUS, help="reference window half-size in px")
     ap.add_argument("--deramp", type=int, default=1, choices=[0, 1, 2],
                     help="per-pair ramp removal: 0 none, 1 plane (default), 2 quadratic")
@@ -303,7 +303,7 @@ def main():
     print(f"max subsidence (LOS, 1 km block median) {max_sub:.2f} cm at {lon_m:.4f},{lat_m:.4f}; days={days}; v=±{vlim}")
 
     # ---- outputs -------------------------------------------------------------------------------
-    ddir = ROOT / "data" / site
+    ddir = Path(a.data_dir) if a.data_dir else ROOT / "data" / site
     (ddir / "disp").mkdir(parents=True, exist_ok=True)
     for dt, g in zip(dates, cum):
         save_png(to_latlon_grid(g, x, y, epsg, bbox), ddir / "disp" / f"{dt}.png", vmin, vmax)

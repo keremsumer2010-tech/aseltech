@@ -22,6 +22,8 @@ BBOX = {  # [w, s, e, n]  rules/VERI_SOZLESMESI.md section 1
     "central_valley": (-120.2, 35.6, -119.0, 36.6),
     "konya": (32.4, 37.4, 33.9, 38.1),
     "karapinar": (33.3, 37.6, 33.8, 37.9),
+    # second geometry over the same box (Q21: track 114 descending vs track 34 ascending); outputs kept separate
+    "central_valley_p114": (-120.2, 35.6, -119.0, 36.6),
 }
 G = "science/LSAR/GUNW"
 PROVISIONAL_START = "2026-06-17"
