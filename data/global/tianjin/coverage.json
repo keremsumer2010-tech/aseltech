@@ -1,0 +1,22 @@
+{
+  "site": "tianjin",
+  "bbox": [
+    116.95,
+    38.85,
+    117.45,
+    39.35
+  ],
+  "quality": "provisional",
+  "coverage": "ok",
+  "granules": 8,
+  "chain_pairs": 8,
+  "path": 111,
+  "frame": 21,
+  "period": [
+    "2026-06-21",
+    "2026-10-19"
+  ],
+  "gaps": [],
+  "total_raw_mb": 18664.7,
+  "error": null
+}
