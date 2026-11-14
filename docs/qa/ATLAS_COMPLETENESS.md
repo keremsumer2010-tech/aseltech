@@ -1,6 +1,6 @@
 # Atlas 6-Piece Completeness Matrix (`docs/ATLAS_MUKEMMEL.md`)
 
-**Generated:** 2026-11-14 21:33 UTC · **Regions in `data/global/atlas.json`:** 15 · **Complete cells:** 82/90
+**Generated:** 2026-11-14 21:41 UTC · **Regions in `data/global/atlas.json`:** 15 · **Complete cells:** 82/90
 
 | # | City ID | Name | 1. Summary/Disp (`PC2/7/9/10/11`) | 2. `sigma_cm.png` (`PC5`) | 3. `validation_note.json` (`PC5`) | 4. `atlas_cities/<id>.md` (`PC4`) | 5. `bulletins/<id>.html` (`PC8`) | 6. `exposure_atlas.json` (`PC8`) | Score |
 |---:|---|---|---:|---:|---:|---:|---:|---:|---:|

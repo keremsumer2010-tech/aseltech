@@ -1,14 +1,14 @@
 {
   "title": "Global Atlas Population and Area Exposure on Sinking Ground (108-day equivalent)",
-  "generated_utc": "2026-11-14T21:26:09Z",
+  "generated_utc": "2026-11-14T21:41:30Z",
   "source": "GHSL GHS-POP E2025 R2023A 3-arcsecond (~100 m, WGS84, European Commission JRC) intersected with provisional NISAR L2 GUNW cumulative LOS displacement scaled to 108 days, excluding pixels with |disp| < 2*sigma (data/global/detectability.json)",
   "quality": "provisional",
   "quality_note": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.",
   "notes": "karapinar is reported separately as a local subset inside konya_plain; totals exclude karapinar to prevent double-counting.",
   "totals_excluding_nested_karapinar": {
-    "people_lt_minus2cm": 7830190,
-    "people_lt_minus5cm": 1504865,
-    "area_km2_lt_minus5cm": 576.74
+    "people_lt_minus2cm": 7778159,
+    "people_lt_minus5cm": 1503908,
+    "area_km2_lt_minus5cm": 576.36
   },
   "cities": [
     {
@@ -375,11 +375,11 @@
       "id": "tehran",
       "name": "Tehran",
       "country": "Iran",
-      "people_lt_minus2cm": 75121,
-      "people_lt_minus5cm": 1204,
-      "area_km2_lt_minus5cm": 0.97,
-      "area_km2_lt_minus2cm": 15.05,
-      "bbox_population_ghsl": 9669114,
+      "people_lt_minus2cm": 23090,
+      "people_lt_minus5cm": 247,
+      "area_km2_lt_minus5cm": 0.59,
+      "area_km2_lt_minus2cm": 5.75,
+      "bbox_population_ghsl": 9717463,
       "two_sigma_threshold_cm": 0.692,
       "two_sigma_source": "data/global/detectability.json",
       "days_measured": 120,
@@ -388,20 +388,8 @@
         {
           "lon": 51.3018,
           "lat": 35.6398,
-          "cum_cm_los": -3.52,
-          "rate_cm_per_100d": -2.93
-        },
-        {
-          "lon": 51.1753,
-          "lat": 35.6025,
-          "cum_cm_los": -2.91,
-          "rate_cm_per_100d": -2.42
-        },
-        {
-          "lon": 51.2443,
-          "lat": 35.6399,
-          "cum_cm_los": -1.83,
-          "rate_cm_per_100d": -1.53
+          "cum_cm_los": -2.43,
+          "rate_cm_per_100d": -2.02
         }
       ],
       "source": "GHSL GHS-POP E2025 R2023A 3-arcsecond (~100 m, WGS84, European Commission JRC) intersected with provisional NISAR L2 GUNW cumulative LOS displacement scaled to 108 days, excluding pixels with |disp| < 2*sigma (data/global/detectability.json)",

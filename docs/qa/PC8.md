@@ -351,3 +351,4 @@
   - `python -m pytest analysis/pc8/test_bulletin.py -q`: `1 passed`.
 - **ATLAS KUSURSUZLUK (`tools/atlas_completeness.py` → `docs/qa/ATLAS_COMPLETENESS.md`):**
   - `data/global/atlas.json` içindeki tüm **15 bölge** için 6 parça (`summary/disp`, `sigma_cm.png`, `validation_note.json`, `atlas_cities/<id>.md`, `bulletins/<id>.html`, `exposure_atlas.json`) kontrol edildi (`PC8: 0 eksik`, `PC2/7/9/10/11: 0 eksik`, `PC5: 6 eksik`, `PC4: 2 eksik`). Her 30 dk ve yeni şehir geldikçe yeniden çalıştırılacak.
+  - `tehran` tam kutu yenilemesi (PC11) sonrası `exposure_atlas.json` (`tehran`: `23,090` `< -2 cm`, `247` `< -5 cm`, `0.59 km²`), `vital_signs.json` (`576.36 km²`, `1,503,908` kişi `< -5 cm`), 15 bülten ve `ATLAS_COMPLETENESS.md` güncellendi.

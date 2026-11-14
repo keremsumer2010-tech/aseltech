@@ -1,3 +1,3 @@
 # PC8 durum
 
-- Durum: sürekli döngüde (00:37 TR) — TAKVİYE okundu; 15 bölge senkron (PC8: 0 eksik; eloy/quetta/xian atlas.json bekliyor); sıradaki: 3 dk sonra kontrol.
+- Durum: %100 (15 bölge + tehran tam kutu + ATLAS_COMPLETENESS.md tamam); sıradaki: PC10 eloy/quetta/xian ekleyince bülten + exposure + vital_signs üretimi (3 dk döngüde).
