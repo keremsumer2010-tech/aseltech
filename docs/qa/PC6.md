@@ -251,3 +251,10 @@ Komut: `python analysis/pc6/test_20_strategies.py --self-test`
 
 ### 8.5 Görev 5 · Demo Videosu (`demo_30s.mp4`)
 - **Durum:** `CALISMA_HARITASI.md` gereği DURDURULDU — dokunulmadı (`analysis/pc6/make_demo_video.py` ve `docs/story/media/demo_30s.mp4` değiştirilmedi).
+
+---
+
+## 9. ASLA BOŞ KALMA — Hata Ayıklama Turu 1 (`19:54 TR`)
+- **`python -m pytest -q`:** **63 passed**, 1 `PendingDeprecationWarning` (`analysis/cumulative.py:127` `cmap.set_bad`).
+- **`data/` JSON/GeoJSON Taraması:** 61/61 `.json`/`.geojson` dosyası geçerli JSON, 0 gerçek `NaN`/`Infinity`, 0 boş nesne. (`data/{central_valley,karapinar}/uncertainty/meta.json` içindeki `"NaN transparent"` yalnızca renk haritası açıklama metnidir.)
+- **`web/` Yerel Tarayıcı Hata Ayıklaması (`http://127.0.0.1:8766/web/`, `1280×800`):** `index.html`, `explorer.html`, `science.html`, `data.html`, `faq.html`, `panel.html` (6/6 sayfa) — **0 konsol hatası, 0 başarısız ağ isteği, 0 kırık görsel, 0 yatay taşma**.
