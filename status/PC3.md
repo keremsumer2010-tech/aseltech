@@ -1,8 +1,8 @@
 # PC3 durum
 
-- Görev: 1 (insar.py + testler BİTTİ) → şimdi Karapınar kontrol haritası
+- Görev: 1 BİTTİ (insar.py + Karapınar kontrol) → Görev 2 Central Valley (PC2 npz bekleniyor)
 - Durum: çalışıyor
-- Güncelleme: 2026-11-14 13:05 TR
+- Güncelleme: 2026-11-14 13:22 TR
 
 ## Bitenler
 ### `analysis/insar.py` + `analysis/test_insar.py`
@@ -28,6 +28,18 @@ referans pikseli 0; boş referans → hata; LOS→dikey; sentetik −3 cm çanak
 ### Düzeltmeler (bilgi)
 https://nisar-docs.asf.alaska.edu/gunw : iyonosfer faz ekranı üründe var ama unwrappedPhase'e uygulanmamış;
 troposfer/gelgit katmanları da çıkarılmamış. İlk geçişte biz de uygulamıyoruz (meta.json notes'a yazılacak).
+
+### Karapınar kontrol haritası → `docs/karapinar_checkpoint_cm.png` (13:20 TR)
+- Granül: `NISAR_L2_PR_GUNW_031_007_D_069_032_2000_SH_20260918T164007_..._20260930T164042_P05023_N_F_J_001` (path 7, frame 069, bbox'u %100 kapsıyor; 2.38 GB, 95 sn indirme, ham dosya silindi)
+- quality: **provisional** (P05023, iki tarih de 2026-06-17 sonrası). Referans tarihi < ikincil tarih kontrol edildi.
+- λ = c / centerFrequency = **0.24393 m** (bu çerçevede; CV'deki 0.24196'dan farklı → λ her dosyadan okunuyor)
+- Maskeler: koherens ≥ 0.3 + connectedComponents ≠ 0 → geçerli piksel %44.3
+- Referans: otomatik, en yüksek ortalama koherensli tam geçerli 7×7 pencere → **33.727E, 37.763N** (ort. koherens 0.89)
+- Değerler (LOS cm): p2 = −2.81, medyan = −0.67, p98 = +2.43. Renk aralığı ±3 cm. Tek 12 günlük çift için makul (görev: "birkaç cm altı").
+- Uç değer: max +43.6 cm birkaç pikselde → unwrapping hatası; maskeleme yetmiyor, kümülatifte ayrıca filtrelenecek.
+- **Dürüst not:** haritadaki kuzey–güney geniş eğilim büyük olasılıkla atmosfer/iyonosfer. Üründeki iyonosfer ekranının bu kesitteki p1–p99 aralığı ≈ 6.5 cm LOS'a denk; uygulanmadı (ürün varsayılanı). Bu tek çift çökme kanıtı olarak sunulmamalı; işaret/ölçek kontrolüdür.
+- Kod: `analysis/gunw_io.py` (h5 → sözleşme npz + conncomp, ion, incidence), `analysis/checkpoint_map.py`. Alt küme: `analysis/out/karapinar_20260918_20260930.npz` (2.9 MB)
+- Testler: `10 passed` (yeni: `choose_reference`)
 
 ## AI
 - AI: Claude Code (Opus) → analysis kodu, testler, kaynak taraması

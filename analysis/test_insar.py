@@ -2,7 +2,7 @@ import numpy as np
 import pytest
 
 from insar import (
-    coh_to_float, los_to_vertical, mask_coherence, mask_components, pair_to_cm,
+    choose_reference, coh_to_float, los_to_vertical, mask_coherence, mask_components, pair_to_cm,
     phase_to_cm, reference, wavelength_from_frequency,
 )
 
@@ -60,6 +60,21 @@ def test_reference_ignores_nan_and_raises_when_empty():
 def test_los_to_vertical():
     assert los_to_vertical(np.array([-10.0]), 60.0)[0] == pytest.approx(-20.0, rel=1e-6)
     assert los_to_vertical(np.array([-10.0]), 0.0)[0] == pytest.approx(-10.0)
+
+
+def test_choose_reference_picks_most_coherent_valid_window():
+    coh = np.full((40, 40), 0.5, np.float32)
+    coh[10:17, 25:32] = 0.95
+    valid = np.ones((40, 40), bool)
+    r, c, m = choose_reference(coh, valid, radius=3, stride=1)
+    assert (r, c) == (13, 28) and m == pytest.approx(0.95)
+    valid[13, 28] = False  # invalid pixel in that window -> must move away
+    r2, c2, _ = choose_reference(coh, valid, radius=3, stride=1)
+    assert not (abs(r2 - 13) <= 3 and abs(c2 - 28) <= 3)
+    excl = np.zeros((40, 40), bool)
+    excl[:] = True
+    with pytest.raises(ValueError):
+        choose_reference(coh, None, exclude=excl)
 
 
 def test_pair_chain_synthetic_bowl():

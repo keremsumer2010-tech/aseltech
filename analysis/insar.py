@@ -84,6 +84,32 @@ def los_to_vertical(cm, incidence_deg):
     return (np.asarray(cm, dtype=np.float32) / np.cos(np.deg2rad(incidence_deg))).astype(np.float32)
 
 
+def choose_reference(coh, valid=None, radius: int = 3, stride: int = 5, exclude=None):
+    """Pick the (row, col) whose (2r+1)^2 window is fully valid and has the highest mean coherence.
+
+    coh: coherence (uint8 or float); valid: optional bool mask (e.g. finite in ALL pairs);
+    exclude: optional bool mask of pixels not allowed as centre (e.g. known subsidence area).
+    Deterministic; returns (row, col, mean_coh).
+    """
+    c = coh_to_float(coh)
+    ok = np.isfinite(c) if valid is None else (np.asarray(valid, bool) & np.isfinite(c))
+    best = (-1.0, None)
+    H, W = c.shape
+    for r in range(radius, H - radius, stride):
+        for q in range(radius, W - radius, stride):
+            if exclude is not None and exclude[r, q]:
+                continue
+            sl = (slice(r - radius, r + radius + 1), slice(q - radius, q + radius + 1))
+            if not ok[sl].all():
+                continue
+            m = float(c[sl].mean())
+            if m > best[0]:
+                best = (m, (r, q))
+    if best[1] is None:
+        raise ValueError("no fully valid reference window found")
+    return best[1][0], best[1][1], best[0]
+
+
 def pair_to_cm(unw, coh, wavelength_m, ref_rc, thr=0.3, radius=3, conncomp=None):
     """Full per-pair chain: phase -> cm -> masks -> referenced. Same ref_rc for every pair."""
     cm = phase_to_cm(unw, wavelength_m)
