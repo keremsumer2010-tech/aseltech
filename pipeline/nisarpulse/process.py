@@ -150,5 +150,7 @@ def run_cumulative(
         summary.get("range_cm"),
     )
     summary.update(metrics)
+    if "ref_range_cm" not in summary and summary.get("range_cm") is not None:
+        summary["ref_range_cm"] = summary["range_cm"]
     summary_path.write_text(json.dumps(summary, indent=1) + "\n", encoding="utf-8")
     return out_dir, meta, summary

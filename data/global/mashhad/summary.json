@@ -55,5 +55,9 @@
  "p2_cm": -6.68,
  "rate_cm_per_100d": -7.17,
  "valid_fraction": 0.705,
- "confidence": "medium"
+ "confidence": "medium",
+ "ref_range_cm": [
+  -8.6,
+  -6.0
+ ]
 }

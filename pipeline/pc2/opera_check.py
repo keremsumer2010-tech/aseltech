@@ -368,6 +368,8 @@ def main() -> None:
         run_eloy(),
         run_mexico_city(),
     ]
+    for row in results:
+        row["quality"] = "provisional"
     OUT_JSON.write_text(json.dumps(results, indent=1) + "\n", encoding="utf-8")
     print(json.dumps(results, indent=2))
 
