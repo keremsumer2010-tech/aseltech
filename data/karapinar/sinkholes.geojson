@@ -1,0 +1,643 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.36806,
+          37.745
+        ]
+      },
+      "properties": {
+        "name": "Akkuyu Obruğu-I",
+        "lon": 33.36806,
+        "lat": 37.745,
+        "year_formed": 2007,
+        "diameter_m": "19x17",
+        "depth_m": 2.5,
+        "status": "dry",
+        "source_title": "Tapur & Bozyigit (2015), Konya Ilinde Guncel Obruk Olusumlari, Marmara Cografya Dergisi 31:415-446",
+        "source_url": "https://dergipark.org.tr/tr/download/article-file/3454",
+        "coord_source": "paper table"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.38361,
+          37.73111
+        ]
+      },
+      "properties": {
+        "name": "Akkuyu Obruğu-II",
+        "lon": 33.38361,
+        "lat": 37.73111,
+        "year_formed": 2008,
+        "diameter_m": 16,
+        "depth_m": 1.0,
+        "status": "filled",
+        "source_title": "Tapur & Bozyigit (2015), Konya Ilinde Guncel Obruk Olusumlari, Marmara Cografya Dergisi 31:415-446",
+        "source_url": "https://dergipark.org.tr/tr/download/article-file/3454",
+        "coord_source": "paper table"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.36556,
+          37.74833
+        ]
+      },
+      "properties": {
+        "name": "Yarımoğlu Obruğu (Akkuyu-III)",
+        "lon": 33.36556,
+        "lat": 37.74833,
+        "year_formed": 2009,
+        "diameter_m": 28,
+        "depth_m": 76.0,
+        "status": "water-bearing",
+        "source_title": "Tapur & Bozyigit (2015), Konya Ilinde Guncel Obruk Olusumlari, Marmara Cografya Dergisi 31:415-446",
+        "source_url": "https://dergipark.org.tr/tr/download/article-file/3454",
+        "coord_source": "paper table"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.3575,
+          37.72556
+        ]
+      },
+      "properties": {
+        "name": "Akkuyu Obruğu-IV",
+        "lon": 33.3575,
+        "lat": 37.72556,
+        "year_formed": 2010,
+        "diameter_m": 16,
+        "depth_m": 1.0,
+        "status": "dry",
+        "source_title": "Tapur & Bozyigit (2015), Konya Ilinde Guncel Obruk Olusumlari, Marmara Cografya Dergisi 31:415-446",
+        "source_url": "https://dergipark.org.tr/tr/download/article-file/3454",
+        "coord_source": "paper table"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.36167,
+          37.7375
+        ]
+      },
+      "properties": {
+        "name": "Akkuyu Obruğu-V",
+        "lon": 33.36167,
+        "lat": 37.7375,
+        "year_formed": 2012,
+        "diameter_m": 15,
+        "depth_m": 0.7,
+        "status": "dry",
+        "source_title": "Tapur & Bozyigit (2015), Konya Ilinde Guncel Obruk Olusumlari, Marmara Cografya Dergisi 31:415-446",
+        "source_url": "https://dergipark.org.tr/tr/download/article-file/3454",
+        "coord_source": "paper table"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.47611,
+          37.74861
+        ]
+      },
+      "properties": {
+        "name": "Yavşançukuru Obruğu",
+        "lon": 33.47611,
+        "lat": 37.74861,
+        "year_formed": 2000,
+        "diameter_m": 21,
+        "depth_m": 56.0,
+        "status": "water-bearing",
+        "source_title": "Tapur & Bozyigit (2015), Konya Ilinde Guncel Obruk Olusumlari, Marmara Cografya Dergisi 31:415-446",
+        "source_url": "https://dergipark.org.tr/tr/download/article-file/3454",
+        "coord_source": "paper table"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.46889,
+          37.79444
+        ]
+      },
+      "properties": {
+        "name": "Hanyıkığı Obruğu",
+        "lon": 33.46889,
+        "lat": 37.79444,
+        "year_formed": 2003,
+        "diameter_m": "7.7x5.6",
+        "depth_m": 6.0,
+        "status": "dry",
+        "source_title": "Tapur & Bozyigit (2015), Konya Ilinde Guncel Obruk Olusumlari, Marmara Cografya Dergisi 31:415-446",
+        "source_url": "https://dergipark.org.tr/tr/download/article-file/3454",
+        "coord_source": "paper table"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.53278,
+          37.80889
+        ]
+      },
+      "properties": {
+        "name": "Nebili Obruğu-II (Naciye Aba Obruğu)",
+        "lon": 33.53278,
+        "lat": 37.80889,
+        "year_formed": 1972,
+        "diameter_m": "18x16",
+        "depth_m": 70.0,
+        "status": "dry",
+        "source_title": "Tapur & Bozyigit (2015), Konya Ilinde Guncel Obruk Olusumlari, Marmara Cografya Dergisi 31:415-446",
+        "source_url": "https://dergipark.org.tr/tr/download/article-file/3454",
+        "coord_source": "paper table"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.425,
+          37.89444
+        ]
+      },
+      "properties": {
+        "name": "Akviran Obruğu (Güvercin Obruğu)",
+        "lon": 33.425,
+        "lat": 37.89444,
+        "year_formed": 1977,
+        "diameter_m": 24,
+        "depth_m": 80.0,
+        "status": "water-bearing",
+        "source_title": "Tapur & Bozyigit (2015), Konya Ilinde Guncel Obruk Olusumlari, Marmara Cografya Dergisi 31:415-446",
+        "source_url": "https://dergipark.org.tr/tr/download/article-file/3454",
+        "coord_source": "paper table"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.46806,
+          37.87667
+        ]
+      },
+      "properties": {
+        "name": "Sekizli Küçük Obruk",
+        "lon": 33.46806,
+        "lat": 37.87667,
+        "year_formed": 1983,
+        "diameter_m": 16,
+        "depth_m": 3.5,
+        "status": "dry",
+        "source_title": "Tapur & Bozyigit (2015), Konya Ilinde Guncel Obruk Olusumlari, Marmara Cografya Dergisi 31:415-446",
+        "source_url": "https://dergipark.org.tr/tr/download/article-file/3454",
+        "coord_source": "paper table"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.51306,
+          37.77667
+        ]
+      },
+      "properties": {
+        "name": "Eşeli Obruğu",
+        "lon": 33.51306,
+        "lat": 37.77667,
+        "year_formed": 2009,
+        "diameter_m": 18,
+        "depth_m": 1.5,
+        "status": "dry",
+        "source_title": "Tapur & Bozyigit (2015), Konya Ilinde Guncel Obruk Olusumlari, Marmara Cografya Dergisi 31:415-446",
+        "source_url": "https://dergipark.org.tr/tr/download/article-file/3454",
+        "coord_source": "paper table"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.54417,
+          37.77778
+        ]
+      },
+      "properties": {
+        "name": "Büyükkarakuyu Direkli Obruk",
+        "lon": 33.54417,
+        "lat": 37.77778,
+        "year_formed": 2012,
+        "diameter_m": 25,
+        "depth_m": 1.0,
+        "status": "dry",
+        "source_title": "Tapur & Bozyigit (2015), Konya Ilinde Guncel Obruk Olusumlari, Marmara Cografya Dergisi 31:415-446",
+        "source_url": "https://dergipark.org.tr/tr/download/article-file/3454",
+        "coord_source": "paper table"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.53944,
+          37.78806
+        ]
+      },
+      "properties": {
+        "name": "Büyükkarakuyu Şenyurt Obruğu",
+        "lon": 33.53944,
+        "lat": 37.78806,
+        "year_formed": 2011,
+        "diameter_m": 15,
+        "depth_m": 2.5,
+        "status": "dry",
+        "source_title": "Tapur & Bozyigit (2015), Konya Ilinde Guncel Obruk Olusumlari, Marmara Cografya Dergisi 31:415-446",
+        "source_url": "https://dergipark.org.tr/tr/download/article-file/3454",
+        "coord_source": "paper table"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.53583,
+          37.78583
+        ]
+      },
+      "properties": {
+        "name": "Büyükkarakuyu Koçhan Obruğu",
+        "lon": 33.53583,
+        "lat": 37.78583,
+        "year_formed": 2011,
+        "diameter_m": 14,
+        "depth_m": 2.0,
+        "status": "dry",
+        "source_title": "Tapur & Bozyigit (2015), Konya Ilinde Guncel Obruk Olusumlari, Marmara Cografya Dergisi 31:415-446",
+        "source_url": "https://dergipark.org.tr/tr/download/article-file/3454",
+        "coord_source": "paper table"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.55361,
+          37.78306
+        ]
+      },
+      "properties": {
+        "name": "Küçükkarakuyu Aşıroğlu Obruğu-I",
+        "lon": 33.55361,
+        "lat": 37.78306,
+        "year_formed": 2010,
+        "diameter_m": 19,
+        "depth_m": 4.0,
+        "status": "dry",
+        "source_title": "Tapur & Bozyigit (2015), Konya Ilinde Guncel Obruk Olusumlari, Marmara Cografya Dergisi 31:415-446",
+        "source_url": "https://dergipark.org.tr/tr/download/article-file/3454",
+        "coord_source": "paper table"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.55389,
+          37.7875
+        ]
+      },
+      "properties": {
+        "name": "Küçükkarakuyu Aşıroğlu Obruğu-II",
+        "lon": 33.55389,
+        "lat": 37.7875,
+        "year_formed": 2011,
+        "diameter_m": 20,
+        "depth_m": 2.0,
+        "status": "dry",
+        "source_title": "Tapur & Bozyigit (2015), Konya Ilinde Guncel Obruk Olusumlari, Marmara Cografya Dergisi 31:415-446",
+        "source_url": "https://dergipark.org.tr/tr/download/article-file/3454",
+        "coord_source": "paper table"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.55417,
+          37.78639
+        ]
+      },
+      "properties": {
+        "name": "Küçükkarakuyu Aşıroğlu Obruğu-III",
+        "lon": 33.55417,
+        "lat": 37.78639,
+        "year_formed": 2012,
+        "diameter_m": 16,
+        "depth_m": 8.0,
+        "status": "dry",
+        "source_title": "Tapur & Bozyigit (2015), Konya Ilinde Guncel Obruk Olusumlari, Marmara Cografya Dergisi 31:415-446",
+        "source_url": "https://dergipark.org.tr/tr/download/article-file/3454",
+        "coord_source": "paper table"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.56139,
+          37.78806
+        ]
+      },
+      "properties": {
+        "name": "Köken Obruğu-I",
+        "lon": 33.56139,
+        "lat": 37.78806,
+        "year_formed": 2011,
+        "diameter_m": 10,
+        "depth_m": 1.0,
+        "status": "dry",
+        "source_title": "Tapur & Bozyigit (2015), Konya Ilinde Guncel Obruk Olusumlari, Marmara Cografya Dergisi 31:415-446",
+        "source_url": "https://dergipark.org.tr/tr/download/article-file/3454",
+        "coord_source": "paper table"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.56278,
+          37.78833
+        ]
+      },
+      "properties": {
+        "name": "Köken Obruğu-II",
+        "lon": 33.56278,
+        "lat": 37.78833,
+        "year_formed": 2011,
+        "diameter_m": 16,
+        "depth_m": 1.0,
+        "status": "dry",
+        "source_title": "Tapur & Bozyigit (2015), Konya Ilinde Guncel Obruk Olusumlari, Marmara Cografya Dergisi 31:415-446",
+        "source_url": "https://dergipark.org.tr/tr/download/article-file/3454",
+        "coord_source": "paper table"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.5575,
+          37.78306
+        ]
+      },
+      "properties": {
+        "name": "Köken Obruğu-III",
+        "lon": 33.5575,
+        "lat": 37.78306,
+        "year_formed": 2013,
+        "diameter_m": 18,
+        "depth_m": 0.5,
+        "status": "dry",
+        "source_title": "Tapur & Bozyigit (2015), Konya Ilinde Guncel Obruk Olusumlari, Marmara Cografya Dergisi 31:415-446",
+        "source_url": "https://dergipark.org.tr/tr/download/article-file/3454",
+        "coord_source": "paper table"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.58083,
+          37.81528
+        ]
+      },
+      "properties": {
+        "name": "Seyithacı Obruğu-I",
+        "lon": 33.58083,
+        "lat": 37.81528,
+        "year_formed": 2007,
+        "diameter_m": "15x12",
+        "depth_m": 1.0,
+        "status": "dry",
+        "source_title": "Tapur & Bozyigit (2015), Konya Ilinde Guncel Obruk Olusumlari, Marmara Cografya Dergisi 31:415-446",
+        "source_url": "https://dergipark.org.tr/tr/download/article-file/3454",
+        "coord_source": "paper table"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.575,
+          37.80944
+        ]
+      },
+      "properties": {
+        "name": "Seyithacı Obruğu-II",
+        "lon": 33.575,
+        "lat": 37.80944,
+        "year_formed": 2007,
+        "diameter_m": "16x13",
+        "depth_m": 3.0,
+        "status": "dry",
+        "source_title": "Tapur & Bozyigit (2015), Konya Ilinde Guncel Obruk Olusumlari, Marmara Cografya Dergisi 31:415-446",
+        "source_url": "https://dergipark.org.tr/tr/download/article-file/3454",
+        "coord_source": "paper table"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.57611,
+          37.81361
+        ]
+      },
+      "properties": {
+        "name": "Seyithacı Obruğu-III",
+        "lon": 33.57611,
+        "lat": 37.81361,
+        "year_formed": 2007,
+        "diameter_m": "25x22",
+        "depth_m": 4.0,
+        "status": "dry",
+        "source_title": "Tapur & Bozyigit (2015), Konya Ilinde Guncel Obruk Olusumlari, Marmara Cografya Dergisi 31:415-446",
+        "source_url": "https://dergipark.org.tr/tr/download/article-file/3454",
+        "coord_source": "paper table"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.58111,
+          37.81583
+        ]
+      },
+      "properties": {
+        "name": "Seyithacı Obruğu-IV",
+        "lon": 33.58111,
+        "lat": 37.81583,
+        "year_formed": 2008,
+        "diameter_m": "17x15",
+        "depth_m": 2.0,
+        "status": "dry",
+        "source_title": "Tapur & Bozyigit (2015), Konya Ilinde Guncel Obruk Olusumlari, Marmara Cografya Dergisi 31:415-446",
+        "source_url": "https://dergipark.org.tr/tr/download/article-file/3454",
+        "coord_source": "paper table"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.58111,
+          37.815
+        ]
+      },
+      "properties": {
+        "name": "Seyithacı Obruğu-V",
+        "lon": 33.58111,
+        "lat": 37.815,
+        "year_formed": 2008,
+        "diameter_m": "14x12",
+        "depth_m": 4.0,
+        "status": "dry",
+        "source_title": "Tapur & Bozyigit (2015), Konya Ilinde Guncel Obruk Olusumlari, Marmara Cografya Dergisi 31:415-446",
+        "source_url": "https://dergipark.org.tr/tr/download/article-file/3454",
+        "coord_source": "paper table"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.57389,
+          37.805
+        ]
+      },
+      "properties": {
+        "name": "Seyithacı Obruğu-VI",
+        "lon": 33.57389,
+        "lat": 37.805,
+        "year_formed": 2008,
+        "diameter_m": 6,
+        "depth_m": 6.0,
+        "status": "dry",
+        "source_title": "Tapur & Bozyigit (2015), Konya Ilinde Guncel Obruk Olusumlari, Marmara Cografya Dergisi 31:415-446",
+        "source_url": "https://dergipark.org.tr/tr/download/article-file/3454",
+        "coord_source": "paper table"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.56667,
+          37.8025
+        ]
+      },
+      "properties": {
+        "name": "Seyithacı Obruğu-VII (Hüseyin İvriz)",
+        "lon": 33.56667,
+        "lat": 37.8025,
+        "year_formed": 2009,
+        "diameter_m": 13,
+        "depth_m": 5.0,
+        "status": "dry",
+        "source_title": "Tapur & Bozyigit (2015), Konya Ilinde Guncel Obruk Olusumlari, Marmara Cografya Dergisi 31:415-446",
+        "source_url": "https://dergipark.org.tr/tr/download/article-file/3454",
+        "coord_source": "paper table"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.57889,
+          37.81583
+        ]
+      },
+      "properties": {
+        "name": "Seyithacı Yaylası Obruğu-VIII",
+        "lon": 33.57889,
+        "lat": 37.81583,
+        "year_formed": 2009,
+        "diameter_m": 3,
+        "depth_m": 2.0,
+        "status": "filled",
+        "source_title": "Tapur & Bozyigit (2015), Konya Ilinde Guncel Obruk Olusumlari, Marmara Cografya Dergisi 31:415-446",
+        "source_url": "https://dergipark.org.tr/tr/download/article-file/3454",
+        "coord_source": "paper table"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.57028,
+          37.80722
+        ]
+      },
+      "properties": {
+        "name": "Seyithacı Obruğu-IX",
+        "lon": 33.57028,
+        "lat": 37.80722,
+        "year_formed": 2012,
+        "diameter_m": 16,
+        "depth_m": 0.5,
+        "status": "dry",
+        "source_title": "Tapur & Bozyigit (2015), Konya Ilinde Guncel Obruk Olusumlari, Marmara Cografya Dergisi 31:415-446",
+        "source_url": "https://dergipark.org.tr/tr/download/article-file/3454",
+        "coord_source": "paper table"
+      }
+    }
+  ]
+}
