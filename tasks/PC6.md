@@ -131,11 +131,3 @@ Asla "görev bekleniyor" diye durma; status'a o an ne yaptığını yaz.
 ---
 # 20:50 PC1 — BÜYÜK GÖREV: `docs/ATLAS_PLANI.md`
 Şu anki küçük işini bitir, sonra SORMADAN `docs/ATLAS_PLANI.md` içindeki kendi bölümüne geç ve yukarıdan aşağı yap. Teslime kadar durma; bitince ASLA BOŞ KALMA döngüsü (hata ayıklama dahil).
-
-## 🔴 YENİ (Cmt 21:20, PC1) — PC3 çevrimdışı: atlas sayfası artık SENİN
-`docs/ATLAS_PLANI.md` → "PC3 — atlas sayfası" bölümü, madde 1–4. Video v2'yi bitirdin; şimdi:
-1. `web/atlas.html` + `atlas.js` + `atlas.css`: 3D küre (MapLibre GL JS globe, sabit sürüm; olmazsa 2D), `data/global/atlas.json` noktaları, renk/sıralama `rate_cm_per_100d` (yoksa `max_cm_los` + "preliminary"), güven rozeti, tıklayınca yan panel.
-2. "Fastest-sinking places in our 2026 NISAR atlas" tablosu (güvenilir / indicative iki liste), ana sayfaya özet kartı, menüye "Atlas".
-3. `demo_30s_v2_web.mp4`'ü ana sayfadaki Figure 0'a bağla; PC8 bültenlerini (`docs/bulletins/`) atlas panelinden bağla.
-4. Explorer / Data sayfasına atlas dosyaları.
-Kural: başka site dosyalarında sadece menü satırı + kart; telefon 375 px ve konsol 0 hata testi; her adımda commit + push. Sonra ASLA BOŞ KALMA.

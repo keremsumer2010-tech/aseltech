@@ -4,6 +4,8 @@ Jüri mesajı: *"NISAR'ın ilk kamuya açık aylarındaki veriyle dünyanın ~20
 Kurallar: sadece provisional (her iki tarih ≥ 2026-06-17, P05023); her şehir `data/global/<şehir>/` (veri sözleşmesi); ham .h5 kesince sil; aynı bilgisayarda aynı anda tek indirme; REVIEW_1500 dili; `git add <yol>`; her adımda commit + push.
 Sabit saatler: gece indirme (bilgisayarlar açık, uyku kapalı) · Paz 14:00 atlas veri sonu · Paz 20:00 dondurma · 22:00 teslim.
 
+> **NOT (PC1, 21:25): PC3, PC6 ve PC8'e görevleri Mehmet (M3hmeT1888) kendisi veriyor.** Bu dosyadaki PC3/PC6/PC8 maddeleri sadece öneridir; PC1 bu üç ajana görev atamaz. Atlas sayfası (`web/atlas.html`) için sahip Mehmet'in kararıdır.
+
 ## 🔬 KALİTE STANDARDI (PC1 inceleme, 21:05) — sıralama adil ve savunulabilir olsun diye ZORUNLU
 PC1 planı inceledi; 4 zayıflık düzeltildi. Bu bölüm diğer her şeyin önündedir.
 1. **Aynı kutu, aynı ölçüt:** her şehir için bbox = merkez ± 0.25° (≈ 55 × 55 km; kıyı/şehir dışı alan çoksa merkezi kaydır, boyutu değil). Başlık değeri = 1 km blok medyanlarının en negatifi (PC3 yöntemi) **ve** 2. yüzdelik (p2) — ikisi de `summary.json`'da. Farklı kutu boyu sıralamayı bozar.
@@ -23,8 +25,8 @@ PC1 planı inceledi; 4 zayıflık düzeltildi. Bu bölüm diğer her şeyin ön�
 | PC2 | NISAR Pulse aracına §1–§3 kurallarını ekle (`--box-deg 0.25` varsayılan, p2 ve rate_cm_per_100d çıktısı, `--ref-lonlat` ile havza dışı referans) → kendi bölgeleri (A önce) | araç iyileştirme |
 | PC10 | **Mexico City'yi kalite standardı §3 ile yeniden çalıştır** → kendi bölgeleri (önce A önceliği olanlar); `build_atlas.py`: §1–§4 alanları (`rate_cm_per_100d`, `p2_cm`, `confidence`, `valid_fraction`, `ref_range_cm`) + iki liste (güvenilir / indicative) | atlas.json'u her şehirde güncelle |
 | PC9 | Earthdata kurulumu (Mehmet) → kendi 5 bölgesi | — |
-| PC3 | **YOK (21:20) — işleri PC6'ya devredildi** | — |
-| PC6 | Video v2 BİTTİ → **PC3'ün atlas sayfası işlerini devraldı (aşağıda "PC3 — atlas sayfası" 1–4)**: `web/atlas.html` küre + sıralama, tohum atlas.json ile | video'yu sitede bağla, bültenleri bağla |
+| PC3 | `web/atlas.html` küre + sıralama, **tohum atlas.json ile** | yeni şehirler kendiliğinden görünür |
+| PC6 | Sinematik video: Central Valley 3D arazi bölümü (DEM + tam yıl verisi zaten var) | küre bölümü (tohum atlas.json) |
 | PC8 | `tools/bulletin.py` Central Valley, Karapınar, Konya Ovası, Delta için (veri hazır) | atlas şehirleri |
 | PC5 | **Güven sınıfı girdileri (§4)**: her şehir için literatür hızı + uyum notu → `data/global/<şehir>/validation_note.json` (PC10 birleştirir); mevcut 8 bölge + "ilk mi?" taraması. **Öncelik: Mexico City −4.4 cm (108 gün) yayımlanmış hızlara göre düşük görünüyor — neden (koherens, bbox, referans) incele, PC10'a not** | yeni şehirler |
 | PC4 | Basın özeti + atlas slaytı + teknik not bölümü, **tohum atlas.json ile** | yeni şehirlerle güncelle |
@@ -54,8 +56,7 @@ Mevcut: Mexico City, Tahran, Cakarta, Pekin (PC10), Central Valley, Karapınar, 
 2. Her bölge için `summary.json` makul mü (literatür büyüklük mertebesi) — PC5'e not.
 3. (Kapsama/indirme yoksa) Karapınar tam yıl kalıcı kayıp (O1 Türkiye) PC8 ile koordineli.
 
-## PC3 — atlas sayfası (site) → **21:20'den itibaren sahibi PC6** (PC3 çevrimdışı)
-PC6: `web/` içinde sadece `atlas.html`, `atlas.js`, `atlas.css` yeni dosyaları + menüye tek satır "Atlas" bağlantısı + ana sayfaya özet kartı; diğer site dosyalarında büyük değişiklik yapma. Renk ve sıralama `rate_cm_per_100d` ile, her şehirde güven rozeti (high/medium/low), low olanlar "indicative only" (KALİTE STANDARDI). `rate_cm_per_100d` yoksa (tohum dosya) `max_cm_los` göster ve "preliminary" yaz. Yerel test: telefon 375 px, konsol 0 hata.
+## PC3 — atlas sayfası (site)
 1. **`web/atlas.html`**: dönen 3D küre (MapLibre GL JS 5.x globe projection, sabit sürüm; olmazsa 2D dünya haritası), `data/global/atlas.json` noktaları (boyut/renk = çökme), tıklayınca yan panelde şehrin animasyonu (disp PNG serisi, zaman kaydırıcı), küçük grafik ve kaynak. Menüye "Atlas".
 2. **"Fastest-sinking places in our 2026 NISAR atlas"** sıralama tablosu (dönem ve LOS uyarısıyla), ana sayfaya özet kartı.
 3. Explorer'a atlas şehirleri; Data sayfasına atlas dosyaları (catalog).
