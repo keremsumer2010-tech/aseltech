@@ -210,3 +210,16 @@ Komut: `python analysis/pc6/test_20_strategies.py --self-test`
 | `S18-CritToWet60` | Critical/Wet | 60% | 20% | 5.92 / 6.07 | 602.4 | 4.50 / 4.64 | Elevated |
 | `S19-DryToAN90-F15` | Dry/Above Normal | 90% | 15% | 10.77 / 10.75 | 1028.7 | 7.56 / 7.55 | Elevated |
 | `S20-CritToBN-NoSurf` | Critical/Below Normal | 80% | 0% | 22.04 / 22.02 | 836.1 | 16.98 / 16.96 | Elevated |
+
+---
+
+## 8. ÇALIŞMA HARİTASI (19:45) — PC6 Görev Doğrulamaları
+
+### 8.1 Görev 1 · Oyun Son Testi (20 Strateji + Tarayıcı `test_model.html` & `game/`)
+- **Tarih / Saat:** `2026-11-14 19:41 TR`
+- **20 Strateji × 2 Havza (`python analysis/pc6/test_20_strategies.py --self-test`):** **40/40 PASS** (`0 NaN/Infinity`).
+  - Tulare kalibrasyonu: `k = 0.623`, simüle `-10.1 cm` dikey (`-7.84 cm` LOS) vs NISAR `-10.1 cm` dikey (`-7.8 cm` LOS) → `%0.0` hata.
+  - Konya kalibrasyonu: `k = 0.621`, simüle `-8.0 cm` dikey (`-5.95 cm` LOS) vs NISAR `-8.0 cm` dikey (`-5.9 cm` LOS) → `%0.0` hata.
+- **Canlı Tarayıcı Testi (`http://127.0.0.1:8766/game/test_model.html`):** **6/6 PASS**, 0 konsol hatası, 0 başarısız ağ isteği.
+- **Ana Oyun Açılışı (`http://127.0.0.1:8766/game/`):** HTTP 200, 36 ağ isteği (0 hata), 0 konsol hatası.
+- **Bulunan Hata:** Yok (`0` hata).
