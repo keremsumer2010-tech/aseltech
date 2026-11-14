@@ -258,3 +258,7 @@ Komut: `python analysis/pc6/test_20_strategies.py --self-test`
 - **`python -m pytest -q`:** **63 passed**, 1 `PendingDeprecationWarning` (`analysis/cumulative.py:127` `cmap.set_bad`).
 - **`data/` JSON/GeoJSON Taraması:** 61/61 `.json`/`.geojson` dosyası geçerli JSON, 0 gerçek `NaN`/`Infinity`, 0 boş nesne. (`data/{central_valley,karapinar}/uncertainty/meta.json` içindeki `"NaN transparent"` yalnızca renk haritası açıklama metnidir.)
 - **`web/` Yerel Tarayıcı Hata Ayıklaması (`http://127.0.0.1:8766/web/`, `1280×800`):** `index.html`, `explorer.html`, `science.html`, `data.html`, `faq.html`, `panel.html` (6/6 sayfa) — **0 konsol hatası, 0 başarısız ağ isteği, 0 kırık görsel, 0 yatay taşma**.
+
+## 10. ASLA BOŞ KALMA — Tur 2 (`19:58 TR`)
+- `git pull`: `442fdda` çekildi (`CALISMA_HARITASI.md` / `tasks/PC6.md` değişmedi; `PC8` önceki `pc8_uk_detection.png` QA bulgumuzu düzeltti `25641d0`).
+- **`docs/qa/PC4.md:161` Bulgusu Kapatıldı:** `docs/story/validation_report.md:21` içinde `(-119.1456°E, 36.4532°N)` yazan referans boylamı `(119.1456°W, 36.4532°N)` olarak düzeltildi (`game/model.js:139` `Total compressible fine-grained interbeds` yorumu zaten günceldi).

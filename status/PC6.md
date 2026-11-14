@@ -1,6 +1,6 @@
 # PC6 durum
 
-- Görev: `docs/CALISMA_HARITASI.md` (19:45) — PC6 Görev 1–5/5 TAMAMLANDI; **ASLA BOŞ KALMA** Tur 1 hata ayıklama tamamlandı (`pytest` 63/63, 61 JSON temiz, `web/` 6/6 sayfa 0 hata), 10 dk'lık periyodik kontrol aktif.
+- Görev: `docs/CALISMA_HARITASI.md` (19:45) — PC6 Görev 1–5/5 TAMAMLANDI; **ASLA BOŞ KALMA** Tur 2 tamamlandı (`validation_report.md:21` boylam `119.1456°W` düzeltildi), 10 dk'lık periyodik kontrol aktif.
 - Durum: Oyun cilası (7/7), 3 adımlı "How to play" rehberi, `demo_30s.mp4` (`29.62 s`, 1080p, Challenge başlıklarıyla), Konya Kapalı Havzası + obruk göstergesi (`6/6 tests passed`), **Classroom Mode (3 hazır senaryo + 3 tartışma sorusu)**, **Sources & Parameters sekmesinde NASA Land Subsidence StoryMap + 6 White Paper**, **`docs/story/risk_dossier.md` içinde California Aqueduct vs NASA UAVSAR (2013–2017) kıyası**, **`docs/story/media/cv_fullyear.mp4` (`14.25 s`, 26 epok tam yıl animasyonu)** ve **`analysis/pc6/test_20_strategies.py` (`40/40 PASS`)** tamamlandı.
   - Adım 1 (`analysis/pc6/make_animation.py`): `docs/story/media/cv_subsidence.{mp4,gif}` (`3.07 MB` / `4.23 MB`, 8 epok, 1080p) ve `docs/story/media/kp_subsidence.{mp4,gif}` (`0.88 MB` / `1.36 MB`, 9 epok, 1080p) pushlandı (`7369686`).
   - Adım 2 (`analysis/pc6/make_validation_plots.py`): `docs/story/validation_report.md`, `validation_scatter.png` (`r=0.924`, `RMSE=1.37 cm`) ve 10 `gnss_<station>.png` grafiği pushlandı (`823cb74`).
