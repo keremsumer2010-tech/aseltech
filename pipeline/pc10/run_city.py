@@ -32,6 +32,11 @@ CITY_CONFIG: dict[str, dict] = {
         "bbox": CITIES["jakarta"]["bbox"],
         "path": 18,
     },
+    "beijing": {
+        "site_key": "global_beijing",
+        "bbox": CITIES["beijing"]["bbox"],
+        "path": 47,
+    },
 }
 
 
