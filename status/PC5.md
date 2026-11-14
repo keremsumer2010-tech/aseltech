@@ -1,8 +1,8 @@
 # PC5 Durum Raporu
 
-- **Durum:** tamamlandı (16:15 B1, 16:25 Kaynaklar, Q08 ve Tur 2 QA) — sonraki 30 dk `SONSUZ DÖNGÜ` zamanlayıcısı kurulu (beklemede değil, periyodik QA döngüsünde)
+- **Durum:** çalışıyor — Atlas §3: tüm atlas şehirleri için `data/global/<şehir>/uncertainty/` üretimi ve doğrulaması (`analysis/pc5/uncertainty_map.py`)
 - **Kimlik:** M3hmeT1888 · Antigravity (Gemini) · PC5
-- **Güncelleme:** 2026-11-14 16:48 TR
+- **Güncelleme:** 2026-11-14 22:08 TR
 
 ## `16:15 B1`, `16:25 Kaynaklar Entegrasyonu`, `Q08` ve `SONSUZ DÖNGÜ` Tur 2 (`16:48 TR`)
 - **16:15 B1 — Çapraz Sensör (`cross_sensor.py`, `cross_sensor.json`, `docs/story/cross_sensor.md`, `pc5_cross_sensor.png`):**
