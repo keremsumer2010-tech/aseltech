@@ -122,8 +122,8 @@ python risk/compute_risk.py --self-test
 - One summer of data: yearly rates are linear extrapolations and labelled "estimate".
 - Troposphere model layers and solid-earth tides are not applied; a plane + elevation fit is used instead.
   A few cm of atmospheric noise per pair remains.
-- The absolute size of the largest value depends on the reference area (Central Valley: −6.2 to −7.8 cm,
-  stored in `summary.json` → `max_subsidence_range_cm`).
+- The absolute size of the largest value depends on the reference area (Central Valley: −4.7 to −7.8 cm
+  with three reference areas, stored in `summary.json` → `range_cm`).
 
 ## Sources
 

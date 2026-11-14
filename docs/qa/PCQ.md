@@ -87,3 +87,31 @@ Not (şeffaflık): PCQ bu oturumda daha önce PC3 rolünde `analysis/` ve `data/
 - OK: `docs/story/uncertainty.md` (PC5) çapraz kontrol: zincir gürültüsü 1.7–2.9 cm (σ_çift·√7) ↔ Q21 iki yörünge RMSE 2.6 cm (iki bağımsız zincirin farkı için beklenen ≈ √2 × 1.9 ≈ 2.7 cm) → **tutarlı**. GNSS medyan RMSE 1.00 cm ↔ `validation.json` (0.64–2.79) ✔.
 - OK: `data/central_valley/vertical.json` (Q22) `quality`, `quality_note`, renk anlamı ve yöntem alanları var; Alpaugh çanağı −7.2 cm dikey, en uç blok −9.8 cm (güven notuyla).
 - BİLGİ: Q21 sonucu (r 0.49, yerel 0.60, işaret uyumu %85) PC4 tarafından hikâye belgelerine işlenmiş (efb9350); sayılar `analysis/out/cv_p34_vs_p114.json` ile eşleşmeli — sonraki turda satır satır kontrol.
+
+## Tur 3 · Uçtan uca çalışma testi · 2026-11-14 15:25 TR (HEAD 8c1da2a)
+
+Yöntem: tüm testler + tüm veri dosyaları + site gerçek tarayıcıda (yerel `/web/` ve `pages.yml`'nin birebir kopyası,
+`/aseltech/` alt yolunda — GitHub Pages ile aynı yapı). Masaüstü ve telefon (375 px) genişliği.
+
+### Çalışıyor (OK)
+- OK: `python -m pytest analysis -q` → **49 passed**; `validation/compare.py --self-test` ✔; `risk/compute_risk.py --self-test` ✔.
+- OK: 31 JSON/GeoJSON dosyası parse ediliyor; `data/` altındaki tüm PNG/JPG açılıyor; repoda 20 MB üstü takipli dosya yok.
+- OK: Ana sayfa, Science, Data, FAQ → **konsolda hata yok, başarısız istek yok** (yerel ve Pages kopyası). Data sayfasındaki 17 indirme linki 200.
+- OK: Pages kopyasında tüm veri dosyaları, 8 tarih PNG'si, Karapınar katmanı, UK görsel çifti, animasyon videosu yükleniyor.
+- OK: Sitedeki sayılar veriyle tutarlı: −7.8 cm LOS / ≈−10.1 dikey, 6/10 GPS istasyonu r ≥ 0.4 (tablodan sayıldı), 81 yüksek riskli segment (645 içinde), Karapınar −5.9 cm, 29 obruk.
+- OK: Oyun ("Valley Under Pressure") Pages kopyasında açılıyor; "Model check against NISAR: PASS, error 0 %, k = 0.623"; aşırı pompalama ile 24 ay sonuna kadar oynandı, NaN/undefined yok, sonuç ekranı geliyor (−37.6 cm / 2 yıl, kuraklık dönemi literatür zirvesi ~60 cm/yıl ile çelişmiyor).
+- OK: 3D görüntüleyici (`web3d/`) Pages kopyasında açılıyor, canvas çiziliyor, başlık sayıları summary ile aynı; geri linkleri çalışıyor.
+- OK: `game.js` `../risk/...` isteği sadece `localhost/127.0.0.1`'de yapılıyor; gerçek Pages'te 404 olmayacak (yerel testte görülen tek 404 bu).
+
+### Bulgular
+- HATA (orta): referans aralığı 15:00'te **−4.7 … −7.8 cm** oldu (`summary.json` `range_cm`, 3 referans), ama şu yerlerde eski **−6.2 … −7.8** kaldı:
+  `game/game.js:942` (oyun açılış kutusu, sabit metin → `summary.range_cm`'den okunmalı, Sahip: PC6) ·
+  `docs/story/uncertainty.md:16,60` (Sahip: PC5) · `docs/story/key_findings.md:7` (Sahip: PC5/PC1).
+  Düzeltildi: `README.md` (PCQ), `docs/story/game_model.md` (PC3).
+- HATA (sürüyor, PC1): ana sayfa cümlesi "6 km N of Terra Bella sank 7.8 cm in **4 months**" → gerçek süre 108 gün = 3½ ay; "sank" yerine LOS ifadesi; küçük değerler için banka kartı ölçeği ve gürültü eşiği (Tur 1–2).
+- BİLGİ (PC1): ana sayfa "Two independent satellite tracks (34 and 114) show the same subsidence bowl" → Q21 verisi bunu destekliyor ama "aynı" güçlü; daha doğru: "largely agree (sign agrees in 85 % of strongly moving areas)".
+- BİLGİ (PC1): "consecutive 12-day pairs summed" → zincirde 24 günlük (07-22→08-15) bir çift var; "consecutive pairs (mostly 12 days)" daha doğru.
+- BİLGİ (PC1, kullanılabilirlik): telefonda (375 px) üst menüde "Data" ve "FAQ" ekran dışında kalıyor; menü kaydırılabilir (`overflow-x:auto`) ama kaydırma çubuğu gizli olduğu için ipucu yok → küçük ekranda menüyü sarmak ya da kenarda solma gölgesi.
+- BİLGİ (PC1): `.gitignore` → `analysis/out/subset/` (yerel alt kümeler, dosya başı 21–23 MB) listede yok; biri yanlışlıkla `git add` yaparsa K-12 ihlali olur → satır eklenmesi önerilir.
+
+**Sonuç: proje uçtan uca çalışıyor; yayını bozacak (kırık link, JS hatası, eksik dosya) bir sorun bulunmadı.** Kalanlar metin/tutarlılık düzeltmeleri.
