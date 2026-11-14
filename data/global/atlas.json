@@ -4,9 +4,9 @@
   "quality": "provisional",
   "quality_note": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team. Regions are ranked by rate_cm_per_100d (LOS).",
   "ranking_metric": "rate_cm_per_100d",
-  "n_regions": 14,
+  "n_regions": 15,
   "n_reliable": 9,
-  "n_indicative": 5,
+  "n_indicative": 6,
   "regions": [
     {
       "id": "semarang",
@@ -333,6 +333,36 @@
       "rank": 11
     },
     {
+      "id": "hanoi",
+      "name": "Hanoi",
+      "country": "Vietnam",
+      "lon": 105.71463,
+      "lat": 20.98307,
+      "max_cm_los": -2.5,
+      "p2_cm": -3.0,
+      "rate_cm_per_100d": -2.1,
+      "max_cm_vertical_est": -3.6,
+      "period": [
+        "2026-06-19",
+        "2026-10-17"
+      ],
+      "days": 120,
+      "n_pairs": 9,
+      "quality": "provisional",
+      "rate_cm_per_yr_estimate": -7.5,
+      "valid_fraction": 0.257,
+      "ref_range_cm": [
+        -6.7,
+        -2.2
+      ],
+      "confidence": "low",
+      "indicative_only": true,
+      "coverage": "ok",
+      "path": "data/global/hanoi/",
+      "note": "",
+      "rank": 12
+    },
+    {
       "id": "isfahan",
       "name": "Isfahan",
       "country": "Iran",
@@ -360,7 +390,7 @@
       "coverage": "ok",
       "path": "data/global/isfahan/",
       "note": "",
-      "rank": 12
+      "rank": 13
     },
     {
       "id": "beijing",
@@ -390,7 +420,7 @@
       "coverage": "ok",
       "path": "data/global/beijing/",
       "note": "",
-      "rank": 13
+      "rank": 14
     },
     {
       "id": "delta",
@@ -420,7 +450,7 @@
       "coverage": "ok",
       "path": "data/delta/",
       "note": "",
-      "rank": 14
+      "rank": 15
     }
   ],
   "reliable": [
@@ -669,7 +699,7 @@
       "coverage": "ok",
       "path": "data/global/beijing/",
       "note": "",
-      "rank": 13,
+      "rank": 14,
       "rank_reliable": 8
     },
     {
@@ -700,7 +730,7 @@
       "coverage": "ok",
       "path": "data/delta/",
       "note": "",
-      "rank": 14,
+      "rank": 15,
       "rank_reliable": 9
     }
   ],
@@ -824,6 +854,37 @@
       "rank_indicative": 4
     },
     {
+      "id": "hanoi",
+      "name": "Hanoi",
+      "country": "Vietnam",
+      "lon": 105.71463,
+      "lat": 20.98307,
+      "max_cm_los": -2.5,
+      "p2_cm": -3.0,
+      "rate_cm_per_100d": -2.1,
+      "max_cm_vertical_est": -3.6,
+      "period": [
+        "2026-06-19",
+        "2026-10-17"
+      ],
+      "days": 120,
+      "n_pairs": 9,
+      "quality": "provisional",
+      "rate_cm_per_yr_estimate": -7.5,
+      "valid_fraction": 0.257,
+      "ref_range_cm": [
+        -6.7,
+        -2.2
+      ],
+      "confidence": "low",
+      "indicative_only": true,
+      "coverage": "ok",
+      "path": "data/global/hanoi/",
+      "note": "",
+      "rank": 12,
+      "rank_indicative": 5
+    },
+    {
       "id": "isfahan",
       "name": "Isfahan",
       "country": "Iran",
@@ -851,8 +912,8 @@
       "coverage": "ok",
       "path": "data/global/isfahan/",
       "note": "",
-      "rank": 12,
-      "rank_indicative": 5
+      "rank": 13,
+      "rank_indicative": 6
     }
   ]
 }
