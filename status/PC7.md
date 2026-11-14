@@ -24,4 +24,7 @@
 - Site QA tekrarlandı: 89 yerel yolun tamamı mevcut; 84 JSON/GeoJSON parse hatasız ve tarihler uyumlu. Metin taraması 27 aday verdi; çoğu kod/koordinat/sayım false positive, olası bilimsel birim bulgusu `web/science.html` `−4.7` (site sahibi PC3/PC1'e not edildi).
 - Tam pytest toplaması bu ortamda `requests` modülü eksik olduğu için iki test dosyasında import aşamasında başarısız oldu; indirme veya paket kurulumu yapmadım. Ayrıntı `docs/qa/PC7.md` §15.
 - PC7'ye atlas şehri atanmadığından PC11 şehirlerini veya PC11 status/görev dosyalarını değiştirmedim.
+- A tamamlandı: `pipeline/pc7/atlas_robustness.py` üç test boyutunu yerel provisional GUNW zincirlerinde taradı. Sekiz atlas şehrinin ikisinde 3 referans adayı bulundu; Central Valley 27/27, Beijing 9/27 tam varyant verdi. Diğer şehirlerde kutu kapsaması veya üç ortak-geçerli referans adayı yetersiz; ilk üç sıra ve Kendall tau bu verilerle sonuçlandırılamadı. Referansların jeolojik sabitliği bağımsız doğrulanmadı.
+- A çıktıları: `data/global/robustness.json`, `docs/story/media/pc7_atlas_robustness.png`; ağsız testler 4/4, tüm pytest 79/79 geçti (bir deprecation uyarısı); 93 JSON'da parse/non-finite/eksik-quality bulgusu 0. `atlas.json` değişmedi. Ayrıntı `docs/qa/PC7.md` §16.
+- B sonraki: Xi'an, Taiyuan, Querétaro provisional GUNW kapsama kontrolü ve NISAR Pulse analizleri; henüz indirme yapılmadı.
 - BLOCKED: yok

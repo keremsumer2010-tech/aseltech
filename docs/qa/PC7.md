@@ -403,3 +403,24 @@ Doğrulayıcı: `tools/validate_atlas.py` (çevrimdışı, salt-okunur). `python
 - `node pipeline/pc7/game_strategy_test.js`: 10 stratejinin tamamı 24 ay çalıştı; kuru yıl %0–150 pompalama serisi monoton, kalıcı çökme toplamı aşmıyor, gelir ve çökme değerleri sonlu ve negatif değil.
 - `python pipeline/pc7/offline_site_qa.py text` 27 statik metin uyarısı verdi. Bunların çoğu kod örneklerindeki koordinat/ürün kimliği, tarih veya sayım değerleri; olası gerçek birimsiz metin bulgusu `web/science.html` içindeki `−4.7` değeridir. Site sahipliği PC3/PC1'de olduğundan düzenleme yapılmadı; bulgu sahibi dosyasında düzeltilecek.
 - PC7'nin atlas şehir klasörü ataması yok; PC11 şehirlerini yeniden çalıştırmadım ve PC11 status/görev dosyalarına yazmadım. Fens, risk ve QA çıktıları dışında başka sahiplerin dosyaları değiştirilmedi.
+
+## 16. Atlas sağlamlık taraması (yerel, provisional, indirmesiz)
+
+`python pipeline/pc7/atlas_robustness.py` sekiz `atlas.json` şehrinin yerel provisional GUNW çift zincirlerini denedi. Her varyant; üç referans adayı, koherens `0.3/0.4/0.5` ve ±`0.20/0.25/0.30°` kutu kombinasyonudur. Başlık her varyantta 13×13 piksel blok medyanlarının en negatifi (≥%50 geçerli piksel, blok std ≤2 cm); p2 ayrıca kaydedilir. Alt kümeler istenen kutunun ≥%98'ini kapsamıyorsa varyant geçersiz bırakılır.
+
+| Şehir | Referans adayı | Geçerli / denenebilir varyant | Başlık aralığı (cm) | Hız aralığı (cm/100 gün) | Neden/sonuç |
+|---|---:|---:|---:|---:|---|
+| Beijing | 3 | 9/27 | −4.4178 … −2.6638 | −3.68151 … −2.21985 | ±0.20° tümü; daha geniş kutular veri kapsama şartını karşılamadı |
+| Central Valley | 3 | 27/27 | −7.8168 … −2.4806 | −7.23780 … −2.29682 | Tüm varyantlar hesaplandı |
+| Delta | 0 | 0 | — | — | ±0.20° kutu kapsaması 0.7244 |
+| Jakarta | 0 | 0 | — | — | ±0.20° kutu kapsaması 0.8427 |
+| Karapınar | 0 | 0 | — | — | ±0.20° kutu kapsaması 0.8454 |
+| Konya Plain | 1 | 0 | — | — | Üç referans köşesi için yeterli ortak-geçerli pencere yok |
+| Mexico City | 0 | 0 | — | — | ±0.20° kutu kapsaması 0.9324 |
+| Tehran | 1 | 0 | — | — | Üç referans köşesi için yeterli ortak-geçerli pencere yok |
+
+İlk üç şehir sırasının sabitliği **sonuçlandırılamadı**: tüm 27 varyantı tamamlanmış yalnız bir şehir var; geçerli üçlü şehir sıralaması yok. Bu yüzden Kendall tau hesaplanamadı (`n_variant_rankings=0`). Referans adayları kutu köşelerindeki yüksek koherensli/düşük göreli hareketli pencerelerden seçilir; jeolojik havza dışı veya bağımsız GPS ile sabit oldukları doğrulanmış değildir. Yöntem bu sınırlamayı `data/global/robustness.json` içinde açıkça bildirir; `atlas.json` değiştirilmedi.
+
+Ağsız testler: `python -m pytest -q pipeline/pc7/tests/test_atlas_robustness.py` — 4 passed. Tam depo: `python -m pytest -q` (Python 3.12.10) — 79 passed, 1 `PendingDeprecationWarning`. Çıktılar: `data/global/robustness.json`, `docs/story/media/pc7_atlas_robustness.png`; ağ/veri indirmesi yapılmadı.
+
+Son JSON doğrulaması `python pipeline/pc7/validate_json.py`: 93 JSON, 0 parse hatası, 0 NaN/Infinity, 0 eksik `quality`; 15 points dosyası kalitesini kardeş `meta.json`'dan alıyor.
