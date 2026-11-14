@@ -1,3 +1,3 @@
 # PC8 durum
 
-- Durum: sürekli döngüde (23:50 TR) — 14 bölge senkron (diff=0), submission_form.md karakter/REVIEW_1500 kontrolü temiz; sıradaki: 3 dk sonra yeni şehir/görev kontrolü.
+- Durum: sürekli döngüde (23:53 TR) — 14 bölge senkron (diff=0), yeni görev/bulgu yok; sıradaki: 3 dk sonra yeni şehir/görev kontrolü.
