@@ -352,3 +352,7 @@
 - **ATLAS KUSURSUZLUK (`tools/atlas_completeness.py` → `docs/qa/ATLAS_COMPLETENESS.md`):**
   - `data/global/atlas.json` içindeki tüm **15 bölge** için 6 parça (`summary/disp`, `sigma_cm.png`, `validation_note.json`, `atlas_cities/<id>.md`, `bulletins/<id>.html`, `exposure_atlas.json`) kontrol edildi (`PC8: 0 eksik`, `PC2/7/9/10/11: 0 eksik`, `PC5: 6 eksik`, `PC4: 2 eksik`). Her 30 dk ve yeni şehir geldikçe yeniden çalıştırılacak.
   - `tehran` tam kutu yenilemesi (PC11) sonrası `exposure_atlas.json` (`tehran`: `23,090` `< -2 cm`, `247` `< -5 cm`, `0.59 km²`), `vital_signs.json` (`576.36 km²`, `1,503,908` kişi `< -5 cm`), 15 bülten ve `ATLAS_COMPLETENESS.md` güncellendi.
+- **TAKVİYE 02:25 (`eloy`, `delhi`, `quetta`, `xian` eklendi → 19 bölge):**
+  - `exposure_atlas.json` ve `vital_signs.json` 19 bölge için yeniden üretildi: `eloy` (`11,282` / `83` / `11.57 km²`), `delhi` (`230,452` / `3,020` / `0.49 km²`), `quetta` (`210` / `8` / `0.24 km²`), `xian` (`8,592` / `967` / `0.30 km²`). Toplam (yuvalanmış `karapinar` hariç): `588.96 km²`, `1,507,986` kişi (`< -5 cm`), `8,028,695` kişi (`< -2 cm`).
+  - `tools/bulletin.py` içinde her bültenin alt notunda `CALIBRATION_NOTICE` cümlesinin daima yer alması sağlandı; tüm **19 bülten + `index.html`** üretildi (`python -m pytest analysis/pc8/test_bulletin.py -q` → `1 passed`).
+  - `docs/qa/ATLAS_COMPLETENESS.md` (19 bölge): `PC8: 0 eksik`, `PC2/7/9/10/11: 0 eksik`, `PC5: 14 eksik`, `PC4: 6 eksik`.

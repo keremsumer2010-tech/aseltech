@@ -272,7 +272,8 @@ def render_region_bulletin(region: dict[str, Any], out_dir: Path = OUT_DIR) -> P
     start_date = period[0] if len(period) >= 1 else "N/A"
 
     quality = (summary.get("quality") or region.get("quality") or "provisional").upper()
-    qnote = summary.get("quality_note") or CALIBRATION_NOTICE
+    raw_qnote = summary.get("quality_note") or ""
+    qnote = raw_qnote if CALIBRATION_NOTICE in raw_qnote else (f"{CALIBRATION_NOTICE} {raw_qnote}".strip())
     max_los = summary.get("max_subsidence_cm", region.get("max_cm_los"))
     max_vert = summary.get("max_subsidence_vertical_cm_estimate", region.get("max_cm_vertical_est"))
     ref_range = summary.get("range_cm") or summary.get("max_subsidence_range_cm")

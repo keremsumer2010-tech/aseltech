@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NISAR Pulse Bulletin — Delhi — 2026-10-19</title>
+<style>
+  :root { --ink:#0f172a; --muted:#475569; --line:#cbd5e1; --bg:#ffffff; --panel:#f8fafc; --accent:#1d4ed8; --warn:#b45309; }
+  * { box-sizing:border-box; }
+  body { margin:0; padding:24px; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; color:var(--ink); background:#f1f5f9; line-height:1.45; }
+  .sheet { max-width:920px; margin:0 auto; background:var(--bg); border:1px solid var(--line); border-radius:10px; padding:24px 28px; box-shadow:0 4px 16px rgba(15,23,42,.06); }
+  .topbar { display:flex; justify-content:space-between; align-items:flex-start; gap:12px; border-bottom:2px solid var(--ink); padding-bottom:12px; margin-bottom:14px; }
+  h1 { font-size:1.35rem; margin:0 0 4px 0; }
+  .meta { font-size:.86rem; color:var(--muted); }
+  .badge { display:inline-block; padding:3px 9px; border-radius:999px; font-size:.75rem; font-weight:700; letter-spacing:.04em; background:#fef3c7; color:#92400e; border:1px solid #f59e0b; }
+  .conf-high { background:#dcfce7; color:#166534; border-color:#22c55e; }
+  .conf-medium { background:#fef3c7; color:#92400e; border-color:#f59e0b; }
+  .conf-low { background:#fee2e2; color:#991b1b; border-color:#ef4444; }
+  .kpi .subval { font-size:.76rem; color:var(--muted); margin-top:2px; font-weight:400; }
+  .actions { display:flex; gap:8px; align-items:center; }
+  .btn { font-size:.82rem; padding:6px 12px; border-radius:6px; border:1px solid var(--line); background:var(--panel); color:var(--ink); text-decoration:none; cursor:pointer; }
+  .btn-primary { background:var(--accent); color:#fff; border-color:var(--accent); }
+  .grid { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin:12px 0 16px; }
+  .kpi { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:10px 12px; }
+  .kpi .lbl { font-size:.74rem; color:var(--muted); text-transform:uppercase; letter-spacing:.03em; }
+  .kpi .val { font-size:1.18rem; font-weight:700; margin-top:2px; }
+  .two { display:grid; grid-template-columns:1.15fr .85fr; gap:18px; align-items:start; }
+  h2 { font-size:1.0rem; margin:14px 0 6px; border-bottom:1px solid var(--line); padding-bottom:3px; }
+  .sub { font-size:.8rem; color:var(--muted); margin:0 0 6px; }
+  .muted { font-size:.86rem; color:var(--muted); }
+  table { width:100%; border-collapse:collapse; font-size:.82rem; margin-top:4px; }
+  th, td { border-bottom:1px solid #e2e8f0; padding:6px 6px; text-align:left; }
+  th { background:var(--panel); font-weight:600; }
+  .num { text-align:right; font-variant-numeric:tabular-nums; }
+  .map { margin:0; background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:8px; }
+  .map img { width:100%; height:auto; display:block; border-radius:4px; }
+  .map figcaption { font-size:.76rem; color:var(--muted); margin-top:6px; }
+  .notice { margin-top:14px; padding:10px 12px; background:#fffbeb; border-left:4px solid var(--warn); font-size:.82rem; }
+  ul { margin:6px 0 0 18px; padding:0; font-size:.86rem; }
+  @media (max-width:760px) { .grid { grid-template-columns:repeat(2,1fr); } .two { grid-template-columns:1fr; } }
+  .pkg-bar { display:grid; grid-template-columns:repeat(4,1fr); gap:6px 12px; background:#0f172a; color:#f8fafc; border-radius:6px; padding:8px 12px; margin-bottom:12px; font-size:.76rem; }
+  .pkg-bar div span { display:block; color:#94a3b8; font-size:.66rem; text-transform:uppercase; letter-spacing:.04em; }
+  .pkg-bar div strong { font-weight:600; }
+  .wtm { background:#eff6ff; border:1px solid #bfdbfe; border-radius:8px; padding:10px 14px; margin-top:12px; }
+  .wtm h2 { margin-top:0; border-bottom-color:#bfdbfe; color:#1e3a8a; }
+  @page { size: A4 portrait; margin: 12mm; }
+  @media print {
+    body { background:#fff; padding:0; }
+    .sheet { border:none; box-shadow:none; padding:6px; max-width:100%; }
+    .actions { display:none; }
+    .pkg-bar { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+  <div class="topbar">
+    <div>
+      <h1>NISAR Pulse Bulletin &mdash; Delhi &mdash; 2026-10-19</h1>
+      <div class="meta">Atlas Rank #12 &middot; Coverage: ok &middot; 8 pairs</div>
+    </div>
+    <div class="actions">
+      <span class="badge conf-low">CONFIDENCE: LOW (indicative only)</span>
+      <span class="badge">PROVISIONAL</span>
+      <a class="btn" href="index.html">All Bulletins</a>
+      <button class="btn btn-primary" onclick="window.print()">Print / PDF</button>
+    </div>
+  </div>
+
+  <div class="pkg-bar">
+    <div><span>Product ID</span><strong>NP-DELHI-2026-001</strong></div>
+    <div><span>Issue Time (UTC)</span><strong>2026-11-14 22:03 UTC</strong></div>
+    <div><span>Data Window</span><strong>2026-06-21 to 2026-10-19</strong></div>
+    <div><span>Sensor</span><strong>NISAR L-band GUNW, provisional</strong></div>
+    <div><span>Quality Class</span><strong>PROVISIONAL</strong></div>
+    <div><span>Confidence</span><strong>LOW (indicative only)</strong></div>
+    <div><span>Version</span><strong>v2.0</strong></div>
+    <div><span>Format</span><strong>A4 Operational Map Package</strong></div>
+  </div>
+
+  <div class="grid">
+    <div class="kpi"><div class="lbl">Peak Cumulative (LOS)</div><div class="val">-4.3 cm</div></div>
+    <div class="kpi"><div class="lbl">Vertical Est. (37.2&deg;)</div><div class="val">-5.4 cm</div></div>
+    <div class="kpi"><div class="lbl">3-Ref Sensitivity</div><div class="val" style="font-size:0.98rem;">[-13.5, -1.5] cm LOS</div></div>
+    <div class="kpi"><div class="lbl">Rate (cm / 100 days)</div><div class="val">-3.6 cm/100d</div><div class="subval">Annualized est.: -13.2 cm/yr</div></div>
+  </div>
+
+  <div class="two">
+    <div>
+      <h2>Latest Pair &amp; Cumulative Summary</h2>
+      <ul>
+        <li><strong>Latest Consecutive Pair Step:</strong> <strong>+0.43 cm LOS</strong> (2026-10-07 to 2026-10-19 at p01: 28.525N 77.172E; cumulative at point: -4.32 cm)</li>
+        
+        <li><strong>Affected Population (GHSL GHS-POP E2025, 108d eq., &ge; 0.69 cm 2&sigma;):</strong> 230,452 residents (&lt; -2 cm), 3,020 residents across 0.49 km&sup2; (&lt; -5 cm).</li>
+      </ul>
+
+      <h2>Top 3 Most-Subsiding Areas</h2>
+      <table><thead><tr><th>Rank</th><th>1 km Block Center (Lat, Lon)</th><th class='num'>Cumulative LOS</th><th class='num'>Rate</th></tr></thead><tbody><tr><td>#1</td><td>28.5253, 77.1718</td><td class='num'>-4.32 cm</td><td class='num'>-3.60 cm/100d</td></tr><tr><td>#2</td><td>28.3544, 77.2956</td><td class='num'>-3.10 cm</td><td class='num'>-2.58 cm/100d</td></tr><tr><td>#3</td><td>28.5720, 77.1834</td><td class='num'>-2.83 cm</td><td class='num'>-2.36 cm/100d</td></tr></tbody></table>
+
+      <h2>Top 5 At-Risk Infrastructure Segments</h2>
+      <p class='muted'>Infrastructure corridor ranking (OSM canal/road overlay) has not been computed for this regional subset yet.</p>
+
+      <h2>GNSS Comparison &amp; Calibration Status</h2>
+      <p class='muted'>Continuous GNSS time-series validation was not bundled for this regional subset.</p>
+    </div>
+    <div>
+      <h2>Cumulative Displacement Map</h2>
+      <figure class='map'><img src='../../data/global/delhi/disp/2026-10-19.png' alt='Cumulative LOS displacement map for Delhi ending 2026-10-19'><figcaption>Cumulative LOS displacement (2026-06-21 to 2026-10-19, 8 NISAR L2 GUNW pairs).</figcaption></figure>
+      <div class="wtm">
+        <h2>What This Means</h2>
+        <ul><li>Peak measured ground motion in Delhi reached -4.3 cm LOS (-3.6 cm/100d) from 2026-06-21 to 2026-10-19, but low coverage or wide reference spread makes this an indicative estimate.</li><li>About 230,452 residents live on ground sinking faster than 2 cm per 108 days (and 3,020 residents across 0.49 km2 faster than 5 cm per 108 days, above the 0.69 cm 2-sigma noise floor).</li><li>No local GNSS or canal-tilt overlay is bundled for this subset; field inspection and local piezometer records are needed to confirm infrastructure impacts.</li></ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="notice">
+    <strong>Calibration &amp; Quality Notice (PROVISIONAL):</strong> NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.<br>
+    <strong>Sources:</strong> NASA-ISRO NISAR L2 GUNW (CRID P05023 via ASF DAAC); GHSL GHS-POP E2025 R2023A (JRC, CC BY 4.0); Nevada Geodetic Laboratory GNSS; OpenStreetMap (ODbL).
+  </div>
+</div>
+</body>
+</html>
