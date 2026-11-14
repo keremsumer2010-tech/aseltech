@@ -79,4 +79,12 @@
   - `pipeline/konya_plain_gunw.csv` + `pipeline/subset/konya_plain/` altında `2026-06-26 → 2026-10-12` arası kesintisiz **8/8** `provisional` çift (`shape=(1025, 1710)`, `6.46–8.74 MB`, tam `ion` katmanlı) push edildi (`e3fedbb`, `f47fa63`, `2222966`).
   - `pipeline/pc2/run_cumulative.py konya_plain --data-dir data/konya_plain` ile `data/konya_plain/` (`disp/*.png`, `meta.json`, `points.json`, `summary.json`) üretildi: 1 km blok medyan tepe çökmesi `-9.6 cm` LOS (`range_cm=[-14.0, -9.6]`, 108 gün, dikey tahmin `-12.1 cm` @ `37.6°`, konum `32.6278°E, 37.8161°N`).
   - `pipeline/pc2/konya_plain_plot.py` ile `docs/story/media/pc2_konya_plain.png` ve `docs/story/konya_plain.md` (A5, A11, Sinkholes + StoryMap atıflı) oluşturuldu.
-- **Sıradaki iş:** Madde 3 (**Karapınar tam yıl**, `karapinar_fullyear`, Path 7 Frame 69, `2025-10-17 → 2026-10-12`).
+
+## Güncel Durum — Madde 4 TAMAMLANDI, Madde 3 (Karapınar Tam Yıl) DEVAM EDİYOR
+
+- **Madde 4 — Karapınar Sebep Verisi (`data/karapinar/drivers.json`) — TAMAMLANDI:**
+  - `pipeline/pc2/karapinar_drivers.py` ile `2026-06-26 → 2026-10-12` arası **9** `provisional` SME2 granülü HTTP Range üzerinden okundu (`0 GB` disk kullanımı); `data/karapinar/drivers.json` üretildi (`lag_corr=0.481`).
+- **Madde 3 — Karapınar Tam Yıl (`karapinar_fullyear`, Path 7 Frame 69) — DEVAM EDİYOR:**
+  - Kış `beta-precal` (`2025-10-17 → 2026-01-09`): **1/6** indirildi ve push edildi (`e8ceece`), kalan **5/6** indiriliyor.
+  - Yaz `provisional` (`2026-06-26 → 2026-10-12`): **8/8** `pipeline/subset/karapinar_fullyear/` altına kopyalandı.
+  - ASF arşivinde `2026-01-09 → 2026-06-26` arası Karapınar için GUNW granülü bulunmuyor (veri boşluğu).

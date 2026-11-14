@@ -1,0 +1,113 @@
+{
+  "site": "karapinar",
+  "bbox": [
+    33.3,
+    37.6,
+    33.8,
+    37.9
+  ],
+  "dates": [
+    "2026-06-26",
+    "2026-07-08",
+    "2026-07-20",
+    "2026-08-13",
+    "2026-08-25",
+    "2026-09-06",
+    "2026-09-18",
+    "2026-09-30",
+    "2026-10-12"
+  ],
+  "subsidence_cm": [
+    0.0,
+    -1.06,
+    -0.78,
+    -2.1,
+    -2.27,
+    -2.78,
+    -2.51,
+    -3.69,
+    -5.93
+  ],
+  "subsidence_top5_mean_cm": [
+    0.0,
+    -0.61,
+    -0.45,
+    -0.95,
+    -0.57,
+    -0.62,
+    -0.54,
+    -1.4,
+    -2.59
+  ],
+  "soil_moisture": [
+    0.1945,
+    0.1864,
+    0.1369,
+    0.1745,
+    0.1284,
+    0.142,
+    0.1901,
+    0.175,
+    0.121
+  ],
+  "soil_moisture_median": [
+    0.1976,
+    0.184,
+    0.1362,
+    0.1745,
+    0.121,
+    0.1396,
+    0.1889,
+    0.1745,
+    0.1185
+  ],
+  "hv_backscatter_db": [
+    -18.92,
+    -18.954,
+    -18.397,
+    -18.467,
+    -18.997,
+    -18.656,
+    -17.651,
+    -18.639,
+    -19.415
+  ],
+  "irrigation_index": [
+    0.64,
+    0.576,
+    0.397,
+    0.633,
+    0.169,
+    0.358,
+    0.97,
+    0.587,
+    0.0
+  ],
+  "lag_corr": 0.481,
+  "lag_corr_detail": {
+    "corr_soil_moisture_vs_subsidence": 0.503,
+    "corr_irrigation_index_vs_subsidence": 0.481,
+    "lag1_12d_soil_moisture_vs_subsidence": 0.059
+  },
+  "units": {
+    "subsidence_cm": "cm (LOS, negative = subsidence, from p01 2 km W of Karapınar in points.json)",
+    "soil_moisture": "m^3/m^3 (volumetric soil moisture, Karapinar bbox mean from NISAR L3 SME2)",
+    "hv_backscatter_db": "dB (10*log10(sigma0_HV) from NISAR L3 SME2 frequencyA)",
+    "irrigation_index": "0-1 normalized composite of volumetric soil moisture and HV crop canopy backscatter"
+  },
+  "granules": [
+    "NISAR_L3_PR_SME2_024_007_D_069_2005_DHDH_A_20260626T164010_20260626T164045_P05023_N_F_J_001",
+    "NISAR_L3_PR_SME2_025_007_D_069_2005_DHDH_A_20260708T164009_20260708T164044_P05023_N_F_J_001",
+    "NISAR_L3_PR_SME2_026_007_D_069_2005_DHDH_A_20260720T164009_20260720T164044_P05023_N_F_J_001",
+    "NISAR_L3_PR_SME2_028_007_D_069_2005_DHDH_A_20260813T164007_20260813T164042_P05023_N_F_J_001",
+    "NISAR_L3_PR_SME2_029_007_D_069_2005_DHDH_A_20260825T164007_20260825T164042_P05023_N_F_J_001",
+    "NISAR_L3_PR_SME2_030_007_D_069_2005_DHDH_A_20260906T164007_20260906T164042_P05023_N_F_J_001",
+    "NISAR_L3_PR_SME2_031_007_D_069_2005_DHDH_A_20260918T164007_20260918T164042_P05023_F_F_J_001",
+    "NISAR_L3_PR_SME2_032_007_D_069_2005_DHDH_A_20260930T164007_20260930T164042_P05023_N_F_J_001",
+    "NISAR_L3_PR_SME2_033_007_D_069_2005_DHDH_A_20261012T164007_20261012T164042_P05023_N_F_J_001"
+  ],
+  "source": "NISAR L3 SME2 (PROVISIONAL, CRID P05023, track 7 descending frame 69, 200 m EASE-Grid 2.0) + NISAR L2 GUNW cumulative subsidence (data/karapinar/points.json)",
+  "notes": "Bbox [33.3, 37.6, 33.8, 37.9] mean volumetric soil moisture (grids/soilMoisture, 0 < sm <= 0.6 m^3/m^3) and L-band HV radar backscatter (grids/radarData/frequencyA/sigma0HV in dB) extracted over Karapinar and paired with cumulative LOS subsidence.",
+  "quality": "provisional",
+  "quality_note": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team."
+}
