@@ -1,0 +1,22 @@
+{
+  "site": "eloy",
+  "bbox": [
+    -111.8,
+    32.5,
+    -111.3,
+    33.0
+  ],
+  "quality": "provisional",
+  "coverage": "ok",
+  "granules": 9,
+  "chain_pairs": 9,
+  "path": 77,
+  "frame": 18,
+  "period": [
+    "2026-06-19",
+    "2026-10-17"
+  ],
+  "gaps": [],
+  "total_raw_mb": 20354.3,
+  "error": null
+}

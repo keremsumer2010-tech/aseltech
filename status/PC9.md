@@ -1,7 +1,11 @@
 # PC9 durum
 
 - Görev: `docs/ATLAS_PLANI.md` PC9 — 5 bölge (`eloy`, `gorgan`, `cangzhou`, `houston`, `lagos`) NISAR Pulse + Karapınar tam yıl koordinasyonu
-- Durum: çalışıyor: `eloy` (Öncelik A) `--resume` indirme/işleme (`8/9` `.npz` alt küme hazır, son çift `9/9` sürüyor)
+- Durum: çalışıyor: `cangzhou` (FAZ 1 #2, Öncelik A) başlatılıyor (`eloy` TAMAMLANDI)
+- **ATLAS_PLANI FAZ 1 — `eloy` (`-111.55, 32.75`, ±0.25° — TAMAMLANDI):**
+  - Komut: `python analysis/pc9/run_atlas_region.py run --name eloy --center -111.55,32.75 --box-deg 0.25 --start 2026-06-17 --end 2026-10-31 --quality provisional --data-dir data/global/eloy --no-catalog --resume` (`9` çift `2026-06-19 → 2026-10-17`, `120` gün, `gaps=0`).
+  - Sayılar: `max_subsidence_cm = -8.0 cm` LOS (`-10.3 cm` dikey `estimate`, `38.9°`), `p2_cm = -4.3 cm`, `rate_cm_per_100d = -6.67`, `valid_fraction = 0.696`, `range_cm = [-8.4, -7.2]` (3 referans, oran `0.15`), `confidence = "high"`.
+  - Doğrulama: `data/global/eloy/disp/2026-10-17.png` görsel kontrol + `summary.json` / `p2_cm` doğrulandı (`docs/qa/PC9.md`: `hazır: eloy`).
 - Görev 1 (Tam yıl kümülatif — **TAMAMLANDI**, commit `6b4a510`):
   - Komut: `python analysis/pc9/run_fullyear.py --step cumulative` (25 kesintisiz çift: 18 `beta-precal` `2025-11-24 → 2026-06-28` + 7 `provisional` `2026-06-28 → 2026-10-14`, `plane-only` deramp sarmalayıcı).
   - Çıktılar: `data/central_valley_fullyear/{meta,points,summary}.json` (`quality: "mixed"`) + 26 adet `disp/*.png`.

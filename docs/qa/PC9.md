@@ -43,5 +43,16 @@ Komut: `python -m pytest analysis/pc9 analysis/decomp analysis/test_insar.py ana
 
 ## 4. Üst Akış Dosyalarına Dair QA Notları (`rules/RULES.md` §3 — Düzenlenmedi)
 
+- **DEM önbellek hatası (`analysis/cumulative.py` satır 220–228 / `analysis/dem.py`):** Yerel `raw/dem` yokken `dem_on_grid(x, y, epsg)` tümü NaN (`finite: 0`) bir `analysis/out/<site>_dem.npy` dosyası yazıyor; `cumulative.py` var olan `.npy` dosyasını yükleyip `deramp_elevation(cm, dem)` çağırınca `ValueError: too few valid pixels to fit` veriyor. PC3/PC2 dosyalarına dokunulmadı; PC9 şehirleri `analysis/pc9/run_atlas_region.py` sarmalayıcısı üzerinden `plane-only deramp` fallback'i ile çalıştırıldı.
+
+---
+
+## 5. ATLAS_PLANI FAZ 1 — Küresel Şehir Doğrulamaları (`PC10` & `PC5` İçin)
+
+- **`hazır: eloy` (`-111.55, 32.75`, `±0.25°`, `data/global/eloy/`):**
+  - **Ölçüm (`2026-06-19` → `2026-10-17`, `120` gün, `9` `provisional` çift, track `77` asc frame `18`):** `max_subsidence_cm = -8.0 cm` LOS (`-10.3 cm` dikey `estimate`, `38.9°`), `p2_cm = -4.3 cm`, `rate_cm_per_100d = -6.67`, `rate_cm_per_yr_estimate = -24.5 cm/yr` (yaz penceresi *estimate*), `valid_fraction = 0.696`, `range_cm = [-8.4, -7.2]` (3 referans, oran `0.15 < 0.30`), `confidence = "high"`. Birincil referans `(-111.4221, 32.5240)` güney Silver Bell / Picacho kaya eteğinde (`mean_coh = 0.93`).
+  - **Görsel kontrol:** `data/global/eloy/disp/2026-10-17.png` açılıp incelendi; Eloy/Picacho tarım havzasında net kırmızı çökme çekirdeği, kenar kayalıklarda sıfır civarı değerler, yapay eğim yok.
+  - **Literatür:** Arizona Department of Water Resources (ADWR InSAR & GNSS programı, Pinal County / Eloy–Picacho alt havzaları, `azwater.gov` / AZGS) aktif çökme çekirdeklerinde **`> 7 cm/yr`** (`2.8 in/yr`) güncel hız ve tarihsel olarak **`> 5.7 m`** kümülatif çökme bildirmektedir (ör. Conway 2016, *Hydrogeology Journal*, `doi:10.1007/s10040-015-1329-z`). Yaz dönemi (`120` gün) NISAR ölçümü beklenen büyüklük mertebesiyle uyumludur.
+
 - **NOT (`analysis/cumulative.py` satır 220–230 & `analysis/dem.py`):** Repoda `raw/dem/*.tif` bulunmayan temiz klonlarda `dem_on_grid(x, y, epsg)` tüm değerleri `NaN` olan bir `(1473, 1438)` dizi döndürüp `analysis/out/<site>_dem.npy` içine kaydediyor; ardından `deramp_elevation(cm, dem)` `ValueError: too few valid pixels to fit` hatasıyla duruyor. PC9 sarmalayıcısı (`analysis/pc9/run_fullyear.py`) PC3 koduna dokunmadan `cumulative.py`'nin dahili `dem = None` (`plane-only deramp`) geri dönüşünü tetikleyerek bu durumu çözdü; sarp kuzeydoğu Sierra eteklerinde topografik troposfer artığı düzlem düzeltmeyle kalabileceğinden bu nokta `docs/story/fullyear.md` yöntem notunda açıkça belirtildi.
 - **NOT (`analysis/cumulative.py` satır 340 & 419):** `--mixed` bayrağıyla `analysis/out/central_valley_fullyear_cum_stack.npz` içine `quality="provisional"` yazılıyor (ancak 160 m kopyaya doğru biçimde `quality="mixed"` yazılıyor ve `run_decomp.py --quality mixed` ile eziliyor), ayrıca `summary["method_note"]` içinde `"summer season"` metni kalıyor (`analysis/pc9/run_fullyear.py` sonrası `data/central_valley_fullyear/summary.json` içinde düzeltildi).
