@@ -9,7 +9,7 @@ M3hmeT1888 · Antigravity (Gemini) · klasör `aseltech-gemini2`
 ## En kritik iş
 En az 3 GNSS istasyonunun dikey serisi (jürinin "nasıl biliyorsunuz?" sorusunun cevabı).
 
-## Görevler
+## Görevler  (faz planı ve saatler: docs/GOREV_DAGILIMI.md §3b — 16:30 özellik dondurma, 17:00–17:30 QA görevin orada)
 1. **(12:30–15:00) GNSS istasyonları**
    - Central Valley bbox'ı (`rules/VERI_SOZLESMESI.md` §1) içindeki sürekli GNSS istasyonları; girişsiz açık kaynak (Nevada Geodetic Laboratory geodesy.unr.edu veya EarthScope).
    - `validation/gnss_stations.csv` (format §5).

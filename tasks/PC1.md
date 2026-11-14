@@ -11,6 +11,7 @@ keremsumer2010-tech · Claude · klasör `aseltech` (Kerem'in bilgisayarı)
 
 ## Görevler
 1. **(12:00–14:00)** `web/` iskeleti: kaydırmalı hikâye (açılış + 6 sahne), sahte veriyle, kalite rozetleri, kalibrasyon dipnotu, mobil uyum. Kök `index.html` → `web/`.
+1b. **(12:20 sonrası, arka plan)** Yedek kritik yol: Kerem `.netrc`'yi kurunca ilk GUNW'yi (09-08→09-20) indir, aç; PC2 takılırsa zinciri buradan sürdür.
 2. **(12:00–14:00, paralel)** Higgsfield medya (AI etiketli): açılış videosu, obruk kesiti, Holme Fen illüstrasyonu.
 3. **Her saat başı** durum kontrolü: `status/*.md` oku, `docs/URUN_TANIMI.md` tablosunu güncelle, gerekirse düzeltme görevi yaz, E-YENİ hataları RULES.md K-14'e taşı.
 4. **(14:00–17:00)** Gelen verileri bağla: `data/uk`, `data/central_valley`, `data/karapinar`, `game/`.

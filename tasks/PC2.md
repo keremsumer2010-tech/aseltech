@@ -9,7 +9,7 @@ memir-erdogmus · Antigravity (Gemini) · klasör `aseltech`
 ## En kritik iş
 `docs/gunw_structure.md`'yi ~13:30 TR'ye kadar push etmek. PC3 ve tüm demo buna bağlı.
 
-## Görevler
+## Görevler  (faz planı ve saatler: docs/GOREV_DAGILIMI.md §3b — 16:30 özellik dondurma, 17:00–17:30 QA görevin orada)
 1. **(12:00–13:30) İlk dosya ve yapı**
    - İnsan Earthdata hesabını açar ve `~/.netrc`'ye kendisi yazar; sen sadece şablon hazırlarsın.
    - `pip install asf_search h5py numpy matplotlib`

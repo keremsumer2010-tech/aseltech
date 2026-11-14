@@ -9,7 +9,7 @@ M3hmeT1888 · Claude Code · klasör `aseltech-claude`
 ## En kritik iş
 16:30 TR'ye kadar `data/central_valley/` (meta.json + disp/*.png + points.json) push edilmiş olmalı. Demonun kalbi bu.
 
-## Görevler
+## Görevler  (faz planı ve saatler: docs/GOREV_DAGILIMI.md §3b — 16:30 özellik dondurma, 17:00–17:30 QA görevin orada)
 1. **(12:00–14:00) Modül + Karapınar kontrol haritası**
    - İnsan Earthdata/`.netrc`'yi kendisi kurar. `pip install asf_search h5py numpy matplotlib pytest`
    - `analysis/insar.py`: `phase_to_cm(unw, wavelength_m)`, `mask_coherence(arr, coh, thr=0.3)`, `reference(arr, (row,col))`, `los_to_vertical(cm, incidence_deg)`.

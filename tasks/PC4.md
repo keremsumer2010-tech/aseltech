@@ -9,7 +9,7 @@ acikgozibrahim032-hub · Antigravity (Gemini) · klasör `aseltech`
 ## En kritik iş
 13:30 TR'ye kadar `data/uk/` görsel çifti (sitenin açılış sahnesi).
 
-## Görevler
+## Görevler  (faz planı ve saatler: docs/GOREV_DAGILIMI.md §3b — 16:30 özellik dondurma, 17:00–17:30 QA görevin orada)
 1. **(12:00–13:30) UK "bulutun altı" çifti**
    - ASF'den `fens` bbox'ı için NISAR GCOV tarihlerini listele.
    - Bu tarihlerden optikte BULUTLU bir gün seç: NASA Worldview Snapshots / GIBS (girişsiz) MODIS veya VIIRS true color; birkaç günü dene.

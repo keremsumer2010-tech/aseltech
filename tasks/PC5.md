@@ -9,7 +9,7 @@ M3hmeT1888 · Antigravity (Gemini) · klasör `aseltech-gemini`
 ## En kritik iş
 16:00 TR'ye kadar oynanabilir `game/index.html`.
 
-## Görevler
+## Görevler  (faz planı ve saatler: docs/GOREV_DAGILIMI.md §3b — 16:30 özellik dondurma, 17:00–17:30 QA görevin orada)
 1. **(12:00–16:00) Aquifer Manager** — `game/index.html`, saf HTML/CSS/JS (CDN kullanırsan sabit sürüm), İngilizce.
    - 10 yıl; her yıl pompalama %0–150 seçilir; yıl tipi rastgele: wet / normal / drought.
    - Model tek `CONFIG` nesnesinde: `subsidence_cm = base_rate_cm_per_yr * (pumping/100) * year_factor`;
