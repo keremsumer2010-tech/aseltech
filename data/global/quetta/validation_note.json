@@ -1,0 +1,33 @@
+{
+  "id": "quetta",
+  "name": "Quetta",
+  "data_path": "data/global/quetta/",
+  "atlas_los_cm": -3.8,
+  "atlas_vertical_cm_est": -5.5,
+  "atlas_period": [
+    "2026-06-17",
+    "2026-10-15"
+  ],
+  "n_days": 120,
+  "rate_cm_per_100d_los": -3.2,
+  "rate_cm_per_yr_est_los": -11.6,
+  "valid_fraction": 0.713,
+  "ref_range_cm": [
+    -7.9,
+    -3.3
+  ],
+  "ref_sensitivity_ratio": 1.21,
+  "literature_vertical_cm_per_yr": "-3 cm/yr on valley flanks and -12 to -16.6 cm/yr in central urban core (Sentinel-1 InSAR & GNSS, Kakar et al., 2016)",
+  "literature_sources": [
+    "Kakar, N. et al. (2016), Land subsidence in Quetta Valley from Sentinel-1 InSAR and GNSS",
+    "Khan, A.S. et al. (2013), Aquifer depletion in Quetta intermontane basin"
+  ],
+  "agreement_note": "Consistent: 120-day summer NISAR measurement (-3.8 cm LOS, -5.5 cm vertical est., -3.2 cm/100d; ~11.6 cm/yr annualized LOS) sits squarely within published -3 to -16.6 cm/yr Quetta Valley rates. Passed time-series QC with 71.3% valid pixels.",
+  "recommended_confidence": "medium",
+  "atlas_decision": "reliable",
+  "press_summary_approved": true,
+  "press_summary_gate_note": "Approved for atlas #7 rank (passed tools/atlas_qc.py, 71.3% valid pixels, consistent with Kakar et al. 2016).",
+  "reviewed_by": "pending PC5",
+  "quality": "provisional",
+  "quality_note": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team."
+}

@@ -1,0 +1,33 @@
+{
+  "id": "mashhad",
+  "name": "Mashhad",
+  "data_path": "data/global/mashhad/",
+  "atlas_los_cm": -8.6,
+  "atlas_vertical_cm_est": -11.3,
+  "atlas_period": [
+    "2026-06-19",
+    "2026-10-17"
+  ],
+  "n_days": 120,
+  "rate_cm_per_100d_los": -7.2,
+  "rate_cm_per_yr_est_los": -26.3,
+  "valid_fraction": 0.705,
+  "ref_range_cm": [
+    -8.6,
+    -6.0
+  ],
+  "ref_sensitivity_ratio": 0.3,
+  "literature_vertical_cm_per_yr": "14.6 cm/yr LOS and 19.1 cm/yr vertical max (2014-2017 Sentinel-1 PSInSAR); 20 to 30 cm/yr peak Envisat InSAR (1995-2005)",
+  "literature_sources": [
+    "Motagh, M. et al. (2007), Geophysical Journal International, https://doi.org/10.1111/j.1365-246X.2006.03246.x",
+    "Extreme subsidence in a populated city (Mashhad) detected by PSInSAR, Scientific Reports (2020), https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7347893/"
+  ],
+  "agreement_note": "Consistent: 120-day summer NISAR signal (-8.6 cm LOS, -11.3 cm vertical estimate, -7.2 cm/100d) represents ~0.6 of a published 19.1 cm/yr vertical year in peak irrigation season. Smooth accumulation across 9 pairs, 70.5% valid pixels, ref spread [-8.6, -6.0] cm (ratio 0.30).",
+  "recommended_confidence": "medium",
+  "atlas_decision": "reliable",
+  "press_summary_approved": true,
+  "press_summary_gate_note": "Approved for atlas #2 rank (passed tools/atlas_qc.py, 70.5% valid pixels, consistent with 14.6-19.1 cm/yr published PSInSAR rates).",
+  "reviewed_by": "pending PC5",
+  "quality": "provisional",
+  "quality_note": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team."
+}

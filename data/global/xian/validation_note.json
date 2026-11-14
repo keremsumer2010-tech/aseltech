@@ -1,0 +1,33 @@
+{
+  "id": "xian",
+  "name": "Xian",
+  "data_path": "data/global/xian/",
+  "atlas_los_cm": -1.5,
+  "atlas_vertical_cm_est": -2.0,
+  "atlas_period": [
+    "2026-06-19",
+    "2026-10-17"
+  ],
+  "n_days": 120,
+  "rate_cm_per_100d_los": -1.2,
+  "rate_cm_per_yr_est_los": -4.5,
+  "valid_fraction": 0.362,
+  "ref_range_cm": [
+    -3.9,
+    -1.5
+  ],
+  "ref_sensitivity_ratio": 1.6,
+  "literature_vertical_cm_per_yr": "Up to -13 cm/yr in 1990s, ~-5 cm/yr (2005-2012 InSAR), slowing or rebounding (+2 cm/yr) after groundwater controls (Qu et al., 2014; Zhang et al., 2018)",
+  "literature_sources": [
+    "Qu, F. et al. (2014), Land subsidence and ground fissures in Xi'an from multi-band InSAR",
+    "Zhang, Y. et al. (2018), Evolution of subsidence and rebound in Xi'an"
+  ],
+  "agreement_note": "Consistent with moderated modern rates: 120-day NISAR peak (-1.5 cm LOS, -2.0 cm vertical est., -1.2 cm/100d) reflects residual localized settling after groundwater regulation. Low valid-pixel fraction (36.2%) and reference sensitivity [-3.9, -1.5] cm place confidence at low.",
+  "recommended_confidence": "low",
+  "atlas_decision": "indicative_only",
+  "press_summary_approved": false,
+  "press_summary_gate_note": "Kept indicative_only due to 36.2% valid pixels and reference spread [-3.9, -1.5] cm.",
+  "reviewed_by": "pending PC5",
+  "quality": "provisional",
+  "quality_note": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team."
+}

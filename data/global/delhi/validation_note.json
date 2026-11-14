@@ -1,0 +1,37 @@
+{
+  "id": "delhi",
+  "name": "Delhi",
+  "data_path": "data/global/delhi/",
+  "atlas_los_cm": -4.3,
+  "atlas_vertical_cm_est": -5.4,
+  "atlas_period": [
+    "2026-06-21",
+    "2026-10-19"
+  ],
+  "n_days": 120,
+  "rate_cm_per_100d_los": -3.6,
+  "rate_cm_per_yr_est_los": -13.2,
+  "valid_fraction": 0.053,
+  "ref_range_cm": [
+    -13.5,
+    -1.5
+  ],
+  "ref_sensitivity_ratio": 2.79,
+  "literature_vertical_cm_per_yr": "-11 cm/yr (2014-2016) accelerating to -15 to -17 cm/yr (2016-2018) in Southwest Delhi hotspots (Garg et al., 2022)",
+  "literature_sources": [
+    "Garg, S. et al. (2022), Land subsidence in Delhi National Capital Region from Sentinel-1 InSAR"
+  ],
+  "agreement_note": "FLAGGED by time-series QC (tools/atlas_qc.py, single_date_outlier): acquisition 2026-09-01 jumps -10.01 cm then rebounds +8.06 cm (one acquisition off); without flagged step headline is -2.37 cm. Very low valid-pixel fraction (5.3%) and wide reference spread [-13.5, -1.5] cm require indicative-only status.",
+  "recommended_confidence": "low",
+  "atlas_decision": "indicative_only",
+  "press_summary_approved": false,
+  "press_summary_gate_note": "Flagged indicative_only due to single_date_outlier (2026-09-01), 5.3% valid pixels, and wide reference spread [-13.5, -1.5] cm.",
+  "reviewed_by": "pending PC5",
+  "quality": "provisional",
+  "quality_note": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.",
+  "qc_flags": [
+    "single_date_outlier"
+  ],
+  "qc_detail": "date 2026-09-01: -10.01 then +8.06 cm (one acquisition off)",
+  "qc_headline_without_flagged_steps_cm": -2.37
+}

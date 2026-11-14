@@ -1,0 +1,33 @@
+{
+  "id": "eloy",
+  "name": "Eloy",
+  "data_path": "data/global/eloy/",
+  "atlas_los_cm": -8.0,
+  "atlas_vertical_cm_est": -10.3,
+  "atlas_period": [
+    "2026-06-19",
+    "2026-10-17"
+  ],
+  "n_days": 120,
+  "rate_cm_per_100d_los": -6.7,
+  "rate_cm_per_yr_est_los": -24.5,
+  "valid_fraction": 0.696,
+  "ref_range_cm": [
+    -8.4,
+    -7.2
+  ],
+  "ref_sensitivity_ratio": 0.15,
+  "literature_vertical_cm_per_yr": ">7 cm/yr in localized active zones; Arizona maxima up to ~12 cm/yr (2005-2014); ongoing ADWR Radarsat-2 monitoring (2025-2026)",
+  "literature_sources": [
+    "Arizona Department of Water Resources (ADWR), Total land subsidence in the Eloy sub-basin (March 2025 - March 2026), https://www.azwater.gov/sites/default/files/2026-05/PicachoArea03-2025to03-2026_8x11.pdf",
+    "Conway, B.D. (2016), Hydrogeology Journal 24, https://doi.org/10.1007/s10040-015-1329-z"
+  ],
+  "agreement_note": "Consistent in order of magnitude: 120-day summer NISAR signal (-8.0 cm LOS, -10.3 cm vertical est., -6.7 cm/100d) aligns with localized active Picacho/Eloy drawdown (>7-12 cm/yr). Passed time-series QC, high spatial coherence (69.6% valid pixels), tight reference spread [-8.4, -7.2] cm (ratio 0.15).",
+  "recommended_confidence": "high",
+  "atlas_decision": "reliable",
+  "press_summary_approved": true,
+  "press_summary_gate_note": "Approved for atlas #4 rank (passed tools/atlas_qc.py, high confidence, tight reference spread 0.15).",
+  "reviewed_by": "pending PC5",
+  "quality": "provisional",
+  "quality_note": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team."
+}

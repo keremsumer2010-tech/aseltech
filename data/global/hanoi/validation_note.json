@@ -1,0 +1,32 @@
+{
+  "id": "hanoi",
+  "name": "Hanoi",
+  "data_path": "data/global/hanoi/",
+  "atlas_los_cm": -2.5,
+  "atlas_vertical_cm_est": -3.6,
+  "atlas_period": [
+    "2026-06-19",
+    "2026-10-17"
+  ],
+  "n_days": 120,
+  "rate_cm_per_100d_los": -2.1,
+  "rate_cm_per_yr_est_los": -7.5,
+  "valid_fraction": 0.257,
+  "ref_range_cm": [
+    -6.7,
+    -2.2
+  ],
+  "ref_sensitivity_ratio": 1.8,
+  "literature_vertical_cm_per_yr": "Up to -6.8 cm/yr vertical (ALOS InSAR 2007-2011), moderating to -0.5 to -0.8 cm/yr in suburban bowls (2016-2020; Dang et al., 2014)",
+  "literature_sources": [
+    "Dang, V.K. et al. (2014), Recent land subsidence in Hanoi from ALOS PALSAR InSAR"
+  ],
+  "agreement_note": "Broadly consistent in magnitude (-2.5 cm LOS, -3.6 cm vertical est., -2.1 cm/100d over 120 days), though low valid-pixel fraction (25.7%) over Red River delta vegetation/urbanization and reference spread [-6.7, -2.2] cm limit precision.",
+  "recommended_confidence": "low",
+  "atlas_decision": "indicative_only",
+  "press_summary_approved": false,
+  "press_summary_gate_note": "Kept indicative_only due to 25.7% valid pixels and tropical delta reference sensitivity [-6.7, -2.2] cm.",
+  "reviewed_by": "pending PC5",
+  "quality": "provisional",
+  "quality_note": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team."
+}
