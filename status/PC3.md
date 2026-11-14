@@ -108,6 +108,11 @@ Oyun/sunum için tek sayı: `data/central_valley/summary.json` → `max_subsiden
 - Maskeler: koherens ≥ 0.3 + connComp ≠ 0 → %44.3 geçerli. Referans 33.727E, 37.763N (koherens 0.89)
 - LOS cm: p2 −2.81, medyan −0.67, p98 +2.43 (renk ±3 cm). İyonosfer bu haritada UYGULANMADI (ekranın p1–p99 aralığı ≈ 6.5 cm LOS) → bu tek çift çökme kanıtı değil, işaret/ölçek kontrolü.
 
+### 20:10 maddesi · adım 1: ana sayfa "What is new in our work" (Cmt)
+- `web/index.html` #new bölümü: 3 kart (O1 depolama kaybı, O2 olasılıksal risk, O3 tek komut aracı) + teknik not satırı. Sayı yok. O1/O2/O3/teknik not dosyaları henüz repoda yok, kartlar "in progress" gösteriyor; dosya (`docs/story/storage_loss.md` vb.) gelince betik kendiliğinden "Read more" bağlantısına çevirir.
+- Doğrulama: yerel sunucuda sayfa açıldı, konsol hatası yok, 3 kart + grid DOM'dan okundu. Ekran görüntüsü alınmadı (pane dar).
+- NOT: tasks/PC3.md'de "20:00 PC1" başlığı yok; en alttaki bölüm "20:10 PC1" (20:00 commit'iyle geldi), onu uyguladım.
+
 ## AI
 - AI: Claude Code (Opus) → analysis kodu, testler, kaynak taraması, sonuç kontrolü
 

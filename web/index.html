@@ -188,6 +188,20 @@
   </div>
 </section>
 
+<!-- WHAT IS NEW -->
+<section class="band" id="new">
+  <div class="wrap">
+    <p class="chapter">What is new in our work</p>
+    <h2>Three things we built beyond the map</h2>
+    <div class="cards3">
+      <div class="card newcard" data-file="docs/story/storage_loss.md"><h3>Permanent water-storage loss</h3><p>Turns the part of the sinking that never comes back into a volume of lost underground storage, with its uncertainty. A figure water managers can compare with their own budgets.</p><p class="small">Estimate, mixed data classes.</p><a class="newlink" href="#">Result in progress</a></div>
+      <div class="card newcard" data-file="docs/story/engineering_risk.md"><h3>Infrastructure risk, with odds</h3><p>Uses an engineering damage measure (angle between neighbouring points) and our measurement error to give the chance that a canal or road section passes its limit, not just a yes or no.</p><p class="small">Estimate, provisional data.</p><a class="newlink" href="#">Result in progress</a></div>
+      <div class="card newcard" data-file="docs/story/engine.md"><h3>One command for any region</h3><p>The whole chain, from searching NISAR data to a quality-labelled map, packaged as an open command-line tool so another team can run it on their own region.</p><p class="small">Open code, with tests.</p><a class="newlink" href="#">Tool in progress</a></div>
+    </div>
+    <p class="note"><b>Full method.</b> <span id="techNote">The technical note is being prepared.</span></p>
+  </div>
+</section>
+
 <!-- WHO CAN USE THIS -->
 <section class="band" id="who">
   <div class="wrap">
@@ -270,5 +284,14 @@
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script src="app.js"></script>
+<script>
+(async()=>{
+  const ok=async f=>{try{return (await fetch(ROOT+f,{method:'HEAD',cache:'no-cache'})).ok}catch(e){return false}};
+  for(const c of document.querySelectorAll('.newcard')){
+    if(await ok(c.dataset.file)){const a=c.querySelector('.newlink');a.href='science.html';a.textContent='Read more →'}
+  }
+  if(await ok('docs/story/technical_note.md'))document.getElementById('techNote').innerHTML='<a href="'+ROOT+'docs/story/technical_note.md" target="_blank" rel="noopener">Read the technical note →</a>';
+})();
+</script>
 </body>
 </html>

@@ -218,3 +218,6 @@ details.fold>summary:focus-visible{outline:3px solid #9cc3ff;outline-offset:2px}
 .steps5 pre{background:var(--bg2);border:1px solid var(--line);border-radius:4px;padding:10px 12px;font:12.5px/1.5 var(--mono);overflow-x:auto;margin:.6em 0 0}
 .learn li{margin:.45em 0;color:#2d3748}
 .note.fullyear img{display:block;width:100%;margin-top:10px;border:1px solid var(--line);border-radius:3px;background:#fff}
+
+.newlink{font-size:.88rem;font-weight:600;color:var(--acc)}
+.newcard h3{margin:0 0 .4em;font-size:1.02rem}
