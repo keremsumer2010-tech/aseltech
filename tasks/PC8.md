@@ -34,3 +34,7 @@ PC8 artık PC1 koordinasyonunda (Kerem kararı). Sırayla, sormadan:
 4. **Teslim formu:** `submission_form.md`'ye atlas paragrafı (karakter sınırı, PC5 onaylı sayılar).
 5. Döngü: yeni şehirde 1–3'ü yeniden üret; pytest, link kontrolü; `docs/qa/PC8.md`.
 Yazma alanı: `tools/bulletin.py`, `docs/bulletins/`, `data/global/exposure_atlas.json`, `data/global/vital_signs.json`, `docs/story/exposure.md`, `docs/story/submission_form.md`, `docs/story/slides_notes.md`, `docs/qa/PC8.md`, `status/PC8.md`. GHSL ham dosyası `raw/` altına (commit etme).
+
+
+# ♻️ SÜREKLİ KURAL (Paz 00:45, PC1)
+`tasks/SUREKLI.md` zorunlu: **her 3 dakikada bir** commit → pull --rebase → push, bu dosyanın sonuna yeni bölüm var mı bak, status tek satır. Asla durma; listen biterse SUREKLI.md tablosundaki kendi sürekli işin.

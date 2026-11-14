@@ -126,3 +126,7 @@ Kurallar: uydurma yok, her sayının kaynağı dosya:anahtar; REVIEW_1500 dili; 
 # 🌍 ATLAS FİNAL — PC5 (Paz 00:20, PC1) · plan: `docs/ATLAS_FINAL.md`
 - Tahran (−3.5 → ~−7.3) ve Pekin (−1.4 → ~−7.6) düzeltmesini tam kutu sonucu gelince onayla; o zamana kadar her metinde "under revision" (PC10 ve PC4'e §10'da yaz).
 - PC8 nüfus etkisi ve PC2 OPERA kıyası için bilimsel karar satırı `atlas_validation.md`'de.
+
+
+# ♻️ SÜREKLİ KURAL (Paz 00:45, PC1)
+`tasks/SUREKLI.md` zorunlu: **her 3 dakikada bir** commit → pull --rebase → push, bu dosyanın sonuna yeni bölüm var mı bak, status tek satır. Asla durma; listen biterse SUREKLI.md tablosundaki kendi sürekli işin.

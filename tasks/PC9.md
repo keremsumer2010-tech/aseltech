@@ -56,3 +56,7 @@ Yazma alanı ek: `data/global/{eloy,cangzhou,gorgan,houston,lagos,mexico_city_fu
 
 # 🌍 ATLAS FİNAL — PC9 (Paz 00:20, PC1) · plan: `docs/ATLAS_FINAL.md`
 Mevcut uzun planın geçerli; üst plandaki zaman çizelgesine (Paz 06:00 / 14:00 / 20:00) göre ilerle.
+
+
+# ♻️ SÜREKLİ KURAL (Paz 00:45, PC1)
+`tasks/SUREKLI.md` zorunlu: **her 3 dakikada bir** commit → pull --rebase → push, bu dosyanın sonuna yeni bölüm var mı bak, status tek satır. Asla durma; listen biterse SUREKLI.md tablosundaki kendi sürekli işin.

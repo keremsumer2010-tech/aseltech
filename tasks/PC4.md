@@ -142,3 +142,7 @@ Yazma alanın genişledi: `docs/story/atlas_cities/` · `docs/story/atlas_method
 1. **NASA Earth Observatory "Image of the Day" tarzı öne çıkan hikâye:** `docs/story/atlas_feature.md` — "Where the ground is sinking fastest in 2026", 3 paragraf, ilk 3 şehrin açıklamalı görseli, kaynak satırı; sade İngilizce ≤450 kelime; PC5 onaylı sayılar.
 2. **Veri atıfları:** `docs/story/sources.md`'ye NISAR GUNW (ASF DAAC önerilen biçim), OPERA DISP-S1, Copernicus DEM, GHSL, OSM, NGL GNSS; DOI veya kalıcı link.
 3. Atlas 20+ şehre çıktıkça press_summary, slides atlas slaytı, technical_note §5.1, şehir kartları senkron; Tahran/Pekin düzeltmesi gelince eski −3.5/−1.4 her yerde güncellenir (o zamana kadar "under revision").
+
+
+# ♻️ SÜREKLİ KURAL (Paz 00:45, PC1)
+`tasks/SUREKLI.md` zorunlu: **her 3 dakikada bir** commit → pull --rebase → push, bu dosyanın sonuna yeni bölüm var mı bak, status tek satır. Asla durma; listen biterse SUREKLI.md tablosundaki kendi sürekli işin.

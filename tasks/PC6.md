@@ -44,3 +44,7 @@ PC6 artık PC1 koordinasyonunda (Kerem kararı). Atlas sayfası (`web/atlas.html
 8. PC10 yeni alanları (`detectable`, `robustness_spread`, `people_exposed`, `opera_check`) yan panele; PC4 şehir kartları ve PC8 bültenleri panelden bağlı.
 9. Paz 16:00 (opsiyonel): video v2'yi final atlasla yeniden üret.
 Yazma alanı: `web/atlas.*`, `web/vendor/`, `web/assets/bluemarble*`, `docs/story/media/pc6_*`, `docs/qa/PC6.md`, `status/PC6.md`; diğer site dosyalarında sadece menü/kart satırı. Önce commit → pull --rebase → push.
+
+
+# ♻️ SÜREKLİ KURAL (Paz 00:45, PC1)
+`tasks/SUREKLI.md` zorunlu: **her 3 dakikada bir** commit → pull --rebase → push, bu dosyanın sonuna yeni bölüm var mı bak, status tek satır. Asla durma; listen biterse SUREKLI.md tablosundaki kendi sürekli işin.

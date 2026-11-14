@@ -152,3 +152,7 @@ Yazma alanına eklendi: `pipeline/nisarpulse/`, `.github/workflows/tests.yml`, `
 1. Kendi 5 şehrini bitir (Isfahan, Rafsanjan, Mashhad, Quetta, Delhi), her birinde "hazır" notu.
 2. **NISAR vs OPERA (NASA'nın kendi çökme ürünü) çapraz kontrolü:** JPL OPERA DISP-S1 (ASF, Earthdata) ile aynı dönem ve kutuda: Central Valley (`pipeline/subset/opera_disp` varsa kullan), Houston/Katy, Eloy, Mexico City (kapsama varsa). Ortak piksellerde r, RMSE, eğim; LOS geometri farkı notu. Çıktı `data/global/opera_check.json` (`{id, r, rmse_cm, slope, n, period, note}`), `docs/story/opera_check.md`, `docs/story/media/pc2_opera_*.png`.
 3. NISAR Pulse testleri ve `docs/story/engine.md` "N şehirde çalıştı" güncel kanıt.
+
+
+# ♻️ SÜREKLİ KURAL (Paz 00:45, PC1)
+`tasks/SUREKLI.md` zorunlu: **her 3 dakikada bir** commit → pull --rebase → push, bu dosyanın sonuna yeni bölüm var mı bak, status tek satır. Asla durma; listen biterse SUREKLI.md tablosundaki kendi sürekli işin.
