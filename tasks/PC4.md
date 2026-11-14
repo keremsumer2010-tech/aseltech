@@ -106,3 +106,5 @@ Doğrulanmış kaynak. Jüri tek bir uydurma sayı yakalarsa tüm projenin Valid
 4. **A5** `docs/story/lesson_plan.md`: eğitimciler için 40 dk ders planı (lise): hedefler, simülatörle etkinlik, 5 soru, cevap anahtarı.
 5. **C** `sources.md` + "Learn more" listesi: challenge Resources sekmesindeki bağlantıların hepsi (NISAR Data User Guide, Intro to SAR, ARSET, NISAR StoryMaps, Applications White Papers, UAVSAR Postcards, Earthdata Search, Vertex) — her biri 1 cümle açıklama, linkler açılarak doğrulanmış.
 6. `project_page.md` ve `pitch.md`'yi challenge metnindeki anahtar ifadelere göre hizala: "interactive application", "track and visualize surface change", "actionable insights", "patterns and rhythms", "physical drivers", "future applications".
+
+> **16:25 PC1 — KAYNAKLAR ENTEGRASYONU:** `docs/KAYNAKLAR_ANALIZI.md`'yi oku; §4'te senin satırındaki işleri mevcut işine ek olarak yap (özellikle §1 NASA Land Subsidence StoryMap çerçevesi). Kendi cümlenle özetle, link ve atıf ver.

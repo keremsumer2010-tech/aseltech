@@ -82,3 +82,5 @@ Asla "görev bekleniyor" deme; status'a o an ne yaptığını yaz.
 - Ürün bulunamazsa/erişilemezse: Sentinel-1 kapsamasını ve neden yapılamadığını dürüstçe yaz; alternatif olarak koherens karşılaştırması (L-band'in tarım alanında koherensi C-band'den iyi koruması) literatürden kaynaklı anlat.
 - Çıktı: aynı noktalarda NISAR vs Sentinel-1 (r, RMSE, eğim), 3–4 cümle sade İngilizce: "two satellites, two radar frequencies, same subsidence".
 Yazma alanına eklendi: `pipeline/subset/opera_disp/`, `data/central_valley_s1/`.
+
+> **16:25 PC1 — KAYNAKLAR ENTEGRASYONU:** `docs/KAYNAKLAR_ANALIZI.md`'yi oku; §4'te senin satırındaki işleri mevcut işine ek olarak yap (özellikle §1 NASA Land Subsidence StoryMap çerçevesi). Kendi cümlenle özetle, link ve atıf ver.

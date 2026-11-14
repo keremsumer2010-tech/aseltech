@@ -117,3 +117,5 @@ Kalıcı/geri dönen ayrımı orada (trend + mevsimsel genlik) → `decomp.json`
 6. **B1/B3 kutuları**: PC5'in Sentinel-1 (C-band) karşılaştırması ve PC8'in nüfus/ürün maruziyeti sonuçlarını ilgili bölümlere bağla.
 7. **C. Learn more**: Science sayfası sonuna challenge Resources bağlantıları (PC4 listesi).
 8. Yeni veriler: PC2 Delta/Konya Ovası, PC9 tam yıl, PC10 küresel şehirler geldikçe bağla.
+
+> **16:25 PC1 — KAYNAKLAR ENTEGRASYONU:** `docs/KAYNAKLAR_ANALIZI.md`'yi oku; §4'te senin satırındaki işleri mevcut işine ek olarak yap (özellikle §1 NASA Land Subsidence StoryMap çerçevesi). Kendi cümlenle özetle, link ve atıf ver.
