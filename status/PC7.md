@@ -24,4 +24,4 @@
 - Site QA tekrarlandı: 89 yerel yolun tamamı mevcut; 84 JSON/GeoJSON parse hatasız ve tarihler uyumlu. Metin taraması 27 aday verdi; çoğu kod/koordinat/sayım false positive, olası bilimsel birim bulgusu `web/science.html` `−4.7` (site sahibi PC3/PC1'e not edildi).
 - Tam pytest toplaması bu ortamda `requests` modülü eksik olduğu için iki test dosyasında import aşamasında başarısız oldu; indirme veya paket kurulumu yapmadım. Ayrıntı `docs/qa/PC7.md` §15.
 - PC7'ye atlas şehri atanmadığından PC11 şehirlerini veya PC11 status/görev dosyalarını değiştirmedim.
-- BLOCKED: `git pull --rebase origin main` unstaged changes nedeniyle reddedildi (`cannot pull with rebase: You have unstaged changes`). Önceki PC7 QA commit'i de push bekliyor. Depo kuralı gereği Git işlemleri durduruldu; yeni görev bölümü okunamadı.
+- BLOCKED: yok
