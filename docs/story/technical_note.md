@@ -85,12 +85,14 @@ Using the single-command `pipeline/nisarpulse/` engine with identical `provision
 | 1 | **Konya Closed Basin, Türkiye** | `2026-06-26 → 2026-10-12` (`8`, `108 d`) | **`−8.89`** | `−9.6` | `−12.1` | `11.6%` | `reliable` in `atlas.json`; **`preliminary`** (PC5 `low`, pending `±0.25°` box) |
 | 2 | **Central Valley, USA** | `2026-06-28 → 2026-10-14` (`7`, `108 d`) | **`−7.22`** | `−7.8` | `−10.1` | `62.9%` | `reliable` (`medium`; 10-GPS `r = 0.924`, **PC5 Press Approved**) |
 | 3 | **Jakarta, Indonesia** | `2026-06-27 → 2026-10-13` (`8`, `108 d`) | **`−6.30`** | `−6.8` | `−9.3` | `2.9%` | **`indicative only`** (`low`, tropical decorrelation; **`preliminary`**) |
-| 4 | **Mexico City, Mexico** *(off-basin rerun)* | `2026-06-22 → 2026-10-20` (`8`, `120 d`) | **`−5.80`** | `−7.0` | `−9.7` | `63.9%` | `reliable` (`medium`, **PC5 Press Approved**; prior NASA-JPL NISAR note) |
-| 5 | **Karapınar, Türkiye** | `2026-06-26 → 2026-10-12` (`8`, `108 d`) | **`−5.46`** | `−5.9` | `−8.0` | `14.2%` | **`indicative only`** (`low`; **PC5 Conditional** on `p = 0.0001` sinkholes) |
-| 6 | **Tehran, Iran** | `2026-06-18 → 2026-10-16` (`9`, `120 d`) | **`−2.92`** | `−3.5` | `−4.7` | `35.7%` | **`indicative only`** (`low`; **`preliminary`**, alt. ref. `−7.3 cm`) |
-| 7 | **Isfahan, Iran** | `2026-06-18 → 2026-10-16` (`9`, `120 d`) | **`−2.08`** | `−2.5` | `−3.4` | `32.5%` | `medium` (**PC5 Press Approved**; pending `atlas.json` rebuild) |
-| 8 | **Beijing, China** | `2026-06-17 → 2026-10-15` (`9`, `120 d`) | **`−1.17`** | `−1.4` | `−2.1` | `71.1%` | `reliable` in `atlas.json`; **`preliminary`** (PC5 `low`, ref. spread `4.43`) |
-| 9 | **Sacramento–San Joaquin Delta, USA** | `2026-06-17 → 2026-10-15` (`9`, `120 d`) | **`−1.08`** | `−1.3` | `−1.6` | `43.4%` | `reliable` (`medium`; PC5 **`high`**, **Press Approved**) |
+| 4 | **Bangkok, Thailand** | `2026-06-21 → 2026-10-19` (`8`, `120 d`) | **`−6.25`** | `−7.5` | `−9.0` | `34.6%` | **`indicative only`** (`low`, monsoon delay; **`preliminary`**) |
+| 5 | **Mexico City, Mexico** *(off-basin rerun)* | `2026-06-22 → 2026-10-20` (`8`, `120 d`) | **`−5.80`** | `−7.0` | `−9.7` | `63.9%` | `reliable` (`medium`, **PC5 Press Approved**; prior NASA-JPL NISAR note) |
+| 6 | **Karapınar, Türkiye** | `2026-06-26 → 2026-10-12` (`8`, `108 d`) | **`−5.46`** | `−5.9` | `−8.0` | `14.2%` | **`indicative only`** (`low`; **PC5 Conditional** on `p = 0.0001` sinkholes) |
+| 7 | **Rafsanjan, Iran** | `2026-06-23 → 2026-10-21` (`10`, `120 d`) | **`−4.83`** | `−5.8` | `−7.4` | `84.9%` | `reliable` (`medium`, **PC5 Press Approved**) |
+| 8 | **Tehran, Iran** | `2026-06-18 → 2026-10-16` (`9`, `120 d`) | **`−2.92`** | `−3.5` | `−4.7` | `35.7%` | **`indicative only`** (`low`; **`preliminary`**, alt. ref. `−7.3 cm`) |
+| 9 | **Isfahan, Iran** | `2026-06-18 → 2026-10-16` (`9`, `120 d`) | **`−2.08`** | `−2.5` | `−3.4` | `32.5%` | `reliable` (`medium`, **PC5 Press Approved**) |
+| 10 | **Beijing, China** | `2026-06-17 → 2026-10-15` (`9`, `120 d`) | **`−1.17`** | `−1.4` | `−2.1` | `71.1%` | **`preliminary`** (PC5 `low`, ref. spread `4.43`) |
+| 11 | **Sacramento–San Joaquin Delta, USA** | `2026-06-17 → 2026-10-15` (`9`, `120 d`) | **`−1.08`** | `−1.3` | `−1.6` | `43.4%` | `reliable` (`high`, **PC5 Press Approved**) |
 
 ---
 
