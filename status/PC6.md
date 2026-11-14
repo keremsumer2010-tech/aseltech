@@ -1,10 +1,9 @@
 # PC6 durum
 
-- Görev: 14:45 YENİ PAKET (`tasks/PC6.md`) adım 1/5 tamamlandı, adım 2'ye geçiliyor.
-- Durum: Önceki tüm işler (`Q05`, `Q06`, `Q19` v2, `Q20`, `Q28`, `Q14`) tamamlandı. 14:45 paketi 1. adım (1080p MP4+GIF animasyonları) üretildi ve doğrulandı:
-  - `analysis/pc6/make_animation.py`: Harita döşeme indirmesi/yapay görsel kullanmadan doğrudan `data/*/disp/*.png`, `points.json`, `meta.json`, `risk/*_infra.geojson` ve `data/karapinar/sinkholes.geojson` üzerinden 1080p kareler üretiyor.
-  - `docs/story/media/cv_subsidence.mp4` (`3.07 MB`, `1920x1080`, `h264/yuv420p`, `10.42 s`, 8 epok) ve `docs/story/media/cv_subsidence.gif` (`4.23 MB`).
-  - `docs/story/media/kp_subsidence.mp4` (`0.88 MB`, `1920x1080`, `h264/yuv420p`, `11.58 s`, 9 epok) ve `docs/story/media/kp_subsidence.gif` (`1.36 MB`).
+- Görev: 14:45 YENİ PAKET (`tasks/PC6.md`) adım 2/5 tamamlandı, adım 3'e geçiliyor.
+- Durum: Önceki tüm işler (`Q05`, `Q06`, `Q19` v2, `Q20`, `Q28`, `Q14`) tamamlandı. 14:45 paketi 1 ve 2. adımlar tamamlandı:
+  - Adım 1 (`analysis/pc6/make_animation.py`): `docs/story/media/cv_subsidence.{mp4,gif}` (`3.07 MB` / `4.23 MB`) ve `docs/story/media/kp_subsidence.{mp4,gif}` (`0.88 MB` / `1.36 MB`) 1080p gerçek veri animasyonları üretildi ve pushlandı (`7369686`).
+  - Adım 2 (`analysis/pc6/make_validation_plots.py`): `docs/story/validation_report.md`, `docs/story/media/validation_scatter.png` (`10` istasyon final saçılım `r=0.924`, `RMSE=1.37 cm`; hareketli `|GPS|>2 cm` `n=4` final `RMSE=0.76 cm`, ort. TS `r=0.851`; sabit `n=6` ort. TS `r=0.065`) ve `10` istasyon grafiği (`docs/story/media/gnss_<station>.png`) üretildi ve görsel kontrolle doğrulandı.
 - Çıktılar:
   - Görev 1 (GNSS): `validation/gnss_stations.csv` (23 istasyon), `validation/gnss/*.csv` (10 istasyon, 2025-11 → 2026-11), `validation/README.md`
   - Görev 2 & 3 (OSM): `risk/central_valley_infra.geojson` (3238 hat, 1.07 MB), `risk/karapinar_infra.geojson` (64 hat, 0.04 MB), `risk/README.md`
