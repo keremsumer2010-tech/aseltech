@@ -270,12 +270,11 @@ Görev dağılımı: `tasks/QUEUE.md` → "BUGFIX" bölümü. S-21 (simülatör 
 - Yapılacak: Sayfayı tarayıcıda açıp kontrol et; varsa md dosyalarında $…$ yerine düz metin kullan veya md() fonksiyonuna tablo desteği ekle.
 - Sahip: PC1.
 
-## S-31 · Açılış arka planı: canlı harita yerine hazır döngü videosu
+## S-31 · Açılış arka planı: canlı harita ve kırmızı filtre yerine hazır döngü videosu
 *Öncelik: Yüksek · Yer: Açılış · Sahip: PC6 (video), PC8 (sayfa)*
 - Nerede: `web/index.html` hero (`#heroMap`), `web/app.js` `hero()`.
-- Sorun: Canlı MapLibre haritası açılışta uydu karosu indiriyor ve sürekli çiziliyor (yavaşlık, batarya, mobilde takılma). Üstündeki çökme katmanı sert kenarlı ve kare kare. Mehmet kararı: sürekli oynayan canlı harita yerine hazır, hareketli bir arka plan olsun.
-- Öneri: Yumuşatılmış (B23) karelerden dikişsiz, sessiz, ≤1.5 MB döngü videosu (MP4+WebM) ve ≤150 KB poster (WebP). GIF önerilmez (S-22: 4 MB+), PDF hareket etmez. Sayfa videoyu `autoplay muted loop playsinline` ile oynatır; reduced-motion ve yükleme hatasında poster. Başlık için sol taraf koyu kalır.
-- Not: S-18 (açılışta çökme katmanı görünmesin) kararı vardı; bu videoda katman yalnızca yumuşatılmış, saydam ve kenarsız olmalı. Mehmet "katman hiç olmasın" derse B30'da katmanı çıkar, sadece koyu uydu akışı kalsın.
+- Sorun: Canlı MapLibre haritası açılışta uydu karosu indiriyor ve sürekli çiziliyor (yavaşlık, batarya, mobilde takılma). Üstündeki kırmızı-mavi çökme katmanı sert kenarlı ve ilk izlenimi bozuyor. Mehmet kararı: sürekli oynayan canlı harita yerine hazır, hareketli bir arka plan olsun ve **kırmızı çökme filtresi hiç olmasın**.
+- Öneri: Koyu, sade uydu görüntüsü üzerinde yavaş kayma/yakınlaşma yapan dikişsiz, sessiz, ≤1.5 MB döngü videosu (MP4+WebM) ve ≤150 KB poster (WebP). GIF önerilmez (S-22: 4 MB+), PDF hareket etmez. Sayfa videoyu `autoplay muted loop playsinline` ile oynatır; reduced-motion ve yükleme hatasında poster. Başlık için sol taraf koyu kalır. Çökme verisi, renk çubuğu, yazı yok (S-18 ile uyumlu).
 - Görevler: B30 (video), B31 (sayfa).
 
 ## Uygulanmaması gerekenler (dış inceleme PDF'inden)
