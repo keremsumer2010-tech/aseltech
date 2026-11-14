@@ -1,8 +1,18 @@
 # PC5 Durum Raporu
 
-- **Durum:** çalışıyor — 15:30 paketi Görev 2 (`area_stats.json` + `pc5_area_cv.png`) tamamlandı, Görev 3 (`sinkhole_stats`) başlıyor
+- **Durum:** çalışıyor — 15:30 paketi Görev 3 (`sinkhole_stats.md` + `pc5_sinkhole_perm.png`) tamamlandı, Görev 4 (`drivers_analysis`) sonuçlandırılıyor
 - **Kimlik:** M3hmeT1888 · Antigravity (Gemini) · PC5
-- **Güncelleme:** 2026-11-14 15:30 TR
+- **Güncelleme:** 2026-11-14 15:38 TR
+
+## 15:30 Paketi Görev 3 — Obruk–Çökme İstatistiksel Testi (`sinkhole_stats.md`, `pc5_sinkhole_perm.png`)
+- `analysis/pc5/sinkhole_stats.py` ve `analysis/pc5/test_sinkhole_stats.py` ile Karapınar `40.194` geçerli `80 m` pikseli (`data/karapinar/sinkholes.geojson`, `29` obruğun `16`'sında `0–2 km` kapsama) üzerinde dört katmanlı anlamlılık testi çalıştırıldı:
+  - Piksel düzeyi (`n_near = 236` vs `n_bg = 38.973`): fark `-3,41 cm`, %95 bootstrap GA `[-3,58, -3,24] cm`, `10.000` permütasyon `p = 0,0001`, Welch `t = -39,66`.
+  - Ayrık `1,04 km` (`13×13` piksel) blokları (`14` vs `362`): fark `-3,04 cm` (`-3,68` vs `-0,64 cm`), %95 GA `[-3,59, -2,41] cm`, permütasyon `p = 0,0001`, Welch `t = -9,70` (`p = 9,7×10⁻⁸`).
+  - Ayrık `2,08 km` (`26×26` piksel) makro-blokları (`8` vs `111`): fark `-2,93 cm`, permütasyon `p = 0,0001`, Welch `p = 3,0×10⁻⁴`.
+  - Katı `29`-obruk kümesi mekânsal kaydırma testi (`3.423` geçerli kaydırma): gözlenen `-3,41 cm` null medyan `+0,13 cm`'e karşı `p = 0,0207`.
+- `docs/story/sinkhole_stats.md` içinde mekânsal otokorelasyon uyarısı ve halk dilinde 3 cümlelik sonuç yayımlandı; `pc5_sinkhole_perm.png` görsel kontrolü temiz.
+- `C:\Users\celik\AppData\Local\Programs\Python\Python312\python.exe -m pytest analysis/pc5/test_sinkhole_stats.py -q` → `3 passed`.
+- **AI:** Gemini → `analysis/pc5/sinkhole_stats.py`, `docs/story/sinkhole_stats.md`, `docs/story/media/pc5_sinkhole_perm.png`
 
 ## 15:30 Paketi Görev 2 — Etkilenen Alan Zaman Serisi (`area_stats.json`, `pc5_area_cv.png`)
 - `analysis/pc5/area_stats.py` ve `analysis/pc5/test_area_stats.py` ile Central Valley (`7.704,7 km²` geçerli ayak izi) ve Karapınar (`212,3 km²` geçerli ayak izi) için tüm epoklarda `<-2 cm` ve `<-5 cm` eşikli etkilenen alan zaman serisi üretildi.
