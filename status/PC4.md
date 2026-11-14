@@ -1,8 +1,8 @@
 # PC4 durum
 
 - Görev: 1, 2, 3 + Queue `Q11`, `Q12`, `Q16`, `Q30`, `Q31` + 14:10 Paketi (1–6) + `ZAMAN_CIZELGESI` Pazar #1–5 + **15:00 Paketi (#1–4)** + **16:05 ACİL** + **16:15 CHALLENGE UYUMU (#1–6)** + **16:25 KAYNAKLAR ENTEGRASYONU** + **20:00 Paketi (#1–6)** + **20:10 (`OZGUN_KATKILAR.md` §T)** + **`ATLAS_PLANI.md` PC4 #1–4 & #5–9** (`docs/story/atlas_cities/`, `atlas_methods.md`, `atlas_data_dictionary.md`, `judge_faq.md` #22–26, `press_summary.md` & `technical_note.md` senkronu)
-- Durum: çalışıyor (%100 yeni atama bitti: 7 validation_note.json + yunlin.md + 20 bölge sayı/QC senkronu [Konya #1, Semarang indicative, Tahran −7.4 cm] + judge_faq #29 & slayt QC hikâyesi + docs/qa/SCIENCE_SIGNOFF.md taslağı tamam; sıradaki: SUREKLI döngü & test doğrulama)
-- Güncelleme: 2026-11-15 01:24 TR
+- Durum: çalışıyor (SÜREKLİ DÖNGÜ: ATLAS v2 21 bölge [Cangzhou/Yunlin validation_note.json, Semarang -6.2 cm QC düzeltmesi] senkronize edildi, numbers_registry discrepancies=0, 92/92 pytest PASS; sıradaki: sürekli GitHub izleme ve senkron)
+- Güncelleme: 2026-11-15 01:34 TR
 - Çıktılar:
   - **`ATLAS_FINAL.md` PC4 #1–3 (Atlas Final Paketi — Earth Observatory Hikâyesi, Veri Atıfları & Senkron):**
     - [`docs/story/atlas_feature.md`](../docs/story/atlas_feature.md): NASA Earth Observatory "Image of the Day" tarzında tek sayfa öne çıkan hikâye ("Where the Ground Is Sinking Fastest in 2026" — 3 paragraf, 438 kelime $\le 450$, `media/pc10_global.png` açıklamalı haritası, akifer sıkışması jeolojisi, California Central Valley `-7.8 cm` LOS / `1.00 cm` GPS / kanal eğimleri, Mexico City `-7.0 cm` off-basin ve Rafsanjan `-5.8 cm` PC5 onaylı değerleri, Konya `-9.6 cm` ve Mashhad `-8.6 cm` preliminary şerhleri, zorunlu kalibrasyon uyarısı).

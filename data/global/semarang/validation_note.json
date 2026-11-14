@@ -2,21 +2,21 @@
   "id": "semarang",
   "name": "Semarang",
   "data_path": "data/global/semarang/",
-  "atlas_los_cm": -12.1,
-  "atlas_vertical_cm_est": -15.5,
+  "atlas_los_cm": -6.2,
+  "atlas_vertical_cm_est": -8.1,
   "atlas_period": [
     "2026-06-25",
-    "2026-10-11"
+    "2026-09-29"
   ],
-  "n_days": 108,
-  "rate_cm_per_100d_los": -11.2,
-  "rate_cm_per_yr_est_los": -40.8,
-  "valid_fraction": 0.51,
+  "n_days": 96,
+  "rate_cm_per_100d_los": -6.5,
+  "rate_cm_per_yr_est_los": -23.6,
+  "valid_fraction": 0.515,
   "ref_range_cm": [
-    -15.7,
-    -12.1
+    -9.9,
+    -6.2
   ],
-  "ref_sensitivity_ratio": 0.3,
+  "ref_sensitivity_ratio": 0.6,
   "literature_vertical_cm_per_yr": "-6 to -9 spatial average across coastal zones; -10 to -19 in northern hotspots (5 to >10 cm/yr in Arimoto et al. 2011; 10-12 cm/yr north/east in Aditiya & Ito 2023)",
   "literature_sources": [
     "Abidin, H.Z. et al. (2013), Natural Hazards 66, coastal land subsidence in Semarang",
@@ -24,17 +24,12 @@
     "Aditiya, A. & Ito, T. (2023), Int. J. Applied Earth Observation and Geoinformation, https://doaj.org/article/bc659cefcb624b38a67982d1",
     "Arimoto, M. et al. (2011), JpGU 2011, https://www2.jpgu.org/meeting/2011/yokou/STT057-P01_E.pdf"
   ],
-  "agreement_note": "REJECTED AS HEADLINE by time-series QC (tools/atlas_qc.py): entire -12.1 cm LOS comes from the final step (2026-09-29 -> 2026-10-11, -11.18 cm, ~1 full 12.1 cm L-band phase cycle); without that step headline is -0.87 cm, and headline point (110.287E, -7.158S) sits in stable southern uplands rather than the subsiding northern coast. Moved to indicative only pending PC10 pair check.",
-  "recommended_confidence": "low",
-  "atlas_decision": "indicative_only",
+  "agreement_note": "UPDATED AFTER QC REPROCESS: Initial -12.1 cm upland spike caused by a 29 Sep -> 11 Oct phase-cycle jump (-11.18 cm) was removed. Reprocessed 7-pair chain (2026-06-25 to 2026-09-29, 96 days) places peak on the northern coast at -6.2 cm LOS (-8.1 cm vertical est., -6.5 cm/100d), consistent with northern Semarang's published 10-19 cm/yr rates.",
+  "recommended_confidence": "medium",
+  "atlas_decision": "reliable",
   "press_summary_approved": false,
-  "press_summary_gate_note": "Rejected from press/headline ranking due to phase_cycle_jump QC flag (-11.18 cm single step) and upland location mismatch; kept as indicative only.",
+  "press_summary_gate_note": "Reprocessed after QC phase-cycle removal (-6.2 cm LOS / -6.5 cm/100d, northern coast); rank #5 reliable in ATLAS v2, pending PC5 final sign-off.",
   "reviewed_by": "pending PC5",
   "quality": "provisional",
-  "quality_note": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.",
-  "qc_flags": [
-    "phase_cycle_jump"
-  ],
-  "qc_detail": "step 8 (2026-09-29→2026-10-11) = -11.18 cm ≈ one phase cycle (12.1 cm)",
-  "qc_headline_without_flagged_steps_cm": -0.87
+  "quality_note": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team."
 }

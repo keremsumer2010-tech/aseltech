@@ -2,11 +2,11 @@
 
 > **Calibration Notice:** NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.
 
-Every headline number in the web portal and story documents is traced to its authoritative JSON source (`36` metrics: `23` approved, `13` preliminary, `0` rejected; `1` open discrepancies).
+Every headline number in the web portal and story documents is traced to its authoritative JSON source (`37` metrics: `25` approved, `12` preliminary, `0` rejected; `0` open discrepancies).
 
 | ID | Value | Unit | Quality | Verdict | Source (`file:key`) | Used In (count) |
 |---|---:|---|---|---|---|---:|
-| `cv_max_los_cm` | `-7.8` | cm | `provisional` | **approved** | `data/central_valley/summary.json` (`max_subsidence_cm`) | 55 |
+| `cv_max_los_cm` | `-7.8` | cm | `provisional` | **approved** | `data/central_valley/summary.json` (`max_subsidence_cm`) | 57 |
 | `cv_max_vert_cm_est` | `-10.1` | cm | `provisional` | **approved** | `data/central_valley/summary.json` (`max_subsidence_vertical_cm_estimate`) | 38 |
 | `cv_rate_yr_est` | `-26.4` | cm/yr | `provisional` | **preliminary** | `data/central_valley/summary.json` (`rate_cm_per_yr_estimate`) | 13 |
 | `cv_area_gt5cm_km2` | `239.54` | km2 | `provisional` | **approved** | `data/central_valley/area_stats.json` (`area_km2_lt_5cm[-1]`) | 4 |
@@ -24,27 +24,22 @@ Every headline number in the web portal and story documents is traced to its aut
 | `kp_rate_yr_est` | `-20.0` | cm/yr | `provisional` | **preliminary** | `data/karapinar/summary.json` (`rate_cm_per_yr_estimate`) | 10 |
 | `kp_sigma_median_cm` | `0.326` | cm | `provisional` | **approved** | `data/karapinar/uncertainty/meta.json` (`median_sigma_cm`) | 11 |
 | `uk_clay_threshold_cm` | `3.62` | cm | `provisional` | **approved** | `data/uk_clay/detection.json` (`detection_threshold_cm`) | 29 |
-| `atlas_konya_plain_los_cm` | `-9.6` | cm | `provisional` | **approved** | `data/global/atlas.json` (`regions[konya_plain].max_cm_los`) | 20 |
+| `atlas_konya_plain_los_cm` | `-9.6` | cm | `provisional` | **approved** | `data/global/atlas.json` (`regions[konya_plain].max_cm_los`) | 22 |
+| `atlas_eloy_los_cm` | `-8.0` | cm | `provisional` | **approved** | `data/global/atlas.json` (`regions[eloy].max_cm_los`) | 19 |
 | `atlas_mashhad_los_cm` | `-8.6` | cm | `provisional` | **approved** | `data/global/atlas.json` (`regions[mashhad].max_cm_los`) | 6 |
-| `atlas_eloy_los_cm` | `-8.0` | cm | `provisional` | **approved** | `data/global/atlas.json` (`regions[eloy].max_cm_los`) | 16 |
 | `atlas_mexico_city_los_cm` | `-7.0` | cm | `provisional` | **approved** | `data/global/atlas.json` (`regions[mexico_city].max_cm_los`) | 25 |
-| `atlas_rafsanjan_los_cm` | `-5.8` | cm | `provisional` | **approved** | `data/global/atlas.json` (`regions[rafsanjan].max_cm_los`) | 7 |
-| `atlas_quetta_los_cm` | `-3.8` | cm | `provisional` | **approved** | `data/global/atlas.json` (`regions[quetta].max_cm_los`) | 1 |
+| `atlas_semarang_los_cm` | `-6.2` | cm | `provisional` | **approved** | `data/global/atlas.json` (`regions[semarang].max_cm_los`) | 4 |
+| `atlas_rafsanjan_los_cm` | `-5.8` | cm | `provisional` | **approved** | `data/global/atlas.json` (`regions[rafsanjan].max_cm_los`) | 8 |
+| `atlas_cangzhou_los_cm` | `-2.4` | cm | `provisional` | **approved** | `data/global/atlas.json` (`regions[cangzhou].max_cm_los`) | 4 |
 | `atlas_delta_los_cm` | `-1.3` | cm | `provisional` | **approved** | `data/global/atlas.json` (`regions[delta].max_cm_los`) | 15 |
-| `atlas_semarang_los_cm` | `-12.1` | cm | `provisional` | **preliminary** | `data/global/atlas.json` (`regions[semarang].max_cm_los`) | 12 |
-| `atlas_jakarta_los_cm` | `-6.8` | cm | `provisional` | **preliminary** | `data/global/atlas.json` (`regions[jakarta].max_cm_los`) | 19 |
-| `atlas_bangkok_los_cm` | `-7.5` | cm | `provisional` | **preliminary** | `data/global/atlas.json` (`regions[bangkok].max_cm_los`) | 4 |
-| `atlas_tehran_los_cm` | `-7.4` | cm | `provisional` | **preliminary** | `data/global/atlas.json` (`regions[tehran].max_cm_los`) | 10 |
+| `atlas_quetta_los_cm` | `-3.8` | cm | `provisional` | **approved** | `data/global/atlas.json` (`regions[quetta].max_cm_los`) | 0 |
+| `atlas_bangkok_los_cm` | `-7.5` | cm | `provisional` | **preliminary** | `data/global/atlas.json` (`regions[bangkok].max_cm_los`) | 3 |
+| `atlas_tehran_los_cm` | `-7.4` | cm | `provisional` | **preliminary** | `data/global/atlas.json` (`regions[tehran].max_cm_los`) | 11 |
+| `atlas_jakarta_los_cm` | `-6.8` | cm | `provisional` | **preliminary** | `data/global/atlas.json` (`regions[jakarta].max_cm_los`) | 17 |
 | `atlas_delhi_los_cm` | `-4.3` | cm | `provisional` | **preliminary** | `data/global/atlas.json` (`regions[delhi].max_cm_los`) | 1 |
-| `atlas_ho_chi_minh_los_cm` | `-4.2` | cm | `provisional` | **preliminary** | `data/global/atlas.json` (`regions[ho_chi_minh].max_cm_los`) | 8 |
-| `atlas_yunlin_los_cm` | `-2.7` | cm | `provisional` | **preliminary** | `data/global/atlas.json` (`regions[yunlin].max_cm_los`) | 0 |
-| `atlas_hanoi_los_cm` | `-2.5` | cm | `provisional` | **preliminary** | `data/global/atlas.json` (`regions[hanoi].max_cm_los`) | 10 |
-| `atlas_isfahan_los_cm` | `-2.5` | cm | `provisional` | **preliminary** | `data/global/atlas.json` (`regions[isfahan].max_cm_los`) | 10 |
-| `atlas_xian_los_cm` | `-1.5` | cm | `provisional` | **preliminary** | `data/global/atlas.json` (`regions[xian].max_cm_los`) | 11 |
 | `atlas_beijing_los_cm` | `-1.4` | cm | `provisional` | **preliminary** | `data/global/atlas.json` (`regions[beijing].max_cm_los`) | 6 |
-
-## Open Discrepancies
-
-| Location | Written | Authoritative Data | Owner | Fix |
-|---|---|---|---|---|
-| `docs/story/global_atlas.md:32` | -4.4 cm (old Mexico City in-basin reference) | -7.0 cm LOS (data/global/mexico_city/summary.json, SW volcanic ref) | PC10 | Update Mexico City headline to -7.0 cm LOS (-5.8 cm/100 d). |
+| `atlas_isfahan_los_cm` | `-2.5` | cm | `provisional` | **preliminary** | `data/global/atlas.json` (`regions[isfahan].max_cm_los`) | 9 |
+| `atlas_yunlin_los_cm` | `-2.7` | cm | `provisional` | **preliminary** | `data/global/atlas.json` (`regions[yunlin].max_cm_los`) | 0 |
+| `atlas_xian_los_cm` | `-1.5` | cm | `provisional` | **preliminary** | `data/global/atlas.json` (`regions[xian].max_cm_los`) | 11 |
+| `atlas_hanoi_los_cm` | `-2.5` | cm | `provisional` | **preliminary** | `data/global/atlas.json` (`regions[hanoi].max_cm_los`) | 9 |
+| `atlas_ho_chi_minh_los_cm` | `-4.2` | cm | `provisional` | **preliminary** | `data/global/atlas.json` (`regions[ho_chi_minh].max_cm_los`) | 8 |

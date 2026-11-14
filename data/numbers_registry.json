@@ -1,13 +1,13 @@
 {
   "quality": "provisional",
-  "generated_at": "2026-11-14T22:20:46Z",
+  "generated_at": "2026-11-14T22:33:45Z",
   "quality_notice": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.",
   "summary": {
-    "total": 36,
-    "approved": 23,
-    "preliminary": 13,
+    "total": 37,
+    "approved": 25,
+    "preliminary": 12,
     "rejected": 0,
-    "discrepancies": 1
+    "discrepancies": 0
   },
   "entries": [
     {
@@ -49,6 +49,7 @@
         "docs/story/presentation_cues.md:93",
         "docs/story/presentation_cues.md:116",
         "docs/story/press_summary.md:9",
+        "docs/story/press_summary.md:11",
         "docs/story/press_summary.md:14",
         "docs/story/project_page.md:50",
         "docs/story/project_page.md:59",
@@ -61,6 +62,7 @@
         "docs/story/technical_note.md:11",
         "docs/story/technical_note.md:65",
         "docs/story/technical_note.md:72",
+        "docs/story/technical_note.md:77",
         "docs/story/uk_findings.md:12",
         "docs/story/uk_findings.md:30",
         "docs/story/uncertainty.md:10",
@@ -73,7 +75,7 @@
         "docs/story/slides.html:313",
         "docs/story/slides.html:319",
         "docs/story/slides.html:466",
-        "docs/story/slides.html:505",
+        "docs/story/slides.html:504",
         "docs/story/technical_note.html:215"
       ],
       "note": "Reference range: [-7.8, -4.7] cm."
@@ -150,7 +152,7 @@
         "docs/story/pitch.md:137",
         "docs/story/presentation_cues.md:93",
         "docs/story/project_page.md:59",
-        "docs/story/technical_note.md:118",
+        "docs/story/technical_note.md:119",
         "docs/story/slides.html:323"
       ],
       "note": "Summer-only extrapolation; overstates full-year permanent rate (-16.8 cm/yr). Must be labeled estimate."
@@ -228,7 +230,7 @@
       "quality": "provisional",
       "verdict": "approved",
       "used_in": [
-        "web/atlas.js:126",
+        "web/atlas.js:131",
         "docs/story/atlas_feature.md:10",
         "docs/story/atlas_validation.md:22",
         "docs/story/audiences.md:19",
@@ -260,7 +262,7 @@
         "docs/story/team_story.md:24",
         "docs/story/technical_note.md:11",
         "docs/story/technical_note.md:55",
-        "docs/story/technical_note.md:109",
+        "docs/story/technical_note.md:110",
         "docs/story/uncertainty.md:30",
         "docs/story/video_shotlist.md:21",
         "docs/story/video_shotlist.md:44",
@@ -269,7 +271,7 @@
         "docs/story/technical_note.html:215",
         "docs/story/technical_note.html:245",
         "docs/story/technical_note.html:254",
-        "docs/story/technical_note.html:311"
+        "docs/story/technical_note.html:312"
       ],
       "note": "All 10 stations median 1.004 cm; 6 stations with r>=0.4 have median 0.8 cm."
     },
@@ -467,7 +469,7 @@
         "docs/story/storage_loss.md:20",
         "docs/story/storage_loss.md:30",
         "docs/story/submission_form.md:71",
-        "docs/story/technical_note.md:109",
+        "docs/story/technical_note.md:110",
         "docs/story/slides.html:466"
       ],
       "note": "Reference sensitivity range: 0.0664 to 0.3198 km3/yr."
@@ -577,7 +579,7 @@
       "quality": "provisional",
       "verdict": "approved",
       "used_in": [
-        "web/science.html:61",
+        "web/science.html:65",
         "docs/story/detectability.md:5",
         "docs/story/future_applications.md:27",
         "docs/story/judge_faq.md:17",
@@ -593,7 +595,7 @@
         "docs/story/submission_form.md:74",
         "docs/story/technical_note.md:11",
         "docs/story/technical_note.md:58",
-        "docs/story/technical_note.md:120",
+        "docs/story/technical_note.md:121",
         "docs/story/uk_findings.md:10",
         "docs/story/uk_findings.md:12",
         "docs/story/uk_findings.md:20",
@@ -619,11 +621,12 @@
       "quality": "provisional",
       "verdict": "approved",
       "used_in": [
-        "docs/story/atlas_feature.md:12",
+        "docs/story/atlas_feature.md:10",
         "docs/story/atlas_top5_check.md:21",
         "docs/story/judge_faq.md:53",
         "docs/story/judge_faq.md:68",
         "docs/story/konya_plain.md:5",
+        "docs/story/press_summary.md:11",
         "docs/story/project_page.md:71",
         "docs/story/project_page.md:72",
         "docs/story/project_page.md:125",
@@ -636,30 +639,12 @@
         "docs/story/submission_form.md:103",
         "docs/story/technical_note.md:11",
         "docs/story/technical_note.md:75",
+        "docs/story/technical_note.md:77",
         "docs/story/slides.html:429",
-        "docs/story/slides.html:503",
+        "docs/story/slides.html:502",
         "docs/story/technical_note.html:215"
       ],
       "note": "Confidence=medium; rate_cm_per_100d=-8.9."
-    },
-    {
-      "id": "atlas_mashhad_los_cm",
-      "value": -8.6,
-      "unit": "cm",
-      "meaning": "Mashhad peak LOS displacement (120 d)",
-      "source_file": "data/global/atlas.json",
-      "source_key": "regions[mashhad].max_cm_los",
-      "quality": "provisional",
-      "verdict": "approved",
-      "used_in": [
-        "docs/story/atlas_feature.md:12",
-        "docs/story/atlas_top5_check.md:22",
-        "docs/story/press_summary.md:11",
-        "docs/story/technical_note.md:77",
-        "docs/story/slides.html:429",
-        "docs/story/slides.html:504"
-      ],
-      "note": "Confidence=medium; rate_cm_per_100d=-7.2."
     },
     {
       "id": "atlas_eloy_los_cm",
@@ -671,6 +656,7 @@
       "quality": "provisional",
       "verdict": "approved",
       "used_in": [
+        "docs/story/atlas_feature.md:12",
         "docs/story/atlas_top5_check.md:24",
         "docs/story/judge_faq.md:5",
         "docs/story/key_findings.md:9",
@@ -678,6 +664,7 @@
         "docs/story/pitch.md:15",
         "docs/story/pitch.md:147",
         "docs/story/presentation_cues.md:99",
+        "docs/story/press_summary.md:11",
         "docs/story/project_page.md:61",
         "docs/story/sinkhole_timeline.md:32",
         "docs/story/slides_notes.md:40",
@@ -686,9 +673,29 @@
         "docs/story/technical_note.md:75",
         "docs/story/technical_note.md:77",
         "docs/story/slides.html:399",
-        "docs/story/slides.html:506"
+        "docs/story/slides.html:429",
+        "docs/story/slides.html:505"
       ],
       "note": "Confidence=high; rate_cm_per_100d=-6.7."
+    },
+    {
+      "id": "atlas_mashhad_los_cm",
+      "value": -8.6,
+      "unit": "cm",
+      "meaning": "Mashhad peak LOS displacement (120 d)",
+      "source_file": "data/global/atlas.json",
+      "source_key": "regions[mashhad].max_cm_los",
+      "quality": "provisional",
+      "verdict": "approved",
+      "used_in": [
+        "docs/story/atlas_feature.md:10",
+        "docs/story/atlas_top5_check.md:22",
+        "docs/story/press_summary.md:11",
+        "docs/story/technical_note.md:77",
+        "docs/story/slides.html:429",
+        "docs/story/slides.html:503"
+      ],
+      "note": "Confidence=medium; rate_cm_per_100d=-7.2."
     },
     {
       "id": "atlas_mexico_city_los_cm",
@@ -704,7 +711,6 @@
         "docs/story/atlas_top5_check.md:28",
         "docs/story/cross_sensor.md:40",
         "docs/story/fullyear.md:33",
-        "docs/story/global_atlas.md:32",
         "docs/story/global_showcase.md:27",
         "docs/story/judge_faq.md:14",
         "docs/story/judge_faq.md:17",
@@ -724,9 +730,27 @@
         "docs/story/sources.md:66",
         "docs/story/team_story.md:19",
         "docs/story/technical_note.md:77",
-        "docs/story/slides.html:429"
+        "docs/story/slides.html:429",
+        "docs/story/slides.html:506"
       ],
       "note": "Confidence=medium; rate_cm_per_100d=-5.8."
+    },
+    {
+      "id": "atlas_semarang_los_cm",
+      "value": -6.2,
+      "unit": "cm",
+      "meaning": "Semarang peak LOS displacement (96 d)",
+      "source_file": "data/global/atlas.json",
+      "source_key": "regions[semarang].max_cm_los",
+      "quality": "provisional",
+      "verdict": "approved",
+      "used_in": [
+        "docs/story/atlas_feature.md:12",
+        "docs/story/game_sensitivity.md:36",
+        "docs/story/technical_note.md:77",
+        "docs/story/uncertainty.md:60"
+      ],
+      "note": "Confidence=medium; rate_cm_per_100d=-6.5."
     },
     {
       "id": "atlas_rafsanjan_los_cm",
@@ -744,23 +768,27 @@
         "docs/story/global_showcase.md:27",
         "docs/story/press_summary.md:11",
         "docs/story/slides_notes.md:68",
-        "docs/story/submission_form.md:73"
+        "docs/story/submission_form.md:73",
+        "docs/story/technical_note.md:77"
       ],
       "note": "Confidence=medium; rate_cm_per_100d=-4.8."
     },
     {
-      "id": "atlas_quetta_los_cm",
-      "value": -3.8,
+      "id": "atlas_cangzhou_los_cm",
+      "value": -2.4,
       "unit": "cm",
-      "meaning": "Quetta peak LOS displacement (120 d)",
+      "meaning": "Cangzhou peak LOS displacement (120 d)",
       "source_file": "data/global/atlas.json",
-      "source_key": "regions[quetta].max_cm_los",
+      "source_key": "regions[cangzhou].max_cm_los",
       "quality": "provisional",
       "verdict": "approved",
       "used_in": [
-        "docs/story/global_atlas.md:33"
+        "web/app.js:16",
+        "docs/story/pitch.md:22",
+        "docs/story/project_page.md:63",
+        "docs/story/submission_form.md:104"
       ],
-      "note": "Confidence=medium; rate_cm_per_100d=-3.2."
+      "note": "Confidence=medium; rate_cm_per_100d=-2.0."
     },
     {
       "id": "atlas_delta_los_cm",
@@ -772,10 +800,10 @@
       "quality": "provisional",
       "verdict": "approved",
       "used_in": [
+        "docs/story/atlas_feature.md:10",
         "docs/story/atlas_top5_check.md:22",
         "docs/story/delta.md:5",
         "docs/story/judge_faq.md:50",
-        "docs/story/press_summary.md:11",
         "docs/story/project_page.md:70",
         "docs/story/project_page.md:72",
         "docs/story/project_page.md:86",
@@ -783,37 +811,64 @@
         "docs/story/submission_form.md:71",
         "docs/story/technical_note.md:11",
         "docs/story/technical_note.md:74",
-        "docs/story/technical_note.md:111",
+        "docs/story/technical_note.md:112",
         "docs/story/slides.html:319",
         "docs/story/technical_note.html:215",
-        "docs/story/technical_note.html:313"
+        "docs/story/technical_note.html:314"
       ],
       "note": "Confidence=medium; rate_cm_per_100d=-1.1."
     },
     {
-      "id": "atlas_semarang_los_cm",
-      "value": -12.1,
+      "id": "atlas_quetta_los_cm",
+      "value": -3.8,
       "unit": "cm",
-      "meaning": "Semarang peak LOS displacement (108 d)",
+      "meaning": "Quetta peak LOS displacement (120 d)",
       "source_file": "data/global/atlas.json",
-      "source_key": "regions[semarang].max_cm_los",
+      "source_key": "regions[quetta].max_cm_los",
+      "quality": "provisional",
+      "verdict": "approved",
+      "used_in": [],
+      "note": "Confidence=medium; rate_cm_per_100d=-3.2."
+    },
+    {
+      "id": "atlas_bangkok_los_cm",
+      "value": -7.5,
+      "unit": "cm",
+      "meaning": "Bangkok peak LOS displacement (120 d)",
+      "source_file": "data/global/atlas.json",
+      "source_key": "regions[bangkok].max_cm_los",
       "quality": "provisional",
       "verdict": "preliminary",
       "used_in": [
-        "docs/story/atlas_feature.md:10",
-        "docs/story/atlas_top5_check.md:10",
-        "docs/story/atlas_top5_check.md:21",
-        "docs/story/atlas_top5_check.md:25",
-        "docs/story/konya_plain.md:5",
-        "docs/story/project_page.md:71",
-        "docs/story/submission_form.md:72",
-        "docs/story/technical_note.md:75",
-        "docs/story/technical_note.md:77",
-        "docs/story/slides.html:301",
-        "docs/story/slides.html:429",
-        "docs/story/slides.html:502"
+        "docs/story/atlas_top5_check.md:26",
+        "docs/story/judge_faq.md:65",
+        "docs/story/risk_sensitivity.md:44"
       ],
-      "note": "Confidence=low; rate_cm_per_100d=-11.2."
+      "note": "Confidence=low; rate_cm_per_100d=-6.2."
+    },
+    {
+      "id": "atlas_tehran_los_cm",
+      "value": -7.4,
+      "unit": "cm",
+      "meaning": "Tehran peak LOS displacement (120 d)",
+      "source_file": "data/global/atlas.json",
+      "source_key": "regions[tehran].max_cm_los",
+      "quality": "provisional",
+      "verdict": "preliminary",
+      "used_in": [
+        "docs/story/atlas_feature.md:12",
+        "docs/story/atlas_top5_check.md:33",
+        "docs/story/judge_faq.md:53",
+        "docs/story/press_summary.md:11",
+        "docs/story/slides_notes.md:54",
+        "docs/story/slides_notes.md:68",
+        "docs/story/submission_form.md:73",
+        "docs/story/technical_note.md:77",
+        "docs/story/technical_note.md:96",
+        "docs/story/slides.html:429",
+        "docs/story/technical_note.html:298"
+      ],
+      "note": "Confidence=low; rate_cm_per_100d=-6.2."
     },
     {
       "id": "atlas_jakarta_los_cm",
@@ -840,52 +895,10 @@
         "docs/story/project_page.md:72",
         "docs/story/project_page.md:125",
         "docs/story/slides_notes.md:49",
-        "docs/story/technical_note.md:77",
         "docs/story/slides.html:319",
-        "docs/story/slides.html:429",
         "docs/story/technical_note.html:258"
       ],
       "note": "Confidence=low; rate_cm_per_100d=-6.3."
-    },
-    {
-      "id": "atlas_bangkok_los_cm",
-      "value": -7.5,
-      "unit": "cm",
-      "meaning": "Bangkok peak LOS displacement (120 d)",
-      "source_file": "data/global/atlas.json",
-      "source_key": "regions[bangkok].max_cm_los",
-      "quality": "provisional",
-      "verdict": "preliminary",
-      "used_in": [
-        "docs/story/atlas_top5_check.md:26",
-        "docs/story/judge_faq.md:65",
-        "docs/story/press_summary.md:11",
-        "docs/story/risk_sensitivity.md:44"
-      ],
-      "note": "Confidence=low; rate_cm_per_100d=-6.2."
-    },
-    {
-      "id": "atlas_tehran_los_cm",
-      "value": -7.4,
-      "unit": "cm",
-      "meaning": "Tehran peak LOS displacement (120 d)",
-      "source_file": "data/global/atlas.json",
-      "source_key": "regions[tehran].max_cm_los",
-      "quality": "provisional",
-      "verdict": "preliminary",
-      "used_in": [
-        "docs/story/atlas_feature.md:12",
-        "docs/story/atlas_top5_check.md:33",
-        "docs/story/judge_faq.md:53",
-        "docs/story/slides_notes.md:54",
-        "docs/story/slides_notes.md:68",
-        "docs/story/submission_form.md:73",
-        "docs/story/technical_note.md:77",
-        "docs/story/technical_note.md:92",
-        "docs/story/slides.html:429",
-        "docs/story/technical_note.html:281"
-      ],
-      "note": "Confidence=low; rate_cm_per_100d=-6.2."
     },
     {
       "id": "atlas_delhi_los_cm",
@@ -900,6 +913,105 @@
         "docs/story/atlas_top5_check.md:27"
       ],
       "note": "Confidence=low; rate_cm_per_100d=-3.6."
+    },
+    {
+      "id": "atlas_beijing_los_cm",
+      "value": -1.4,
+      "unit": "cm",
+      "meaning": "Beijing peak LOS displacement (120 d)",
+      "source_file": "data/global/atlas.json",
+      "source_key": "regions[beijing].max_cm_los",
+      "quality": "provisional",
+      "verdict": "preliminary",
+      "used_in": [
+        "docs/story/atlas_top5_check.md:28",
+        "docs/story/judge_faq.md:53",
+        "docs/story/project_page.md:72",
+        "docs/story/project_page.md:125",
+        "docs/story/technical_note.md:11",
+        "docs/story/technical_note.html:215"
+      ],
+      "note": "Confidence=low; rate_cm_per_100d=-1.2."
+    },
+    {
+      "id": "atlas_isfahan_los_cm",
+      "value": -2.5,
+      "unit": "cm",
+      "meaning": "Isfahan peak LOS displacement (120 d)",
+      "source_file": "data/global/atlas.json",
+      "source_key": "regions[isfahan].max_cm_los",
+      "quality": "provisional",
+      "verdict": "preliminary",
+      "used_in": [
+        "web/atlas.js:132",
+        "web/atlas.js:133",
+        "docs/story/judge_faq.md:53",
+        "docs/story/judge_faq.md:68",
+        "docs/story/project_page.md:71",
+        "docs/story/project_page.md:72",
+        "docs/story/risk_sensitivity.md:5",
+        "docs/story/risk_sensitivity.md:44",
+        "docs/story/technical_note.md:119"
+      ],
+      "note": "Confidence=low; rate_cm_per_100d=-2.1."
+    },
+    {
+      "id": "atlas_yunlin_los_cm",
+      "value": -2.7,
+      "unit": "cm",
+      "meaning": "Yunlin peak LOS displacement (108 d)",
+      "source_file": "data/global/atlas.json",
+      "source_key": "regions[yunlin].max_cm_los",
+      "quality": "provisional",
+      "verdict": "preliminary",
+      "used_in": [],
+      "note": "Confidence=low; rate_cm_per_100d=-2.5."
+    },
+    {
+      "id": "atlas_xian_los_cm",
+      "value": -1.5,
+      "unit": "cm",
+      "meaning": "Xi'an peak LOS displacement (120 d)",
+      "source_file": "data/global/atlas.json",
+      "source_key": "regions[xian].max_cm_los",
+      "quality": "provisional",
+      "verdict": "preliminary",
+      "used_in": [
+        "docs/story/judge_faq.md:17",
+        "docs/story/key_findings.md:55",
+        "docs/story/presentation_cues.md:100",
+        "docs/story/presentation_cues.md:112",
+        "docs/story/project_page.md:66",
+        "docs/story/technical_note.md:58",
+        "docs/story/uk_findings.md:12",
+        "docs/story/uk_findings.md:30",
+        "docs/story/uk_findings.md:51",
+        "docs/story/slides.html:301",
+        "docs/story/technical_note.html:248"
+      ],
+      "note": "Confidence=low; rate_cm_per_100d=-1.2."
+    },
+    {
+      "id": "atlas_hanoi_los_cm",
+      "value": -2.5,
+      "unit": "cm",
+      "meaning": "Hanoi peak LOS displacement (120 d)",
+      "source_file": "data/global/atlas.json",
+      "source_key": "regions[hanoi].max_cm_los",
+      "quality": "provisional",
+      "verdict": "preliminary",
+      "used_in": [
+        "web/atlas.js:132",
+        "web/atlas.js:133",
+        "docs/story/judge_faq.md:53",
+        "docs/story/judge_faq.md:68",
+        "docs/story/project_page.md:71",
+        "docs/story/project_page.md:72",
+        "docs/story/risk_sensitivity.md:5",
+        "docs/story/risk_sensitivity.md:44",
+        "docs/story/technical_note.md:119"
+      ],
+      "note": "Confidence=low; rate_cm_per_100d=-2.1."
     },
     {
       "id": "atlas_ho_chi_minh_los_cm",
@@ -921,116 +1033,7 @@
         "docs/story/slides.html:301"
       ],
       "note": "Confidence=low; rate_cm_per_100d=-3.5."
-    },
-    {
-      "id": "atlas_yunlin_los_cm",
-      "value": -2.7,
-      "unit": "cm",
-      "meaning": "Yunlin peak LOS displacement (108 d)",
-      "source_file": "data/global/atlas.json",
-      "source_key": "regions[yunlin].max_cm_los",
-      "quality": "provisional",
-      "verdict": "preliminary",
-      "used_in": [],
-      "note": "Confidence=low; rate_cm_per_100d=-2.5."
-    },
-    {
-      "id": "atlas_hanoi_los_cm",
-      "value": -2.5,
-      "unit": "cm",
-      "meaning": "Hanoi peak LOS displacement (120 d)",
-      "source_file": "data/global/atlas.json",
-      "source_key": "regions[hanoi].max_cm_los",
-      "quality": "provisional",
-      "verdict": "preliminary",
-      "used_in": [
-        "web/atlas.js:127",
-        "web/atlas.js:128",
-        "docs/story/judge_faq.md:53",
-        "docs/story/judge_faq.md:68",
-        "docs/story/press_summary.md:11",
-        "docs/story/project_page.md:71",
-        "docs/story/project_page.md:72",
-        "docs/story/risk_sensitivity.md:5",
-        "docs/story/risk_sensitivity.md:44",
-        "docs/story/technical_note.md:118"
-      ],
-      "note": "Confidence=low; rate_cm_per_100d=-2.1."
-    },
-    {
-      "id": "atlas_isfahan_los_cm",
-      "value": -2.5,
-      "unit": "cm",
-      "meaning": "Isfahan peak LOS displacement (120 d)",
-      "source_file": "data/global/atlas.json",
-      "source_key": "regions[isfahan].max_cm_los",
-      "quality": "provisional",
-      "verdict": "preliminary",
-      "used_in": [
-        "web/atlas.js:127",
-        "web/atlas.js:128",
-        "docs/story/judge_faq.md:53",
-        "docs/story/judge_faq.md:68",
-        "docs/story/press_summary.md:11",
-        "docs/story/project_page.md:71",
-        "docs/story/project_page.md:72",
-        "docs/story/risk_sensitivity.md:5",
-        "docs/story/risk_sensitivity.md:44",
-        "docs/story/technical_note.md:118"
-      ],
-      "note": "Confidence=low; rate_cm_per_100d=-2.1."
-    },
-    {
-      "id": "atlas_xian_los_cm",
-      "value": -1.5,
-      "unit": "cm",
-      "meaning": "Xian peak LOS displacement (120 d)",
-      "source_file": "data/global/atlas.json",
-      "source_key": "regions[xian].max_cm_los",
-      "quality": "provisional",
-      "verdict": "preliminary",
-      "used_in": [
-        "docs/story/judge_faq.md:17",
-        "docs/story/key_findings.md:55",
-        "docs/story/presentation_cues.md:100",
-        "docs/story/presentation_cues.md:112",
-        "docs/story/project_page.md:66",
-        "docs/story/technical_note.md:58",
-        "docs/story/uk_findings.md:12",
-        "docs/story/uk_findings.md:30",
-        "docs/story/uk_findings.md:51",
-        "docs/story/slides.html:301",
-        "docs/story/technical_note.html:248"
-      ],
-      "note": "Confidence=low; rate_cm_per_100d=-1.2."
-    },
-    {
-      "id": "atlas_beijing_los_cm",
-      "value": -1.4,
-      "unit": "cm",
-      "meaning": "Beijing peak LOS displacement (120 d)",
-      "source_file": "data/global/atlas.json",
-      "source_key": "regions[beijing].max_cm_los",
-      "quality": "provisional",
-      "verdict": "preliminary",
-      "used_in": [
-        "docs/story/atlas_top5_check.md:28",
-        "docs/story/judge_faq.md:53",
-        "docs/story/project_page.md:72",
-        "docs/story/project_page.md:125",
-        "docs/story/technical_note.md:11",
-        "docs/story/technical_note.html:215"
-      ],
-      "note": "Confidence=low; rate_cm_per_100d=-1.2."
     }
   ],
-  "discrepancies": [
-    {
-      "location": "docs/story/global_atlas.md:32",
-      "written_value": "-4.4 cm (old Mexico City in-basin reference)",
-      "data_value": "-7.0 cm LOS (data/global/mexico_city/summary.json, SW volcanic ref)",
-      "owner": "PC10",
-      "fix": "Update Mexico City headline to -7.0 cm LOS (-5.8 cm/100 d)."
-    }
-  ]
+  "discrepancies": []
 }

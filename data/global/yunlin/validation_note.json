@@ -1,0 +1,32 @@
+{
+  "id": "yunlin",
+  "name": "Yunlin",
+  "data_path": "data/global/yunlin/",
+  "atlas_los_cm": -2.7,
+  "atlas_vertical_cm_est": -3.4,
+  "atlas_period": [
+    "2026-06-28",
+    "2026-10-14"
+  ],
+  "n_days": 108,
+  "rate_cm_per_100d_los": -2.5,
+  "rate_cm_per_yr_est_los": -9.2,
+  "valid_fraction": 0.282,
+  "ref_range_cm": [
+    -3.5,
+    -1.1
+  ],
+  "ref_sensitivity_ratio": 0.89,
+  "literature_vertical_cm_per_yr": "-3 to -7 cm/yr across inland townships (Huwei, Tuku, Yuanchang), peaking > -7 cm/yr during dry pumping seasons (Hung et al., 2010)",
+  "literature_sources": [
+    "Hung, W.C. et al. (2010), Journal of Hydrology, https://doi.org/10.1016/j.jhydrol.2010.03.005"
+  ],
+  "agreement_note": "Consistent in magnitude (-2.7 cm LOS, -3.4 cm vertical est., -2.5 cm/100d over 108 days), though 28.2% valid pixels over humid subtropical rice farmland and reference spread [-3.5, -1.1] cm limit confidence to low.",
+  "recommended_confidence": "low",
+  "atlas_decision": "indicative_only",
+  "press_summary_approved": false,
+  "press_summary_gate_note": "Kept indicative_only due to 28.2% valid pixels and reference spread [-3.5, -1.1] cm (ratio 0.89).",
+  "reviewed_by": "pending PC5",
+  "quality": "provisional",
+  "quality_note": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team."
+}

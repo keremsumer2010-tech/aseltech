@@ -1,0 +1,32 @@
+{
+  "id": "cangzhou",
+  "name": "Cangzhou",
+  "data_path": "data/global/cangzhou/",
+  "atlas_los_cm": -2.4,
+  "atlas_vertical_cm_est": -3.2,
+  "atlas_period": [
+    "2026-06-21",
+    "2026-10-19"
+  ],
+  "n_days": 120,
+  "rate_cm_per_100d_los": -2.0,
+  "rate_cm_per_yr_est_los": -7.2,
+  "valid_fraction": 0.432,
+  "ref_range_cm": [
+    -2.4,
+    -1.6
+  ],
+  "ref_sensitivity_ratio": 0.33,
+  "literature_vertical_cm_per_yr": "Historically -5 to -10 cm/yr (>2 m cumulative since 1970), moderating to ~-2 to -4 cm/yr after pumping restrictions and South-to-North Water Diversion (Zhang et al., 2014)",
+  "literature_sources": [
+    "Zhang, Y. et al. (2014), Environmental Earth Sciences, https://doi.org/10.1007/s12665-013-2532-7"
+  ],
+  "agreement_note": "Consistent: 120-day summer NISAR peak (-2.4 cm LOS, -3.2 cm vertical est., -2.0 cm/100d) aligns with moderated modern -2 to -4 cm/yr rates in Cangzhou. Tight reference sensitivity [-2.4, -1.6] cm (ratio 0.33), 43.2% valid pixels.",
+  "recommended_confidence": "medium",
+  "atlas_decision": "reliable",
+  "press_summary_approved": false,
+  "press_summary_gate_note": "Reliable #7 in ATLAS v2 common-window ranking (-2.0 cm/100d, 43.2% valid, ref ratio 0.33); pending PC5 final review.",
+  "reviewed_by": "pending PC5",
+  "quality": "provisional",
+  "quality_note": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team."
+}
