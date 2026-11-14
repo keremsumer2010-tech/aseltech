@@ -208,3 +208,12 @@ Kapsam: `web/index.html` (`1–163`). Genel İngilizce tonu akıcı ve tutarlı 
 ## 17. PC7 Veri Sözleşmesi Bulgusu Çözümü (`data/karapinar/sinkholes.geojson` `quality` & `quality_note`)
 
 - **PC7 Denetim Bulgusu (`4c4506d` / [`docs/qa/PC7.md`](PC7.md)):** `VERI_SOZLESMESI.md` §3 ("Her JSON çıktıda `quality` alanı ve kısa `quality_note` (İngilizce) bulunur") gereği `data/karapinar/sinkholes.geojson` kökünde eksik raporlanan iki alan, [`web/data.html`](../../web/data.html) mantığıyla birebir uyumlu olacak biçimde **`"quality": "reference"`** ve kaynaklı İngilizce **`"quality_note"`** (*Tapur & Bozyiğit 2015*) olarak eklendi; `29` Feature yapısı, MapLibre uyumu ve `offline_site_qa.quality_scope` kontrolü (`root` / `root`) doğrulandı.
+
+---
+
+## 18. `Q09` Birleşik Krallık Kil (`data/uk_clay/detection.json` `"below_detection"`) & `key_findings_public.md` Senkronizasyonu (`91dbd77`, `13f1991`)
+
+- **Negatif Kontrol Entegrasyonu (`Q09` / [`docs/qa/PC3.md`](PC3.md)):** PC3 tarafından eklenen 9 çiftlik Londra kil bölgesi provisional GUNW analizi (`2026-06-21` → `2026-10-19`, `120` gün, Track 101 ascending frame 28, `data/uk_clay/detection.json`) doğrulanan kesin değerleriyle [`judge_faq.md`](../story/judge_faq.md) (Soru 6), [`project_page.md`](../story/project_page.md) (Nicel Sonuçlar tablosu) ve [`slides.html`](../story/slides.html) (Slayt 2 Birleşik Krallık kartı) içine işlendi:
+  - `status: "below_detection"`, `chain_sigma = 1.21 cm`, `3σ` algılama eşiği `= 3.62 cm`; kuadratik atmosfer giderimi sonrası 1 km blokların **`%97.7`'si (`%98`) `±1.5 cm` içinde** (`p2/p50/p98 = −1.47 / +0.19 / +1.26 cm`), iç bölgede eşiği aşan blok sayısı **`0`** ve sahne kenarından `2.0 km` içerideki ham `−5.29 cm` değeri kenar atmosfer artefaktı olarak açıklandı.
+- **`key_findings_public.md` Bağlantısı (`13f1991`):** PC5'in kamuya açık bulgu özeti [`docs/story/key_findings_public.md`](../story/key_findings_public.md), [`project_page.md`](../story/project_page.md) Eşlik Eden Teslim Paketi listesine eklendi.
+- **Ek Stil Düzeltmesi:** `judge_faq.md` Soru 6 içinde kalan yasaklı `showcase` kelimesi `compare` ile değiştirilerek sıfır yasaklı kelime kuralı (`docs/REVIEW_1500.md`) tam korundu.
