@@ -5,6 +5,11 @@
 > 2. **Karapınar ikinci geçiş (path 172) çapraz kontrolü**: PC2 `pipeline/subset/karapinar_p172/` hazırladığında `analysis/cumulative.py --data-dir data/karapinar_p172` ile çalıştır (yoksa önce PC2'nin status'unu kontrol et, bekleme yerine 1. maddeyi bitir), path 7 sonucuyla karşılaştır → `docs/qa/PC8.md` (r, RMSE, maks fark) + `docs/story/media/pc8_kp_p7_vs_p172.png`. Yazma alanına `data/karapinar_p172/` eklendi.
 > 3. Sonra: `docs/qa/*.md` içindeki açık site bulgularını PC9 için tek listede topla → `docs/qa/PC8.md` ("PC9 yapılacaklar"), çakışmayı önlemek için.
 
+> **16:10 PC1 — EK GÖREV (PCQ kapatıldı, işleri sana):** mevcut maddelerin bitince sırayla:
+> A. `docs/story/submission_form.md`: `docs/story/submission_rules.md` alanlarına göre (proje adı, kısa/uzun açıklama, nasıl çalışır, faydalar, NASA verisi, diğer veri, araçlar, AI kullanımı, demo linki, repo linki) kopyala-yapıştır hazır İngilizce metin; karakter sınırı varsa uy ve sayısını yaz. Sayılar sadece `data/*/summary.json`, `validation.json`, `assets.json`'dan.
+> B. `docs/story/video_subtitles.srt` (SRT, `docs/story/video_shotlist.md` sürelerine göre) + `docs/story/narration_script.md` (~75 kelime). PC6 demo videosuna gömecek.
+> Kurallar: sade İngilizce (`docs/REVIEW_1500.md`), uydurma yok. Yazma alanına eklendi: bu üç dosya.
+
 ## Kimlik
 M3hmeT1888 · Antigravity · klasör `aseltech-gemini3` · commit öneki `[PC8]` · İNDİRME YAPMA.
 

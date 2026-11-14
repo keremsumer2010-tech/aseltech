@@ -1,3 +1,5 @@
+# PCQ — 16:10 KAPATILDI. İşleri: sunum kartları + prova listesi → PC4; teslim formu + altyazı + seslendirme → PC8.
+
 # PCQ ek görevler (15:00)
 1. Site yeniden tasarlandı (index, science, data, faq): tüm sayıları veri dosyalarıyla yeniden karşılaştır → docs/qa/PCQ.md.
 2. Oyun modeli denetimi: game/model.js ve docs/story/game_model.md birimleri, kalibrasyon (−10 cm dikey / 108 gün) ve parametre kaynakları tutarlı mı → docs/qa/PCQ.md.
