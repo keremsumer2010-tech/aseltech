@@ -279,3 +279,11 @@ Komut: `python analysis/pc6/test_20_strategies.py --self-test`
 - **Tarayıcı Hata Ayıklaması (`1280×800`):**
   - `/web/index.html`: **0 konsol hatası**, **0 kırık görsel** (`3/3` yüklü). Not (`PC3/PC4/PC7` için): yeni eklenen kartlardaki `HEAD /docs/story/engineering_risk.md` ve `HEAD /docs/story/technical_note.md` dosyalar henüz eklenmediği için `404` dönüyor (`storage_loss.md` ve `engine.md` `200 OK`).
   - `/docs/story/slides.html`: **0 konsol hatası**, **0 kırık görsel**; yalnızca henüz eklenmemiş `HEAD /docs/story/technical_note.md` `404` dönüyor.
+
+## 14. ASLA BOŞ KALMA — Tur 6 (`20:40 TR`)
+- `git pull`: `b24925c` çekildi (`CALISMA_HARITASI.md` / `tasks/PC6.md` değişmedi).
+- **`python -m pytest -q`:** **70 passed**, 1 uyarı (`22.29 s`).
+- **Tarayıcı Tekrar Kontrolü (`1280×800`):**
+  - `/docs/story/slides.html`: **0 konsol hatası, 0 ağ hatası (404 kapandı), 0 kırık görsel**.
+  - `/game/test_model.html`: **6/6 PASS**, 0 konsol hatası, 0 ağ hatası.
+  - `/web/index.html`: **0 konsol hatası, 0 kırık görsel**; `technical_note.md` `200 OK` oldu, yalnızca henüz eklenmemiş `HEAD /docs/story/engineering_risk.md` `404` dönüyor.
