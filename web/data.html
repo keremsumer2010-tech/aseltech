@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Data — NISAR Pulse</title>
+<meta name="description" content="Download every dataset behind NISAR Pulse: cumulative ground-motion maps, point time series, GPS validation, infrastructure risk and sinkhole catalogue.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="logo" href="index.html"><span class="logo-mark"></span>NISAR&nbsp;Pulse</a>
+  <nav class="site-nav"><a href="index.html#story">Story</a><a href="index.html#play">Simulator</a><a href="science.html">Science</a><a href="data.html" class="active">Data</a><a href="faq.html">FAQ</a></nav>
+</header>
+<main class="doc">
+  <p class="kicker">Open data</p>
+  <h1>Every number, downloadable</h1>
+  <p class="lede">All derived datasets are plain JSON, GeoJSON and PNG files you can open in any tool. The code that produced them is in the <a href="https://github.com/keremsumer2010-tech/aseltech">repository</a> (MIT licence).</p>
+  <table class="data" id="files"><thead><tr><th>Dataset</th><th>Region</th><th>Quality</th><th>File</th></tr></thead><tbody></tbody></table>
+  <h2>Source data</h2>
+  <p>NASA-ISRO NISAR L2 GUNW / GCOV and L3 SME2 products from the <a href="https://search.asf.alaska.edu/" target="_blank" rel="noopener">Alaska Satellite Facility DAAC</a>. GPS time series: <a href="https://geodesy.unr.edu/" target="_blank" rel="noopener">Nevada Geodetic Laboratory</a>. Infrastructure: © OpenStreetMap contributors (ODbL). Optical imagery: NASA GIBS / Worldview (VIIRS).</p>
+  <p class="disclaimer"><b>NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.</b></p>
+</main>
+<footer class="site-footer"><div class="wrap foot"><div><b>Team Taykut</b> · NASA Space Apps Challenge 2026</div><div><a href="https://github.com/keremsumer2010-tech/aseltech">Open source on GitHub</a></div></div></footer>
+<script src="docs.js"></script>
+<script>
+const F = [
+ ['Cumulative ground motion — metadata', 'Central Valley', 'data/central_valley/meta.json'],
+ ['Summary (headline numbers & method)', 'Central Valley', 'data/central_valley/summary.json'],
+ ['Point time series', 'Central Valley', 'data/central_valley/points.json'],
+ ['GPS validation', 'Central Valley', 'data/central_valley/validation.json'],
+ ['Infrastructure risk segments', 'Central Valley', 'data/central_valley/assets.json'],
+ ['Cumulative ground motion — metadata', 'Karapınar', 'data/karapinar/meta.json'],
+ ['Summary', 'Karapınar', 'data/karapinar/summary.json'],
+ ['Point time series', 'Karapınar', 'data/karapinar/points.json'],
+ ['Documented sinkholes (with sources)', 'Karapınar', 'data/karapinar/sinkholes.geojson'],
+ ['Optical vs radar image pair — metadata', 'The Fens, UK', 'data/uk/meta.json'],
+ ['Data catalogue', 'All', 'data/catalog.json']];
+Promise.all(F.map(f => J(f[2]))).then(rs => {
+  document.querySelector('#files tbody').innerHTML = F.map((f, i) => {
+    const d = rs[i]; if (!d) return '';
+    const q = (Array.isArray(d) ? d[0]?.quality : d.quality) || (f[2].includes('sinkholes') ? 'reference' : '—');
+    const cls = {provisional: 'provisional', preview: 'preview', 'beta-precal': 'beta', mixed: 'beta'}[q];
+    return `<tr><td>${f[0]}</td><td>${f[1]}</td><td>${cls ? `<span class="qbadge ${cls}">${q.toUpperCase()}</span>` : q}</td><td><a class="mono" href="${ROOT + f[2]}" download>${f[2].split('/').pop()}</a></td></tr>`;
+  }).join('');
+});
+</script>
+</body>
+</html>

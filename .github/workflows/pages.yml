@@ -40,6 +40,8 @@ jobs:
           fi
           if [ -d data ]; then cp -r data _site/data; fi
           if [ -d game ]; then cp -r game _site/game; fi
+          if [ -d web3d ]; then cp -r web3d _site/web3d; fi
+          if [ -d docs/story ]; then mkdir -p _site/docs && cp -r docs/story _site/docs/story; fi
           rm -f _site/.gitkeep _site/data/.gitkeep _site/game/.gitkeep
           touch _site/.nojekyll
           echo "Site contents:" && find _site -maxdepth 2 | head -50

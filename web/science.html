@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Science & Method — NISAR Pulse</title>
+<meta name="description" content="How NISAR Pulse turns NASA-ISRO NISAR interferograms into centimetres of ground motion: data, equations, corrections, validation against GPS, risk index and limitations.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="logo" href="index.html"><span class="logo-mark"></span>NISAR&nbsp;Pulse</a>
+  <nav class="site-nav"><a href="index.html#story">Story</a><a href="index.html#play">Simulator</a><a href="science.html" class="active">Science</a><a href="data.html">Data</a><a href="faq.html">FAQ</a></nav>
+</header>
+<main class="doc">
+  <p class="kicker">Science &amp; method</p>
+  <h1>From radar phase to centimetres</h1>
+  <p class="lede">Everything we show is computed from NASA-ISRO NISAR Level-2 products with open, tested code. This page explains each step, the corrections we apply, how we checked the result, and what it cannot tell you.</p>
+  <div class="toc"><a href="#data">1 Data</a><a href="#conv">2 Phase → cm</a><a href="#chain">3 Time series</a><a href="#valid">4 Validation</a><a href="#risk">5 Risk index</a><a href="#limits">6 Limits</a><a href="#cal">7 Calibration status</a><a href="#refs">8 Sources</a></div>
+
+  <h2 id="data">1 · Data</h2>
+  <table class="data"><thead><tr><th>Product</th><th>What it is</th><th>Use here</th></tr></thead><tbody>
+    <tr><td><b>GUNW</b> (L2)</td><td>Geocoded unwrapped interferogram, 80 m UTM grid, HH polarisation, with coherence, connected components and ionosphere phase screen</td><td>Ground motion: Central Valley (track 34, 7 pairs), Karapınar (track 7, 8 pairs)</td></tr>
+    <tr><td><b>GCOV</b> (L2)</td><td>Radiometrically terrain-corrected backscatter (γ⁰)</td><td>Radar view of the Fens (quick-look)</td></tr>
+    <tr><td><b>SME2</b> (L3)</td><td>Soil moisture</td><td>Cause-and-effect panel (in progress)</td></tr>
+  </tbody></table>
+  <p>All products come from NASA's Alaska Satellite Facility DAAC (search: <code>platform=NISAR</code>). Measurements on the main page use only <b>PROVISIONAL</b> products (composite release P05023) whose two dates are on or after 17 June 2026.</p>
+
+  <h2 id="conv">2 · Phase → centimetres</h2>
+  <div class="eq">λ = c / f<sub>center</sub> &nbsp;&nbsp;(read from each file; 1239 MHz → 0.24196 m for track 34)<br>d<sub>LOS</sub> = −λ / (4π) · (φ<sub>unw</sub> − φ<sub>iono</sub>)<br>negative d<sub>LOS</sub> = motion away from the satellite (subsidence)</div>
+  <p>The sign convention follows ISCE3 (interferogram = reference × conj(secondary)) and MintPy's NISAR reader. Pixels with coherence &lt; 0.3 or connected component 0 are masked. A planar ramp is removed and each pair is referenced to a stable, highly coherent area. Vertical estimates assume no horizontal motion: d<sub>vert</sub> ≈ d<sub>LOS</sub> / cos θ<sub>inc</sub>.</p>
+
+  <h2 id="chain">3 · Time series</h2>
+  <p>Consecutive 12-day pairs (28 Jun → 14 Oct 2026 for track 34) are summed into a cumulative map. A chain with any gap is not joined. Headline numbers are the most negative median of ~1 km blocks with ≥ 50 % valid pixels and within-block standard deviation ≤ 2 cm, so single-pixel unwrapping errors cannot set the headline. Changing the reference area moves the Central Valley maximum between −6.2 and −7.8 cm (line of sight); we report the range.</p>
+
+  <h2 id="valid">4 · Validation against GPS</h2>
+  <p>We compared the NISAR vertical estimate with daily "up" positions from 10 continuous GPS stations (Nevada Geodetic Laboratory) over the same dates.</p>
+  <table class="data" id="valTable"><thead><tr><th>Station</th><th>Correlation r</th><th>RMSE (cm)</th><th>GPS end (cm)</th><th>NISAR end (cm)</th></tr></thead><tbody></tbody></table>
+  <p id="valNote" class="small"></p>
+
+  <h2 id="risk">5 · Infrastructure risk index</h2>
+  <p>For every canal, major road and railway segment from OpenStreetMap longer than 1 km, we sample the cumulative map along the line and compute the sinking gradient (mm per km) and the total sinking. <b>High</b>: gradient ≥ 10 mm/km or sinking ≥ 10 cm. <b>Medium</b>: ≥ 5 mm/km or ≥ 5 cm. Gradients matter because uneven sinking tilts canals and reduces their capacity.</p>
+
+  <h2 id="limits">6 · Limits</h2>
+  <ul>
+    <li>Radar measures along its slanted line of sight; horizontal motion would bias the vertical estimate.</li>
+    <li>Troposphere and ionosphere add centimetre-level noise per pair; summing pairs accumulates it.</li>
+    <li>Yearly rates extrapolated from one irrigation season overstate the net annual rate, because part of summer subsidence recovers in winter.</li>
+    <li>Data are provisional and may change when the NISAR project releases validated products.</li>
+  </ul>
+
+  <h2 id="cal">7 · Calibration status</h2>
+  <div class="md" id="calMd"></div>
+
+  <h2 id="refs">8 · Sources</h2>
+  <div class="md" id="srcMd"></div>
+</main>
+<footer class="site-footer"><div class="wrap foot"><div><b>Team Taykut</b> · NASA Space Apps Challenge 2026</div><div><a href="https://github.com/keremsumer2010-tech/aseltech">Open source on GitHub</a></div></div></footer>
+<script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+<script src="docs.js"></script>
+<script>
+md('calMd', 'docs/story/calibration_note.md', true);
+md('srcMd', 'docs/story/sources.md', true);
+J('data/central_valley/validation.json').then(v => {
+  if (!v) return;
+  const f = x => (x < 0 ? '−' : '+') + Math.abs(x).toFixed(1);
+  document.querySelector('#valTable tbody').innerHTML = v.slice().sort((a, b) => b.corr - a.corr).map(s =>
+    `<tr><td>${s.station}</td><td class="${s.corr >= 0.4 ? 'good' : 'weak'}">${s.corr.toFixed(2)}</td><td>${s.rmse_cm.toFixed(2)}</td><td>${f(s.gnss.at(-1))}</td><td>${f(s.insar.at(-1))}</td></tr>`).join('');
+  const good = v.filter(s => s.corr >= 0.4), med = a => a.slice().sort((x, y) => x - y)[Math.floor(a.length / 2)];
+  document.getElementById('valNote').textContent = `${good.length} of ${v.length} stations agree with r ≥ 0.4 (median RMSE ${med(good.map(s => s.rmse_cm)).toFixed(1)} cm). The stations that disagree are nearly stable, where the motion is smaller than the noise of a single season.`;
+});
+</script>
+</body>
+</html>

@@ -4,157 +4,178 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>NISAR Pulse — Follow the Water</title>
-<meta name="description" content="NASA-ISRO NISAR radar sees through clouds and measures the ground sinking as groundwater is pumped. A story anyone can read: California, Konya and Britain.">
+<meta name="description" content="NASA-ISRO NISAR radar measured California's Central Valley sinking up to 7.8 cm in 108 days. An open, data-driven story of groundwater and the ground beneath our food: California, Konya and Britain.">
+<meta property="og:title" content="NISAR Pulse — Follow the Water">
+<meta property="og:description" content="Real NASA-ISRO NISAR radar measurements of sinking farmland, explained for everyone.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<nav class="topnav">
-  <a href="#hero" class="brand">NISAR Pulse</a>
-  <div class="links">
-    <a href="#uk">Clouds</a><a href="#usa">Dancing ground</a><a href="#konya">Sinkholes</a><a href="#why">Why</a><a href="#game">Game</a><a href="#how">How we know</a>
-  </div>
-</nav>
-
-<!-- 0 · HERO -->
-<header id="hero" class="scene hero">
-  <img class="hero-img" src="assets/hero.jpg" alt="">
-  <video id="heroVideo" class="hero-video" autoplay muted loop playsinline hidden></video>
-  <span class="ai-tag">AI-generated illustration</span>
-  <div class="hero-text">
-    <p class="eyebrow">NASA Space Apps 2026 · Dancing with the SARs</p>
-    <h1>Follow the water.</h1>
-    <p class="lead">Farms are irrigated. Groundwater is pumped. The ground sinks.<br>
-      NASA-ISRO's <b>NISAR</b> radar sees through clouds and measures that motion in centimetres.
-      We turn it into a story anyone can read.</p>
-    <a class="cta" href="#uk">Scroll to follow the water ↓</a>
-  </div>
+<header class="site-header">
+  <a class="logo" href="index.html"><span class="logo-mark"></span>NISAR&nbsp;Pulse</a>
+  <nav class="site-nav">
+    <a href="#story" class="active">Story</a><a href="#play">Simulator</a><a href="science.html">Science</a><a href="data.html">Data</a><a href="faq.html">FAQ</a>
+  </nav>
 </header>
 
-<!-- 1 · UK -->
-<section id="uk" class="scene bg" style="background-image:url(assets/fens_ai.jpg)">
-  <span class="ai-tag bg-tag">AI-generated background illustration</span>
-  <div class="text">
-    <p class="eyebrow">1 · United Kingdom</p>
-    <h2>Britain under clouds</h2>
-    <p>On most days, camera satellites see only clouds over England. NISAR sends its own microwave signal, so it sees the ground through cloud, smoke and darkness.</p>
-    <p class="hint">Drag the line to look under the clouds.</p>
-    <div id="ukMeta" class="meta-line"></div>
-    <div class="card" id="holmeCard">
-      <figure class="ai-fig"><img src="assets/holme_ai.jpg" alt="Illustration of a tall iron post standing above sunken peat farmland" loading="lazy"><span class="ai-tag">AI-generated illustration</span></figure>
-      <h3>The Holme Fen posts</h3>
-      <p id="holmeText">In the Fens, an iron post driven into the peat in the 1850s now stands far above the ground: the land around it has sunk as the peat dried out. <span class="pending">Exact figure and source being verified.</span></p>
-    </div>
+<!-- HERO: live NISAR data -->
+<section class="hero">
+  <div id="heroMap" class="hero-map" aria-hidden="true"></div>
+  <div class="hero-shade"></div>
+  <div class="hero-content">
+    <p class="kicker">NASA Space Apps Challenge 2026 · Dancing with the SARs</p>
+    <h1>The ground beneath<br>our food is sinking.</h1>
+    <p class="lede">In 108 days of 2026, NASA-ISRO's NISAR radar measured parts of California's Central Valley dropping by up to <b data-k="cv.max">7.8 cm</b>. We turned those measurements into a story anyone can read — and a simulator anyone can play.</p>
+    <div class="hero-cta"><a class="btn primary" href="#story">Follow the water</a><a class="btn ghost" href="#play">Run the simulator</a></div>
   </div>
-  <div class="visual">
-    <div id="compare" class="compare">
-      <div class="compare-empty" id="compareEmpty"><span class="badge placeholder">PLACEHOLDER</span><p>Cloud / radar image pair for the Fens is being prepared.</p></div>
-      <img id="ukOptical" alt="Optical satellite image of the Fens on a cloudy day" hidden>
-      <div id="ukRadarWrap" class="compare-top" hidden><img id="ukRadar" alt="NISAR radar image of the same area and day"></div>
-      <input id="compareRange" type="range" min="0" max="100" value="50" aria-label="Compare optical and radar" hidden>
-      <span class="compare-label left" hidden>Optical (clouds)</span>
-      <span class="compare-label right" hidden>NISAR radar</span>
-    </div>
+  <p class="hero-caption">Live background: cumulative ground motion measured by NISAR over the Central Valley, 28 Jun – 14 Oct 2026 (red = sinking). <span class="qbadge provisional">PROVISIONAL</span></p>
+</section>
+
+<!-- KEY NUMBERS -->
+<section class="stats" aria-label="Key measurements">
+  <div class="stat"><div class="num"><span data-k="cv.max">−7.8</span><small>cm</small></div><div class="lbl">Largest sinking measured in the Central Valley (line of sight, 108 days)</div></div>
+  <div class="stat"><div class="num"><span data-k="cv.vert">≈−10</span><small>cm</small></div><div class="lbl">Same spot, estimated vertical motion</div></div>
+  <div class="stat"><div class="num"><span data-k="risk.high">81</span></div><div class="lbl">Canal, road and rail segments flagged high-risk by our tilt index</div></div>
+  <div class="stat"><div class="num"><span data-k="gnss.good">6</span><small>/10</small></div><div class="lbl">GPS stations where ground and satellite agree (r ≥ 0.4)</div></div>
+  <div class="stat"><div class="num"><span data-k="kp.max">−5.9</span><small>cm</small></div><div class="lbl">Largest sinking measured around Karapınar, Türkiye</div></div>
+  <div class="stat"><div class="num"><span data-k="kp.sinks">29</span></div><div class="lbl">Documented sinkholes on our Konya map, each with a source</div></div>
+</section>
+
+<!-- STORY: sticky map + steps -->
+<section id="story" class="story">
+  <div class="story-map"><div id="map"></div>
+    <div class="map-legend" id="mapLegend"><span class="lg-title">Ground motion (cm)</span><div class="lg-ramp"></div><div class="lg-ticks"><span id="lgMin">−6</span><span>0</span><span id="lgMax">+6</span></div></div>
+    <div class="map-tag" id="mapTag"></div>
+  </div>
+  <div class="story-steps">
+
+    <article class="step" data-step="intro">
+      <p class="chapter">Chapter 1</p>
+      <h2>A radar that sees the ground move</h2>
+      <p>NISAR, launched in July 2025 by NASA and ISRO, sends its own microwave pulses. Comparing two passes 12 days apart, it measures how far the ground moved towards or away from the satellite — to within millimetres to centimetres — day or night, through any cloud.</p>
+      <p>We used its newly released <b>provisional</b> data to follow one chain of cause and effect across three countries.</p>
+      <div class="chain"><span>Irrigation</span><i></i><span>Groundwater pumping</span><i></i><span>Clay compaction</span><i></i><span>Sinking ground</span></div>
+    </article>
+
+    <article class="step" data-step="uk">
+      <p class="chapter">Chapter 2 · United Kingdom</p>
+      <h2>Britain, under the clouds</h2>
+      <p>On <span data-k="uk.date">20 Oct 2026</span>, NASA's VIIRS camera saw mostly cloud over the Fens. NISAR's radar, the same day, saw the fields. Drag the line to compare.</p>
+      <figure class="compare" id="compare">
+        <img id="ukOptical" alt="VIIRS true-colour image of the Fens on a cloudy day">
+        <div class="compare-top" id="ukTop"><img id="ukRadar" alt="NISAR GCOV radar quick-look of the same area and day"></div>
+        <input id="compareRange" type="range" min="0" max="100" value="50" aria-label="Compare optical and radar views">
+        <span class="cmp-l">Optical · VIIRS</span><span class="cmp-r">Radar · NISAR</span>
+      </figure>
+      <figcaption>Figure 1. Left: NASA VIIRS true colour (GIBS). Right: NISAR GCOV quick-look. <span class="qbadge preview">PREVIEW</span> quick-look, not quantitative.</figcaption>
+      <div class="note"><b>Why the Fens matter.</b> <span id="holmeText">Driven flush with the peat in 1851, the Holme Fen cast-iron post now stands nearly <b>4 metres</b> above the sunken fields — leaving the fenland <b>2.75 m below sea level</b>, Britain's lowest land, while drained farmland still loses 1–2 cm a year (<a href="https://www.greatfen.org.uk/about-great-fen/heritage/holme-fen-posts" target="_blank" rel="noopener">The Great Fen</a>).</span></div>
+    </article>
+
+    <article class="step" data-step="cv">
+      <p class="chapter">Chapter 3 · California</p>
+      <h2>The dancing ground</h2>
+      <p>The Central Valley grows a large share of America's fruit, nuts and vegetables. Through the 2026 irrigation season, NISAR caught the valley floor sinking in broad bowls around Tulare and Corcoran.</p>
+      <div class="timebar"><button id="play" class="playbtn" aria-label="Play animation">▶</button><input id="slider" type="range" min="0" max="0" value="0" aria-label="Date"><span id="dateLbl" class="mono"></span></div>
+      <p class="hint">Press play, or tap a white dot on the map.</p>
+      <div class="readout" id="readout">—</div>
+      <div class="chartbox"><canvas id="pointChart" height="180"></canvas></div>
+      <figcaption>Figure 2. Cumulative line-of-sight motion from <span data-k="cv.pairs">7</span> consecutive NISAR GUNW pairs (track 34). Negative = moving away from the satellite (sinking). <span class="qbadge provisional">PROVISIONAL</span></figcaption>
+    </article>
+
+    <article class="step" data-step="gnss">
+      <p class="chapter">Chapter 4 · Checking our work</p>
+      <h2>Does it match the ground?</h2>
+      <p>We compared NISAR with <b>10 permanent GPS stations</b> (Nevada Geodetic Laboratory). Where the ground is clearly sinking, satellite and GPS tell the same story. At stable stations the signal is smaller than the noise, so agreement is weak — which is exactly what we would expect.</p>
+      <div class="chartbox"><canvas id="gnssChart" height="190"></canvas></div>
+      <table class="mini" id="gnssTable"><thead><tr><th>Station</th><th>r</th><th>RMSE</th><th>GPS</th><th>NISAR</th></tr></thead><tbody></tbody></table>
+      <figcaption>Figure 3. Vertical estimate (LOS / cos incidence) vs GPS "up". Tap a station on the map. RMSE in cm.</figcaption>
+    </article>
+
+    <article class="step" data-step="risk">
+      <p class="chapter">Chapter 5 · What is at risk</p>
+      <h2>When the ground tilts, canals fail</h2>
+      <p>Uniform sinking is slow damage. <b>Uneven</b> sinking tilts canals and roads. We measured the gradient of sinking along <span data-k="risk.evaluated">645</span> canal, road and rail segments from OpenStreetMap.</p>
+      <div class="riskbars"><div><b data-k="risk.high">81</b><span>high</span></div><div><b data-k="risk.med">131</b><span>medium</span></div><div><b data-k="risk.low">433</b><span>low</span></div></div>
+      <ol class="toplist" id="riskList"></ol>
+      <figcaption>Figure 4. Risk = sinking gradient (mm per km) and total sinking along each segment, 28 Jun – 14 Oct 2026. Thresholds in <a href="science.html#risk">Science</a>. Map data © OpenStreetMap contributors (ODbL).</figcaption>
+    </article>
+
+    <article class="step" data-step="kp">
+      <p class="chapter">Chapter 6 · Türkiye — our home</p>
+      <h2>Konya's sinkholes</h2>
+      <p>On the Konya Plain, falling groundwater has been linked to sudden sinkholes (<i>obruk</i>) in farmland around Karapınar. NISAR measured up to <b data-k="kp.max">−5.9</b> cm of line-of-sight sinking here between <span data-k="kp.period">26 Jun – 12 Oct 2026</span>.</p>
+      <ul class="sinklist" id="sinkList"></ul>
+      <figcaption>Figure 5. NISAR cumulative motion (track 7, <span data-k="kp.pairs">8</span> pairs) with documented sinkholes (red). Each point links to its source. <span class="qbadge provisional">PROVISIONAL</span></figcaption>
+    </article>
+
   </div>
 </section>
 
-<!-- 2 · USA -->
-<section id="usa" class="scene bg" style="background-image:url(assets/canal_ai.jpg)">
-  <span class="ai-tag bg-tag">AI-generated background illustration</span>
-  <div class="text">
-    <p class="eyebrow">2 · California, USA</p>
-    <h2>The dancing ground</h2>
-    <p>The Central Valley grows a large share of America's food. When rain is short, farms pump groundwater, the clay layers below compact, and the surface sinks.</p>
-    <div class="badge-row" id="cvBadge"></div>
-    <div class="timebar">
-      <button id="cvPlay" class="play" aria-label="Play">▶</button>
-      <input id="cvSlider" type="range" min="0" max="0" value="0" aria-label="Date">
-      <span id="cvDate" class="date"></span>
+<!-- WHY -->
+<section class="band" id="why">
+  <div class="wrap two">
+    <div>
+      <p class="chapter">The physics</p>
+      <h2>Why pumped ground does not come back</h2>
+      <p>Aquifers are layers of sand and clay saturated with water. Pumping lowers the water pressure, and the clay squeezes. Above the lowest level the aquifer has ever reached, that squeeze is elastic — the ground rebounds a little when wet winters recharge it. Below that level, clay compacts <b>permanently</b>: storage is lost forever and the surface stays down.</p>
+      <p>That is the "dance" NISAR records: the ground falls each summer and only partly rises each winter.</p>
     </div>
-    <div class="legend"><span id="legMin"></span><div class="ramp"></div><span id="legMax"></span></div>
-    <p class="legend-note">Red = ground moved away from the satellite (sinking). Blue = moved towards it.</p>
-    <div id="cvSentence" class="sentence">Tap a point on the map.</div>
-    <canvas id="cvChart" height="170"></canvas>
-  </div>
-  <div class="visual"><div id="cvMap" class="map"></div></div>
-</section>
-
-<!-- 3 · KONYA -->
-<section id="konya" class="scene bg" style="background-image:url(assets/sinkhole_aerial_ai.jpg)">
-  <span class="ai-tag bg-tag">AI-generated background illustration</span>
-  <div class="text">
-    <p class="eyebrow">3 · Konya, Türkiye — our home</p>
-    <h2>Konya's sinkholes</h2>
-    <p>On the Konya Plain, falling groundwater has been linked to sinkholes (<i>obruk</i>) that open suddenly in farmland around Karapınar. NISAR watches the ground here every 12 days.</p>
-    <div class="badge-row" id="kpBadge"></div>
-    <ul id="kpList" class="kp-list"></ul>
-    <p id="kpEmpty" class="pending">Verified sinkhole locations (each with a source) are being compiled.</p>
-    <figure class="ai-fig"><img src="assets/obruk_ai.jpg" alt="Cross-section illustration of a sinkhole above dissolved limestone and a lowered water table" loading="lazy"><span class="ai-tag">AI-generated illustration</span><figcaption>How an obruk forms: water dissolves limestone, the water table drops, the roof collapses.</figcaption></figure>
-  </div>
-  <div class="visual"><div id="kpMap" class="map"></div></div>
-</section>
-
-<!-- 4 · WHY -->
-<section id="why" class="scene">
-  <div class="text">
-    <p class="eyebrow">4 · Why it happens</p>
-    <h2>From a pump to a sinking field</h2>
-    <ol class="steps">
-      <li><b>Dry season, thirsty crops.</b> Farmers irrigate.</li>
-      <li><b>Groundwater is pumped.</b> Water leaves the pores between clay and sand.</li>
-      <li><b>Clay compacts.</b> Part of this squeeze is permanent: the aquifer loses storage.</li>
-      <li><b>The surface sinks.</b> Canals tilt, wells break, sinkholes can open.</li>
-      <li><b>Wet season.</b> Some water returns and the ground rises a little — the "dance".</li>
-    </ol>
-  </div>
-  <div class="visual">
     <figure class="diagram">
-      <svg viewBox="0 0 400 300" role="img" aria-label="Illustrative diagram of groundwater pumping and ground subsidence">
-        <rect x="0" y="0" width="400" height="80" fill="var(--sky)"/>
-        <path d="M0 90 Q200 120 400 90 L400 130 L0 130 Z" fill="var(--soil)"/>
-        <rect x="0" y="130" width="400" height="60" fill="var(--clay)"/>
-        <rect x="0" y="190" width="400" height="110" fill="var(--aquifer)"/>
-        <g fill="var(--crop)"><circle cx="60" cy="92" r="6"/><circle cx="90" cy="95" r="6"/><circle cx="310" cy="95" r="6"/><circle cx="340" cy="92" r="6"/></g>
-        <rect x="196" y="60" width="8" height="200" fill="#999"/><rect x="185" y="48" width="30" height="16" rx="3" fill="#ccc"/>
-        <path d="M200 255 L200 70" stroke="var(--water)" stroke-width="3" stroke-dasharray="6 5" class="flow"/>
-        <path d="M150 112 L150 128 M250 112 L250 128" stroke="#fff" stroke-width="2" marker-end="url(#ar)"/>
-        <defs><marker id="ar" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#fff"/></marker></defs>
-        <text x="8" y="160" class="lbl">Clay — compacts</text><text x="8" y="215" class="lbl">Aquifer — water pumped out</text><text x="8" y="20" class="lbl">Surface sinks ↓</text>
+      <svg viewBox="0 0 520 320" role="img" aria-label="Cross-section: pumping lowers the water table, clay compacts and the surface sinks">
+        <defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0d2238"/><stop offset="1" stop-color="#14324f"/></linearGradient>
+        <pattern id="clayP" width="12" height="6" patternUnits="userSpaceOnUse"><path d="M0 3h12" stroke="#8a6a4f" stroke-width="1"/></pattern>
+        <pattern id="sandP" width="8" height="8" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="#c9b48a"/><circle cx="6" cy="6" r="1" fill="#c9b48a"/></pattern></defs>
+        <rect width="520" height="80" fill="url(#sky)"/>
+        <path d="M0 80 L180 80 Q260 104 340 80 L520 80 L520 110 L0 110Z" fill="#5a4330"/>
+        <rect y="110" width="520" height="70" fill="#6e5440"/><rect y="110" width="520" height="70" fill="url(#clayP)"/>
+        <rect y="180" width="520" height="140" fill="#4b5d6a"/><rect y="180" width="520" height="140" fill="url(#sandP)" opacity=".6"/>
+        <path d="M0 196 Q260 262 520 196" fill="none" stroke="#5ec8ff" stroke-width="2.5" stroke-dasharray="7 5"/>
+        <rect x="256" y="52" width="8" height="230" fill="#9aa4ae"/><rect x="244" y="40" width="32" height="16" rx="3" fill="#c8d0d8"/>
+        <path d="M260 270 L260 70" stroke="#5ec8ff" stroke-width="2" stroke-dasharray="5 6" class="flow"/>
+        <path d="M200 70 v14 M320 70 v14" stroke="#ff6b5a" stroke-width="2" marker-end="url(#ah)"/>
+        <defs><marker id="ah" markerWidth="8" markerHeight="8" refX="4" refY="7" orient="auto"><path d="M0 0 L8 0 L4 8Z" fill="#ff6b5a"/></marker></defs>
+        <text x="14" y="70" class="dl">Surface sinks</text><text x="14" y="150" class="dl">Clay — compacts (part is permanent)</text><text x="14" y="300" class="dl">Sand &amp; gravel aquifer</text><text x="360" y="236" class="dl blue">Water table falls</text>
       </svg>
-      <figcaption>Illustrative diagram (not to scale)</figcaption>
+      <figcaption>Figure 6. Schematic (not to scale).</figcaption>
     </figure>
   </div>
 </section>
 
-<!-- 5 · GAME -->
-<section id="game" class="scene">
-  <div class="text">
-    <p class="eyebrow">5 · Play</p>
-    <h2>Aquifer Manager</h2>
-    <p>You run a farming valley for ten years. Pump more and your crops thrive — but the ground pays the price. How much sinking will you accept?</p>
-    <a id="gameLink" class="cta" href="#" target="_blank" rel="noopener">Play Aquifer Manager ↗</a>
-    <p id="gameNote" class="pending">The game is being built.</p>
+<!-- SIMULATOR -->
+<section class="band dark" id="play">
+  <div class="wrap">
+    <p class="chapter">Simulator</p>
+    <h2>Valley Under Pressure</h2>
+    <p class="narrow">Run a farming valley for two years on a physics model calibrated to NISAR's measurement. Pump more, earn more — and watch what it costs the ground. At the end, compare your valley with what NISAR actually saw.</p>
+    <div class="gameframe"><iframe id="gameFrame" title="Valley Under Pressure simulator" loading="lazy"></iframe></div>
+    <p class="small"><a id="gameOpen" href="#" target="_blank" rel="noopener">Open full screen ↗</a> · <a id="view3d" href="#" target="_blank" rel="noopener">3D view of the sinking ground ↗</a></p>
   </div>
-  <div class="visual"><figure class="ai-fig game-poster" id="gamePoster"><img src="assets/game_valley_ai.jpg" alt="Illustrated cross-section of a farming valley with a well, canal and aquifer"><span class="ai-tag">AI-generated illustration</span></figure><iframe id="gameFrame" title="Aquifer Manager game" loading="lazy" hidden></iframe></div>
 </section>
 
-<!-- 6 · HOW -->
-<section id="how" class="scene how">
-  <div class="text wide">
-    <p class="eyebrow">6 · How we know</p>
-    <h2>Data, method, honesty</h2>
-    <div class="grid3">
-      <div class="card"><h3>NISAR data</h3><p><b>GUNW</b> — unwrapped interferograms: ground motion between two dates (80 m).<br><b>GCOV</b> — radar backscatter images.<br><b>SME2</b> — soil moisture.<br>All from NASA's Alaska Satellite Facility (ASF DAAC).</p></div>
-      <div class="card"><h3>Method</h3><p>Phase is converted to centimetres with the radar wavelength read from each product (−λ/4π × phase), unreliable pixels are masked by coherence, everything is referenced to a stable area, and consecutive 12-day pairs are added up. Radar measures motion along its slanted line of sight, not purely vertical.</p></div>
-      <div class="card"><h3>Quality labels</h3><p><span class="badge provisional">PROVISIONAL</span> NISAR provisional products (June 2026 onward).<br><span class="badge beta">PRE-CALIBRATION BETA</span> earlier products, shown separately.<br><span class="badge preview">PREVIEW</span> quick-look images, not quantitative.<br><span class="badge placeholder">PLACEHOLDER</span> layout test, not a measurement.</p></div>
+<!-- HOW WE KNOW -->
+<section class="band" id="how">
+  <div class="wrap">
+    <p class="chapter">Method &amp; honesty</p>
+    <h2>How we know</h2>
+    <div class="cards3">
+      <div class="card"><h3>Data</h3><p>NISAR L2 <b>GUNW</b> interferograms (80 m), <b>GCOV</b> radar images and <b>SME2</b> soil moisture from NASA's Alaska Satellite Facility. Only provisional products from 17 Jun 2026 onward are used in the measurements shown.</p></div>
+      <div class="card"><h3>Method</h3><p>Unwrapped phase → centimetres with each product's own wavelength (−λ/4π·φ), ionosphere screen removed, coherence and connected-component masks, stable reference area, consecutive 12-day pairs summed. Tested code, open on GitHub.</p></div>
+      <div class="card"><h3>Limits</h3><p>Radar measures motion along its slanted line of sight; vertical values assume no horizontal motion. Atmosphere adds centimetre-level noise. Yearly rates from one season are estimates.</p></div>
     </div>
-    <p class="footnote"><b>NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.</b> We use the products as released.</p>
-    <p class="footnote">AI use: this site and its code were built with the help of AI assistants (Claude, Gemini). Any AI-generated image or video is labelled "AI-generated illustration" and is never presented as data. Maps show only real data.</p>
-    <p class="footnote">Open source (MIT): <a href="https://github.com/keremsumer2010-tech/aseltech">github.com/keremsumer2010-tech/aseltech</a> · Sources: <a href="https://github.com/keremsumer2010-tech/aseltech/blob/main/docs/story/sources.md">docs/story/sources.md</a> · Basemap imagery © Esri, Maxar, Earthstar Geographics.</p>
-    <p class="team">Team Taykut · ASELSAN Vocational and Technical Anatolian High School, Ankara, Türkiye · NASA Space Apps Challenge 2026, Lincoln (UK)</p>
+    <div class="qlegend"><span class="qbadge provisional">PROVISIONAL</span> NISAR provisional product · <span class="qbadge beta">PRE-CALIBRATION BETA</span> earlier product, shown separately · <span class="qbadge preview">PREVIEW</span> quick-look, not quantitative</div>
+    <p class="disclaimer"><b>NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.</b> We use the products as released.</p>
+    <p><a class="btn ghost" href="science.html">Read the full method →</a> <a class="btn ghost" href="data.html">Download the data →</a></p>
   </div>
 </section>
+
+<footer class="site-footer">
+  <div class="wrap foot">
+    <div><b>Team Taykut</b> · ASELSAN Vocational and Technical Anatolian High School, Ankara, Türkiye<br>NASA Space Apps Challenge 2026 · Local event: Lincoln, UK</div>
+    <div>Open source (MIT): <a href="https://github.com/keremsumer2010-tech/aseltech">GitHub</a> · Basemap © Esri, Maxar, Earthstar Geographics · Map data © OpenStreetMap contributors<br>Built with help from AI assistants (Claude, Gemini); see <a href="faq.html">FAQ</a>. All maps show real data.</div>
+  </div>
+</footer>
 
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>

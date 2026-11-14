@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FAQ — NISAR Pulse</title>
+<meta name="description" content="Questions and answers about NISAR Pulse: calibration, line-of-sight motion, atmosphere, GPS agreement, sinkholes and how AI was used.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="logo" href="index.html"><span class="logo-mark"></span>NISAR&nbsp;Pulse</a>
+  <nav class="site-nav"><a href="index.html#story">Story</a><a href="index.html#play">Simulator</a><a href="science.html">Science</a><a href="data.html">Data</a><a href="faq.html" class="active">FAQ</a></nav>
+</header>
+<main class="doc">
+  <p class="kicker">Questions</p>
+  <h1>Frequently asked</h1>
+  <div class="md" id="faqMd"></div>
+  <h2>How we used AI</h2>
+  <p>Code, analysis scripts and text were written with the help of AI assistants (Anthropic Claude, Google Gemini) and checked by the team: every number comes from the data files, every scientific claim has a source, and tests cover the core conversions. No AI-generated image is presented as data; maps show only real measurements.</p>
+</main>
+<footer class="site-footer"><div class="wrap foot"><div><b>Team Taykut</b> · NASA Space Apps Challenge 2026</div><div><a href="https://github.com/keremsumer2010-tech/aseltech">Open source on GitHub</a></div></div></footer>
+<script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+<script src="docs.js"></script>
+<script>md('faqMd', 'docs/story/judge_faq.md', true);</script>
+</body>
+</html>
