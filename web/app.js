@@ -21,11 +21,11 @@ const chartOpts = yTitle => ({responsive: true, animation: {duration: 300}, plug
 
 const D = {};
 async function load(){
-  [D.cvMeta, D.cvSum, D.cvPts, D.val, D.assets, D.kpMeta, D.kpSum, D.sinks, D.uk, D.kpAssets, D.cvArea, D.ukClay] = await Promise.all([
+  [D.cvMeta, D.cvSum, D.cvPts, D.val, D.assets, D.kpMeta, D.kpSum, D.sinks, D.uk, D.kpAssets, D.cvArea, D.ukClay, D.fens] = await Promise.all([
     J('data/central_valley/meta.json'), J('data/central_valley/summary.json'), J('data/central_valley/points.json'),
     J('data/central_valley/validation.json'), J('data/central_valley/assets.json'),
     J('data/karapinar/meta.json'), J('data/karapinar/summary.json'), J('data/karapinar/sinkholes.geojson'), J('data/uk/meta.json'),
-    J('data/karapinar/assets.json'), J('data/central_valley/area_stats.json'), J('data/uk_clay/detection.json')]);
+    J('data/karapinar/assets.json'), J('data/central_valley/area_stats.json'), J('data/uk_clay/detection.json'), J('data/fens/crops.json')]);
   if (D.cvSum){ setK('cv.max', minus(D.cvSum.max_subsidence_cm)); setK('cv.maxabs', Math.abs(D.cvSum.max_subsidence_cm).toFixed(1)); setK('cv.vert', '≈' + minus(D.cvSum.max_subsidence_vertical_cm_estimate)); setK('cv.pairs', D.cvSum.n_pairs);
     setK('cv.period', `${fmtShort(D.cvSum.period[0])} – ${fmtDate(D.cvSum.period[1])}`); }
   if (D.cvArea?.area_km2_lt_5cm) setK('cv.area5', Math.round(D.cvArea.area_km2_lt_5cm.at(-1)));
@@ -210,6 +210,18 @@ function riskList(){
   ol.querySelectorAll('li').forEach(li => li.addEventListener('click', () => { const c = top[+li.dataset.i].geometry.coordinates; map.flyTo({center: c[Math.floor(c.length / 2)], zoom: 12, duration: 1500}); }));
 }
 
+/* ---------- Chapter 2: HH vs HV (Fens fields) ---------- */
+function polChart(){
+  const f = D.fens; if (!f?.fields?.length) return;
+  const mean = key => f.dates.map((_, t) => f.fields.reduce((a, x) => a + x[key][t], 0) / f.fields.length);
+  const hh = mean('hh_db'), hv = mean('hv_db'), diff = hh.reduce((a, v, i) => a + v - hv[i], 0) / hh.length;
+  setK('fens.n', f.fields.length); setK('fens.diff', diff.toFixed(0)); setK('fens.period', `${fmtShort(f.dates[0])} – ${fmtDate(f.dates.at(-1))}`);
+  document.getElementById('polBox').hidden = false;
+  new Chart(document.getElementById('polChart'), {type: 'line', data: {labels: f.dates.map(fmtShort), datasets: [
+    {label: 'HH (dB)', data: hh.map(v => +v.toFixed(1)), borderColor: '#0b3d91', tension: .25, pointRadius: 3},
+    {label: 'HV (dB)', data: hv.map(v => +v.toFixed(1)), borderColor: '#1f7a35', tension: .25, pointRadius: 3}]}, options: chartOpts('dB')});
+}
+
 /* ---------- Chapter 6: sinkholes ---------- */
 function ringChart(){
   const ra = D.kpAssets?.summary?.sinkhole_ring_analysis; if (!ra?.disjoint_rings) return;
@@ -240,4 +252,4 @@ function extras(){
   });
 }
 
-load().then(() => { hero(); storyMap(); compare(); cvControls(); gnssTable(); riskList(); sinkList(); ringChart(); extras(); findings(); });
+load().then(() => { hero(); storyMap(); compare(); cvControls(); gnssTable(); riskList(); sinkList(); ringChart(); polChart(); extras(); findings(); });

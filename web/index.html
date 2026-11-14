@@ -97,6 +97,11 @@
       </figure>
       <figcaption>Figure 1. Left: NASA VIIRS true colour (GIBS). Right: NISAR GCOV quick-look. <span class="qbadge preview">PREVIEW</span> quick-look, not quantitative.</figcaption>
       <div class="note"><b>Why the Fens matter.</b> <span id="holmeText">Driven flush with the peat in 1851, the Holme Fen cast-iron post now stands nearly <b>4 metres</b> above the sunken fields — leaving the fenland <b>2.75 m below sea level</b>, Britain's lowest land, while drained farmland still loses 1–2 cm a year (<a href="https://www.greatfen.org.uk/about-great-fen/heritage/holme-fen-posts" target="_blank" rel="noopener">The Great Fen</a>).</span></div>
+      <div id="polBox" hidden>
+        <p><b>Two radar “colours”.</b> NISAR sends and receives its pulses in different orientations. In <span data-k="fens.n">4</span> field-like areas of the Fens, the HH signal is about <b data-k="fens.diff">7</b> dB brighter than HV, which comes mostly from the 3-D structure of plants; both change together through the season as crops grow, are harvested and the soil wets and dries.</p>
+        <div class="chartbox"><canvas id="polChart" height="150" aria-label="HH and HV radar brightness of Fens fields over time"></canvas></div>
+        <p class="small">NISAR GCOV, provisional, <span data-k="fens.period">22 Jun – 8 Oct 2026</span>. Mean of the sampled areas; data: <code>data/fens/crops.json</code>.</p>
+      </div>
       <p class="note" id="ukClay" hidden><b>London's clay, checked too.</b> Over London we found no ground movement larger than the measurement noise in summer 2026 (nothing beyond ±<span data-k="uk.clayThr">3.6</span> cm). Seasonal clay shrinkage there is smaller than one summer of NISAR data can resolve — an honest "not detected".</p>
     </article>
 
@@ -108,6 +113,8 @@
       <div class="timebar"><button id="cvPlay" class="playbtn" aria-label="Play animation">▶</button><input id="slider" type="range" min="0" max="0" value="0" aria-label="Date"><span id="dateLbl" class="mono"></span></div>
       <p class="hint">Press play, or tap a white dot on the map.</p>
       <div class="readout" id="readout">—</div>
+      <aside class="note storymap"><b>From the air to space.</b> NASA's NISAR StoryMap on land subsidence shows a “subsidence bowl” along the California Aqueduct in the Central Valley, measured with NASA's airborne radar UAVSAR between 2013 and 2017 — in parts the land sank by over 40 inches (about 1 m) (Miller et al. 2020; Jones et al. 2020). In 2026 we measured the same valley from space with NISAR itself, checked it against GPS and ranked the canal and road sections at risk. Their record covers four drought years, ours one summer, so the numbers are not directly comparable.
+        <span class="figcredit"><a href="https://storymaps.arcgis.com/stories/109e602e748346f3be8dc89124619828" target="_blank" rel="noopener">Land Subsidence StoryMap</a> — Peacock, A., An, K., Pinto, N. &amp; Lou, Y. (2024), NISAR ArcGIS StoryMaps, Zenodo, <a href="https://doi.org/10.5281/zenodo.10818833" target="_blank" rel="noopener">doi:10.5281/zenodo.10818833</a>. UAVSAR data courtesy NASA/JPL-Caltech.</span></aside>
       <div class="chartbox"><canvas id="pointChart" height="180"></canvas></div>
       <figcaption>Figure 2. Ground motion added up over <span data-k="cv.pairs">7</span> consecutive NISAR radar image pairs. Negative = moving away from the satellite (sinking). The satellite looks at the ground at a slant; details in <a href="science.html">Science</a>. <span class="qbadge provisional">PROVISIONAL</span><span class="figcredit">Data: NASA-ISRO NISAR via ASF DAAC. Analysis: Team Taykut.</span></figcaption>
     </article>
@@ -179,6 +186,21 @@
   </div>
 </section>
 
+<!-- WHO CAN USE THIS -->
+<section class="band" id="who">
+  <div class="wrap">
+    <p class="chapter">Who can use this</p>
+    <h2>One measurement, five kinds of users</h2>
+    <div class="who">
+      <a class="whocard" href="data.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3"/></svg><h3>Scientists</h3><p>Download every map, point series and GPS comparison, read the method and rerun the open code.</p><span>Data &amp; method →</span></a>
+      <a class="whocard" href="explorer.html#central_valley"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17c3-3 6 3 9 0s6 3 9 0M3 11c3-3 6 3 9 0s6 3 9 0"/></svg><h3>Water &amp; canal managers</h3><p>See which canal, road and rail sections sit on the most uneven sinking ground, and click any spot for its history.</p><span>Open the risk map →</span></a>
+      <a class="whocard" href="#play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6l8-3 8 3-8 3-8-3zM6 8v5c0 2 3 4 6 4s6-2 6-4V8"/></svg><h3>Educators</h3><p>Use the simulator and the 3D view to show how pumping squeezes clay, and why part of the sinking never comes back.</p><span>Try the simulator →</span></a>
+      <a class="whocard" href="#findings"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg><h3>Decision-makers</h3><p>Eight findings in plain words, each with its number, its date range and how sure we are.</p><span>Read the findings →</span></a>
+      <a class="whocard" href="#story"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c1-4 4-6 7-6s6 2 7 6"/></svg><h3>Everyone</h3><p>Follow the story from a cloudy day in the UK to farms in California and sinkholes in Türkiye.</p><span>Read the story →</span></a>
+    </div>
+  </div>
+</section>
+
 <!-- SIMULATOR -->
 <section class="band dark" id="play">
   <div class="wrap">
@@ -201,6 +223,22 @@
         <figcaption><a id="gameOpen" href="#" target="_blank" rel="noopener">Open full screen ↗</a> · <a id="view3d" href="#" target="_blank" rel="noopener">3D view of the sinking ground ↗</a></figcaption>
       </figure>
     </div>
+  </div>
+</section>
+
+<!-- WHAT NISAR CAN DO NEXT -->
+<section class="band dark" id="next">
+  <div class="wrap">
+    <p class="chapter">Looking ahead</p>
+    <h2>What NISAR can do next</h2>
+    <p class="narrow">NISAR maps almost all of the Earth's land and ice every 12 days. With the same open method used here, that makes several things possible:</p>
+    <ol class="nextlist">
+      <li><b>Tell permanent from seasonal sinking.</b> A full year of images separates ground that rebounds each winter from ground that is lost for good. We have made a first full-year map for the Central Valley; it still mixes early "beta" products and will improve as NISAR releases validated data.</li>
+      <li><b>Warn before canals and levees fail.</b> Repeating the tilt check every 12 days could flag a canal section while it is still easy to repair.</li>
+      <li><b>Watch sinkhole areas.</b> In Karapınar the ground sank more near known sinkholes; a longer record could show where the next collapse is more likely.</li>
+      <li><b>Compare places.</b> The same steps work for any irrigated basin or growing city; only the area of interest changes.</li>
+    </ol>
+    <p class="small">NASA describes these uses in its NISAR applications papers on <a href="https://science.nasa.gov/mission/nisar/societal-benefits/" target="_blank" rel="noopener">subsidence, groundwater, levees and dams, sinkholes and food security</a>.</p>
   </div>
 </section>
 
