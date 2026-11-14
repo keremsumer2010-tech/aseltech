@@ -186,3 +186,11 @@ Every resource from the NASA Space Apps *"Dancing with the SARs"* Resources tab 
 - **Canadian Space Agency (CSA) — Synthetic Aperture Radar Tutorial**  
   URL: https://github.com/asc-csa/Synthetic_Aperture_Radar_Tutorial  
   Key finding: Open Python and QGIS laboratory notebooks teaching practical SAR visualization, polarimetry, and interferometric change analysis.
+
+- **NASA SERVIR / Flores-Anderson et al. (2019) — The SAR Handbook: Comprehensive Methodologies for Forest Monitoring and Biomass Estimation (Chapter 2)**  
+  URL: https://earthdata.nasa.gov/s3fs-public/2025-04/SARHB_CH2_Content.pdf  
+  Key finding: Technical reference for L-band co-polarized (`HH` surface roughness and soil dielectric/moisture) versus cross-polarized (`HV` 3D vegetation canopy volume scattering) backscatter interpretation used in `docs/story/polarization.md` (`data/fens/crops.json`).
+
+- **USDA National Agricultural Statistics Service (NASS) — Cropland Data Layer (`CDL`, 30 m) & Exposure Datasets**  
+  URL: https://www.nass.usda.gov/Research_and_Science/Cropland/SARS1a.php  
+  Key finding: Crop-specific `30 m` land cover (`2021`, Public Domain) paired with WorldPop (`100 m` 2020 UN-adjusted population count, `doi:10.5258/SOTON/WP00645`, CC BY 4.0) and ESA WorldCover (`10 m` 2021 v200, `doi:10.5281/zenodo.7254221`, CC BY 4.0) in `docs/story/exposure.md` (`83,273` residents on `> 2 cm` LOS subsiding land; `79.2%` / `1,251.37 km²` of Central Valley `> 2 cm` footprint in cultivated cropland led by citrus `355.64 km²` and pistachios `230.92 km²`).
