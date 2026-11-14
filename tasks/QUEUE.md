@@ -15,7 +15,7 @@ Saatler: `docs/ZAMAN_CIZELGESI.md`. "[atandı: PCx]" işi sadece o PC alır; ata
 - [~PC6] Q18 · [atandı: PC6] · SİTE ENTEGRASYONU (PC1'den devir, 13:20): PC3'ün `data/central_valley/`, `data/karapinar/` ve PC4'ün `data/uk/`, `sinkholes.geojson`, PC5'in `game/` dosyaları geldikçe sitede yerel test (`python -m http.server` → /web/), placeholder rozeti kalkıyor mu, konsol temiz mi; `data/catalog.json` yaz; Holme Fen metnini PC4'ün kaynaklı rakamıyla güncelle; `docs/URUN_TANIMI.md` §4 tablosunu işaretle · web/app.js, web/index.html, data/catalog.json, docs/URUN_TANIMI.md
 
 - [x PC6] Q19 · Aquifer Manager oyunu (eski PC5 görevi; ayrıntı: tek dosya `game/index.html`, 10 yıl, pompalama %0–150, CONFIG'de hız = `data/central_valley/summary.json`, "illustrative" etiketi, AI görseli varsa etiketli) · game/
-- [ ] Q20 · Sunum metni: 3 dk konuşma + 30 sn video senaryosu (İngilizce altyazı) + ≤7 slayt, sayılar yer tutucu → `docs/story/pitch.md` · docs/story/pitch.md
+- [~PC6] Q20 · Sunum metni: 3 dk konuşma + 30 sn video senaryosu (İngilizce altyazı) + ≤7 slayt, sayılar yer tutucu → `docs/story/pitch.md` · docs/story/pitch.md
 
 ## Öncelik 2 — Pazar katkıları
 - [ ] Q07 · [atandı: PC2] · Central Valley tam yıl zinciri (2025-11-24→2026-10-14, P05023) indir/kes → `pipeline/subset/central_valley_beta/` (beta-precal ayrı!) · E · pipeline/
