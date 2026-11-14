@@ -217,6 +217,12 @@ Repo kökünde önceden `requirements.txt` yoktu. İstenen Python paketleri (`as
 
 `python -m pytest -q` çalıştırıldı. 110 saniyeden uzun süre stdout/stderr üretmedi ve tamamlanmadı; komut Ctrl+C ile durduruldu. Bu nedenle test sonucu **alınamadı**; PASS/FAIL sayısı raporlanmıyor. Paket kurulumu veya test verisi indirmesi yapılmadı.
 
+## 12. 20:00 hata ayıklama 5 — veri JSON denetimi
+
+`pipeline/pc7/validate_json.py` tüm `data/**/*.json` dosyalarını UTF-8 ile okur; JSON parse hatalarını, `NaN`/`Infinity` sabitlerini ve taşma sonucu oluşan sonlu olmayan sayıları arar. Kök kalite alanı olmayan `points.json` dizilerinde aynı klasördeki `meta.json` kalitesini açıkça miras kabul eder; diğer belgelerde kalite alanını veya katalog kayıtlarındaki katman kalitesini denetler.
+
+Çalıştırma: `python pipeline/pc7/validate_json.py`. Sonuç: **61 JSON**, 0 parse/standart dışı sabit hatası, 0 sonlu olmayan sayı, 0 kalite etiketi eksik dosya; 12 `points.json` kaliteyi kardeş `meta.json` dosyasından alıyor. Bu denetim mevcut dosyaları değiştirmez.
+
 ## 7. 20:00 hata ayıklama turu — madde 1
 
 `web/index.html` satır 117'de `src=""` ve `data-src="docs/story/media/pc9_fullyear_point.png"` bulunuyor. `web/app.js` içindeki `fullYear()` yükleyicisi `ROOT + im.dataset.src` kullanıyor; Pages ve yerel `/web/` köklerini destekliyor. Ancak `web/index.html` son commit'i `4317bc1` (`20:09:26 +03:00`), bu kontrol `20:22` civarında yapıldı; PC1 notundaki 15 dakika koruması nedeniyle dosyaya dokunulmadı. `src=""` boş bırakılması tarayıcının geçerli sayfayı görsel olarak tekrar istemesine neden olabilir; en yakın güvenli düzeltme, 15 dakika geçtikten sonra boş `src` niteliğini kaldırıp `data-src` yükleyicisini korumaktır. Bu adımda dosya değiştirilmedi.
