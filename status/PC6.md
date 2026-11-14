@@ -1,7 +1,7 @@
 # PC6 durum
 
-- Görev: 15:25 SÜREKLİ PAKET (`tasks/PC6.md`) — Adım 3/5 TAMAMLANDI (Oyuna Konya Kapalı Havzası eklendi; 6/6 model testi). Adım 4/5 (Erişilebilirlik & Performans) başlıyor.
-- Durum: Konya Kapalı Havzası (`data/karapinar/`, `-5.9 cm` LOS / `-8.0 cm` dikey, 29 obruk katmanı ve `indicator only` obruk risk uyarısı) hem başlangıç hem üst çubuk vadi seçicisiyle oyuna eklendi (`game/test_model.html` 6/6 PASS hedefine hazır). Şimdi klavye kısayolları, `aria-live`, Okabe-Ito renk-körü uyumu ve rAF performans iyileştirmeleri yapılıyor. Önceki 14:45 paketi (5/5) tamamlanmıştı.
+- Görev: 15:25 SÜREKLİ PAKET (`tasks/PC6.md`) — Adım 4/5 TAMAMLANDI (Erişilebilirlik & Performans). Adım 5/5 (3 adımlı "How to play" rehberi + canlı doğrulama + `docs/game_v3.png`) başlıyor.
+- Durum: Oyuna klavye kısayolları (`Space`/`N`, `1–7`, `R`, `Esc`), `:focus-visible`, `aria-live="polite"`, `aria-valuetext`, Okabe-Ito renk-körü paleti + metin etiketleri ve `requestAnimationFrame` sürgü/mobil DPR performansı eklendi. Şimdi 3 adımlı atlanabilir rehber ekleniyor ve tüm sistem test ediliyor. Önceki 14:45 paketi (5/5) tamamlanmıştı.
   - Adım 1 (`analysis/pc6/make_animation.py`): `docs/story/media/cv_subsidence.{mp4,gif}` (`3.07 MB` / `4.23 MB`, 8 epok, 1080p) ve `docs/story/media/kp_subsidence.{mp4,gif}` (`0.88 MB` / `1.36 MB`, 9 epok, 1080p) pushlandı (`7369686`).
   - Adım 2 (`analysis/pc6/make_validation_plots.py`): `docs/story/validation_report.md`, `validation_scatter.png` (`r=0.924`, `RMSE=1.37 cm`) ve 10 `gnss_<station>.png` grafiği pushlandı (`823cb74`).
   - Adım 3 (`analysis/pc6/make_risk_profiles.py`): `docs/story/risk_dossier.md` ve `risk_1..10.png` profilleri (California Aqueduct #4, Tulare ID Canal #1, Alta East Branch Canal #5, Friant-Kern Canal #7/#9 vurgulu + `game_model.md` kaynaklı 2 cümlelik özet) pushlandı (`5248279`).

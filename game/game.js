@@ -81,9 +81,9 @@
   }
 
   function canalColorForGradient(gradMmKm) {
-    if (gradMmKm >= ValleyModel.CONFIG.thresholds.canalHighGradientMmKm) return '#ff6b57';
-    if (gradMmKm >= ValleyModel.CONFIG.thresholds.canalMediumGradientMmKm) return '#f5b942';
-    return '#3ddc97';
+    if (gradMmKm >= ValleyModel.CONFIG.thresholds.canalHighGradientMmKm) return '#f06938';
+    if (gradMmKm >= ValleyModel.CONFIG.thresholds.canalMediumGradientMmKm) return '#e69f00';
+    return '#009e73';
   }
 
   function playTone(kind) {
@@ -430,9 +430,9 @@
       const valSpan = m.el.querySelector('.mval');
       if (valSpan) {
         valSpan.textContent = `${d.totalCm.toFixed(1)} cm`;
-        valSpan.style.color = d.totalCm < -4 ? '#ff6b57' : d.totalCm < -1 ? '#f5b942' : '#3ddc97';
+        valSpan.style.color = d.totalCm < -4 ? '#f06938' : d.totalCm < -1 ? '#e69f00' : '#009e73';
       }
-      m.el.style.borderColor = d.id === selectedDistrictId ? '#4da3ff' : '#2f4259';
+      m.el.style.borderColor = d.id === selectedDistrictId ? '#56b4e9' : '#2f4259';
       m.el.style.background = d.id === selectedDistrictId ? 'rgba(19, 36, 56, 0.94)' : 'rgba(11,15,20,0.88)';
     });
   }
@@ -473,7 +473,8 @@
   function renderStratigraphy(d) {
     const canvas = $('stratCanvas');
     if (!canvas) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const maxDpr = window.innerWidth < 900 ? 1.5 : 2;
+    const dpr = Math.min(window.devicePixelRatio || 1, maxDpr);
     const rect = canvas.getBoundingClientRect();
     const w = Math.max(260, Math.round(rect.width || 360));
     const h = 132;
@@ -533,7 +534,7 @@
     const hpcY = mapDepthY(d.preconsolidationHeadM);
 
     // Saturated water zone tint below water table
-    ctx.fillStyle = 'rgba(77, 163, 255, 0.14)';
+    ctx.fillStyle = 'rgba(86, 180, 233, 0.14)';
     ctx.fillRect(0, wtY, w, 108 - wtY);
 
     // Corcoran Clay Aquitard Layer (visual thickness scales with district b0)
@@ -544,14 +545,14 @@
     // Remaining uncompacted clay
     ctx.fillStyle = '#37302a';
     ctx.fillRect(0, clayTop, w, currentClayPx);
-    // Elastic reversible compression zone (cyan)
+    // Elastic reversible compression zone (Okabe-Ito sky blue)
     if (elastPx > 0.3) {
-      ctx.fillStyle = 'rgba(77, 163, 255, 0.65)';
+      ctx.fillStyle = 'rgba(86, 180, 233, 0.65)';
       ctx.fillRect(0, clayTop, w, Math.min(10, elastPx + 1.5));
     }
-    // Irreversible permanent compaction scar (coral-red)
+    // Irreversible permanent compaction scar (Okabe-Ito vermilion)
     if (permPx > 0.3) {
-      ctx.fillStyle = 'rgba(255, 107, 87, 0.80)';
+      ctx.fillStyle = 'rgba(240, 105, 56, 0.85)';
       ctx.fillRect(0, clayTop + currentClayPx - Math.min(14, permPx), w, Math.min(14, permPx));
     }
 
@@ -562,7 +563,7 @@
     // Preconsolidation Head h_pc dashed line
     ctx.save();
     ctx.setLineDash([5, 4]);
-    ctx.strokeStyle = '#f5b942';
+    ctx.strokeStyle = '#e69f00';
     ctx.lineWidth = 1.4;
     ctx.beginPath();
     ctx.moveTo(0, hpcY);
@@ -571,7 +572,7 @@
     ctx.restore();
 
     // Current Water Table h line
-    ctx.strokeStyle = '#4da3ff';
+    ctx.strokeStyle = '#56b4e9';
     ctx.lineWidth = 2;
     ctx.beginPath();
     ctx.moveTo(0, wtY);
@@ -584,14 +585,14 @@
       const wx = 42 + idx * ((w - 84) / Math.max(1, sampleWells.length - 1));
       const wellBotY = mapDepthY(-wd);
       const isDry = -d.headM >= wd;
-      ctx.strokeStyle = isDry ? '#ff6b57' : '#3ddc97';
+      ctx.strokeStyle = isDry ? '#f06938' : '#009e73';
       ctx.lineWidth = 2.2;
       ctx.beginPath();
       ctx.moveTo(wx, datumY + 2);
       ctx.lineTo(wx, wellBotY);
       ctx.stroke();
 
-      ctx.fillStyle = isDry ? '#ff6b57' : '#3ddc97';
+      ctx.fillStyle = isDry ? '#f06938' : '#009e73';
       ctx.fillRect(wx - 3, datumY - 2, 6, 4);
     });
 
@@ -602,9 +603,9 @@
     ctx.fillStyle = '#e6edf3';
     ctx.fillText(`Surface ${d.totalCm.toFixed(1)} cm`, w - 118, 12);
 
-    ctx.fillStyle = '#4da3ff';
+    ctx.fillStyle = '#56b4e9';
     ctx.fillText(`Water Table ${d.headM.toFixed(1)} m`, 6, Math.max(36, wtY - 4));
-    ctx.fillStyle = '#f5b942';
+    ctx.fillStyle = '#e69f00';
     ctx.fillText(`h_pc ${d.preconsolidationHeadM.toFixed(1)} m`, w - 98, Math.max(46, hpcY + 11));
     ctx.fillStyle = '#c4b5a5';
     ctx.fillText(`Compressible clay interbeds (b0=${d.clayThicknessM}m, illustr.)`, 6, Math.min(h - 6, clayTop + currentClayPx + 12));
@@ -613,8 +614,8 @@
     if (pill) {
       const inVirgin = d.headM <= d.preconsolidationHeadM + 0.05;
       pill.textContent = inVirgin ? 'PERMANENT COLLAPSE (< h_pc)' : 'ELASTIC RECOVERABLE (> h_pc)';
-      pill.style.color = inVirgin ? '#ff6b57' : '#4da3ff';
-      pill.style.borderColor = inVirgin ? 'rgba(255,107,87,0.5)' : 'rgba(77,163,255,0.45)';
+      pill.style.color = inVirgin ? '#f06938' : '#56b4e9';
+      pill.style.borderColor = inVirgin ? 'rgba(240,105,56,0.5)' : 'rgba(86,180,233,0.45)';
     }
   }
 
@@ -647,8 +648,8 @@
             {
               label: 'Total Subsidence (cm)',
               data: totalSeries,
-              borderColor: '#4da3ff',
-              backgroundColor: 'rgba(77, 163, 255, 0.12)',
+              borderColor: '#56b4e9',
+              backgroundColor: 'rgba(86, 180, 233, 0.14)',
               borderWidth: 2.2,
               tension: 0.25,
               pointRadius: 2.5,
@@ -656,8 +657,8 @@
             {
               label: 'Permanent Clay Collapse (cm)',
               data: permSeries,
-              borderColor: '#ff6b57',
-              backgroundColor: 'rgba(255, 107, 87, 0.22)',
+              borderColor: '#f06938',
+              backgroundColor: 'rgba(240, 105, 56, 0.24)',
               fill: true,
               borderWidth: 2.2,
               tension: 0.25,
@@ -666,7 +667,7 @@
             {
               label: '2026 NISAR Ref (-10.1 cm)',
               data: nisarRefLine,
-              borderColor: '#f5b942',
+              borderColor: '#e69f00',
               borderDash: [6, 4],
               borderWidth: 1.8,
               pointRadius: 0,
@@ -754,13 +755,13 @@
     $('valleyHeadlineHud').innerHTML =
       `Peak Subsidence: <strong class="color-perm">${worst.totalCm.toFixed(1)} cm</strong> (${worst.shortName}) · Dry Wells: <strong>${totalDry}</strong>`;
 
-    // District Tabs
+    // District Tabs (with keyboard 1-7 labels and aria-pressed state)
     const tabsEl = $('districtTabs');
     tabsEl.innerHTML = simState.districts
-      .map((dist) => {
+      .map((dist, idx) => {
         const activeCls = dist.id === d.id ? 'active' : '';
-        return `<button type="button" class="district-chip ${activeCls}" data-did="${dist.id}">
-          <span>${dist.shortName}</span>
+        return `<button type="button" class="district-chip ${activeCls}" data-did="${dist.id}" aria-pressed="${dist.id === d.id}">
+          <span><span class="mono" style="color:var(--muted);">${idx + 1}.</span> ${dist.shortName}</span>
           <span class="val">${dist.totalCm.toFixed(1)} cm</span>
         </button>`;
       })
@@ -792,31 +793,34 @@
       }
     }
 
-    // Sliders & Dynamic Surface Cap
+    // Sliders, ARIA valuetext & Dynamic Surface Cap
     $('pumpSlider').value = d.controls.pumpingPct;
+    $('pumpSlider').setAttribute('aria-valuetext', `${d.controls.pumpingPct} percent of baseline pumping`);
     $('pumpVal').textContent = `${d.controls.pumpingPct}%`;
     $('surfaceSlider').max = wySpec.maxSurfacePct;
     const cappedSurface = Math.min(d.controls.surfaceAllocPct, wySpec.maxSurfacePct);
     $('surfaceSlider').value = cappedSurface;
+    $('surfaceSlider').setAttribute('aria-valuetext', `${cappedSurface} percent canal and recharge allocation`);
     $('surfaceVal').textContent = `${cappedSurface}%`;
-    $('surfaceCapHint').textContent = `Max ${wySpec.maxSurfacePct}% in ${wySpec.label} water year (CVP/SWP constraint).`;
+    $('surfaceCapHint').textContent = `Max ${wySpec.maxSurfacePct}% in ${wySpec.label} water year.`;
     $('fallowSlider').value = d.controls.fallowPct;
+    $('fallowSlider').setAttribute('aria-valuetext', `${d.controls.fallowPct} percent land fallowed`);
     $('fallowVal').textContent = `${d.controls.fallowPct}%`;
 
-    // District KPIs: 3 primary readouts + quiet secondary strip
+    // District KPIs: 3 primary readouts + quiet secondary strip (Okabe-Ito + text tags)
     const isVirgin = d.headM <= d.preconsolidationHeadM + 0.05;
     $('kpiDistrictTitle').textContent = `Readout: ${d.shortName} (${d.canalCorridor})`;
     $('kpiTotalCm').textContent = `${d.totalCm.toFixed(2)} cm`;
     $('kpiSplitCm').textContent = `Elastic: ${d.elasticCm.toFixed(2)} cm`;
     $('kpiPermCm').textContent = `${d.inelasticCm.toFixed(2)} cm`;
-    $('kpiRegimeSub').textContent = isVirgin ? 'Virgin collapse' : 'Elastic Safe';
-    $('kpiRegimeSub').style.color = isVirgin ? '#ff6b57' : '#3ddc97';
+    $('kpiRegimeSub').textContent = isVirgin ? '[COLLAPSING] Virgin clay' : '[SAFE] Elastic range';
+    $('kpiRegimeSub').style.color = isVirgin ? '#f06938' : '#009e73';
     $('kpiRevenue').textContent = `$${d.cumulativeRevenueMUsd.toFixed(1)}M`;
     $('kpiRevSub').textContent = `${100 - d.controls.fallowPct}% cropped`;
 
     $('kpiHeadM').textContent = `${d.headM.toFixed(1)} m`;
     $('kpiHpcM').textContent = `Low: ${d.preconsolidationHeadM.toFixed(1)} m`;
-    $('kpiHpcM').style.color = isVirgin ? '#ff6b57' : 'var(--muted)';
+    $('kpiHpcM').style.color = isVirgin ? '#f06938' : 'var(--muted)';
     $('kpiCanalLoss').textContent = `${d.canalCapacityLossPct.toFixed(1)}%`;
     $('kpiGradient').textContent = `${d.currentGradientMmKm.toFixed(1)} mm/km`;
     $('kpiWells').textContent = `${d.dryWells} / ${d.wellDepthsM.length}`;
@@ -905,22 +909,22 @@
           {
             label: 'Your 24-Mo Total Sink (cm)',
             data: simTotal,
-            backgroundColor: 'rgba(77, 163, 255, 0.78)',
-            borderColor: '#4da3ff',
+            backgroundColor: 'rgba(86, 180, 233, 0.80)',
+            borderColor: '#56b4e9',
             borderWidth: 1,
           },
           {
             label: 'Your Permanent Collapse (cm)',
             data: simPerm,
-            backgroundColor: 'rgba(255, 107, 87, 0.85)',
-            borderColor: '#ff6b57',
+            backgroundColor: 'rgba(240, 105, 56, 0.86)',
+            borderColor: '#f06938',
             borderWidth: 1,
           },
           {
             label: '2026 NISAR 108-Day Est. (cm)',
             data: nisarVert,
-            backgroundColor: 'rgba(245, 185, 66, 0.85)',
-            borderColor: '#f5b942',
+            backgroundColor: 'rgba(230, 159, 0, 0.85)',
+            borderColor: '#e69f00',
             borderWidth: 1,
           },
         ],
@@ -1139,14 +1143,52 @@
       applyAll = e.target.checked;
     });
 
-    const handleSlider = (key, val) => {
+    let syncRafPending = false;
+    const handleSlider = (key, val, labelId) => {
       const target = applyAll ? 'ALL' : selectedDistrictId;
       ValleyModel.setDistrictControls(simState, target, { [key]: Number(val) });
-      syncUI();
+      if (labelId && $(labelId)) $(labelId).textContent = `${Number(val)}%`;
+      if (!syncRafPending) {
+        syncRafPending = true;
+        requestAnimationFrame(() => {
+          syncRafPending = false;
+          syncUI();
+        });
+      }
     };
-    $('pumpSlider').addEventListener('input', (e) => handleSlider('pumpingPct', e.target.value));
-    $('surfaceSlider').addEventListener('input', (e) => handleSlider('surfaceAllocPct', e.target.value));
-    $('fallowSlider').addEventListener('input', (e) => handleSlider('fallowPct', e.target.value));
+    $('pumpSlider').addEventListener('input', (e) => handleSlider('pumpingPct', e.target.value, 'pumpVal'));
+    $('surfaceSlider').addEventListener('input', (e) => handleSlider('surfaceAllocPct', e.target.value, 'surfaceVal'));
+    $('fallowSlider').addEventListener('input', (e) => handleSlider('fallowPct', e.target.value, 'fallowVal'));
+
+    document.addEventListener('keydown', (e) => {
+      if (e.ctrlKey || e.metaKey || e.altKey) return;
+      if (e.key === 'Escape') {
+        $('paramsModal').hidden = true;
+        $('endModal').hidden = true;
+        $('startModal').hidden = true;
+        return;
+      }
+      const modalOpen = !$('startModal').hidden || !$('endModal').hidden || !$('paramsModal').hidden;
+      if (modalOpen) return;
+
+      const tag = document.activeElement ? document.activeElement.tagName : '';
+      if (e.code === 'Space' && tag !== 'BUTTON' && tag !== 'SUMMARY' && tag !== 'A' && tag !== 'INPUT') {
+        e.preventDefault();
+        advanceMonths(1);
+      } else if ((e.key === 'n' || e.key === 'N') && tag !== 'INPUT') {
+        e.preventDefault();
+        advanceMonths(1);
+      } else if ((e.key === 'r' || e.key === 'R') && tag !== 'INPUT') {
+        e.preventDefault();
+        resetSimulation(true);
+      } else if (/^[1-7]$/.test(e.key) && tag !== 'INPUT') {
+        const idx = parseInt(e.key, 10) - 1;
+        if (simState && simState.districts[idx]) {
+          e.preventDefault();
+          selectDistrict(simState.districts[idx].id, true);
+        }
+      }
+    });
 
     document.querySelectorAll('.preset-btn').forEach((btn) => {
       btn.addEventListener('click', () => {
@@ -1219,9 +1261,15 @@
 
     wireControls();
     initMap();
+    let resizeRafPending = false;
     window.addEventListener('resize', () => {
-      const d = simState && simState.districts.find((x) => x.id === selectedDistrictId);
-      if (d) renderStratigraphy(d);
+      if (resizeRafPending) return;
+      resizeRafPending = true;
+      requestAnimationFrame(() => {
+        resizeRafPending = false;
+        const d = simState && simState.districts.find((x) => x.id === selectedDistrictId);
+        if (d) renderStratigraphy(d);
+      });
     });
   }
 

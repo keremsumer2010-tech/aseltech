@@ -18,7 +18,7 @@
           <button type="button" class="basin-btn" data-basin="konya">Konya Basin, Türkiye</button>
         </div>
         <span class="pill provisional" title="NISAR data are provisional. Calibration and validation are carried out by NASA-JPL and ISRO.">PROVISIONAL NISAR</span>
-        <span id="monthPill" class="pill mono">Month 0 of 24 · Oct 2026 · Autumn</span>
+        <span id="monthPill" class="pill mono" aria-live="polite" aria-atomic="true">Month 0 of 24 · Oct 2026 · Autumn</span>
         <span id="wyPill" class="pill wy-below">WY1: Below Normal (70% Cap)</span>
       </div>
       <div class="topbar-meta">
@@ -41,7 +41,7 @@
             <button type="button" class="layer-btn" data-overlay="blend">Blend (Sim + NISAR)</button>
             <button type="button" class="layer-btn" data-overlay="nisar">2026 NISAR Raster</button>
           </div>
-          <div class="hud-card mono" id="valleyHeadlineHud">
+          <div class="hud-card mono" id="valleyHeadlineHud" aria-live="polite" aria-atomic="true">
             Peak Subsidence: <strong class="color-perm">0.0 cm</strong> · Dry Wells: <strong>0</strong>
           </div>
         </div>
@@ -58,10 +58,10 @@
             <span>+6 cm (rise)</span>
           </div>
           <div class="canal-key">
-            <span><i class="dot" style="background:#3ddc97"></i>Canal &lt;5 mm/km</span>
-            <span><i class="dot" style="background:#f5b942"></i>5–10</span>
-            <span><i class="dot" style="background:#ff6b57"></i>&gt;10 mm/km</span>
-            <span id="sinkholeLegendItem" hidden><i class="dot" style="background:transparent;border:2px solid #f5b942;"></i>29 obruks (ref)</span>
+            <span><i class="dot" style="background:#009e73"></i>[LOW] &lt;5 mm/km</span>
+            <span><i class="dot" style="background:#e69f00"></i>[MOD] 5–10</span>
+            <span><i class="dot" style="background:#f06938"></i>[HIGH] &gt;10 mm/km</span>
+            <span id="sinkholeLegendItem" hidden><i class="dot" style="background:transparent;border:2px solid #e69f00;"></i>29 obruks (ref)</span>
           </div>
         </aside>
       </section>
@@ -91,7 +91,7 @@
               <span id="applyAllLabel">Apply slider changes to all 7 districts</span>
             </label>
           </div>
-          <div id="sinkholeStatusBanner" class="sinkhole-banner" hidden></div>
+          <div id="sinkholeStatusBanner" class="sinkhole-banner" aria-live="polite" hidden></div>
         </div>
 
         <div class="section-card">
@@ -180,9 +180,9 @@
           </div>
           <canvas id="stratCanvas" width="380" height="132"></canvas>
           <div class="strat-legend">
-            <span><i class="dot" style="background:#4da3ff"></i>Elastic (rebounds)</span>
-            <span><i class="dot" style="background:#ff6b57"></i>Permanent clay collapse</span>
-            <span><i class="dot" style="background:#f5b942"></i>Preconsolidation h<sub>pc</sub></span>
+            <span><i class="dot" style="background:#56b4e9"></i>Elastic (rebounds)</span>
+            <span><i class="dot" style="background:#f06938"></i>Permanent clay collapse</span>
+            <span><i class="dot" style="background:#e69f00"></i>Preconsolidation h<sub>pc</sub></span>
           </div>
         </div>
 
@@ -190,7 +190,7 @@
           <div class="section-head">
             <h2 class="section-title">Hydrology &amp; Infrastructure Events</h2>
           </div>
-          <div id="eventList" class="event-list">
+          <div id="eventList" class="event-list" aria-live="polite">
             <div class="event-item">
               <div class="event-title">Simulation Ready — Oct 2026 Water Year Start</div>
               <div>Baseline water levels calibrated against NASA-ISRO NISAR provisional path 34 (Jun–Oct 2026).</div>
@@ -203,8 +203,9 @@
           <button id="nextMonthBtn" type="button" class="btn-primary">Advance one month →</button>
           <div class="turn-secondary-row">
             <button id="fastForwardBtn" type="button" class="btn-quiet" title="Simulate 6 months under current policy">+6 months</button>
-            <button id="resetBtn" type="button" class="btn-quiet">Reset</button>
+            <button id="resetBtn" type="button" class="btn-quiet">Reset (R)</button>
           </div>
+          <div class="shortcut-hint mono">Keys: Space / N = +1 mo · 1–7 = district · R = reset · Esc = close</div>
         </div>
       </aside>
     </main>
