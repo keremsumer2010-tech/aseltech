@@ -194,3 +194,43 @@ Every resource from the NASA Space Apps *"Dancing with the SARs"* Resources tab 
 - **USDA National Agricultural Statistics Service (NASS) — Cropland Data Layer (`CDL`, 30 m) & Exposure Datasets**  
   URL: https://www.nass.usda.gov/Research_and_Science/Cropland/SARS1a.php  
   Key finding: Crop-specific `30 m` land cover (`2021`, Public Domain) paired with WorldPop (`100 m` 2020 UN-adjusted population count, `doi:10.5258/SOTON/WP00645`, CC BY 4.0) and ESA WorldCover (`10 m` 2021 v200, `doi:10.5281/zenodo.7254221`, CC BY 4.0) in `docs/story/exposure.md` (`141,555` residents across Central Valley & Konya Basin on `> 2 cm` LOS subsiding land; `79.2%` / `1,251.37 km²` of Central Valley `> 2 cm` footprint in cultivated cropland led by citrus `355.64 km²` and pistachios `230.92 km²`).
+
+---
+
+## 8. Authoritative Data Product Citations (NASA Open Science & Data Principle)
+
+All primary datasets used in the NISAR Pulse processing pipeline and Global Subsidence Atlas are cited below following NASA DAAC, ESA, European Commission, and academic open-access attribution conventions:
+
+1. **NASA–ISRO NISAR Level-2 Geocoded Unwrapped Interferograms (GUNW)**  
+   - **Citation:** NASA-ISRO. (2026). *NISAR Level-2 Geocoded Unwrapped Interferogram (GUNW) Provisional Science Products (CRID P05023)* [Data set]. NASA Alaska Satellite Facility (ASF) Distributed Active Archive Center (DAAC).  
+   - **Persistent Identifier / Access:** https://doi.org/10.5067/NISAR/GUNW_PROVISIONAL_V1  
+   - **Portal & Search:** https://search.asf.alaska.edu/ / https://nisar.asf.earthdatacloud.nasa.gov/  
+   - **Open License:** NASA Open Data Policy (Public Domain / Free & Open Access).
+
+2. **NASA–JPL OPERA DISP-S1 Surface Displacement Product**  
+   - **Citation:** OPERA Project. (2023). *OPERA Level 3 Surface Displacement Product from Sentinel-1 (DISP-S1)* [Data set]. NASA Physical Oceanography DAAC (PO.DAAC) and Alaska Satellite Facility (ASF) DAAC.  
+   - **Persistent Identifier / Access:** https://doi.org/10.5067/OPERA/DISP-S1_V1  
+   - **Project Portal:** https://www.jpl.nasa.gov/go/opera  
+   - **Open License:** NASA Earth Science Open Data Policy.
+
+3. **Copernicus Global Digital Elevation Model (COP-DEM-GLO-30)**  
+   - **Citation:** European Space Agency (ESA) & Airbus. (2020). *Copernicus Global Digital Elevation Model (COP-DEM-GLO-30-DGED, 30 m resolution)* [Data set]. OpenTopography / European Space Agency.  
+   - **Persistent Identifier / Access:** https://doi.org/10.5069/G9028PQB  
+   - **Access URL:** https://spacedata.copernicus.eu/collections/copernicus-digital-elevation-model  
+   - **Open License:** Open Data (Free of charge for all commercial and non-commercial uses).
+
+4. **European Commission Global Human Settlement Layer (GHSL)**  
+   - **Citation:** Schiavina, M., Freire, S., & MacManus, K. (2023). *GHS-POP R2023A - GHS population grid multitemporal (1975–2030)* [Data set]. European Commission, Joint Research Centre (JRC).  
+   - **Persistent Identifier / Access:** https://doi.org/10.2905/2FF83B4B-1B61-45D9-BEA5-62506086AD15  
+   - **Portal:** https://ghsl.jrc.ec.europa.eu/  
+   - **Open License:** Creative Commons Attribution 4.0 International (CC BY 4.0).
+
+5. **OpenStreetMap (OSM) Infrastructure & Water Transport Networks**  
+   - **Citation:** OpenStreetMap contributors. (2026). *Planet dump and regional extracts [Canals, railways, highways, and levee embankments]* [Data set]. OpenStreetMap Foundation.  
+   - **Access URL:** https://www.openstreetmap.org/ / https://planet.openstreetmap.org/  
+   - **Open License:** Open Data Commons Open Database License (ODbL) 1.0 (https://www.openstreetmap.org/copyright).
+
+6. **Nevada Geodetic Laboratory (NGL) Global GPS / GNSS Network**  
+   - **Citation:** Blewitt, G., Hammond, W. C., & Kreemer, C. (2018). *Harnessing the GPS data explosion for interdisciplinary science.* Eos, 99. https://doi.org/10.1029/2018EO104623  
+   - **Data Portal:** http://geodesy.unr.edu/ (NGL GPS time series, IGS20 / NA reference frame).  
+   - **Open License:** Free and open access for non-commercial scientific research.
