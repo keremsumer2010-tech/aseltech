@@ -3,7 +3,10 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>The Breathing Earth — 3D NISAR InSAR Viewer</title>
+  <title>The Breathing Earth — 3D view · NISAR Pulse</title>
+  <meta name="description" content="A 3D view of ground motion measured by NASA-ISRO NISAR over California and Türkiye, draped on satellite imagery. Height is exaggerated so centimetres are visible." />
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <script type="importmap">
     {
@@ -15,113 +18,85 @@
   </script>
 </head>
 <body>
-  <header class="topbar">
-    <div class="brand">
-      <a id="backLink" href="../web/" class="back-link">← Main Story</a>
-      <div>
-        <h1>The Breathing Earth <span class="badge" id="qualityBadge">quality: provisional · CRID P05023</span></h1>
-        <p class="subtitle" id="regionSubtitle">Loading NISAR L2 GUNW 3D displacement surfaces...</p>
+  <div class="shell">
+    <header class="topbar">
+      <div class="brand">
+        <span class="logo-mark" aria-hidden="true"></span>
+        <h1>The Breathing Earth</h1>
+        <span class="pill provisional" id="qualityBadge" title="NISAR data are provisional. Calibration and validation are carried out by NASA-JPL and ISRO.">Provisional NISAR</span>
       </div>
-    </div>
-    <div class="region-tabs" role="tablist" aria-label="Region selector">
-      <button class="tab active" data-site="central_valley" role="tab" aria-selected="true">California · San Joaquin Valley</button>
-      <button class="tab" data-site="karapinar" role="tab" aria-selected="false">Türkiye · Karapınar Obruk Plateau</button>
-    </div>
-  </header>
+      <div class="topbar-meta">
+        <div class="seg" id="regionSeg" role="tablist" aria-label="Region">
+          <span class="seg-thumb" aria-hidden="true"></span>
+          <button type="button" class="seg-btn tab active" data-site="central_valley" role="tab" aria-selected="true">California</button>
+          <button type="button" class="seg-btn tab" data-site="karapinar" role="tab" aria-selected="false">Türkiye · Karapınar</button>
+        </div>
+        <button id="infoBtn" class="icon-btn" type="button" title="Sources and scene details" aria-label="Sources and scene details">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5"/><path d="M8 7.5h8M8 11h6"/></svg>
+        </button>
+      </div>
+    </header>
 
-  <main class="layout">
-    <section class="viewport-wrap">
-      <div id="canvasHost" aria-label="Interactive 3D NISAR displacement terrain"></div>
+    <main class="stage">
+      <div id="canvasHost" aria-label="Interactive 3D view of NISAR ground motion"></div>
 
-      <div class="hud-top-left">
-        <div class="stat-pill">
-          <span class="lbl">Window</span>
-          <strong id="statDates">—</strong>
-        </div>
-        <div class="stat-pill">
-          <span class="lbl">Peak LOS Subsidence</span>
-          <strong id="statPeak">—</strong>
-        </div>
-        <div class="stat-pill">
-          <span class="lbl">Valid p2 / p50 / p98</span>
-          <strong id="statPercentiles">—</strong>
-        </div>
+      <div class="hud hud-title">
+        <b id="regionTitle">Loading…</b>
+        <span id="regionSubtitle">NISAR ground motion, 3D</span>
       </div>
 
-      <div class="hud-legend">
-        <div class="legend-title">Cumulative LOS Displacement (cm) · Negative = Subsidence</div>
+      <div class="hud hud-legend">
+        <strong>Ground motion</strong>
         <div class="ramp-bar"></div>
-        <div class="ramp-labels">
-          <span id="minLbl">-6 cm</span>
-          <span>0 cm</span>
-          <span id="maxLbl">+6 cm</span>
-        </div>
+        <div class="ramp-labels"><span id="minLbl">−6 cm</span><span>0</span><span id="maxLbl">+6 cm</span></div>
+        <span class="lg-note" id="legendNote">Red = moved away from the satellite (sinking). Pale = no reliable signal.</span>
+        <span class="lg-sink" id="sinkholeToggleWrap" hidden><label><input type="checkbox" id="sinkholeToggle" checked /> <span id="sinkCount">Show mapped sinkholes</span></label></span>
       </div>
 
-      <div class="hud-help">Drag to orbit · Scroll to zoom · Right-drag to pan · Click sinkhole or terrain to inspect</div>
-    </section>
+      <div class="date-stamp" aria-live="polite"><span id="stampDate">—</span><small id="stampSub">Drag to turn · scroll to zoom</small></div>
 
-    <aside class="sidebar">
-      <div class="panel">
-        <h2>Time &amp; Breathing Controls</h2>
-        <div class="control-group">
-          <div class="row-between">
-            <label for="epochSlider">Acquisition Epoch</label>
-            <span class="mono" id="epochLabel">—</span>
-          </div>
-          <input type="range" id="epochSlider" min="0" max="7" step="0.02" value="7" />
+      <div class="inspector" id="inspectorBox" hidden></div>
+
+      <div class="dockbar">
+        <button id="playBtn" class="play" type="button" aria-label="Play">
+          <svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+          <svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg>
+        </button>
+        <div class="dock-time">
+          <input type="range" id="epochSlider" min="0" max="7" step="0.02" value="7" aria-label="Date" />
           <div class="date-ticks" id="dateTicks"></div>
         </div>
-
-        <div class="btn-row">
-          <button id="playBtn" class="primary">Play Breathing Loop</button>
-          <button id="resetCamBtn">Reset Camera</button>
+        <div class="dock-exag">
+          <label for="exagSlider">Height ×<b id="exagLabel">50,000</b></label>
+          <input type="range" id="exagSlider" min="10000" max="150000" step="5000" value="50000" aria-label="Height exaggeration" />
         </div>
-
-        <div class="control-group">
-          <div class="row-between">
-            <label for="exagSlider">Vertical Exaggeration</label>
-            <span class="mono" id="exagLabel">50,000×</span>
-          </div>
-          <input type="range" id="exagSlider" min="10000" max="150000" step="5000" value="50000" />
-          <p class="hint">Centimeter-scale radar displacements are scaled vertically relative to swath width for 3D legibility.</p>
-        </div>
-
-        <div class="toggle-row">
-          <label><input type="checkbox" id="wireToggle" /> Mesh wireframe</label>
-          <label id="sinkholeToggleWrap"><input type="checkbox" id="sinkholeToggle" checked /> 3D obruk depth columns</label>
-        </div>
+        <button id="resetCamBtn" class="btn-quiet" type="button">Reset view</button>
       </div>
+    </main>
+  </div>
 
-      <div class="panel">
-        <h2>Selected Point / Feature</h2>
-        <div id="inspectorBox" class="inspector-empty">
-          Hover or click anywhere on the 3D radar surface (or click a red sinkhole column in Karapınar mode) to inspect coordinates and measurements.
-        </div>
+  <div id="infoModal" class="modal-backdrop" hidden>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="infoTitle">
+      <div class="modal-top">
+        <h2 id="infoTitle">Sources &amp; scene details</h2>
+        <button id="closeInfo" type="button" class="icon-btn" aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
       </div>
-
-      <div class="panel">
-        <h2>Scene Provenance</h2>
-        <dl class="kv" id="metaList">
-          <dt>Collection</dt><dd>NISAR L2 GUNW (Provisional)</dd>
-          <dt>Reference</dt><dd id="metaRef">—</dd>
-          <dt>Coverage</dt><dd id="metaCov">—</dd>
-          <dt>Notes</dt><dd id="metaNotes">—</dd>
-        </dl>
-      </div>
-    </aside>
-  </main>
-
-  <footer class="footer">
-    <p id="disclaimerText">NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.</p>
-    <p class="footer-links">
-      <a href="../docs/story/calibration_note.md">Calibration Note</a> ·
-      <a href="../docs/story/sources.md">Verified Sources</a> ·
-      <a href="../docs/story/slides.html">7-Slide Deck</a> ·
-      <a href="../game/">Policy Game</a> ·
-      <a href="https://nisar-docs.asf.alaska.edu/gunw" target="_blank" rel="noopener">ASF GUNW Spec</a>
-    </p>
-  </footer>
+      <p class="modal-lede">Ground motion is measured by NASA-ISRO NISAR radar. It is shown here as a surface above satellite imagery. Heights are exaggerated so that centimetres can be seen; real motion is thousands of times smaller than drawn.</p>
+      <dl class="kv" id="metaList">
+        <dt>Radar data</dt><dd>NISAR L2 GUNW (provisional), NASA ASF DAAC</dd>
+        <dt>Reference area</dt><dd id="metaRef">—</dd>
+        <dt>Coverage</dt><dd id="metaCov">—</dd>
+        <dt>Notes</dt><dd id="metaNotes">—</dd>
+        <dt>Satellite imagery</dt><dd>Esri World Imagery (Maxar, Earthstar Geographics)</dd>
+        <dt>Calibration</dt><dd>NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.</dd>
+      </dl>
+      <p class="modal-links">
+        <a href="../docs/story/calibration_note.md">Calibration note</a> ·
+        <a href="../docs/story/sources.md">Verified sources</a> ·
+        <a href="https://nisar-docs.asf.alaska.edu/gunw" target="_blank" rel="noopener">ASF GUNW specification</a>
+      </p>
+    </div>
+  </div>
 
   <script type="module" src="app.js"></script>
 </body>
