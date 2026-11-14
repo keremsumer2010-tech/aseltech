@@ -20,6 +20,9 @@ CORE_REGIONS = [
 GLOBAL_META = {
     "mexico_city": ("Mexico City", "Mexico"),
     "tehran": ("Tehran", "Iran"),
+    "isfahan": ("Isfahan", "Iran"),
+    "rafsanjan": ("Rafsanjan", "Iran"),
+    "mashhad": ("Mashhad", "Iran"),
     "jakarta": ("Jakarta", "Indonesia"),
     "beijing": ("Beijing", "China"),
     "bangkok": ("Bangkok", "Thailand"),
