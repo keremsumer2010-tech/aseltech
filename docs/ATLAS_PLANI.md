@@ -14,6 +14,7 @@ PC1 planı inceledi; 4 zayıflık düzeltildi. Bu bölüm diğer her şeyin ön�
 - A: Isfahan, Rafsanjan, Mashhad, Quetta, Delhi, Eloy, Cangzhou, Gorgan, Mexico City (yeniden)
 - B: Bangkok, Ho Chi Minh City, Semarang, Hanoi, Yunlin, Houston, Lagos
 **Daha az ama sağlam > çok ama gürültülü:** 12 güvenilir şehir, 20 şüpheli şehirden iyidir.
+**Gösterim (PC3, PC4, PC6, PC8):** sıralama ve küre rengi `rate_cm_per_100d` ile; her şehirde güven rozeti (high/medium/low); low olanlar "indicative only". Konya Ovası (−9.6 cm) dahil hiçbir başlık sayısı PC5 kontrolünden önce basın özetine/videoya girmez.
 
 ## ⚡ PARALEL BAŞLANGIÇ — 8 ajan AYNI ANDA, kimse kimseyi beklemez (21:00)
 İlke "sözleşme önce": `data/global/atlas.json` biçimi sabit ve **PC1 tarafından 8 mevcut bölgeyle tohumlandı** (Konya Ovası −9.6, Central Valley −7.8, Cakarta −6.8, Karapınar −5.9, Mexico City −4.4, Tahran −3.5, Pekin −1.4, Delta −1.3 cm LOS). Görsel/metin işleri bu tohum dosyayla HEMEN başlar; yeni şehirler geldikçe dosya büyür, sayfalar kendiliğinden güncellenir.
