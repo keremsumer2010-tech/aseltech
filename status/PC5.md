@@ -1,8 +1,8 @@
 # PC5 Durum Raporu
 
-- **Durum:** çalışıyor — Görev 2 tamamlandı, Görev 3'e (QUEUE Q26+Q27) geçiliyor
+- **Durum:** çalışıyor — Görev 3 (QUEUE Q26 ve Q27 sahiplenildi) + Görev 4 (`key_findings.md`) üzerinde çalışılıyor
 - **Kimlik:** M3hmeT1888 · Antigravity (Gemini) · PC5
-- **Güncelleme:** 2026-11-14 15:04 TR
+- **Güncelleme:** 2026-11-14 15:05 TR
 
 ## Görev 2 — Literatür Karşılaştırması (`docs/story/literature_comparison.md`)
 - Central Valley (`Neely et al. 2021`, `Ojha et al. 2019`, `Farr & Jones / NASA Earth Observatory 2017`, `Sneed et al. / USGS SIR 2018-5144`) ve Karapınar/Konya (`Orhan et al. 2021`, `Üstün et al. 2010`, `Canaslan Çomut et al. 2015`) çalışmalarının tamamı HTTP 200 ile canlı olarak doğrulandı.
