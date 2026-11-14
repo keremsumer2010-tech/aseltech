@@ -27,7 +27,9 @@ async function load(){
     J('data/karapinar/meta.json'), J('data/karapinar/summary.json'), J('data/karapinar/sinkholes.geojson'), J('data/uk/meta.json'),
     J('data/karapinar/assets.json'), J('data/central_valley/area_stats.json'), J('data/uk_clay/detection.json'), J('data/fens/crops.json')]);
   if (D.cvSum){ setK('cv.max', minus(D.cvSum.max_subsidence_cm)); setK('cv.maxabs', Math.abs(D.cvSum.max_subsidence_cm).toFixed(1)); setK('cv.vert', '≈' + minus(D.cvSum.max_subsidence_vertical_cm_estimate)); setK('cv.pairs', D.cvSum.n_pairs);
-    setK('cv.period', `${fmtShort(D.cvSum.period[0])} – ${fmtDate(D.cvSum.period[1])}`); }
+    setK('cv.period', `${fmtShort(D.cvSum.period[0])} – ${fmtDate(D.cvSum.period[1])}`);
+    const rng = D.cvSum.range_cm || D.cvSum.max_subsidence_range_cm;
+    if (Array.isArray(rng) && rng.length === 2){ setK('cv.range', `range ${minus(Math.max(...rng))} to ${minus(Math.min(...rng))} cm depending on reference area`); } }
   if (D.cvArea?.area_km2_lt_5cm) setK('cv.area5', Math.round(D.cvArea.area_km2_lt_5cm.at(-1)));
   if (D.assets?.summary){ const s = D.assets.summary; setK('risk.high', s.high_risk_count); setK('risk.med', s.medium_risk_count); setK('risk.low', s.low_risk_count); setK('risk.evaluated', s.evaluated_segments); }
   if (D.val){ setK('gnss.good', D.val.filter(s => s.corr >= 0.6).length); setK('gnss.n', D.val.length);

@@ -24,7 +24,6 @@ Ayrıntılar: `docs/SORUN_KAYDI.md` (her maddenin "Nerede / Sorun / Öneri" kıs
 Her PC sadece kendi `[atandı]` satırlarını yukarıdan aşağı yapar: `- [ ]` → `- [~PCx]` (commit+push) → bitince satırı kuyruktan **SİL** ve yaptığını `docs/qa/PCx.md`'ye yaz. Madde zaten düzeltilmişse satırı sil, qa'ya "zaten düzeltilmiş" yaz, sıradakine geç.
 
 ### PC8 — site (web/index.html, web/app.js, web/science.html, web/style.css, .github/workflows/pages.yml)
-- [~PC8] B03 · [atandı: PC8] · S-06 Kritik · Ana sayfa "−7.8 cm" kartının altına referans aralığı satırı (`summary.json` `range_cm`'den oku, elle yazma)
 - [ ] B04 · [atandı: PC8] · S-13 Kritik · Central Valley haritası göstergesine boşluk açıklaması + Corcoran metnini dürüstleştir
 - [ ] B05 · [atandı: PC8] · S-08 Kritik · UK bölümü: bulutsuz altlık hikâyeyle çelişiyor → bulutlu VIIRS görüntüsünü haritaya oturt ya da altlığı sadeleştir + not
 - [ ] B06 · [atandı: PC8] · S-03 Yüksek · Mavi alanların anlamı: göstergeye ve video altyazısına tek cümle
