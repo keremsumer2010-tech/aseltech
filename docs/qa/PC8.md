@@ -349,3 +349,5 @@
 - **SÜREKLİ Döngü (`hanoi` eklendi, 15 bölge):**
   - `data/global/atlas.json` içinde `hanoi` tespit edilince `exposure_atlas.json` (`hanoi`: `85,952` `< -2 cm`, `3,372` `< -5 cm`, `1.61 km²`, `2*sigma = 0.708 cm`), `vital_signs.json` (`cities_measured: 15`, `fastest: semarang -11.2 cm/100d`, `area_km2_lt_minus5cm: 576.74`, `people_on_sinking_ground: 1504865`), `docs/bulletins/hanoi.html` + tüm `15` bülten ve `index.html`, `docs/story/exposure.md`, `docs/story/submission_form.md` yeniden üretildi.
   - `python -m pytest analysis/pc8/test_bulletin.py -q`: `1 passed`.
+- **ATLAS KUSURSUZLUK (`tools/atlas_completeness.py` → `docs/qa/ATLAS_COMPLETENESS.md`):**
+  - `data/global/atlas.json` içindeki tüm **15 bölge** için 6 parça (`summary/disp`, `sigma_cm.png`, `validation_note.json`, `atlas_cities/<id>.md`, `bulletins/<id>.html`, `exposure_atlas.json`) kontrol edildi (`PC8: 0 eksik`, `PC2/7/9/10/11: 0 eksik`, `PC5: 6 eksik`, `PC4: 2 eksik`). Her 30 dk ve yeni şehir geldikçe yeniden çalıştırılacak.
