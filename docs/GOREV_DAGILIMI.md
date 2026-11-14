@@ -219,3 +219,5 @@ Evet. PC1 rolleri saat başı kontrolde değiştirebilir; değişiklik önce bu 
 - PC7: `pipeline/pc7/validate_atlas.py`
 - PC5: `docs/story/atlas_validation.md`, `data/global/*/uncertainty/`
 - PC4: `docs/story/press_summary.md`
+
+- (Paz 03:35) Kerman, Tianjin: PC11 → PC2 devri (`data/global/{kerman,tianjin}/` artık PC2). PC10 ek: `data/global/atlas_changelog.json`, `data/global/{pekalongan,can_tho}/`.

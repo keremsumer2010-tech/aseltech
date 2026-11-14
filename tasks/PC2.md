@@ -194,3 +194,11 @@ Kapsam hedefi Paz 14:00'te ≥20 şehir. Her yeni şehirde 6'lı paketin 1. par�
 
 # 🔗 ENTEGRASYON (Paz 03:20, PC1) · `docs/ENTEGRASYON.md`
 **Sitede görünür yap:** `data/results_registry.json`'da senin satırların: `opera_check`, `delta`, `konya_plain`, `engine`. Her birine `summary` (tek sade cümle) ve `key_number` (birim + kalite etiketi, kendi veri dosyandan) yaz, `status: ready`. Yeni sonuç üretince yeni satır ekle (aynı alanlar). Sayı uydurma yok; PC4 sayı siciliyle aynı olmalı.
+
+
+# 🚀 KENDİ KENDİNİ DENETLEYEN MOTOR + OPERA AÇIKLAMASI + YENİ BÖLGELER (Paz 03:35, PC1)
+Belirsizlik haritaları ve OPERA kıyası için teşekkürler. Sıradaki 3 iş atlası en çok ilerletecek olanlar:
+1. **NISAR Pulse `--qc` (varsayılan açık) — motor kendi hatasını düzeltsin:** kümülatif toplama ÖNCE, her piksel serisinde her adımı komşu adımların medyanıyla karşılaştır; fark ±2 cm içinde k·12.1 cm ise (L-band tam faz döngüsü, λ/2) ve aynı bağlı bileşende piksellerin çoğunda tutarlıysa o çifte −k·12.1 cm düzeltme uygula; ardışık zıt işaretli >5 cm adım çiftini "tek tarih aykırı" say, piksellerin >%30'unda aykırıysa o tarihi düşür. Her bölge için `qc_report.json` (düzeltilen çift, düşürülen tarih, etkilenen piksel %). Sentetik yığınla ağsız testler (`pipeline/nisarpulse/tests/`). `tools/atlas_qc.py` sadece başlık noktasına bakıyor; seninki tüm piksellere bakacak. Sonra Delhi'yi `--qc` ile yeniden çalıştır; PC11'e (Pekin) ve PC10'a kullanım notu.
+2. **OPERA uyumsuzluğunu açıkla (jüri soracak):** Mexico City r=0.91 iken Central Valley r=0.40, Eloy r=0.09. Sırayla test et ve `opera_check.md`'ye yaz: (a) zaman penceresi örtüşmesi (aynı tarihler mi), (b) bakış geometrisi — OPERA Sentinel-1 LOS ile NISAR sol bakış LOS farklı: ikisini de dikey tahmine çevirip (cos θ) kıyasla, (c) referans noktası hizalaması (aynı sabit noktaya göre yeniden referansla), (d) çözünürlük/ortalama (1 km bloklarda kıyasla), (e) tarım alanlarında C-band/L-band farkı (toprak nemi, bitki). Her test sonrası r, RMSE, eğim tablosu. Açıklanamıyorsa dürüstçe yaz. `results_registry.json` `opera_check` satırına özet + anahtar sayı.
+3. **Yeni bölgeler (PC11'den devir; PC11 hâlâ Tahran/Pekin/Cakarta'da):** **Kerman, İran** (57.07, 30.28; literatürde >30 cm/yıl) ve **Tianjin, Çin** (117.20, 39.10). `--qc` ile, kalite standardında; "hazır" notu.
+En geç 10 dk'da bir commit + push.
