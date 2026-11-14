@@ -12,8 +12,10 @@ function setK(k, v){ document.querySelectorAll(`[data-k="${k}"]`).forEach(e => e
 const STYLE = {version: 8,
   sources: {sat: {type: 'raster', tiles: [ESRI], tileSize: 256, attribution: 'Imagery © Esri, Maxar, Earthstar Geographics'}},
   layers: [{id: 'sat', type: 'raster', source: 'sat', paint: {'raster-brightness-max': 0.72, 'raster-saturation': -0.25}}]};
-const SCALE = [[8.56, 'the width of a bank card'], [14.7, 'the length of a smartphone'], [21.0, 'the short side of an A4 sheet'], [29.7, 'the long side of an A4 sheet']];
+// Everyday sizes: coin ≈ 2.4 cm (1 € 2.33 cm, US quarter 2.43 cm), bank card 5.4 × 8.56 cm (ISO/IEC 7810 ID-1), A4 21 × 29.7 cm.
+const SCALE = [[2.4, 'the width of a coin'], [5.4, 'the short side of a bank card'], [8.56, 'the long side of a bank card'], [21.0, 'the short side of an A4 sheet'], [29.7, 'the long side of an A4 sheet']];
 const human = cm => { const a = Math.abs(cm); return SCALE.reduce((b, s) => Math.abs(s[0] - a) < Math.abs(b[0] - a) ? s : b)[1]; };
+const NOISE_CM = 1.0; // below this a single point is within the measurement noise (docs/story/uncertainty.md)
 const chartOpts = yTitle => ({responsive: true, animation: {duration: 300}, plugins: {legend: {labels: {color: '#2d3748', boxWidth: 12, font: {family: 'Inter', size: 11}}}},
   scales: {x: {ticks: {color: '#4a5568', font: {size: 10}}, grid: {color: '#e5e9f0'}}, y: {ticks: {color: '#4a5568', font: {size: 10}}, grid: {color: '#e5e9f0'}, title: {display: true, text: yTitle, color: '#4a5568'}}}});
 
@@ -73,11 +75,11 @@ let map, chartP, chartG, cvIdx = 0, timer = null;
 const CVB = [-120.2, 35.6, -119.0, 36.6];
 const VIEWS = {
   intro: {center: [-45, 42], zoom: 1.4, layers: ['sites']},
-  uk:    {bbox: [-0.3, 52.4, 0.4, 52.9], layers: ['uk-radar'], tag: 'NISAR GCOV quick-look · PREVIEW'},
-  cv:    {bbox: CVB, layers: ['cv-disp', 'cv-pts'], tag: 'NISAR GUNW cumulative · PROVISIONAL', legend: true},
+  uk:    {bbox: [-0.3, 52.4, 0.4, 52.9], layers: ['uk-radar'], tag: 'NISAR radar image, 20 Oct 2026 · PREVIEW'},
+  cv:    {bbox: CVB, layers: ['cv-disp', 'cv-pts'], tag: 'NISAR ground motion · PROVISIONAL', legend: true},
   gnss:  {bbox: CVB, layers: ['cv-disp', 'gnss'], dim: true, tag: 'GPS stations (green: r ≥ 0.4)', legend: true},
   risk:  {bbox: CVB, layers: ['cv-disp', 'risk'], dim: true, tag: 'Infrastructure tilt risk', legend: true},
-  kp:    {bbox: [33.3, 37.6, 33.8, 37.9], layers: ['kp-disp', 'sinks'], tag: 'NISAR GUNW cumulative · PROVISIONAL', legend: true},
+  kp:    {bbox: [33.3, 37.6, 33.8, 37.9], layers: ['kp-disp', 'sinks'], tag: 'NISAR ground motion · PROVISIONAL', legend: true},
 };
 const ALL = ['sites', 'uk-radar', 'cv-disp', 'cv-pts', 'gnss', 'risk', 'kp-disp', 'sinks'];
 const fc = feats => ({type: 'FeatureCollection', features: feats});
@@ -138,7 +140,8 @@ function show(step, force){
   else map.flyTo({center: v.center, zoom: v.zoom, duration: 1800, essential: true});
   document.getElementById('mapLegend').style.display = v.legend ? '' : 'none';
   const lm = step === 'kp' ? D.kpMeta : D.cvMeta;
-  if (lm){ document.getElementById('lgMin').textContent = '−' + Math.abs(lm.vmin); document.getElementById('lgMax').textContent = '+' + lm.vmax; }
+  // colours saturate at vmin/vmax, so the ends of the scale read '≤' / '≥'
+  if (lm){ document.getElementById('lgMin').textContent = '≤ −' + Math.abs(lm.vmin); document.getElementById('lgMax').textContent = '≥ +' + lm.vmax; }
   const t = document.getElementById('mapTag'); t.textContent = v.tag || ''; t.style.display = v.tag ? '' : 'none';
 }
 function observe(){
@@ -171,9 +174,13 @@ function pickPoint(id){
   const p = D.cvPts.find(q => q.id === id); if (!p) return;
   const v = p.disp_cm.at(-1), r = document.getElementById('readout');
   if (v == null){ r.textContent = `${p.name}: no reliable measurement here.`; return; }
-  const months = Math.max(1, Math.round((new Date(p.dates.at(-1)) - new Date(p.dates[0])) / 2.63e9));
-  r.innerHTML = `<b>${p.name}</b> ${v < 0 ? 'sank' : 'rose'} <b>${Math.abs(v).toFixed(1)} cm</b> in ${months} months (${fmtShort(p.dates[0])} – ${fmtShort(p.dates.at(-1))}) — about ${human(v)}.`;
-  const data = {labels: p.dates.map(fmtShort), datasets: [{label: 'NISAR line-of-sight motion (cm)', data: p.disp_cm, borderColor: '#ff5a47', backgroundColor: 'rgba(255,90,71,.12)', fill: true, tension: .25, pointRadius: 3}]};
+  const days = Math.round((new Date(p.dates.at(-1)) - new Date(p.dates[0])) / 864e5);
+  const months = (Math.round(days / 30.44 * 2) / 2).toString().replace(/\.5$/, '½');
+  const span = `${fmtShort(p.dates[0])} – ${fmtShort(p.dates.at(-1))} (${months} months)`;
+  r.innerHTML = Math.abs(v) < NOISE_CM
+    ? `<b>${p.name}</b>: no clear change (${minus(v)} cm), within the measurement noise of about ±${NOISE_CM} cm · ${span}.`
+    : `<b>${p.name}</b> ${v < 0 ? 'sank' : 'rose'} about <b>${Math.abs(v).toFixed(1)} cm</b> as seen by the satellite · ${span} — about ${human(v)}.`;
+  const data = {labels: p.dates.map(fmtShort), datasets: [{label: 'Ground motion seen by NISAR (cm)', data: p.disp_cm, borderColor: '#ff5a47', backgroundColor: 'rgba(255,90,71,.12)', fill: true, tension: .25, pointRadius: 3}]};
   if (chartP){ chartP.data = data; chartP.update(); } else chartP = new Chart(document.getElementById('pointChart'), {type: 'line', data, options: chartOpts('cm')});
 }
 
@@ -190,7 +197,7 @@ function pickStation(st){
   document.querySelectorAll('#gnssTable tr').forEach(tr => tr.classList.toggle('sel', tr.dataset.st === st));
   const data = {labels: s.dates.map(fmtShort), datasets: [
     {label: `GPS ${s.station} (up, cm)`, data: s.gnss, borderColor: '#3fb950', tension: .2, pointRadius: 3},
-    {label: 'NISAR vertical estimate (cm)', data: s.insar, borderColor: '#4fb6ff', borderDash: [5, 4], tension: .2, pointRadius: 3}]};
+    {label: 'NISAR, converted to up–down (cm)', data: s.insar, borderColor: '#4fb6ff', borderDash: [5, 4], tension: .2, pointRadius: 3}]};
   if (chartG){ chartG.data = data; chartG.update(); } else chartG = new Chart(document.getElementById('gnssChart'), {type: 'line', data, options: chartOpts('cm')});
 }
 
