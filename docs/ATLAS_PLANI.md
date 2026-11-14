@@ -4,6 +4,21 @@ Jüri mesajı: *"NISAR'ın ilk kamuya açık aylarındaki veriyle dünyanın ~20
 Kurallar: sadece provisional (her iki tarih ≥ 2026-06-17, P05023); her şehir `data/global/<şehir>/` (veri sözleşmesi); ham .h5 kesince sil; aynı bilgisayarda aynı anda tek indirme; REVIEW_1500 dili; `git add <yol>`; her adımda commit + push.
 Sabit saatler: gece indirme (bilgisayarlar açık, uyku kapalı) · Paz 14:00 atlas veri sonu · Paz 20:00 dondurma · 22:00 teslim.
 
+## ⚡ PARALEL BAŞLANGIÇ — 8 ajan AYNI ANDA, kimse kimseyi beklemez (21:00)
+İlke "sözleşme önce": `data/global/atlas.json` biçimi sabit ve **PC1 tarafından 8 mevcut bölgeyle tohumlandı** (Konya Ovası −9.6, Central Valley −7.8, Cakarta −6.8, Karapınar −5.9, Mexico City −4.4, Tahran −3.5, Pekin −1.4, Delta −1.3 cm LOS). Görsel/metin işleri bu tohum dosyayla HEMEN başlar; yeni şehirler geldikçe dosya büyür, sayfalar kendiliğinden güncellenir.
+| PC | İLK işi (bağımlılık yok, şimdi başla) | Sonra |
+|---|---|---|
+| PC2 | Kendi 5 bölgesinin `--dry-run` kapsama kontrolü → indirmeye başla | NISAR Pulse iyileştirme |
+| PC10 | Kendi 5 bölgesinin kapsama kontrolü → indirme; `build_atlas.py` (tohum dosyayı yeniden üretecek) | atlas.json'u her şehirde güncelle |
+| PC9 | Earthdata kurulumu (Mehmet) → kendi 5 bölgesi | — |
+| PC3 | `web/atlas.html` küre + sıralama, **tohum atlas.json ile** | yeni şehirler kendiliğinden görünür |
+| PC6 | Sinematik video: Central Valley 3D arazi bölümü (DEM + tam yıl verisi zaten var) | küre bölümü (tohum atlas.json) |
+| PC8 | `tools/bulletin.py` Central Valley, Karapınar, Konya Ovası, Delta için (veri hazır) | atlas şehirleri |
+| PC5 | Mevcut 8 bölgenin literatür kıyası + "ilk mi?" taraması. **Öncelik: Mexico City −4.4 cm (108 gün) yayımlanmış hızlara göre düşük görünüyor — neden (koherens, bbox, referans) incele, PC10'a not** | yeni şehirler |
+| PC4 | Basın özeti + atlas slaytı + teknik not bölümü, **tohum atlas.json ile** | yeni şehirlerle güncelle |
+| PC7 | O2 olasılıksal risk | `validate_atlas.py` |
+Çakışma kuralı: `data/global/atlas.json` dosyasını SADECE PC10 (build_atlas.py) yazar; diğerleri okur.
+
 ## Bölgeler (merkez lon, lat — bbox'ı ±0.25–0.35° olarak sen kur, önce ASF'de provisional GUNW kapsamasını kontrol et; kapsama yoksa "no coverage" diye atlasa yaz ve sıradakine geç)
 | Kim indirir/işler | Bölgeler |
 |---|---|
