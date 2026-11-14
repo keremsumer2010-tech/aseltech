@@ -1,3 +1,3 @@
 # PC8 durum
 
-- Durum: %100 (01:04 TR; 19 bölge + eloy/delhi/quetta/xian tamam, PC8: 0 eksik, test_bulletin geçti); sıradaki: 3 dk sonra kontrol.
+- Durum: %100 (01:07 TR; 19 bölge senkron, diff=0, PC8: 0 eksik); sıradaki: 3 dk sonra yeni şehir/görev kontrolü.
