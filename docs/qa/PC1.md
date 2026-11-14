@@ -24,3 +24,9 @@ Kimlik: `compositeReleaseId = P05023`, `productVersion = 1.0.11`, `productSpecif
 
 ## ⚠️ Düzeltme: dalga boyu
 Belgelerde λ ≈ 0.2384 m yazıyordu. Ürün `centerFrequency` = 1239 MHz → **λ = 0.24196 m**. Kural: λ'yı sabit yazma, **her dosyadan `c / centerFrequency` ile oku**. `rules/VERI_SOZLESMESI.md` buna göre güncellendi.
+
+## 2026-11-14 13:00 — PC3 için uyarı: tek çiftte uzun dalga boylu eğim
+Yedek çiftten (09-08→09-20) cm'e çevrilen harita sahne boyunca ~±6 cm'lik düzgün bir eğim gösteriyor; bu 12 günde gerçek çökme olamaz, büyük olasılıkla atmosfer/iyonosfer.
+- `ionospherePhaseScreen` ile korelasyon zayıf (r≈0.22) ve çıkarınca std artıyor → ekran ya zaten uygulanmış ya da ölçeği farklı. Ürün spesifikasyonundan/ATBD'den doğrula, tahmin etme.
+- Öneri: her çifte düzlem (ramp) çıkarma, yüksek koherenslı sabit bölgeyi referans al; kümülatifte çift sayısı arttıkça gürültü birikir → sonucu literatürdeki Central Valley hızlarıyla kıyasla (RULES §5).
+- Bu yüzden PC1'in `web/mock/` verisi sadece görünüm testi içindir (`quality: placeholder`).

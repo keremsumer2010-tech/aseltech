@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Takım Paneli — aseltech</title>
+<style>
+:root{--bg:#0b1220;--card:#121b2e;--line:#22304d;--text:#e6ecf5;--mut:#8ea0bf;--ok:#3fb950;--warn:#d29922;--bad:#f85149;--acc:#58a6ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.45 system-ui,Segoe UI,Roboto,sans-serif;padding:16px}
+h1{font-size:20px;margin:0 0 4px}.sub{color:var(--mut);margin-bottom:14px}
+.top{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+.pill{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 12px}
+.pill b{color:var(--acc)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;min-height:150px}
+.card h2{font-size:15px;margin:0 0 2px;display:flex;justify-content:space-between;gap:8px}
+.who{color:var(--mut);font-size:12px;margin-bottom:8px}
+.dot{width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:6px}
+.st{white-space:pre-wrap;font:12px/1.4 ui-monospace,Consolas,monospace;background:#0d1526;border-radius:8px;padding:8px;max-height:180px;overflow:auto}
+.blocked{border-color:var(--bad)}.blocked .st{outline:1px solid var(--bad)}
+.last{font-size:12px;margin:6px 0}
+table{width:100%;border-collapse:collapse;margin-top:14px;background:var(--card);border-radius:12px;overflow:hidden}
+td,th{padding:6px 8px;border-bottom:1px solid var(--line);text-align:left;font-size:12px;vertical-align:top}
+th{color:var(--mut);font-weight:600}
+.q-claim{color:var(--warn)}.q-done{color:var(--ok)}.q-open{color:var(--mut)}
+h3{font-size:15px;margin:18px 0 6px}
+.err{color:var(--bad)}
+</style>
+</head>
+<body>
+<h1>Takım Paneli — NISAR Pulse</h1>
+<div class="sub">GitHub'dan canlı okunur (durum dosyaları ~1 dk, commit'ler 2 dk'da bir). Son güncelleme: <span id="upd">—</span> <span id="err" class="err"></span></div>
+<div class="top">
+  <div class="pill">Saat (TR): <b id="now">—</b></div>
+  <div class="pill">Sıradaki kontrol: <b id="next">—</b></div>
+  <div class="pill">Bugünkü commit: <b id="ncommit">—</b></div>
+  <div class="pill">Site: <a href="https://keremsumer2010-tech.github.io/aseltech/" style="color:var(--acc)">canlı link</a></div>
+</div>
+<div class="grid" id="cards"></div>
+<h3>Ortak kuyruk (tasks/QUEUE.md)</h3>
+<table id="queue"><tr><th>İş</th><th>Durum</th></tr></table>
+<h3>Son commit'ler</h3>
+<table id="commits"><tr><th>Saat</th><th>Kim</th><th>Mesaj</th></tr></table>
+<script>
+const REPO='keremsumer2010-tech/aseltech', RAW=`https://raw.githubusercontent.com/${REPO}/main/`;
+const PCS=[
+ {id:'PC1',name:'Kerem',tool:'Claude',role:'Yönetmen, web, yayın'},
+ {id:'PC2',name:'Memir',tool:'Antigravity',role:'Veri indirme'},
+ {id:'PC3',name:'Mehmet',tool:'Claude Code',role:'Çökme analizi'},
+ {id:'PC4',name:'İbrahim',tool:'Antigravity',role:'UK görsel, obruk, kaynak'},
+ {id:'PC5',name:'Mehmet',tool:'Antigravity-1',role:'Oyun + sunum metni'},
+ {id:'PC6',name:'Mehmet',tool:'Antigravity-2',role:'GNSS + altyapı'}];
+const CHECKS=[['13:30','İlk GUNW açıldı mı?'],['15:30','İlk gerçek cm haritası'],['16:30','Özellik dondurma'],['17:00','Yayın'],['17:30','Prova']];
+let commits=[];
+const trTime=d=>d.toLocaleTimeString('tr-TR',{timeZone:'Europe/Istanbul',hour:'2-digit',minute:'2-digit'});
+function clock(){
+  const n=new Date(), t=trTime(n); document.getElementById('now').textContent=t;
+  const nx=CHECKS.find(c=>c[0]>t); document.getElementById('next').textContent=nx?`${nx[0]} · ${nx[1]}`:'Bugünün kontrolleri bitti';
+}
+async function txt(path){const r=await fetch(RAW+path+'?t='+Date.now(),{cache:'no-store'}); if(!r.ok) throw new Error(path+' '+r.status); return r.text();}
+async function loadCommits(){
+  const r=await fetch(`https://api.github.com/repos/${REPO}/commits?per_page=40`); if(!r.ok) throw new Error('commits '+r.status);
+  commits=(await r.json()).map(c=>({sha:c.sha.slice(0,7),msg:c.commit.message.split('\n')[0],who:c.author?c.author.login:c.commit.author.name,date:new Date(c.commit.author.date)}));
+  const today=new Date().toDateString(); document.getElementById('ncommit').textContent=commits.filter(c=>c.date.toDateString()===today).length;
+  const tb=document.getElementById('commits'); tb.innerHTML='<tr><th>Saat</th><th>Kim</th><th>Mesaj</th></tr>'+commits.slice(0,15).map(c=>`<tr><td>${trTime(c.date)}</td><td>${c.who}</td><td>${esc(c.msg)}</td></tr>`).join('');
+}
+const esc=s=>s.replace(/[&<>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]));
+async function loadCards(){
+  const box=document.getElementById('cards'); const parts=[];
+  for(const p of PCS){
+    let st='(okunamadı)'; try{st=await txt(`status/${p.id}.md`);}catch(e){}
+    const mine=commits.filter(c=>c.msg.startsWith(`[${p.id}]`)); const last=mine[0];
+    const blocked=/BLOCKED:\s*\S/.test(st.replace(/BLOCKED:\s*$/m,''));
+    const mins=last?Math.round((Date.now()-last.date)/60000):null;
+    const color=blocked?'var(--bad)':(mins===null?'var(--mut)':mins<45?'var(--ok)':'var(--warn)');
+    const label=blocked?'ENGELLİ':(mins===null?'henüz commit yok':mins<45?'aktif':'45+ dk sessiz');
+    parts.push(`<div class="card ${blocked?'blocked':''}"><h2><span><span class="dot" style="background:${color}"></span>${p.id} · ${p.name}</span><span style="color:${color};font-size:12px">${label}</span></h2>
+      <div class="who">${p.tool} — ${p.role}</div>
+      <div class="last">${last?`Son commit ${trTime(last.date)} (${mins} dk önce): ${esc(last.msg)}`:'Henüz commit yok'}</div>
+      <div class="st">${esc(st.trim())}</div></div>`);
+  }
+  box.innerHTML=parts.join('');
+}
+async function loadQueue(){
+  const q=await txt('tasks/QUEUE.md'); const rows=q.split('\n').filter(l=>/^- \[/.test(l));
+  document.getElementById('queue').innerHTML='<tr><th>İş</th><th>Durum</th></tr>'+rows.map(l=>{
+    const m=l.match(/^- \[([^\]]*)\]\s*(.*)$/); const s=m[1].trim(); const cls=s.startsWith('x')?'q-done':s.startsWith('~')?'q-claim':'q-open';
+    const lab=s.startsWith('x')?'bitti '+s.slice(1).trim():s.startsWith('~')?'üzerinde: '+s.slice(1):'açık';
+    return `<tr><td>${esc(m[2].split(' · ').slice(0,3).join(' · '))}</td><td class="${cls}">${lab}</td></tr>`}).join('');
+}
+async function refresh(full){
+  try{ if(full) await loadCommits(); await loadCards(); await loadQueue(); document.getElementById('err').textContent='';
+       document.getElementById('upd').textContent=trTime(new Date()); }
+  catch(e){ document.getElementById('err').textContent='Hata: '+e.message; }
+}
+clock(); setInterval(clock,15000);
+let tick=0; refresh(true); setInterval(()=>{tick++; refresh(tick%2===0);},60000);
+</script>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NISAR Pulse — Follow the Water</title>
+<meta name="description" content="NASA-ISRO NISAR radar sees through clouds and measures the ground sinking as groundwater is pumped. A story anyone can read: California, Konya and Britain.">
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="topnav">
+  <a href="#hero" class="brand">NISAR Pulse</a>
+  <div class="links">
+    <a href="#uk">Clouds</a><a href="#usa">Dancing ground</a><a href="#konya">Sinkholes</a><a href="#why">Why</a><a href="#game">Game</a><a href="#how">How we know</a>
+  </div>
+</nav>
+
+<!-- 0 · HERO -->
+<header id="hero" class="scene hero">
+  <video id="heroVideo" class="hero-video" autoplay muted loop playsinline hidden></video>
+  <span id="heroAiTag" class="ai-tag" hidden>AI-generated illustration</span>
+  <div class="hero-text">
+    <p class="eyebrow">NASA Space Apps 2026 · Dancing with the SARs</p>
+    <h1>Follow the water.</h1>
+    <p class="lead">Farms are irrigated. Groundwater is pumped. The ground sinks.<br>
+      NASA-ISRO's <b>NISAR</b> radar sees through clouds and measures that motion in centimetres.
+      We turn it into a story anyone can read.</p>
+    <a class="cta" href="#uk">Scroll to follow the water ↓</a>
+  </div>
+</header>
+
+<!-- 1 · UK -->
+<section id="uk" class="scene">
+  <div class="text">
+    <p class="eyebrow">1 · United Kingdom</p>
+    <h2>Britain under clouds</h2>
+    <p>On most days, camera satellites see only clouds over England. NISAR sends its own microwave signal, so it sees the ground through cloud, smoke and darkness.</p>
+    <p class="hint">Drag the line to look under the clouds.</p>
+    <div id="ukMeta" class="meta-line"></div>
+    <div class="card" id="holmeCard">
+      <h3>The Holme Fen posts</h3>
+      <p id="holmeText">In the Fens, an iron post driven into the peat in the 1850s now stands far above the ground: the land around it has sunk as the peat dried out. <span class="pending">Exact figure and source being verified.</span></p>
+    </div>
+  </div>
+  <div class="visual">
+    <div id="compare" class="compare">
+      <div class="compare-empty" id="compareEmpty"><span class="badge placeholder">PLACEHOLDER</span><p>Cloud / radar image pair for the Fens is being prepared.</p></div>
+      <img id="ukOptical" alt="Optical satellite image of the Fens on a cloudy day" hidden>
+      <div id="ukRadarWrap" class="compare-top" hidden><img id="ukRadar" alt="NISAR radar image of the same area and day"></div>
+      <input id="compareRange" type="range" min="0" max="100" value="50" aria-label="Compare optical and radar" hidden>
+      <span class="compare-label left" hidden>Optical (clouds)</span>
+      <span class="compare-label right" hidden>NISAR radar</span>
+    </div>
+  </div>
+</section>
+
+<!-- 2 · USA -->
+<section id="usa" class="scene">
+  <div class="text">
+    <p class="eyebrow">2 · California, USA</p>
+    <h2>The dancing ground</h2>
+    <p>The Central Valley grows a large share of America's food. When rain is short, farms pump groundwater, the clay layers below compact, and the surface sinks.</p>
+    <div class="badge-row" id="cvBadge"></div>
+    <div class="timebar">
+      <button id="cvPlay" class="play" aria-label="Play">▶</button>
+      <input id="cvSlider" type="range" min="0" max="0" value="0" aria-label="Date">
+      <span id="cvDate" class="date"></span>
+    </div>
+    <div class="legend"><span id="legMin"></span><div class="ramp"></div><span id="legMax"></span></div>
+    <p class="legend-note">Red = ground moved away from the satellite (sinking). Blue = moved towards it.</p>
+    <div id="cvSentence" class="sentence">Tap a point on the map.</div>
+    <canvas id="cvChart" height="170"></canvas>
+  </div>
+  <div class="visual"><div id="cvMap" class="map"></div></div>
+</section>
+
+<!-- 3 · KONYA -->
+<section id="konya" class="scene">
+  <div class="text">
+    <p class="eyebrow">3 · Konya, Türkiye — our home</p>
+    <h2>Konya's sinkholes</h2>
+    <p>On the Konya Plain, falling groundwater has been linked to sinkholes (<i>obruk</i>) that open suddenly in farmland around Karapınar. NISAR watches the ground here every 12 days.</p>
+    <div class="badge-row" id="kpBadge"></div>
+    <ul id="kpList" class="kp-list"></ul>
+    <p id="kpEmpty" class="pending">Verified sinkhole locations (each with a source) are being compiled.</p>
+  </div>
+  <div class="visual"><div id="kpMap" class="map"></div></div>
+</section>
+
+<!-- 4 · WHY -->
+<section id="why" class="scene">
+  <div class="text">
+    <p class="eyebrow">4 · Why it happens</p>
+    <h2>From a pump to a sinking field</h2>
+    <ol class="steps">
+      <li><b>Dry season, thirsty crops.</b> Farmers irrigate.</li>
+      <li><b>Groundwater is pumped.</b> Water leaves the pores between clay and sand.</li>
+      <li><b>Clay compacts.</b> Part of this squeeze is permanent: the aquifer loses storage.</li>
+      <li><b>The surface sinks.</b> Canals tilt, wells break, sinkholes can open.</li>
+      <li><b>Wet season.</b> Some water returns and the ground rises a little — the "dance".</li>
+    </ol>
+  </div>
+  <div class="visual">
+    <figure class="diagram">
+      <svg viewBox="0 0 400 300" role="img" aria-label="Illustrative diagram of groundwater pumping and ground subsidence">
+        <rect x="0" y="0" width="400" height="80" fill="var(--sky)"/>
+        <path d="M0 90 Q200 120 400 90 L400 130 L0 130 Z" fill="var(--soil)"/>
+        <rect x="0" y="130" width="400" height="60" fill="var(--clay)"/>
+        <rect x="0" y="190" width="400" height="110" fill="var(--aquifer)"/>
+        <g fill="var(--crop)"><circle cx="60" cy="92" r="6"/><circle cx="90" cy="95" r="6"/><circle cx="310" cy="95" r="6"/><circle cx="340" cy="92" r="6"/></g>
+        <rect x="196" y="60" width="8" height="200" fill="#999"/><rect x="185" y="48" width="30" height="16" rx="3" fill="#ccc"/>
+        <path d="M200 255 L200 70" stroke="var(--water)" stroke-width="3" stroke-dasharray="6 5" class="flow"/>
+        <path d="M150 112 L150 128 M250 112 L250 128" stroke="#fff" stroke-width="2" marker-end="url(#ar)"/>
+        <defs><marker id="ar" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#fff"/></marker></defs>
+        <text x="8" y="160" class="lbl">Clay — compacts</text><text x="8" y="215" class="lbl">Aquifer — water pumped out</text><text x="8" y="20" class="lbl">Surface sinks ↓</text>
+      </svg>
+      <figcaption>Illustrative diagram (not to scale)</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- 5 · GAME -->
+<section id="game" class="scene">
+  <div class="text">
+    <p class="eyebrow">5 · Play</p>
+    <h2>Aquifer Manager</h2>
+    <p>You run a farming valley for ten years. Pump more and your crops thrive — but the ground pays the price. How much sinking will you accept?</p>
+    <a id="gameLink" class="cta" href="#" target="_blank" rel="noopener">Play Aquifer Manager ↗</a>
+    <p id="gameNote" class="pending">The game is being built.</p>
+  </div>
+  <div class="visual"><iframe id="gameFrame" title="Aquifer Manager game" loading="lazy" hidden></iframe></div>
+</section>
+
+<!-- 6 · HOW -->
+<section id="how" class="scene how">
+  <div class="text wide">
+    <p class="eyebrow">6 · How we know</p>
+    <h2>Data, method, honesty</h2>
+    <div class="grid3">
+      <div class="card"><h3>NISAR data</h3><p><b>GUNW</b> — unwrapped interferograms: ground motion between two dates (80 m).<br><b>GCOV</b> — radar backscatter images.<br><b>SME2</b> — soil moisture.<br>All from NASA's Alaska Satellite Facility (ASF DAAC).</p></div>
+      <div class="card"><h3>Method</h3><p>Phase is converted to centimetres with the radar wavelength read from each product (−λ/4π × phase), unreliable pixels are masked by coherence, everything is referenced to a stable area, and consecutive 12-day pairs are added up. Radar measures motion along its slanted line of sight, not purely vertical.</p></div>
+      <div class="card"><h3>Quality labels</h3><p><span class="badge provisional">PROVISIONAL</span> NISAR provisional products (June 2026 onward).<br><span class="badge beta">PRE-CALIBRATION BETA</span> earlier products, shown separately.<br><span class="badge preview">PREVIEW</span> quick-look images, not quantitative.<br><span class="badge placeholder">PLACEHOLDER</span> layout test, not a measurement.</p></div>
+    </div>
+    <p class="footnote"><b>NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.</b> We use the products as released.</p>
+    <p class="footnote">AI use: this site and its code were built with the help of AI assistants (Claude, Gemini). Any AI-generated image or video is labelled "AI-generated illustration" and is never presented as data. Maps show only real data.</p>
+    <p class="footnote">Open source (MIT): <a href="https://github.com/keremsumer2010-tech/aseltech">github.com/keremsumer2010-tech/aseltech</a> · Sources: <a href="https://github.com/keremsumer2010-tech/aseltech/blob/main/docs/story/sources.md">docs/story/sources.md</a> · Basemap imagery © Esri, Maxar, Earthstar Geographics.</p>
+    <p class="team">Team Taykut · ASELSAN Vocational and Technical Anatolian High School, Ankara, Türkiye · NASA Space Apps Challenge 2026, Lincoln (UK)</p>
+  </div>
+</section>
+
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
