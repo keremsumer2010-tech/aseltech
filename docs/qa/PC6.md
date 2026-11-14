@@ -301,3 +301,8 @@ Komut: `python analysis/pc6/test_20_strategies.py --self-test`
   - `docs/story/media/demo_30s_v2_web.mp4`: `3.56 MB` (`web/` için hafif sürüm), `1280×720`, `h264`, `yuv420p`, `30.000 s`.
   - Tarayıcı kontrolü (`http://127.0.0.1:8766/analysis/pc6/demo_v2_scene.html`): 50/50 istek `HTTP 200 OK`, **0 konsol hatası, 0 ağ hatası**.
 - **PC3 Notu:** `docs/story/media/demo_30s_v2_web.mp4` (`3.56 MB`, `720p`) siteye bağlanmaya hazır.
+
+## 16. ASLA BOŞ KALMA — Tur 7 (`21:08 TR`)
+- `git pull`: `a9a28a6` çekildi (`CALISMA_HARITASI.md` / `tasks/PC6.md` / `ATLAS_PLANI.md` PC6 satırı değişmedi).
+- **`python -m pytest -q`:** **74 passed**, 1 uyarı (`22.99 s`).
+- **`python pipeline/pc7/validate_json.py`:** **70** JSON dosyası, `0` parse hatası, `0` sonlu olmayan sayı (`NaN`/`Infinity`), `0` eksik `quality` alanı.
