@@ -137,3 +137,7 @@ Toplam bulgu: 1.
 | BN50-F30 | Below Normal | 50% | 30% | 0.09 | 0.00 | 739.8 |
 
 Kontroller: 0–150% pompalama serisinde çökme monoton arttı; kalıcı çökme toplam çökme değerini aşmadı; ölçümler sonlu ve negatif olmayan büyüklüklerdi. Bu model çalıştırmasında sayısal hata görülmedi. Daha fazla pompalama daha yüksek gelir de üretti; bu, modelin kısa dönem gelir fonksiyonunun sonucu ve gerçek dünya tahmini olarak yorumlanmamalı. Su yılı sınıfları ve bazı ekonomik/fiziksel parametreler modelde açıklayıcı/temsili olarak işaretlidir.
+
+## 5. Q10 Fens girdi kontrolü (offline)
+
+Son `git pull --rebase origin main` sonrasında `pipeline/subset/fens_gcov/` dizini repoda yoktu. Bu yüzden PC2'nin beklenen `.npz` kesitleri yerel olarak bulunamadı; Q10 tarla zaman serisi üretilmedi. ASF sorgusu veya veri indirme yapılmadı. Bu bölüm, kesitler repoya geldiğinde yeniden kontrol edilecek.
