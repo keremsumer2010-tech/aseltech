@@ -11,7 +11,9 @@
 6. `docs/checkpoint_phase.png` (unwrapped phase, bbox kesilmiş).
 
 ## Görev 2 (Görev 1 bitince)
-Central Valley path 34 TÜM GUNW'lerini sırayla indir → sadece bbox'ı kes (`pipeline/subset.py`, çıktı `raw/subset/*.h5` veya GeoTIFF) → orijinali sil.
+ÖNCE (Lincoln sunumu bugün): Haziran–Eylül 2026 arası ardışık GUNW'ler (~9 adet, 2026-06-04 → 2026-09-20 zinciri).
+SONRA (Pazar, küresel teslim): 2025-11-24 → 2026-10-14 tam zincir, sadece "P05023" sürüm kodlu 25 ürün (X05010 olanları atla).
+Central Valley path 34 GUNW'lerini sırayla indir → sadece bbox'ı kes (`pipeline/subset.py`, çıktı `raw/subset/*.h5` veya GeoTIFF) → orijinali sil.
 Paralel: aynı bölge için 6–8 tarihlik GCOV ve tüm SME2'yi kes.
 
 ## Kabul
