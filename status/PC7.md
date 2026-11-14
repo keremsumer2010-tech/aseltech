@@ -1,7 +1,7 @@
 # PC7 durum
 
 - Görev: Fens GCOV ritmi, polarizasyon karşılaştırması, çevrimdışı site QA ve Node oyun testi
-- Durum: Xi'an tamamlandı ve push edildi. Taiyuan dry-run 9 provisional çift/0 boşluk verdi; bulunan K001/J004 GPS noktaları havza içi kaynaklı olduğundan Taiyuan üretimi uygun dış referans doğrulanana dek beklemede. Sıradaki şehir Querétaro; belgeli El Cimatario referans adayını kullanacağım.
+- Durum: Xi'an tamamlandı ve push edildi. Taiyuan dry-run 9 provisional çift/0 boşluk verdi; bulunan K001/J004 GPS noktaları havza içi kaynaklı olduğundan Taiyuan üretimi uygun dış referans doğrulanana dek beklemede. Querétaro dry-run 9 çift/0 boşluk verdi; belgeli El Cimatario adayına göre tek ürünlü indirme/kesme işlemi çalışıyor, başka indirme başlatılmadı.
 - ASF araması: platform=NISAR, processingLevel=GCOV, bbox [-0.3, 52.4, 0.4, 52.9], başlangıç 2026-06-17; 49 P05023 GCOV ürünü HH/HV ile eşleşti.
 - Tekrarlı seri: path 52, frame 61, 10 benzersiz tarih: 2026-06-17–2026-10-15. Granül listesi `pipeline/pc7/fens_gcov_catalog.json` içinde.
 - Doğrulama: `pipeline/pc7/search_fens_gcov.py` çalıştırıldı; katalog JSON olarak tekrar açılıp parse edildi.
@@ -28,7 +28,7 @@
 - A çıktıları: `data/global/robustness.json`, `docs/story/media/pc7_atlas_robustness.png`; ağsız testler 4/4, tüm pytest 79/79 geçti (bir deprecation uyarısı); 93 JSON'da parse/non-finite/eksik-quality bulgusu 0. `atlas.json` değişmedi. Ayrıntı `docs/qa/PC7.md` §16.
 - Önceki Git index izni engeli yükseltilmiş erişimle çözüldü; kapsam raporu commit/push edildi.
 - Uzun plan FAZ 1 kapsamı: Python 3.12.10 NISAR Pulse dry-run ile Xi'an, Taiyuan, Querétaro, Aguascalientes, Kashmar'ın her birinde 9 ardışık provisional çift ve sıfır boşluk doğrulandı. Ham veri indirmedim; ayrıntılar `docs/qa/PC7.md` §18.
-- `pipeline/pc7/run_atlas_city.py` eklendi; py_compile ve bbox/reference yardımcıları smoke check geçti. Ham veri henüz indirilmedi, yeni şehir `ready` değil. Ayrıntı `docs/qa/PC7.md` §19.
+- `pipeline/pc7/run_atlas_city.py` eklendi; py_compile ve bbox/reference yardımcıları smoke check geçti. Querétaro `ready` değil; analiz/çıktı kontrolü indirme ve kesme tamamlanınca yapılacak. Ayrıntı `docs/qa/PC7.md` §19.
 - Xi'an: 9 provisional çift kesildi; ham granüller kesimden sonra silindi. `data/global/xian/` özeti üretildi. Başlık ölçümü −1.5 cm LOS, −1.25 cm/100 gün; 120 günlük dönem, 36.2% valid fraction, orta güven. Üç referans alternatifi aralığı 2.4 cm olduğundan referans duyarlılığı yüksek; keşifsel sonuç olarak yorumlanmalı.
 - Taiyuan: güncel elevated `--dry-run` 9 çift, 0 boşluk ve 20,247.7 MB ham kapsam gösterdi; dosya indirilmedi. Kaynaklı K001 (112.7, 37.7) Taiyuan Basin içindeki Jinzhong sahasıdır; J004 (111.78, 37.24) da literatürde havza GPS ağı içinde sayılır. Taiyuan dış referansı henüz doğrulanmadı.
 - Tam pytest tekrarlandı: 83 passed, 1 PendingDeprecationWarning; Xi'an indirmesi sürerken.
