@@ -15,4 +15,5 @@
 - AI: Codex → yerel GCOV analizi, kaynak sentezi, offline QA scriptleri ve Node test sürücüsü.
 - 20:00 hata ayıklama 1: `web/index.html` boş görsel `src` niteliği kaldırıldı; `ROOT + data-src` yükleyicisi korundu. `docs/qa/PC7.md` §8.
 - 20:00 hata ayıklama 2: `web/explorer.html`'e sabit NISAR provisional/kalibrasyon uyarısı eklendi; mevcut `.disclaimer` stili kullanıldı. `docs/qa/PC7.md` §9.
+- 20:00 hata ayıklama 3: Kök `requirements.txt` oluşturuldu; 11 istenen paket listelendi. Paket kurulumu/indirmesi yapılmadı. `docs/qa/PC7.md` §10.
 - BLOCKED: yok

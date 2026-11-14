@@ -209,6 +209,10 @@ Bu ölçülmüş aralıklar HH'nin en geniş sayısal salınımı verdiğini, SA
 
 `web/explorer.html` kontrol paneline site genelindeki sabit kalibrasyon/validasyon açıklaması eklendi. `.disclaimer` stili zaten `web/style.css` içinde mevcut; yeni stil gerekmedi. Metin NISAR ürünlerinin provisional olduğunu ve kalibrasyon/doğrulamanın NASA-JPL/ISRO proje sorumluluğunda olduğunu açıkça söylüyor.
 
+## 10. 20:00 hata ayıklama 3 — Python gereksinimleri
+
+Repo kökünde önceden `requirements.txt` yoktu. İstenen Python paketleri (`asf_search`, `h5py`, `numpy`, `scipy`, `matplotlib`, `pyproj`, `rasterio`, `shapely`, `requests`, `pytest`, `Pillow`) kurulum gereksinimi olarak eklendi; bu görevde paket indirme/kurma yapılmadı.
+
 ## 7. 20:00 hata ayıklama turu — madde 1
 
 `web/index.html` satır 117'de `src=""` ve `data-src="docs/story/media/pc9_fullyear_point.png"` bulunuyor. `web/app.js` içindeki `fullYear()` yükleyicisi `ROOT + im.dataset.src` kullanıyor; Pages ve yerel `/web/` köklerini destekliyor. Ancak `web/index.html` son commit'i `4317bc1` (`20:09:26 +03:00`), bu kontrol `20:22` civarında yapıldı; PC1 notundaki 15 dakika koruması nedeniyle dosyaya dokunulmadı. `src=""` boş bırakılması tarayıcının geçerli sayfayı görsel olarak tekrar istemesine neden olabilir; en yakın güvenli düzeltme, 15 dakika geçtikten sonra boş `src` niteliğini kaldırıp `data-src` yükleyicisini korumaktır. Bu adımda dosya değiştirilmedi.
