@@ -20,6 +20,7 @@
   let summaryData = null;
   let pointsData = null;
   let timelineChart = null;
+  let endCompareChart = null;
 
   // DOM helpers
   const $ = (id) => document.getElementById(id);
@@ -764,14 +765,84 @@
 
     let takeaway = '';
     if (Math.abs(worst.inelasticCm) >= 12) {
-      takeaway = `What this means: Heavy over-pumping forced water levels past preconsolidation head (h_pc), locking in ${worst.inelasticCm.toFixed(1)} cm of permanent aquitard collapse near ${worst.shortName}. Even future wet winters cannot restore lost clay pore storage.`;
+      takeaway = `What this means: Heavy groundwater pumping dropped levels past historical lows, locking in ${worst.inelasticCm.toFixed(1)} cm of permanent clay collapse near ${worst.shortName}. Even future wet winters cannot restore that lost underground pore storage.`;
     } else if (Math.abs(worst.inelasticCm) <= 4) {
-      takeaway = `What this means: By curbing groundwater extraction and balancing winter recharge, you limited permanent compaction to ${worst.inelasticCm.toFixed(1)} cm while protecting Friant-Kern and Aqueduct gradients.`;
+      takeaway = `What this means: Limiting groundwater extraction balanced winter recharge and kept permanent collapse to ${worst.inelasticCm.toFixed(1)} cm across the basin. Canal conveyance gradients stayed within safe design limits.`;
     } else {
-      takeaway = `What this means: Summer irrigation temporarily pushed hotspots past preconsolidation head (${worst.inelasticCm.toFixed(1)} cm permanent collapse). Reducing summer pumping peaks before Dry/Critical water years protects aqueduct capacity.`;
+      takeaway = `What this means: Summer irrigation temporarily pushed hotspots past historical lows, causing ${worst.inelasticCm.toFixed(1)} cm of permanent clay collapse near ${worst.shortName}. Reducing summer pumping peaks before dry years protects canal capacity and wells.`;
     }
     $('endMeaning').textContent = takeaway;
     $('endModal').hidden = false;
+    renderEndCompareChart();
+  }
+
+  function renderEndCompareChart() {
+    const canvas = $('endCompareChart');
+    if (!canvas || !window.Chart || !simState) return;
+    const labels = simState.districts.map((d) => d.shortName);
+    const simTotal = simState.districts.map((d) => Number(Math.abs(d.totalCm).toFixed(2)));
+    const simPerm = simState.districts.map((d) => Number(Math.abs(d.inelasticCm).toFixed(2)));
+    const nisarVert = simState.districts.map((d) =>
+      Number(Math.abs(ValleyModel.losToVertical(d.nisarLosCm, simState.incidenceDeg)).toFixed(2))
+    );
+
+    if (endCompareChart) {
+      endCompareChart.destroy();
+      endCompareChart = null;
+    }
+
+    endCompareChart = new Chart(canvas.getContext('2d'), {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [
+          {
+            label: 'Your 24-Mo Total Sink (cm)',
+            data: simTotal,
+            backgroundColor: 'rgba(77, 163, 255, 0.78)',
+            borderColor: '#4da3ff',
+            borderWidth: 1,
+          },
+          {
+            label: 'Your Permanent Collapse (cm)',
+            data: simPerm,
+            backgroundColor: 'rgba(255, 107, 87, 0.85)',
+            borderColor: '#ff6b57',
+            borderWidth: 1,
+          },
+          {
+            label: '2026 NISAR 108-Day Est. (cm)',
+            data: nisarVert,
+            backgroundColor: 'rgba(245, 185, 66, 0.85)',
+            borderColor: '#f5b942',
+            borderWidth: 1,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        animation: false,
+        plugins: {
+          legend: {
+            position: 'top',
+            labels: { color: '#e6edf3', boxWidth: 11, font: { size: 10.5 }, padding: 8 },
+          },
+        },
+        scales: {
+          x: {
+            ticks: { color: '#8b9bb0', font: { size: 10.5 } },
+            grid: { display: false },
+          },
+          y: {
+            beginAtZero: true,
+            title: { display: true, text: 'Subsidence magnitude (cm)', color: '#8b9bb0', font: { size: 10.5 } },
+            ticks: { color: '#8b9bb0', font: { size: 10 } },
+            grid: { color: 'rgba(34, 48, 65, 0.5)' },
+          },
+        },
+      },
+    });
   }
 
   function advanceMonths(count) {

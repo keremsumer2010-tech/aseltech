@@ -236,12 +236,25 @@
 
   <!-- Screen 4: End-of-Game Scorecard Modal -->
   <div id="endModal" class="modal-backdrop" hidden>
-    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="endTitle">
+    <div class="modal-card modal-card-wide" role="dialog" aria-modal="true" aria-labelledby="endTitle">
       <div style="display:flex; gap:8px; margin-bottom:8px;">
         <span class="pill provisional">PROVISIONAL NISAR COMPARISON</span>
       </div>
       <h2 id="endTitle">Two Water Years Later: Your Valley vs Reality</h2>
       <p id="endMeaning" class="modal-sub"></p>
+
+      <div class="end-chart-card">
+        <div class="end-chart-head">
+          <strong>Player 24-Month Simulation vs. 2026 NISAR Vertical Displacement</strong>
+          <span class="mono" style="color:var(--muted); font-size:10.5px;">Vertical equiv. (cm)</span>
+        </div>
+        <div class="end-chart-wrap">
+          <canvas id="endCompareChart"></canvas>
+        </div>
+        <div class="end-chart-credit">
+          Figure 1. District 24-month simulated subsidence against 2026 NISAR vertical benchmark. Data: NASA-ISRO NISAR, ASF DAAC. Analysis: Team Taykut.
+        </div>
+      </div>
 
       <div class="compare-grid">
         <div class="compare-col">

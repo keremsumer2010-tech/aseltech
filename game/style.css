@@ -688,6 +688,40 @@ input[type="range"] {
   animation: modal-in 180ms var(--ease-out);
 }
 
+.modal-card-wide {
+  max-width: 740px;
+}
+
+.end-chart-card {
+  background: var(--panel-alt);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px 12px 8px;
+  margin: 10px 0 12px;
+}
+
+.end-chart-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  margin-bottom: 6px;
+  flex-wrap: wrap;
+}
+
+.end-chart-wrap {
+  position: relative;
+  height: 210px;
+  width: 100%;
+}
+
+.end-chart-credit {
+  margin-top: 6px;
+  font-size: 10.5px;
+  color: var(--muted);
+}
+
 @keyframes modal-in {
   from { opacity: 0; transform: scale(0.96); }
   to { opacity: 1; transform: scale(1); }
