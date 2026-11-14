@@ -41,7 +41,7 @@ Her PC sadece kendi `[atandı]` satırlarını yukarıdan aşağı yapar: `- [ ]
 - [ ] B15 · [atandı: PC8] · S-23 En son · TR/EN dil desteği — SADECE B01–B14 ve PC6 listesi bitince; önce PC3'e sor
 
 ### PC6 — veri, analiz, metin, video (data/, analysis/pc6/, risk/, validation/, docs/story/*.md, docs/story/media/)
-- [ ] B16 · [atandı: PC6] · S-19 Kritik · GPS: sabit istasyonlarda ~+1.5 cm sistematik sapmayı ölç ve metne bir cümle ekle; yeşil eşiği 0.6; tablo başlığı "Diff." → "RMSE (cm)"
+- [~PC6] B16 · [atandı: PC6] · S-19 Kritik · GPS: sabit istasyonlarda ~+1.5 cm sistematik sapmayı ölç ve metne bir cümle ekle; yeşil eşiği 0.6; tablo başlığı "Diff." → "RMSE (cm)"
 - [ ] B17 · [atandı: PC6] · S-20 Kritik · Karapınar: güven etiketi (%14 ölçülebilir alan, ±3–4 cm gürültü), halka grafiğine piksel sayısı + hata çubuğu, ">5 km yayla" notu
 - [ ] B18 · [atandı: PC6] · S-24 Kritik · `docs/story/key_findings.md`: Track 114 "neighboring ascending" → "descending" (PDF'in ters önerisini UYGULAMA)
 - [ ] B19 · [atandı: PC6] · S-26 Yüksek · key_findings.md Karapınar farkı: 3.45 / 3.33 cm → 3.51 / 3.38 cm
