@@ -279,3 +279,22 @@ Kapsam: `web/index.html` (`1–163`). Genel İngilizce tonu akıcı ve tutarlı 
     - `docs/story/narration_script.md` L28, L41: `confirming`, `validated`
     - `docs/story/slides_notes.md` L25, L33, L48, L54: `proven`, `confirming`, `calibrated`
     - `docs/story/submission_form.md` L33: `validated`
+
+---
+
+## 24. Atlas İkinci Tur (PC4 #5–9) & C05 Erken Uyarı Bültenleri Senkronu (`2026-11-14 23:00 TR`)
+
+- **12 Atlas Şehir Kartı ([`docs/story/atlas_cities/`](../story/atlas_cities)):**
+  - Tamamlanan şehir kartları: `central_valley.md`, `konya_plain.md`, `karapinar.md`, `jakarta.md`, `mexico_city.md`, `delta.md`, `isfahan.md`, `rafsanjan.md`, `bangkok.md`, `ho_chi_minh.md`, `tehran.md`, `beijing.md`.
+  - Her kart $\le 150$ kelime; jeolojik çökme etmeni (kil, akifer boşalımı, turba oksidasyonu), etkilenen nüfus ve altyapı koridorları, hakemli literatür hızları (DOI linkleriyle), NISAR L-band ölçümü (`cm/100d`, dönem, geçerli piksel, güven sınıfı) ve NISAR'ın katkısı içerir.
+  - PC5 onayı olmayan sayılara açıkça `preliminary` şerhi düşülmüştür.
+- **Atlas Yöntem Belgesi ([`docs/story/atlas_methods.md`](../story/atlas_methods.md)):**
+  - Standart $\pm 0.25^\circ$ kutu, $1\text{ km}$ blok medyan ve $p_2$ filtreleme, sıralamada dönemden bağımsız `rate_cm_per_100d` seçilme gerekçesi, havza dışı kayaç referans seçimi ve duyarlılık oranı, güven sınıflandırması (§4), LOS-dikey geometrisi, provisional kalibrasyon şerhi ve `pipeline.nisarpulse` CLI komutları tek sayfada belgelendi.
+- **Atlas Veri Sözlüğü ([`docs/story/atlas_data_dictionary.md`](../story/atlas_data_dictionary.md)):**
+  - `data/global/atlas.json` dosyasındaki üst düzey şema ve 22 bölgesel anahtarın tamamı (alan adı, tipi, birimi, anlamı, formülü ve örnek değerleri) belgelendi.
+- **Jüri Atlas Zor Soruları ([`docs/story/judge_faq.md`](../story/judge_faq.md) #22–26):**
+  - 5 zor atlas sorusu (#22 sıralama literatür farkı, #23 108 gün yıllık hızı temsil eder mi, #24 tropik koherens ve muson gecikmesi, #25 referans seçimi ve hassasiyeti, #26 ilk ölçüm iddiaları) bilimsel temelleriyle eklendi.
+- **C05 — Erken Uyarı Bültenleri Üretimi ([`docs/bulletins/`](../bulletins/)):**
+  - `tools/bulletin.py` çalıştırılarak atlas.json'daki 11 bölgenin tamamı için güncel HTML bültenleri (`konya_plain.html`, `central_valley.html`, `jakarta.html`, `bangkok.html`, `mexico_city.html`, `karapinar.html`, `ho_chi_minh.html`, `tehran.html`, `isfahan.html`, `beijing.html`, `delta.html`) ve `index.html` (11 bültenlik liste) üretildi.
+- **Kalite Standartları ve Hata Ayıklama:**
+  - `data/numbers_registry.json` içine eksik `"quality": "provisional"` alanı eklenerek `pipeline/pc7/validate_json.py` testinin 106 dosyanın tamamında 0 hata ile geçmesi sağlandı.
