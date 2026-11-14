@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Aquifer Manager — Groundwater vs. Subsidence Simulator</title>
+<style>
+:root{
+  --bg:#070b14; --panel:#0f1626; --line:#1f2b44; --text:#e8edf6; --mut:#93a3c0; --acc:#5ec8ff; --hot:#ff6b5a;
+  --sky:#1d3557; --soil:#7a5230; --clay:#a0785a; --aquifer:#2a4d6e; --crop:#5fbf5f; --water:#5ec8ff;
+  --ease-out:cubic-bezier(0.22,1,0.36,1);
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;background:var(--bg);color:var(--text);font:14px/1.45 "Segoe UI",system-ui,-apple-system,Roboto,sans-serif;font-variant-numeric:tabular-nums}
+.app{max-width:920px;min-height:100%;margin:0 auto;padding:12px 14px;display:flex;flex-direction:column;gap:10px}
+.hdr{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+.title-wrap{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+h1{font-size:1.05rem;font-weight:700;margin:0;letter-spacing:-0.01em}
+.badge{display:inline-flex;align-items:center;gap:5px;font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border-radius:6px;padding:2px 8px;line-height:1.4}
+.badge.placeholder{background:#a371f7;color:#fff}
+.badge.provisional{background:#e3b341;color:#1b1400}
+.badge-sub{font-size:.78rem;color:var(--mut)}
+.year-pill{display:inline-flex;align-items:center;gap:6px;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:4px 10px;font-size:.82rem;color:var(--text)}
+.year-pill strong{color:var(--acc)}
+
+/* Cross-section viewport */
+.stage{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+svg.scene-svg{display:block;width:100%;height:auto;max-height:185px;min-height:140px}
+.svg-smooth{transition:transform 320ms var(--ease-out),opacity 260ms var(--ease-out)}
+.hud-weather{position:absolute;top:10px;left:10px;display:inline-flex;align-items:center;gap:6px;background:rgba(7,11,20,.82);border:1px solid var(--line);border-radius:8px;padding:4px 9px;font-size:.78rem;backdrop-filter:blur(6px)}
+.hud-weather.wet{border-color:rgba(94,200,255,.45);color:var(--acc)}
+.hud-weather.normal{border-color:rgba(147,163,192,.35);color:var(--text)}
+.hud-weather.drought{border-color:rgba(255,107,90,.55);color:var(--hot)}
+.hud-post{position:absolute;top:10px;right:10px;background:rgba(7,11,20,.82);border:1px solid var(--line);border-radius:8px;padding:4px 9px;font-size:.76rem;color:var(--mut);backdrop-filter:blur(6px)}
+.hud-post strong{color:var(--text)}
+
+/* 4-KPI Grid */
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:8px 10px}
+.kpi .lbl{font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--mut);margin-bottom:2px}
+.kpi .val{font-size:1.05rem;font-weight:700;color:var(--text);line-height:1.2}
+.kpi .val.hot{color:var(--hot)}
+.kpi .val.acc{color:var(--acc)}
+.kpi .val.good{color:var(--crop)}
+.kpi .sub{font-size:.72rem;color:var(--mut);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* Controls & History Strip */
+.controls{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:10px 12px;display:flex;flex-wrap:wrap;align-items:center;gap:12px}
+.slider-box{flex:1 1 220px;display:flex;flex-direction:column;gap:4px}
+.slider-top{display:flex;justify-content:space-between;align-items:baseline;font-size:.82rem}
+.slider-top label{font-weight:600;color:var(--text)}
+.slider-top .pct{font-size:.95rem;font-weight:700;color:var(--acc)}
+input[type=range]{width:100%;height:6px;accent-color:var(--acc);cursor:pointer;margin:4px 0}
+.slider-scale{display:flex;justify-content:space-between;font-size:.7rem;color:var(--mut)}
+.btn-row{display:flex;gap:8px;align-items:center}
+button{font-family:inherit;font-size:.85rem;font-weight:700;border-radius:999px;border:1px solid var(--line);padding:9px 16px;min-height:38px;cursor:pointer;transition:transform 140ms var(--ease-out),background-color 140ms var(--ease-out),border-color 140ms var(--ease-out)}
+button.primary{background:var(--acc);color:#04121d;border-color:var(--acc)}
+button.ghost{background:transparent;color:var(--text)}
+button:active{transform:scale(0.97)}
+button:disabled{opacity:.45;cursor:not-allowed;transform:none}
+button:focus-visible,input:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+@media (hover:hover) and (pointer:fine){
+  button.primary:not(:disabled):hover{background:#7ad4ff}
+  button.ghost:not(:disabled):hover{background:rgba(94,200,255,.1);border-color:var(--acc)}
+}
+
+/* History + Summary */
+.timeline{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:4px;align-items:end;height:42px;padding:6px 8px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.tbar{position:relative;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center}
+.tbar-fill{width:100%;border-radius:3px 3px 1px 1px;background:var(--line);min-height:3px;transition:transform 260ms var(--ease-out),background-color 200ms var(--ease-out);transform-origin:bottom}
+.tbar.wet .tbar-fill{background:var(--water)}
+.tbar.normal .tbar-fill{background:#8ea2c8}
+.tbar.drought .tbar-fill{background:var(--hot)}
+.tbar-lbl{font-size:.62rem;color:var(--mut);line-height:1;margin-top:2px}
+
+.summary{background:rgba(15,22,38,.96);border:1px solid var(--acc);border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:8px;opacity:0;transform:translateY(4px);transition:opacity 240ms var(--ease-out),transform 240ms var(--ease-out)}
+.summary.visible{opacity:1;transform:translateY(0)}
+.summary[hidden]{display:none}
+.summary-head{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.summary h2{font-size:1rem;margin:0;color:var(--text)}
+.summary p{margin:0;font-size:.86rem;color:#cfd8e8}
+.summary-metrics{display:flex;flex-wrap:wrap;gap:14px;font-size:.82rem;color:var(--mut)}
+.summary-metrics strong{color:var(--text)}
+
+.foot{font-size:.73rem;color:var(--mut);line-height:1.4;margin-top:auto;padding-top:4px;border-top:1px solid rgba(31,43,68,.65)}
+@media (max-width:600px){
+  .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .app{padding:10px}
+  .controls{gap:8px}
+  .btn-row{width:100%}
+  .btn-row button.primary{flex:1}
+}
+@media (prefers-reduced-motion:reduce){
+  .svg-smooth,.tbar-fill,.summary,button{transition:none!important}
+}
+</style>
+</head>
+<body>
+<main class="app">
+  <header class="hdr">
+    <div class="title-wrap">
+      <h1>Aquifer Manager</h1>
+      <span id="rateBadge" class="badge placeholder">Illustrative · 10.0 cm/yr</span>
+      <span id="ratePeriod" class="badge-sub">10-year groundwater trade-off</span>
+    </div>
+    <div class="year-pill" aria-live="polite">
+      Year <strong id="yearLabel">1</strong> / <span id="yearMax">10</span>
+    </div>
+  </header>
+
+  <section class="stage" aria-label="Valley Aquifer Cross-Section">
+    <div id="weatherHud" class="hud-weather normal">
+      <svg id="weatherIcon" width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"></svg>
+      <span id="weatherLabel">Normal year (1.0×)</span>
+    </div>
+    <div class="hud-post">Surface drop: <strong id="dropReadout">0.0 cm</strong></div>
+
+    <svg class="scene-svg" viewBox="0 0 640 200" role="img" aria-label="Cross-section of irrigated farm surface, canal, well pipe, clay layer, and deep aquifer">
+      <defs>
+        <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#132642"/>
+          <stop offset="100%" stop-color="#1d3557"/>
+        </linearGradient>
+        <pattern id="clayDots" width="12" height="8" patternUnits="userSpaceOnUse">
+          <circle cx="3" cy="3" r="0.9" fill="#6b4b33" opacity="0.55"/>
+          <circle cx="9" cy="6" r="0.9" fill="#6b4b33" opacity="0.45"/>
+        </pattern>
+      </defs>
+
+      <!-- Sky -->
+      <rect x="0" y="0" width="640" height="200" fill="url(#skyGrad)"/>
+
+      <!-- Deep Aquifer Basin (fixed bottom bedrock base) -->
+      <rect x="0" y="138" width="640" height="62" fill="#203b54"/>
+      <!-- Water Table level inside aquifer (slides down cleanly via transform) -->
+      <g id="waterTableGroup" class="svg-smooth" transform="translate(0, 0)">
+        <rect x="0" y="140" width="640" height="60" fill="#2a4d6e"/>
+        <line x1="0" y1="140" x2="640" y2="140" stroke="#5ec8ff" stroke-width="2" stroke-dasharray="6 4"/>
+        <text x="16" y="156" fill="#9bdcff" font-size="9.5" font-weight="600">Confined Aquifer Water Table</text>
+      </g>
+
+      <!-- Reference pre-pumping ground datum line -->
+      <line x1="0" y1="74" x2="640" y2="74" stroke="#93a3c0" stroke-width="1" stroke-dasharray="3 4" opacity="0.55"/>
+      <text x="536" y="69" fill="#93a3c0" font-size="8.5" text-anchor="end">Original 1925/baseline surface</text>
+
+      <!-- Confining Clay Layer (visually thins/compacts via translate & scale) -->
+      <g id="clayGroup" class="svg-smooth" transform="translate(0, 0)">
+        <rect x="0" y="114" width="640" height="28" fill="#a0785a"/>
+        <rect x="0" y="114" width="640" height="28" fill="url(#clayDots)"/>
+        <text x="16" y="131" fill="#f3dfc9" font-size="9" opacity="0.9">Fine Clay Aquitard (irreversible compaction zone)</text>
+      </g>
+
+      <!-- Subsiding Surface + Crops + Road + Canal (moves downward with cumulative subsidence) -->
+      <g id="surfaceGroup" class="svg-smooth" transform="translate(0, 0)">
+        <!-- Upper topsoil / alluvium -->
+        <rect x="0" y="74" width="640" height="42" fill="#7a5230"/>
+        <rect x="0" y="74" width="640" height="5" fill="#5fbf5f" id="grassStrip"/>
+
+        <!-- Farm Field & Crops (left) -->
+        <g id="cropsGroup">
+          <rect x="36" y="64" width="18" height="10" rx="2" fill="#5fbf5f"/>
+          <rect x="64" y="62" width="18" height="12" rx="2" fill="#5fbf5f"/>
+          <rect x="92" y="65" width="18" height="9" rx="2" fill="#5fbf5f"/>
+          <rect x="120" y="63" width="18" height="11" rx="2" fill="#5fbf5f"/>
+          <rect x="148" y="66" width="18" height="8" rx="2" fill="#5fbf5f"/>
+        </g>
+
+        <!-- Concrete Highway / Levee Road -->
+        <rect x="200" y="71" width="90" height="6" rx="1" fill="#3b475e"/>
+        <line x1="210" y1="74" x2="280" y2="74" stroke="#cfd8e8" stroke-width="1" stroke-dasharray="8 6"/>
+
+        <!-- Tilting Irrigation Canal (rotates smoothly around x=390, y=74 as differential subsidence builds) -->
+        <g id="canalGroup" class="svg-smooth" transform="rotate(0 390 74)">
+          <path d="M 332 72 L 344 86 L 436 86 L 448 72 Z" fill="#1b263b" stroke="#93a3c0" stroke-width="1.2"/>
+          <path d="M 337 76 L 346 84 L 434 84 L 443 76 Z" fill="#5ec8ff" opacity="0.88"/>
+          <text x="390" y="66" fill="#9bdcff" font-size="8.5" text-anchor="middle">Aqueduct / Canal</text>
+        </g>
+
+        <!-- Benchmark Survey Post anchored below clay (apparent protrusion grows as surface sinks) -->
+        <g id="cracksGroup" class="svg-smooth" opacity="0">
+          <path d="M 218 74 L 222 83 L 217 92" stroke="#ff6b5a" stroke-width="1.6" fill="none"/>
+          <path d="M 348 84 L 352 94 L 349 101" stroke="#ff6b5a" stroke-width="1.6" fill="none"/>
+          <path d="M 426 84 L 422 93 L 428 103" stroke="#ff6b5a" stroke-width="1.6" fill="none"/>
+          <path d="M 268 74 L 265 82 L 270 89" stroke="#ff6b5a" stroke-width="1.5" fill="none"/>
+        </g>
+      </g>
+
+      <!-- Deep Well Casing & Pump Head (steel pipe fixed to bedrock; ground sinks down around casing!) -->
+      <g>
+        <rect x="512" y="56" width="8" height="122" fill="#93a3c0" stroke="#0f1626" stroke-width="1"/>
+        <rect x="504" y="52" width="24" height="6" rx="2" fill="#5ec8ff"/>
+        <!-- Dynamic water flow pulse inside pipe when pumping > 0 -->
+        <rect id="wellStream" x="514" y="60" width="4" height="114" fill="#5ec8ff" opacity="0.45"/>
+        <text x="540" y="60" fill="#cfd8e8" font-size="8.5">Deep Well Casing</text>
+      </g>
+    </svg>
+  </section>
+
+  <section class="kpis" aria-label="Simulation Metrics">
+    <div class="kpi">
+      <div class="lbl">Cumulative Drop</div>
+      <div id="kpiDrop" class="val acc">0.0 cm</div>
+      <div id="kpiLastStep" class="sub">Last year: 0.0 cm</div>
+    </div>
+    <div class="kpi">
+      <div class="lbl">Net Farm Income</div>
+      <div id="kpiIncome" class="val good">$0k</div>
+      <div id="kpiRepair" class="sub">Canal repair: $0k</div>
+    </div>
+    <div class="kpi">
+      <div class="lbl">Clay Compaction</div>
+      <div id="kpiClay" class="val">0%</div>
+      <div class="sub">Permanent pore collapse</div>
+    </div>
+    <div class="kpi">
+      <div class="lbl">Canal / Road Risk</div>
+      <div id="kpiRisk" class="val good">LOW</div>
+      <div id="kpiSlope" class="sub">Grade tilt: 0.0 mm/m</div>
+    </div>
+  </section>
+
+  <section id="controlsBar" class="controls" aria-label="Annual Pumping Control">
+    <div class="slider-box">
+      <div class="slider-top">
+        <label for="pumpSlider">Annual Groundwater Pumping</label>
+        <span id="pumpValue" class="pct">100%</span>
+      </div>
+      <input id="pumpSlider" type="range" min="0" max="150" step="5" value="100" aria-describedby="pumpHint">
+      <div id="pumpHint" class="slider-scale">
+        <span>0% Rest</span>
+        <span>65% Sustainable</span>
+        <span>100% Typical</span>
+        <span>150% Overdraft</span>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button id="stepBtn" class="primary" type="button">Pump Year 1 →</button>
+      <button id="resetBtn" class="ghost" type="button">Reset</button>
+    </div>
+  </section>
+
+  <section id="timelineBar" class="timeline" aria-label="10-Year Subsidence History"></section>
+
+  <section id="summaryBox" class="summary" hidden aria-live="polite">
+    <div class="summary-head">
+      <h2 id="summaryTitle">10-Year Aquifer Balance Complete</h2>
+      <button id="playAgainBtn" class="primary" type="button">Play Again</button>
+    </div>
+    <div id="summaryStats" class="summary-metrics"></div>
+    <p id="summaryMeaning"></p>
+  </section>
+
+  <footer id="disclaimer" class="foot">
+    Rates are illustrative until replaced with NISAR-derived values. NISAR data are provisional; calibration is done by the NISAR project (NASA-JPL/ISRO), not by our team.
+  </footer>
+</main>
+
+<script>
+const CONFIG = {
+  base_rate_cm_per_yr: 10,      // PLACEHOLDER: replaced dynamically by ../data/central_valley/summary.json
+  rate_source: "illustrative",  // becomes "nisar" when real summary.json loads
+  years: 10,
+  year_factor: { wet: 0.5, normal: 1.0, drought: 1.6 },  // illustrative climate sensitivity
+  period: ""
+};
+
+const WEATHER_INFO = {
+  wet:     { label: "Wet year (0.5×)",     targetPump: 60,  rainValue: 45,  cls: "wet" },
+  normal:  { label: "Normal year (1.0×)",  targetPump: 90,  rainValue: 25,  cls: "normal" },
+  drought: { label: "Drought year (1.6×)", targetPump: 120, rainValue: 10,  cls: "drought" }
+};
+
+const ICONS = {
+  wet: '<path d="M4.5 10.5h7a2.5 2.5 0 0 0 .3-4.98A3.5 3.5 0 0 0 5.1 4.8 2.8 2.8 0 0 0 4.5 10.5Z" stroke="currentColor" stroke-width="1.4"/><path d="M5.5 13l-.7 1.6M8.5 13l-.7 1.6M11.5 13l-.7 1.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>',
+  normal: '<circle cx="8" cy="8" r="3" stroke="currentColor" stroke-width="1.4"/><path d="M8 2v1.4M8 12.6V14M2 8h1.4M12.6 8H14M3.8 3.8l1 1M11.2 11.2l1 1M12.2 3.8l-1 1M4.8 11.2l-1 1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>',
+  drought: '<circle cx="8" cy="6.5" r="2.8" stroke="currentColor" stroke-width="1.4"/><path d="M2 12.5h12M4.5 14.5h7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M8 1.5v1.3M3.6 3.3l.9.9M12.4 3.3l-.9.9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>'
+};
+
+let state = {};
+
+function pickWeatherSequence(n) {
+  const pool = ["wet", "normal", "normal", "drought", "drought"];
+  const seq = [];
+  for (let i = 0; i < n; i++) {
+    seq.push(pool[Math.floor(Math.random() * pool.length)]);
+  }
+  return seq;
+}
+
+function resetGame() {
+  state = {
+    year: 1,
+    finished: false,
+    weatherSeq: pickWeatherSequence(CONFIG.years),
+    totalSubsidenceCm: 0,
+    totalIncomeK: 0,
+    totalRepairK: 0,
+    history: []
+  };
+  document.getElementById("summaryBox").hidden = true;
+  document.getElementById("summaryBox").classList.remove("visible");
+  document.getElementById("stepBtn").disabled = false;
+  document.getElementById("pumpSlider").disabled = false;
+  renderTimeline();
+  renderAll(0);
+}
+
+function advanceYear() {
+  if (state.finished) return;
+  const pumping = Number(document.getElementById("pumpSlider").value);
+  const yearType = state.weatherSeq[state.year - 1];
+  const factor = CONFIG.year_factor[yearType];
+
+  // Exact contract formula from specification
+  const subsidence_cm = CONFIG.base_rate_cm_per_yr * (pumping / 100) * factor;
+  state.totalSubsidenceCm += subsidence_cm;
+
+  // Farm revenue vs canal maintenance trade-off (illustrative economics)
+  const w = WEATHER_INFO[yearType];
+  const waterSupply = Math.min(130, pumping + w.rainValue);
+  const grossHarvestK = Math.round(32 + (waterSupply / 100) * 62 - Math.max(0, pumping - 110) * 0.25);
+  const pumpEnergyCostK = Math.round((pumping / 100) * 14);
+  const canalPenaltyK = state.totalSubsidenceCm > 35
+    ? Math.round((state.totalSubsidenceCm - 35) * 0.65)
+    : 0;
+
+  state.totalIncomeK += (grossHarvestK - pumpEnergyCostK - canalPenaltyK);
+  state.totalRepairK += canalPenaltyK;
+  state.history.push({ year: state.year, yearType, pumping, subsidence_cm });
+
+  if (state.year >= CONFIG.years) {
+    state.finished = true;
+    renderTimeline();
+    renderAll(subsidence_cm);
+    showSummary();
+  } else {
+    state.year += 1;
+    renderTimeline();
+    renderAll(subsidence_cm);
+  }
+}
+
+function renderTimeline() {
+  const host = document.getElementById("timelineBar");
+  host.innerHTML = "";
+  const maxStep = Math.max(CONFIG.base_rate_cm_per_yr * 2.4, ...state.history.map(h => h.subsidence_cm), 1);
+  for (let i = 0; i < CONFIG.years; i++) {
+    const h = state.history[i];
+    const bar = document.createElement("div");
+    bar.className = "tbar" + (h ? " " + h.yearType : "");
+    const pct = h ? Math.max(12, Math.min(100, (h.subsidence_cm / maxStep) * 100)) : 8;
+    const fill = document.createElement("div");
+    fill.className = "tbar-fill";
+    fill.style.height = pct.toFixed(0) + "%";
+    if (h) {
+      fill.title = `Yr ${h.year} (${h.yearType}, ${h.pumping}% pump): -${h.subsidence_cm.toFixed(1)} cm`;
+    }
+    const lbl = document.createElement("div");
+    lbl.className = "tbar-lbl";
+    lbl.textContent = "Y" + (i + 1);
+    bar.append(fill, lbl);
+    host.appendChild(bar);
+  }
+}
+
+function renderAll(lastStepCm) {
+  const drop = state.totalSubsidenceCm;
+  const currentYearType = state.weatherSeq[Math.min(state.year - 1, CONFIG.years - 1)];
+  const w = WEATHER_INFO[currentYearType];
+
+  document.getElementById("yearLabel").textContent = state.year;
+  document.getElementById("yearMax").textContent = CONFIG.years;
+  document.getElementById("dropReadout").textContent = `${drop.toFixed(1)} cm`;
+  document.getElementById("kpiDrop").textContent = `${drop.toFixed(1)} cm`;
+  document.getElementById("kpiLastStep").textContent = state.history.length
+    ? `Yr ${state.history.length}: -${lastStepCm.toFixed(1)} cm`
+    : "Last year: 0.0 cm";
+
+  const incEl = document.getElementById("kpiIncome");
+  incEl.textContent = `$${state.totalIncomeK}k`;
+  incEl.className = "val " + (state.totalIncomeK >= 400 ? "good" : state.totalIncomeK >= 0 ? "acc" : "hot");
+  document.getElementById("kpiRepair").textContent = `Canal repair: $${state.totalRepairK}k`;
+
+  const compactionPct = Math.min(100, Math.round((drop / (CONFIG.base_rate_cm_per_yr * 12)) * 100));
+  document.getElementById("kpiClay").textContent = `${compactionPct}%`;
+
+  const slopeMmPerM = (drop * 0.04).toFixed(1);
+  document.getElementById("kpiSlope").textContent = `Grade tilt: ${slopeMmPerM} mm/m`;
+  const riskEl = document.getElementById("kpiRisk");
+  if (drop >= 90) {
+    riskEl.textContent = "HIGH"; riskEl.className = "val hot";
+  } else if (drop >= 35) {
+    riskEl.textContent = "MODERATE"; riskEl.className = "val acc";
+  } else {
+    riskEl.textContent = "LOW"; riskEl.className = "val good";
+  }
+
+  // Weather badge
+  const hud = document.getElementById("weatherHud");
+  hud.className = `hud-weather ${w.cls}`;
+  document.getElementById("weatherIcon").innerHTML = ICONS[currentYearType];
+  document.getElementById("weatherLabel").textContent = state.finished ? "10-yr run finished" : w.label;
+
+  // Step button label
+  const stepBtn = document.getElementById("stepBtn");
+  stepBtn.textContent = state.finished ? "Finished" : `Pump Year ${state.year} →`;
+  stepBtn.disabled = state.finished;
+  document.getElementById("pumpSlider").disabled = state.finished;
+
+  // SVG physical deformation (capped so visual remains legible at extremes)
+  const dropPx = Math.min(26, (drop / (CONFIG.base_rate_cm_per_yr * 10)) * 24);
+  const waterPx = Math.min(28, dropPx * 1.12);
+  const tiltDeg = Math.min(8.5, drop * 0.045);
+
+  document.getElementById("surfaceGroup").setAttribute("transform", `translate(0, ${dropPx.toFixed(2)})`);
+  document.getElementById("clayGroup").setAttribute("transform", `translate(0, ${(dropPx * 0.72).toFixed(2)})`);
+  document.getElementById("waterTableGroup").setAttribute("transform", `translate(0, ${waterPx.toFixed(2)})`);
+  document.getElementById("canalGroup").setAttribute("transform", `rotate(${tiltDeg.toFixed(2)} 390 74)`);
+  document.getElementById("cracksGroup").setAttribute("opacity", drop >= 30 ? Math.min(1, (drop - 30) / 55).toFixed(2) : "0");
+
+  // Well pump stream opacity mirrors current pumping slider
+  const pumpPct = Number(document.getElementById("pumpSlider").value);
+  document.getElementById("wellStream").setAttribute("opacity", (pumpPct / 180).toFixed(2));
+}
+
+function showSummary() {
+  const drop = state.totalSubsidenceCm;
+  const box = document.getElementById("summaryBox");
+  const title = document.getElementById("summaryTitle");
+  const stats = document.getElementById("summaryStats");
+  const meaning = document.getElementById("summaryMeaning");
+
+  let verdict = "Balanced Stewardship";
+  let text = "By throttling pumping below clay-compaction thresholds during normal and wet years, you preserved canal grade and kept deep aquifer storage intact.";
+  if (drop >= 90) {
+    verdict = "Severe Aquifer Overdraft & Canal Distortion";
+    text = `Your valley sank ${drop.toFixed(1)} cm in 10 years. Because compressed clay beds cannot re-expand, canal gradients broke down and repair costs consumed late-decade farm revenue.`;
+  } else if (drop >= 40) {
+    verdict = "Partial Compaction Trade-off";
+    text = `Pumping buoyed harvest income ($${state.totalIncomeK}k net), but ${drop.toFixed(1)} cm of cumulative sinking bent local canal slopes and drained future drought reserves.`;
+  }
+
+  title.textContent = verdict;
+  stats.innerHTML = `
+    <span>10-Yr Subsidence: <strong>${drop.toFixed(1)} cm</strong></span>
+    <span>Net Farm Revenue: <strong>$${state.totalIncomeK}k</strong></span>
+    <span>Canal Repair Costs: <strong>$${state.totalRepairK}k</strong></span>
+    <span>Baseline Rate Used: <strong>${CONFIG.base_rate_cm_per_yr.toFixed(1)} cm/yr</strong> (${CONFIG.rate_source})</span>
+  `;
+  meaning.textContent = "What this means: " + text;
+  box.hidden = false;
+  requestAnimationFrame(() => box.classList.add("visible"));
+}
+
+function applyRateBanner() {
+  const badge = document.getElementById("rateBadge");
+  const periodEl = document.getElementById("ratePeriod");
+  const footEl = document.getElementById("disclaimer");
+  if (CONFIG.rate_source === "nisar") {
+    badge.className = "badge provisional";
+    badge.textContent = `NISAR PROVISIONAL · ${CONFIG.base_rate_cm_per_yr.toFixed(1)} cm/yr`;
+    periodEl.textContent = CONFIG.period ? `Central Valley (${CONFIG.period})` : "Central Valley rate";
+    footEl.textContent = `Rate based on NISAR provisional data${CONFIG.period ? ", " + CONFIG.period : ""} (summer LOS extrapolation — excludes winter recovery). NISAR data are provisional; calibration is done by the NISAR project (NASA-JPL/ISRO), not by our team.`;
+  } else {
+    badge.className = "badge placeholder";
+    badge.textContent = `ILLUSTRATIVE · ${CONFIG.base_rate_cm_per_yr.toFixed(1)} cm/yr`;
+    periodEl.textContent = "10-year groundwater trade-off";
+    footEl.textContent = "Rates are illustrative until replaced with NISAR-derived values. NISAR data are provisional; calibration is done by the NISAR project (NASA-JPL/ISRO), not by our team.";
+  }
+}
+
+async function initRateFromData() {
+  try {
+    const r = await fetch("../data/central_valley/summary.json", { cache: "no-store" });
+    if (!r.ok) return;
+    const d = await r.json();
+    if (d && d.quality !== "placeholder" && typeof d.rate_cm_per_yr_estimate === "number" && Number.isFinite(d.rate_cm_per_yr_estimate) && Math.abs(d.rate_cm_per_yr_estimate) > 0) {
+      CONFIG.base_rate_cm_per_yr = Math.abs(d.rate_cm_per_yr_estimate);
+      CONFIG.rate_source = "nisar";
+      CONFIG.period = Array.isArray(d.period) ? d.period.join(" → ") : "";
+      applyRateBanner();
+      renderTimeline();
+      renderAll(state.history.length ? state.history[state.history.length - 1].subsidence_cm : 0);
+    }
+  } catch (_) {
+    /* Stay gracefully on illustrative CONFIG rate */
+  }
+}
+
+document.getElementById("pumpSlider").addEventListener("input", (e) => {
+  const val = e.target.value;
+  document.getElementById("pumpValue").textContent = val + "%";
+  document.getElementById("wellStream").setAttribute("opacity", (Number(val) / 180).toFixed(2));
+});
+document.getElementById("stepBtn").addEventListener("click", advanceYear);
+document.getElementById("resetBtn").addEventListener("click", resetGame);
+document.getElementById("playAgainBtn").addEventListener("click", resetGame);
+
+applyRateBanner();
+resetGame();
+initRateFromData();
+</script>
+</body>
+</html>
