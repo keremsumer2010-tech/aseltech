@@ -72,13 +72,13 @@ let map, chartP, chartG, cvIdx = 0, timer = null;
 const CVB = [-120.2, 35.6, -119.0, 36.6];
 const VIEWS = {
   intro: {center: [-45, 42], zoom: 1.4, layers: ['sites']},
-  uk:    {bbox: [-0.3, 52.4, 0.4, 52.9], layers: ['uk-radar'], tag: 'NISAR radar image, 20 Oct 2026 · PREVIEW'},
+  uk:    {bbox: [-0.3, 52.4, 0.4, 52.9], layers: ['uk-opt', 'uk-radar'], tag: 'NISAR radar (20 Oct 2026) · dark basemap outside frame is cloud-free mosaic from other dates · PREVIEW'},
   cv:    {bbox: CVB, layers: ['cv-disp', 'cv-pts'], tag: 'NISAR ground motion · PROVISIONAL', legend: true},
   gnss:  {bbox: CVB, layers: ['cv-disp', 'gnss'], dim: true, tag: 'GPS stations (green: r ≥ 0.6)', legend: true},
   risk:  {bbox: CVB, layers: ['cv-disp', 'risk'], dim: true, tag: 'Infrastructure tilt risk', legend: true},
   kp:    {bbox: [33.3, 37.6, 33.8, 37.9], layers: ['kp-disp', 'sinks'], tag: 'NISAR ground motion · PROVISIONAL', legend: true},
 };
-const ALL = ['sites', 'uk-radar', 'cv-disp', 'cv-pts', 'gnss', 'risk', 'kp-disp', 'sinks'];
+const ALL = ['sites', 'uk-opt', 'uk-radar', 'cv-disp', 'cv-pts', 'gnss', 'risk', 'kp-disp', 'sinks'];
 const fc = feats => ({type: 'FeatureCollection', features: feats});
 const pt = (props, c) => ({type: 'Feature', properties: props, geometry: {type: 'Point', coordinates: c}});
 
@@ -94,7 +94,12 @@ function storyMap(){
     map.on('load', () => {
       map.addSource('sites', {type: 'geojson', data: fc([pt({}, [0.0, 52.6]), pt({}, [-119.5, 36.1]), pt({}, [33.55, 37.75])])});
       map.addLayer({id: 'sites', type: 'circle', source: 'sites', paint: {'circle-radius': 9, 'circle-color': '#ff5a47', 'circle-stroke-color': '#fff', 'circle-stroke-width': 2}});
-      if (D.uk){ map.addSource('uk', {type: 'image', url: ROOT + `data/uk/radar_${D.uk.date}.png`, coordinates: corners(D.uk.bbox)}); map.addLayer({id: 'uk-radar', type: 'raster', source: 'uk', paint: {'raster-opacity': 0.9}}); }
+      if (D.uk){
+        map.addSource('uk-opt', {type: 'image', url: ROOT + `data/uk/optical_${D.uk.date}.jpg`, coordinates: corners(D.uk.bbox)});
+        map.addLayer({id: 'uk-opt', type: 'raster', source: 'uk-opt', paint: {'raster-opacity': 0.9}});
+        map.addSource('uk', {type: 'image', url: ROOT + `data/uk/radar_${D.uk.date}.png`, coordinates: corners(D.uk.bbox)});
+        map.addLayer({id: 'uk-radar', type: 'raster', source: 'uk', paint: {'raster-opacity': 0.9}});
+      }
       if (D.cvMeta){
         const m = D.cvMeta; cvIdx = m.dates.length - 1;
         map.addSource('cv', {type: 'image', url: ROOT + `data/central_valley/disp/${m.dates[cvIdx]}.png`, coordinates: corners(m.bbox)});
@@ -144,6 +149,7 @@ function show(step, force){
   if (force && step === current && inView(v)) return;
   current = step;
   for (const id of ALL) if (map.getLayer(id)) map.setLayoutProperty(id, 'visibility', v.layers.includes(id) ? 'visible' : 'none');
+  if (map.getLayer('sat')) map.setPaintProperty('sat', 'raster-opacity', step === 'uk' ? 0.14 : 1);
   if (map.getLayer('cv-disp')) map.setPaintProperty('cv-disp', 'raster-opacity', v.dim ? 0.45 : 0.85);
   if (v.bbox) map.fitBounds([[v.bbox[0], v.bbox[1]], [v.bbox[2], v.bbox[3]]], {padding: 40, duration: 1800, essential: true});
   else map.flyTo({center: v.center, zoom: v.zoom, duration: 1800, essential: true});
