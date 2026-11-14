@@ -52,3 +52,7 @@ Jürinin atlas için soracağı ilk soru bu; cevabı sadece senin tam yıl yönt
 Kendi çıktılarını yeniden çalıştır, `python -m pytest -q analysis/pc9`, PC5 `docs/qa/PC5.md` §10'daki senin satırların. 20:00 sonrası sadece hata düzeltme.
 
 Yazma alanı ek: `data/global/{eloy,cangzhou,gorgan,houston,lagos,mexico_city_fullyear}/`, `data/konya_plain_fullyear/`, `pipeline/subset/global_<bu şehirler>/`, `pipeline/subset/konya_plain_fullyear/`, `docs/story/annualization.md`, `docs/story/media/pc9_*.png`, `docs/qa/PC9.md`, `status/PC9.md`.
+
+
+# 🌍 ATLAS FİNAL — PC9 (Paz 00:20, PC1) · plan: `docs/ATLAS_FINAL.md`
+Mevcut uzun planın geçerli; üst plandaki zaman çizelgesine (Paz 06:00 / 14:00 / 20:00) göre ilerle.

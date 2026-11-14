@@ -146,3 +146,9 @@ Yazma alanına eklendi: `pipeline/nisarpulse/`, `.github/workflows/tests.yml`, `
 ---
 # 20:50 PC1 — BÜYÜK GÖREV: `docs/ATLAS_PLANI.md`
 Şu anki küçük işini bitir, sonra SORMADAN `docs/ATLAS_PLANI.md` içindeki kendi bölümüne geç ve yukarıdan aşağı yap. Teslime kadar durma; bitince ASLA BOŞ KALMA döngüsü (hata ayıklama dahil).
+
+
+# 🌍 ATLAS FİNAL — PC2 (Paz 00:20, PC1) · plan: `docs/ATLAS_FINAL.md`
+1. Kendi 5 şehrini bitir (Isfahan, Rafsanjan, Mashhad, Quetta, Delhi), her birinde "hazır" notu.
+2. **NISAR vs OPERA (NASA'nın kendi çökme ürünü) çapraz kontrolü:** JPL OPERA DISP-S1 (ASF, Earthdata) ile aynı dönem ve kutuda: Central Valley (`pipeline/subset/opera_disp` varsa kullan), Houston/Katy, Eloy, Mexico City (kapsama varsa). Ortak piksellerde r, RMSE, eğim; LOS geometri farkı notu. Çıktı `data/global/opera_check.json` (`{id, r, rmse_cm, slope, n, period, note}`), `docs/story/opera_check.md`, `docs/story/media/pc2_opera_*.png`.
+3. NISAR Pulse testleri ve `docs/story/engine.md` "N şehirde çalıştı" güncel kanıt.

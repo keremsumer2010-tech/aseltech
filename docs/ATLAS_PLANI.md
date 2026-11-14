@@ -4,6 +4,8 @@ Jüri mesajı: *"NISAR'ın ilk kamuya açık aylarındaki veriyle dünyanın ~20
 Kurallar: sadece provisional (her iki tarih ≥ 2026-06-17, P05023); her şehir `data/global/<şehir>/` (veri sözleşmesi); ham .h5 kesince sil; aynı bilgisayarda aynı anda tek indirme; REVIEW_1500 dili; `git add <yol>`; her adımda commit + push.
 Sabit saatler: gece indirme (bilgisayarlar açık, uyku kapalı) · Paz 14:00 atlas veri sonu · Paz 20:00 dondurma · 22:00 teslim.
 
+> **🌍 Paz 00:20: Son plan `docs/ATLAS_FINAL.md` — buradaki KALİTE STANDARDI hâlâ zorunlu. PC6 ve PC8 artık PC1 koordinasyonunda.**
+
 > **NOT (PC1, 21:25): PC3 ve PC8'e görevleri Mehmet (M3hmeT1888) kendisi veriyor.** **22:00 güncelleme (Kerem kararı): PC6 video işini bıraktı; atlas sayfasını (`web/atlas.html`) PC6 yapıyor** (PC3 çevrimdışı).
 
 ## 🔬 KALİTE STANDARDI (PC1 inceleme, 21:05) — sıralama adil ve savunulabilir olsun diye ZORUNLU

@@ -30,3 +30,17 @@ Kendi atanmış maddelerin bitince **sormadan** `tasks/QUEUE.md`'den yeni iş al
 - **Almak için:** `git pull --rebase origin main` → satırı `- [~PCx]` yap ve satırın sonuna `(PCx aldı HH:MM)` notu ekle (PCx = senin numaran, HH:MM = saat) → **sadece o satırı** değiştir → hemen commit + push. Push reddedilirse `git pull --rebase origin main`; satırı o arada başkası aldıysa onu BIRAK, bir sonrakini seç. Push geçmeden işe başlama.
 - **Bitince:** satırı kuyruktan SİL, `status/PCx.md` ve `docs/qa/PCx.md`'ye log yaz → commit + push. Boş kalma, sıradakini al.
 - Atlas sayfası (C01–C04) ve bülten/depolama işleri (C05, C06) artık serbest; ilk boşta kalan alır.
+
+
+# 🌍 ATLAS FİNAL — PC6 (Paz 00:20, PC1) · plan: `docs/ATLAS_FINAL.md`
+PC6 artık PC1 koordinasyonunda (Kerem kararı). Atlas sayfası (`web/atlas.html`, `atlas.js`, `atlas.css`) SENİN. Video beklemede (Paz 16:00 opsiyonel final). Sırayla, sormadan:
+1. **Zaman kaydırıcı animasyon (en önemli):** şehre tıklayınca yan panelde `data/<yol>/disp/*.png` serisi tarih kaydırıcıyla oynasın (oynat/durdur, tarih etiketi, cm renk ölçeği, PROVISIONAL rozeti). Haritada seçili şehrin son kümülatif PNG'si `meta.json` bbox'ına şeffaf katman olarak otursun.
+2. **Katmanlar (NASA Worldview tarzı):** Çökme / Belirsizlik σ (`data/global/<şehir>/uncertainty/sigma_cm.png`) / Güven sınıfı; tek tıkla, lejant değişsin.
+3. **Vital Signs kartları (NASA Climate tarzı):** 4 büyük sayı: Cities measured · Fastest-sinking place (cm/100d) · Area sinking > 5 cm (km²) · People living on sinking ground. Veri `data/global/vital_signs.json` (PC8 üretir); alan yoksa kartı gizle.
+4. **Sunum turu ("Tour" düğmesi, NASA Eyes tarzı):** küre ilk 5 şehre sırayla uçsun (her biri 6 sn, altyazı: şehir, hız, güven). Lincoln sunumunda tek tıkla.
+5. **Çevrimdışı yedek (kritik):** maplibre-gl 5.3.0 js/css'i `web/vendor/`'a kopyala; internet yoksa NASA Blue Marble (kamu malı, NASA Visible Earth) `web/assets/bluemarble_2k.jpg` ile yedek görünüm. Test: ağ kapalıyken sayfa açılıyor mu.
+6. **Paylaşılabilir link:** `atlas.html#mexico_city` o şehri açsın.
+7. **Kalite:** telefon 375 px, projektör 1920, konsol 0 hata; `indicative_only` şehirler soluk + "indicative only"; her sayının yanında dönem ve LOS. REVIEW_1500, emoji yok. Sonuç `docs/qa/PC6.md`.
+8. PC10 yeni alanları (`detectable`, `robustness_spread`, `people_exposed`, `opera_check`) yan panele; PC4 şehir kartları ve PC8 bültenleri panelden bağlı.
+9. Paz 16:00 (opsiyonel): video v2'yi final atlasla yeniden üret.
+Yazma alanı: `web/atlas.*`, `web/vendor/`, `web/assets/bluemarble*`, `docs/story/media/pc6_*`, `docs/qa/PC6.md`, `status/PC6.md`; diğer site dosyalarında sadece menü/kart satırı. Önce commit → pull --rebase → push.

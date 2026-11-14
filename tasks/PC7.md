@@ -137,3 +137,7 @@ Tüm site sayfaları çevrimdışı link/JSON/sayı taraması, oyun testi, `pyth
 ## Yazma alanın (tamamı)
 `pipeline/pc7/`, `risk/global/`, `data/risk_global/`, `data/global/{xian,taiyuan,queretaro,aguascalientes,kashmar}/`, `pipeline/subset/global_<bu şehirler>/`, `data/global/robustness.json`, `docs/story/global_risk.md`, `docs/story/engineering_risk.md`, `docs/story/media/pc7_*.png`, `docs/qa/PC7.md`, `status/PC7.md`. Tahran/Pekin/Cakarta PC11'in — dokunma.
 Liste biterse: ASLA BOŞ KALMA (`docs/CALISMA_HARITASI.md` sonu). "Bitti" deyip durma; status'a o an ne yaptığını yaz.
+
+
+# 🌍 ATLAS FİNAL — PC7 (Paz 00:20, PC1) · plan: `docs/ATLAS_FINAL.md`
+Mevcut uzun planın geçerli; üst plandaki zaman çizelgesine (Paz 06:00 / 14:00 / 20:00) göre ilerle.

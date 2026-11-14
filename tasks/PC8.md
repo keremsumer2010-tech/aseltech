@@ -24,3 +24,13 @@ Kendi atanmış maddelerin bitince **sormadan** `tasks/QUEUE.md`'den yeni iş al
 - **Almak için:** `git pull --rebase origin main` → satırı `- [~PCx]` yap ve satırın sonuna `(PCx aldı HH:MM)` notu ekle (PCx = senin numaran, HH:MM = saat) → **sadece o satırı** değiştir → hemen commit + push. Push reddedilirse `git pull --rebase origin main`; satırı o arada başkası aldıysa onu BIRAK, bir sonrakini seç. Push geçmeden işe başlama.
 - **Bitince:** satırı kuyruktan SİL, `status/PCx.md` ve `docs/qa/PCx.md`'ye log yaz → commit + push. Boş kalma, sıradakini al.
 - Atlas sayfası (C01–C04) ve bülten/depolama işleri (C05, C06) artık serbest; ilk boşta kalan alır.
+
+
+# 🌍 ATLAS FİNAL — PC8 (Paz 00:20, PC1) · plan: `docs/ATLAS_FINAL.md`
+PC8 artık PC1 koordinasyonunda (Kerem kararı). Sırayla, sormadan:
+1. **Çöken zeminde yaşayan nüfus (en önemli yeni sayı):** GHSL GHS-POP (JRC açık veri, giriş gerekmez) ile her atlas şehrinin kutusunda çökme < −2 ve < −5 cm (108 gün) olan piksellerde yaşayan kişi. σ'nın 2 katından küçük çökmeleri sayma (PC5 detectability). Çıktı `data/global/exposure_atlas.json` (`{id, people_lt_minus2cm, people_lt_minus5cm, area_km2_lt_minus5cm, source, quality}`); yöntem `docs/story/exposure.md` "Global atlas" bölümü.
+2. **`data/global/vital_signs.json`:** cities_measured, fastest {id, rate_cm_per_100d}, area_km2_lt_minus5cm (toplam), people_on_sinking_ground (toplam < −5 cm); her alan kaynaklı. Her yeni şehirde yeniden üret.
+3. **Bülten v2 (NASA Disasters Program harita paketi tarzı):** üst blok: Product ID (`NP-<şehir>-2026-001`), issue time UTC, data window, sensor (NISAR L-band GUNW, provisional), quality class, confidence, version; altta disclaimer + kalibrasyon cümlesi. İçerik: hız (cm/100d), en çok çöken 3 alan, etkilenen nüfus, altyapı (O2 / PC7 küresel risk), "What this means" 3 madde. Tüm atlas şehirleri, A4 yazdırılabilir.
+4. **Teslim formu:** `submission_form.md`'ye atlas paragrafı (karakter sınırı, PC5 onaylı sayılar).
+5. Döngü: yeni şehirde 1–3'ü yeniden üret; pytest, link kontrolü; `docs/qa/PC8.md`.
+Yazma alanı: `tools/bulletin.py`, `docs/bulletins/`, `data/global/exposure_atlas.json`, `data/global/vital_signs.json`, `docs/story/exposure.md`, `docs/story/submission_form.md`, `docs/story/slides_notes.md`, `docs/qa/PC8.md`, `status/PC8.md`. GHSL ham dosyası `raw/` altına (commit etme).

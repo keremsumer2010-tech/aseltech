@@ -121,3 +121,8 @@ Her saat: `git pull` → sicili yeniden çalıştır → yeni uyumsuzlukları §
 
 **Yazma alanın (ek):** `analysis/pc5/numbers_registry.py`, `analysis/pc5/test_numbers_registry.py`, `analysis/pc5/detectability.py` (+ test), `data/numbers_registry.json`, `data/global/detectability.json`, `data/global/<şehir>/uncertainty/`, `data/global/<şehir>/validation_note.json`, `docs/story/numbers_registry.md`, `docs/story/detectability.md`, `docs/story/atlas_validation.md`, `docs/story/media/pc5_*.png`, `docs/qa/PC5.md`, `docs/qa/SCIENCE_SIGNOFF.md`, `status/PC5.md`.
 Kurallar: uydurma yok, her sayının kaynağı dosya:anahtar; REVIEW_1500 dili; `git add <yol>`; her adımda commit + push.
+
+
+# 🌍 ATLAS FİNAL — PC5 (Paz 00:20, PC1) · plan: `docs/ATLAS_FINAL.md`
+- Tahran (−3.5 → ~−7.3) ve Pekin (−1.4 → ~−7.6) düzeltmesini tam kutu sonucu gelince onayla; o zamana kadar her metinde "under revision" (PC10 ve PC4'e §10'da yaz).
+- PC8 nüfus etkisi ve PC2 OPERA kıyası için bilimsel karar satırı `atlas_validation.md`'de.

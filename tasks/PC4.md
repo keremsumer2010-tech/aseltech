@@ -136,3 +136,9 @@ Yazma alanına eklendi: `docs/story/technical_note.md`, `docs/story/technical_no
 ## 🔴 YENİ (Cmt 22:15, PC1) — Atlas ikinci tur
 `docs/ATLAS_PLANI.md` → "PC4 — anlatım" altında **madde 5–9**: şehir kartları (`docs/story/atlas_cities/<id>.md`), `atlas_methods.md`, `atlas_data_dictionary.md`, judge_faq atlas zor soruları, yeni şehir senkronu.
 Yazma alanın genişledi: `docs/story/atlas_cities/` · `docs/story/atlas_methods.md` · `docs/story/atlas_data_dictionary.md`. REVIEW_1500 dili, her sayı kaynaklı, PC5 onayı olmayan sayı "preliminary". Her dosyada commit + push. Teslime kadar durma.
+
+
+# 🌍 ATLAS FİNAL — PC4 (Paz 00:20, PC1) · plan: `docs/ATLAS_FINAL.md`
+1. **NASA Earth Observatory "Image of the Day" tarzı öne çıkan hikâye:** `docs/story/atlas_feature.md` — "Where the ground is sinking fastest in 2026", 3 paragraf, ilk 3 şehrin açıklamalı görseli, kaynak satırı; sade İngilizce ≤450 kelime; PC5 onaylı sayılar.
+2. **Veri atıfları:** `docs/story/sources.md`'ye NISAR GUNW (ASF DAAC önerilen biçim), OPERA DISP-S1, Copernicus DEM, GHSL, OSM, NGL GNSS; DOI veya kalıcı link.
+3. Atlas 20+ şehre çıktıkça press_summary, slides atlas slaytı, technical_note §5.1, şehir kartları senkron; Tahran/Pekin düzeltmesi gelince eski −3.5/−1.4 her yerde güncellenir (o zamana kadar "under revision").
