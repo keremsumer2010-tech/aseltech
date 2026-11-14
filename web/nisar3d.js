@@ -52,7 +52,7 @@ let cityGroup, cityDecal = null, cityMarker = null, cityDots;
 let hud = {}, labelSat, labelCity;
 let simMs = Date.now(), speed = 1, mode = 'live', camMode = 'orbit', running = false, lastT = 0;
 let pass = null, region = null, regionMeta = null, revealState = null, stripBuf = [], lastStripMs = 0, orbitStamp = 0;
-let inView = true, sweepPhase = 0, snapFollow = false, snapCraft = false, lastSatPos = null, frameDt = 0.016;
+let aimAt = null, inView = true, sweepPhase = 0, snapFollow = false, snapCraft = false, lastSatPos = null, frameDt = 0.016;
 
 // ---------- public API ----------
 export async function open(container, reg, opts = {}){
@@ -62,7 +62,7 @@ export async function open(container, reg, opts = {}){
   const wasRunning = running;
   running = true; lastT = performance.now();
   resize();
-  if (first) setCam('follow');                 // start next to the spacecraft so NISAR is visible at once
+  if (first){ setCam('orbit'); aimAt = reg || null; }   // open on the whole Earth, facing the selected region
   if (reg) await selectRegion(reg, opts);
   if (!wasRunning) requestAnimationFrame(loop);
 }
@@ -210,7 +210,7 @@ function buildEarth(){
         vec3 v = normalize(cameraPosition - vW);
         float spec = pow(max(dot(reflect(-sunDir, n), v), 0.0), 60.0) * ocean * k;
         vec3 dayCol = c * (0.25 + 0.95 * max(d, 0.0)) + vec3(1.0, 0.95, 0.85) * spec * 0.55;
-        vec3 night = c * vec3(0.11, 0.14, 0.22) + vec3(1.0, 0.76, 0.42) * pow(L, 1.6) * 1.35;
+        vec3 night = c * vec3(0.20, 0.24, 0.34) + vec3(1.0, 0.76, 0.42) * pow(L, 1.6) * 1.35;
         vec3 col = mix(night, dayCol, k);
         // warm band along the terminator (NISAR flies a dawn-dusk orbit, so this is where it lives)
         float t = 1.0 - smoothstep(0.0, 0.16, abs(d + 0.02));
@@ -544,6 +544,7 @@ function loop(now){
   const s = stateAt(simMs); if (!s) return;
 
   earth.rotation.y = s.gmst;
+  if (aimAt){ camera.position.copy(rotY(unitFromLatLon(aimAt.lat, aimAt.lon), s.gmst).multiplyScalar(19000)); controls.target.set(0, 0, 0); aimAt = null; }
   const sun = sunEci(s.d);
   earthMat.uniforms.sunDir.value.copy(sun);
   sunLight.position.copy(sun.clone().multiplyScalar(50000));
