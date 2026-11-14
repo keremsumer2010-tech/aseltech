@@ -1,6 +1,8 @@
 {
   "site": "fens",
   "date": "2026-10-20",
+  "optical_image": "optical_2026-10-20.jpg",
+  "radar_image": "radar_2026-10-20.png",
   "bbox": [
     -0.3,
     52.4,

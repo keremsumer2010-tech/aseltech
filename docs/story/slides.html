@@ -224,7 +224,7 @@
           <h3>The Barrier We Remove</h3>
           <ul>
             <li>Raw NASA–ISRO NISAR Level-2 GUNW interferograms ship as multi-gigabyte HDF5 granules requiring SAR expertise.</li>
-            <li>Our zero-backend web explorer, Three.js 3D viewer, and 10-year <em>Aquifer Manager</em> physics simulator translate radar phase directly into actionable infrastructure insight.</li>
+            <li>Our zero-backend web explorer, Three.js 3D viewer, and 24-month <em>Valley Under Pressure</em> physics simulator translate radar phase directly into actionable infrastructure insight.</li>
           </ul>
         </div>
         <div class="svg-box">
@@ -414,16 +414,16 @@
             </svg>
           </div>
           <div class="card">
-            <h3>Sourced Obruk Catalog (`data/karapinar/sinkholes.geojson`)</h3>
+            <h3>Sourced Obruk Catalog &amp; 1 km Ring Analysis</h3>
             <ul>
               <li><strong>29 peer-reviewed coordinates</strong> (Tapur &amp; Bozyiğit 2015) inside `[33.3, 37.6, 33.8, 37.9]`; depths reach <strong>80 m</strong> (`Akviran`) &amp; <strong>76 m</strong> (`Yarımoğlu`).</li>
-              <li><strong>Scientific Guardrail:</strong> Radar maps regional aquifer stress alongside known sinkholes—it does <em>not</em> claim day-before collapse prediction.</li>
+              <li><strong>Spatial Signal (`data/karapinar/assets.json`):</strong> Pixels within `0–1 km` of mapped sinkholes average <strong>−4.15 cm</strong> LOS—<strong>6.4×</strong> the `&gt;5 km` background (`−0.65 cm`), with nearby roads tilting up to <strong>19.74 mm/km</strong> (`597 m` from `Köken Obruğu-II`)—without claiming exact collapse-date prediction.</li>
             </ul>
           </div>
         </div>
       </div>
       <div class="foot">
-        <span>Sources: `data/karapinar/summary.json`, `points.json`, `sinkholes.geojson` (`104` Konya total; `29` inside radar bbox)</span>
+        <span>Sources: `data/karapinar/summary.json`, `points.json`, `sinkholes.geojson`, `assets.json` (`29` inside radar bbox)</span>
         <span>Slide 5 / 7</span>
       </div>
     </section>
@@ -432,8 +432,8 @@
     <section class="slide" data-title="Simulator & 3D">
       <div>
         <div class="eyebrow">Slide 6 / 7 · Interactive Tools · Zero-Backend Web Stack</div>
-        <h2>From Gigabytes of Radar Math to 10-Year Water Choices</h2>
-        <p class="lead">Decision-makers and citizens explore cumulative displacement in 2D/3D and test real groundwater trade-offs in <em>Aquifer Manager</em>.</p>
+        <h2>From Gigabytes of Radar Math to 24-Month Water Choices</h2>
+        <p class="lead">Decision-makers and citizens explore cumulative displacement in 2D/3D and test real groundwater trade-offs in <em>Valley Under Pressure</em>.</p>
       </div>
       <div class="three-col">
         <div class="card">
@@ -452,10 +452,10 @@
           </ul>
         </div>
         <div class="card">
-          <h3><span class="badge prev">Illustrative</span>Aquifer Manager (`game/`)</h3>
+          <h3><span class="badge prev">Illustrative</span>Valley Under Pressure (`game/`)</h3>
           <ul>
-            <li>Single-file physics simulator seeded dynamically by `data/central_valley/summary.json` (`−26.4 cm/yr` summer rate).</li>
-            <li>Zero AI illustrations: balance `0%–150%` pumping across `wet`/`normal`/`drought` years vs. permanent clay compaction &amp; canal tilt damage.</li>
+            <li>Interactive 24-month Terzaghi compaction model across 7 Tulare Basin districts calibrated against `summary.json` (`−7.8 cm` LOS / `−10.1 cm` vert. est.).</li>
+            <li>Zero AI illustrations: adjust `0%–150%` pumping and surface water allocations vs. permanent clay collapse &amp; Friant-Kern-scale canal losses.</li>
           </ul>
         </div>
       </div>
@@ -477,7 +477,7 @@
           <h3>Mandatory NISAR Attribution &amp; Maturity Policy</h3>
           <ul>
             <li><strong>Official Notice:</strong> <em>NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA–JPL and ISRO), not by our team.</em></li>
-            <li><strong>Strict Gatekeeping:</strong> Pre-calibration `beta` granules (`&lt; 2026-06-17`) excluded from cumulative stacks; single-day GCOV optical comparison labeled `preview`; `Aquifer Manager` labeled `illustrative`.</li>
+            <li><strong>Strict Gatekeeping:</strong> Pre-calibration `beta` granules (`&lt; 2026-06-17`) excluded from cumulative stacks; single-day GCOV optical comparison labeled `preview`; `Valley Under Pressure` labeled `illustrative`.</li>
             <li><strong>Pipeline Reproducibility:</strong> Phase conversion (`−λ/4π`), masking, and unwrapping checks covered by `pytest` (`analysis/test_insar.py`).</li>
           </ul>
         </div>

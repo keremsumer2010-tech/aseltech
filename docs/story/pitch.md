@@ -19,7 +19,7 @@
 | `{GNSS_RMSE_CM}` | `data/central_valley/validation.json` | `1.33 cm` mean RMSE (`1.00 cm` median; `0.64 cm` best at `P566`) |
 | `{GNSS_CORR}` | `data/central_valley/validation.json` | Up to `r = 0.90` (`0.8957` at `CAHA`, `0.8955` at `HANF`; `0.38` 10-station mean) |
 | `{TOP_CANAL_NAME}` / Slope | `data/central_valley/assets.json` | `Tulare Irrigation District Canal` (`57.01 mm/km`, `2.17 km`) & `California Aqueduct` (`49.12 mm/km`, `102.8 km`); `81/645` high-risk segments |
-| `{N_SINKHOLES}` | `data/karapinar/sinkholes.geojson` | `29` verified Karapınar sinkholes (inside `[33.3, 37.6, 33.8, 37.9]`, Tapur & Bozyiğit 2015) |
+| `{N_SINKHOLES}` | `data/karapinar/sinkholes.geojson`, `assets.json` | `29` verified Karapınar sinkholes (`0–1 km` ring mean **`−4.15 cm` LOS**, `6.4×` vs `>5 km` background; `19.74 mm/km` near `Köken Obruğu-II`) |
 
 ---
 
@@ -39,7 +39,7 @@
 - **[ON SCREEN — Drag Cloud Slider in Scene 1]:** Slide optical cloudy **VIIRS SNPP (`2026-10-20`)** view across to reveal the same-day **NISAR L-band GCOV radar preview** underneath, showing The Wash coastline crystal-clear under **98%+ cloud cover**.
 - **[SPEAKER]:**
   "The same crisis is happening silently over every major pumped aquifer on Earth. Optical satellites are blind under cloud and struggle inside vegetated valleys, while raw radar interferometry lives inside multi-gigabyte HDF5 files only specialists can open.
-  Our project, **NISAR Pulse — Follow the Water**, turns NASA–ISRO NISAR L-band interferograms into plain-language maps, a Three.js 3D surface explorer, and a 10-year water-policy simulator — all running live in any browser."
+  Our project, **NISAR Pulse — Follow the Water**, turns NASA–ISRO NISAR L-band interferograms into plain-language maps, a Three.js 3D surface explorer, and a 24-month water-policy simulator (**Valley Under Pressure**) — all running live in any browser."
 
 ### 0:45 – 1:45 · Live Demo: Central Valley & Karapınar
 - **[ON SCREEN — Scene 2 (`The dancing ground · USA`)]:** Press Play on the date slider (**`2026-06-28` → `2026-10-14`**, **`7` provisional NISAR GUNW pairs**). Click `p01` (`6 km N of Terra Bella`, `max_subsidence_location`) and show `#cvSentence` + sparkline + GNSS comparison.
@@ -48,12 +48,12 @@
   Tap any point on the map and the chart strips away radar jargon into one plain sentence for water managers. And when underground clay compacts irreversibly, surface canals tilt: evaluating **645 OpenStreetMap corridors** reveals **81 high-risk segments**, with differential slopes reaching **`57.01 mm/km`** on the **Tulare Irrigation District Canal** and **`49.12 mm/km`** along **102.8 km of the California Aqueduct**."
 - **[ON SCREEN — Scene 3 (`Konya's sinkholes · TR`)]:** Scroll to Karapınar; toggle sinkhole pins (**`29` field-verified locations**) over the **`8`-pair (`2026-06-26` → `2026-10-12`)** L-band displacement map.
 - **[SPEAKER]:**
-  "Step two: our home basin — **Karapınar in Konya, Türkiye** — where **8 provisional pairs** over the same **108-day** irrigation window reveal up to **`−5.9 centimetres` LOS** (`~−8.0 centimetres` vertical) just **2 kilometres west of Karapınar**, overlaid with **29 peer-reviewed karst sinkholes** reaching up to **80 metres deep**."
+  "Step two: our home basin — **Karapınar in Konya, Türkiye** — where **8 provisional pairs** over the same **108-day** irrigation window reveal up to **`−5.9 centimetres` LOS** (`~−8.0 centimetres` vertical) just **2 kilometres west of Karapınar**, overlaid with **29 peer-reviewed karst sinkholes**—and valid pixels within 1 km of those sinkholes sink **6.4 times faster (`−4.15 cm`)** than the far-field plateau (`−0.65 cm`)."
 
-### 1:45 – 2:05 · Interactive Decision Tool: Aquifer Manager (15–20 sec)
-- **[ON SCREEN — Scene 5 (`game/index.html` embedded in `#gameFrame`)]:** Pilot moves pumping slider up to `135%` in a Drought year, advances turns, and points to the tilting canal and clay compaction readout; then resets and shows `65%` sustainable balance.
+### 1:45 – 2:05 · Interactive Decision Tool: Valley Under Pressure (15–20 sec)
+- **[ON SCREEN — Scene 5 (`game/index.html` embedded in `#gameFrame`)]:** Pilot selects **Terra Bella**, triggers **Over-Pump** (`#pumpSlider` up toward `150%`), steps across the **24-month** timeline, and points to permanent coral clay compaction and canal conveyance warnings; then resets to `SGMA Balance`.
 - **[SPEAKER]:**
-  "Maps tell you what happened; our **Aquifer Manager** simulator — seeded dynamically with the Central Valley's observed **`−26.4 cm/yr` summer drawdown ceiling** — lets growers and water boards feel the 10-year trade-off. Cranking the pump through droughts saves this season's harvest, but irreversibly crushes deep clay pore space, bends the aqueduct, and wipes out late-decade income."
+  "Maps tell you what happened; our **Valley Under Pressure** simulator — calibrated directly against NISAR's Terra Bella summer subsidence (`−7.8 cm` LOS / `−10.1 cm` vertical) across seven Tulare Basin districts — lets growers and water boards test the **24-month** trade-off. Over-pumping boosts short-term revenue, but drops groundwater head past the preconsolidation threshold, permanently crushes deep clay, and bends canals toward Friant-Kern-scale flow losses."
 
 ### 2:05 – 2:40 · How We Know (Physics, GNSS Validation & Scientific Honesty)
 - **[ON SCREEN — Scene 4 (`GNSS vs NISAR` summary & Scene 6 `How we built it` SVG diagram)]:** Show real daily vertical GNSS station traces from Nevada Geodetic Laboratory alongside NISAR pixel extractions.
@@ -82,7 +82,7 @@
 | `0:04 – 0:09` | Scene 1 swipe slider moving across Fens `2026-10-20` cloudy optical vs bright NISAR radar | "While optical cameras stall under clouds, NASA–ISRO NISAR's 24-centimetre L-band radar sees straight to the ground." |
 | `0:09 – 0:15` | Scene 2 time-lapse across Central Valley (`2026-06-28 → 2026-10-14`) + `p01` Terra Bella click | "Across California's Central Valley, 7 provisional NISAR pairs measure up to −7.8 cm of sinking in 108 summer days." |
 | `0:15 – 0:20` | GNSS validation (`1.00 cm` median RMSE) + Karapınar (`−5.9 cm` LOS) with 29 sinkhole pins | "Checked against 10 GNSS stations, and extended to Karapınar's −5.9 cm basin subsidence and 29 sinkholes." |
-| `0:20 – 0:26` | Aquifer Manager game slider dragged in drought turn, surface dropping & aqueduct tilting | "Our browser simulator turns gigabytes of radar math into a 10-year water decision anyone can test." |
+| `0:20 – 0:26` | Valley Under Pressure (`#pumpSlider` / `Over-Pump` across 24 months), clay collapse & canal loss | "Valley Under Pressure turns NISAR rates into a 24-month trade-off of clay collapse and canal loss." |
 | `0:26 – 0:30` | `/web3d/` 3D mesh orbit + End slate (`NISAR provisional data · NASA-JPL/ISRO calibration`) | "NISAR Pulse — Follow the Water. Open science before the ground gives way." |
 
 ### English Subtitles (`video_30s.srt`)
@@ -106,7 +106,7 @@ Tulare Canal slopes hit 57 mm/km; GNSS agrees at 1.00 cm median RMSE; Karapinar 
 
 5
 00:00:20,000 --> 00:00:26,000
-Aquifer Manager turns radar rates into a 10-year groundwater trade-off for farms and planners.
+Valley Under Pressure turns NISAR rates into a 24-month groundwater trade-off of clay collapse and canal loss.
 
 6
 00:00:26,000 --> 00:00:30,000
@@ -139,12 +139,12 @@ NISAR Pulse: Follow the Water. Provisional NISAR L2 GUNW data (NASA-JPL / ISRO c
 
 ### Slide 5 · Global Transferability: Karapınar Basin & Sinkholes (Türkiye)
 - **Observation (`2026-06-26 → 2026-10-12`):** `8` provisional descending Track 7 NISAR pairs measure up to **`−5.9 cm` LOS** (`~−8.0 cm` vertical est. at `42.0°`, `−20.0 cm/yr` summer rate est.) **`2 km W of Karapınar`**.
-- **Karst Inventory:** Overlays **29 field-verified sinkholes** (from `104` regional *obruk* survey records, reaching `80 m` deep at Akviran) strictly inside `[33.3, 37.6, 33.8, 37.9]`.
+- **Karst Inventory & Ring Analysis (`assets.json`):** Overlays **29 field-verified sinkholes** strictly inside `[33.3, 37.6, 33.8, 37.9]`; pixels inside `0–1 km` of mapped sinkholes average **`−4.15 cm` LOS (`6.4×` background `−0.65 cm`)** with highways tilting up to `19.74 mm/km` near `Köken Obruğu-II`.
 - **Honesty Guard:** Explicitly shows regional groundwater drawdown context without claiming InSAR predicts exact sudden roof-collapse dates.
 
-### Slide 6 · Decision Tool: Aquifer Manager (Physical Simulator)
-- **Empowering Non-Experts:** Single-page browser simulator (`game/index.html`) driven dynamically by `data/central_valley/summary.json` (`−26.4 cm/yr` ceiling).
-- **10-Year Trade-Off:** Pure physics model (zero AI illustrations) letting users adjust pumping (`0%–150%`) across stochastic weather regimes to balance crop income against irreversible clay compaction and canal slope stress.
+### Slide 6 · Decision Tool: Valley Under Pressure (Physical Simulator)
+- **Empowering Non-Experts:** Browser simulator (`game/index.html`) calibrated directly against `data/central_valley/summary.json` (`−7.8 cm` LOS / `−10.1 cm` vertical target across `108` summer days).
+- **24-Month Trade-Off:** Pure physics model (zero AI illustrations) letting users test `0%–150%` pumping and surface water allocations across `7` Tulare Basin districts to weigh revenue against permanent clay collapse and canal loss.
 
 ### Slide 7 · Scientific Integrity, Provenance & AI Disclosure
 - **Calibration Notice:** NISAR data used here are **provisional** (`CRID P05023`); sensor calibration and validation are performed by the NISAR project (NASA–JPL / ISRO), not by our team.

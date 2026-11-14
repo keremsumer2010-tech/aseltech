@@ -2,16 +2,16 @@
 
 - Görev: 1, 2, 3 + Queue `Q11`, `Q12`, `Q16`, `Q30`, `Q31` + 14:10 Paketi (1–6) + `ZAMAN_CIZELGESI` Pazar #1–4 (`sinkhole_timeline.md`, `video_shotlist.md`, Site v2/sözleşme QA, `project_page.md` + tüm depo link kontrolü)
 - Durum: çalışıyor (tüm Cmt/Pazar PC4 görevleri tamamlandı; sürekli izleme nöbetinde `git pull` / `QUEUE.md` takip ediliyor)
-- Güncelleme: 2026-11-14 14:32 TR
+- Güncelleme: 2026-11-14 14:35 TR
 - Çıktılar:
-  - Görev 1: `data/uk/optical_2026-10-20.jpg` (`700x500`, `19,490 B`), `data/uk/radar_2026-10-20.png` (`700x500`, `631,556 B`), `data/uk/meta.json` (`1,421 B`, `quality: "preview"`)
+  - Görev 1: `data/uk/optical_2026-10-20.jpg` (`700x500`, `19,490 B`), `data/uk/radar_2026-10-20.png` (`700x500`, `631,556 B`), `data/uk/meta.json` (`preview`, `optical_image`/`radar_image` yerel adları eklendi — `Q14` uyumu)
   - Görev 2: `data/karapinar/sinkholes.geojson` (`18,638 B`, `29` doğrulanmış Karapınar obruğu, tümü `bbox = [33.3, 37.6, 33.8, 37.9]` içinde; Tapur & Bozyiğit 2015)
   - Görev 3: `docs/story/sources.md` (5 zorunlu konu + GIBS/ASF URL'leri), `docs/story/calibration_note.md` (BETA `<2026-06-17` vs PROVISIONAL `P05023` vs VALIDATED `>=2026-10-21` + zorunlu NISAR dipnotu)
   - Queue `Q11`, `Q12`, `Q30` & `Q31`: `docs/story/project_page.md`, `docs/story/pitch.md` (`−7.8 cm` CV / `−5.9 cm` Karapınar, 10 GNSS medyan RMSE `1.00 cm`, `assets.json` `57.01 mm/km` Tulare Kanalı ile eşlendi), `docs/story/holme_fen.md` (tek cümle kart metni + `#holmeText`), `docs/story/submission_rules.md` (`Space_Apps_2022_Project_Submission_Guide.pdf` HTTP 200)
   - 14:10 Paketi #3–6: `docs/story/judge_faq.md` (15 jüri sorusu-cevabı), `docs/story/slides.html` (7 slaytlık tek-dosya HTML sunum; yalnızca gerçek UK/CV/Karapınar haritaları + SVG grafikler, AI görselsiz), `docs/story/video_shotlist.md` (30 sn 6 plan çekim listesi + `.srt` altyazılar), `docs/qa/PC4.md` §6 (`web/index.html` İngilizce okuma ve 6 öneri — `web/` değiştirilmedi)
   - Queue `Q16`: `web3d/` (`surfaces.json` `508,881 B` / `497.0 KB`) — Three.js `@0.160.0` ile Central Valley (`2026-06-28` → `2026-10-14`, `7` çift / `8` epok, `80×96`) ve Karapınar (`2026-06-26` → `2026-10-12`, `8` çift / `9` epok, `48×80` + `29` obruk)
   - QA & Kuyruk: `docs/qa/PC4.md`, `tasks/QUEUE.md` (`Q11`, `Q12`, `Q16`, `Q30`, `Q31` `- [x PC4]`)
-  - `ZAMAN_CIZELGESI` Pazar görevi #1–4: `docs/story/sinkhole_timeline.md` (`29` doğrulanmış Karapınar obruğunun 1972–2013 kronolojisi), `docs/story/video_shotlist.md` (`Valley Under Pressure` 24 ay uyumu + 6 `.srt` satırı doğrulaması), `docs/story/project_page.md` (Site v2 + canlı GitHub Pages linki + v2 oyun + son okuma), `docs/qa/PC4.md` §9–10 (Site v2 sayı kaynağı + `data/*/meta.json` sözleşme denetimi + tüm depo 44/44 aktif dış URL HTTP 200 kontrolü)
+  - `ZAMAN_CIZELGESI` Pazar görevi #1–5: `docs/story/sinkhole_timeline.md` (`29` doğrulanmış Karapınar obruğu + `Q28` `0–1 km` halka analizi `−4.152 cm`), `docs/story/video_shotlist.md`, `docs/story/judge_faq.md`, `docs/story/slides.html`, `docs/story/pitch.md` ve `docs/story/project_page.md` (`Valley Under Pressure` 24 ay v2 oyunu + `Q28` Karapınar risk verisi ile tam senkron), `docs/qa/PC4.md` §9–10 (`44/44` aktif dış URL HTTP 200 kontrolü + Site v2 sayı/sözleşme QA)
 - Doğrulama:
   - UK görsel çifti (`700x500` RGB, `transparency` temiz), `meta.json` şeması ve `sinkholes.geojson` (`29/29` geçerli Point Feature, `NaN` yok) doğrulandı.
   - `web3d/surfaces.json` valid UTF-8 JSON (`508,881 B`, `NaN` yok), `node --check web3d/app.js` geçti, lokal HTTP sunucu `/web3d/` ve `/data/` yollarında HTTP 200 döndü.

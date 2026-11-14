@@ -113,13 +113,16 @@ Kapsam: `web/index.html` (`1–163`). Genel İngilizce tonu akıcı ve tutarlı 
 1. **`data/catalog.json` (`web/data.html:38,42` tarafından canlı okunuyor):** `karapinar` ve `uk` girdileri hâlâ `quality: "pending"`, `layers: []` yazıyor; oysa tüm Karapınar (`provisional`), UK (`preview`) ve `data/central_valley/drivers.json` (`provisional`, `Q04`) dosyaları repoda hazır.
 2. **`web/index.html:57, 164` & `web/science.html:34`:** `"consecutive 12-day pairs"` ifadesi Central Valley'de 2 adet (`07-22→08-15`, `09-20→10-14`), Karapınar'da 1 adet (`07-20→08-13`) **24 günlük** ardışık çift bulunduğu için `"consecutive pairs (12–24 days)"` olarak güncellenirse tam isabet olur.
 3. **`web/science.html:25`:** `SME2 Soil moisture` satırı hâlâ `(in progress)` diyor; PC2 `data/central_valley/drivers.json` (`d4bf097`) çıktısını tamamladı.
-4. **`docs/story/judge_faq.md` #13 (`web/faq.html` tarafından canlı okunuyor):** `Valley Under Pressure` (24 ay) adını yansıtması için sonraki adımda PC4 tarafından senkronize edilebilir (önceden eski `Aquifer Manager / 10 years` sürümünü anıyordu).
+4. **`docs/story/judge_faq.md` #13 (`web/faq.html` tarafından canlı okunuyor):** ~~Sonraki adımda senkronize edilebilir~~ → **BİTTİ (`Valley Under Pressure` 24 ay + `Q28` 1 km halka istatistikleri #7/#13'e işlendi).**
 
 ---
 
 ## 10. Tüm Depo Link Kontrolü & Günlük Özet (`ZAMAN_CIZELGESI` Cmt 22:00 · Pazar 18:00–22:00)
 
 - **`docs/story/project_page.md` Son Okuma (`Pazar 18:00–20:00`):** Space Apps teslim taslağı Site v2 (`https://keremsumer2010-tech.github.io/aseltech/`), v2 simülasyon (`Valley Under Pressure`, 24 ay), `KVPR (2017)` Friant-Kern / Terra Bella kaynağı ve eşlikçi paketlerle (`sinkhole_timeline.md`, `judge_faq.md`, `slides.html`, `video_shotlist.md`) hizalandı.
+- **`Q28` & `Q14` Sonrası Eşitleme (`docs/qa/PC6.md` yanıtı):**
+  - `data/uk/meta.json` dosyasına yerel dosya adları (`"optical_image": "optical_2026-10-20.jpg"`, `"radar_image": "radar_2026-10-20.png"`) eklendi (`docs/qa/PC6.md:83` Q14 notu; `web/app.js` ve veri sözleşmesiyle tam uyumlu).
+  - PC6 `Q28` obruk halkası analizi (`data/karapinar/assets.json`: `0–1 km` ortalama `−4.152 cm` LOS = `>5 km` arka planın `6.4×`'ı, `%100 <= -2 cm`, `Köken Obruğu-II`'ye `597.3 m` yolda `19.74 mm/km`) ve `Valley Under Pressure` (`24` ay) v2 oyunu `judge_faq.md`, `slides.html`, `pitch.md`, `sinkhole_timeline.md` ve `project_page.md` dosyalarının tamamında senkronize edildi (`0` adet eski `Aquifer Manager` kalıntısı).
 - **Tüm Depo Canlı Dış Link Kontrolü (`Pazar 20:00–22:00` — `README.md`, `docs/`, `web/`, `web3d/`, `data/`, `game/`):** Toplam **50** benzersiz `https://` adayı tarandı (`task-728` + Pages/eğik-çizgi ek kontrolü):
   - **44 / 44** aktif doküman, veri API, CDN (`MapLibre 4.7.1`, `Chart.js 4.4.1`, `marked 12.0.2`, `Three.js 0.160.0`), GitHub Pages canlı URL'leri (`.../aseltech/`, `.../web3d/`, `.../docs/story/slides.html`), BGS/ASF/USGS/DergiPark/KVPR/GreatFen kaynakları **HTTP 200** verdi.
   - **`fonts.googleapis.com` & `fonts.gstatic.com` (`web/index.html:10`):** Yalnızca `preconnect` kök etiketi (`CSS` font URL'si `200`).
