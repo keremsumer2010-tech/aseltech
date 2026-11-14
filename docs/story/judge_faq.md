@@ -1,0 +1,50 @@
+# Jury Q&A Card — 15 Anticipated Questions (`docs/story/judge_faq.md`)
+
+> Every statistic below is drawn directly from repository datasets (`data/central_valley/*.json`, `data/karapinar/*.json`, `data/karapinar/sinkholes.geojson`, `data/uk/meta.json`) and verified HTTP-200 literature (`docs/story/sources.md`). Answers are sized for 20–30 second oral responses (2–3 sentences each).
+
+---
+
+### 1. Are your NISAR measurements fully calibrated science products?
+**No—every science layer in our viewer is transparently labeled `quality: provisional` (`CRID P05023`, acquired on or after `2026-06-17`).** *NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.* Pre-calibration `beta` granules prior to `2026-06-17` are excluded from quantitative cumulative charts, and the UK Fens optical-vs-radar pair is labeled `preview`.
+
+### 2. Why show Line-of-Sight (LOS) displacement instead of calling it pure vertical sinking?
+**InSAR directly measures one-dimensional motion along the radar's slanted Line of Sight (`~39.1°` incidence in Central Valley, `~42.0°` in Karapınar), not strictly vertical elevation.** We keep base raster maps honestly in LOS (`−λ / 4π × Δφ`, negative = away from satellite) and project peak values to vertical estimates (`LOS / cos θ`, giving `−10.1 cm` vs. `−7.8 cm` LOS in Central Valley and `−8.0 cm` vs. `−5.9 cm` LOS in Karapınar) while explicitly flagging the zero-horizontal-motion assumption.
+
+### 3. How did you handle ionosphere and troposphere atmospheric noise in GUNW products?
+**ASF documentation notes that `GUNW unwrappedPhase` does not subtract ionosphere or troposphere corrections by default, so our pipeline applies spatial and layer-level mitigation on every pair.** Specifically, `analysis/cumulative.py` subtracts the shipped GUNW `ionospherePhaseScreen` and fits a spatial plane plus linear elevation term (Copernicus DEM GLO-90) per interferogram to suppress long-wavelength and topography-correlated atmospheric ramps, while noting expected few-centimetre tropospheric residuals on individual dates.
+
+### 4. How do you stop phase unwrapping errors or noisy agricultural pixels from skewing the headline peaks?
+**Multi-stage physical masking and a conservative spatial block statistic prevent single-pixel spikes from dominating.** Pixels require `coherence >= 0.3` and `connectedComponents != 0`, isolated fragments under `200 px` (`~1.3 km²`) and single-pair jumps deviating over `λ/4` from their `720 m` local median or `> 15.0 cm` are dropped, and headline basin maxima are taken from `1 km` (`13×13 px`) block medians with `>= 50%` valid pixels and `std <= 2 cm`.
+
+### 5. Do your annualized estimates (`−26.4 cm/yr` CV and `−20.0 cm/yr` Karapınar) mean those basins sink that much every year?
+**No—we explicitly mark those numbers as linear extrapolations of `108` summer irrigation days (`2026-06-28 → 2026-10-14` CV; `2026-06-26 → 2026-10-12` Karapınar), not net multi-year averages.** In confined aquifer systems like the San Joaquin Valley, wet-season recharge produces partial elastic rebound in winter, so summer-only extrapolation intentionally illustrates peak seasonal stress and overstates net permanent annual compaction (`data/central_valley/summary.json`).
+
+### 6. Why combine California, Konya–Karapınar, and the UK Fens into a single story?
+**Together they showcase three distinct human-driven subsidence mechanisms under one physical water story.** California captures deep aquifer clay compaction tilting canals; Karapınar shows carbonate karst collapse (*obruks*) linked to agricultural overdraft; and the UK Fens ground historical peat drainage (`Holme Fen` **~4 m** post since `1851`) alongside NISAR's ability to image persistently cloudy northern farmland.
+
+### 7. Can NISAR predict the exact location and date a new Karapınar sinkhole will collapse?
+**No—NISAR maps regional multi-pixel ground settling, not catastrophic sub-pixel cavity roof failure days before collapse.** In Karapınar, our `8`-pair track-7 stack reveals up to `−5.9 cm` LOS basin subsidence `2 km W of Karapınar`, which we overlay with `29` verified historic sinkholes purely to connect basin-scale groundwater stress with mapped karst vulnerability without overclaiming predictive warning.
+
+### 8. How well do NISAR displacement measurements match independent GPS (GNSS) stations?
+**Across `10` continuous Nevada Geodetic Laboratory (`IGS20/NA`) stations inside the Central Valley frame, NISAR vertical projections (`LOS / cos θ`) achieve `1.00 cm` median RMSE (`1.33 cm` mean RMSE; lowest `0.64 cm` at `P566`).** Where actual summer drawdown exceeds several centimetres, NISAR tracks GNSS closely—reaching **`r = 0.90`** at `CAHA` (`0.75 cm` RMSE) and `HANF` (`0.83 cm` RMSE)—while low-signal bedrock/margin stations (`CAD1`, `P565`) show negative or weak correlations dominated by single-pair atmospheric noise.
+
+### 9. How did you translate centimetre radar maps into concrete infrastructure risk?
+**Flat sinking rarely breaks pipes or levees; steep differential tilting across rigid linear corridors causes structural strain.** `data/central_valley/assets.json` samples cumulative NISAR slopes (`mm/km`) along `645` OpenStreetMap canals, railways, and highways (`>= 1 km` span), flagging **`81` high-risk segments** (`> 10 mm/km`) topped by `Tulare Irrigation District Canal` (`57.01 mm/km`) and `102.8 km` of the `California Aqueduct` (`49.12 mm/km`).
+
+### 10. Why does NISAR's 24 cm L-band radar succeed over crops and clouds where earlier satellites struggle?
+**Long `24 cm` microwaves penetrate thick cloud decks that blind optical missions and pass deeper through seasonal crop canopies than `~5.6 cm` C-band radars.** Our `2026-10-20` UK Fens comparison proves the point visually: same-day VIIRS true-color imagery is ~98% cloud-obscured while the NISAR L-band `GCOV` radar pass resolves every coastal inlet around The Wash.
+
+### 11. Is your UK Fens optical-vs-radar comparison an interferometric displacement measurement?
+**No—and we label it strictly as `quality: "preview"` in `data/uk/meta.json`.** It pairs a public NASA GIBS `VIIRS_SNPP_CorrectedReflectance_TrueColor` snapshot with a same-day NISAR Level-2 `GCOV` polarimetric backscatter browse image (`700×500` RGB, `2026-10-20`) to demonstrate cloud-penetrating imaging before interferometric stack analysis begins in scenes 2 and 3.
+
+### 12. Where did your 29 Karapınar sinkholes come from, and why not map all 104 from the literature?
+**Every point in `data/karapinar/sinkholes.geojson` comes from peer-reviewed DMS coordinates in Tapur & Bozyiğit (2015), *Marmara Coğrafya Dergisi* 31 (`http 200`), filtered strictly to the Karapınar radar frame `[33.3, 37.6, 33.8, 37.9]`.** Although Konya Province totals `104` catalogued sinkholes (`86` in Karapınar), our zero-fabrication rule barred estimating missing coordinates—including skipping `Küpbasan Yeni Obruk-I` due to a `37° 43' 99"` typographical error in the source table.
+
+### 13. How is the `Aquifer Manager` simulator connected to your NASA radar measurements?
+**The standalone physics game (`game/index.html`) loads the observed peak Central Valley compaction rate from `data/central_valley/summary.json` directly into its aquifer model.** Over 10 simulated years, users balance pumping (`0%–150%`) across stochastic weather regimes, watching elastic drawdown rebound during wet years while over-pumping causes permanent clay compression and escalating canal repair bills (`illustrative` label, zero AI images).
+
+### 14. Can external researchers audit and reproduce every step of your pipeline?
+**Yes—every script, intermediate contract, unit test, and documentation check lives in an open MIT-licensed GitHub repository (`keremsumer2010-tech/aseltech`).** Pure Python (`numpy`/`scipy`) routines in `analysis/insar.py` and `cumulative.py` enforce automated `pytest` verification on phase-to-cm conversion and masking, feeding zero-backend static web pages (`web/`, `web3d/`, `game/`).
+
+### 15. How did your team use AI tools, and how did you prevent scientific hallucinations?
+**We clearly separate editorial visuals from real NASA measurements and enforce programmatic source checks across every number.** Site scene illustrations created with Higgsfield AI display `"AI-generated illustration"` badges (with zero AI artwork in our 7-slide deck or v2 game), while code and writing assistance (Claude, Gemini/Antigravity) was paired with strict checks: every coordinate traces to a source PDF, every stat reads dynamically from JSON, and all `22` external documentation links passed live `HTTP 200` verification.
