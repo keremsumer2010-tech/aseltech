@@ -365,11 +365,11 @@
           </svg>
         </div>
         <div class="card">
-          <h3>GNSS &amp; Dual-Orbit Summary (<code>validation.json</code> &amp; <code>cv_p34_vs_p114.json</code>)</h3>
+          <h3>GNSS, Dual-Orbit &amp; Vertical Inversion</h3>
           <ul>
-            <li><strong>Median GNSS RMSE:</strong> <strong>1.00 cm</strong> (1.33 cm mean across 10 stations; <strong>0.86 cm</strong> mean RMSE &amp; <strong>r = 0.81</strong> across 5 active basin stations <code>CAHA</code>, <code>HANF</code>, <code>P056</code>, <code>QCAP</code>, <code>TLBN</code>).</li>
-            <li><strong>Dual-Orbit Proof (Track 34 Asc. ↔ Track 114 Desc.):</strong> Across 6,719 1 km blocks (06-28 → 10-14), independent viewing geometries reach <strong>85% sign agreement</strong> where <code>|d| &gt; 3 cm</code> (r = 0.49 overall / 0.60 local; −5.7 cm median where Track 34 &lt; −6 cm).</li>
-            <li><strong>Honest Noise Accounting:</strong> Low-signal margin stations (<code>CAD1</code>, <code>P564</code>, <code>P565</code>) sit near the 1.74–2.87 cm cumulative chain noise floor (SNR 2.7×–4.5× at Terra Bella).</li>
+            <li><strong>GNSS Agreement (<code>validation_report.md</code>):</strong> Cross-station final fit <strong>r = 0.924</strong> (1.37 cm final RMSE across 10 sites; <strong>1.00 cm</strong> median TS RMSE; <strong>0.76 cm</strong> final RMSE across the 4 stations moving &gt;2 cm; <strong>0.86 cm</strong> / r = 0.81 across 5 basin sites).</li>
+            <li><strong>Dual-Orbit Proof (<code>cv_p34_vs_p114.json</code>):</strong> Track 34 Asc. ↔ Track 114 Desc. (6,719 1 km blocks) achieve <strong>r = 0.489</strong> (0.60 local &lt;15 km, RMSE <strong>2.65 cm</strong>, median diff <strong>−1.29 cm</strong>, <strong>85% sign agreement</strong> where <code>|d| &gt; 3 cm</code>).</li>
+            <li><strong>Two-Geometry Vertical Vector (<code>vertical.json</code>):</strong> Solving East + Up pixel equations shows the <strong>Alpaugh / Earlimart bowl sank −7.2 cm vertically</strong> (only −0.1 cm east-west; max −9.8 cm up). Cramér-Rao phase sigma median: <strong>0.294 cm</strong> (<code>uncertainty/meta.json</code>).</li>
           </ul>
         </div>
       </div>
