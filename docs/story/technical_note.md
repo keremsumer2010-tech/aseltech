@@ -85,7 +85,7 @@ Using the single-command `pipeline/nisarpulse/` engine with identical `provision
 | 1 | **Konya Closed Basin, Türkiye** | `2026-06-26 → 2026-10-12` (`8`) | **`−9.6`** | `[−14.0, −9.6]` | `−12.1` | `−32.5` | Full basin (`provisional`) |
 | 2 | **Central Valley, USA** | `2026-06-28 → 2026-10-14` (`7`) | **`−7.8`** | `[−7.8, −4.7]` | `−10.1` | `−26.4` | 10-GPS `r = 0.924`, `1.00 cm` RMSE |
 | 3 | **Jakarta, Indonesia** | `2026-06-27 → 2026-10-13` (`8`) | **`−6.8`** | 1 ref only | `−9.3` | `−23.2` | `2.9%` valid pixels (tropical veg.) |
-| 4 | **Karapınar, Türkiye** | `2026-06-26 → 2026-10-12` (`8`) | **`−5.9`** | — | `−8.0` | `−19.9` | 29 sinkholes (`p = 0.0001` perm.) |
+| 4 | **Karapınar, Türkiye** | `2026-06-26 → 2026-10-12` (`8`) | **`−5.9`** | — | `−8.0` | `−20.0` | 29 sinkholes (`p = 0.0001` perm.) |
 | 5 | **Mexico City, Mexico** | `2026-06-22 → 2026-10-20` (`8`) | **`−4.4`** | `[−7.4, −4.4]` | `−6.2` | `−13.5` | Eastern lakebed clays |
 | 6 | **Tehran, Iran** | `2026-06-18 → 2026-10-16` (`9`) | **`−3.5`** | `[−7.3, −3.5]` | `−4.7` | `−10.7` | SW Tehran plain trough |
 | 7 | **Beijing, China** | `2026-06-17 → 2026-10-15` (`9`) | **`−1.4`** | `[−7.6, −1.4]` | `−2.1` | `−4.3` | Wide reference sensitivity |
