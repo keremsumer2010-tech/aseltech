@@ -31,6 +31,7 @@ PC1 planı inceledi; 4 zayıflık düzeltildi. Bu bölüm diğer her şeyin ön�
 | PC5 | **Güven sınıfı girdileri (§4)**: her şehir için literatür hızı + uyum notu → `data/global/<şehir>/validation_note.json` (PC10 birleştirir); mevcut 8 bölge + "ilk mi?" taraması. **Öncelik: Mexico City −4.4 cm (108 gün) yayımlanmış hızlara göre düşük görünüyor — neden (koherens, bbox, referans) incele, PC10'a not** | yeni şehirler |
 | PC4 | Basın özeti + atlas slaytı + teknik not bölümü, **tohum atlas.json ile** | yeni şehirlerle güncelle |
 | PC7 | O2 olasılıksal risk | `validate_atlas.py` |
+| PC11 (21:40, yeni) | **Tahran, Cakarta, Pekin'i kalite standardıyla yeniden hesapla** (PC10'dan devredildi) → Celaya, Tianjin, Kerman, Bulacan (`tasks/PC11.md`) | PC10'a "hazır" notu |
 Çakışma kuralı: `data/global/atlas.json` dosyasını SADECE PC10 (build_atlas.py) yazar; diğerleri okur.
 
 ## Bölgeler (merkez lon, lat — bbox'ı ±0.25–0.35° olarak sen kur, önce ASF'de provisional GUNW kapsamasını kontrol et; kapsama yoksa "no coverage" diye atlasa yaz ve sıradakine geç)

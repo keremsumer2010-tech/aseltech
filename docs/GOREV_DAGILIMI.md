@@ -209,6 +209,7 @@ Evet. PC1 rolleri saat başı kontrolde değiştirebilir; değişiklik önce bu 
 
 
 ## 20:50 Atlas sahiplik ekleri
+- PC11 (21:40): `data/global/{tehran,jakarta,beijing}/` (PC10'dan devir) · `data/global/<celaya,tianjin,kerman,bulacan>/` · `pipeline/subset/global_<bu şehirler>/` · `docs/qa/PC11.md` · `status/PC11.md`
 - PC10: `data/global/<kendi şehirleri>/`, `data/global/atlas.json`, `pipeline/pc10/build_atlas.py`, `docs/story/global_atlas.md`
 - PC2: `data/global/<kendi şehirleri>/`, `pipeline/nisarpulse/`
 - PC9: `data/global/<kendi şehirleri>/`
