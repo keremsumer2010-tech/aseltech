@@ -47,3 +47,24 @@ Sınıflandırılmış ilişki (track 34'e göre gruplayıp track 114'ün medyan
 
 **Sınırlamalar:** LOS → dikey dönüşümü yatay hareketi sıfır varsayar; iki yörünge arasında 6 günlük uç farkları
 doğrusal enterpolasyonla kapatıldı; atmosfer modeli uygulanmadı.
+
+## Q22 · Dikey + doğu-batı ayrıştırması (iki geometri) · 2026-11-14 14:55 TR
+
+İki geçiş farklı yönlere bakıyor (NISAR sola bakar): track 34 yükselen LOS birim vektörü (yerden uyduya) e = +0.64, u = 0.75;
+track 114 alçalan e = −0.60, u = 0.77 (GUNW `metadata/radarGrid/losUnitVectorX/Y` küplerinden, `analysis/fetch_geometry.py`).
+Her pikselde d_k = E·e_k + U·u_k çözüldü (kuzey ihmal; iki geometrili standart yaklaşım, Wright vd. 2004, GRL,
+https://doi.org/10.1029/2003GL018827). Dönem 06-28 → 10-14. Kod: `analysis/vertical_ew.py` (+ birim testi).
+Çıktılar: `data/central_valley/vertical.json`, `vertical_up.png`, `vertical_east.png`.
+
+| | Değer (1 km blok medyanı) |
+|---|---|
+| Dikey p2 / medyan / p98 | −6.0 / −1.3 / +2.4 cm |
+| En çok dikey çökme | **−9.8 cm** @ −119.049, 35.729 (Richgrove ~10 km GD, Friant-Kern hattı; benekli etek kenarı → güven orta-düşük) |
+| Alpaugh/Earlimart B çanağı (en temiz geniş çanak) | **−7.2 cm dikey**, doğu-batı −0.1 cm (çanak merkezinde yatay ≈ 0, fiziksel olarak beklenen) |
+| Doğu-batı p2 / medyan / p98 | −2.9 / +0.7 / +3.3 cm |
+| Kapsama | %49.6 (iki yörüngede de geçerli pikseller; track 114 çerçevesi güney kenarı kesiyor) |
+
+Yorum: LOS/cos(geliş) ile yapılan tek-yörünge dikey tahmini (summary: −10.1 cm, Terra Bella K) ile iki-geometrili
+çözüm aynı mertebede. Doğu-batı bileşeni çoğu yerde ±3 cm içinde; doğu etekteki kırmızı/benekli bölgeler (bahçeler)
+gürültü ağırlıklı. Sunumda güvenle söylenebilecek: "Combining two orbits, the Alpaugh bowl sank about 7 cm vertically
+in 3½ months, with almost no sideways motion at its centre."

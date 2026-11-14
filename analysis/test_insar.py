@@ -129,3 +129,16 @@ def test_pair_chain_synthetic_bowl():
     assert out[30, 30] == pytest.approx(-3.0, abs=0.01)
     assert abs(out[5, 5]) < 1e-4
     assert np.isnan(out[0, 55])
+
+
+def test_two_geometry_inversion():
+    from vertical_ew import solve_eu
+    # asc LOS (to sensor) points west-up, desc points east-up (illustrative unit vectors)
+    e1, u1 = np.array([-0.6]), np.array([0.78])
+    e2, u2 = np.array([0.6]), np.array([0.78])
+    E_true, U_true = 1.5, -8.0
+    d1, d2 = E_true * e1 + U_true * u1, E_true * e2 + U_true * u2
+    E, U = solve_eu(d1, d2, e1, u1, e2, u2)
+    assert E[0] == pytest.approx(E_true, abs=1e-5) and U[0] == pytest.approx(U_true, abs=1e-5)
+    E, U = solve_eu(d1, d2, e1, u1, e1, u1)  # identical geometry -> singular -> NaN
+    assert np.isnan(E[0]) and np.isnan(U[0])

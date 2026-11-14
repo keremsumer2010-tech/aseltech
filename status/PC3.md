@@ -7,6 +7,7 @@
 - **14:11 Mehmet talimatı:** PC3, PC5'in Görev 1'ini (`analysis/decomp/decompose.py` + testler) devraldı. PC5 bu işi TEKRARLAMASIN; PC5 game_model.md ve belirsizlik bütçesiyle devam edebilir.
 - **14:35 game_model hazır** → `docs/story/game_model.md` (PC6 için). Doğrulanan: hedef −7.8 LOS/−10.1 dikey, S_y ort. 0.10, Corcoran kili ≤61 m, Friant-Kern 4000→1600 cfs. Doğrulanamayan (403/erişim yok): S_ske/S_skv kesin değerleri, su yılı olasılıkları → illustrative. Kalibrasyon sayısı: JS çalıştırılamadı (Node yok), PC6 oyundaki kutudan okuyup yazmalı.
 - **14:50 Q21 BİTTİ** (`docs/qa/PC3.md`, `docs/cv_p34_vs_p114.png`): track 114 (alçalan) ile track 34 karşılaştırması → 1 km bloklarda r 0.49 (yerel ölçekte 0.60), |34|>3 cm bloklarda işaret uyumu %85; track 34 < −6 cm olan yerlerde track 114 medyanı −5.7 cm. Sıradaki: Q22 (iki geometri → dikey + doğu-batı).
+- **14:55 Q22 BİTTİ**: iki geometriden dikey/doğu-batı → `data/central_valley/vertical.json` + 2 PNG. Alpaugh çanağı −7.2 cm dikey (yatay ≈0), en uç blok −9.8 cm (SE etek, orta-düşük güven). Ayrıntı `docs/qa/PC3.md`.
 - Güncelleme: 2026-11-14 13:55 TR
 
 ## Bağımsız yeniden üretim (14:05)

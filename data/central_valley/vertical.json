@@ -1,0 +1,61 @@
+{
+  "site": "central_valley",
+  "period": [
+    "2026-06-28",
+    "2026-10-14"
+  ],
+  "units": "cm",
+  "bbox": [
+    -120.2,
+    35.6,
+    -119.0,
+    36.6
+  ],
+  "method": "Two-geometry inversion per pixel: track 34 ascending + track 114 descending cumulative LOS (track 114 interpolated in time to track 34 dates, both re-zeroed at the first common date); d_k = E*e_k + U*u_k with LOS unit vectors from the GUNW metadata cube; north motion neglected.",
+  "up_cm": {
+    "png": "vertical_up.png",
+    "vmin": -8.0,
+    "vmax": 8.0,
+    "p2": -5.98,
+    "p50": -1.25,
+    "p98": 2.35
+  },
+  "east_cm": {
+    "png": "vertical_east.png",
+    "vmin": -4.0,
+    "vmax": 4.0,
+    "p2": -2.85,
+    "p50": 0.74,
+    "p98": 3.34
+  },
+  "max_subsidence_up_cm": -9.8,
+  "max_subsidence_location": {
+    "lon": -119.04908,
+    "lat": 35.72948
+  },
+  "east_at_max_cm": 2.4,
+  "los_unit_vectors_median": {
+    "track34_asc": {
+      "e": 0.64,
+      "u": 0.747
+    },
+    "track114_desc": {
+      "e": -0.6,
+      "u": 0.774
+    }
+  },
+  "valid_fraction": 0.496,
+  "colormap": "RdBu for both: up map red = sinking, blue = rising; east map red = moving west, blue = moving east",
+  "named_bowls": [
+    {
+      "name": "Alpaugh / Earlimart west bowl",
+      "lon": -119.4452,
+      "lat": 35.9002,
+      "up_cm": -7.2,
+      "east_cm": -0.1
+    }
+  ],
+  "quality": "provisional",
+  "quality_note": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.",
+  "notes": "~1 km block medians (>= 50 % valid, within-block std <= 3 cm) for statistics. The single most negative block lies in the speckled south-east foothill/orchard edge (lower confidence); the Alpaugh bowl is the clearest broad feature. Each track carries ~2-3 cm of atmospheric noise per pair; east-west values are noisier than up because the two LOS vectors differ mainly in their east component."
+}
