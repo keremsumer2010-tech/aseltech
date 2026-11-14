@@ -1,4 +1,4 @@
 # PC8 durum
 
-- Tamamlandı: B06 (S-03 Yüksek) — video altyazısı ve harita göstergesine mavi alan açıklaması eklendi (`web/index.html`)
-- Sıradaki: B07 (S-25 Yüksek)
+- Durum: çalışıyor: B07 (S-25 Yüksek) — `web/science.html` "12 to 36 days" → "12 to 24 days" ve track 114 aralık kontrolü
+- Alan: BUGFIX (`tasks/QUEUE.md`)
