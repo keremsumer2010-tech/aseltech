@@ -4,17 +4,28 @@ Jüri mesajı: *"NISAR'ın ilk kamuya açık aylarındaki veriyle dünyanın ~20
 Kurallar: sadece provisional (her iki tarih ≥ 2026-06-17, P05023); her şehir `data/global/<şehir>/` (veri sözleşmesi); ham .h5 kesince sil; aynı bilgisayarda aynı anda tek indirme; REVIEW_1500 dili; `git add <yol>`; her adımda commit + push.
 Sabit saatler: gece indirme (bilgisayarlar açık, uyku kapalı) · Paz 14:00 atlas veri sonu · Paz 20:00 dondurma · 22:00 teslim.
 
+## 🔬 KALİTE STANDARDI (PC1 inceleme, 21:05) — sıralama adil ve savunulabilir olsun diye ZORUNLU
+PC1 planı inceledi; 4 zayıflık düzeltildi. Bu bölüm diğer her şeyin önündedir.
+1. **Aynı kutu, aynı ölçüt:** her şehir için bbox = merkez ± 0.25° (≈ 55 × 55 km; kıyı/şehir dışı alan çoksa merkezi kaydır, boyutu değil). Başlık değeri = 1 km blok medyanlarının en negatifi (PC3 yöntemi) **ve** 2. yüzdelik (p2) — ikisi de `summary.json`'da. Farklı kutu boyu sıralamayı bozar.
+2. **Dönemden bağımsız hız:** şehirlerin tarih aralıkları farklı → atlasta sıralama ölçütü **`rate_cm_per_100d` = başlık değeri / gün × 100** (LOS). Yıllık değer sadece "estimate" etiketiyle, sıralamada kullanılmaz.
+3. **Referans bölgesi çökme havzasının DIŞINDA:** referans yüksek koherenslı ve bilinen sabit bir alanda (kaya zemin/havza kenarı; literatürden veya o bölgede GPS istasyonu varsa onun yakını). Havza içindeki referans çökmeyi küçük gösterir — **Mexico City −4.4 cm büyük olasılıkla bu yüzden düşük;** PC10 Mexico City'yi bu kuralla yeniden çalıştırır.
+4. **Güven sınıfı:** her şehirde `confidence` = high / medium / low: geçerli piksel oranı (≥ %40 high), referans duyarlılığı (3 referans aralığı / başlık < %30 high), literatürle büyüklük mertebesi uyumu (PC5). Atlas sıralamasında low olanlar ayrı listede, "indicative only" etiketiyle. Tropikal/kıyı şehirlerinde (Bangkok, Ho Chi Minh, Semarang, Lagos, Cakarta) düşük koherens beklenir — dürüstçe göster.
+**Öncelik:** önce A (kuru iklim, yüksek bilinen çökme → temiz sinyal), sonra B.
+- A: Isfahan, Rafsanjan, Mashhad, Quetta, Delhi, Eloy, Cangzhou, Gorgan, Mexico City (yeniden)
+- B: Bangkok, Ho Chi Minh City, Semarang, Hanoi, Yunlin, Houston, Lagos
+**Daha az ama sağlam > çok ama gürültülü:** 12 güvenilir şehir, 20 şüpheli şehirden iyidir.
+
 ## ⚡ PARALEL BAŞLANGIÇ — 8 ajan AYNI ANDA, kimse kimseyi beklemez (21:00)
 İlke "sözleşme önce": `data/global/atlas.json` biçimi sabit ve **PC1 tarafından 8 mevcut bölgeyle tohumlandı** (Konya Ovası −9.6, Central Valley −7.8, Cakarta −6.8, Karapınar −5.9, Mexico City −4.4, Tahran −3.5, Pekin −1.4, Delta −1.3 cm LOS). Görsel/metin işleri bu tohum dosyayla HEMEN başlar; yeni şehirler geldikçe dosya büyür, sayfalar kendiliğinden güncellenir.
 | PC | İLK işi (bağımlılık yok, şimdi başla) | Sonra |
 |---|---|---|
-| PC2 | Kendi 5 bölgesinin `--dry-run` kapsama kontrolü → indirmeye başla | NISAR Pulse iyileştirme |
-| PC10 | Kendi 5 bölgesinin kapsama kontrolü → indirme; `build_atlas.py` (tohum dosyayı yeniden üretecek) | atlas.json'u her şehirde güncelle |
+| PC2 | NISAR Pulse aracına §1–§3 kurallarını ekle (`--box-deg 0.25` varsayılan, p2 ve rate_cm_per_100d çıktısı, `--ref-lonlat` ile havza dışı referans) → kendi bölgeleri (A önce) | araç iyileştirme |
+| PC10 | **Mexico City'yi kalite standardı §3 ile yeniden çalıştır** → kendi bölgeleri (önce A önceliği olanlar); `build_atlas.py`: §1–§4 alanları (`rate_cm_per_100d`, `p2_cm`, `confidence`, `valid_fraction`, `ref_range_cm`) + iki liste (güvenilir / indicative) | atlas.json'u her şehirde güncelle |
 | PC9 | Earthdata kurulumu (Mehmet) → kendi 5 bölgesi | — |
 | PC3 | `web/atlas.html` küre + sıralama, **tohum atlas.json ile** | yeni şehirler kendiliğinden görünür |
 | PC6 | Sinematik video: Central Valley 3D arazi bölümü (DEM + tam yıl verisi zaten var) | küre bölümü (tohum atlas.json) |
 | PC8 | `tools/bulletin.py` Central Valley, Karapınar, Konya Ovası, Delta için (veri hazır) | atlas şehirleri |
-| PC5 | Mevcut 8 bölgenin literatür kıyası + "ilk mi?" taraması. **Öncelik: Mexico City −4.4 cm (108 gün) yayımlanmış hızlara göre düşük görünüyor — neden (koherens, bbox, referans) incele, PC10'a not** | yeni şehirler |
+| PC5 | **Güven sınıfı girdileri (§4)**: her şehir için literatür hızı + uyum notu → `data/global/<şehir>/validation_note.json` (PC10 birleştirir); mevcut 8 bölge + "ilk mi?" taraması. **Öncelik: Mexico City −4.4 cm (108 gün) yayımlanmış hızlara göre düşük görünüyor — neden (koherens, bbox, referans) incele, PC10'a not** | yeni şehirler |
 | PC4 | Basın özeti + atlas slaytı + teknik not bölümü, **tohum atlas.json ile** | yeni şehirlerle güncelle |
 | PC7 | O2 olasılıksal risk | `validate_atlas.py` |
 Çakışma kuralı: `data/global/atlas.json` dosyasını SADECE PC10 (build_atlas.py) yazar; diğerleri okur.
