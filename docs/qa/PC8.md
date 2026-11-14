@@ -247,3 +247,12 @@
 - **Yerel HTTP Sunucusu (`http.server`) Taraması:** `web/{index,science,data,explorer,faq}.html`, `game/index.html` ve `docs/story/slides.html` sayfalarının **7/7'si `HTTP 200`** döndü; yalnızca §9'da zaten kayıtlı `web/index.html:117` (`docs/story/media/pc9_fullyear_point.png`) `404` veriyor, diğer tüm gömülü göreli kaynaklar `200 OK`.
 - **PC8 Markdown Bağlantıları:** `submission_form.md`, `slides_notes.md`, `exposure.md`, `storage_loss.md`, `uk_findings.md` içinde **`0` kırık göreli link**.
 - **`submission_form.md` & `slides_notes.md` Senkronu:** O1 kalıcı akifer depolama kaybı (`0.317 km³/yr`, `0.066–0.320 km³/yr`, `~0.49× Millerton Lake`) §5 ve Slide 3 güncelleme notuna eklendi (`§5: 4,654 chars / 689 words`).
+
+---
+
+## 13. 14 Nov 20:26 TR — Tur 4 Sürekli QA & Güncelleme
+
+- **`python analysis/pc8/fix_nan_json.py`:** `data/**/*.json` altındaki **`61` JSON** dosyası tarandı (`0` `NaN`/`Infinity` sabiti).
+- **`python -m pytest -q`:** **`70 passed, 1 warning in 22.21s`**.
+- **§9 Madde 1 Netleştirme (`docs/qa/PC7.md` §7 ile teyit):** `web/index.html:117` içindeki `data-src="docs/story/media/pc9_fullyear_point.png"` çalışma zamanında `web/app.js` `fullYear()` fonksiyonu tarafından `ROOT + im.dataset.src` ile çözülüyor; sorun yalnızca boş `src=""` niteliğinin tarayıcı/statik tarayıcıda ekstra sayfa isteğine yol açmasıdır (yalnızca `src=""` niteliği kaldırılmalı).
+- **Karapınar Tam Yıl (`data/karapinar_fullyear/decomp.json`):** Henüz oluşturulmamış (`False`), sonraki döngüde kontrol edilecek.
