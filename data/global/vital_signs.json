@@ -1,0 +1,20 @@
+{
+  "generated_utc": "2026-11-14T20:39:10Z",
+  "quality": "provisional",
+  "quality_note": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.",
+  "cities_measured": 13,
+  "cities_measured_source": "data/global/atlas.json (n_regions)",
+  "fastest": {
+    "id": "konya_plain",
+    "name": "Konya Plain",
+    "country": "T\u00fcrkiye",
+    "rate_cm_per_100d": -8.9,
+    "source": "data/global/atlas.json"
+  },
+  "area_km2_lt_minus5cm": 474.26,
+  "area_km2_lt_minus5cm_source": "data/global/exposure_atlas.json (sum excluding nested karapinar)",
+  "people_on_sinking_ground": 1434355,
+  "people_on_sinking_ground_threshold": "< -5 cm (108-day equivalent, |disp| >= 2*sigma)",
+  "people_on_sinking_ground_gt2cm": 7151872,
+  "people_on_sinking_ground_source": "data/global/exposure_atlas.json (GHSL GHS-POP E2025 R2023A 3ss, excluding nested karapinar)"
+}

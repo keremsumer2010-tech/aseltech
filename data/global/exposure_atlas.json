@@ -1,0 +1,471 @@
+{
+  "title": "Global Atlas Population and Area Exposure on Sinking Ground (108-day equivalent)",
+  "generated_utc": "2026-11-14T20:39:10Z",
+  "source": "GHSL GHS-POP E2025 R2023A 3-arcsecond (~100 m, WGS84, European Commission JRC) intersected with provisional NISAR L2 GUNW cumulative LOS displacement scaled to 108 days, excluding pixels with |disp| < 2*sigma (data/global/detectability.json)",
+  "quality": "provisional",
+  "quality_note": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.",
+  "notes": "karapinar is reported separately as a local subset inside konya_plain; totals exclude karapinar to prevent double-counting.",
+  "totals_excluding_nested_karapinar": {
+    "people_lt_minus2cm": 7151872,
+    "people_lt_minus5cm": 1434355,
+    "area_km2_lt_minus5cm": 474.26
+  },
+  "cities": [
+    {
+      "id": "konya_plain",
+      "name": "Konya Plain",
+      "country": "T\u00fcrkiye",
+      "people_lt_minus2cm": 138718,
+      "people_lt_minus5cm": 33287,
+      "area_km2_lt_minus5cm": 33.93,
+      "area_km2_lt_minus2cm": 255.24,
+      "bbox_population_ghsl": 1529341,
+      "two_sigma_threshold_cm": 0.664,
+      "two_sigma_source": "data/global/detectability.json",
+      "days_measured": 108,
+      "normalized_window_days": 108,
+      "top_subsiding_areas": [
+        {
+          "lon": 32.6278,
+          "lat": 37.8161,
+          "cum_cm_los": -9.6,
+          "rate_cm_per_100d": -8.89
+        },
+        {
+          "lon": 32.6276,
+          "lat": 37.863,
+          "cum_cm_los": -6.57,
+          "rate_cm_per_100d": -6.08
+        },
+        {
+          "lon": 32.627,
+          "lat": 37.9755,
+          "cum_cm_los": -6.31,
+          "rate_cm_per_100d": -5.84
+        }
+      ],
+      "source": "GHSL GHS-POP E2025 R2023A 3-arcsecond (~100 m, WGS84, European Commission JRC) intersected with provisional NISAR L2 GUNW cumulative LOS displacement scaled to 108 days, excluding pixels with |disp| < 2*sigma (data/global/detectability.json)",
+      "quality": "provisional"
+    },
+    {
+      "id": "mashhad",
+      "name": "Mashhad",
+      "country": "Iran",
+      "people_lt_minus2cm": 2506805,
+      "people_lt_minus5cm": 793351,
+      "area_km2_lt_minus5cm": 112.65,
+      "area_km2_lt_minus2cm": 1008.58,
+      "bbox_population_ghsl": 5040442,
+      "two_sigma_threshold_cm": 0.634,
+      "two_sigma_source": "Cramer-Rao 2*sigma computed from pipeline/subset",
+      "days_measured": 120,
+      "normalized_window_days": 108,
+      "top_subsiding_areas": [
+        {
+          "lon": 59.6615,
+          "lat": 36.2958,
+          "cum_cm_los": -8.63,
+          "rate_cm_per_100d": -7.19
+        },
+        {
+          "lon": 59.6161,
+          "lat": 36.3249,
+          "cum_cm_los": -7.57,
+          "rate_cm_per_100d": -6.31
+        },
+        {
+          "lon": 59.536,
+          "lat": 36.3547,
+          "cum_cm_los": -7.27,
+          "rate_cm_per_100d": -6.06
+        }
+      ],
+      "source": "GHSL GHS-POP E2025 R2023A 3-arcsecond (~100 m, WGS84, European Commission JRC) intersected with provisional NISAR L2 GUNW cumulative LOS displacement scaled to 108 days, excluding pixels with |disp| < 2*sigma (data/global/detectability.json)",
+      "quality": "provisional"
+    },
+    {
+      "id": "central_valley",
+      "name": "Central Valley (Tulare Basin)",
+      "country": "USA",
+      "people_lt_minus2cm": 92134,
+      "people_lt_minus5cm": 3004,
+      "area_km2_lt_minus5cm": 239.84,
+      "area_km2_lt_minus2cm": 1579.2,
+      "bbox_population_ghsl": 785624,
+      "two_sigma_threshold_cm": 0.588,
+      "two_sigma_source": "data/global/detectability.json",
+      "days_measured": 108,
+      "normalized_window_days": 108,
+      "top_subsiding_areas": [
+        {
+          "lon": -119.0217,
+          "lat": 36.0112,
+          "cum_cm_los": -7.8,
+          "rate_cm_per_100d": -7.22
+        },
+        {
+          "lon": -119.8447,
+          "lat": 36.1163,
+          "cum_cm_los": -7.78,
+          "rate_cm_per_100d": -7.21
+        },
+        {
+          "lon": -120.157,
+          "lat": 36.1272,
+          "cum_cm_los": -7.22,
+          "rate_cm_per_100d": -6.68
+        }
+      ],
+      "source": "GHSL GHS-POP E2025 R2023A 3-arcsecond (~100 m, WGS84, European Commission JRC) intersected with provisional NISAR L2 GUNW cumulative LOS displacement scaled to 108 days, excluding pixels with |disp| < 2*sigma (data/global/detectability.json)",
+      "quality": "provisional"
+    },
+    {
+      "id": "jakarta",
+      "name": "Jakarta",
+      "country": "Indonesia",
+      "people_lt_minus2cm": 87328,
+      "people_lt_minus5cm": 14923,
+      "area_km2_lt_minus5cm": 6.67,
+      "area_km2_lt_minus2cm": 20.88,
+      "bbox_population_ghsl": 19227947,
+      "two_sigma_threshold_cm": 0.664,
+      "two_sigma_source": "data/global/detectability.json",
+      "days_measured": 108,
+      "normalized_window_days": 108,
+      "top_subsiding_areas": [
+        {
+          "lon": 107.0115,
+          "lat": -6.1406,
+          "cum_cm_los": -6.85,
+          "rate_cm_per_100d": -6.34
+        },
+        {
+          "lon": 107.0113,
+          "lat": -6.0935,
+          "cum_cm_los": -4.7,
+          "rate_cm_per_100d": -4.35
+        },
+        {
+          "lon": 106.8893,
+          "lat": -6.1128,
+          "cum_cm_los": -2.31,
+          "rate_cm_per_100d": -2.14
+        }
+      ],
+      "source": "GHSL GHS-POP E2025 R2023A 3-arcsecond (~100 m, WGS84, European Commission JRC) intersected with provisional NISAR L2 GUNW cumulative LOS displacement scaled to 108 days, excluding pixels with |disp| < 2*sigma (data/global/detectability.json)",
+      "quality": "provisional"
+    },
+    {
+      "id": "bangkok",
+      "name": "Bangkok",
+      "country": "Thailand",
+      "people_lt_minus2cm": 1119303,
+      "people_lt_minus5cm": 261087,
+      "area_km2_lt_minus5cm": 48.85,
+      "area_km2_lt_minus2cm": 186.92,
+      "bbox_population_ghsl": 17182389,
+      "two_sigma_threshold_cm": 0.654,
+      "two_sigma_source": "data/global/detectability.json",
+      "days_measured": 120,
+      "normalized_window_days": 108,
+      "top_subsiding_areas": [
+        {
+          "lon": 100.7374,
+          "lat": 13.8137,
+          "cum_cm_los": -7.48,
+          "rate_cm_per_100d": -6.24
+        },
+        {
+          "lon": 100.7467,
+          "lat": 13.7666,
+          "cum_cm_los": -7.2,
+          "rate_cm_per_100d": -6.0
+        },
+        {
+          "lon": 100.7857,
+          "lat": 13.8415,
+          "cum_cm_los": -6.93,
+          "rate_cm_per_100d": -5.77
+        }
+      ],
+      "source": "GHSL GHS-POP E2025 R2023A 3-arcsecond (~100 m, WGS84, European Commission JRC) intersected with provisional NISAR L2 GUNW cumulative LOS displacement scaled to 108 days, excluding pixels with |disp| < 2*sigma (data/global/detectability.json)",
+      "quality": "provisional"
+    },
+    {
+      "id": "mexico_city",
+      "name": "Mexico City",
+      "country": "Mexico",
+      "people_lt_minus2cm": 3007595,
+      "people_lt_minus5cm": 321795,
+      "area_km2_lt_minus5cm": 21.53,
+      "area_km2_lt_minus2cm": 195.23,
+      "bbox_population_ghsl": 12501176,
+      "two_sigma_threshold_cm": 0.686,
+      "two_sigma_source": "data/global/detectability.json",
+      "days_measured": 120,
+      "normalized_window_days": 108,
+      "top_subsiding_areas": [
+        {
+          "lon": -99.0362,
+          "lat": 19.2749,
+          "cum_cm_los": -6.96,
+          "rate_cm_per_100d": -5.8
+        },
+        {
+          "lon": -99.0461,
+          "lat": 19.4816,
+          "cum_cm_los": -6.37,
+          "rate_cm_per_100d": -5.31
+        },
+        {
+          "lon": -99.0461,
+          "lat": 19.4346,
+          "cum_cm_los": -5.3,
+          "rate_cm_per_100d": -4.41
+        }
+      ],
+      "source": "GHSL GHS-POP E2025 R2023A 3-arcsecond (~100 m, WGS84, European Commission JRC) intersected with provisional NISAR L2 GUNW cumulative LOS displacement scaled to 108 days, excluding pixels with |disp| < 2*sigma (data/global/detectability.json)",
+      "quality": "provisional"
+    },
+    {
+      "id": "karapinar",
+      "name": "Karap\u0131nar, Konya",
+      "country": "T\u00fcrkiye",
+      "people_lt_minus2cm": 23424,
+      "people_lt_minus5cm": 3734,
+      "area_km2_lt_minus5cm": 3.1,
+      "area_km2_lt_minus2cm": 28.69,
+      "bbox_population_ghsl": 41883,
+      "two_sigma_threshold_cm": 0.652,
+      "two_sigma_source": "data/global/detectability.json",
+      "days_measured": 108,
+      "normalized_window_days": 108,
+      "top_subsiding_areas": [
+        {
+          "lon": 33.5306,
+          "lat": 37.7182,
+          "cum_cm_los": -5.94,
+          "rate_cm_per_100d": -5.5
+        },
+        {
+          "lon": 33.7905,
+          "lat": 37.7448,
+          "cum_cm_los": -2.57,
+          "rate_cm_per_100d": -2.38
+        },
+        {
+          "lon": 33.7781,
+          "lat": 37.6887,
+          "cum_cm_los": -1.82,
+          "rate_cm_per_100d": -1.68
+        }
+      ],
+      "source": "GHSL GHS-POP E2025 R2023A 3-arcsecond (~100 m, WGS84, European Commission JRC) intersected with provisional NISAR L2 GUNW cumulative LOS displacement scaled to 108 days, excluding pixels with |disp| < 2*sigma (data/global/detectability.json)",
+      "quality": "provisional"
+    },
+    {
+      "id": "rafsanjan",
+      "name": "Rafsanjan",
+      "country": "Iran",
+      "people_lt_minus2cm": 2367,
+      "people_lt_minus5cm": 10,
+      "area_km2_lt_minus5cm": 0.38,
+      "area_km2_lt_minus2cm": 36.83,
+      "bbox_population_ghsl": 205699,
+      "two_sigma_threshold_cm": 0.66,
+      "two_sigma_source": "data/global/detectability.json",
+      "days_measured": 120,
+      "normalized_window_days": 108,
+      "top_subsiding_areas": [
+        {
+          "lon": 55.7738,
+          "lat": 30.5232,
+          "cum_cm_los": -3.5,
+          "rate_cm_per_100d": -2.92
+        },
+        {
+          "lon": 55.7624,
+          "lat": 30.57,
+          "cum_cm_los": -3.39,
+          "rate_cm_per_100d": -2.83
+        },
+        {
+          "lon": 55.851,
+          "lat": 30.4113,
+          "cum_cm_los": -3.02,
+          "rate_cm_per_100d": -2.52
+        }
+      ],
+      "source": "GHSL GHS-POP E2025 R2023A 3-arcsecond (~100 m, WGS84, European Commission JRC) intersected with provisional NISAR L2 GUNW cumulative LOS displacement scaled to 108 days, excluding pixels with |disp| < 2*sigma (data/global/detectability.json)",
+      "quality": "provisional"
+    },
+    {
+      "id": "ho_chi_minh",
+      "name": "Ho Chi Minh City",
+      "country": "Vietnam",
+      "people_lt_minus2cm": 83293,
+      "people_lt_minus5cm": 4329,
+      "area_km2_lt_minus5cm": 0.85,
+      "area_km2_lt_minus2cm": 11.58,
+      "bbox_population_ghsl": 15343172,
+      "two_sigma_threshold_cm": 0.728,
+      "two_sigma_source": "data/global/detectability.json",
+      "days_measured": 120,
+      "normalized_window_days": 108,
+      "top_subsiding_areas": [
+        {
+          "lon": 106.9121,
+          "lat": 10.9967,
+          "cum_cm_los": -4.19,
+          "rate_cm_per_100d": -3.49
+        },
+        {
+          "lon": 106.5975,
+          "lat": 10.8857,
+          "cum_cm_los": -1.93,
+          "rate_cm_per_100d": -1.61
+        },
+        {
+          "lon": 106.6066,
+          "lat": 10.8104,
+          "cum_cm_los": -1.71,
+          "rate_cm_per_100d": -1.43
+        }
+      ],
+      "source": "GHSL GHS-POP E2025 R2023A 3-arcsecond (~100 m, WGS84, European Commission JRC) intersected with provisional NISAR L2 GUNW cumulative LOS displacement scaled to 108 days, excluding pixels with |disp| < 2*sigma (data/global/detectability.json)",
+      "quality": "provisional"
+    },
+    {
+      "id": "tehran",
+      "name": "Tehran",
+      "country": "Iran",
+      "people_lt_minus2cm": 75121,
+      "people_lt_minus5cm": 1204,
+      "area_km2_lt_minus5cm": 0.97,
+      "area_km2_lt_minus2cm": 15.05,
+      "bbox_population_ghsl": 9669114,
+      "two_sigma_threshold_cm": 0.692,
+      "two_sigma_source": "data/global/detectability.json",
+      "days_measured": 120,
+      "normalized_window_days": 108,
+      "top_subsiding_areas": [
+        {
+          "lon": 51.3018,
+          "lat": 35.6398,
+          "cum_cm_los": -3.52,
+          "rate_cm_per_100d": -2.93
+        },
+        {
+          "lon": 51.1753,
+          "lat": 35.6025,
+          "cum_cm_los": -2.91,
+          "rate_cm_per_100d": -2.42
+        },
+        {
+          "lon": 51.2443,
+          "lat": 35.6399,
+          "cum_cm_los": -1.83,
+          "rate_cm_per_100d": -1.53
+        }
+      ],
+      "source": "GHSL GHS-POP E2025 R2023A 3-arcsecond (~100 m, WGS84, European Commission JRC) intersected with provisional NISAR L2 GUNW cumulative LOS displacement scaled to 108 days, excluding pixels with |disp| < 2*sigma (data/global/detectability.json)",
+      "quality": "provisional"
+    },
+    {
+      "id": "isfahan",
+      "name": "Isfahan",
+      "country": "Iran",
+      "people_lt_minus2cm": 23807,
+      "people_lt_minus5cm": 262,
+      "area_km2_lt_minus5cm": 2.11,
+      "area_km2_lt_minus2cm": 57.5,
+      "bbox_population_ghsl": 3256843,
+      "two_sigma_threshold_cm": 0.694,
+      "two_sigma_source": "data/global/detectability.json",
+      "days_measured": 120,
+      "normalized_window_days": 108,
+      "top_subsiding_areas": [
+        {
+          "lon": 51.429,
+          "lat": 32.3566,
+          "cum_cm_los": -3.25,
+          "rate_cm_per_100d": -2.71
+        },
+        {
+          "lon": 51.7198,
+          "lat": 32.7868,
+          "cum_cm_los": -2.47,
+          "rate_cm_per_100d": -2.06
+        },
+        {
+          "lon": 51.7534,
+          "lat": 32.8241,
+          "cum_cm_los": -2.47,
+          "rate_cm_per_100d": -2.05
+        }
+      ],
+      "source": "GHSL GHS-POP E2025 R2023A 3-arcsecond (~100 m, WGS84, European Commission JRC) intersected with provisional NISAR L2 GUNW cumulative LOS displacement scaled to 108 days, excluding pixels with |disp| < 2*sigma (data/global/detectability.json)",
+      "quality": "provisional"
+    },
+    {
+      "id": "beijing",
+      "name": "Beijing",
+      "country": "China",
+      "people_lt_minus2cm": 14769,
+      "people_lt_minus5cm": 948,
+      "area_km2_lt_minus5cm": 0.35,
+      "area_km2_lt_minus2cm": 7.76,
+      "bbox_population_ghsl": 15668570,
+      "two_sigma_threshold_cm": 0.728,
+      "two_sigma_source": "data/global/detectability.json",
+      "days_measured": 120,
+      "normalized_window_days": 108,
+      "top_subsiding_areas": [
+        {
+          "lon": 116.8397,
+          "lat": 39.7999,
+          "cum_cm_los": -1.59,
+          "rate_cm_per_100d": -1.33
+        },
+        {
+          "lon": 116.7791,
+          "lat": 39.7717,
+          "cum_cm_los": -1.05,
+          "rate_cm_per_100d": -0.87
+        }
+      ],
+      "source": "GHSL GHS-POP E2025 R2023A 3-arcsecond (~100 m, WGS84, European Commission JRC) intersected with provisional NISAR L2 GUNW cumulative LOS displacement scaled to 108 days, excluding pixels with |disp| < 2*sigma (data/global/detectability.json)",
+      "quality": "provisional"
+    },
+    {
+      "id": "delta",
+      "name": "Sacramento\u2013San Joaquin Delta",
+      "country": "USA",
+      "people_lt_minus2cm": 632,
+      "people_lt_minus5cm": 155,
+      "area_km2_lt_minus5cm": 6.13,
+      "area_km2_lt_minus2cm": 22.89,
+      "bbox_population_ghsl": 175911,
+      "two_sigma_threshold_cm": 0.694,
+      "two_sigma_source": "data/global/detectability.json",
+      "days_measured": 120,
+      "normalized_window_days": 108,
+      "top_subsiding_areas": [
+        {
+          "lon": -121.6439,
+          "lat": 38.0375,
+          "cum_cm_los": -1.96,
+          "rate_cm_per_100d": -1.63
+        },
+        {
+          "lon": -121.8229,
+          "lat": 37.9644,
+          "cum_cm_los": -0.96,
+          "rate_cm_per_100d": -0.8
+        }
+      ],
+      "source": "GHSL GHS-POP E2025 R2023A 3-arcsecond (~100 m, WGS84, European Commission JRC) intersected with provisional NISAR L2 GUNW cumulative LOS displacement scaled to 108 days, excluding pixels with |disp| < 2*sigma (data/global/detectability.json)",
+      "quality": "provisional"
+    }
+  ]
+}
