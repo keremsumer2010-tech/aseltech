@@ -28,6 +28,7 @@
 - A çıktıları: `data/global/robustness.json`, `docs/story/media/pc7_atlas_robustness.png`; ağsız testler 4/4, tüm pytest 79/79 geçti (bir deprecation uyarısı); 93 JSON'da parse/non-finite/eksik-quality bulgusu 0. `atlas.json` değişmedi. Ayrıntı `docs/qa/PC7.md` §16.
 - Önceki Git index izni engeli yükseltilmiş erişimle çözüldü; kapsam raporu commit/push edildi.
 - Uzun plan FAZ 1 kapsamı: Python 3.12.10 NISAR Pulse dry-run ile Xi'an, Taiyuan, Querétaro, Aguascalientes, Kashmar'ın her birinde 9 ardışık provisional çift ve sıfır boşluk doğrulandı. Ham veri indirmedim; ayrıntılar `docs/qa/PC7.md` §18.
-- Devam: Xi'an üretim analizi için Xingping literatür referansı üzerinde koordinat/kapsam doğrulaması; ardından diğer şehirler sırasıyla. Henüz hiçbir yeni şehir `ready` değil.
+- `pipeline/pc7/run_atlas_city.py` eklendi; py_compile ve bbox/reference yardımcıları smoke check geçti. Ham veri henüz indirilmedi, yeni şehir `ready` değil. Ayrıntı `docs/qa/PC7.md` §19.
+- Devam: Xi'an için NISAR Pulse arama/kesme ve kaynaklı Xingping referans yerleşimi yakınında ortak-geçerli 7×7 yüksek koherens penceresi seçimi.
 - AI: Codex → CMR dry-run, kaynak incelemesi ve PC7 QA kaydı.
 - BLOCKED: yok
