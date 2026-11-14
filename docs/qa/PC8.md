@@ -239,3 +239,11 @@
   - **Karşılaştırmalar:** Millerton Lake (Friant Dam, `0.642 km³`) kapasitesinin **`0.49×`**'i / yılda **`126,966` Olimpik yüzme havuzu (`2,500 m³`)**; Smith et al. (2017) Güney San Joaquin `0.414–0.748 km³ / 3 yıl` (`0.138–0.249 km³/yr`) ile aynı büyüklük mertebesi.
   - **Birim Testi (`analysis/pc8/test_storage_loss.py`):** Sabit `-5.0 cm/yr` × `64.0 km²` (`100×100` piksel) → tam `0.0032 km³/yr` (`PASSED`).
   - **Karapınar Tam Yıl:** `data/karapinar_fullyear/decomp.json` henüz oluşmadığı için Karapınar tam yıl depolama kaybı sonraki döngüde eklenecek.
+
+---
+
+## 12. 14 Nov 20:15 TR — Tur 3 HTTP & Bağlantı QA Taraması
+
+- **Yerel HTTP Sunucusu (`http.server`) Taraması:** `web/{index,science,data,explorer,faq}.html`, `game/index.html` ve `docs/story/slides.html` sayfalarının **7/7'si `HTTP 200`** döndü; yalnızca §9'da zaten kayıtlı `web/index.html:117` (`docs/story/media/pc9_fullyear_point.png`) `404` veriyor, diğer tüm gömülü göreli kaynaklar `200 OK`.
+- **PC8 Markdown Bağlantıları:** `submission_form.md`, `slides_notes.md`, `exposure.md`, `storage_loss.md`, `uk_findings.md` içinde **`0` kırık göreli link**.
+- **`submission_form.md` & `slides_notes.md` Senkronu:** O1 kalıcı akifer depolama kaybı (`0.317 km³/yr`, `0.066–0.320 km³/yr`, `~0.49× Millerton Lake`) §5 ve Slide 3 güncelleme notuna eklendi (`§5: 4,654 chars / 689 words`).
