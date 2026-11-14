@@ -1,19 +1,16 @@
 # PC6 durum
 
-- Görev: Görev 1–3 (`[x]`), Q05 (`[x]`), Q06 (`[x]`), Q20 (`[x]`), Q14 (`[~PC6]` Central Valley denetlendi, Karapınar/UK bekleniyor)
-- Geri Alınanlar (kullanıcı isteği — web sitesiyle ilgili değişiklikler):
-  - `web/app.js` → PC1'in `c7bac46` durumuna geri döndürüldü (0 satır fark).
-  - `docs/URUN_TANIMI.md` §4 tablosu → önceki durumuna (`4cba32a`) geri döndürüldü.
-  - `game/index.html`, `docs/game_v1.png`, `data/catalog.json` → kaldırıldı (`game/.gitkeep` korundu).
-  - `tasks/QUEUE.md` → `Q18` ve `Q19` tekrar `- [ ]` yapıldı.
-- Kalan PC6 Çıktıları (veri, doğrulama, risk, sunum metni):
-  - **Görev 1–3 & Q05 (`validation/compare.py`, `data/central_valley/validation.json`):** 10 NGL istasyonu; güncel `central_valley_cum.npz` ile çalıştırıldı (`CAHA` RMSE `0.752 cm` `r=0.8957`, `HANF` RMSE `0.834 cm` `r=0.8955`, `QCAP` RMSE `0.767 cm` `r=0.8198`, `TLBN` RMSE `1.173 cm` `r=0.7926`).
-  - **Q06 (`risk/compute_risk.py`, `data/central_valley/assets.json`):** 645 segment ≥ 1 km değerlendirildi (`high=81, medium=131, low=433`); `Tulare Irrigation District Canal` (`57.01 mm/km`), `California Aqueduct` (`49.12 mm/km`), `Friant-Kern Canal` (`46.06 mm/km`).
-  - **Q20 (`docs/story/pitch.md`):** 3 dk sunum + 30 sn video `.srt` + 7 slayt (`{PLACEHOLDER}` yer tutuculu).
-  - **Q14 (`docs/qa/PC6.md`):** `data/central_valley/meta.json` ve `data/karapinar/meta.json` denetlendi (`data/uk/` bekleniyor).
+- Görev: 14:10 paketi — `Q19` Valley Under Pressure v2 TAMAM; sıradaki `Q28` Karapınar obruk/altyapı riski → `Q14` → `Q13` → `Q15` → `Q17`
+- Durum: `Q19` tamamlandı (v2 sıfırdan, AI görselsiz, `game/` + `docs/game_v2.png` doğrulandı)
+- Çıktılar:
+  - Görev 1 (GNSS): `validation/gnss_stations.csv` (23 istasyon), `validation/gnss/*.csv` (10 istasyon, 2025-11 → 2026-11), `validation/README.md`
+  - Görev 2 & 3 (OSM): `risk/central_valley_infra.geojson` (3238 hat, 1.07 MB), `risk/karapinar_infra.geojson` (64 hat, 0.04 MB), `risk/README.md`
+  - Q05: `validation/compare.py`, `data/central_valley/validation.json` (`10/10` istasyon, CAHA `r=0.8957, rmse=0.752 cm`, HANF `r=0.8955`)
+  - Q06: `risk/compute_risk.py`, `data/central_valley/assets.json` (`645` segment: `81` high, `131` medium, `433` low)
+  - Q20: `docs/story/pitch.md`
+  - Q19 v2 ("Valley Under Pressure"): `game/model.js`, `game/test_model.html`, `game/style.css`, `game/index.html`, `game/game.js`, `docs/game_v2.png`
 - Doğrulama:
-  - `python validation/compare.py --self-test` ve `python validation/compare.py`: geçti.
-  - `python risk/compute_risk.py --self-test` ve `python risk/compute_risk.py`: geçti.
-  - `python -m pytest analysis -q`: geri alma sonrası yeniden çalıştırıldı.
-- BLOCKED: yok (`data/uk/` ve Holme Fen kaynağı PC4'te).
-- AI: Antigravity (Gemini) -> GNSS/OSM scriptleri, `docs/story/pitch.md`, QA ve geri alma işlemi.
+  - `game/test_model.html`: 5/5 test PASS (108 gün baz kalibrasyon `-10.1 cm` dikey / `-7.84 cm` LOS, `summary.json` ile %0 fark; preconsolidation hysteresis + Critical Water Year 15% cap + 0 NaN).
+  - Tarayıcı testi: masaüstü `1280x850` ve mobil `390x844` (`scrollWidth === 390`, 0 yatay taşma, 0 konsol/ağ hatası, sıfır AI görseli).
+- BLOCKED: yok. (NOT: `docs/story/game_model.md` henüz PC5 tarafından eklenmediğinden `CONFIG` içindeki USGS PP 1766 / DWR kaynaklı değerler ve açık `ILLUSTRATIVE` etiketli kuyu/gelir/kanal kayıp eğrileri kullanıldı.)
+- AI: Kod üretimi + tarayıcı doğrulaması; ölçümler ve altyapı hatları NASA-ISRO NISAR (provisional), NGL ve OpenStreetMap kaynaklıdır.

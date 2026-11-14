@@ -256,8 +256,8 @@
         filter: ['==', ['get', 'type'], 'canal'],
         paint: {
           'line-color': '#38bdf8',
-          'line-width': 1.2,
-          'line-opacity': 0.25,
+          'line-width': 1.4,
+          'line-opacity': 0.42,
         },
       });
 
@@ -382,8 +382,8 @@
     if (!canvas) return;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     const rect = canvas.getBoundingClientRect();
-    const w = Math.max(300, Math.round(rect.width || 360));
-    const h = 158;
+    const w = Math.max(260, Math.round(rect.width || 360));
+    const h = 132;
     if (canvas.width !== w * dpr || canvas.height !== h * dpr) {
       canvas.width = w * dpr;
       canvas.height = h * dpr;
@@ -418,8 +418,8 @@
     ctx.beginPath();
     ctx.moveTo(0, datumY + 2);
     ctx.quadraticCurveTo(w * 0.5, sagMidY + 6, w, datumY + 2);
-    ctx.lineTo(w, 86);
-    ctx.lineTo(0, 86);
+    ctx.lineTo(w, 74);
+    ctx.lineTo(0, 74);
     ctx.closePath();
     ctx.fill();
 
@@ -434,19 +434,19 @@
     // Water table depth line mapped cleanly between -25m and -90m
     const mapDepthY = (headM) => {
       const depth = -headM;
-      return Math.max(26, Math.min(118, 28 + ((depth - 25) / 70) * 86));
+      return Math.max(24, Math.min(100, 26 + ((depth - 25) / 70) * 70));
     };
     const wtY = mapDepthY(d.headM);
     const hpcY = mapDepthY(d.preconsolidationHeadM);
 
     // Saturated water zone tint below water table
     ctx.fillStyle = 'rgba(77, 163, 255, 0.14)';
-    ctx.fillRect(0, wtY, w, 128 - wtY);
+    ctx.fillRect(0, wtY, w, 108 - wtY);
 
     // Corcoran Clay Aquitard Layer (visual thickness scales with district b0)
-    const clayTop = 86 + sagPx * 0.35;
-    const baseClayPx = Math.max(14, Math.min(44, d.clayThicknessM * 0.5));
-    const currentClayPx = Math.max(8, baseClayPx - sagPx * 0.65);
+    const clayTop = 74 + sagPx * 0.3;
+    const baseClayPx = Math.max(12, Math.min(34, d.clayThicknessM * 0.4));
+    const currentClayPx = Math.max(7, baseClayPx - sagPx * 0.55);
 
     // Remaining uncompacted clay
     ctx.fillStyle = '#37302a';
@@ -571,7 +571,7 @@
               pointRadius: 2,
             },
             {
-              label: '2026 NISAR 108-Day Measured (Vert eq)',
+              label: '2026 NISAR Ref (-10.1 cm)',
               data: nisarRefLine,
               borderColor: '#f5b942',
               borderDash: [6, 4],
@@ -588,8 +588,8 @@
           plugins: {
             legend: {
               display: true,
-              position: 'right',
-              labels: { color: '#8b9bb0', boxWidth: 12, font: { size: 10.5 } },
+              position: window.innerWidth < 760 ? 'bottom' : 'right',
+              labels: { color: '#8b9bb0', boxWidth: 11, font: { size: 10 }, padding: 8 },
             },
           },
           scales: {
@@ -611,11 +611,12 @@
       timelineChart.data.datasets[0].data = totalSeries;
       timelineChart.data.datasets[1].data = permSeries;
       timelineChart.data.datasets[2].data = nisarRefLine;
-      timelineChart.data.datasets[2].label = `2026 NISAR 108-Day Benchmark (${nisarVertRef} cm vert / ${d.nisarLosCm} cm LOS)`;
+      timelineChart.data.datasets[2].label = `2026 NISAR (${nisarVertRef} cm vert)`;
+      timelineChart.options.plugins.legend.position = window.innerWidth < 760 ? 'bottom' : 'right';
       timelineChart.update('none');
     }
 
-    $('chartTitle').textContent = `District Trajectory: ${d.name} (Vertical cm vs 2026 NISAR Benchmark)`;
+    $('chartTitle').textContent = `District Trajectory: ${d.name} vs 2026 NISAR`;
   }
 
   function selectDistrict(districtId, flyTo) {
