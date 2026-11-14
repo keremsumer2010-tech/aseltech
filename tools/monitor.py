@@ -4,9 +4,9 @@ Reads origin/main only (git fetch); never changes your working tree."""
 import os, re, subprocess, sys, time
 from datetime import datetime, timezone
 
-PCS = [("PC2", "Memir", "veri indirme"), ("PC3", "Mehmet", "Claude Code · analiz"), ("PC4", "İbrahim", "metin, slayt, kaynak"),
+PCS = [("PC2", "Memir", "veri indirme"), ("PC3", "Mehmet", "Claude Code · site"), ("PC4", "İbrahim", "metin, slayt, kaynak"),
        ("PC5", "Mehmet", "AG-1 · bilim paketi"), ("PC6", "Mehmet", "AG-2 · oyun + medya"), ("PC7", "Kerem", "Codex · QA, Fens"),
-       ("PC8", "Mehmet", "AG-3 · UK metin, Konya p172"), ("PC9", "Mehmet-2", "AG · site"), ("PCQ", "ek Claude", "kontrol, sunum"), ("PC10", "Memir", "AG-2 · küresel vitrin")]
+       ("PC8", "Mehmet", "AG-3 · UK metin, Konya p172"), ("PC9", "Mehmet-2", "AG · tam yıl Q08"), ("PCQ", "ek Claude", "kontrol, sunum"), ("PC10", "Memir", "AG-2 · küresel vitrin")]
 G, Y, R, D, B, X = "\033[32m", "\033[33m", "\033[31m", "\033[90m", "\033[1m", "\033[0m"
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 

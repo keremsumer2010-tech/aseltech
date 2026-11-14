@@ -57,7 +57,8 @@ Her yolun tek sahibi var (`rules/RULES.md` K-7). Burada olmayan bir yere yazman 
 | **PCQ** (14:20, bağımsız kontrol ajanı, ASF erişimi yok; 15:10 PC8 işleri) | `docs/story/submission_form.md` · `video_subtitles.srt` · `narration_script.md` · `presentation_cues.md` · `rehearsal_checklist.md` · `docs/qa/PCQ.md` · `README.md` (Q13) · `docs/code_review.md` (Q15) · `status/PCQ.md` |
 | **PC7** (14:35, Codex) | `pipeline/pc7/` · `data/fens/` · `data/water/` · `docs/qa/PC7.md` · `status/PC7.md` |
 | **PC8** (15:20, Mehmet Antigravity #3, `aseltech-gemini3`) | `docs/story/uk_findings.md` · `data/karapinar_p172/` · `analysis/pc8/` · `docs/story/media/pc8_*.png` · `docs/qa/PC8.md` · `status/PC8.md` |
-| **PC9** (15:35, site sahibi) | `web/` (panel.html hariç) · `data/catalog.json` · `docs/qa/PC9.md` · `status/PC9.md` |
+| **PC9** (15:45, tam yıl analizi Q08) | `data/central_valley_fullyear/` · `analysis/pc9/` · `docs/story/fullyear.md` · `docs/story/media/pc9_*.png` · `docs/qa/PC9.md` · `status/PC9.md` |
+| **PC3 (ek)** (15:45, site sahibi) | `web/` (panel.html hariç) · `data/catalog.json` |
 | **PC10** (15:40, küresel vitrin) | `pipeline/pc10/` · `pipeline/subset/global_*/` · `data/global/` · `docs/story/global_showcase.md` · `docs/story/media/pc10_*.png` · `docs/qa/PC10.md` · `status/PC10.md` |
 | **Herkes** | `tasks/QUEUE.md` içinde **sadece sahiplendiği satır** · sahiplendiği QUEUE işinin "Klasör" sütunundaki yollar · `docs/qa/PCx.md` (kendi QA notları) |
 

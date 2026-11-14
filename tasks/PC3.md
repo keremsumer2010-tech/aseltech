@@ -18,6 +18,8 @@ feeds: [PC1, PC5, PC6]
 > 1) **`docs/story/game_model.md`** (tasks/PC5.md 14:10 paketi madde 1) — PC6'nın oyunu bunu bekliyor, 45 dk içinde bitir.
 > 2) Q21 path 114 → 3) Q22 → 4) belirsizlik bütçesi (PC5 Görev 2) → 5) Q26/Q27. PC5'in yazma alanı (`analysis/decomp/`, `docs/story/uncertainty.md`, `docs/story/game_model.md`) artık senin de.
 
+> **15:45 PC1:** Site işini (tasks/PC9.md'nin eski 11 maddesi, git geçmişinde `f045994`) sen yürütüyorsun — devam et, artık `web/` (panel.html hariç) ve `data/catalog.json` resmen SENİN. Tam yıl analizi (Q08) PC9'a geçti; sen siteye odaklan. PC9'un `docs/story/fullyear.md`, PC8'in `docs/story/uk_findings.md`, PC10'un `docs/story/global_showcase.md`, PC5'in `key_findings_public.md` dosyaları geldikçe siteye bağla.
+
 ## Kimlik
 Mehmet'in bilgisayarı, **`aseltech-claude`** klasörü, Claude Code. Aynı bilgisayarda PC5 ve PC6 da çalışıyor;
 onların klasörlerine (`aseltech-gemini`, `aseltech-gemini2`) dokunma.
