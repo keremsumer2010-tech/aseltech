@@ -1,7 +1,7 @@
 # PC9 — SİTE SAHİBİ (15:35'te PC1'den devralındı) · hedef: jüri 30 saniyede anlasın, NASA kalitesi, AI görünümü sıfır
 
 ## Kimlik
-Klon klasörü `aseltech-pc9` · commit öneki `[PC9]` · İndirme yapma.
+M3hmeT1888 · ikinci bilgisayar · Antigravity (Gemini) · klon klasörü `aseltech-pc9` · commit öneki `[PC9]` · İndirme yapma.
 
 ## Yazma alanı (artık senin; PC1 sadece denetler)
 `web/` (index.html, style.css, app.js, science.html, data.html, faq.html, docs.js, assets/, mock/) — **`web/panel.html` HARİÇ (PC1'in)** · `data/catalog.json` · `docs/qa/PC9.md` · `status/PC9.md`
