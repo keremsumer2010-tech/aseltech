@@ -1,8 +1,8 @@
 # PC4 durum
 
-- Görev: 1, 2, 3 + Queue `Q11`, `Q12`, `Q16`, `Q30`, `Q31` + 14:10 Paketi (1–6) + `ZAMAN_CIZELGESI` Pazar görevi (`sinkhole_timeline.md` başlatıldı, sıradaki adımlar sürüyor)
-- Durum: çalışıyor (sürekli devam — Pazar obruk zaman çizelgesi eklendi)
-- Güncelleme: 2026-11-14 14:27 TR
+- Görev: 1, 2, 3 + Queue `Q11`, `Q12`, `Q16`, `Q30`, `Q31` + 14:10 Paketi (1–6) + `ZAMAN_CIZELGESI` Pazar #1–2 (`sinkhole_timeline.md`, `video_shotlist.md` satır-satır doğrulama & v2 oyun senkronu)
+- Durum: çalışıyor (sürekli devam — Pazar video altyazısı kaynak/sayı doğrulama matrisi eklendi)
+- Güncelleme: 2026-11-14 14:29 TR
 - Çıktılar:
   - Görev 1: `data/uk/optical_2026-10-20.jpg` (`700x500`, `19,490 B`), `data/uk/radar_2026-10-20.png` (`700x500`, `631,556 B`), `data/uk/meta.json` (`1,421 B`, `quality: "preview"`)
   - Görev 2: `data/karapinar/sinkholes.geojson` (`18,638 B`, `29` doğrulanmış Karapınar obruğu, tümü `bbox = [33.3, 37.6, 33.8, 37.9]` içinde; Tapur & Bozyiğit 2015)
@@ -11,7 +11,7 @@
   - 14:10 Paketi #3–6: `docs/story/judge_faq.md` (15 jüri sorusu-cevabı), `docs/story/slides.html` (7 slaytlık tek-dosya HTML sunum; yalnızca gerçek UK/CV/Karapınar haritaları + SVG grafikler, AI görselsiz), `docs/story/video_shotlist.md` (30 sn 6 plan çekim listesi + `.srt` altyazılar), `docs/qa/PC4.md` §6 (`web/index.html` İngilizce okuma ve 6 öneri — `web/` değiştirilmedi)
   - Queue `Q16`: `web3d/` (`surfaces.json` `508,881 B` / `497.0 KB`) — Three.js `@0.160.0` ile Central Valley (`2026-06-28` → `2026-10-14`, `7` çift / `8` epok, `80×96`) ve Karapınar (`2026-06-26` → `2026-10-12`, `8` çift / `9` epok, `48×80` + `29` obruk)
   - QA & Kuyruk: `docs/qa/PC4.md`, `tasks/QUEUE.md` (`Q11`, `Q12`, `Q16`, `Q30`, `Q31` `- [x PC4]`)
-  - `ZAMAN_CIZELGESI` Pazar görevi #1: `docs/story/sinkhole_timeline.md` (`29` doğrulanmış Karapınar obruğunun 1972–2013 kronolojisi, 2007–2013 hızlanması ve yeraltı suyu analizi)
+  - `ZAMAN_CIZELGESI` Pazar görevi #1–2: `docs/story/sinkhole_timeline.md` (`29` doğrulanmış Karapınar obruğunun 1972–2013 kronolojisi, 2007–2013 hızlanması ve yeraltı suyu analizi), `docs/story/video_shotlist.md` (`Valley Under Pressure` 24 aylık oyun v2'ye uyarlandı + 6 `.srt` satırı için kaynak/sayı doğrulama matrisi)
 - Doğrulama:
   - UK görsel çifti (`700x500` RGB, `transparency` temiz), `meta.json` şeması ve `sinkholes.geojson` (`29/29` geçerli Point Feature, `NaN` yok) doğrulandı.
   - `web3d/surfaces.json` valid UTF-8 JSON (`508,881 B`, `NaN` yok), `node --check web3d/app.js` geçti, lokal HTTP sunucu `/web3d/` ve `/data/` yollarında HTTP 200 döndü.
