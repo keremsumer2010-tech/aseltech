@@ -14,7 +14,7 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false  # many agents push every minute; a deploy takes ~2 min, so cancelling meant nothing ever went live
 
 jobs:
   build:
