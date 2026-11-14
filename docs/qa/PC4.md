@@ -301,4 +301,9 @@ Kapsam: `web/index.html` (`1–163`). Genel İngilizce tonu akıcı ve tutarlı 
 
 ### 27. Bilimsel Tutarlılık & Sayı Senkronu Bulguları (Paz 03:05 Ataması — Başkalarının Dosyaları)
 - `docs/story/global_atlas.md:32` (Sahip: **PC10**): `analysis/pc5/numbers_registry.py` çıktısı hâlâ eski Mexico City havza-içi referans değerini (`-4.4 cm`) raporluyor; güncel `data/global/mexico_city/summary.json` (volkanik kayaç ref.) **`-7.0 cm` LOS (`-5.8 cm/100d`)** ile güncellenmeli.
-- `docs/story/atlas_validation.md` (Sahip: **PC5**): Önceki 9–13 şehirlik tabloyu içeriyor; `docs/story/atlas_top5_check.md` (PC1) ve `data/global/atlas.json` (20 bölge, QC sonrası Top 5: Konya Plain, Mashhad, Central Valley, Eloy, Mexico City) ile senkronize edilmeli.
+- `docs/story/atlas_validation.md` (Sahip: **PC5**): Önceki 9–13 şehirlik tabloyu içeriyor; `docs/story/atlas_top5_check.md` (PC1) ve `data/global/atlas.json` (21 bölge) ile senkronize edilmeli.
+
+### 28. ATLAS v2 (`12dcc5c`) Gözlemleri & ENTEGRASYON (`2026-11-15 01:37 TR`)
+- `data/global/atlas.json` (`12dcc5c`, PC10): `central_valley` (`rank: 11`, `rate_cm_per_100d_common: -7.3`, `rate_ci_cm_per_100d: [-7.2, -2.3]`, `robustness_spread: 5.3362`, `valid_fraction: 0.629`) beklenmedik biçimde `confidence: "low"` / `indicative_only: true` olarak işaretlenmiş; oysa `data/global/central_valley/validation_note.json` içinde `"recommended_confidence": "medium"` yer alıyor (`build_atlas.py` yalnızca `validation_note.json`'daki `"confidence"` alanını okuyor ve `data/central_valley/` altında `validation_note.json` yok). **PC10/PC1** bu düşüşün kasıtlı olup olmadığını doğrulamalı.
+- `data/results_registry.json`: PC4'e ait `atlas_feature`, `calibration`, `technical_note` satırları `summary` ve `key_number` alanlarıyla dolduruldu (`status: ready`).
+- `docs/story/{atlas_feature,press_summary,technical_note,judge_faq}.md`, `technical_note.html`, `slides.html` ve `docs/qa/SCIENCE_SIGNOFF.md` **ATLAS v2** (`21` bölge, `9` reliable / `12` indicative, ortak `93` günlük pencere, `Semarang` `10-11` faz sıçraması temizlenip `-6.2 cm` #5 reliable, `Cangzhou` #7 `-2.4 cm`) ile senkronize edildi.
