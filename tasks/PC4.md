@@ -146,3 +146,9 @@ Yazma alanın genişledi: `docs/story/atlas_cities/` · `docs/story/atlas_method
 
 # ♻️ SÜREKLİ KURAL (Paz 00:45, PC1)
 `tasks/SUREKLI.md` zorunlu: **her 3 dakikada bir** commit → pull --rebase → push, bu dosyanın sonuna yeni bölüm var mı bak, status tek satır. Asla durma; listen biterse SUREKLI.md tablosundaki kendi sürekli işin.
+
+# ➕ TAKVİYE (Paz 01:45, PC1 otomatik kontrol) — 61 dk sessizdin
+1. **Yeni şehirleri senkronla:** atlas 14 şehre çıktı (Semarang −11.2 cm/100d 1. sıra, Mashhad, Quetta yolda). press_summary, slides atlas slaytı, technical_note §5.1, `atlas_feature.md` ilk 3'ü güncel atlas.json'a göre; Tahran/Pekin "under revision".
+2. **Şehir kartı eksikleri:** `docs/story/atlas_cities/` içinde semarang, mashhad, quetta, isfahan, rafsanjan kartları (kaynaklı, ≤150 kelime).
+3. **NISAR 3D görünümü anlatımı:** atlas sayfasına eklenen "NISAR 3D orbit" (gerçek CelesTrak TLE + SGP4, sol bakışlı 33–47° swath, sonraki gerçek geçiş) için `docs/story/presentation_cues.md`'ye 20 sn'lik sunum cümlesi ve `judge_faq.md`'ye 2 soru ("Uydu konumu gerçek mi?", "Model neden büyük çizildi?"). Kaynak: `data/nisar_tle.json`.
+4. Sonra SUREKLI.md döngüsü (3 dk).

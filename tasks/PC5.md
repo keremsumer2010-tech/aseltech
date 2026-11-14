@@ -130,3 +130,9 @@ Kurallar: uydurma yok, her sayının kaynağı dosya:anahtar; REVIEW_1500 dili; 
 
 # ♻️ SÜREKLİ KURAL (Paz 00:45, PC1)
 `tasks/SUREKLI.md` zorunlu: **her 3 dakikada bir** commit → pull --rebase → push, bu dosyanın sonuna yeni bölüm var mı bak, status tek satır. Asla durma; listen biterse SUREKLI.md tablosundaki kendi sürekli işin.
+
+# ➕ TAKVİYE (Paz 01:45, PC1 otomatik kontrol) — 53 dk sessiz, "bitti" yazma
+1. **Yeni şehirlere karar:** semarang (−11.2 cm/100d, şu an atlasın 1. sırası — literatürle kıyas zorunlu), mashhad, quetta, rafsanjan: belirsizlik haritası + `validation_note.json` + detectability + reliable/indicative/reject kararı.
+2. **Semarang kontrolü:** 1. sıra en çok sorgulanacak sayı. Kıyı/tropik koherens, referans havza dışında mı, valid_fraction; şüpheliyse PC10'a §10'da "indicative" önerisi.
+3. **Sayı sicilini yeniden çalıştır** (yeni şehirler + PC4 atlas_feature + PC8 bülten v2 + exposure); uyumsuzlukları §10'a.
+4. Sonra her saat döngü; status'a "bitti" değil, o an ne yaptığını yaz.
