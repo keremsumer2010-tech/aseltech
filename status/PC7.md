@@ -1,7 +1,7 @@
 # PC7 durum
 
 - Görev: Fens GCOV ritmi, polarizasyon karşılaştırması, çevrimdışı site QA ve Node oyun testi
-- Durum: BLOCKED — Git index yazma izni yok
+- Durum: Hata ayıklama ve O2 çalışması sürüyor
 - ASF araması: platform=NISAR, processingLevel=GCOV, bbox [-0.3, 52.4, 0.4, 52.9], başlangıç 2026-06-17; 49 P05023 GCOV ürünü HH/HV ile eşleşti.
 - Tekrarlı seri: path 52, frame 61, 10 benzersiz tarih: 2026-06-17–2026-10-15. Granül listesi `pipeline/pc7/fens_gcov_catalog.json` içinde.
 - Doğrulama: `pipeline/pc7/search_fens_gcov.py` çalıştırıldı; katalog JSON olarak tekrar açılıp parse edildi.
@@ -13,4 +13,5 @@
 - QA sonuçları: `docs/qa/PC7.md`.
 - Kaynak: https://api.daac.asf.alaska.edu/services/search/param (ASF SearchAPI)
 - AI: Codex → yerel GCOV analizi, kaynak sentezi, offline QA scriptleri ve Node test sürücüsü.
-- BLOCKED: `git status --short --branch` → `fatal: this operation must be run in a work tree`. `git pull --rebase origin main` başarılıydı; bu hata sonrası repo kuralı gereği Git işlemleri durduruldu.
+- 20:00 hata ayıklama 1: `web/index.html` boş görsel `src` niteliği kaldırıldı; `ROOT + data-src` yükleyicisi korundu. `docs/qa/PC7.md` §8.
+- BLOCKED: yok
