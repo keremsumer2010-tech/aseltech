@@ -128,7 +128,7 @@ Hedef: teslime kadar hiçbir ajan boşta durmaz. Bir görev bitince **sormadan**
    - Satırı `- [ ]` → `- [~PCx]` yap, **sadece o satırı** değiştir, hemen commit + push (başkası almasın).
    - Push çakışırsa `git pull --rebase origin main`; satırı başkası almışsa bir sonrakini seç.
    - Sahiplendiğin işte yazma iznin, o satırdaki **Klasör** sütunuyla sınırlı.
-   - Bitince `- [x PCx]` + commit + push.
+   - Bitince satırı `tasks/QUEUE.md`'den **SİL** (işaretleyip bırakma) ve yaptığın işi log olarak `status/PCx.md` + `docs/qa/PCx.md`'ye yaz (ne, hangi dosya, nasıl doğrulandı, commit) → commit + push. Kuyrukta sadece yapılacak ve süren işler durur; yapılanın kaydı git geçmişi ve senin logundadır.
 3. Kuyruk boşsa: kendi çıktılarını test et/iyileştir; başkalarının çıktısını kontrol et ve notunu
    **`docs/qa/PCx.md`** (kendi dosyan) içine yaz, onların dosyasına dokunma; kaynak doğrulama.
 
