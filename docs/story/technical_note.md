@@ -89,10 +89,11 @@ Using the single-command `pipeline/nisarpulse/` engine with identical `provision
 | 5 | **Mexico City, Mexico** *(off-basin rerun)* | `2026-06-22 → 2026-10-20` (`8`, `120 d`) | **`−5.80`** | `−7.0` | `−9.7` | `63.9%` | `reliable` (`medium`, **PC5 Press Approved**; prior NASA-JPL NISAR note) |
 | 6 | **Karapınar, Türkiye** | `2026-06-26 → 2026-10-12` (`8`, `108 d`) | **`−5.46`** | `−5.9` | `−8.0` | `14.2%` | **`indicative only`** (`low`; **PC5 Conditional** on `p = 0.0001` sinkholes) |
 | 7 | **Rafsanjan, Iran** | `2026-06-23 → 2026-10-21` (`10`, `120 d`) | **`−4.83`** | `−5.8` | `−7.4` | `84.9%` | `reliable` (`medium`, **PC5 Press Approved**) |
-| 8 | **Tehran, Iran** | `2026-06-18 → 2026-10-16` (`9`, `120 d`) | **`−2.92`** | `−3.5` | `−4.7` | `35.7%` | **`indicative only`** (`low`; **`preliminary`**, alt. ref. `−7.3 cm`) |
-| 9 | **Isfahan, Iran** | `2026-06-18 → 2026-10-16` (`9`, `120 d`) | **`−2.08`** | `−2.5` | `−3.4` | `32.5%` | `reliable` (`medium`, **PC5 Press Approved**) |
-| 10 | **Beijing, China** | `2026-06-17 → 2026-10-15` (`9`, `120 d`) | **`−1.17`** | `−1.4` | `−2.1` | `71.1%` | **`preliminary`** (PC5 `low`, ref. spread `4.43`) |
-| 11 | **Sacramento–San Joaquin Delta, USA** | `2026-06-17 → 2026-10-15` (`9`, `120 d`) | **`−1.08`** | `−1.3` | `−1.6` | `43.4%` | `reliable` (`high`, **PC5 Press Approved**) |
+| 8 | **Ho Chi Minh City, Vietnam** | `2026-06-17 → 2026-10-15` (`9`, `120 d`) | **`−3.50`** | `−4.2` | `−5.8` | — | **`indicative only`** (`low`, tropical delta; **`preliminary`**) |
+| 9 | **Tehran, Iran** | `2026-06-18 → 2026-10-16` (`9`, `120 d`) | **`−2.92`** | `−3.5` | `−4.7` | `35.7%` | **`indicative only`** (`low`; **`preliminary`**, alt. ref. `−7.3 cm`) |
+| 10 | **Isfahan, Iran** | `2026-06-18 → 2026-10-16` (`9`, `120 d`) | **`−2.08`** | `−2.5` | `−3.4` | `32.5%` | `reliable` (`medium`, **PC5 Press Approved**) |
+| 11 | **Beijing, China** | `2026-06-17 → 2026-10-15` (`9`, `120 d`) | **`−1.17`** | `−1.4` | `−2.1` | `71.1%` | **`preliminary`** (PC5 `low`, ref. spread `4.43`) |
+| 12 | **Sacramento–San Joaquin Delta, USA** | `2026-06-17 → 2026-10-15` (`9`, `120 d`) | **`−1.08`** | `−1.3` | `−1.6` | `43.4%` | `reliable` (`high`, **PC5 Press Approved**) |
 
 ---
 

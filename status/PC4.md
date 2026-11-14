@@ -1,11 +1,11 @@
 # PC4 durum
 
 - Görev: 1, 2, 3 + Queue `Q11`, `Q12`, `Q16`, `Q30`, `Q31` + 14:10 Paketi (1–6) + `ZAMAN_CIZELGESI` Pazar #1–5 + **15:00 Paketi (#1–4)** + **16:05 ACİL** + **16:15 CHALLENGE UYUMU (#1–6)** + **16:25 KAYNAKLAR ENTEGRASYONU** + **20:00 Paketi (#1–6)** + **20:10 (`OZGUN_KATKILAR.md` §T)** + **`ATLAS_PLANI.md` PC4 #1–4 & #5–9** (`docs/story/atlas_cities/`, `atlas_methods.md`, `atlas_data_dictionary.md`, `judge_faq.md` #22–26, `press_summary.md` & `technical_note.md` senkronu)
-- Durum: çalışıyor (Atlas tur 2 tamamlandı: 11 şehir kartı, yöntemler, veri sözlüğü, jüri zor soruları; yeni şehirler ve PC5 signoff izleniyor)
-- Güncelleme: 2026-11-14 22:52 TR
+- Durum: çalışıyor (Atlas tur 2 tamamlandı; Ho Chi Minh City senkronlandı: 12 şehir kartı, yöntemler, veri sözlüğü, jüri zor soruları; yeni şehirler ve PC5 signoff izleniyor)
+- Güncelleme: 2026-11-14 22:58 TR
 - Çıktılar:
-  - **`ATLAS_PLANI.md` PC4 #5–9 (Atlas İkinci Tur — 11 Şehir Kartı, Yöntem, Veri Sözlüğü & Zor Sorular):**
-    - `docs/story/atlas_cities/` altında 11 bölge kartı (`central_valley.md`, `konya_plain.md`, `karapinar.md`, `jakarta.md`, `mexico_city.md`, `delta.md`, `isfahan.md`, `rafsanjan.md`, `bangkok.md`, `tehran.md`, `beijing.md`): her biri $\le 150$ kelime, jeolojik çökme sebebi, etkilenenler, literatür hızı (kaynaklı), NISAR ölçümü (`cm/100d`, dönem, güven etiketi), NISAR'ın katkısı; PC5 onayı olmayan sayılara `preliminary` şerhi eklendi; her dosya ayrı commit + push yapıldı.
+  - **`ATLAS_PLANI.md` PC4 #5–9 (Atlas İkinci Tur — 12 Şehir Kartı, Yöntem, Veri Sözlüğü & Zor Sorular):**
+    - `docs/story/atlas_cities/` altında 12 bölge kartı (`central_valley.md`, `konya_plain.md`, `karapinar.md`, `jakarta.md`, `mexico_city.md`, `delta.md`, `isfahan.md`, `rafsanjan.md`, `bangkok.md`, `ho_chi_minh.md`, `tehran.md`, `beijing.md`): her biri $\le 150$ kelime, jeolojik çökme sebebi, etkilenenler, literatür hızı (kaynaklı), NISAR ölçümü (`cm/100d`, dönem, güven etiketi), NISAR'ın katkısı; PC5 onayı olmayan sayılara `preliminary` şerhi eklendi; her dosya ayrı commit + push yapıldı.
     - [`docs/story/atlas_methods.md`](../docs/story/atlas_methods.md): NASA mühendisi yanıtı tarzında tek sayfa yöntem ve kısıtlar (standart $\pm 0.25^\circ$ kutu, $1\text{ km}$ blok medyan ve $p_2$, sıralamada `rate_cm_per_100d` gereksinimi, havza dışı kayaç referansı ve duyarlılık oranı, güven sınıflandırması ve tropik/muson şerhleri, LOS-dikey geometrisi, provisional kalibrasyon uyarısı, `pipeline.nisarpulse` CLI komutları).
     - [`docs/story/atlas_data_dictionary.md`](../docs/story/atlas_data_dictionary.md): `data/global/atlas.json` üst düzey şeması ve bölgesel nesnedeki 22 alanın tamamı (ad, tip, birim, açıklama, formül/kaynak, örnek değer) Data ve Atlas sayfaları için eksiksiz belgelendi.
     - [`docs/story/judge_faq.md`](../docs/story/judge_faq.md) (#22–26): 5 zor atlas sorusu ("sıralamanız literatürden neden farklı?", "108 gün yıllık hızı temsil eder mi?", "tropik şehirlerde koherens?", "referansı nasıl seçtiniz?", "bu şehri ilk siz mi ölçtünüz?") eklendi.
