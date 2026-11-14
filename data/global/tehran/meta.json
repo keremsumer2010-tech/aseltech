@@ -1,0 +1,45 @@
+{
+  "site": "global_tehran",
+  "bbox": [
+    51.1,
+    35.45,
+    51.65,
+    35.85
+  ],
+  "dates": [
+    "2026-06-18",
+    "2026-06-30",
+    "2026-07-12",
+    "2026-07-24",
+    "2026-08-17",
+    "2026-08-29",
+    "2026-09-10",
+    "2026-09-22",
+    "2026-10-04",
+    "2026-10-16"
+  ],
+  "units": "cm",
+  "vmin": -4.0,
+  "vmax": 4.0,
+  "component": "LOS (line of sight); negative = away from satellite = subsidence",
+  "colormap": "RdBu (red = subsidence, blue = uplift/toward satellite)",
+  "source": "NISAR L2 GUNW (PROVISIONAL, CRID P05023) via ASF DAAC, track 56 ascending frame 19; https://nisar-docs.asf.alaska.edu/gunw",
+  "granules": [
+    "NISAR_L2_PR_GUNW_023_056_A_019_024_2000_SH_20260618T014554_20260618T014628_20260630T014553_20260630T014628_P05023_N_F_J_001",
+    "NISAR_L2_PR_GUNW_024_056_A_019_025_2000_SH_20260630T014553_20260630T014628_20260712T014552_20260712T014627_P05023_N_F_J_001",
+    "NISAR_L2_PR_GUNW_025_056_A_019_026_2000_SH_20260712T014552_20260712T014627_20260724T014552_20260724T014626_P05023_N_F_J_001",
+    "NISAR_L2_PR_GUNW_026_056_A_019_028_2000_SH_20260724T014552_20260724T014626_20260817T014550_20260817T014625_P05023_N_F_J_001",
+    "NISAR_L2_PR_GUNW_028_056_A_019_029_2000_SH_20260817T014550_20260817T014625_20260829T014550_20260829T014625_P05023_N_F_J_001",
+    "NISAR_L2_PR_GUNW_029_056_A_019_030_2000_SH_20260829T014550_20260829T014625_20260910T014550_20260910T014625_P05023_N_F_J_001",
+    "NISAR_L2_PR_GUNW_030_056_A_019_031_2000_SH_20260910T014550_20260910T014625_20260922T014550_20260922T014625_P05023_N_F_J_001",
+    "NISAR_L2_PR_GUNW_031_056_A_019_032_2000_SH_20260922T014550_20260922T014625_20261004T014550_20261004T014625_P05023_N_F_J_001",
+    "NISAR_L2_PR_GUNW_032_056_A_019_033_2000_SH_20261004T014550_20261004T014625_20261016T014550_20261016T014625_P05023_N_F_J_001"
+  ],
+  "notes": "Cumulative LOS displacement relative to 2026-06-18, sum of 9 consecutive pairs (2026-06-18_2026-06-30, 2026-06-30_2026-07-12, 2026-07-12_2026-07-24, 2026-07-24_2026-08-17, 2026-08-17_2026-08-29, 2026-08-29_2026-09-10, 2026-09-10_2026-09-22, 2026-09-22_2026-10-04, 2026-10-04_2026-10-16). Phase to cm with -lambda/(4*pi), lambda from each file's centerFrequency. Masks: coherence >= 0.3, connectedComponents != 0, isolated patches < 200 px (1.3 km2) removed (unwrapping-error guard), pixels deviating > lambda/4 (half a phase cycle) from their 720 m tile median removed, |pair| > 15.0 cm removed; pixel shown only if valid in every pair. All pairs referenced to the same window at 51.1999E 35.5448N. The ionosphere phase screen shipped in each GUNW was subtracted. A best-fit plane was removed from each pair (long-wavelength atmospheric residual; this can also remove part of any valley-wide tilt). Troposphere and solid-earth-tide layers were NOT applied; residual atmospheric noise of a few cm per pair is expected. ",
+  "reference_point": {
+    "lon": 51.19991,
+    "lat": 35.5448
+  },
+  "quality": "provisional",
+  "quality_note": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team."
+}
