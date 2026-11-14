@@ -47,7 +47,7 @@ function centralAngle(incDeg, rs){
 
 // ---------- module state ----------
 let root, renderer, scene, camera, controls, earth, earthMat, atmo, stars, sunLight;
-let satrec = null, tle = null, sat, satGlow, orbitLine, beamGroup, txFan, rxFan, foot, strip, stripEdge;
+let groundTrack, satrec = null, tle = null, sat, satGlow, orbitLine, beamGroup, txFan, rxFan, foot, strip, stripEdge;
 let cityGroup, cityDecal = null, cityMarker = null, cityDots;
 let hud = {}, labelSat, labelCity;
 let simMs = Date.now(), speed = 1, mode = 'live', camMode = 'orbit', running = false, lastT = 0;
@@ -77,7 +77,7 @@ export async function selectRegion(reg, opts = {}){
     if (region !== reg) return;
     pass = p;
     if (pass){
-      hud.pass.innerHTML = `Next imaging pass over <b>${esc(reg.name)}</b>: ${fmtUTC(new Date(pass.t))} · ${pass.asc ? 'ascending' : 'descending'} · incidence ${pass.inc.toFixed(1)}°`;
+      hud.pass.innerHTML = `Next imaging pass over <b>${esc(reg.name)}</b>: ${fmtUTC(new Date(pass.t))} · ${pass.asc ? 'ascending' : 'descending'} · incidence ${pass.inc.toFixed(1)}° <span class="n3d-count" id="h-count"></span>`;
       const hrs = pass.leadMin / 60, lead = hrs >= 24 ? `${Math.floor(hrs / 24)} d ${Math.round(hrs % 24)} h` : `${Math.floor(hrs)} h ${Math.round(pass.leadMin % 60)} min`;
       setCaption(`NISAR will next image ${esc(reg.name)} in ${lead}. Press <b>Play next pass</b> to fly that real orbit and watch the radar swath record it.`);
       if (opts.autoplay) playPass(root.querySelector('[data-act="pass"]'));
@@ -186,31 +186,57 @@ function buildStars(){
 
 function buildEarth(){
   earth = new THREE.Group(); scene.add(earth);
-  const tex = new THREE.TextureLoader().load(ROOT + 'web/assets/bluemarble_2k.jpg');
-  tex.anisotropy = 8;
+  // NASA Blue Marble Next Generation (topography + bathymetry) by day, NASA/NOAA DMSP city lights by night.
+  // A 2k texture shows at once; the full-resolution ones replace it when they arrive.
+  const loader = new THREE.TextureLoader();
+  const tex = loader.load(ROOT + 'web/assets/bluemarble_2k.jpg');
+  const black = new THREE.DataTexture(new Uint8Array([0, 0, 0, 255]), 1, 1); black.needsUpdate = true;
+  const maxAniso = renderer.capabilities.getMaxAnisotropy();
+  tex.anisotropy = maxAniso;
   earthMat = new THREE.ShaderMaterial({
-    uniforms: {day: {value: tex}, sunDir: {value: new THREE.Vector3(1, 0, 0)}},
-    vertexShader: `varying vec2 vUv; varying vec3 vN;
-      void main(){ vUv = uv; vN = normalize(mat3(modelMatrix) * normal); gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`,
-    fragmentShader: `uniform sampler2D day; uniform vec3 sunDir; varying vec2 vUv; varying vec3 vN;
+    uniforms: {day: {value: tex}, lights: {value: black}, sunDir: {value: new THREE.Vector3(1, 0, 0)}},
+    vertexShader: `varying vec2 vUv; varying vec3 vN; varying vec3 vW;
+      void main(){ vUv = uv; vN = normalize(mat3(modelMatrix) * normal); vec4 w = modelMatrix * vec4(position, 1.0); vW = w.xyz;
+        gl_Position = projectionMatrix * viewMatrix * w; }`,
+    fragmentShader: `uniform sampler2D day; uniform sampler2D lights; uniform vec3 sunDir; varying vec2 vUv; varying vec3 vN; varying vec3 vW;
       void main(){
+        vec3 n = normalize(vN);
         vec3 c = texture2D(day, vUv).rgb;
-        float d = dot(normalize(vN), sunDir);
-        float k = smoothstep(-0.12, 0.22, d);
-        vec3 night = c * vec3(0.34, 0.40, 0.52) + vec3(0.01, 0.02, 0.045);
-        vec3 col = mix(night, c * 1.08, k);
-        col += vec3(0.9, 0.45, 0.2) * 0.10 * (1.0 - abs(d * 6.0 - 0.3)) * step(-0.17, d) * step(d, 0.17);
+        float L = texture2D(lights, vUv).r;
+        float d = dot(n, sunDir);
+        float k = smoothstep(-0.10, 0.25, d);
+        // ocean mask from the bathymetry colours, for sun glint
+        float ocean = smoothstep(0.02, 0.12, c.b - max(c.r, c.g));
+        vec3 v = normalize(cameraPosition - vW);
+        float spec = pow(max(dot(reflect(-sunDir, n), v), 0.0), 60.0) * ocean * k;
+        vec3 dayCol = c * (0.25 + 0.95 * max(d, 0.0)) + vec3(1.0, 0.95, 0.85) * spec * 0.55;
+        vec3 night = c * vec3(0.11, 0.14, 0.22) + vec3(1.0, 0.76, 0.42) * pow(L, 1.6) * 1.35;
+        vec3 col = mix(night, dayCol, k);
+        // warm band along the terminator (NISAR flies a dawn-dusk orbit, so this is where it lives)
+        float t = 1.0 - smoothstep(0.0, 0.16, abs(d + 0.02));
+        col += vec3(0.95, 0.42, 0.16) * 0.09 * t;
         gl_FragColor = vec4(col, 1.0);
       }`
   });
-  earth.add(new THREE.Mesh(new THREE.SphereGeometry(R_E, 160, 80), earthMat));
+  earth.add(new THREE.Mesh(new THREE.SphereGeometry(R_E, 192, 96), earthMat));
+  loader.load(ROOT + 'web/assets/earth_day_3600.jpg', t => { t.anisotropy = maxAniso; earthMat.uniforms.day.value = t; });
+  loader.load(ROOT + 'web/assets/earth_lights_4096.jpg', t => { t.anisotropy = maxAniso; earthMat.uniforms.lights.value = t; });
 
-  atmo = new THREE.Mesh(new THREE.SphereGeometry(R_E * 1.025, 96, 48), new THREE.ShaderMaterial({
+  // Atmosphere: Fresnel rim, brighter on the sunlit limb.
+  atmo = new THREE.Mesh(new THREE.SphereGeometry(R_E * 1.022, 128, 64), new THREE.ShaderMaterial({
     side: THREE.BackSide, transparent: true, blending: THREE.AdditiveBlending, depthWrite: false,
-    vertexShader: `varying vec3 vN; void main(){ vN = normalize(normalMatrix * normal); gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`,
-    fragmentShader: `varying vec3 vN; void main(){ float i = pow(0.68 - dot(vN, vec3(0.0, 0.0, 1.0)), 4.0); gl_FragColor = vec4(0.32, 0.6, 1.0, 1.0) * i; }`
+    uniforms: {sunDir: earthMat.uniforms.sunDir},
+    vertexShader: `varying vec3 vN; varying vec3 vNw; void main(){ vN = normalize(normalMatrix * normal); vNw = normalize(mat3(modelMatrix) * normal); gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`,
+    fragmentShader: `uniform vec3 sunDir; varying vec3 vN; varying vec3 vNw;
+      void main(){ float i = pow(0.70 - dot(vN, vec3(0.0, 0.0, 1.0)), 4.0);
+        float lit = 0.25 + 0.75 * smoothstep(-0.3, 0.4, dot(vNw, sunDir));
+        gl_FragColor = vec4(mix(vec3(0.95, 0.5, 0.25), vec3(0.35, 0.62, 1.0), smoothstep(-0.1, 0.3, dot(vNw, sunDir))), 1.0) * i * lit; }`
   }));
   scene.add(atmo);
+
+  // Sub-satellite ground track (Earth-fixed), one revolution centred on now.
+  groundTrack = new THREE.Line(new THREE.BufferGeometry(), new THREE.LineDashedMaterial({color: 0xfde68a, dashSize: 60, gapSize: 40, transparent: true, opacity: 0.55}));
+  earth.add(groundTrack);
 
   // Imaged swath strip (Earth-fixed, grows behind the spacecraft).
   strip = new THREE.Mesh(new THREE.BufferGeometry(), new THREE.MeshBasicMaterial({color: 0x38bdf8, transparent: true, opacity: 0.22, side: THREE.DoubleSide, depthWrite: false}));
@@ -533,6 +559,9 @@ function loop(now){
     orbitStamp = simMs; const pts = [];
     for (let k = -52; k <= 52; k += 1){ const o = stateAt(simMs + k * 60000); if (o) pts.push(o.r); }
     orbitLine.geometry.dispose(); orbitLine.geometry = new THREE.BufferGeometry().setFromPoints(pts);
+    const gpts = [];
+    for (let k = -52; k <= 52; k += 0.5){ const o = stateAt(simMs + k * 60000); if (o) gpts.push(rotY(o.r.clone().setLength(R_E + 1.5), -o.gmst)); }
+    groundTrack.geometry.dispose(); groundTrack.geometry = new THREE.BufferGeometry().setFromPoints(gpts); groundTrack.computeLineDistances();
   }
 
   // SweepSAR beams
@@ -626,6 +655,13 @@ function updateCamera(s, up, fwd, left){
 }
 
 function updateHud(s){
+  const cnt = root.querySelector('#h-count');
+  if (cnt && pass){
+    const dms = pass.t - s.d.getTime(), a = Math.abs(dms) / 1000;
+    const dd = Math.floor(a / 86400), hh = Math.floor(a % 86400 / 3600), mm = Math.floor(a % 3600 / 60), ss = Math.floor(a % 60);
+    const pad = x => String(x).padStart(2, '0');
+    cnt.textContent = `T${dms >= 0 ? '−' : '+'}${dd ? dd + ' d ' : ''}${pad(hh)}:${pad(mm)}:${pad(ss)}`;
+  }
   const g = SAT.eciToGeodetic(s.eci, s.gmst);
   const lat = SAT.degreesLat(g.latitude), lon = SAT.degreesLong(g.longitude);
   const vel = Math.hypot(s.vel.x, s.vel.y, s.vel.z);

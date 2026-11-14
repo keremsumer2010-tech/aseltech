@@ -36,3 +36,4 @@
   .n3d-caption{bottom:170px;font-size:12.5px}
   .n3d-note{display:none}
 }
+.n3d-count{display:inline-block;margin-left:6px;padding:1px 7px;border-radius:3px;background:rgba(251,191,36,.14);color:#fde68a;font-variant-numeric:tabular-nums;font-weight:700}

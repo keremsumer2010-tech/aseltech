@@ -19,7 +19,7 @@
     const id = (typeof activeId !== 'undefined' && activeId) || regions()[0]?.id;
     return regions().find(r => r.id === id) || null;
   };
-  const load = async () => (mod = mod || await import('./nisar3d.js?v=14'));
+  const load = async () => (mod = mod || await import('./nisar3d.js?v=15'));
 
   async function openView(opts){
     btn.disabled = true;
