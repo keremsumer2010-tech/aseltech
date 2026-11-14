@@ -1,19 +1,24 @@
-# PC3 — Çökme zaman serisi + özgün analiz (klasör: analysis/)
+# PC3 — M3hmeT1888 — Çökme analizi (klasör: analysis/)  ·  BUGÜN: docs/TODAY_PLAN.md
+Önce CLAUDE.md'deki "Veri kalitesi ve kalibrasyon" kuralını oku.
 
-## Görev 1 — Ortam + dönüşüm (PC2 verisi gelene kadar)
-1. MintPy kurulumu: https://github.com/nisar-solid/ATBD/blob/main/docs/installation.md (Windows'ta olmazsa WSL; BLOCKED yaz).
-2. Konya path 108 için TEK GUNW indir (kendi `raw/`), `analysis/insar.py`:
-   `phase_to_cm`, `mask_coherence`, `reference`, `los_to_vertical(los_cm, incidence_deg)` (metadata cube'dan incidence).
-   İşaret konvansiyonunu ürün dokümanı/ATBD'den doğrula, kaynağı yorumda yaz.
-3. `analysis/test_insar.py` sentetik testler (pytest geçmeli).
-4. `docs/konya_checkpoint_cm.png` (renk çubuğu cm).
+## Görev 1 — (12:00–14:00 TR)
+1. Earthdata hesabı aç (şifreyi SEN gir), `.netrc` kur. `pip install asf_search h5py numpy matplotlib pytest`
+2. `analysis/insar.py`: `phase_to_cm(unw, wavelength_m)`, `mask_coherence(arr, coh, thr=0.3)`,
+   `reference(arr, (row, col))`, `los_to_vertical(cm, incidence_deg)`.
+   İşaret konvansiyonunu ürün dokümanı veya https://github.com/nisar-solid/ATBD kodundan DOĞRULA, kaynağı yoruma yaz.
+   `analysis/test_insar.py` (pytest geçmeli).
+3. Karapınar (bbox CLAUDE.md'de) için GUNW path 7, 2026-09-18 → 09-30 çiftini indir → `docs/karapinar_checkpoint_cm.png`.
 
-## Görev 2 — Zaman serisi (PC2 Görev 2 sonrası)
-ATBD `methods/secular` akışını Central Valley GUNW yığınına uygula (MintPy) → kümülatif dikey çökme.
-Çıktı: veri sözleşmesine göre `data/central_valley/meta.json`, `disp/<date>.png`, `points.json`.
+## Görev 2 — (PC2 alt kümeleri geldikçe, 14:00–17:00 TR)
+`analysis/cumulative.py central_valley`: `pipeline/subset/central_valley/*.npz` → tarih sırasıyla zincir toplamı,
+coherence maskesi, sabit referans bölgesi (az hareketli, yüksek koherens; seçimini status'a yaz) →
+veri sözleşmesine göre `data/central_valley/meta.json` (`quality: "provisional"` + `quality_note`),
+`disp/<date>.png` (renkli, şeffaf, bbox'a oturur), `points.json` (10–15 nokta). Renk aralığı tüm tarihlerde SABİT.
+"Kalibre ettik" deme; ürünü NISAR projesinin işlediği hâliyle kullandığımızı yaz.
 
-## Görev 3 — ÖZGÜN: Kalıcı vs geri dönen
-Her piksel: doğrusal trend + yıllık sinüs uydur → `permanent_cm_per_yr`, `seasonal_amp_cm` → `data/central_valley/decomp.json` + 2 PNG.
+## Görev 3 — Karapınar için aynısı → `data/karapinar/` (zaman kalırsa bugün, yoksa Pazar)
 
-## Kabul
-Testler geçiyor; PNG'ler push; status'ta yöntem, referans noktası, kullanılan GUNW sayısı.
+## Pazar — Tam yıl (beta-precal dahil) ayrı çıktı: `data/central_valley_fullyear/` + `quality: "mixed"`; kalıcı/geri dönen ayrımı orada.
+
+## Rapor
+status/PC3.md: maks çökme (cm), referans noktası, kullanılan çift sayısı, test sonucu.

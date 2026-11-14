@@ -1,24 +1,25 @@
-# PC2 — Veri hattı (klasör: pipeline/)
+# PC2 — memir-erdogmus — Veri (klasör: pipeline/)  ·  BUGÜN: docs/TODAY_PLAN.md
+Önce CLAUDE.md'deki "Veri kalitesi ve kalibrasyon" kuralını oku.
 
-## Görev 1 — KONTROL NOKTASI (en yüksek öncelik, hedef 2 saat)
-1. Earthdata hesabı aç; `pip install asf_search h5py numpy matplotlib rasterio pyyaml`.
-2. `pipeline/sites.yaml`: CLAUDE.md'deki 3 bölge (bbox, GUNW path'leri, tarih aralığı).
-3. `pipeline/search.py <site>`: `platform=NISAR`, `processingLevel=GUNW` (ve GCOV, SME2) listesi → `pipeline/<site>_<ürün>.csv`.
-   Central Valley için path 34.
-4. En kısa aralıklı TEK GUNW'yi `raw/` altına indir.
-5. Resmi hazırlık notebook'unu incele: https://github.com/nisar-solid/ATBD/blob/main/prep/NISAR_prep.ipynb
-   GUNW HDF5 ağacını çıkar → `docs/gunw_structure.md` (unwrapped phase, coherence, x/y, EPSG, dalga boyu, LOS cube yolları).
-6. `docs/checkpoint_phase.png` (unwrapped phase, bbox kesilmiş).
+## Görev 1 — HEMEN (12:00–13:30 TR)
+1. https://urs.earthdata.nasa.gov adresinden hesap aç. Şifreyi SEN gir, Claude'a verme.
+   Claude'a `~/.netrc` şablonunu hazırlat; kullanıcı adı ve şifreyi o dosyaya SEN yaz. `.netrc` asla repoya girmez.
+2. `pip install asf_search h5py numpy matplotlib`
+3. `pipeline/search.py`: Central Valley GUNW path 34 listesi → `pipeline/central_valley_gunw.csv`
+   (granule, iki tarih, sürüm kodu, URL, boyut, `quality` sütunu: her iki tarih ≥ 2026-06-17 ise "provisional", değilse "beta-precal").
+4. İLK dosya: 2026-09-08 → 2026-09-20 çifti. İndir, HDF5 ağacını `docs/gunw_structure.md`'ye yaz
+   (unwrapped phase, coherence, x/y, EPSG, dalga boyu, incidence yolları; dosya içindeki kalite/sürüm/kalibrasyon attr'ları da).
+   HEMEN push et → PC3 bunu bekliyor.
 
-## Görev 2 (Görev 1 bitince)
-ÖNCE (Lincoln sunumu bugün): Haziran–Eylül 2026 arası ardışık GUNW'ler (~9 adet, 2026-06-04 → 2026-09-20 zinciri).
-SONRA (Pazar, küresel teslim): 2025-11-24 → 2026-10-14 tam zincir, sadece "P05023" sürüm kodlu 25 ürün (X05010 olanları atla).
-Central Valley path 34 GUNW'lerini sırayla indir → sadece bbox'ı kes (`pipeline/subset.py`, çıktı `raw/subset/*.h5` veya GeoTIFF) → orijinali sil.
-Paralel: aynı bölge için 6–8 tarihlik GCOV ve tüm SME2'yi kes.
+## Görev 2 — (13:30–16:00 TR) — SADECE provisional çiftler
+Şu 6 ardışık çifti sırayla indir, `pipeline/subset.py` ile central_valley bbox'ını kes, orijinali sil (sadece "P05023"):
+2026-06-28→07-10, 07-10→07-22, 07-22→08-15, 08-15→08-27, 08-27→09-08, 09-08→09-20
 
-## Kabul
-`docs/gunw_structure.md` + PNG push edildi; status'ta dosya boyutu, indirme süresi, giriş gerekip gerekmediği. Hata → BLOCKED + hata metni.
+Her alt küme: `pipeline/subset/central_valley/<t1>_<t2>.npz` içinde `unw`, `coh`, `x`, `y`, `epsg`, `wavelength`, `incidence` (varsa), `quality`.
+Her dosya bitince push et.
 
-## Görev 3 — Toprak nemi zaman serisi (Görev 2 sonrası, eski PC5 işi)
-Kesilen SME2'lerden Central Valley bölge ortalaması + `data/central_valley/points.json` noktaları için seri
-→ `data/central_valley/drivers.json` içine `dates` ve `soil_moisture` alanları. Birim ve kaynak `meta` alanında.
+## Görev 3 — (Pazar) beta-precal dahil tam yıl zinciri (2025-11-24 → 2026-10-14) — AYRI klasör:
+`pipeline/subset/central_valley_beta/` ; + SME2 → `data/central_valley/drivers.json`
+
+## Rapor
+status/PC2.md: kaç dosya bitti, indirme hızı, hata varsa BLOCKED + hata metni.

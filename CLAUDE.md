@@ -31,21 +31,34 @@ Teslim: Paz 15 Kas 23:59 UK (= Pzt 02:59 TR). Tüm çıktı metni İNGİLİZCE.
 - Görevde belirsizlik varsa tahmin etme: `status/PCx.md` içine "BLOCKED: ..." yaz, push et, dur.
 - Commit mesajı: `[PCx] kısa açıklama`. Push öncesi `git pull --rebase`.
 
+## BUGÜNKÜ ÖNCELİK: docs/TODAY_PLAN.md (Lincoln sunumu bugün, demo 17:30 TR)
+
+## Veri kalitesi ve kalibrasyon (ZORUNLU)
+- **Kalibrasyon bizim işimiz değil.** Kalibrasyon ve doğrulamayı NISAR projesi (NASA-JPL ve ISRO) yapar. Biz ürünleri yayınlandığı hâliyle kullanırız; "kalibre ettik" ya da "düzelttik" demeyiz.
+- Her katman/dosya bir `quality` etiketi taşır:
+  - `provisional`: her iki tarihi 2026-06-17 ve sonrası olan PROVISIONAL ürünler (bugünkü demo SADECE bunlar).
+  - `beta-precal`: 2026-06-17 öncesi tarih içeren ürünler (kalibrasyon öncesi beta dönemi; ürün notlarından aksi doğrulanana kadar).
+  - `preview`: browse PNG'ler — nicel DEĞİL, sadece görsel.
+- Farklı sınıflar AYNI hesapta/katmanda birleştirilmez. Beta veriyle yapılan analiz ayrı klasörde (`*_beta`, `*_fullyear`) ve `quality: "mixed"` olarak durur.
+- Web'de her katmanda rozet + sabit dipnot: "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team."
+
 ## Veri kuralları
 - `.h5` ve ham dosyalar repoya GİRMEZ (.gitignore). Ham veriyi `raw/` altına koy.
-- Repoya sadece küçük çıktılar: PNG, JSON, küçük GeoTIFF (<20 MB).
+- Repoya sadece küçük çıktılar: PNG, JSON, küçük GeoTIFF/NPZ (<20 MB). Kesilmiş GUNW alt kümeleri: `pipeline/subset/<site>/<t1>_<t2>.npz`.
+- .h5 indirmek Earthdata girişi İSTER (test edildi: giriş olmadan "Access denied"); browse PNG'ler girişsiz iner.
 - Veri kaynağı: ASF SearchAPI / `asf_search`, parametre `platform=NISAR` (dataset=NISAR ÇALIŞMIYOR).
 - İndirme için Earthdata hesabı gerekebilir (her PC kendi hesabı). Kimlik bilgisi asla repoya yazılmaz.
 - NISAR L-band dalga boyu ≈ 0.2384 m. LOS yer değiştirme = -λ/(4π) × unwrapped phase (işaret konvansiyonunu ürün dokümanından DOĞRULA).
 
 ## Bölgeler (lon_min, lat_min, lon_max, lat_max)
 - central_valley: -120.2, 35.6, -119.0, 36.6  (GUNW path 34 ve 114, Kas 2025–Eki 2026)
-- konya: 32.3, 37.5, 33.2, 38.1  (GUNW path 7/100/108/172, Eki 2025–Eki 2026)
+- konya: 32.4, 37.4, 33.9, 38.1  (GUNW path 7/100/108/172, Eki 2025–Eki 2026)
+- karapinar (obruk): 33.3, 37.6, 33.8, 37.9  (GUNW path 7 ve 172, Haz–Eki 2026)
 - fens: -0.3, 52.4, 0.4, 52.9  (GCOV/SME2, Haz–Kas 2026)
 
 ## Veri sözleşmesi (web bunu okur — değiştirmek için PC1'e sor)
 ```
-data/<site>/meta.json        {site, bbox:[w,s,e,n], dates:[YYYY-MM-DD...], units:"cm", vmin, vmax, source, notes}
+data/<site>/meta.json        {site, bbox:[w,s,e,n], dates:[YYYY-MM-DD...], units:"cm", vmin, vmax, source, notes, quality, quality_note}
 data/<site>/disp/<date>.png  o tarihe kadar kümülatif LOS çökme, renkli, şeffaf arka plan, bbox'a oturur
 data/<site>/points.json      [{id, name, lon, lat, dates:[...], disp_cm:[...]}]
 data/<site>/assets.json      risk altındaki altyapı (GeoJSON, her segmentte risk, gradient_mm_per_km, max_cm)
