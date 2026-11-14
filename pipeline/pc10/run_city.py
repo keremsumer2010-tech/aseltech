@@ -60,7 +60,7 @@ CITY_CONFIG: dict[str, dict] = {
     "yunlin": {
         "site_key": "global_yunlin",
         "bbox": CITIES["yunlin"]["bbox"],
-        "path": 111,
+        "path": 39,
     },
 }
 
