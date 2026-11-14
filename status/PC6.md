@@ -1,6 +1,6 @@
 ﻿# PC6 durum
 
-- Görev: BUGFIX bitti (B16–B32, B35 tamamlandı) + C03 (Atlas menü, özet kartı, Data bağlantısı) tamamlandı; kuyruktan yeni iş kontrol ediliyor.
+- Görev: ATLAS FİNAL (1–8) bitti (`web/atlas.{html,css,js}`, `web/vendor/maplibre-gl.{js,css}`, `web/assets/bluemarble_2k.jpg`); 3 dakikalık kontrol döngüsünde.
 - Durum: Oyun cilası (7/7), 3 adımlı "How to play" rehberi, `demo_30s.mp4` (`29.62 s`, 1080p, Challenge başlıklarıyla), Konya Kapalı Havzası + obruk göstergesi (`6/6 tests passed`), **Classroom Mode (3 hazır senaryo + 3 tartışma sorusu)**, **Sources & Parameters sekmesinde NASA Land Subsidence StoryMap + 6 White Paper**, **`docs/story/risk_dossier.md` içinde California Aqueduct vs NASA UAVSAR (2013–2017) kıyası**, **`docs/story/media/cv_fullyear.mp4` (`14.25 s`, 26 epok tam yıl animasyonu)** ve **`analysis/pc6/test_20_strategies.py` (`40/40 PASS`)** tamamlandı.
   - Adım 1 (`analysis/pc6/make_animation.py`): `docs/story/media/cv_subsidence.{mp4,gif}` (`3.07 MB` / `4.23 MB`, 8 epok, 1080p) ve `docs/story/media/kp_subsidence.{mp4,gif}` (`0.88 MB` / `1.36 MB`, 9 epok, 1080p) pushlandı (`7369686`).
   - Adım 2 (`analysis/pc6/make_validation_plots.py`): `docs/story/validation_report.md`, `validation_scatter.png` (`r=0.924`, `RMSE=1.37 cm`) ve 10 `gnss_<station>.png` grafiği pushlandı (`823cb74`).
@@ -24,5 +24,5 @@
   - `python risk/karapinar_risk.py --self-test` PASS (`--data-dir --quality mixed` doğrulandı)
   - `game/test_model.html`: `6/6 tests passed` (`0%` 108-gün baz hata: Tulare `-10.1 cm` dikey / `-7.84 cm` LOS, Konya `-8.0 cm` dikey / `-5.94 cm` LOS, `sinkholeRiskActive=true`)
   - Tarayıcı canlı testi: Konya `Over-Pump` → `#sinkholeStatusBanner` (`Elevated`), 3 adımlı `How to play` + dinamik `range_cm` (`-4.7...-7.8`), masaüstü `1280x850` ve mobil `390x844` (`scrollWidth === 390`, `44 px` dokunma hedefleri) doğrulandı
-- BLOCKED: yok. (BUGFIX + C03 tamamlandı; 3 dakikalık kontrol döngüsünde.)
+- BLOCKED: yok. (ATLAS FİNAL 1–8 tamamlandı; 3 dakikalık kontrol döngüsünde.)
 - AI: Kod ve analiz üretimi + tarayıcı doğrulaması; ölçümler NASA-ISRO NISAR (provisional), NGL ve OpenStreetMap kaynaklıdır.

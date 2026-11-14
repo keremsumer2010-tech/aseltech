@@ -7,7 +7,7 @@
 <meta name="description" content="2026 NISAR global groundwater subsidence atlas: cities and basins measured with the same open method and ranked by rate per 100 days (LOS).">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.3.0/dist/maplibre-gl.css">
+<link rel="stylesheet" href="vendor/maplibre-gl.css">
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="atlas.css">
 </head>
@@ -18,6 +18,12 @@
     <a href="index.html#story">Story</a><a href="atlas.html" class="active">Atlas</a><a href="explorer.html">Explore</a><a href="index.html#play">Simulator</a><a href="science.html">Science</a><a href="data.html">Data</a><a href="faq.html">FAQ</a>
   </nav>
 </header>
+<section class="vital-bar" id="vitalBar" aria-label="Atlas Vital Signs" hidden>
+  <div class="vital-card" id="vcCities" hidden><span class="vc-lbl">Cities measured</span><b id="vCities">—</b><small>2026 NISAR provisional</small></div>
+  <div class="vital-card" id="vcFastest" hidden><span class="vc-lbl">Fastest-sinking place</span><b id="vFastest">—</b><small id="vFastestSub">LOS rate per 100 days</small></div>
+  <div class="vital-card" id="vcArea" hidden><span class="vc-lbl">Area sinking &gt; 5 cm</span><b id="vArea">—</b><small>km² across measured basins</small></div>
+  <div class="vital-card" id="vcPeople" hidden><span class="vc-lbl">People on sinking ground</span><b id="vPeople">—</b><small>estimate (GHSL / basin)</small></div>
+</section>
 <main class="atlas-wrap">
   <aside class="atlas-panel" aria-label="Global atlas controls and region details">
     <p class="chapter">Global Atlas · 2026</p>
@@ -36,12 +42,22 @@
   </aside>
   <section class="atlas-mapwrap" aria-label="Interactive 3D globe of measured regions">
     <div id="atlasMap"></div>
-    <div class="atlas-legend">
+    <div class="atlas-toolbar">
+      <div class="atlas-layers" id="atlasLayers" role="group" aria-label="Map layer">
+        <button type="button" class="al-btn is-active" data-layer="disp">Subsidence</button>
+        <button type="button" class="al-btn" data-layer="sigma">Uncertainty (&sigma;)</button>
+        <button type="button" class="al-btn" data-layer="conf">Confidence</button>
+      </div>
+      <button type="button" class="tour-btn" id="tourBtn">Tour top 5</button>
+    </div>
+    <div class="tour-caption" id="tourCaption" hidden></div>
+    <div class="offline-pill" id="offlinePill" hidden>Offline basemap: NASA Blue Marble</div>
+    <div class="atlas-legend" id="atlasLegend">
       <b>Rate (cm / 100 days, LOS)</b>
-      <div class="al-row"><span class="al-dot" style="background:#991b1b"></span><span>≤ −6.0 cm/100d</span></div>
-      <div class="al-row"><span class="al-dot" style="background:#c8321f"></span><span>−4.0 to −6.0 cm/100d</span></div>
-      <div class="al-row"><span class="al-dot" style="background:#d97706"></span><span>−2.0 to −4.0 cm/100d</span></div>
-      <div class="al-row"><span class="al-dot" style="background:#64748b"></span><span>&gt; −2.0 cm/100d</span></div>
+      <div class="al-row"><span class="al-dot" style="background:#991b1b"></span><span>&le; &minus;6.0 cm/100d</span></div>
+      <div class="al-row"><span class="al-dot" style="background:#c8321f"></span><span>&minus;4.0 to &minus;6.0 cm/100d</span></div>
+      <div class="al-row"><span class="al-dot" style="background:#d97706"></span><span>&minus;2.0 to &minus;4.0 cm/100d</span></div>
+      <div class="al-row"><span class="al-dot" style="background:#64748b"></span><span>&gt; &minus;2.0 cm/100d</span></div>
     </div>
   </section>
 </main>
@@ -60,7 +76,7 @@
     </div>
   </div>
 </section>
-<script src="https://unpkg.com/maplibre-gl@5.3.0/dist/maplibre-gl.js"></script>
+<script src="vendor/maplibre-gl.js"></script>
 <script src="atlas.js"></script>
 </body>
 </html>
