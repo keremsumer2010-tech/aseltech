@@ -245,7 +245,7 @@ function buildSurfaceForSite(siteKey) {
   document.getElementById("minLbl").textContent = `${region.vmin} cm`;
   document.getElementById("maxLbl").textContent = `+${region.vmax} cm`;
   document.getElementById("metaRef").textContent =
-    `${region.reference_point.lat}°N, ${region.reference_point.lon}°E (coh ${region.reference_point.mean_coh})`;
+    `${fmtLatLon(region.reference_point.lat, region.reference_point.lon)} (coh ${region.reference_point.mean_coh})`;
   document.getElementById("metaCov").textContent =
     `${Math.round(region.valid_frac * 100)}% unmasked · ${cols}×${rows} 3D grid`;
   document.getElementById("metaNotes").textContent = region.notes;
@@ -257,6 +257,12 @@ function buildSurfaceForSite(siteKey) {
   ticks.innerHTML = region.dates.map((d) => `<span>${d.slice(5)}</span>`).join("");
 
   updateSurfaceEpoch(maxIdx);
+}
+
+function fmtLatLon(lat, lon) {
+  const latH = lat >= 0 ? "N" : "S";
+  const lonH = lon >= 0 ? "E" : "W";
+  return `${Math.abs(lat).toFixed(4)}°${latH}, ${Math.abs(lon).toFixed(4)}°${lonH}`;
 }
 
 function addPin(lon, lat, colorHex, info) {
@@ -371,7 +377,7 @@ function handlePointerPick(ev) {
           <span class="chip">Dia: ${sk.diameter_m} m</span>
           <span class="chip">${sk.status}</span>
         </div>
-        <div>Coords: <span class="mono">${sk.lat}°N, ${sk.lon}°E</span></div>
+        <div>Coords: <span class="mono">${fmtLatLon(sk.lat, sk.lon)}</span></div>
         <div>Source: <a href="${sk.source_url}" target="_blank" rel="noopener">${sk.source_title}</a></div>
       `);
       return;
@@ -384,7 +390,7 @@ function handlePointerPick(ev) {
       const p = h.object.userData.pinInfo;
       showInspectorHTML(`
         <strong>${p.title}</strong>
-        <div>Coords: <span class="mono">${p.lat}, ${p.lon}</span></div>
+        <div>Coords: <span class="mono">${fmtLatLon(p.lat, p.lon)}</span></div>
         <div>${p.detail}</div>
       `);
       return;
@@ -400,7 +406,7 @@ function handlePointerPick(ev) {
       const val = interpolateValue(region, meta.idx, Number(epochSlider.value));
       showInspectorHTML(`
         <strong>Radar Grid Sample</strong>
-        <div>Coords: <span class="mono">${meta.lat.toFixed(4)}°, ${meta.lon.toFixed(4)}°</span></div>
+        <div>Coords: <span class="mono">${fmtLatLon(meta.lat, meta.lon)}</span></div>
         <div>LOS Displacement: <strong class="mono">${val !== null ? val.toFixed(2) : "—"} cm</strong></div>
         <div class="hint">${val < 0 ? "Negative LOS = motion away from radar (subsidence)." : "Positive LOS = motion toward radar."}</div>
       `);
