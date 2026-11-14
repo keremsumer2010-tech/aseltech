@@ -8,3 +8,4 @@
 - Sınırlama: HDF5 rasterları ve tarla zaman serileri henüz işlenmedi.
 - Kaynak: https://api.daac.asf.alaska.edu/services/search/param (ASF SearchAPI)
 - AI: Codex → ASF sorgu scripti ve veri kataloğu.
+- BLOCKED: HDF5 GET HTTP 401; anonymous S3 HTTP 403. Otomatik inceleme, .netrc okuyarak kimlik doğrulama isteğini, dosyayı okumama talimatın nedeniyle reddetti. EARTHDATA_TOKEN ortam değişkeni ayarlı değil; hiçbir HDF5 değeri işlenmedi.
