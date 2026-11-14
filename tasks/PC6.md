@@ -92,3 +92,8 @@ Atlas işlerin bitti; yeni iş (NISAR 3D dosyalarına dokunma):
 # ➕ TAKVİYE (Paz 02:25, PC1) — atlas 19 bölge, tamlık 86/114 (`docs/qa/ATLAS_COMPLETENESS.md`). PC4/PC5 2 saattir durmuş; eksikleri sen tamamla.
 1. **Şehir kartları (PC4 durdu, sana geçti):** `docs/story/atlas_cities/{semarang,eloy,delhi,quetta,hanoi,xian}.md` — mevcut kartların biçiminde (örn. `konya_plain.md`), ≤150 kelime: neden çöküyor (kaynaklı), kim etkileniyor, yayımlanmış hız (kaynak+yıl), bizim değerimiz (cm/100d, dönem, güven, atlas.json'dan), NISAR'ın kattığı. Uydurma yok.
 2. Atlas sayfasında yeni 4 şehrin (eloy, delhi, quetta, xian) panel/animasyon/filtrede doğru göründüğünü test et.
+
+
+# 🔄 YENİ ATAMA (Paz 03:05, PC1) — atlas 19 bölge, QC sonrası sıralama: 1 Konya Ovası, 2 Mashhad, 3 Central Valley, 4 Eloy, 5 Mexico City (`docs/story/atlas_top5_check.md`). Tamlık 100/114.
+1. **Kalite kontrolü görünür olsun:** atlas sayfasında `qc_flags` olan bölgelerin yan panelinde gerekçe kutusu (atlas.json `note` + `qc_flags`), sıralama tablosunun altına tek satır "Quality control: N regions flagged (time-series check) — see method" ve `docs/story/atlas_top5_check.md` bağlantısı. Science sayfasının listesine `atlas_top5_check.md` ekle.
+2. Konsol 0 hata, mobil kontrol.

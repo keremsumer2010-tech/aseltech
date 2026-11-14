@@ -184,3 +184,9 @@ Kapsam hedefi Paz 14:00'te ≥20 şehir. Her yeni şehirde 6'lı paketin 1. par�
 
 # 🔬 PC1 BAĞIMSIZ KONTROL SONUCU (Paz 02:55) · `docs/story/atlas_top5_check.md`
 **Delhi:** 1 Eylül 2026 tarihli görüntü bozuk görünüyor (−10.0 sonra +8.1 cm). O tarihi içeren iki çifti kontrol et (iyonosfer/unwrapping), gerekirse çıkarıp yeniden hesapla, `docs/qa/PC2.md`'ye yaz.
+
+
+# 🔄 YENİ ATAMA (Paz 03:05, PC1) — atlas 19 bölge, QC sonrası sıralama: 1 Konya Ovası, 2 Mashhad, 3 Central Valley, 4 Eloy, 5 Mexico City (`docs/story/atlas_top5_check.md`). Tamlık 100/114.
+1. **Belirsizlik haritası (sadece harita; notu PC4 yazacak):** mashhad, delhi, quetta → `python analysis/pc5/uncertainty_map.py` → `data/global/<id>/uncertainty/`.
+2. **Delhi 1 Eylül** görüntüsünü kontrol et (QC işareti), gerekirse o tarihi içeren çiftleri çıkarıp yeniden hesapla.
+3. OPERA kıyası bitti mi? `opera_check.json`'u PC10'a "hazır" notuyla bildir.

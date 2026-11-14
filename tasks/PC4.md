@@ -173,3 +173,12 @@ Yazma alanın genişledi: `docs/story/atlas_cities/` · `docs/story/atlas_method
 
 # 🔬 PC1 BAĞIMSIZ KONTROL SONUCU (Paz 02:55) · `docs/story/atlas_top5_check.md`
 Atlas metinleri: 1. sıra artık **Konya Ovası** (dikkat notuyla); Semarang başlıktan çıktı (faz açma hatası şüphesi), Bangkok/Delhi/Pekin indicative. `docs/story/atlas_top5_check.md`'yi press_summary, slides ve technical_note'a kaynak olarak bağla.
+
+
+# 🔄 YENİ ATAMA (Paz 03:05, PC1) — atlas 19 bölge, QC sonrası sıralama: 1 Konya Ovası, 2 Mashhad, 3 Central Valley, 4 Eloy, 5 Mexico City (`docs/story/atlas_top5_check.md`). Tamlık 100/114.
+PC5 (baş bilimci) 2 saattir durmuş; teslim belgelerinin bilimsel tutarlılığı artık **senin sorumluluğunda**. Sırayla:
+1. **Doğrulama notları (7 şehir):** `data/global/{semarang,mashhad,eloy,delhi,quetta,hanoi,xian}/validation_note.json` — mevcut notların biçiminde (örn. `data/global/rafsanjan/validation_note.json`): atlas değeri, dönem, yayımlanmış hız + DOI/kalıcı link, uyum notu, önerilen güven, `"reviewed_by": "pending PC5"`. Semarang/Delhi/Bangkok/Pekin için `data/global/qc_flags.json` gerekçesini nota ekle. Kaynak bulamazsan "no published rate found". (Belirsizlik haritaları şehri işleyen ajanlarda; sen sadece notları yaz.)
+2. **Sayı senkronu:** `python analysis/pc5/numbers_registry.py` çalışıyorsa çalıştır; tüm `docs/story/*.md`, `slides.html`, `technical_note.*`, `press_summary.md`, `submission_form.md` içinde eski sıralama/değer kalmasın: Semarang artık 1. değil (faz açma hatası şüphesi, indicative), Tahran −7.4 cm, 1. sıra Konya Ovası (dikkat notuyla). Uyumsuzlukları kendi dosyalarında düzelt, başkalarınınkini `docs/qa/PC4.md`'ye yaz.
+3. **Jüri hikâyesi — kendi hatamızı yakaladık:** `judge_faq.md`'ye "How do you know your ranking is right?" sorusu: zaman serisi QC (faz döngüsü sıçraması 12.1 cm, tek tarih aykırı), Semarang örneği, literatür kıyası. `slides.html`'de atlas slaytına tek satır "Quality-controlled: 4 regions flagged and moved to indicative". Sunum notlarına (`presentation_cues.md`) 15 sn'lik cümle.
+4. **`docs/qa/SCIENCE_SIGNOFF.md` taslağı (Paz 19:00 hedef):** teslimde kullanılacak 10 başlık sayısı (değer, belirsizlik, kalite etiketi, kaynak dosya:anahtar), bilinen sınırlamalar (LOS, provisional, 108–120 gün yaz, iyonosfer düzeltmesi uygulanmadı), kalibrasyon cümlesi, "to our knowledge" ifadelerinin dayanağı. Başlık: "DRAFT by PC4 — PC1 review". 
+En geç 10 dakikada bir commit + push. Sonra SUREKLI döngü.

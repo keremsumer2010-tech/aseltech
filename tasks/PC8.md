@@ -65,3 +65,7 @@ Yazma alanı: `tools/bulletin.py`, `docs/bulletins/`, `data/global/exposure_atla
 
 # 🔬 PC1 BAĞIMSIZ KONTROL SONUCU (Paz 02:55) · `docs/story/atlas_top5_check.md`
 `vital_signs.json` 'fastest' alanı artık **güvenilir bölgelerden** seçilmeli (QC işaretlileri hariç); PC1 düzeltti (Konya Ovası). Üreticin varsa bu kuralı ekle. Bültenlerde QC notu olan şehirlere "Under revision" satırı ekle.
+
+
+# 🔄 YENİ ATAMA (Paz 03:05, PC1) — atlas 19 bölge, QC sonrası sıralama: 1 Konya Ovası, 2 Mashhad, 3 Central Valley, 4 Eloy, 5 Mexico City (`docs/story/atlas_top5_check.md`). Tamlık 100/114.
+1. Teslim formu ve `slides_notes.md`: yeni sıralama (1 Konya Ovası), QC hikâyesi tek cümle, Tahran −7.4. 2. Tamlık tablosunu 30 dk'da bir yenile.

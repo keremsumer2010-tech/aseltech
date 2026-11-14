@@ -80,3 +80,7 @@ Kapsam hedefi Paz 14:00'te ≥20 şehir. Her yeni şehirde 6'lı paketin 1. par�
 
 # 🔬 PC1 BAĞIMSIZ KONTROL SONUCU (Paz 02:55) · `docs/story/atlas_top5_check.md`
 **Öncelik:** FAZ 2 yıllıklaştırmada **Konya Ovası önce** — atlasın 1. sırası artık Konya ve 108 günlük değer yayımlanmış yıllık hızların birkaç katı. Tam yıl kalıcı hız bunu doğrulayacak ya da düzeltecek.
+
+
+# 🔄 YENİ ATAMA (Paz 03:05, PC1) — atlas 19 bölge, QC sonrası sıralama: 1 Konya Ovası, 2 Mashhad, 3 Central Valley, 4 Eloy, 5 Mexico City (`docs/story/atlas_top5_check.md`). Tamlık 100/114.
+1. eloy belirsizlik haritası (notu PC4 yazar). 2. Cangzhou'yu bitir (6/8), "hazır". 3. **FAZ 2: Konya Ovası tam yıl önce** — atlasın 1. sırası; 108 gün değeri yayımlanmış yıllık hızların birkaç katı, tam yıl kalıcı hız gerekli.

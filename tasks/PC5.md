@@ -158,3 +158,7 @@ Kurallar: uydurma yok, her sayının kaynağı dosya:anahtar; REVIEW_1500 dili; 
 
 # 🔬 PC1 BAĞIMSIZ KONTROL SONUCU (Paz 02:55) · `docs/story/atlas_top5_check.md`
 PC1 senin yerine ilk sıraların bağımsız kontrolünü yaptı (`docs/story/atlas_top5_check.md`, `tools/atlas_qc.py`). Döndüğünde gözden geçir; Konya Ovası kararını (medium mı low mu) sen ver.
+
+
+# 🔄 YENİ ATAMA (Paz 03:05, PC1) — atlas 19 bölge, QC sonrası sıralama: 1 Konya Ovası, 2 Mashhad, 3 Central Valley, 4 Eloy, 5 Mexico City (`docs/story/atlas_top5_check.md`). Tamlık 100/114.
+Döndüğünde: `docs/story/atlas_top5_check.md` ve PC4'ün 7 doğrulama notunu gözden geçir (`reviewed_by` alanını güncelle), Konya Ovası güven kararını ver, SCIENCE_SIGNOFF taslağını devral.
