@@ -77,6 +77,8 @@
   <div class="md" id="vrMd"></div></details>
   <details class="fold" id="dossier"><summary><h2>Infrastructure risk dossier</h2></summary>
   <div class="md" id="rdMd"></div></details>
+  <details class="fold" id="atlasqc"><summary><h2>Global Atlas time-series QC (Top 5 check)</h2></summary>
+  <div class="md" id="aqcMd"></div></details>
   <h2 id="learn">Learn more</h2>
   <ul class="learn">
     <li><a href="https://storymaps.arcgis.com/stories/109e602e748346f3be8dc89124619828" target="_blank" rel="noopener">NISAR StoryMap: Land Subsidence</a> — how radar sees sinking from groundwater pumping (Central Valley example).</li>
@@ -112,6 +114,7 @@ md('litMd', 'docs/story/literature_comparison.md', true);
 md('uncMd', 'docs/story/uncertainty.md', true);
 md('vrMd', 'docs/story/validation_report.md', true);
 md('rdMd', 'docs/story/risk_dossier.md', true);
+md('aqcMd', 'docs/story/atlas_top5_check.md', true);
 J('data/central_valley/summary.json').then(sm => {
   if (!sm) return; const f = x => (x < 0 ? '−' : '+') + Math.abs(x).toFixed(1);
   document.querySelectorAll('[data-k="cv.max"]').forEach(e => e.textContent = f(sm.max_subsidence_cm));

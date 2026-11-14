@@ -29,6 +29,7 @@ async function J(p){ try{ const r = await fetch(ROOT + p); return r.ok ? await r
 const KNOWN_CARDS = new Set(['bangkok','beijing','central_valley','delhi','delta','eloy','hanoi','ho_chi_minh','isfahan','jakarta','karapinar','konya_plain','mashhad','mexico_city','quetta','rafsanjan','semarang','tehran','xian']);
 const KNOWN_SIGMA = new Set(['bangkok','beijing','central_valley','delta','ho_chi_minh','isfahan','jakarta','karapinar','konya_plain','mexico_city','rafsanjan','tehran']);
 let bulletinIds = new Set();
+let qcFlags = null;
 
 async function initBulletins(){
   try{
@@ -412,6 +413,7 @@ async function initAtlas(){
   initVitalSigns();
   await initBulletins();
   atlasData = await J('data/global/atlas.json');
+  qcFlags = await J('data/global/qc_flags.json');
   initDataBox();
   if (!atlasData || !Array.isArray(atlasData.regions)){
     document.getElementById('atlasList').innerHTML = '<p class="small">Could not load data/global/atlas.json.</p>';
@@ -549,6 +551,14 @@ function renderTables(regions){
   };
   fill('tblReliable', rel);
   fill('tblIndicative', ind);
+  const qcLine = document.getElementById('atlasQcSummary');
+  if (qcLine && qcFlags && qcFlags.flags){
+    const nFlagged = Object.keys(qcFlags.flags).length;
+    if (nFlagged > 0){
+      qcLine.innerHTML = `Quality control: <b>${nFlagged}</b> regions flagged (time-series check) &mdash; <a href="${ROOT}docs/story/atlas_top5_check.md" target="_blank" rel="noopener">see method</a>`;
+      qcLine.hidden = false;
+    }
+  }
 }
 
 async function selectRegion(id, fly, updateHash){
@@ -612,12 +622,20 @@ async function selectRegion(id, fly, updateHash){
   const mainLbl = unitMode === 'vert' ? 'Max vertical (est.)' : 'Max LOS';
 
   const isRecomputed = /recomputed/i.test(r.note || '');
+  const qcEntry = qcFlags?.flags?.[r.id];
+  const qcTags = Array.isArray(qcEntry?.flags) ? qcEntry.flags.map(f => `<span class="qc-tag">${esc(f)}</span>`).join('') : '';
+  const qcDetailTxt = r.note || qcEntry?.detail || '';
+  const qcCleanTxt = (typeof qcEntry?.headline_without_flagged_steps_cm === 'number' && Number.isFinite(qcEntry.headline_without_flagged_steps_cm))
+    ? `<br>Without flagged step(s): <b>${esc(fmtUnit(qcEntry.headline_without_flagged_steps_cm, 'cm'))}</b>` : '';
+  const qcBoxHtml = (qcEntry || /^QC:/i.test(r.note || ''))
+    ? `<div class="atlas-qc-box">${qcTags}<b>Time-series QC:</b> ${esc(qcDetailTxt)}${qcCleanTxt}</div>` : '';
   const detail = document.getElementById('atlasDetail');
   detail.hidden = false;
   detail.innerHTML = `
     <h2>${esc(r.name)}${r.country ? ` <small class="small">(${esc(r.country)})</small>` : ''}</h2>
     <p style="margin:0 0 8px">${confBadge(r)} <span class="qbadge provisional">${esc((r.quality || 'provisional').toUpperCase())}</span>${isRecomputed ? ' <span class="cbadge updated">Updated</span>' : ''}</p>
     ${isRecomputed ? `<p class="atlas-updated"><b>Updated:</b> Recomputed with off-basin reference — old value &minus;3.5 cm</p>` : ''}
+    ${qcBoxHtml}
     <dl class="atlas-kv">
       <div><dt>Rate (LOS)</dt><dd>${esc(fmtUnit(r.rate_cm_per_100d, 'cm/100d'))}</dd></div>
       <div><dt>${esc(mainLbl)}</dt><dd>${esc(fmtUnit(mainVal, 'cm'))}</dd></div>
