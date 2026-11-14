@@ -1,11 +1,11 @@
 {
   "quality": "provisional",
-  "generated_at": "2026-11-14T20:26:33Z",
+  "generated_at": "2026-11-14T20:30:32Z",
   "quality_notice": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.",
   "summary": {
-    "total": 27,
-    "approved": 21,
-    "preliminary": 6,
+    "total": 29,
+    "approved": 22,
+    "preliminary": 7,
     "rejected": 0,
     "discrepancies": 0
   },
@@ -147,7 +147,7 @@
         "docs/story/pitch.md:137",
         "docs/story/presentation_cues.md:92",
         "docs/story/project_page.md:59",
-        "docs/story/technical_note.md:111",
+        "docs/story/technical_note.md:112",
         "docs/story/slides.html:323"
       ],
       "note": "Summer-only extrapolation; overstates full-year permanent rate (-16.8 cm/yr). Must be labeled estimate."
@@ -255,7 +255,7 @@
         "docs/story/team_story.md:24",
         "docs/story/technical_note.md:11",
         "docs/story/technical_note.md:55",
-        "docs/story/technical_note.md:102",
+        "docs/story/technical_note.md:103",
         "docs/story/uncertainty.md:30",
         "docs/story/video_shotlist.md:21",
         "docs/story/video_shotlist.md:44",
@@ -264,7 +264,7 @@
         "docs/story/technical_note.html:215",
         "docs/story/technical_note.html:245",
         "docs/story/technical_note.html:254",
-        "docs/story/technical_note.html:304"
+        "docs/story/technical_note.html:305"
       ],
       "note": "All 10 stations median 1.004 cm; 6 stations with r>=0.4 have median 0.8 cm."
     },
@@ -462,7 +462,7 @@
         "docs/story/storage_loss.md:20",
         "docs/story/storage_loss.md:30",
         "docs/story/submission_form.md:71",
-        "docs/story/technical_note.md:102",
+        "docs/story/technical_note.md:103",
         "docs/story/slides.html:466"
       ],
       "note": "Reference sensitivity range: 0.0664 to 0.3198 km3/yr."
@@ -590,7 +590,7 @@
         "docs/story/submission_form.md:74",
         "docs/story/technical_note.md:11",
         "docs/story/technical_note.md:58",
-        "docs/story/technical_note.md:113",
+        "docs/story/technical_note.md:114",
         "docs/story/uk_findings.md:10",
         "docs/story/uk_findings.md:12",
         "docs/story/uk_findings.md:20",
@@ -639,6 +639,21 @@
       "note": "Confidence=medium; rate_cm_per_100d=-8.9."
     },
     {
+      "id": "atlas_mashhad_los_cm",
+      "value": -8.6,
+      "unit": "cm",
+      "meaning": "Mashhad peak LOS displacement (120 d)",
+      "source_file": "data/global/atlas.json",
+      "source_key": "regions[mashhad].max_cm_los",
+      "quality": "provisional",
+      "verdict": "approved",
+      "used_in": [
+        "docs/story/press_summary.md:11",
+        "docs/story/technical_note.md:81"
+      ],
+      "note": "Confidence=medium; rate_cm_per_100d=-7.2."
+    },
+    {
       "id": "atlas_jakarta_los_cm",
       "value": -6.8,
       "unit": "cm",
@@ -685,6 +700,7 @@
       "verdict": "approved",
       "used_in": [
         "docs/story/judge_faq.md:65",
+        "docs/story/press_summary.md:11",
         "docs/story/risk_sensitivity.md:44"
       ],
       "note": "Confidence=medium; rate_cm_per_100d=-6.2."
@@ -729,6 +745,24 @@
         "docs/story/technical_note.html:281"
       ],
       "note": "Confidence=medium; rate_cm_per_100d=-5.8."
+    },
+    {
+      "id": "atlas_rafsanjan_los_cm",
+      "value": -5.8,
+      "unit": "cm",
+      "meaning": "Rafsanjan peak LOS displacement (120 d)",
+      "source_file": "data/global/atlas.json",
+      "source_key": "regions[rafsanjan].max_cm_los",
+      "quality": "provisional",
+      "verdict": "approved",
+      "used_in": [
+        "docs/story/fullyear.md:16",
+        "docs/story/fullyear.md:24",
+        "docs/story/global_showcase.md:27",
+        "docs/story/press_summary.md:11",
+        "docs/story/technical_note.md:81"
+      ],
+      "note": "Confidence=medium; rate_cm_per_100d=-4.8."
     },
     {
       "id": "atlas_ho_chi_minh_los_cm",
@@ -790,7 +824,7 @@
         "docs/story/risk_sensitivity.md:5",
         "docs/story/risk_sensitivity.md:44",
         "docs/story/technical_note.md:81",
-        "docs/story/technical_note.md:111"
+        "docs/story/technical_note.md:112"
       ],
       "note": "Confidence=low; rate_cm_per_100d=-2.1."
     },
@@ -802,7 +836,7 @@
       "source_file": "data/global/atlas.json",
       "source_key": "regions[beijing].max_cm_los",
       "quality": "provisional",
-      "verdict": "approved",
+      "verdict": "preliminary",
       "used_in": [
         "docs/story/judge_faq.md:53",
         "docs/story/project_page.md:72",
@@ -815,7 +849,7 @@
         "docs/story/slides.html:429",
         "docs/story/technical_note.html:215"
       ],
-      "note": "Confidence=medium; rate_cm_per_100d=-1.2."
+      "note": "Confidence=low; rate_cm_per_100d=-1.2."
     },
     {
       "id": "atlas_delta_los_cm",
@@ -838,10 +872,10 @@
         "docs/story/submission_form.md:73",
         "docs/story/technical_note.md:11",
         "docs/story/technical_note.md:74",
-        "docs/story/technical_note.md:104",
+        "docs/story/technical_note.md:105",
         "docs/story/slides.html:319",
         "docs/story/technical_note.html:215",
-        "docs/story/technical_note.html:306"
+        "docs/story/technical_note.html:307"
       ],
       "note": "Confidence=medium; rate_cm_per_100d=-1.1."
     }
