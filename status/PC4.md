@@ -1,9 +1,13 @@
 # PC4 durum
 
 - Görev: 1, 2, 3 + Queue `Q11`, `Q12`, `Q16`, `Q30`, `Q31` + 14:10 Paketi (1–6) + `ZAMAN_CIZELGESI` Pazar #1–5 + **15:00 Paketi (#1–4)** + **16:05 ACİL** + **16:15 CHALLENGE UYUMU (#1–6)** + **16:25 KAYNAKLAR ENTEGRASYONU** + **20:00 Paketi (#1–6)** + **20:10 (`OZGUN_KATKILAR.md` §T)** + **`ATLAS_PLANI.md` PC4 #1–4 & #5–9** (`docs/story/atlas_cities/`, `atlas_methods.md`, `atlas_data_dictionary.md`, `judge_faq.md` #22–26, `press_summary.md` & `technical_note.md` senkronu)
-- Durum: çalışıyor (Atlas tur 2 tamamlandı; Mashhad & Rafsanjan senkronlandı: 13 şehir kartı, yöntemler, veri sözlüğü, jüri zor soruları, 13 bülten; numbers registry 0 çelişki; 83/83 test PASS)
-- Güncelleme: 2026-11-14 23:29 TR
+- Durum: çalışıyor (ATLAS FİNAL Faz 1-2 tamamlandı: atlas_feature.md EO öne çıkan hikâye, sources.md §8 açık veri DOI atıfları, slaytlar Top-5 senkronu; yeni şehirler izleniyor)
+- Güncelleme: 2026-11-14 23:40 TR
 - Çıktılar:
+  - **`ATLAS_FINAL.md` PC4 #1–3 (Atlas Final Paketi — Earth Observatory Hikâyesi, Veri Atıfları & Senkron):**
+    - [`docs/story/atlas_feature.md`](../docs/story/atlas_feature.md): NASA Earth Observatory "Image of the Day" tarzında tek sayfa öne çıkan hikâye ("Where the Ground Is Sinking Fastest in 2026" — 3 paragraf, 438 kelime $\le 450$, `media/pc10_global.png` açıklamalı haritası, akifer sıkışması jeolojisi, California Central Valley `-7.8 cm` LOS / `1.00 cm` GPS / kanal eğimleri, Mexico City `-7.0 cm` off-basin ve Rafsanjan `-5.8 cm` PC5 onaylı değerleri, Konya `-9.6 cm` ve Mashhad `-8.6 cm` preliminary şerhleri, zorunlu kalibrasyon uyarısı).
+    - [`docs/story/sources.md`](../docs/story/sources.md) §8: NASA Açık Veri İlkesi gereği resmi ürün atıfları eklendi (NISAR L2 GUNW ASF DAAC DOI `10.5067/NISAR/GUNW_PROVISIONAL_V1`, NASA-JPL OPERA DISP-S1 DOI `10.5067/OPERA/DISP-S1_V1`, Copernicus Global DEM GLO-30 DOI `10.5069/G9028PQB`, EC GHSL GHS-POP R2023A DOI `10.2905/2FF83B4B-1B61-45D9-BEA5-62506086AD15`, OpenStreetMap ODbL ve Nevada Geodetic Laboratory GNSS DOI `10.1029/2018EO104623`).
+    - [`docs/story/slides.html`](../docs/story/slides.html) (Slayt 7): Top-5 küresel sıralama Mashhad (#2, `−7.17 cm/100d` LOS) ile güncellendi.
   - **`ATLAS_PLANI.md` PC4 #5–9 (Atlas İkinci Tur — 13 Şehir Kartı, Yöntem, Veri Sözlüğü, 13 Bülten & Mashhad Senkronu):**
     - `docs/story/atlas_cities/` altında 13 bölge kartı (`central_valley.md`, `konya_plain.md`, `karapinar.md`, `jakarta.md`, `mexico_city.md`, `delta.md`, `isfahan.md`, `rafsanjan.md`, `bangkok.md`, `ho_chi_minh.md`, `tehran.md`, `beijing.md`, `mashhad.md`): her biri kesin olarak $\le 150$ kelime, jeolojik çökme sebebi, etkilenenler, literatür hızı (Motagh et al. 2007 DOI dahil kaynaklı), NISAR ölçümü (`cm/100d`, dönem, güven etiketi), NISAR'ın katkısı; PC5 onayı olmayan sayılara `preliminary` şerhi eklendi.
     - `tools/bulletin.py` çalıştırılarak 13 şehir için tek sayfalık HTML bültenler (`docs/bulletins/*.html`) ve `docs/bulletins/index.html` oluşturuldu.
