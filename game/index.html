@@ -4,371 +4,275 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Valley Under Pressure — NISAR Aquifer Simulation</title>
+  <meta name="description" content="Set groundwater pumping, canal water and land fallowing for two years and watch the ground sink. Calibrated to NASA-ISRO NISAR measurements in California and Türkiye.">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/maplibre-gl@4.7.1/dist/maplibre-gl.css">
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
   <div class="app-shell">
-    <!-- Top Control Bar -->
+    <!-- Top bar -->
     <header class="topbar">
       <div class="brand-group">
+        <span class="logo-mark" aria-hidden="true"></span>
         <h1 class="brand-title">Valley Under Pressure</h1>
-        <div class="basin-switch" role="group" aria-label="Select study basin">
-          <button type="button" class="basin-btn active" data-basin="tulare">Tulare Basin, USA</button>
-          <button type="button" class="basin-btn" data-basin="konya">Konya Basin, Türkiye</button>
-        </div>
-        <span class="pill provisional" title="NISAR data are provisional. Calibration and validation are carried out by NASA-JPL and ISRO.">PROVISIONAL NISAR</span>
-        <span id="monthPill" class="pill mono" aria-live="polite" aria-atomic="true">Month 0 of 24 · Oct 2026 · Autumn</span>
+        <span class="pill provisional" title="NISAR data are provisional. Calibration and validation are carried out by NASA-JPL and ISRO.">Provisional NISAR</span>
         <span id="wyPill" class="pill wy-below">WY1: Below Normal (70% Cap)</span>
       </div>
       <div class="topbar-meta">
-        <button id="howToPlayBtn" class="btn-ghost" type="button" aria-expanded="true" aria-controls="howToPlayGuide">How to play</button>
-        <button id="classroomModeBtn" class="btn-ghost" type="button" aria-expanded="true" aria-controls="classroomCard">Classroom Mode</button>
-        <button id="audioToggleBtn" class="btn-ghost" type="button" aria-pressed="false" title="Toggle subtle synthesized UI click and warning tones">Audio: Off</button>
-        <button id="paramsBtn" class="btn-ghost" type="button">Sources &amp; Parameters</button>
-        <a class="btn-ghost" href="./test_model.html" target="_blank" rel="noopener">Model Tests</a>
-        <a class="btn-ghost" href="../web/">← Story Map</a>
+        <div class="seg" id="presetSeg" role="group" aria-label="Scenario">
+          <span class="seg-thumb" aria-hidden="true"></span>
+          <button type="button" class="seg-btn preset-btn" data-preset="baseline">2026 Baseline</button>
+          <button type="button" class="seg-btn preset-btn" data-preset="overpump">Over-Pump</button>
+          <button type="button" class="seg-btn preset-btn" data-preset="balance">SGMA Balance</button>
+        </div>
+        <button id="paramsBtn" class="icon-btn" type="button" title="Sources and model tests" aria-label="Sources and model tests">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5"/><path d="M8 7.5h8M8 11h6"/></svg>
+        </button>
       </div>
     </header>
 
-    <!-- Main Split Workspace: 65% Map + Bottom Timeline, 35% Control & Cross-Section -->
     <main class="workspace">
-      <section id="mapStage" class="map-stage" aria-label="San Joaquin Valley satellite and subsidence map">
+      <!-- Map -->
+      <section id="mapStage" class="map-stage" aria-label="Satellite map with simulated sinking">
         <div id="map"></div>
         <svg id="fxSvg" class="fx-svg" aria-hidden="true"></svg>
 
-        <div class="map-hud-top">
-          <div class="hud-card layer-switch" role="group" aria-label="Overlay mode">
-            <button type="button" class="layer-btn active" data-overlay="sim">Live Simulation</button>
-            <button type="button" class="layer-btn" data-overlay="blend">Blend (Sim + NISAR)</button>
-            <button type="button" class="layer-btn" data-overlay="nisar">2026 NISAR Raster</button>
-          </div>
-          <div class="hud-card mono" id="valleyHeadlineHud" aria-live="polite" aria-atomic="true">
-            Peak Subsidence: <strong class="color-perm">0.0 cm</strong> · Dry Wells: <strong>0</strong>
-          </div>
+        <div class="layer-switch" role="group" aria-label="Map overlay">
+          <button type="button" class="layer-btn active" data-overlay="sim">Live Simulation</button>
+          <button type="button" class="layer-btn" data-overlay="blend">Blend (Sim + NISAR)</button>
+          <button type="button" class="layer-btn" data-overlay="nisar">2026 NISAR Raster</button>
         </div>
 
-        <aside class="map-legend" aria-label="Subsidence and canal risk legend">
-          <div style="display:flex; justify-content:space-between; align-items:center;">
-            <strong>Vertical Motion (cm)</strong>
-            <span class="mono" style="color:var(--muted);">RdBu scale</span>
-          </div>
-          <div class="legend-bar"></div>
-          <div class="legend-labels">
-            <span>−12 cm (sink)</span>
-            <span>0 cm</span>
-            <span>+6 cm (rise)</span>
-          </div>
-          <div class="canal-key">
-            <span><i class="dot" style="background:#009e73"></i>[LOW] &lt;5 mm/km</span>
-            <span><i class="dot" style="background:#e69f00"></i>[MOD] 5–10</span>
-            <span><i class="dot" style="background:#f06938"></i>[HIGH] &gt;10 mm/km</span>
-            <span id="sinkholeLegendItem" hidden><i class="dot" style="background:transparent;border:2px solid #e69f00;"></i>29 obruks (ref)</span>
-          </div>
+        <div class="seg seg-map" id="basinSeg" role="group" aria-label="Study basin">
+          <span class="seg-thumb" aria-hidden="true"></span>
+          <button type="button" class="seg-btn basin-btn active" data-basin="tulare">Tulare Basin, USA</button>
+          <button type="button" class="seg-btn basin-btn" data-basin="konya">Konya Basin, Türkiye</button>
+        </div>
+
+        <aside class="map-legend" aria-label="Canal tilt legend">
+          <strong>Canal tilt</strong>
+          <span><i class="dot" style="background:#009e73"></i>Low · under 5 mm/km</span>
+          <span><i class="dot" style="background:#e69f00"></i>Moderate · 5–10 mm/km</span>
+          <span><i class="dot" style="background:#f06938"></i>High · over 10 mm/km</span>
+          <span id="sinkholeLegendItem" hidden><i class="dot ring"></i>29 mapped sinkholes</span>
         </aside>
-      </section>
 
-      <!-- Bottom 24-Month Chart Dock -->
-      <section class="timeline-dock" aria-label="24-month subsidence timeline">
-        <div class="timeline-head">
-          <strong id="chartTitle">District Trajectory: Terra Bella</strong>
-          <span class="mono">Cyan: Elastic · Coral: Permanent · Dashed: NISAR 2026</span>
-        </div>
-        <div class="timeline-canvas-wrap">
-          <canvas id="timelineChart"></canvas>
+        <div class="date-stamp" aria-live="polite" aria-atomic="true">
+          <span id="stampDate">OCT 2026</span>
+          <small id="monthPill">Month 0 of 24 · Autumn</small>
         </div>
       </section>
 
-      <!-- Right Hydrogeology Control & Stratigraphy Panel -->
-      <aside class="control-panel" aria-label="Aquifer controls and stratigraphy">
-        <section id="howToPlayGuide" class="section-card guide-card" aria-label="Three-step how to play guide">
-          <div class="section-head">
-            <h2 class="section-title">How to play (3 steps)</h2>
-            <button id="dismissGuideBtn" type="button" class="btn-quiet-sm">Dismiss ✕</button>
+      <!-- Under the map: chart + readout -->
+      <section class="dock">
+        <div class="dock-card timeline-dock" aria-label="Subsidence over time">
+          <div class="card-head">
+            <h2 class="card-title" id="chartTitle">Terra Bella vs 2026 NISAR</h2>
+            <span class="card-hint">Drag or scroll the chart to see other months</span>
           </div>
-          <ol class="guide-steps">
-            <li><strong>Pick a valley &amp; district:</strong> Choose Tulare (USA) or Konya (Türkiye), then click a zone or press <code>1–7</code>.</li>
-            <li><strong>Set water balance:</strong> Adjust monthly groundwater pumping, canal deliveries, and temporary crop fallowing.</li>
-            <li><strong>Advance 1 month:</strong> Press <strong>Advance one month</strong> (<code>Space</code>) to compare clay collapse and canal slope against NISAR.</li>
-          </ol>
-        </section>
+          <div class="timeline-canvas-wrap"><canvas id="timelineChart"></canvas></div>
+        </div>
 
-        <section id="classroomCard" class="section-card classroom-card" aria-label="Classroom Mode scenarios and discussion questions">
-          <div class="section-head">
-            <h2 class="section-title">Classroom Mode (3 Scenarios)</h2>
-            <span class="pill" style="background:rgba(86,180,233,0.16);color:#56b4e9;border:1px solid rgba(86,180,233,0.4);">Educator Activity</span>
+        <div class="dock-card readout">
+          <div class="card-head">
+            <h2 class="card-title" id="kpiDistrictTitle">Readout: Terra Bella</h2>
+            <span class="card-hint">Click a district on the map</span>
           </div>
-          <p class="classroom-intro">One-click 24-month experiments for classroom comparison and discussion:</p>
-          <div class="classroom-btn-grid" role="group" aria-label="One-click classroom scenarios">
-            <button type="button" class="classroom-scen-btn" data-classroom="normal">
-              <strong>1. Normal Year</strong>
-              <span>100% pump · 70% canal · 0% fallow</span>
-            </button>
-            <button type="button" class="classroom-scen-btn" data-classroom="drought">
-              <strong>2. Multi-Year Drought</strong>
-              <span>140% pump · 20% canal · Dry/Crit</span>
-            </button>
-            <button type="button" class="classroom-scen-btn" data-classroom="sustainable">
-              <strong>3. Sustainable Pumping</strong>
-              <span>55% pump · 85% canal · 25% fallow</span>
-            </button>
-          </div>
-          <details class="classroom-q-details">
-            <summary>3 Classroom Discussion Questions</summary>
-            <ol class="classroom-q-list">
-              <li><strong>Patterns &amp; Rhythms (Elastic vs. Permanent):</strong> Compare Scenario 1 (Normal) and Scenario 2 (Drought). Why does winter recharge recover elastic motion above the historical low water level (<em>h<sub>pc</sub></em>), while clay compaction below <em>h<sub>pc</sub></em> is permanent?</li>
-              <li><strong>Infrastructure Tilt vs. Total Sinking:</strong> Why does a steep differential gradient (mm/km of uneven sinking across a canal) cut flow capacity in the California Aqueduct and Friant-Kern Canal by up to 60%, even where total sinking is under 30 cm?</li>
-              <li><strong>Actionable Insights Across Basins:</strong> Switch between Tulare (USA) and Konya (Türkiye) and run Scenario 3 (Sustainable). How do 12-day NISAR passes help water managers balance farm revenue against permanent storage loss and sinkhole risk?</li>
-            </ol>
-          </details>
-        </section>
-
-        <div class="section-card">
-          <div class="section-head">
-            <h2 class="section-title" id="districtSelectTitle">Select District (Tulare Basin)</h2>
-            <span class="pill" id="districtCoordsPill">36.01°N, 119.02°W</span>
-          </div>
-          <div id="districtTabs" class="district-tabs"></div>
-          <div class="apply-all-row">
-            <label for="applyAllChk" style="cursor:pointer; display:flex; align-items:center; gap:6px;">
-              <input id="applyAllChk" type="checkbox">
-              <span id="applyAllLabel">Apply slider changes to all 7 districts</span>
-            </label>
+          <div class="kpi-grid">
+            <div class="kpi"><span class="kpi-label">Total sinking</span><b class="kpi-value color-perm" id="kpiTotalCm">0.00 cm</b><span class="kpi-sub" id="kpiSplitCm">Elastic: 0.00 cm</span></div>
+            <div class="kpi"><span class="kpi-label">Permanent</span><b class="kpi-value color-perm" id="kpiPermCm">0.00 cm</b><span class="kpi-sub" id="kpiRegimeSub">Elastic Safe</span></div>
+            <div class="kpi"><span class="kpi-label">Farm revenue</span><b class="kpi-value color-ok" id="kpiRevenue">$0.0M</b><span class="kpi-sub" id="kpiRevSub">100% cropped</span></div>
+            <div class="kpi"><span class="kpi-label">Water level</span><b class="kpi-value" id="kpiHeadM">-48.0 m</b><span class="kpi-sub" id="kpiHpcM">Low: -48.3 m</span></div>
+            <div class="kpi"><span class="kpi-label">Canal capacity lost</span><b class="kpi-value color-warn" id="kpiCanalLoss">0.0%</b><span class="kpi-sub" id="kpiGradient">6.9 mm/km</span></div>
+            <div class="kpi"><span class="kpi-label">Dry wells</span><b class="kpi-value" id="kpiWells">0 / 8</b><span class="kpi-sub">of wells tracked</span></div>
           </div>
           <div id="sinkholeStatusBanner" class="sinkhole-banner" aria-live="polite" hidden></div>
         </div>
+      </section>
 
-        <div class="section-card">
-          <div class="section-head">
-            <h2 class="section-title">Monthly Allocation Levers</h2>
-            <div class="preset-row" style="width:auto;">
-              <button type="button" class="preset-btn" data-preset="baseline">2026 Baseline</button>
-              <button type="button" class="preset-btn" data-preset="overpump">Over-Pump</button>
-              <button type="button" class="preset-btn" data-preset="balance">SGMA Balance</button>
+      <!-- Right panel -->
+      <aside class="control-panel" aria-label="Water controls">
+        <section class="panel-card levers">
+          <div class="card-head">
+            <h2 class="card-title">Monthly water use</h2>
+            <span class="card-hint">Applies to every district</span>
+          </div>
+          <div class="vsliders">
+            <div class="vs" data-for="pumpSlider" data-kind="water">
+              <span class="vs-val" id="pumpVal">100%</span>
+              <div class="vs-track" role="slider" tabindex="0" aria-label="Groundwater pumping">
+                <canvas class="vs-water"></canvas>
+                <span class="vs-handle"></span>
+              </div>
+              <label class="vs-label" for="pumpSlider">Groundwater<br>pumping</label>
+              <input id="pumpSlider" type="range" min="0" max="150" step="5" value="100" hidden>
+            </div>
+            <div class="vs" data-for="surfaceSlider" data-kind="canal">
+              <span class="vs-val" id="surfaceVal">70%</span>
+              <div class="vs-track" role="slider" tabindex="0" aria-label="Canal water">
+                <span class="vs-cap" title="Not available this water year"></span>
+                <span class="vs-fill"></span>
+                <span class="vs-handle"></span>
+              </div>
+              <label class="vs-label" for="surfaceSlider">Canal<br>water</label>
+              <input id="surfaceSlider" type="range" min="0" max="100" step="5" value="70" hidden>
+            </div>
+            <div class="vs" data-for="fallowSlider" data-kind="land">
+              <span class="vs-val" id="fallowVal">0%</span>
+              <div class="vs-track" role="slider" tabindex="0" aria-label="Land left to rest">
+                <span class="vs-fill"></span>
+                <span class="vs-handle"></span>
+              </div>
+              <label class="vs-label" for="fallowSlider">Land left<br>to rest</label>
+              <input id="fallowSlider" type="range" min="0" max="50" step="5" value="0" hidden>
             </div>
           </div>
+        </section>
 
-          <div class="slider-row">
-            <div class="slider-label">
-              <label for="pumpSlider">Groundwater Pumping</label>
-              <span id="pumpVal" class="slider-val">100%</span>
-            </div>
-            <input id="pumpSlider" type="range" min="0" max="150" step="5" value="100">
-            <div class="slider-hint">Extracts confined aquifer water; past <em>h<sub>pc</sub></em> triggers irreversible clay collapse.</div>
+        <section class="panel-card">
+          <div class="card-head">
+            <h2 class="card-title">Underground</h2>
+            <span class="pill" id="stratRegimePill">Elastic</span>
           </div>
-
-          <div class="slider-row">
-            <div class="slider-label">
-              <label for="surfaceSlider">Surface Water Allocation</label>
-              <span id="surfaceVal" class="slider-val">70%</span>
-            </div>
-            <input id="surfaceSlider" type="range" min="0" max="100" step="5" value="70">
-            <div id="surfaceCapHint" class="slider-hint">Canal &amp; recharge deliveries; capped by California Water Year Index.</div>
-          </div>
-
-          <div class="slider-row">
-            <div class="slider-label">
-              <label for="fallowSlider">Temporary Land Fallowing</label>
-              <span id="fallowVal" class="slider-val">0%</span>
-            </div>
-            <input id="fallowSlider" type="range" min="0" max="50" step="5" value="0">
-            <div class="slider-hint">Cuts irrigation demand &amp; extraction proportionally; lowers short-term crop revenue.</div>
-          </div>
-        </div>
-
-        <div class="section-card">
-          <div class="section-head">
-            <h2 class="section-title" id="kpiDistrictTitle">District Readout: Terra Bella</h2>
-          </div>
-          <div class="kpi-grid">
-            <div class="kpi-box kpi-primary">
-              <div class="kpi-label">Total Subsidence</div>
-              <div class="kpi-value color-perm" id="kpiTotalCm">0.00 cm</div>
-              <div class="kpi-sub" id="kpiSplitCm">Elastic: 0.00 cm</div>
-            </div>
-            <div class="kpi-box kpi-primary">
-              <div class="kpi-label">Permanent Collapse</div>
-              <div class="kpi-value color-perm" id="kpiPermCm">0.00 cm</div>
-              <div class="kpi-sub" id="kpiRegimeSub">Elastic Safe</div>
-            </div>
-            <div class="kpi-box kpi-primary">
-              <div class="kpi-label">Cumulative Revenue</div>
-              <div class="kpi-value color-ok" id="kpiRevenue">$0.0M</div>
-              <div class="kpi-sub" id="kpiRevSub">100% cropped area</div>
-            </div>
-          </div>
-          <div class="kpi-secondary-strip">
-            <div class="kpi-mini">
-              <span class="kpi-mini-label">Water Level vs Low</span>
-              <span class="kpi-mini-val mono" id="kpiHeadM">-48.0 m</span>
-              <span class="kpi-mini-sub" id="kpiHpcM">Low: -48.3 m</span>
-            </div>
-            <div class="kpi-mini">
-              <span class="kpi-mini-label">Canal Capacity Loss</span>
-              <span class="kpi-mini-val mono color-warn" id="kpiCanalLoss">0.0%</span>
-              <span class="kpi-mini-sub" id="kpiGradient">6.9 mm/km</span>
-            </div>
-            <div class="kpi-mini">
-              <span class="kpi-mini-label">Dry Shallow Wells</span>
-              <span class="kpi-mini-val mono" id="kpiWells">0 / 8</span>
-              <span class="kpi-mini-sub">Tracked depths</span>
-            </div>
-          </div>
-          <p class="kpi-footnote">Well-depth thresholds and crop revenue curves are simplified regional approximations.</p>
-        </div>
-
-        <div class="section-card">
-          <div class="section-head">
-            <h2 class="section-title">Subsurface Cross-Section (Compressible Interbeds)</h2>
-            <span class="pill mono" id="stratRegimePill">ELASTIC REGIME</span>
-          </div>
-          <canvas id="stratCanvas" width="380" height="132"></canvas>
+          <canvas id="stratCanvas" width="380" height="150"></canvas>
           <div class="strat-legend">
-            <span><i class="dot" style="background:#56b4e9"></i>Elastic (rebounds)</span>
-            <span><i class="dot" style="background:#f06938"></i>Permanent clay collapse</span>
-            <span><i class="dot" style="background:#e69f00"></i>Preconsolidation h<sub>pc</sub></span>
+            <span><i class="dot" style="background:#0b3d91"></i>Water level</span>
+            <span><i class="dot" style="background:#e69f00"></i>Lowest level ever</span>
+            <span><i class="dot" style="background:#c8321f"></i>Permanent squeeze</span>
           </div>
-        </div>
+        </section>
 
-        <div class="section-card">
-          <div class="section-head">
-            <h2 class="section-title">Hydrology &amp; Infrastructure Events</h2>
-          </div>
+        <section class="panel-card events">
+          <div class="card-head"><h2 class="card-title">What happened</h2></div>
           <div id="eventList" class="event-list" aria-live="polite">
             <div class="event-item">
-              <div class="event-title">Simulation Ready — Oct 2026 Water Year Start</div>
-              <div>Baseline water levels calibrated against NASA-ISRO NISAR provisional path 34 (Jun–Oct 2026).</div>
-              <div class="event-src">Source: ../data/central_valley/summary.json</div>
+              <div class="event-title">Simulation ready — October 2026</div>
+              <div>Starting water levels tuned to match NASA-ISRO NISAR provisional path 34 (Jun–Oct 2026).</div>
             </div>
           </div>
-        </div>
+        </section>
 
         <div class="turn-actions">
           <button id="nextMonthBtn" type="button" class="btn-primary">Advance one month →</button>
           <div class="turn-secondary-row">
-            <button id="fastForwardBtn" type="button" class="btn-quiet" title="Simulate 6 months under current policy">+6 months</button>
-            <button id="resetBtn" type="button" class="btn-quiet">Reset (R)</button>
+            <button id="fastForwardBtn" type="button" class="btn-quiet" title="Simulate 6 months with the current settings">+6 months</button>
+            <button id="resetBtn" type="button" class="btn-quiet">Reset</button>
           </div>
-          <div class="shortcut-hint mono">Keys: Space / N = +1 mo · 1–7 = district · R = reset · Esc = close</div>
         </div>
       </aside>
     </main>
   </div>
 
-  <!-- Screen 1: Start Brief Modal -->
-  <div id="startModal" class="modal-backdrop">
-    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="startTitle">
-      <div style="display:flex; gap:8px; margin-bottom:10px; flex-wrap:wrap;">
-        <span class="pill provisional">PROVISIONAL NISAR DATA</span>
-      </div>
+  <!-- Welcome -->
+  <div id="startModal" class="modal-backdrop start-backdrop">
+    <div class="modal-card start-card" role="dialog" aria-modal="true" aria-labelledby="startTitle">
+      <p class="kicker">NASA-ISRO NISAR · Interactive simulation</p>
       <h2 id="startTitle">Valley Under Pressure</h2>
-      <p class="modal-sub">
-        Between 28 June and 14 October 2026, NASA-ISRO NISAR measured up to −7.8 cm of radar line-of-sight sinking (−10.1 cm vertical) in California's Tulare Basin and −5.9 cm (−8.0 cm vertical) in Türkiye's Konya Closed Basin.
-        Over the next 24 months, you set monthly groundwater pumping, canal deliveries, and crop fallowing across basin farming districts.
-        Keep farm revenue flowing without dropping groundwater below historical lows, or deep clay layers collapse permanently—cracking canals, drying shallow wells, and increasing sinkhole stress.
-      </p>
+      <p class="start-lede">You run the water for a farming valley for <b>24 months</b>. Pump groundwater and the farms earn money, but the ground sinks. Pump too much, and part of that sinking never comes back.</p>
 
-      <div class="start-basin-picker" role="group" aria-label="Choose starting basin">
-        <span class="start-basin-label">Choose Basin:</span>
-        <button type="button" class="basin-btn active" data-basin="tulare">Tulare Basin, USA (−7.8 cm LOS)</button>
-        <button type="button" class="basin-btn" data-basin="konya">Konya Closed Basin, Türkiye (−5.9 cm LOS)</button>
+      <ol class="start-steps">
+        <li><span>1</span><b>Pick a valley</b>Both were measured from space by NISAR in 2026.</li>
+        <li><span>2</span><b>Set the water</b>Groundwater, canal water and how much land rests.</li>
+        <li><span>3</span><b>Move month by month</b>Watch wells, canals and the ground respond.</li>
+      </ol>
+
+      <div class="basin-cards" role="radiogroup" aria-label="Choose a valley">
+        <button type="button" class="basin-card basin-btn active" data-basin="tulare" role="radio" aria-checked="true">
+          <span class="bc-check" aria-hidden="true"></span>
+          <span class="bc-place">California, USA</span>
+          <b>Tulare Basin</b>
+          <span class="bc-num"><em>−7.8</em> cm</span>
+          <span class="bc-note">sank in 108 days of summer 2026 (−10.1 cm vertical)</span>
+        </button>
+        <button type="button" class="basin-card basin-btn" data-basin="konya" role="radio" aria-checked="false">
+          <span class="bc-check" aria-hidden="true"></span>
+          <span class="bc-place">Konya, Türkiye</span>
+          <b>Konya Closed Basin</b>
+          <span class="bc-num"><em>−5.9</em> cm</span>
+          <span class="bc-note">sank in 108 days of summer 2026 (−8.0 cm vertical), near 29 sinkholes</span>
+        </button>
       </div>
 
       <details class="model-details">
-        <summary>Model details and NISAR calibration check</summary>
+        <summary>How the model works and how it was checked</summary>
         <p class="model-details-note">
-          Uses Terzaghi one-dimensional compaction with elastic storage (<em>S<sub>ke</sub></em>) above preconsolidation head (<em>h<sub>pc</sub></em>), inelastic virgin clay collapse (<em>S<sub>kv</sub></em>) below <em>h<sub>pc</sub></em>, specific yield <em>S<sub>y</sub></em> = 0.10, and calibrated pumping scale <em>k</em> = 0.623.
+          One-dimensional Terzaghi compaction: clay springs back while the water stays above its lowest level ever (<em>h<sub>pc</sub></em>) and is squeezed for good below it. Specific yield <em>S<sub>y</sub></em> = 0.10; pumping scale <em>k</em> = 0.623.
         </p>
-        <div id="startCalibrationBox" class="calibration-box">
-          Checking model calibration against <code>../data/central_valley/summary.json</code>…
-        </div>
+        <div id="startCalibrationBox" class="calibration-box">Checking the model against <code>../data/central_valley/summary.json</code>…</div>
       </details>
 
-      <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; margin-top:14px; flex-wrap:wrap;">
-        <span style="font-size:11.5px; color:var(--muted);">Data: NASA-ISRO NISAR (provisional), ASF DAAC, NGL GNSS, and OpenStreetMap.</span>
-        <button id="startBtn" type="button" class="btn-primary" style="flex:0 0 auto; padding:10px 20px;">Start 24-Month Simulation →</button>
+      <div class="start-foot">
+        <span>Data: NASA-ISRO NISAR (provisional), ASF DAAC, NGL GNSS, OpenStreetMap. Well depths and crop prices are illustrative.</span>
+        <button id="startBtn" type="button" class="btn-primary btn-lg">Start simulation →</button>
       </div>
     </div>
   </div>
 
-  <!-- Screen 4: End-of-Game Scorecard Modal -->
+  <!-- End of run -->
   <div id="endModal" class="modal-backdrop" hidden>
     <div class="modal-card modal-card-wide" role="dialog" aria-modal="true" aria-labelledby="endTitle">
-      <div style="display:flex; gap:8px; margin-bottom:8px;">
-        <span class="pill provisional">PROVISIONAL NISAR COMPARISON</span>
-      </div>
-      <h2 id="endTitle">Two Water Years Later: Your Valley vs Reality</h2>
+      <p class="kicker">24 months later</p>
+      <h2 id="endTitle">Your valley vs what NISAR measured</h2>
       <p id="endMeaning" class="modal-sub"></p>
 
       <div class="end-chart-card">
-        <div class="end-chart-head">
-          <strong>Player 24-Month Simulation vs. 2026 NISAR Vertical Displacement</strong>
-          <span class="mono" style="color:var(--muted); font-size:10.5px;">Vertical equiv. (cm)</span>
-        </div>
-        <div class="end-chart-wrap">
-          <canvas id="endCompareChart"></canvas>
-        </div>
-        <div class="end-chart-credit">
-          Figure 1. District 24-month simulated subsidence against 2026 NISAR vertical benchmark. Data: NASA-ISRO NISAR, ASF DAAC. Analysis: Team Taykut.
-        </div>
+        <div class="end-chart-head"><strong>Your 24 months vs NISAR 2026, by district</strong><span>vertical, cm</span></div>
+        <div class="end-chart-wrap"><canvas id="endCompareChart"></canvas></div>
+        <div class="end-chart-credit">Figure 1. Simulated sinking per district against the 2026 NISAR vertical estimate. Data: NASA-ISRO NISAR, ASF DAAC. Analysis: Team Taykut.</div>
       </div>
 
       <div class="compare-grid">
         <div class="compare-col">
-          <h3>Your 24-Month Simulation</h3>
-          <div class="stat-line"><span>Peak Total Subsidence</span><strong class="mono color-perm" id="endYourTotal">0.0 cm</strong></div>
-          <div class="stat-line"><span>Irreversible Clay Collapse</span><strong class="mono color-perm" id="endYourPerm">0.0 cm</strong></div>
-          <div class="stat-line"><span>Peak Canal Capacity Loss</span><strong class="mono color-warn" id="endYourCanal">0.0%</strong></div>
-          <div class="stat-line"><span>Wells Dewatered</span><strong class="mono" id="endYourWells">0</strong></div>
-          <div class="stat-line"><span>Cumulative Farm Revenue</span><strong class="mono color-ok" id="endYourRev">$0M</strong></div>
+          <h3>Your simulation</h3>
+          <div class="stat-line"><span>Most sinking</span><strong class="mono color-perm" id="endYourTotal">0.0 cm</strong></div>
+          <div class="stat-line"><span>Permanent part</span><strong class="mono color-perm" id="endYourPerm">0.0 cm</strong></div>
+          <div class="stat-line"><span>Largest canal capacity loss</span><strong class="mono color-warn" id="endYourCanal">0.0%</strong></div>
+          <div class="stat-line"><span>Wells run dry</span><strong class="mono" id="endYourWells">0</strong></div>
+          <div class="stat-line"><span>Farm revenue</span><strong class="mono color-ok" id="endYourRev">$0M</strong></div>
         </div>
         <div class="compare-col">
-          <h3>Real 2026 NISAR Observation</h3>
-          <div class="stat-line"><span>108-Day LOS Peak (p01)</span><strong class="mono color-perm" id="endNisarLos">−7.8 cm</strong></div>
-          <div class="stat-line"><span>Implied Vertical (108 d)</span><strong class="mono color-perm" id="endNisarVert">−10.1 cm</strong></div>
-          <div class="stat-line"><span>Summer Rate Extrapolation</span><strong class="mono" id="endNisarRate">−26.4 cm/yr LOS</strong></div>
-          <div class="stat-line"><span>High-Risk Assets Mapped</span><strong class="mono color-warn" id="endNisarAssets">81 / 645 segments</strong></div>
-          <div class="stat-line"><span id="endNisarValLabel">Validation GNSS r (CAHA)</span><strong class="mono color-ok" id="endNisarVal">0.90 (RMSE 0.75 cm)</strong></div>
+          <h3>NISAR 2026 (real)</h3>
+          <div class="stat-line"><span>108-day peak, line of sight</span><strong class="mono color-perm" id="endNisarLos">−7.8 cm</strong></div>
+          <div class="stat-line"><span>Same, as vertical</span><strong class="mono color-perm" id="endNisarVert">−10.1 cm</strong></div>
+          <div class="stat-line"><span>Summer rate, per year</span><strong class="mono" id="endNisarRate">−26.4 cm/yr LOS</strong></div>
+          <div class="stat-line"><span>High-risk sections mapped</span><strong class="mono color-warn" id="endNisarAssets">81 / 645 segments</strong></div>
+          <div class="stat-line"><span id="endNisarValLabel">GPS check</span><strong class="mono color-ok" id="endNisarVal">0.90 (RMSE 0.75 cm)</strong></div>
         </div>
       </div>
 
-      <div id="endClassroomBox" class="classroom-end-box">
-        <div class="classroom-end-head">
-          <strong>Classroom Mode — 3 Discussion Questions</strong>
-          <span id="endClassroomScenarioTag" class="pill mono">24-Month Comparison</span>
-        </div>
-        <ol class="classroom-q-list">
-          <li><strong>1. Patterns &amp; Rhythms (Elastic vs. Permanent Collapse):</strong> Why did winter recharge recover only the elastic fraction of sinking, while virgin clay compaction below the historical low water level (<em>h<sub>pc</sub></em>) stayed locked in permanently?</li>
-          <li><strong>2. Infrastructure Tilt vs. Total Sinking:</strong> Why does uneven sinking gradient (mm/km along a canal) reduce water delivery capacity in gravity-fed canals like the California Aqueduct and Friant-Kern Canal?</li>
-          <li><strong>3. Actionable Insights Across Basins:</strong> Comparing Tulare Basin (USA) and Konya Closed Basin (Türkiye), how can 12-day spaceborne NISAR monitoring guide pumping limits and crop fallowing before irreversible damage occurs?</li>
-        </ol>
-      </div>
-
-      <div style="display:flex; gap:8px; justify-content:flex-end; margin-top:14px; flex-wrap:wrap;">
-        <button id="copySummaryBtn" type="button" class="btn-secondary" style="flex:0 0 auto; padding:9px 14px;">Copy Shareable Summary</button>
-        <button id="closeEndBtn" type="button" class="btn-ghost">Inspect Map</button>
-        <button id="playAgainBtn" type="button" class="btn-primary" style="flex:0 0 auto; padding:9px 18px;">Play Again</button>
+      <div class="end-actions">
+        <button id="copySummaryBtn" type="button" class="btn-quiet">Copy summary</button>
+        <button id="closeEndBtn" type="button" class="btn-quiet">Inspect map</button>
+        <button id="playAgainBtn" type="button" class="btn-primary">Play again</button>
       </div>
     </div>
   </div>
 
-  <!-- Sources & Model Parameters Inspector Modal -->
+  <!-- Sources & model tests -->
   <div id="paramsModal" class="modal-backdrop" hidden>
-    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="paramsTitle">
-      <div style="display:flex; justify-content:space-between; align-items:center;">
-        <h2 id="paramsTitle" style="margin:0;">Physics Parameters &amp; Provenance</h2>
-        <button id="closeParamsBtn" type="button" class="btn-ghost">Close ✕</button>
+    <div class="modal-card modal-card-wide" role="dialog" aria-modal="true" aria-labelledby="paramsTitle">
+      <div class="modal-top">
+        <h2 id="paramsTitle">Sources &amp; verification</h2>
+        <button id="closeParamsBtn" type="button" class="icon-btn" aria-label="Close">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
       </div>
-      <p class="modal-sub" style="margin-top:6px;">
-        Every physical parameter carries either its published source or an explicit <strong>ILLUSTRATIVE</strong> disclosure per project data integrity rules.
-      </p>
-      <div id="paramsTableWrap"></div>
+      <div class="seg seg-wide" id="infoSeg" role="tablist" aria-label="Sources or model tests">
+        <span class="seg-thumb" aria-hidden="true"></span>
+        <button type="button" class="seg-btn active" data-tab="sources" role="tab" aria-selected="true">Sources &amp; parameters</button>
+        <button type="button" class="seg-btn" data-tab="tests" role="tab" aria-selected="false">Model verification</button>
+      </div>
+      <div id="paramsTableWrap" class="info-pane"></div>
+      <div id="testsWrap" class="info-pane" hidden></div>
     </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
   <script src="./model.js"></script>
+  <script src="./tests.js"></script>
   <script src="./game.js"></script>
 </body>
 </html>
