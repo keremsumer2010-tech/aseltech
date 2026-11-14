@@ -18,8 +18,8 @@ Saatler: `docs/ZAMAN_CIZELGESI.md`. "[atandı: PCx]" işi sadece o PC alır; ata
 - [x PC6] Q20 · Sunum metni: 3 dk konuşma + 30 sn video senaryosu (İngilizce altyazı) + ≤7 slayt, sayılar yer tutucu → `docs/story/pitch.md` · docs/story/pitch.md
 
 ## 14:00 EK İŞLER (Mehmet'in ajanları boş kalmasın — sırayla)
-- [ ] Q21 · [atandı: PC3] · İKİNCİ GEÇİŞLE DOĞRULAMA: Central Valley GUNW **path 114** provisional ardışık çiftleri (kendi fetch_subset ile) → kümülatif → path 34 sonucuyla aynı noktalarda karşılaştır (fark, korelasyon) → `data/central_valley_p114/` + `docs/qa/PC3.md`. İki bağımsız geometri aynı çökmeyi gösteriyorsa en güçlü kanıtımız bu · analysis/, data/central_valley_p114/
-- [ ] Q22 · [atandı: PC3] · Q21 yükselen/alçalan geçişse: iki LOS'tan dikey + doğu-batı ayrıştırması (ortak tarih aralığında) → `data/central_valley/vertical.json` + 1 PNG · analysis/
+- [x PC3] Q21 · [atandı: PC3] · İKİNCİ GEÇİŞLE DOĞRULAMA: Central Valley GUNW **path 114** provisional ardışık çiftleri (kendi fetch_subset ile) → kümülatif → path 34 sonucuyla aynı noktalarda karşılaştır (fark, korelasyon) → `data/central_valley_p114/` + `docs/qa/PC3.md`. İki bağımsız geometri aynı çökmeyi gösteriyorsa en güçlü kanıtımız bu · analysis/, data/central_valley_p114/
+- [x PC3] Q22 · [atandı: PC3] · Q21 yükselen/alçalan geçişse: iki LOS'tan dikey + doğu-batı ayrıştırması (ortak tarih aralığında) → `data/central_valley/vertical.json` + 1 PNG · analysis/
 - [x PC4] Q23 · UK bulut/radar çifti — PC4 13:12'de yaptı (`data/uk/`)
 - [x PC4] Q24 · Karapınar 29 kaynaklı obruk — PC4 yaptı
 - [x PC4] Q25 · Kaynaklar + kalibrasyon notu — PC4 yaptı

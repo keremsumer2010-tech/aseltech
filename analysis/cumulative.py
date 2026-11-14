@@ -284,10 +284,19 @@ def main():
     rmin, cmin = np.unravel_index(np.nanargmin(sm), sm.shape)
     max_sub = float(sm[rmin, cmin])
 
-    # reference sensitivity: redo the sum with the best window >= 30 km from the primary reference
-    far = np.hypot((np.arange(len(y))[:, None] - r) * abs(y[1] - y[0]), (np.arange(len(x))[None, :] - c) * abs(x[1] - x[0])) < 30000
-    try:
-        r2, c2, _ = choose_reference(coh_mean, valid_all & in_bbox, a.ref_radius, stride=3, exclude=far)
+    # reference sensitivity: redo the sum with up to two more reference windows, each >= 30 km from every
+    # reference already used (3 references in total when the scene allows it)
+    def dist_mask(rr, cc):
+        return np.hypot((np.arange(len(y))[:, None] - rr) * abs(y[1] - y[0]),
+                        (np.arange(len(x))[None, :] - cc) * abs(x[1] - x[0])) < 30000
+    used_refs, alts = [(r, c)], []
+    for _ in range(2):
+        excl = np.logical_or.reduce([dist_mask(rr, cc) for rr, cc in used_refs])
+        try:
+            r2, c2, _ = choose_reference(coh_mean, valid_all & in_bbox, a.ref_radius, stride=3, exclude=excl)
+        except ValueError:
+            break
+        used_refs.append((r2, c2))
         alt = np.zeros_like(final)
         for cm in pair_cm:
             q = reference(cm, (r2, c2), a.ref_radius)
@@ -297,11 +306,11 @@ def main():
         sm_alt = block_median(np.where(in_bbox, alt, np.nan), BLOCK_PX, BLOCK_MIN_VALID, BLOCK_MAX_STD)
         alt_max = float(sm_alt[rmin, cmin]) if np.isfinite(sm_alt[rmin, cmin]) else float(np.nanmin(sm_alt))
         lon_r2, lat_r2 = Transformer.from_crs(epsg, 4326, always_xy=True).transform(x[c2], y[r2])
-        sens = {"alt_reference": {"lon": round(lon_r2, 5), "lat": round(lat_r2, 5)},
-                "max_subsidence_cm_at_same_location": round(alt_max, 1)}
-    except ValueError:
-        sens = None
-    print("reference sensitivity:", sens)
+        alts.append({"alt_reference": {"lon": round(lon_r2, 5), "lat": round(lat_r2, 5)},
+                     "max_subsidence_cm_at_same_location": round(alt_max, 1)})
+    sens = alts[0] if alts else None
+    range_cm = sorted([round(max_sub, 1)] + [q["max_subsidence_cm_at_same_location"] for q in alts]) if alts else None
+    print("reference sensitivity:", alts, "range", range_cm)
     inc = d0["incidence"] if "incidence" in d0 and d0["incidence"].size else None
     inc_at = float(inc[rmin, cmin]) if inc is not None else None
     days = (date.fromisoformat(dates[-1]) - date.fromisoformat(dates[0])).days
@@ -387,9 +396,11 @@ def main():
     rate = max_sub / days * 365.25
     summary = {
         "max_subsidence_cm": round(max_sub, 1),
-        "max_subsidence_range_cm": (sorted([round(max_sub, 1), sens["max_subsidence_cm_at_same_location"]])
-                                    if sens else None),
+        "max_subsidence_range_cm": [range_cm[0], range_cm[-1]] if range_cm else None,
+        "range_cm": [range_cm[0], range_cm[-1]] if range_cm else None,
+        "n_references": len(alts) + 1,
         "reference_sensitivity": sens,
+        "reference_sensitivity_all": alts,
         "period": [dates[0], dates[-1]],
         "rate_cm_per_yr_estimate": round(rate, 1),
         "reference_point": {"lon": round(lon_r, 5), "lat": round(lat_r, 5)},
@@ -403,7 +414,8 @@ def main():
         "method_note": (f"Headline value = most negative median of ~1 km blocks (13x13 px, >= 50 % valid pixels, within-block std <= 2 cm) of the cumulative LOS map. Rate = linear "
                         f"extrapolation of {days} days ({dates[0]} to {dates[-1]}, irrigation season) to one year: an ESTIMATE "
                         "that likely overstates the annual net rate because part of summer subsidence recovers in winter. "
-                        "Vertical value assumes purely vertical motion (LOS / cos(incidence))."),
+                        "Vertical value assumes purely vertical motion (LOS / cos(incidence)). range_cm = spread of the headline value "
+                        "when the whole chain is re-referenced to up to two other stable windows >= 30 km away."),
     }
     (ddir / "summary.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
     (out / f"{tag}_pair_stats.json").write_text(json.dumps({"pairs": stats, "notes": notes,

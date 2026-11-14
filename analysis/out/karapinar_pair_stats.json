@@ -5,7 +5,7 @@
         "2026-06-26",
         "2026-07-08"
       ],
-      "file": "analysis/out/subset/karapinar/2026-06-26_2026-07-08.npz",
+      "file": "pipeline/subset/karapinar/2026-06-26_2026-07-08.npz",
       "lambda_m": 0.24393202441008952,
       "ionosphere_applied": true,
       "cycle_outlier_px": 0,
@@ -22,7 +22,7 @@
         "2026-07-08",
         "2026-07-20"
       ],
-      "file": "analysis/out/subset/karapinar/2026-07-08_2026-07-20.npz",
+      "file": "pipeline/subset/karapinar/2026-07-08_2026-07-20.npz",
       "lambda_m": 0.24393202441008952,
       "ionosphere_applied": true,
       "cycle_outlier_px": 0,
@@ -39,7 +39,7 @@
         "2026-07-20",
         "2026-08-13"
       ],
-      "file": "analysis/out/subset/karapinar/2026-07-20_2026-08-13.npz",
+      "file": "pipeline/subset/karapinar/2026-07-20_2026-08-13.npz",
       "lambda_m": 0.24393202441008952,
       "ionosphere_applied": true,
       "cycle_outlier_px": 0,
@@ -56,7 +56,7 @@
         "2026-08-13",
         "2026-08-25"
       ],
-      "file": "analysis/out/subset/karapinar/2026-08-13_2026-08-25.npz",
+      "file": "pipeline/subset/karapinar/2026-08-13_2026-08-25.npz",
       "lambda_m": 0.24393202441008952,
       "ionosphere_applied": true,
       "cycle_outlier_px": 0,
@@ -73,7 +73,7 @@
         "2026-08-25",
         "2026-09-06"
       ],
-      "file": "analysis/out/subset/karapinar/2026-08-25_2026-09-06.npz",
+      "file": "pipeline/subset/karapinar/2026-08-25_2026-09-06.npz",
       "lambda_m": 0.24393202441008952,
       "ionosphere_applied": true,
       "cycle_outlier_px": 0,
@@ -90,7 +90,7 @@
         "2026-09-06",
         "2026-09-18"
       ],
-      "file": "analysis/out/subset/karapinar/2026-09-06_2026-09-18.npz",
+      "file": "pipeline/subset/karapinar/2026-09-06_2026-09-18.npz",
       "lambda_m": 0.24393202441008952,
       "ionosphere_applied": true,
       "cycle_outlier_px": 10,
@@ -107,7 +107,7 @@
         "2026-09-18",
         "2026-09-30"
       ],
-      "file": "analysis/out/subset/karapinar/2026-09-18_2026-09-30.npz",
+      "file": "pipeline/subset/karapinar/2026-09-18_2026-09-30.npz",
       "lambda_m": 0.24393202441008952,
       "ionosphere_applied": true,
       "cycle_outlier_px": 16,
@@ -124,7 +124,7 @@
         "2026-09-30",
         "2026-10-12"
       ],
-      "file": "analysis/out/subset/karapinar/2026-09-30_2026-10-12.npz",
+      "file": "pipeline/subset/karapinar/2026-09-30_2026-10-12.npz",
       "lambda_m": 0.24393202441008952,
       "ionosphere_applied": true,
       "cycle_outlier_px": 0,

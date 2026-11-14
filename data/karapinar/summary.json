@@ -1,7 +1,10 @@
 {
   "max_subsidence_cm": -5.9,
   "max_subsidence_range_cm": null,
+  "range_cm": null,
+  "n_references": 1,
   "reference_sensitivity": null,
+  "reference_sensitivity_all": [],
   "period": [
     "2026-06-26",
     "2026-10-12"
@@ -19,7 +22,7 @@
     "lat": 37.71818
   },
   "max_subsidence_vertical_cm_estimate": -8.0,
-  "incidence_deg_at_max": 42.0,
+  "incidence_deg_at_max": 41.9,
   "n_pairs": 8,
-  "method_note": "Headline value = most negative median of ~1 km blocks (13x13 px, >= 50 % valid pixels, within-block std <= 2 cm) of the cumulative LOS map. Rate = linear extrapolation of 108 days (2026-06-26 to 2026-10-12, irrigation season) to one year: an ESTIMATE that likely overstates the annual net rate because part of summer subsidence recovers in winter. Vertical value assumes purely vertical motion (LOS / cos(incidence))."
+  "method_note": "Headline value = most negative median of ~1 km blocks (13x13 px, >= 50 % valid pixels, within-block std <= 2 cm) of the cumulative LOS map. Rate = linear extrapolation of 108 days (2026-06-26 to 2026-10-12, irrigation season) to one year: an ESTIMATE that likely overstates the annual net rate because part of summer subsidence recovers in winter. Vertical value assumes purely vertical motion (LOS / cos(incidence)). range_cm = spread of the headline value when the whole chain is re-referenced to up to two other stable windows >= 30 km away."
 }
