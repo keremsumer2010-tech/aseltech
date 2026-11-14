@@ -13,6 +13,10 @@
     <header class="topbar">
       <div class="brand-group">
         <h1 class="brand-title">Valley Under Pressure</h1>
+        <div class="basin-switch" role="group" aria-label="Select study basin">
+          <button type="button" class="basin-btn active" data-basin="tulare">Tulare Basin, USA</button>
+          <button type="button" class="basin-btn" data-basin="konya">Konya Basin, Türkiye</button>
+        </div>
         <span class="pill provisional" title="NISAR data are provisional. Calibration and validation are carried out by NASA-JPL and ISRO.">PROVISIONAL NISAR</span>
         <span id="monthPill" class="pill mono">Month 0 of 24 · Oct 2026 · Autumn</span>
         <span id="wyPill" class="pill wy-below">WY1: Below Normal (70% Cap)</span>
@@ -57,6 +61,7 @@
             <span><i class="dot" style="background:#3ddc97"></i>Canal &lt;5 mm/km</span>
             <span><i class="dot" style="background:#f5b942"></i>5–10</span>
             <span><i class="dot" style="background:#ff6b57"></i>&gt;10 mm/km</span>
+            <span id="sinkholeLegendItem" hidden><i class="dot" style="background:transparent;border:2px solid #f5b942;"></i>29 obruks (ref)</span>
           </div>
         </aside>
       </section>
@@ -76,16 +81,17 @@
       <aside class="control-panel" aria-label="Aquifer controls and stratigraphy">
         <div class="section-card">
           <div class="section-head">
-            <h2 class="section-title">Select District (Tulare Basin)</h2>
+            <h2 class="section-title" id="districtSelectTitle">Select District (Tulare Basin)</h2>
             <span class="pill" id="districtCoordsPill">36.01°N, 119.02°W</span>
           </div>
           <div id="districtTabs" class="district-tabs"></div>
           <div class="apply-all-row">
             <label for="applyAllChk" style="cursor:pointer; display:flex; align-items:center; gap:6px;">
               <input id="applyAllChk" type="checkbox">
-              <span>Apply slider changes to all 7 districts</span>
+              <span id="applyAllLabel">Apply slider changes to all 7 districts</span>
             </label>
           </div>
+          <div id="sinkholeStatusBanner" class="sinkhole-banner" hidden></div>
         </div>
 
         <div class="section-card">
@@ -217,6 +223,12 @@
         Keep farm revenue flowing without dropping groundwater below historical lows, or deep clay layers collapse permanently—cracking canals, drying shallow wells, and increasing sinkhole stress.
       </p>
 
+      <div class="start-basin-picker" role="group" aria-label="Choose starting basin">
+        <span class="start-basin-label">Choose Basin:</span>
+        <button type="button" class="basin-btn active" data-basin="tulare">Tulare Basin, USA (−7.8 cm LOS)</button>
+        <button type="button" class="basin-btn" data-basin="konya">Konya Closed Basin, Türkiye (−5.9 cm LOS)</button>
+      </div>
+
       <details class="model-details">
         <summary>Model details and NISAR calibration check</summary>
         <p class="model-details-note">
@@ -270,8 +282,8 @@
           <div class="stat-line"><span>108-Day LOS Peak (p01)</span><strong class="mono color-perm" id="endNisarLos">−7.8 cm</strong></div>
           <div class="stat-line"><span>Implied Vertical (108 d)</span><strong class="mono color-perm" id="endNisarVert">−10.1 cm</strong></div>
           <div class="stat-line"><span>Summer Rate Extrapolation</span><strong class="mono" id="endNisarRate">−26.4 cm/yr LOS</strong></div>
-          <div class="stat-line"><span>High-Risk Assets Mapped</span><strong class="mono color-warn">81 / 645 segments</strong></div>
-          <div class="stat-line"><span>Validation GNSS r (CAHA)</span><strong class="mono color-ok">0.90 (RMSE 0.75 cm)</strong></div>
+          <div class="stat-line"><span>High-Risk Assets Mapped</span><strong class="mono color-warn" id="endNisarAssets">81 / 645 segments</strong></div>
+          <div class="stat-line"><span id="endNisarValLabel">Validation GNSS r (CAHA)</span><strong class="mono color-ok" id="endNisarVal">0.90 (RMSE 0.75 cm)</strong></div>
         </div>
       </div>
 

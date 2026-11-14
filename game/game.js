@@ -2,9 +2,50 @@
 (function () {
   'use strict';
 
-  const CV_BBOX = [-120.2, 35.6, -119.0, 36.6];
-  const CV_CENTER = [-119.62, 36.08];
+  const BASIN_UI = {
+    tulare: {
+      id: 'tulare',
+      shortLabel: 'Tulare Basin',
+      bbox: [-120.2, 35.6, -119.0, 36.6],
+      center: [-119.62, 36.08],
+      zoom: 8.6,
+      zoneRadLon: 0.082,
+      zoneRadLat: 0.064,
+      rasterUrl: '../data/central_valley/disp/2026-10-14.png',
+      summaryUrl: '../data/central_valley/summary.json',
+      pointsUrl: '../data/central_valley/points.json',
+      assetsUrl: '../data/central_valley/assets.json',
+      localInfraUrl: '../risk/central_valley_infra.geojson',
+      sinkholesUrl: null,
+      windowLabel: '2026-06-28 → 2026-10-14',
+      calNote: 'ref range −4.7…−7.8 cm LOS',
+      endAssetsText: '81 / 645 segments',
+      endValLabel: 'Validation GNSS r (CAHA)',
+      endValText: '0.90 (RMSE 0.75 cm)',
+    },
+    konya: {
+      id: 'konya',
+      shortLabel: 'Konya Closed Basin',
+      bbox: [33.3, 37.6, 33.8, 37.9],
+      center: [33.63, 37.73],
+      zoom: 10.6,
+      zoneRadLon: 0.036,
+      zoneRadLat: 0.025,
+      rasterUrl: '../data/karapinar/disp/2026-10-12.png',
+      summaryUrl: '../data/karapinar/summary.json',
+      pointsUrl: '../data/karapinar/points.json',
+      assetsUrl: '../data/karapinar/assets.json',
+      localInfraUrl: '../risk/karapinar_infra.geojson',
+      sinkholesUrl: '../data/karapinar/sinkholes.geojson',
+      windowLabel: '2026-06-26 → 2026-10-12',
+      calNote: '41.9 deg incidence; 29 documented obruks',
+      endAssetsText: '10 / 64 corridors · 29 obruks',
+      endValLabel: '0–1 km Obruk Ring NISAR Mean',
+      endValText: '−4.15 cm LOS',
+    },
+  };
 
+  let activeBasinId = 'tulare';
   let simState = null;
   let selectedDistrictId = 'p01';
   let applyAll = false;
@@ -15,10 +56,13 @@
   let map = null;
   let mapReady = false;
   let districtMarkers = {};
+  let refMarker = null;
   let assetsGeoJson = null;
   let infraBackdropGeoJson = null;
+  let sinkholesGeoJson = null;
   let summaryData = null;
   let pointsData = null;
+  const basinDataCache = {};
   let timelineChart = null;
   let endCompareChart = null;
 
@@ -77,10 +121,11 @@
   function buildDistrictZonesGeoJson() {
     const features = [];
     const steps = 8;
+    const ui = BASIN_UI[activeBasinId] || BASIN_UI.tulare;
     simState.districts.forEach((d) => {
       const coords = [];
-      const radLon = 0.082;
-      const radLat = 0.064;
+      const radLon = ui.zoneRadLon;
+      const radLat = ui.zoneRadLat;
       for (let i = 0; i <= steps; i++) {
         const ang = (i / steps) * Math.PI * 2 + Math.PI / 8;
         coords.push([d.lon + Math.cos(ang) * radLon, d.lat + Math.sin(ang) * radLat]);
@@ -143,7 +188,7 @@
     });
 
     const canalFeatures = assetsGeoJson.features
-      .filter((f) => f.properties && f.properties.type === 'canal')
+      .filter((f) => f.properties && (f.properties.type === 'canal' || (activeBasinId === 'konya' && f.properties.risk === 'high')))
       .map((f) => {
         const d = byId[f.properties._districtId] || simState.districts[0];
         const amp = Math.max(0.15, Math.abs(d.totalCm) / Math.max(1.5, Math.abs(ValleyModel.losToVertical(d.nisarLosCm, simState.incidenceDeg))));
@@ -162,15 +207,56 @@
     return { type: 'FeatureCollection', features: canalFeatures };
   }
 
+  function rebuildMapMarkers() {
+    Object.values(districtMarkers).forEach((m) => {
+      if (m && m.marker) m.marker.remove();
+    });
+    districtMarkers = {};
+    if (refMarker) {
+      refMarker.remove();
+      refMarker = null;
+    }
+    if (!mapReady || !simState) return;
+
+    // Interactive District Place Labels (zero missing glyph server errors)
+    simState.districts.forEach((d) => {
+      const el = document.createElement('button');
+      el.type = 'button';
+      el.style.cssText =
+        'background:rgba(11,15,20,0.88);border:1px solid #2f4259;color:#e6edf3;padding:3px 7px;border-radius:4px;font-size:11px;font-weight:600;cursor:pointer;white-space:nowrap;font-family:inherit;box-shadow:0 2px 8px rgba(0,0,0,0.5);';
+      el.innerHTML = `<span>${d.shortName}</span> <span class="mval mono" style="color:#ff6b57;">0.0 cm</span>`;
+      el.addEventListener('click', () => selectDistrict(d.id, false));
+      const mk = new maplibregl.Marker({ element: el, anchor: 'bottom' })
+        .setLngLat([d.lon, d.lat])
+        .addTo(map);
+      districtMarkers[d.id] = { marker: mk, el };
+    });
+
+    // Stable reference marker from points.json
+    if (Array.isArray(pointsData)) {
+      const refPt = pointsData.find((p) => p.kind === 'near_reference');
+      if (refPt) {
+        const refEl = document.createElement('div');
+        refEl.style.cssText =
+          'background:rgba(15,21,29,0.82);border:1px dashed #3ddc97;color:#3ddc97;padding:2px 6px;border-radius:4px;font-size:10px;font-family:ui-monospace,monospace;';
+        refEl.textContent = `REF: ${refPt.name}`;
+        refMarker = new maplibregl.Marker({ element: refEl, anchor: 'top' })
+          .setLngLat([refPt.lon, refPt.lat])
+          .addTo(map);
+      }
+    }
+  }
+
   /**
    * Initialize MapLibre 4.7.1 with Esri World Imagery + NISAR Raster + Real OSM Canals/Roads + District Markers.
    */
   function initMap() {
+    const ui = BASIN_UI[activeBasinId] || BASIN_UI.tulare;
     map = new maplibregl.Map({
       container: 'map',
-      center: CV_CENTER,
-      zoom: 8.6,
-      minZoom: 7.5,
+      center: ui.center,
+      zoom: ui.zoom,
+      minZoom: 7.0,
       maxZoom: 14,
       attributionControl: true,
       style: {
@@ -186,12 +272,12 @@
           },
           'nisar-disp': {
             type: 'image',
-            url: '../data/central_valley/disp/2026-10-14.png',
+            url: ui.rasterUrl,
             coordinates: [
-              [CV_BBOX[0], CV_BBOX[3]],
-              [CV_BBOX[2], CV_BBOX[3]],
-              [CV_BBOX[2], CV_BBOX[1]],
-              [CV_BBOX[0], CV_BBOX[1]],
+              [ui.bbox[0], ui.bbox[3]],
+              [ui.bbox[2], ui.bbox[3]],
+              [ui.bbox[2], ui.bbox[1]],
+              [ui.bbox[0], ui.bbox[1]],
             ],
           },
         },
@@ -242,7 +328,7 @@
         },
       });
 
-      // Roads/rails & canals backdrop from data/central_valley/assets.json (Pages-safe; full risk/ geojson optionally added locally)
+      // Roads/rails & canals backdrop from active basin assets.json
       map.addSource('infra-backdrop', {
         type: 'geojson',
         data: infraBackdropGeoJson || assetsGeoJson || { type: 'FeatureCollection', features: [] },
@@ -272,7 +358,7 @@
         },
       });
 
-      // Evaluated dynamic canals from assets.json (green -> yellow -> red live risk)
+      // Evaluated dynamic canals / corridors from assets.json
       map.addSource('infra-canals', {
         type: 'geojson',
         data: buildDynamicCanalsGeoJson(),
@@ -288,34 +374,27 @@
         },
       });
 
-      // Interactive District Place Labels (zero missing glyph server errors)
-      simState.districts.forEach((d) => {
-        const el = document.createElement('button');
-        el.type = 'button';
-        el.style.cssText =
-          'background:rgba(11,15,20,0.88);border:1px solid #2f4259;color:#e6edf3;padding:3px 7px;border-radius:4px;font-size:11px;font-weight:600;cursor:pointer;white-space:nowrap;font-family:inherit;box-shadow:0 2px 8px rgba(0,0,0,0.5);';
-        el.innerHTML = `<span>${d.shortName}</span> <span class="mval mono" style="color:#ff6b57;">0.0 cm</span>`;
-        el.addEventListener('click', () => selectDistrict(d.id, false));
-        const mk = new maplibregl.Marker({ element: el, anchor: 'bottom' })
-          .setLngLat([d.lon, d.lat])
-          .addTo(map);
-        districtMarkers[d.id] = { marker: mk, el };
+      // Konya Karapinar documented sinkholes (29 features)
+      map.addSource('karapinar-sinkholes', {
+        type: 'geojson',
+        data: sinkholesGeoJson || { type: 'FeatureCollection', features: [] },
+      });
+      map.addLayer({
+        id: 'karapinar-sinkholes-layer',
+        type: 'circle',
+        source: 'karapinar-sinkholes',
+        layout: {
+          visibility: activeBasinId === 'konya' ? 'visible' : 'none',
+        },
+        paint: {
+          'circle-radius': 5.5,
+          'circle-color': 'rgba(245, 185, 66, 0.22)',
+          'circle-stroke-color': '#f5b942',
+          'circle-stroke-width': 1.6,
+        },
       });
 
-      // Woodlake stable reference marker from points.json
-      if (Array.isArray(pointsData)) {
-        const refPt = pointsData.find((p) => p.kind === 'near_reference');
-        if (refPt) {
-          const refEl = document.createElement('div');
-          refEl.style.cssText =
-            'background:rgba(15,21,29,0.82);border:1px dashed #3ddc97;color:#3ddc97;padding:2px 6px;border-radius:4px;font-size:10px;font-family:ui-monospace,monospace;';
-          refEl.textContent = `REF: ${refPt.name}`;
-          new maplibregl.Marker({ element: refEl, anchor: 'top' })
-            .setLngLat([refPt.lon, refPt.lat])
-            .addTo(map);
-        }
-      }
-
+      rebuildMapMarkers();
       applyOverlayMode();
       refreshMapDynamicLayers();
     });
@@ -690,7 +769,28 @@
       btn.addEventListener('click', () => selectDistrict(btn.dataset.did, true));
     });
 
-    $('districtCoordsPill').textContent = `${d.lat.toFixed(2)}°N, ${Math.abs(d.lon).toFixed(2)}°W`;
+    $('districtCoordsPill').textContent = `${d.lat.toFixed(2)}°N, ${Math.abs(d.lon).toFixed(2)}°${d.lon >= 0 ? 'E' : 'W'}`;
+    const ui = BASIN_UI[activeBasinId] || BASIN_UI.tulare;
+    $('districtSelectTitle').textContent = `Select District (${ui.shortLabel})`;
+    $('applyAllLabel').textContent = `Apply slider changes to all ${simState.districts.length} districts`;
+    $('sinkholeLegendItem').hidden = activeBasinId !== 'konya';
+
+    const sinkBanner = $('sinkholeStatusBanner');
+    if (sinkBanner) {
+      if (activeBasinId === 'konya') {
+        sinkBanner.hidden = false;
+        const hitList = simState.districts.filter((x) => x.sinkholeRiskIndicator).map((x) => x.shortName);
+        if (hitList.length > 0) {
+          sinkBanner.className = 'sinkhole-banner elevated';
+          sinkBanner.innerHTML = `<strong>Sinkhole risk indicator: Elevated</strong> (${hitList.join(', ')}) — indicator only; does not predict collapse of individual obruks.`;
+        } else {
+          sinkBanner.className = 'sinkhole-banner';
+          sinkBanner.innerHTML = `<strong>Sinkhole risk indicator: Baseline</strong> (0/6 zones past 4 cm karst threshold; indicator only, not predictive).`;
+        }
+      } else {
+        sinkBanner.hidden = true;
+      }
+    }
 
     // Sliders & Dynamic Surface Cap
     $('pumpSlider').value = d.controls.pumpingPct;
@@ -756,20 +856,26 @@
     $('endYourWells').textContent = `${totalDry} wells`;
     $('endYourRev').textContent = `$${totalRev.toFixed(1)}M`;
 
-    const measuredLos = summaryData ? summaryData.max_subsidence_cm : -7.8;
-    const measuredVert = summaryData ? summaryData.max_subsidence_vertical_cm_estimate : -10.1;
-    const rate = summaryData ? summaryData.rate_cm_per_yr_estimate : -26.4;
+    const ui = BASIN_UI[activeBasinId] || BASIN_UI.tulare;
+    const basinCfg = ValleyModel.getBasinConfig(activeBasinId);
+    const measuredLos = summaryData ? summaryData.max_subsidence_cm : basinCfg.targetMeasuredLosCm;
+    const measuredVert = summaryData ? summaryData.max_subsidence_vertical_cm_estimate : basinCfg.targetMeasuredVertCm;
+    const rate = summaryData ? summaryData.rate_cm_per_yr_estimate : (activeBasinId === 'konya' ? -20.0 : -26.4);
     $('endNisarLos').textContent = `${measuredLos} cm`;
     $('endNisarVert').textContent = `~${measuredVert} cm`;
     $('endNisarRate').textContent = `${rate} cm/yr LOS`;
+    $('endNisarAssets').textContent = ui.endAssetsText;
+    $('endNisarValLabel').textContent = ui.endValLabel;
+    $('endNisarVal').textContent = ui.endValText;
 
+    const sinkNote = activeBasinId === 'konya' && simState.sinkholeRiskActive ? ' Sinkhole risk indicators are elevated near mapped obruks (indicator only).' : '';
     let takeaway = '';
     if (Math.abs(worst.inelasticCm) >= 12) {
-      takeaway = `What this means: Heavy groundwater pumping dropped levels past historical lows, locking in ${worst.inelasticCm.toFixed(1)} cm of permanent clay collapse near ${worst.shortName}. Even future wet winters cannot restore that lost underground pore storage.`;
+      takeaway = `What this means: Heavy groundwater pumping dropped levels past historical lows, locking in ${worst.inelasticCm.toFixed(1)} cm of permanent clay collapse near ${worst.shortName}. Even future wet winters cannot restore that lost underground pore storage.${sinkNote}`;
     } else if (Math.abs(worst.inelasticCm) <= 4) {
-      takeaway = `What this means: Limiting groundwater extraction balanced winter recharge and kept permanent collapse to ${worst.inelasticCm.toFixed(1)} cm across the basin. Canal conveyance gradients stayed within safe design limits.`;
+      takeaway = `What this means: Limiting groundwater extraction balanced winter recharge and kept permanent collapse to ${worst.inelasticCm.toFixed(1)} cm across the basin. Surface corridor gradients stayed within safe design limits.`;
     } else {
-      takeaway = `What this means: Summer irrigation temporarily pushed hotspots past historical lows, causing ${worst.inelasticCm.toFixed(1)} cm of permanent clay collapse near ${worst.shortName}. Reducing summer pumping peaks before dry years protects canal capacity and wells.`;
+      takeaway = `What this means: Summer irrigation temporarily pushed hotspots past historical lows, causing ${worst.inelasticCm.toFixed(1)} cm of permanent clay collapse near ${worst.shortName}. Reducing summer pumping peaks before dry years protects surface corridors and shallow wells.${sinkNote}`;
     }
     $('endMeaning').textContent = takeaway;
     $('endModal').hidden = false;
@@ -871,10 +977,11 @@
   }
 
   function buildParamsTableHtml() {
-    const cal = ValleyModel.runCalibrationCheck(summaryData);
+    const cal = ValleyModel.runCalibrationCheck(summaryData, activeBasinId);
+    const basinCfg = ValleyModel.getBasinConfig(activeBasinId);
     const p = ValleyModel.CONFIG.physics;
     const rows = [
-      ['Model Check Factor (k)', `${cal.calibrationFactor}`, 'Multiplier (108-day NISAR summer benchmark)', 'Calibrated to data/central_valley/summary.json (-10.1 cm vert / -7.8 cm LOS)', false],
+      ['Model Check Factor (k)', `${cal.calibrationFactor}`, `Multiplier (${basinCfg.shortLabel} 108-day benchmark)`, `Calibrated to ${basinCfg.summaryPath} (${cal.measuredVertCm} cm vert / ${cal.measuredLosCm} cm LOS)`, false],
       ['Specific Yield (S_y)', `${p.specificYield.value}`, p.specificYield.unit, p.specificYield.source, p.specificYield.illustrative],
       ['Elastic Skeletal Storage (S_ske)', `${p.elasticSpecificStorage.value}`, p.elasticSpecificStorage.unit, p.elasticSpecificStorage.source, p.elasticSpecificStorage.illustrative],
       ['Inelastic Skeletal Storage (S_skv)', `${p.inelasticSpecificStorage.value}`, p.inelasticSpecificStorage.unit, p.inelasticSpecificStorage.source, p.inelasticSpecificStorage.illustrative],
@@ -900,18 +1007,109 @@
   }
 
   function resetSimulation(keepModalHidden) {
-    const hydrated = ValleyModel.hydrateFromRepoData(pointsData, summaryData);
+    const ui = BASIN_UI[activeBasinId] || BASIN_UI.tulare;
+    const hydrated = ValleyModel.hydrateFromRepoData(pointsData, summaryData, activeBasinId);
     simState = ValleyModel.createSimulationState({
+      basinId: activeBasinId,
       districts: hydrated.districts,
       summaryData: hydrated.summaryData,
       year1WaterYear: 'Below Normal',
     });
+    selectedDistrictId = simState.districts[0].id;
     if (keepModalHidden) $('endModal').hidden = true;
     $('eventList').innerHTML = `<div class="event-item">
-      <div class="event-title">Simulation Reset — Oct 2026 Water Year Start</div>
-      <div>Calibrated to NASA-ISRO NISAR provisional measurements (2026-06-28 → 2026-10-14).</div>
-      <div class="event-src">Source: ../data/central_valley/summary.json</div>
+      <div class="event-title">Simulation Ready — ${ui.shortLabel} (Oct 2026)</div>
+      <div>Calibrated to NASA-ISRO NISAR provisional measurements (${ui.windowLabel}).</div>
+      <div class="event-src">Source: ${ui.summaryUrl}</div>
     </div>`;
+    syncUI();
+  }
+
+  function updateBasinCalibrationCard() {
+    const ui = BASIN_UI[activeBasinId] || BASIN_UI.tulare;
+    const cal = ValleyModel.runCalibrationCheck(summaryData, activeBasinId);
+    $('startCalibrationBox').innerHTML =
+      `<strong>Model check against NISAR (${cal.within10Pct ? 'PASS ±10%' : 'CHECK'} · ${ui.shortLabel}):</strong>
+      Under baseline summer pumping for the 108-day NISAR window (${ui.windowLabel}), the model simulates
+      <span class="mono color-ok">${cal.simulatedVertCm} cm</span> vertical (<span class="mono">${cal.simulatedLosCm} cm</span> LOS) at ${cal.district} vs
+      <span class="mono">${cal.measuredVertCm} cm</span> vertical (<span class="mono">${cal.measuredLosCm} cm</span> LOS; ${ui.calNote}) measured by NISAR
+      (<span class="mono">error: ${cal.errorPct}%</span>, extraction scale factor <span class="mono">k=${cal.calibrationFactor}</span>).`;
+  }
+
+  async function loadBasinData(basinId) {
+    if (basinDataCache[basinId]) return basinDataCache[basinId];
+    const ui = BASIN_UI[basinId] || BASIN_UI.tulare;
+    const fetchSafe = async (url) => {
+      if (!url) return null;
+      try {
+        const r = await fetch(url);
+        if (!r.ok) {
+          console.warn(`Optional/data asset HTTP ${r.status}: ${url}`);
+          return null;
+        }
+        return await r.json();
+      } catch (err) {
+        console.warn(`Failed fetching ${url}:`, err);
+        return null;
+      }
+    };
+    const isLocal = location.hostname === '127.0.0.1' || location.hostname === 'localhost';
+    const [sRes, pRes, aRes, iRes, shRes] = await Promise.all([
+      fetchSafe(ui.summaryUrl),
+      fetchSafe(ui.pointsUrl),
+      fetchSafe(ui.assetsUrl),
+      isLocal ? fetchSafe(ui.localInfraUrl) : Promise.resolve(null),
+      ui.sinkholesUrl ? fetchSafe(ui.sinkholesUrl) : Promise.resolve(null),
+    ]);
+    const bundle = { summary: sRes, points: pRes, assets: aRes, infra: iRes, sinkholes: shRes };
+    basinDataCache[basinId] = bundle;
+    return bundle;
+  }
+
+  async function switchBasin(basinId, flyMap) {
+    if (!BASIN_UI[basinId]) return;
+    activeBasinId = basinId;
+    document.querySelectorAll('.basin-btn').forEach((b) => {
+      b.classList.toggle('active', b.dataset.basin === basinId);
+    });
+    const ui = BASIN_UI[basinId];
+    const bundle = await loadBasinData(basinId);
+    summaryData = bundle.summary;
+    pointsData = bundle.points;
+    assetsGeoJson = bundle.assets;
+    infraBackdropGeoJson = bundle.infra;
+    sinkholesGeoJson = bundle.sinkholes;
+
+    resetSimulation(true);
+    if (assetsGeoJson) tagAssetsToNearestDistrict(assetsGeoJson);
+    updateBasinCalibrationCard();
+
+    if (mapReady) {
+      const dispSrc = map.getSource('nisar-disp');
+      if (dispSrc && typeof dispSrc.updateImage === 'function') {
+        dispSrc.updateImage({
+          url: ui.rasterUrl,
+          coordinates: [
+            [ui.bbox[0], ui.bbox[3]],
+            [ui.bbox[2], ui.bbox[3]],
+            [ui.bbox[2], ui.bbox[1]],
+            [ui.bbox[0], ui.bbox[1]],
+          ],
+        });
+      }
+      const ibSrc = map.getSource('infra-backdrop');
+      if (ibSrc) ibSrc.setData(infraBackdropGeoJson || assetsGeoJson || { type: 'FeatureCollection', features: [] });
+      const shSrc = map.getSource('karapinar-sinkholes');
+      if (shSrc) shSrc.setData(sinkholesGeoJson || { type: 'FeatureCollection', features: [] });
+      if (map.getLayer('karapinar-sinkholes-layer')) {
+        map.setLayoutProperty('karapinar-sinkholes-layer', 'visibility', basinId === 'konya' ? 'visible' : 'none');
+      }
+      rebuildMapMarkers();
+      refreshMapDynamicLayers();
+      if (flyMap) {
+        map.flyTo({ center: ui.center, zoom: ui.zoom, duration: 750 });
+      }
+    }
     syncUI();
   }
 
@@ -985,8 +1183,9 @@
     });
 
     $('copySummaryBtn').addEventListener('click', async () => {
+      const ui = BASIN_UI[activeBasinId] || BASIN_UI.tulare;
       const worst = [...simState.districts].sort((a, b) => a.totalCm - b.totalCm)[0];
-      const text = `Valley Under Pressure (24-Mo NISAR Sim) — Peak: ${worst.totalCm.toFixed(1)} cm (${worst.inelasticCm.toFixed(1)} cm permanent) near ${worst.shortName} vs 2026 NISAR 108-day baseline (-7.8 cm LOS / -10.1 cm vertical).`;
+      const text = `Valley Under Pressure (${ui.shortLabel}, 24-Mo NISAR Sim) — Peak: ${worst.totalCm.toFixed(1)} cm (${worst.inelasticCm.toFixed(1)} cm permanent) near ${worst.shortName}.`;
       try {
         if (navigator.clipboard) await navigator.clipboard.writeText(text);
         $('copySummaryBtn').textContent = 'Copied ✓';
@@ -995,45 +1194,28 @@
         $('copySummaryBtn').textContent = 'Summary Ready';
       }
     });
+
+    document.querySelectorAll('.basin-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        if (btn.dataset.basin && btn.dataset.basin !== activeBasinId) {
+          playTone('click');
+          switchBasin(btn.dataset.basin, true);
+        }
+      });
+    });
   }
 
   async function boot() {
-    const fetchSafe = async (url) => {
-      try {
-        const r = await fetch(url);
-        if (!r.ok) {
-          console.warn(`Optional/data asset HTTP ${r.status}: ${url}`);
-          return null;
-        }
-        return await r.json();
-      } catch (err) {
-        console.warn(`Failed fetching ${url}:`, err);
-        return null;
-      }
-    };
-
-    const isLocal = location.hostname === '127.0.0.1' || location.hostname === 'localhost';
-    const [sRes, pRes, aRes, iRes] = await Promise.all([
-      fetchSafe('../data/central_valley/summary.json'),
-      fetchSafe('../data/central_valley/points.json'),
-      fetchSafe('../data/central_valley/assets.json'),
-      isLocal ? fetchSafe('../risk/central_valley_infra.geojson') : Promise.resolve(null),
-    ]);
-    summaryData = sRes;
-    pointsData = pRes;
-    assetsGeoJson = aRes;
-    infraBackdropGeoJson = iRes;
+    const bundle = await loadBasinData(activeBasinId);
+    summaryData = bundle.summary;
+    pointsData = bundle.points;
+    assetsGeoJson = bundle.assets;
+    infraBackdropGeoJson = bundle.infra;
+    sinkholesGeoJson = bundle.sinkholes;
 
     resetSimulation(true);
     if (assetsGeoJson) tagAssetsToNearestDistrict(assetsGeoJson);
-
-    const cal = ValleyModel.runCalibrationCheck(summaryData);
-    $('startCalibrationBox').innerHTML =
-      `<strong>Model check against NISAR (${cal.within10Pct ? 'PASS ±10%' : 'CHECK'}):</strong>
-      Under baseline summer pumping for the 108-day NISAR window (Jun–Oct 2026), the model simulates
-      <span class="mono color-ok">${cal.simulatedVertCm} cm</span> vertical (<span class="mono">${cal.simulatedLosCm} cm</span> LOS) at Terra Bella vs
-      <span class="mono">${cal.measuredVertCm} cm</span> vertical (<span class="mono">${cal.measuredLosCm} cm</span> LOS; ref range −4.7…−7.8 cm LOS) measured by NISAR
-      (<span class="mono">error: ${cal.errorPct}%</span>, extraction scale factor <span class="mono">k=${cal.calibrationFactor}</span>).`;
+    updateBasinCalibrationCard();
 
     wireControls();
     initMap();

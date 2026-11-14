@@ -95,7 +95,8 @@
     thresholds: {
       canalMediumGradientMmKm: 5.0,
       canalHighGradientMmKm: 10.0,
-      source: 'Aligned with risk/compute_risk.py and data/central_valley/assets.json',
+      sinkholeAlertCm: 4.0, // Karapinar 0-1 km NISAR ring mean (-4.152 cm LOS, data/karapinar/assets.json)
+      source: 'Aligned with risk/compute_risk.py, data/central_valley/assets.json, and data/karapinar/assets.json',
       illustrative: true,
     },
   };
@@ -255,6 +256,178 @@
     },
   ];
 
+  /**
+   * 6 Konya Closed Basin (Karapinar, Turkiye) zones anchored directly on data/karapinar/points.json & assets.json.
+   * Baseline NISAR span: 2026-06-26 -> 2026-10-12 (-5.9 cm LOS peak, -8.0 cm implied vertical at 41.9 deg incidence).
+   */
+  const KONYA_DISTRICTS = [
+    {
+      id: 'p01',
+      name: 'West Karapinar Core',
+      shortName: 'W. Karapinar',
+      pointName: '2 km W of Karapınar',
+      lon: 33.53056,
+      lat: 37.71818,
+      areaKm2: 180,
+      clayThicknessM: 64, // Thick lacustrine carbonates & neogene clay interbeds
+      initialHeadM: -46.0,
+      preconsolidationHeadM: -46.3,
+      pumpingIntensity: 1.0,
+      wellDepthsM: [49, 53, 58, 65, 74, 86],
+      revenuePerIrrigatedHa: 3400,
+      irrigatedAreaKHa: 28,
+      canalCorridor: 'Karapinar D330 Corridor',
+      baseGradientMmKm: 32.8,
+      sinkholesWithin5km: 10,
+      nisarLosCm: -5.93,
+      nisarDates: ['2026-06-26', '2026-07-08', '2026-07-20', '2026-08-13', '2026-08-25', '2026-09-06', '2026-09-18', '2026-09-30', '2026-10-12'],
+      nisarSeriesCm: [0.0, -1.06, -0.78, -2.1, -2.27, -2.78, -2.51, -3.69, -5.93],
+    },
+    {
+      id: 'p02',
+      name: 'Oymali Irrigated Plain',
+      shortName: 'Oymali',
+      pointName: '3 km W of Oymalı',
+      lon: 33.79045,
+      lat: 37.74485,
+      areaKm2: 145,
+      clayThicknessM: 42,
+      initialHeadM: -42.0,
+      preconsolidationHeadM: -42.5,
+      pumpingIntensity: 0.72,
+      wellDepthsM: [46, 51, 57, 65],
+      revenuePerIrrigatedHa: 2900,
+      irrigatedAreaKHa: 22,
+      canalCorridor: 'Oymali Agricultural Drain',
+      baseGradientMmKm: 18.5,
+      sinkholesWithin5km: 4,
+      nisarLosCm: -2.57,
+      nisarDates: ['2026-06-26', '2026-07-08', '2026-07-20', '2026-08-13', '2026-08-25', '2026-09-06', '2026-09-18', '2026-09-30', '2026-10-12'],
+      nisarSeriesCm: [0.0, -0.73, -0.36, -0.95, -0.22, -0.7, -0.69, -1.13, -2.57],
+    },
+    {
+      id: 'p03',
+      name: 'Akoren Wellfield Zone',
+      shortName: 'Akoren',
+      pointName: '5 km NW of Akören',
+      lon: 33.77806,
+      lat: 37.68869,
+      areaKm2: 130,
+      clayThicknessM: 36,
+      initialHeadM: -39.0,
+      preconsolidationHeadM: -39.6,
+      pumpingIntensity: 0.65,
+      wellDepthsM: [43, 49, 56, 64],
+      revenuePerIrrigatedHa: 2800,
+      irrigatedAreaKHa: 19,
+      canalCorridor: 'Akoren Local Collector',
+      baseGradientMmKm: 14.2,
+      sinkholesWithin5km: 2,
+      nisarLosCm: -1.82,
+      nisarDates: ['2026-06-26', '2026-07-08', '2026-07-20', '2026-08-13', '2026-08-25', '2026-09-06', '2026-09-18', '2026-09-30', '2026-10-12'],
+      nisarSeriesCm: [0.0, -0.54, -0.42, -0.41, 0.03, 1.3, 0.1, -0.82, -1.82],
+    },
+    {
+      id: 'p04',
+      name: 'Gazi Osman Pasa Karst Belt',
+      shortName: 'Gazi O. Pasa',
+      pointName: '6 km SE of Gazi Osman Paşa',
+      lon: 33.51831,
+      lat: 37.65262,
+      areaKm2: 140,
+      clayThicknessM: 34,
+      initialHeadM: -40.0,
+      preconsolidationHeadM: -40.7,
+      pumpingIntensity: 0.62,
+      wellDepthsM: [44, 50, 58, 67],
+      revenuePerIrrigatedHa: 3000,
+      irrigatedAreaKHa: 21,
+      canalCorridor: 'D330 Highway & Obruk Belt',
+      baseGradientMmKm: 13.4,
+      sinkholesWithin5km: 6,
+      nisarLosCm: -1.74,
+      nisarDates: ['2026-06-26', '2026-07-08', '2026-07-20', '2026-08-13', '2026-08-25', '2026-09-06', '2026-09-18', '2026-09-30', '2026-10-12'],
+      nisarSeriesCm: [0.0, -0.09, -0.22, -0.56, -0.11, -0.57, 0.36, -0.66, -1.74],
+    },
+    {
+      id: 'p06',
+      name: 'Kesmez Limestone Margin',
+      shortName: 'Kesmez',
+      pointName: '7 km N of Kesmez',
+      lon: 33.70747,
+      lat: 37.70788,
+      areaKm2: 115,
+      clayThicknessM: 14,
+      initialHeadM: -34.0,
+      preconsolidationHeadM: -35.0,
+      pumpingIntensity: 0.48,
+      wellDepthsM: [39, 46, 54],
+      revenuePerIrrigatedHa: 2500,
+      irrigatedAreaKHa: 15,
+      canalCorridor: 'Kesmez Feeder Drain',
+      baseGradientMmKm: 6.2,
+      sinkholesWithin5km: 3,
+      nisarLosCm: -0.35,
+      nisarDates: ['2026-06-26', '2026-07-08', '2026-07-20', '2026-08-13', '2026-08-25', '2026-09-06', '2026-09-18', '2026-09-30', '2026-10-12'],
+      nisarSeriesCm: [0.0, 0.04, -0.11, 1.3, -0.05, 0.86, 1.66, 0.57, -0.35],
+    },
+    {
+      id: 'p11',
+      name: 'Yesilyurt Reference Bench',
+      shortName: 'Yesilyurt',
+      pointName: '2 km SE of Yeşilyurt',
+      lon: 33.74333,
+      lat: 37.75453,
+      areaKm2: 105,
+      clayThicknessM: 10,
+      initialHeadM: -29.0,
+      preconsolidationHeadM: -30.5,
+      pumpingIntensity: 0.35,
+      wellDepthsM: [35, 42, 50],
+      revenuePerIrrigatedHa: 2400,
+      irrigatedAreaKHa: 12,
+      canalCorridor: 'Yesilyurt Reference Corridor',
+      baseGradientMmKm: 3.1,
+      sinkholesWithin5km: 0,
+      nisarLosCm: 0.47,
+      nisarDates: ['2026-06-26', '2026-07-08', '2026-07-20', '2026-08-13', '2026-08-25', '2026-09-06', '2026-09-18', '2026-09-30', '2026-10-12'],
+      nisarSeriesCm: [0.0, 0.28, 0.08, 0.33, 0.25, 0.18, 0.31, 0.32, 0.47],
+    },
+  ];
+
+  const BASINS = {
+    tulare: {
+      id: 'tulare',
+      name: 'Tulare Basin, California (USA)',
+      shortLabel: 'Tulare Basin, USA',
+      incidenceDegDefault: 39.1,
+      targetDistrictId: 'p01',
+      targetMeasuredLosCm: -7.8,
+      targetMeasuredVertCm: -10.1,
+      nisarWindowText: '2026-06-28 → 2026-10-14',
+      summaryPath: '../data/central_valley/summary.json',
+      wyLabel: 'California DWR SJV Water Year Index',
+      districts: DEFAULT_DISTRICTS,
+    },
+    konya: {
+      id: 'konya',
+      name: 'Konya Closed Basin / Karapinar, Turkiye',
+      shortLabel: 'Konya Basin, Türkiye',
+      incidenceDegDefault: 41.9,
+      targetDistrictId: 'p01',
+      targetMeasuredLosCm: -5.9,
+      targetMeasuredVertCm: -8.0,
+      nisarWindowText: '2026-06-26 → 2026-10-12',
+      summaryPath: '../data/karapinar/summary.json',
+      wyLabel: 'Anatolian Interior Precipitation Index (illustrative)',
+      districts: KONYA_DISTRICTS,
+    },
+  };
+
+  function getBasinConfig(basinId) {
+    return BASINS[basinId] || BASINS.tulare;
+  }
+
   const MONTH_NAMES = ['Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'];
 
   function degToRad(deg) {
@@ -299,9 +472,10 @@
    * (fractional Jul+Aug+Sep+half-Oct window under baseline normal/below-normal pumping) reproduces
    * `targetMeasuredVertCm` (-10.1 cm vertical / -7.8 cm LOS).
    */
-  function computeCalibratedDemandMultiplier(targetVertCm) {
-    const targetVert = typeof targetVertCm === 'number' ? targetVertCm : CONFIG.calibration.targetMeasuredVertCm;
-    const p01 = DEFAULT_DISTRICTS[0];
+  function computeCalibratedDemandMultiplier(targetVertCm, basinId) {
+    const basin = getBasinConfig(basinId);
+    const targetVert = typeof targetVertCm === 'number' ? targetVertCm : basin.targetMeasuredVertCm;
+    const p01 = basin.districts[0];
     const sy = CONFIG.physics.specificYield.value;
     const ske = CONFIG.physics.elasticSpecificStorage.value;
     const skv = CONFIG.physics.inelasticSpecificStorage.value;
@@ -344,22 +518,24 @@
    */
   function createSimulationState(options) {
     const opts = options || {};
-    const customDistricts = opts.districts || DEFAULT_DISTRICTS;
+    const basinId = opts.basinId || 'tulare';
+    const basin = getBasinConfig(basinId);
+    const customDistricts = opts.districts || basin.districts;
     const summaryData = opts.summaryData || null;
     const targetVert =
       summaryData && typeof summaryData.max_subsidence_vertical_cm_estimate === 'number'
         ? summaryData.max_subsidence_vertical_cm_estimate
-        : CONFIG.calibration.targetMeasuredVertCm;
+        : basin.targetMeasuredVertCm;
     const targetLos =
       summaryData && typeof summaryData.max_subsidence_cm === 'number'
         ? summaryData.max_subsidence_cm
-        : CONFIG.calibration.targetMeasuredLosCm;
+        : basin.targetMeasuredLosCm;
     const incidenceDeg =
       summaryData && typeof summaryData.incidence_deg_at_max === 'number'
         ? summaryData.incidence_deg_at_max
-        : CONFIG.incidenceDegDefault;
+        : basin.incidenceDegDefault;
 
-    const calFactor = computeCalibratedDemandMultiplier(targetVert);
+    const calFactor = computeCalibratedDemandMultiplier(targetVert, basinId);
     const wyYear1 = opts.year1WaterYear || 'Below Normal';
     const wyYear2 = opts.year2WaterYear || sampleWaterYearType(opts.rngSeed).id;
 
@@ -372,6 +548,7 @@
       totalCm: 0.0,
       dryWells: 0,
       canalCapacityLossPct: 0.0,
+      sinkholeRiskIndicator: false,
       currentGradientMmKm: d.baseGradientMmKm * 0.15, // Start of water year (Oct) baseline
       cumulativeRevenueMUsd: 0.0,
       controls: {
@@ -383,6 +560,8 @@
     }));
 
     return {
+      basinId: basin.id,
+      basinName: basin.name,
       monthStep: 0, // 0..24
       totalMonths: CONFIG.totalMonths,
       finished: false,
@@ -393,6 +572,7 @@
       year1WaterYear: wyYear1,
       year2WaterYear: wyYear2,
       currentWaterYear: wyYear1,
+      sinkholeRiskActive: false,
       events: [],
       districts: districts,
       valleyHistory: [],
@@ -457,13 +637,14 @@
 
     const newEvents = [];
     if (mIdx === 12 || (mIdx > 0 && state.currentWaterYear !== prevWy)) {
-      const capMsg = wySpec.maxSurfacePct < 70 ? `Surface allocations capped at ${wySpec.maxSurfacePct}% under CVP/SWP rules.` : `Full or near-full surface deliveries (${wySpec.maxSurfacePct}% cap) available.`;
+      const basinCfg = getBasinConfig(state.basinId);
+      const capMsg = wySpec.maxSurfacePct < 70 ? `Surface allocations capped at ${wySpec.maxSurfacePct}% under seasonal quota rules.` : `Full or near-full surface deliveries (${wySpec.maxSurfacePct}% cap) available.`;
       newEvents.push({
         id: `wy-${wyNumber}-${state.currentWaterYear}`,
         severity: wySpec.id === 'Critical' || wySpec.id === 'Dry' ? 'danger' : 'info',
         title: `Water Year 2 Declaration: ${wySpec.label} Year`,
-        detail: `California DWR San Joaquin Valley Index sets WY${wyNumber} to ${wySpec.label}. ${capMsg}`,
-        source: 'California DWR SJV Water Year Index',
+        detail: `${basinCfg.wyLabel} sets WY${wyNumber} to ${wySpec.label}. ${capMsg}`,
+        source: basinCfg.wyLabel,
       });
     }
 
@@ -558,9 +739,28 @@
           id: `canal-${d.id}-${mIdx}`,
           severity: 'danger',
           title: `${d.canalCorridor} Freeboard & Conveyance Loss`,
-          detail: `Differential subsidence reached ${d.currentGradientMmKm.toFixed(1)} mm/km near ${d.shortName}, cutting canal conveyance by ${d.canalCapacityLossPct.toFixed(0)}%. (Friant-Kern historic peak loss ~60%, USGS/USBR).`,
-          source: 'USGS SIR 2013-5142 / USBR Friant-Kern conveyance loss + illustrative threshold',
+          detail: `Differential subsidence reached ${d.currentGradientMmKm.toFixed(1)} mm/km near ${d.shortName}, cutting canal conveyance by ${d.canalCapacityLossPct.toFixed(0)}%. (Reference bottleneck threshold vs. NISAR gradients).`,
+          source: 'data/central_valley/assets.json / USGS SIR 2013-5142',
         });
+      }
+
+      // Konya Closed Basin factual sinkhole risk indicator (indicator only, never predictive)
+      if (state.basinId === 'konya' && (d.sinkholesWithin5km || 0) > 0) {
+        const wasActive = d.sinkholeRiskIndicator;
+        const breached = d.headM <= d.preconsolidationHeadM - 0.15 && Math.abs(d.totalCm) >= CONFIG.thresholds.sinkholeAlertCm;
+        if (breached) {
+          d.sinkholeRiskIndicator = true;
+          state.sinkholeRiskActive = true;
+          if (!wasActive && newEvents.length < 3) {
+            newEvents.push({
+              id: `sinkhole-${d.id}-${mIdx}`,
+              severity: 'danger',
+              title: `Sinkhole risk indicator elevated in ${d.shortName}`,
+              detail: `Subsidence reached ${d.totalCm.toFixed(1)} cm below historical groundwater lows near ${d.sinkholesWithin5km} documented obruks (0-1 km ring NISAR mean -4.15 cm). Indicator only; does not predict collapse of individual sinkholes.`,
+              source: 'data/karapinar/assets.json & sinkholes.geojson (indicator only)',
+            });
+          }
+        }
       }
 
       // Monthly crop revenue (M USD): scales with cropped area & total water sufficiency; penalized if groundwater overly restricted
@@ -627,16 +827,18 @@
    * baseline pumping (100%), normal/below-normal allocation, and 0% fallowing to verify alignment
    * with data/central_valley/summary.json within +-10%.
    */
-  function runCalibrationCheck(summaryData) {
+  function runCalibrationCheck(summaryData, basinId) {
+    const basin = getBasinConfig(basinId);
     const s = summaryData || {};
-    const measuredLos = typeof s.max_subsidence_cm === 'number' ? s.max_subsidence_cm : CONFIG.calibration.targetMeasuredLosCm;
+    const measuredLos = typeof s.max_subsidence_cm === 'number' ? s.max_subsidence_cm : basin.targetMeasuredLosCm;
     const measuredVert =
       typeof s.max_subsidence_vertical_cm_estimate === 'number'
         ? s.max_subsidence_vertical_cm_estimate
-        : CONFIG.calibration.targetMeasuredVertCm;
-    const incDeg = typeof s.incidence_deg_at_max === 'number' ? s.incidence_deg_at_max : CONFIG.incidenceDegDefault;
+        : basin.targetMeasuredVertCm;
+    const incDeg = typeof s.incidence_deg_at_max === 'number' ? s.incidence_deg_at_max : basin.incidenceDegDefault;
 
     const sim = createSimulationState({
+      basinId: basin.id,
       year1WaterYear: CONFIG.calibration.scenario.waterYearType,
       year2WaterYear: CONFIG.calibration.scenario.waterYearType,
       summaryData: s,
@@ -647,13 +849,13 @@
       fallowPct: CONFIG.calibration.scenario.fallowPct,
     });
 
-    // Execute the exact 108-day Jun 28 -> Oct 14 window slice across seasonal weights
+    // Execute the exact 108-day Jun -> Oct summer window slice across seasonal weights
     const windowSlices = [
-      { monthStepIdx: 8, frac: 0.07 }, // Jun 28-30
+      { monthStepIdx: 8, frac: 0.07 }, // late Jun
       { monthStepIdx: 9, frac: 1.0 },  // Jul
       { monthStepIdx: 10, frac: 1.0 }, // Aug
       { monthStepIdx: 11, frac: 1.0 }, // Sep
-      { monthStepIdx: 0, frac: 0.45 }, // Oct 1-14
+      { monthStepIdx: 0, frac: 0.45 }, // early-mid Oct
     ];
 
     windowSlices.forEach((sl) => {
@@ -668,6 +870,7 @@
     const errorPct = Number((Math.abs((simVertCm - measuredVert) / measuredVert) * 100.0).toFixed(2));
 
     return {
+      basinId: basin.id,
       district: p01.name,
       windowDays: CONFIG.nisarWindowDays,
       calibrationFactor: Number(sim.calibrationFactor.toFixed(3)),
@@ -681,11 +884,11 @@
   }
 
   /**
-   * Synchronize district NISAR reference data directly from fetched data/central_valley/points.json
-   * and optional calibration constants from docs/story/game_model.md if available.
+   * Synchronize district NISAR reference data directly from fetched basin points.json.
    */
-  function hydrateFromRepoData(pointsJson, summaryJson) {
-    const districts = DEFAULT_DISTRICTS.map((d) => ({ ...d }));
+  function hydrateFromRepoData(pointsJson, summaryJson, basinId) {
+    const basin = getBasinConfig(basinId);
+    const districts = basin.districts.map((d) => ({ ...d }));
     if (Array.isArray(pointsJson)) {
       districts.forEach((d) => {
         const match = pointsJson.find((p) => p.id === d.id);
@@ -708,8 +911,11 @@
 
   return {
     CONFIG,
+    BASINS,
     DEFAULT_DISTRICTS,
+    KONYA_DISTRICTS,
     MONTH_NAMES,
+    getBasinConfig,
     verticalToLos,
     losToVertical,
     sampleWaterYearType,

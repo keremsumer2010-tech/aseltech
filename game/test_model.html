@@ -72,13 +72,19 @@
 
       let summaryJson = null;
       let pointsJson = null;
+      let konyaSummaryJson = null;
+      let konyaPointsJson = null;
       try {
-        const [sRes, pRes] = await Promise.all([
+        const [sRes, pRes, ksRes, kpRes] = await Promise.all([
           fetch('../data/central_valley/summary.json'),
           fetch('../data/central_valley/points.json'),
+          fetch('../data/karapinar/summary.json'),
+          fetch('../data/karapinar/points.json'),
         ]);
         if (sRes.ok) summaryJson = await sRes.json();
         if (pRes.ok) pointsJson = await pRes.json();
+        if (ksRes.ok) konyaSummaryJson = await ksRes.json();
+        if (kpRes.ok) konyaPointsJson = await kpRes.json();
       } catch (err) {
         // Offline / unit-only fallback
       }
@@ -154,6 +160,31 @@
         'Critical Water Year enforces 15% surface cap and produces zero NaN/Infinity across 24 months',
         critSim.finished && capRespected && finiteCheck && critSim.valleyHistory.length === 24,
         `finished=${critSim.finished}, maxSurfaceAfterCap=${Math.max(...critSim.districts.map((d) => d.controls.surfaceAllocPct))}%, historyLen=${critSim.valleyHistory.length}`
+      );
+
+      // 6. Konya Closed Basin (Karapinar) hydration, calibration (+-10%), and sinkhole risk indicator
+      const konyaCal = ValleyModel.runCalibrationCheck(konyaSummaryJson, 'konya');
+      const konyaHydrated = ValleyModel.hydrateFromRepoData(konyaPointsJson, konyaSummaryJson, 'konya');
+      const kp01 = konyaHydrated.districts.find((d) => d.id === 'p01');
+      const kpSim = ValleyModel.createSimulationState({
+        basinId: 'konya',
+        districts: konyaHydrated.districts,
+        summaryData: konyaHydrated.summaryData,
+        year1WaterYear: 'Dry',
+        year2WaterYear: 'Dry',
+      });
+      ValleyModel.setDistrictControls(kpSim, 'ALL', { pumpingPct: 140, surfaceAllocPct: 30, fallowPct: 0 });
+      for (let i = 0; i < 24; i++) ValleyModel.stepMonth(kpSim);
+      const kpFinite = kpSim.districts.every((d) => Number.isFinite(d.totalCm) && Number.isFinite(d.headM));
+      assert(
+        'Konya Closed Basin calibrates within +-10% of NISAR summary (-5.9 cm LOS) and triggers sinkhole risk indicator',
+        konyaCal.within10Pct &&
+          konyaHydrated.districts.length === 6 &&
+          kp01 &&
+          Math.abs(kp01.nisarLosCm - (-5.93)) < 0.05 &&
+          kpSim.sinkholeRiskActive &&
+          kpFinite,
+        `CalErr=${konyaCal.errorPct}% (Sim=${konyaCal.simulatedVertCm} cm vert vs ${konyaCal.measuredVertCm} cm); districts=${konyaHydrated.districts.length}; sinkholeRiskActive=${kpSim.sinkholeRiskActive}`
       );
 
       const passed = cases.filter((c) => c.pass).length;
