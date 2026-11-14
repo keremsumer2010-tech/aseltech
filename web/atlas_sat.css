@@ -1,0 +1,11 @@
+/* NISAR satellite + radar overlay for the atlas globe (PC1) */
+.sat-layer{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:4}
+.sat-layer svg{position:absolute;inset:0;width:100%;height:100%}
+.sat-craft{position:absolute;left:0;top:0;width:160px;height:114px;margin:-57px 0 0 -80px;will-change:transform;transition:opacity .4s ease;filter:drop-shadow(0 6px 10px rgba(0,0,0,.55))}
+.sat-craft svg{position:static;width:100%;height:100%}
+.sat-tag{position:absolute;left:0;top:0;transform:translate(-50%,0);white-space:nowrap;font:600 11px/1.2 system-ui,-apple-system,"Segoe UI",sans-serif;letter-spacing:.04em;color:#e8eef7;background:rgba(9,20,38,.78);border:1px solid rgba(148,197,255,.35);border-radius:3px;padding:3px 7px;transition:opacity .4s ease}
+.sat-tag b{color:#7dd3fc;font-weight:700}
+.sat-beam{transition:opacity .35s ease}
+.sat-ring{fill:none;stroke:#7dd3fc;stroke-width:2}
+.sat-chirp{fill:none;stroke:#bae6fd;stroke-width:2;stroke-linecap:round}
+@media (prefers-reduced-motion: reduce){.sat-craft,.sat-tag,.sat-beam{transition:none}}
