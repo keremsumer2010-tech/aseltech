@@ -13,7 +13,7 @@ Projede geçen, dışarıdan gelen birinin bilmesi mümkün olmayan terimler. Ko
 
 | Terim | Ne demek |
 |---|---|
-| **NISAR** | NASA-ISRO Synthetic Aperture Radar. Temmuz 2025'te fırlatıldı. L-band (λ ≈ 23.84 cm) ve S-band |
+| **NISAR** | NASA-ISRO Synthetic Aperture Radar. Temmuz 2025'te fırlatıldı. L-band (~24 cm; tam değer ürünün centerFrequency alanından, ör. 1239 MHz → 24.2 cm) ve S-band |
 | **SAR** | Sentetik açıklıklı radar. Kendi sinyalini gönderir; bulut, duman, gece fark etmez |
 | **L-band** | ~24 cm dalga boyu. Bitki örtüsünden geçer, tarım alanlarında koherensi C-band'den iyi korur |
 | **Backscatter** | Yüzeyden geri dönen sinyal gücü. Pürüzlülük ve nemle değişir |

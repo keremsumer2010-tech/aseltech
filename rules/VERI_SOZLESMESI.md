@@ -28,7 +28,7 @@ Sıra her yerde **`[lon_min, lat_min, lon_max, lat_max]`** = `[w, s, e, n]`.
 - Arama/indirme: ASF SearchAPI / `asf_search`, parametre **`platform=NISAR`** (`dataset=NISAR` çalışmıyor).
 - `.h5` indirmek Earthdata girişi ister (giriş yoksa "Access denied"). Browse PNG'ler girişsiz iner.
 - Her PC kendi Earthdata hesabını kullanır; kimlik bilgisi `~/.netrc` (Windows: `~/_netrc`) dosyasında, repoda asla.
-- NISAR L-band dalga boyu λ ≈ **0.2384 m**.
+- Dalga boyu λ SABİT YAZILMAZ: her dosyadan `λ = 299792458 / grids/frequencyA/centerFrequency` (Central Valley GUNW: 1239 MHz → **0.24196 m**). Yollar: `docs/qa/PC1.md`.
 - LOS yer değiştirme = −λ/(4π) × unwrapped phase. **İşaret konvansiyonu ürün dokümanından doğrulanır**, kaynak koda yazılır.
 - GUNW: 80 m UTM grid. GCOV: gamma0 (terrain corrected). Metadata cube'larda LOS birim vektörü ve incidence var.
 
@@ -90,3 +90,4 @@ Genel:
 |---|---|---|
 | 2026-11-14 | CLAUDE.md'den taşındı. Eklenen: `summary.json` (oyun/sunum için tek sayı kaynağı), `analysis/out/<site>_cum.npz` (PC6 için sayısal ızgara), npz sıkıştırma ve `coh` uint8 kuralı | PC1 onayladı (2026-11-14) |
 | 2026-11-14 | Eklenen: `placeholder` kalite sınıfı (PC1 site geliştirme verisi) | PC1 |
+| 2026-11-14 | λ sabiti kaldırıldı → dosyadaki `centerFrequency`; GUNW yolları `docs/qa/PC1.md` | PC1 |
