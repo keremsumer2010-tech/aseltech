@@ -2,7 +2,7 @@
 
 - Görev: 1 (Hesap, liste, ilk dosya, gunw_structure.md) — **TAMAMLANDI**
 - Görev: 2 (Central Valley provisional çiftleri) — **TAMAMLANDI (7/7 tam `ion` katmanıyla push edildi)**
-- Görev: Q01 (Karapınar GUNW Path 7 Frame 69 provisional zinciri) — **DEVAM EDİYOR (3/8 tamamlandı ve push edildi, sıradaki 2 çift indiriliyor)**
+- Görev: Q01 (Karapınar GUNW Path 7 Frame 69 provisional zinciri) — **DEVAM EDİYOR (7/8 tamamlandı ve push edildi, son çift 2026-09-30→2026-10-12 indiriliyor)**
 - Çıktılar:
   - `pipeline/search.py`, `pipeline/download.py`, `pipeline/inspect_gunw.py`, `pipeline/subset.py` (`incidence` 12-bit mantissa yuvarlama ile `ion` tam `(1473, 1438) float32` olarak ≤20 MB içinde korunuyor)
   - `pipeline/central_valley_gunw.csv` (27 Path 34 Frame 20 ürünü; 7 provisional `P05023`, 20 beta-precal)
@@ -18,6 +18,10 @@
   - `pipeline/subset/karapinar/2026-06-26_2026-07-08.npz` (1.64 MB, shape=(470, 603), NaN=51.25%, `ion=(470, 603) full`, epsg=32636, ham `.h5` silindi)
   - `pipeline/subset/karapinar/2026-07-08_2026-07-20.npz` (1.61 MB, shape=(470, 603), NaN=52.49%, `ion=(470, 603) full`, epsg=32636, ham `.h5` silindi)
   - `pipeline/subset/karapinar/2026-09-18_2026-09-30.npz` (1.80 MB, shape=(470, 603), NaN=33.50%, `ion=(470, 603) full`, epsg=32636)
+  - `pipeline/subset/karapinar/2026-07-20_2026-08-13.npz` (1.28 MB, shape=(470, 603), NaN=69.74%, `ion=(470, 603) full`, epsg=32636, ham `.h5` silindi)
+  - `pipeline/subset/karapinar/2026-08-13_2026-08-25.npz` (1.79 MB, shape=(470, 603), NaN=27.97%, `ion=(470, 603) full`, epsg=32636, ham `.h5` silindi)
+  - `pipeline/subset/karapinar/2026-08-25_2026-09-06.npz` (1.99 MB, shape=(470, 603), NaN=19.45%, `ion=(470, 603) full`, epsg=32636, ham `.h5` silindi)
+  - `pipeline/subset/karapinar/2026-09-06_2026-09-18.npz` (1.78 MB, shape=(470, 603), NaN=35.47%, `ion=(470, 603) full`, epsg=32636, ham `.h5` silindi)
 - İndirme hızları:
   - `2026-09-08 → 2026-09-20`: 10.32 MB/s / yenileme 12.43 MB/s (2236.0 MB)
   - `2026-06-28 → 2026-07-10`: 12.71 MB/s / yenileme 11.23 MB/s (2192.0 MB)
