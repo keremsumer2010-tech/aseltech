@@ -262,3 +262,8 @@ Komut: `python analysis/pc6/test_20_strategies.py --self-test`
 ## 10. ASLA BOŞ KALMA — Tur 2 (`19:58 TR`)
 - `git pull`: `442fdda` çekildi (`CALISMA_HARITASI.md` / `tasks/PC6.md` değişmedi; `PC8` önceki `pc8_uk_detection.png` QA bulgumuzu düzeltti `25641d0`).
 - **`docs/qa/PC4.md:161` Bulgusu Kapatıldı:** `docs/story/validation_report.md:21` içinde `(-119.1456°E, 36.4532°N)` yazan referans boylamı `(119.1456°W, 36.4532°N)` olarak düzeltildi (`game/model.js:139` `Total compressible fine-grained interbeds` yorumu zaten günceldi).
+
+## 11. ASLA BOŞ KALMA — Tur 3 (`20:08 TR`)
+- `git pull`: `7f3abad` çekildi (`docs/CALISMA_HARITASI.md` / `tasks/PC6.md` değişmedi).
+- **PC6 Öz-Testleri:** `analysis/pc6/test_20_strategies.py --self-test` (`40/40 PASS`), `validation/compare.py --self-test` (PASS), `risk/compute_risk.py --self-test` (PASS), `risk/karapinar_risk.py --self-test` (PASS).
+- **Kırık Bağıl Link Taraması (`docs/**/*.md` + `README.md`):** **0** kırık bağıl link.
