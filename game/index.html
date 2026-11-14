@@ -70,9 +70,9 @@
         <div class="dock-card timeline-dock" aria-label="Subsidence over time">
           <div class="card-head">
             <h2 class="card-title" id="chartTitle">Terra Bella vs 2026 NISAR</h2>
-            <span class="card-hint">Drag or scroll the chart to see other months</span>
+            <span class="chart-key" aria-hidden="true"><i style="background:#0b3d91"></i>Total sinking<i style="background:#c8321f"></i>Permanent<i class="dash"></i>NISAR 2026</span>
           </div>
-          <div class="timeline-canvas-wrap"><canvas id="timelineChart"></canvas></div>
+          <div class="timeline-canvas-wrap" title="Drag or scroll to see other months"><canvas id="timelineChart"></canvas></div>
         </div>
 
         <div class="dock-card readout">
@@ -83,10 +83,7 @@
           <div class="kpi-grid">
             <div class="kpi"><span class="kpi-label">Total sinking</span><b class="kpi-value color-perm" id="kpiTotalCm">0.00 cm</b><span class="kpi-sub" id="kpiSplitCm">Elastic: 0.00 cm</span></div>
             <div class="kpi"><span class="kpi-label">Permanent</span><b class="kpi-value color-perm" id="kpiPermCm">0.00 cm</b><span class="kpi-sub" id="kpiRegimeSub">Elastic Safe</span></div>
-            <div class="kpi"><span class="kpi-label">Farm revenue</span><b class="kpi-value color-ok" id="kpiRevenue">$0.0M</b><span class="kpi-sub" id="kpiRevSub">100% cropped</span></div>
             <div class="kpi"><span class="kpi-label">Water level</span><b class="kpi-value" id="kpiHeadM">-48.0 m</b><span class="kpi-sub" id="kpiHpcM">Low: -48.3 m</span></div>
-            <div class="kpi"><span class="kpi-label">Canal capacity lost</span><b class="kpi-value color-warn" id="kpiCanalLoss">0.0%</b><span class="kpi-sub" id="kpiGradient">6.9 mm/km</span></div>
-            <div class="kpi"><span class="kpi-label">Dry wells</span><b class="kpi-value" id="kpiWells">0 / 8</b><span class="kpi-sub">of wells tracked</span></div>
           </div>
           <div id="sinkholeStatusBanner" class="sinkhole-banner" aria-live="polite" hidden></div>
         </div>

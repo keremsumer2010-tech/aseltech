@@ -678,7 +678,7 @@
           interaction: { mode: 'index', intersect: false },
           plugins: {
             legend: {
-              display: true,
+              display: false,
               position: 'top',
               align: 'start',
               labels: { color: '#4a5568', boxWidth: 12, boxHeight: 3, font: { size: 12, family: 'Inter' }, padding: 12 },
@@ -827,17 +827,12 @@
     $('kpiTotalCm').textContent = `${d.totalCm.toFixed(2)} cm`;
     $('kpiSplitCm').textContent = `Elastic: ${d.elasticCm.toFixed(2)} cm`;
     $('kpiPermCm').textContent = `${d.inelasticCm.toFixed(2)} cm`;
-    $('kpiRegimeSub').textContent = isVirgin ? '[COLLAPSING] Virgin clay' : '[SAFE] Elastic range';
+    $('kpiRegimeSub').textContent = isVirgin ? 'Collapsing' : 'Springs back';
     $('kpiRegimeSub').style.color = isVirgin ? '#c8321f' : '#1f7a35';
-    $('kpiRevenue').textContent = `$${d.cumulativeRevenueMUsd.toFixed(1)}M`;
-    $('kpiRevSub').textContent = `${100 - d.controls.fallowPct}% cropped`;
 
     $('kpiHeadM').textContent = `${d.headM.toFixed(1)} m`;
     $('kpiHpcM').textContent = `Low: ${d.preconsolidationHeadM.toFixed(1)} m`;
     $('kpiHpcM').style.color = isVirgin ? '#c8321f' : '';
-    $('kpiCanalLoss').textContent = `${d.canalCapacityLossPct.toFixed(1)}%`;
-    $('kpiGradient').textContent = `${d.currentGradientMmKm.toFixed(1)} mm/km`;
-    $('kpiWells').textContent = `${d.dryWells} / ${d.wellDepthsM.length}`;
 
     // Events
     if (simState.events.length > 0) {
