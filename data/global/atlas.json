@@ -4,9 +4,9 @@
   "quality": "provisional",
   "quality_note": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team. Regions are ranked by rate_cm_per_100d (LOS).",
   "ranking_metric": "rate_cm_per_100d",
-  "n_regions": 8,
-  "n_reliable": 5,
-  "n_indicative": 3,
+  "n_regions": 10,
+  "n_reliable": 6,
+  "n_indicative": 4,
   "regions": [
     {
       "id": "konya_plain",
@@ -96,6 +96,36 @@
       "rank": 3
     },
     {
+      "id": "bangkok",
+      "name": "Bangkok",
+      "country": "Thailand",
+      "lon": 100.73741,
+      "lat": 13.81368,
+      "max_cm_los": -7.5,
+      "p2_cm": -6.9,
+      "rate_cm_per_100d": -6.2,
+      "max_cm_vertical_est": -9.0,
+      "period": [
+        "2026-06-21",
+        "2026-10-19"
+      ],
+      "days": 120,
+      "n_pairs": 8,
+      "quality": "provisional",
+      "rate_cm_per_yr_estimate": -22.8,
+      "valid_fraction": 0.303,
+      "ref_range_cm": [
+        -7.9,
+        -7.5
+      ],
+      "confidence": "medium",
+      "indicative_only": false,
+      "coverage": "ok",
+      "path": "data/global/bangkok/",
+      "note": "",
+      "rank": 4
+    },
+    {
       "id": "mexico_city",
       "name": "Mexico City",
       "country": "Mexico",
@@ -123,7 +153,7 @@
       "coverage": "ok",
       "path": "data/global/mexico_city/",
       "note": "",
-      "rank": 4
+      "rank": 5
     },
     {
       "id": "karapinar",
@@ -150,7 +180,7 @@
       "coverage": "ok",
       "path": "data/karapinar/",
       "note": "",
-      "rank": 5
+      "rank": 6
     },
     {
       "id": "tehran",
@@ -180,7 +210,37 @@
       "coverage": "ok",
       "path": "data/global/tehran/",
       "note": "",
-      "rank": 6
+      "rank": 7
+    },
+    {
+      "id": "isfahan",
+      "name": "Isfahan",
+      "country": "",
+      "lon": 51.71977,
+      "lat": 32.78679,
+      "max_cm_los": -2.5,
+      "p2_cm": -2.9,
+      "rate_cm_per_100d": -2.1,
+      "max_cm_vertical_est": -3.4,
+      "period": [
+        "2026-06-18",
+        "2026-10-16"
+      ],
+      "days": 120,
+      "n_pairs": 9,
+      "quality": "provisional",
+      "rate_cm_per_yr_estimate": -7.5,
+      "valid_fraction": 0.325,
+      "ref_range_cm": [
+        -2.6,
+        -0.8
+      ],
+      "confidence": "low",
+      "indicative_only": true,
+      "coverage": "ok",
+      "path": "data/global/isfahan/",
+      "note": "",
+      "rank": 8
     },
     {
       "id": "beijing",
@@ -210,7 +270,7 @@
       "coverage": "ok",
       "path": "data/global/beijing/",
       "note": "",
-      "rank": 7
+      "rank": 9
     },
     {
       "id": "delta",
@@ -240,7 +300,7 @@
       "coverage": "ok",
       "path": "data/delta/",
       "note": "",
-      "rank": 8
+      "rank": 10
     }
   ],
   "reliable": [
@@ -307,6 +367,37 @@
       "rank_reliable": 2
     },
     {
+      "id": "bangkok",
+      "name": "Bangkok",
+      "country": "Thailand",
+      "lon": 100.73741,
+      "lat": 13.81368,
+      "max_cm_los": -7.5,
+      "p2_cm": -6.9,
+      "rate_cm_per_100d": -6.2,
+      "max_cm_vertical_est": -9.0,
+      "period": [
+        "2026-06-21",
+        "2026-10-19"
+      ],
+      "days": 120,
+      "n_pairs": 8,
+      "quality": "provisional",
+      "rate_cm_per_yr_estimate": -22.8,
+      "valid_fraction": 0.303,
+      "ref_range_cm": [
+        -7.9,
+        -7.5
+      ],
+      "confidence": "medium",
+      "indicative_only": false,
+      "coverage": "ok",
+      "path": "data/global/bangkok/",
+      "note": "",
+      "rank": 4,
+      "rank_reliable": 3
+    },
+    {
       "id": "mexico_city",
       "name": "Mexico City",
       "country": "Mexico",
@@ -334,8 +425,8 @@
       "coverage": "ok",
       "path": "data/global/mexico_city/",
       "note": "",
-      "rank": 4,
-      "rank_reliable": 3
+      "rank": 5,
+      "rank_reliable": 4
     },
     {
       "id": "beijing",
@@ -365,8 +456,8 @@
       "coverage": "ok",
       "path": "data/global/beijing/",
       "note": "",
-      "rank": 7,
-      "rank_reliable": 4
+      "rank": 9,
+      "rank_reliable": 5
     },
     {
       "id": "delta",
@@ -396,8 +487,8 @@
       "coverage": "ok",
       "path": "data/delta/",
       "note": "",
-      "rank": 8,
-      "rank_reliable": 5
+      "rank": 10,
+      "rank_reliable": 6
     }
   ],
   "indicative": [
@@ -454,7 +545,7 @@
       "coverage": "ok",
       "path": "data/karapinar/",
       "note": "",
-      "rank": 5,
+      "rank": 6,
       "rank_indicative": 2
     },
     {
@@ -485,8 +576,39 @@
       "coverage": "ok",
       "path": "data/global/tehran/",
       "note": "",
-      "rank": 6,
+      "rank": 7,
       "rank_indicative": 3
+    },
+    {
+      "id": "isfahan",
+      "name": "Isfahan",
+      "country": "",
+      "lon": 51.71977,
+      "lat": 32.78679,
+      "max_cm_los": -2.5,
+      "p2_cm": -2.9,
+      "rate_cm_per_100d": -2.1,
+      "max_cm_vertical_est": -3.4,
+      "period": [
+        "2026-06-18",
+        "2026-10-16"
+      ],
+      "days": 120,
+      "n_pairs": 9,
+      "quality": "provisional",
+      "rate_cm_per_yr_estimate": -7.5,
+      "valid_fraction": 0.325,
+      "ref_range_cm": [
+        -2.6,
+        -0.8
+      ],
+      "confidence": "low",
+      "indicative_only": true,
+      "coverage": "ok",
+      "path": "data/global/isfahan/",
+      "note": "",
+      "rank": 8,
+      "rank_indicative": 4
     }
   ]
 }

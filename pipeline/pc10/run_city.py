@@ -37,6 +37,31 @@ CITY_CONFIG: dict[str, dict] = {
         "bbox": CITIES["beijing"]["bbox"],
         "path": 47,
     },
+    "bangkok": {
+        "site_key": "global_bangkok",
+        "bbox": CITIES["bangkok"]["bbox"],
+        "path": 112,
+    },
+    "ho_chi_minh": {
+        "site_key": "global_ho_chi_minh",
+        "bbox": CITIES["ho_chi_minh"]["bbox"],
+        "path": 47,
+    },
+    "semarang": {
+        "site_key": "global_semarang",
+        "bbox": CITIES["semarang"]["bbox"],
+        "path": 162,
+    },
+    "hanoi": {
+        "site_key": "global_hanoi",
+        "bbox": CITIES["hanoi"]["bbox"],
+        "path": 76,
+    },
+    "yunlin": {
+        "site_key": "global_yunlin",
+        "bbox": CITIES["yunlin"]["bbox"],
+        "path": 111,
+    },
 }
 
 
@@ -73,7 +98,16 @@ def process_city(city: str, pol: str = "HH", thr: float = 0.3, skip_download: bo
                 print(f"[{city}] ({idx}/{len(chain)}) {npz_path.name} already exists, skipping download")
                 continue
 
-            free_gb = pc2_download.check_disk_space(raw_dir)
+            import time
+            for _wait in range(6):
+                try:
+                    free_gb = pc2_download.check_disk_space(raw_dir)
+                    break
+                except RuntimeError:
+                    if _wait == 5:
+                        raise
+                    print(f"[{city}] Disk < 20 GB (likely PC2 active), waiting 30s...")
+                    time.sleep(30)
             print(f"[{city}] ({idx}/{len(chain)}) Free disk: {free_gb:.2f} GB | Downloading {row['granule']}...")
             h5_path = raw_dir / f"{row['granule']}.h5"
             try:
