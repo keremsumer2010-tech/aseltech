@@ -118,3 +118,22 @@ Kaynak: `web/*.html` (5 dosya). Script/style/noscript içerikleri görünür met
 | 37 | `web/science.html` | Consecutive 12-day pairs (28 Jun → 14 Oct 2026 for track 34) are summed into a cumulative map. A chain with any gap is not joined. Headline numbers are the most negative median of ~1 km blocks with… | birimsiz sayı: −6.2 | İlk değerin yanına da `cm` birimini ekle |
 
 Toplam bulgu: 1.
+
+## 4. Oyun modeli: 24 aylık strateji testi (Node, offline)
+
+`game/model.js` değiştirilmedi. `pipeline/pc7/game_strategy_test.js` modeli doğrudan çalıştırdı; her satırda toplam çökme ve kalıcı çökme, 24. ay sonunda en çok çöken bölgenin mutlak dikey değeri; gelir ise modelin vadi toplamı (milyon USD).
+
+| Strateji | Su yılı (iki yıl) | Pompalama | Nadas | Toplam çökme (cm) | Kalıcı çökme (cm) | Gelir (M USD) |
+|---|---|---:|---:|---:|---:|---:|
+| D0 | Dry | 0% | 0% | 0.08 | 0.00 | 452.1 |
+| D50 | Dry | 50% | 0% | 6.05 | 6.03 | 849.9 |
+| D100 | Dry | 100% | 0% | 28.87 | 28.84 | 1308.9 |
+| D150 | Dry | 150% | 0% | 51.68 | 51.66 | 1748.5 |
+| W100 | Wet | 100% | 0% | 0.04 | 0.00 | 1748.1 |
+| BN100 | Below Normal | 100% | 0% | 17.62 | 17.60 | 1529.8 |
+| D100-F30 | Dry | 100% | 30% | 15.18 | 15.15 | 898.6 |
+| W0-F30 | Wet | 0% | 30% | 0.24 | 0.00 | 572.1 |
+| W150-F30 | Wet | 150% | 30% | 0.41 | 0.39 | 1292.4 |
+| BN50-F30 | Below Normal | 50% | 30% | 0.09 | 0.00 | 739.8 |
+
+Kontroller: 0–150% pompalama serisinde çökme monoton arttı; kalıcı çökme toplam çökme değerini aşmadı; ölçümler sonlu ve negatif olmayan büyüklüklerdi. Bu model çalıştırmasında sayısal hata görülmedi. Daha fazla pompalama daha yüksek gelir de üretti; bu, modelin kısa dönem gelir fonksiyonunun sonucu ve gerçek dünya tahmini olarak yorumlanmamalı. Su yılı sınıfları ve bazı ekonomik/fiziksel parametreler modelde açıklayıcı/temsili olarak işaretlidir.
