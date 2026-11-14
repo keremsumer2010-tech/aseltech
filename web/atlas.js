@@ -10,6 +10,7 @@ const STYLE = {
 
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
 const fmtNum = (v, d = 1) => (typeof v === 'number' && Number.isFinite(v)) ? (v < 0 ? '−' : (v > 0 ? '+' : '')) + Math.abs(v).toFixed(d) : '—';
+const fmtUnit = (v, u, d = 1) => (typeof v === 'number' && Number.isFinite(v)) ? `${fmtNum(v, d)} ${u}` : '—';
 const fmtDate = d => d ? new Date(d + 'T00:00:00Z').toLocaleDateString('en-GB', {day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC'}) : '—';
 const fmtShort = d => d ? new Date(d + 'T00:00:00Z').toLocaleDateString('en-GB', {day: 'numeric', month: 'short', timeZone: 'UTC'}) : '—';
 async function J(p){ try{ const r = await fetch(ROOT + p); return r.ok ? await r.json() : null; }catch(e){ return null; } }
@@ -51,7 +52,7 @@ async function initAtlas(){
       ? `${fmtNum(r.rate_cm_per_100d)} cm/100d`
       : 'no data';
     return `<button type="button" class="atlas-item" data-id="${esc(r.id)}">
-      <span class="ai-left"><span class="ai-name">${r.rank ? '#' + r.rank + ' · ' : ''}${esc(r.name)}</span><span class="ai-sub">${esc(r.country || '')} · ${confBadge(r)}</span></span>
+      <span class="ai-left"><span class="ai-name">${r.rank ? '#' + r.rank + ' · ' : ''}${esc(r.name)}</span><span class="ai-sub">${r.country ? esc(r.country) + ' · ' : ''}${confBadge(r)}</span></span>
       <span class="ai-right"><span class="ai-rate" style="color:${rateColor(r.rate_cm_per_100d)}">${esc(rateTxt)}</span></span>
     </button>`;
   }).join('');
@@ -170,16 +171,16 @@ async function selectRegion(id, fly){
   const detail = document.getElementById('atlasDetail');
   detail.hidden = false;
   detail.innerHTML = `
-    <h2>${esc(r.name)} <small class="small">(${esc(r.country || '')})</small></h2>
+    <h2>${esc(r.name)}${r.country ? ` <small class="small">(${esc(r.country)})</small>` : ''}</h2>
     <p style="margin:0 0 8px">${confBadge(r)} <span class="qbadge provisional">${esc((r.quality || 'provisional').toUpperCase())}</span></p>
     <dl class="atlas-kv">
-      <div><dt>Rate (LOS)</dt><dd>${esc(fmtNum(r.rate_cm_per_100d))} cm/100d</dd></div>
-      <div><dt>Max LOS</dt><dd>${esc(fmtNum(r.max_cm_los))} cm</dd></div>
-      <div><dt>Vertical (est.)</dt><dd>${esc(fmtNum(r.max_cm_vertical_est))} cm</dd></div>
-      <div><dt>Yearly rate (est.)</dt><dd>${esc(fmtNum(r.rate_cm_per_yr_estimate))} cm/yr</dd></div>
+      <div><dt>Rate (LOS)</dt><dd>${esc(fmtUnit(r.rate_cm_per_100d, 'cm/100d'))}</dd></div>
+      <div><dt>Max LOS</dt><dd>${esc(fmtUnit(r.max_cm_los, 'cm'))}</dd></div>
+      <div><dt>Vertical (est.)</dt><dd>${esc(fmtUnit(r.max_cm_vertical_est, 'cm'))}</dd></div>
+      <div><dt>Yearly rate (est.)</dt><dd>${esc(fmtUnit(r.rate_cm_per_yr_estimate, 'cm/yr'))}</dd></div>
       <div><dt>Period</dt><dd style="font-size:.78rem">${esc(periodTxt)}</dd></div>
       <div><dt>Pairs / Valid px</dt><dd>${r.n_pairs ?? '—'} pairs · ${esc(validTxt)}</dd></div>
-      <div><dt>2nd percentile (p2)</dt><dd>${esc(fmtNum(r.p2_cm))} cm</dd></div>
+      <div><dt>2nd percentile (p2)</dt><dd>${esc(fmtUnit(r.p2_cm, 'cm'))}</dd></div>
       <div><dt>Ref. spread</dt><dd style="font-size:.78rem">${esc(refTxt)}</dd></div>
     </dl>
     ${r.note ? `<p class="small">${esc(r.note)}</p>` : ''}
