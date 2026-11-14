@@ -16,3 +16,7 @@ Paralel: aynı bölge için 6–8 tarihlik GCOV ve tüm SME2'yi kes.
 
 ## Kabul
 `docs/gunw_structure.md` + PNG push edildi; status'ta dosya boyutu, indirme süresi, giriş gerekip gerekmediği. Hata → BLOCKED + hata metni.
+
+## Görev 3 — Toprak nemi zaman serisi (Görev 2 sonrası, eski PC5 işi)
+Kesilen SME2'lerden Central Valley bölge ortalaması + `data/central_valley/points.json` noktaları için seri
+→ `data/central_valley/drivers.json` içine `dates` ve `soil_moisture` alanları. Birim ve kaynak `meta` alanında.

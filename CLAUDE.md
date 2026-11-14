@@ -24,7 +24,9 @@ Teslim: Paz 15 Kas 23:59 UK (= Pzt 02:59 TR). Tüm çıktı metni İNGİLİZCE.
 
 ## Rol sistemi
 - **PC1 = yönetmen** (Kerem'in Claude'u). Görev yazar, denetler, birleştirir.
-- **PC2–PC5 = işçi.** Başlarken: `git pull` → `tasks/PCx.md` oku → yap → `status/PCx.md` güncelle → commit + push.
+- **PC2–PC4 = işçi.** Başlarken: `git pull` → `tasks/PCx.md` oku → yap → `status/PCx.md` güncelle → commit + push.
+- Ekip: PC1 keremsumer2010-tech · PC2 memir-erdogmus (veri) · PC3 M3hmeT1888 (çökme analizi) · PC4 acikgozibrahim032-hub (web).
+- Bonus işler `tasks/BACKLOG.md` içinde; görevi biten PC1'e sorup oradan alır.
 - Sadece KENDİ klasöründe yaz (tasks dosyasında yazar). Başkasının klasörüne dokunma.
 - Görevde belirsizlik varsa tahmin etme: `status/PCx.md` içine "BLOCKED: ..." yaz, push et, dur.
 - Commit mesajı: `[PCx] kısa açıklama`. Push öncesi `git pull --rebase`.
