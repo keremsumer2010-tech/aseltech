@@ -16,4 +16,5 @@
 - 20:00 hata ayıklama 1: `web/index.html` boş görsel `src` niteliği kaldırıldı; `ROOT + data-src` yükleyicisi korundu. `docs/qa/PC7.md` §8.
 - 20:00 hata ayıklama 2: `web/explorer.html`'e sabit NISAR provisional/kalibrasyon uyarısı eklendi; mevcut `.disclaimer` stili kullanıldı. `docs/qa/PC7.md` §9.
 - 20:00 hata ayıklama 3: Kök `requirements.txt` oluşturuldu; 11 istenen paket listelendi. Paket kurulumu/indirmesi yapılmadı. `docs/qa/PC7.md` §10.
+- 20:00 hata ayıklama 4: `python -m pytest -q` 110+ saniye çıktı vermedi; Ctrl+C ile durduruldu. Sonuç alınamadı; PASS/FAIL iddiası yok. `docs/qa/PC7.md` §11.
 - BLOCKED: yok
