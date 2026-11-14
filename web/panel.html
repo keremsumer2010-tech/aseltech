@@ -71,7 +71,7 @@ async function loadCards(){
   for(const p of PCS){
     let st='(okunamadı)'; try{st=await txt(`status/${p.id}.md`);}catch(e){}
     const mine=commits.filter(c=>c.msg.startsWith(`[${p.id}]`)); const last=mine[0];
-    const blocked=st.split(/\r?\n/).some(l=>{const m=l.match(/BLOCKED:\s*(.*)$/i); if(!m) return false; const v=m[1].replace(/[*_`]/g,'').trim().toLowerCase(); return v!=='' && !/^(yok|none|no|-|—|hayır|n\/a)/.test(v);});
+    const blocked=st.split(/\r?\n/).some(l=>{const m=l.match(/BLOCKED:\s*(.*)$/i); if(!m) return false; const v=m[1].replace(/[*_`]/g,'').trim().toLowerCase(); return v!=='' && !/^(yok|none|no|-|—|hayır|n\/a)/.test(v);});
     const mins=last?Math.round((Date.now()-last.date)/60000):null;
     const color=blocked?'var(--bad)':(mins===null?'var(--mut)':mins<45?'var(--ok)':'var(--warn)');
     const label=blocked?'ENGELLİ':(mins===null?'henüz commit yok':mins<45?'aktif':'45+ dk sessiz');
