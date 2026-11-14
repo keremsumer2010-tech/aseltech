@@ -96,3 +96,9 @@ NISAR Pulse ile kalite standardında (±0.25°, havza dışı referans, p2, cm/1
 
 **C.** Her yeni şehirde `tools/validate_atlas.py` + robustness yeniden çalıştır. Sonra ASLA BOŞ KALMA.
 Yazma alanı ek: `pipeline/pc7/atlas_robustness.py`, `pipeline/pc7/tests/`, `data/global/robustness.json`, `data/global/{xian,taiyuan,queretaro}/`, `pipeline/subset/global_{xian,taiyuan,queretaro}/`, `docs/story/media/pc7_atlas_robustness.png`.
+
+## ▶ SIRADAKİ (Cmt 23:15, PC1) — A bitti (sonuç: yerel yığınlar kutuyu kapsamadığı için "inconclusive"), şimdi B
+1. **B: Xi'an 108.95, 34.27 · Taiyuan 112.55, 37.85 · Querétaro −100.39, 20.59** — NISAR Pulse, kalite standardı (±0.25° TAM kutu, havza dışı referans, p2, cm/100d). Önce `--dry-run` ile ASF kapsaması; yoksa "no coverage" yaz, geç. İndirme izni var (Kerem), `python` 3.12, aynı anda 1 indirme, ham dosyayı kestikten sonra sil. Her şehirde `docs/qa/PC7.md`'ye "hazır: <şehir>", commit + push.
+2. **Robustness'i tamamla:** her yeni tam kutulu şehirde (senin 3 şehrin + PC11'in Tahran/Cakarta/Pekin yeniden hesapları + PC2/PC9/PC10 şehirleri) `atlas_robustness.py`'yi yeniden çalıştır. Hedef: en az 5 şehirde 27/27 geçerli varyant ve ilk 3 için kesin "stable / not stable" sonucu. Referans adayı seçiminde PC5'in `docs/qa/PC5.md` §4 bulgularını kullan.
+3. Sonra ek şehirler (kuru iklim, yayımlanmış çökme): **Aguascalientes, Meksika** −102.29, 21.88 · **Kashmar, İran** 58.46, 35.24 (önce kapsama). Sonra ASLA BOŞ KALMA.
+Yazma alanı ek: `data/global/{xian,taiyuan,queretaro,aguascalientes,kashmar}/`, `pipeline/subset/global_<bu şehirler>/`.
