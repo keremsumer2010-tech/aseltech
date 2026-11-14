@@ -1,3 +1,3 @@
 # PC8 durum
 
-- Durum: %100 (15 bölge + tehran tam kutu + ATLAS_COMPLETENESS.md tamam); sıradaki: PC10 eloy/quetta/xian ekleyince bülten + exposure + vital_signs üretimi (3 dk döngüde).
+- Durum: %100 (00:45 TR; 15 bölge senkron, diff=0; eloy/quetta/xian atlas.json bekliyor); sıradaki: 3 dk sonra kontrol.
