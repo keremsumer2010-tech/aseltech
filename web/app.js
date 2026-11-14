@@ -176,6 +176,7 @@ function compare(){
   document.getElementById('ukOptical').src = ROOT + `data/uk/optical_${D.uk.date}.jpg`;
   document.getElementById('ukRadar').src = ROOT + `data/uk/radar_${D.uk.date}.png`;
   const r = document.getElementById('compareRange'), box = document.getElementById('compare');
+  r.value = 50;
   const up = () => box.style.setProperty('--split', r.value + '%'); r.addEventListener('input', up); up();
 }
 

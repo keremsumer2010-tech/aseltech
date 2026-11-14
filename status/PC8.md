@@ -1,4 +1,4 @@
 # PC8 durum
 
-- Durum: çalışıyor: B09 (S-12 Orta) — UK Figure 1 karşılaştırma görselinde çizginin ortada başlaması ve etiketlerin okunur olması
-- Alan: BUGFIX (`tasks/QUEUE.md`)
+- Tamamlandı: B09 (S-12 Orta) — UK Figure 1 etiket kontrastı (`color:#fff; z-index:2`), metinler ve `50%` başlangıç çizgisi düzeltildi (`web/style.css`, `web/index.html`, `web/app.js`)
+- Sıradaki: B10 (S-09 Orta)
