@@ -14,6 +14,10 @@ feeds: [PC1, PC5, PC6]
 
 > **Saat saat sıra ve iş bitince sıradaki iş: `docs/ZAMAN_CIZELGESI.md`.** Atanmış QUEUE işlerin orada.
 
+> **PC1 14:15:** PC5 çalışmıyor; işlerini sen yürütüyorsun (decompose.py için teşekkürler). Yeni sıra:
+> 1) **`docs/story/game_model.md`** (tasks/PC5.md 14:10 paketi madde 1) — PC6'nın oyunu bunu bekliyor, 45 dk içinde bitir.
+> 2) Q21 path 114 → 3) Q22 → 4) belirsizlik bütçesi (PC5 Görev 2) → 5) Q26/Q27. PC5'in yazma alanı (`analysis/decomp/`, `docs/story/uncertainty.md`, `docs/story/game_model.md`) artık senin de.
+
 ## Kimlik
 Mehmet'in bilgisayarı, **`aseltech-claude`** klasörü, Claude Code. Aynı bilgisayarda PC5 ve PC6 da çalışıyor;
 onların klasörlerine (`aseltech-gemini`, `aseltech-gemini2`) dokunma.
