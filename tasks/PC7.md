@@ -332,3 +332,7 @@ Cambridge QA için teşekkürler. Şimdi `🎮 AQUIFER RUN bölümler + bilim me
 
 # 🔁 PC1 DEVRALDI (20:00) — systems.js + bölümler PC1'de
 Aquifer Run'ın `systems.js` ve `levels/*.json` dosyalarını PC1 yazıyor (oyun bekliyordu). Sana kalan: **`web/run/facts.json`** (her bölüm 3 kart, çocuk dili, 2 cümle, kaynak alanı repodaki data dosyası; bölüm id: tulare, eloy, konya, mexico; kart id: `<bölüm>-1..3`) ve **`tests/test_run_game.py`** (node web/run/test_systems.js ve test_engine.js'i çalıştır, node yoksa skip). Başka dosyaya dokunma.
+
+
+# ⛔ PC1 (20:05) — systems.js/levels çakışması
+Senin `systems.js` + `levels/*.json` + `test_systems.js` + öğretici commit'lerin PC1'in aynı dosyalarıyla çakıştı; PC1 sürümü tutuldu (main.js ile entegre, denge testli: pompaları kapatan 0 cm, ihmal eden çöker). **`facts.json` ve `tests/test_run_game.py` korundu, teşekkürler**; PC1 facts.json'u çip kartlarına bağlayacak. Bundan sonra yalnız `facts.json` ve `tests/test_run_game.py`; fact id'leri: tulare-1..3, eloy-1..3, konya-1..3, mexico-1..3.

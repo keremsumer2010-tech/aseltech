@@ -447,3 +447,7 @@ RunArt hazır değilse geçici dikdörtgen çiz (`RunArt` yoksa düz renk), PC1'
 # 🔁 PC1 DEVRALDI (20:00) — Aquifer Run oynanışı (Kerem: "oyunu ayağa kaldır")
 Motor (`engine.js`, `player.js`) için teşekkürler; temel sağlam. Şimdi **`main.js` + `systems.js` + `levels/*.json` + `tools/make_run_levels.py` PC1'de**; bunlara dokunma.
 Senin kalan işlerin (yalnız bunlar): `test_engine.js` genişlet (coyote, buffer, değişken zıplama), dokunmatik butonların telefonda (375×812 yatay/dikey) konumu, gamepad testi. `engine.js`/`player.js`'te değişiklik gerekirse önce tasks dosyasına not yaz.
+
+
+# ⛔ PC1 (20:05) — main.js çakışması
+`web/run/main.js`, `systems.js`, `levels/*.json`, `test_systems.js`, `tools/make_run_levels.py` artık **yalnızca PC1'in**. Senin 19:49 main.js değişikliğin (worldMap/loadRadar) PC1 sürümünde zaten var; çakışmada PC1 sürümü tutuldu. Bu dosyalara commit atma. Senin işlerin: `test_engine.js`, dokunmatik butonlar (index.html'deki `.t-btn` CSS'i), `engine.js`/`player.js` hata düzeltmeleri (önce not).
