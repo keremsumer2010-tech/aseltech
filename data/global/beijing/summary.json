@@ -1,55 +1,74 @@
 {
-  "max_subsidence_cm": -1.4,
+  "max_subsidence_cm": -11.1,
   "max_subsidence_range_cm": [
-    -7.6,
-    -1.4
+    -11.1,
+    -3.2
   ],
   "range_cm": [
-    -7.6,
-    -1.4
+    -11.1,
+    -3.2
   ],
   "n_references": 3,
   "reference_sensitivity": {
     "alt_reference": {
-      "lon": 116.29656,
-      "lat": 39.82382
+      "lon": 116.50557,
+      "lat": 39.74705
     },
-    "max_subsidence_cm_at_same_location": -4.1
+    "max_subsidence_cm_at_same_location": -3.2
   },
   "reference_sensitivity_all": [
     {
       "alt_reference": {
-        "lon": 116.29656,
-        "lat": 39.82382
+        "lon": 116.50557,
+        "lat": 39.74705
       },
-      "max_subsidence_cm_at_same_location": -4.1
+      "max_subsidence_cm_at_same_location": -3.2
     },
     {
       "alt_reference": {
-        "lon": 116.31061,
-        "lat": 40.10068
+        "lon": 116.68613,
+        "lat": 40.08069
       },
-      "max_subsidence_cm_at_same_location": -7.6
+      "max_subsidence_cm_at_same_location": -6.3
     }
   ],
   "period": [
     "2026-06-17",
     "2026-10-15"
   ],
-  "rate_cm_per_yr_estimate": -4.3,
+  "rate_cm_per_yr_estimate": -33.8,
   "reference_point": {
-    "lon": 116.70834,
-    "lat": 39.93371
+    "lon": 116.311554,
+    "lat": 40.099969,
+    "source": "PC1 handoff-supplied NW foothill reference coordinate; independent geology citation not verified in this run"
   },
   "quality": "provisional",
-  "quality_note": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.",
+  "quality_note": "NISAR L2 GUNW CRID P05023 provisional products only; calibration and validation are carried out by NASA-JPL/ISRO.",
   "component": "LOS",
   "max_subsidence_location": {
-    "lon": 116.83974,
-    "lat": 39.79989
+    "lon": 116.81929,
+    "lat": 39.75589
   },
-  "max_subsidence_vertical_cm_estimate": -2.1,
+  "max_subsidence_vertical_cm_estimate": -16.3,
   "incidence_deg_at_max": 47.1,
   "n_pairs": 9,
-  "method_note": "Headline value = most negative median of ~1 km blocks (13x13 px, >= 50 % valid pixels, within-block std <= 2 cm) of the cumulative LOS map. Rate = linear extrapolation of 120 days (2026-06-17 to 2026-10-15, summer season) to one year: an ESTIMATE that likely overstates the annual net rate because part of summer subsidence recovers in winter. Vertical value assumes purely vertical motion (LOS / cos(incidence)). range_cm = spread of the headline value when the whole chain is re-referenced to up to two other stable windows >= 30 km away."
+  "method_note": "Headline value = most negative median of ~1 km blocks (13x13 px, >= 50 % valid pixels, within-block std <= 2 cm) of the cumulative LOS map. Rate = linear extrapolation of 120 days (2026-06-17 to 2026-10-15, summer season) to one year: an ESTIMATE that likely overstates the annual net rate because part of summer subsidence recovers in winter. Vertical value assumes purely vertical motion (LOS / cos(incidence)). range_cm = spread of the headline value when the whole chain is re-referenced to up to two other stable windows >= 30 km away.",
+  "p2_cm": -10.24,
+  "rate_cm_per_100d": -9.25,
+  "valid_fraction": 0.523,
+  "confidence": "medium",
+  "ref_range_cm": 7.9,
+  "bbox": [
+    116.35,
+    39.7,
+    116.85,
+    40.2
+  ],
+  "reference_outside_basin": true,
+  "reference_anchor": {
+    "lon": 116.31061,
+    "lat": 40.10068,
+    "mean_coherence": 0.8609,
+    "window": "7x7; at least 48/49 common-valid pixels; nearest high-coherence window within 3 km of source locality"
+  }
 }

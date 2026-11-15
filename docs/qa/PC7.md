@@ -565,3 +565,25 @@ The authorized sequential fetch/cut completed **9/9 provisional pairs** into the
 The first processing attempt rejected the anchor because it required all 49 pixels in a 7×7 reference window to be common-valid. A diagnostic across all nine new cuts found a window center at `[116.311554, 40.099969]`, **112.7 m** from the handoff anchor, with **48/49** common-valid pixels at the ≥0.5 coherence filter and mean coherence **0.8609**. The median reference can use those 48 valid cells while one cell remains masked. `run_atlas_city.py` now requires at least 48/49 cells; two network-free regression tests cover accepting one masked cell and rejecting two. `py_compile` passed and those tests passed **2/2**. Cached cuts will be reused for the processing rerun.
 
 The first cached rerun still rejected the measured window because the candidate scan stepped two pixels at a time and skipped its row/column parity. The scan now checks every candidate center; the two regression tests still pass, and the cached nine-pair selector returns the measured reference center `[116.311554, 40.099969]` at mean coherence **0.8609**. No new download was triggered.
+
+## 30. Beijing — full-box provisional rerun complete
+
+**hazır: beijing** for PC10 atlas refresh. The fresh 9-pair P047/F068 chain spans **2026-06-17–2026-10-15 (120 days)** with no gaps; common subset coverage contains the full `[116.35, 39.70, 116.85, 40.20]` target box. Raw H5 files were removed after each cut; only temporary clipped NPZs were used, without changing PC2’s shared subset folder. Ten displacement PNGs, 12 point series, metadata, summary, coverage, and QC report were written under `data/global/beijing/`.
+
+| Measure | Full-box result |
+|---|---:|
+| Most-negative ~1 km block median, LOS | −11.1 cm |
+| `p2_cm` | −10.24 cm |
+| `rate_cm_per_100d` | −9.25 cm/100 days |
+| `valid_fraction` | 0.523 |
+| `confidence` | medium |
+| Reference sensitivity spread | 7.9 cm (−11.1 to −3.2 cm; 71% of headline magnitude) |
+| Linear 120-day annualization | −33.8 cm/year estimate; not an annual net rate |
+
+The selected reference window center is `[116.311554, 40.099969]`, 112.7 m from PC1’s handoff anchor `[116.31061, 40.10068]`, with mean coherence **0.8609** and 48/49 cells common-valid. `reference_outside_basin=true` follows the PC1 handoff designation; an independent geology/GNSS citation for this exact reference was not verified. The large 7.9 cm reference spread makes the headline reference-sensitive. PC11’s existing literature table lists Beijing rates of 3–10 cm/year (local reports up to 15) without a DOI verified in that pass; the 120-day annualized estimate is higher and should be reviewed by PC5 before being treated as a regional rate. The result remains provisional and should be shown as indicative pending that review.
+
+July 11 check on the full-box run: the 2026-07-11 pair boundary has **54,382 / 415,137 = 13.10%** of common pixels with opposite adjacent steps both exceeding 5 cm, below the QC engine’s >30% date-drop threshold. `qc_report.json` therefore records **0 corrected pairs, 0 dropped dates, 0.0% affected pixels**. Five of 12 selected points show such opposite steps, so this is a localized hotspot signal in a deliberately hotspot-heavy point list, not evidence to drop the whole scene.
+
+Checks: metadata bbox/dates match the summary; all 12 points have the same 10 dates and matching displacement lengths; coverage records 9 pairs, no gaps, and raw deletion. Ten PNG files are present; the final-date map was visually inspected; largest is **405,243 bytes**. JSON scan: **203 files**, 0 parse/non-finite values; five missing `quality` fields remain in other-owner shared files. `python tools/validate_atlas.py`: **27 regions / 27 folders, 275 findings (251 errors, 24 warnings)**. Beijing’s atlas entry is stale (`−1.4 cm`, `−1.2 cm/100 days`, low) versus this summary (`−11.1 cm`, `−9.25 cm/100 days`, medium); PC10 owns `atlas.json` and must refresh it. The full mismatch list is in the validator output; PC7 did not edit the atlas.
+
+Fresh-cut robustness is the next step; the script override for the scratch subset path has been implemented and its regression tests pass.
