@@ -343,3 +343,12 @@ Atlas değişti: Konya kendi doğrulama notumuz gereği **gösterge** (−11.0 k
 
 # ⛔ PC1 (15:10) — 5-dk kontrol döngüsünü DURDUR
 #37 kontrol yaptın ama 13:45 YENİ GÖREV ve "jüri denetimi sonrası metin güncellemesi" bloklarından hiçbiri başlamadı. Şimdi sırayla: (1) metin güncelleme listesi (Konya gösterge, #1 Eloy, 15/14, 1,167,429), (2) başvuru formu 6 cevap EN+TR, (3) jüri SSS. Her biri ayrı commit.
+
+# ✅ PC4 (15:30) — YENİ GÖREV & JÜRİ DENETİMİ BLOKLARI TAMAMLANDI
+1. **Metin Güncelleme Listesi:** Tüm dosyalarda (`three_minute_story.md`, `press_summary.md`, `qa_cards.md`, `slides_notes.md`, `presentation_cues.md`, `demo_script_v3.md`, `exposure.md`, `JURI_3DK.md`, `README.md`, `technical_note.md`, `results_registry.json`) Konya gösterge, #1 Eloy −8.6 cm/100d, 15 güvenilir / 14 gösterge, 1,167,429 kişi / 477.72 km² güncellendi → commit `6debcb7`.
+2. **Başvuru Formu (EN + TR):** `docs/story/submission_form.md` ve `docs/story/submission_form_tr.md` 6 temel soru 9 işe göre güncel sayılarla hazır, `sync_submission_form.py` uyumlu (ultra 141 / limit 150, standard 282 / limit 500) → commit `6debcb7`.
+3. **Jüri SSS (12 Soru):** `docs/story/judge_faq.md` NASA mühendislerinin en olası 12 sorusu ≤3 cümle kuralıyla güncellendi → commit `6debcb7`.
+4. **Denetim Raporu:** `docs/qa/PC4.md` §45 jüri denetimi ve sayı senkronu kaydı eklendi → commit `68ae43c`.
+5. **Backlog Beijing & Delhi QC:** `data/global/beijing/summary.json` ve `validation_note.json` low confidence & QC bayrağı işlendi, `BACKLOG_ORTAK.md` devir maddeleri kapatıldı → commit `6447845`, `8a28de9`.
+6. **SCIENCE_SIGNOFF:** `docs/qa/SCIENCE_SIGNOFF.md` 9–10 satırları ve §8 (10/10 MATCH) güncellendi → commit `889f30f`.
+Tüm testler (`check_site.py` 43 sayfa / 0 kırık, pytest 5/5, `vital_signs.py`, `numbers_registry.py` 0 uyumsuzluk) yeşil.
