@@ -113,4 +113,44 @@ function emptyInput() {
   assert.strictEqual(res.jumped, true, 'Player should be able to jump during coyote time');
 }
 
-console.log('test_engine.js: all 4 engine & player assertions PASSED');
+// 5. Jump buffer (pressing jump 0.05s before landing triggers jump on landing)
+{
+  const map = makeTestLevel();
+  const p = Player.createPlayer(2 * T, 6 * T - 64 - 8); // 8px above ground
+  p.vy = 200; // falling fast enough to land in ~2-3 frames
+  let jumpedOnLand = false;
+  for (let i = 0; i < 10; i++) {
+    const inp = emptyInput();
+    if (i === 0) {
+      inp.jump = true;
+      inp.jumpPressed = true;
+    }
+    const res = Player.updatePlayer(p, inp, map, Engine.FIXED_DT, Engine);
+    if (res.jumped) {
+      jumpedOnLand = true;
+      break;
+    }
+  }
+  assert.strictEqual(jumpedOnLand, true, 'Jump buffer should trigger jump upon landing within 0.1s');
+}
+
+// 6. Coyote time expiry (cannot jump after > 0.1s in air)
+{
+  const map = makeTestLevel();
+  const p = Player.createPlayer(2 * T, 6 * T - 64);
+  p.onGround = true;
+  Player.updatePlayer(p, emptyInput(), map, Engine.FIXED_DT, Engine);
+  p.onGround = false;
+  for (let i = 0; i < 8; i++) { // 8 * 1/60 = 0.133s > 0.1s
+    p.y = 2 * T;
+    Player.updatePlayer(p, emptyInput(), map, Engine.FIXED_DT, Engine);
+  }
+  assert.strictEqual(p.coyoteTimer, 0, 'Coyote timer should expire after > 0.1s in air');
+  const inp = emptyInput();
+  inp.jump = true;
+  inp.jumpPressed = true;
+  const res = Player.updatePlayer(p, inp, map, Engine.FIXED_DT, Engine);
+  assert.strictEqual(res.jumped, false, 'Player should NOT be able to jump after coyote time expires');
+}
+
+console.log('test_engine.js: all 6 engine & player assertions PASSED');
