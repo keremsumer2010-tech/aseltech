@@ -52,7 +52,7 @@
           <span class="rt">${minus(t.rate_cm_per_100d_common)} cm</span>
           <span class="bar"><i style="width:${(100 * Math.abs(t.rate_cm_per_100d_common) / maxAbs).toFixed(0)}%"></i></span></li>`).join('');
       const note = document.getElementById('top5note');
-      if (note) note.innerHTML = `Fastest reliable basins, cm per 100 days toward or away from the satellite, common window ${w0} to ${w1}; ${h.qc_story.flagged.length} more basins are indicative only. ` + h.calibration_note;
+      if (note) note.innerHTML = `Fastest reliable basins, cm per 100 days toward or away from the satellite, common window ${w0} to ${w1}; ${((h.kpis.find(k => k.key === 'regions') || {}).detail || '').match(/(\d+) indicative/)?.[1] ?? h.qc_story.flagged.length} more basins are indicative only. ` + h.calibration_note;
     }
 
     // QC before/after chart

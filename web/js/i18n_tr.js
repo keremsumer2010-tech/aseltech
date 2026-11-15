@@ -948,6 +948,172 @@ Object.assign(window.I18N_TR, {
     "# çöken bölge, geçici NISAR GUNW zincirleriyle ortak #-günlük yaz dönemine (### – ###) göre sıralandı.",
   "# regions (# reliable, # indicative); top reliable # cm/#d (Konya Plain)": "# bölge (# güvenilir, # gösterge); en hızlı güvenilir # cm/#g (Konya Ovası)",
   "# cm/#d (Konya Plain, # regions, provisional)": "# cm/#g (Konya Ovası, # bölge, geçici)",
+  "Across # regions in the # Global Subsidence Atlas (# reliable, # indicative), Eloy leads reliable basins at # cm/#d over the #-day common window, followed by Central Valley, Mexico City, Semarang, and Houston; Konya Plain (# cm/#d) is kept indicative following our own validation audit.":
+    "#2 Küresel Çökme Atlası'ndaki #1 bölgede (#3 güvenilir, #4 gösterge), #7 günlük ortak dönemde #5 cm/#6g ile güvenilir havzalarda Eloy ilk sırada; onu Orta Vadi, Mexico City, Semarang ve Houston izliyor. Konya Ovası (#8 cm/#9g) kendi doğrulama denetimimiz sonucunda gösterge olarak tutuluyor.",
+  "# regions (# reliable, # indicative); top reliable # cm/#d (Eloy)": "# bölge (# güvenilir, # gösterge); en hızlı güvenilir # cm/#g (Eloy)",
+  "# cm/#d (Eloy, # regions, provisional)": "# cm/#g (Eloy, # bölge, geçici)",
+  "A satellite number is only useful if you can trust it. We tested ours three ways.":
+    "Uydudan gelen bir sayı ancak ona güvenebiliyorsan işe yarar. Bizimkini üç yolla test ettik.",
+  "Basins with thin coverage or failed checks stay \"indicative\". Even Konya, our strongest signal, stays indicative after our own review.":
+    "Kapsamı zayıf ya da kontrollerden geçemeyen havzalar \"gösterge\" olarak kalır. En güçlü sinyalimiz Konya bile kendi incelememizden sonra gösterge olarak kalıyor.",
+  "Checked against the ground":
+    "Yerde doğrulandı",
+  "For kids: Water Hero →":
+    "Çocuklar için: Water Hero →",
+  "How it works, step by step →":
+    "Adım adım nasıl çalışıyor →",
+  "How we know it's right":
+    "Doğru olduğunu nereden biliyoruz",
+  "Indonesia · caution":
+    "Endonezya · dikkat",
+  "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team. {0}":
+    "NISAR verileri geçicidir. Kalibrasyon ve doğrulama bizim ekibimiz tarafından değil, NISAR projesi (NASA-JPL ve ISRO) tarafından yapılmaktadır. {0}",
+  "Play Aquifer Run →":
+    "Aquifer Run'ı oyna →",
+  "Radar can jump by exactly one wave cycle (# cm). An automatic test checks every basin for these jumps and bad dates; flagged basins are not ranked.":
+    "Radar tam bir dalga döngüsü (# cm) kadar sıçrayabilir. Otomatik bir test her havzada bu sıçramaları ve hatalı tarihleri arar; işaretlenen havzalar sıralamaya girmez.",
+  "Rates in {0} (centimetres per # days; # in = # cm) along satellite {1} (line of sight: toward or away from the radar), from NASA-JPL {2} (Geocoded Unwrapped Interferogram: paired radar images processed to show ground movement). {3}":
+    "Hızlar {0} cinsinden (# günde santimetre; # inç = # cm), uydunun {1} yönünde (bakış doğrultusu: radara doğru ya da radardan uzağa), NASA-JPL {2} ürünlerinden (Coğrafi Konumlu Açılmış İnterferogram: yer hareketini göstermek için işlenmiş radar görüntü çiftleri). {3}",
+  "Ten permanent GPS stations in California measured the same sinking as the satellite. Typical difference: about # cm (# in).":
+    "Kaliforniya'daki on kalıcı GPS istasyonu uydunun ölçtüğü çökmenin aynısını ölçtü. Tipik fark: yaklaşık # cm (# inç).",
+  "We hunt for our own mistakes":
+    "Kendi hatalarımızı avlıyoruz",
+  "We only rank what passes":
+    "Yalnızca kontrolden geçeni sıralıyoruz",
+  "{0} a comparison with # permanent GPS stations in California's Central Valley, where the ground moved up to # cm (# in) away from the satellite in # days.":
+    "{0} Kaliforniya Orta Vadisi'ndeki #1 kalıcı GPS istasyonuyla karşılaştırma; burada yer #4 günde uydudan #2 cm'ye (#3 inç) kadar uzaklaştı.",
+  "{0} an automatic test on every basin's time series. It looks for jumps of exactly one radar phase cycle (# cm / # in) and for single bad dates.":
+    "{0} her havzanın zaman serisinde otomatik bir test. Tam bir radar faz döngüsü (# cm / # inç) kadar sıçramaları ve tek tek hatalı tarihleri arar.",
+  "{0} caught":
+    "{0} yakalandı",
+  "{0} it caught our first number one. Semarang's # cm (# in) was one processing jump; re-processed, the real peak on the coast is # cm (# in).":
+    "{0} ilk bir numaramızı yakaladı. Semarang'ın # cm'si (# inç) tek bir işleme sıçramasıydı; yeniden işlenince kıyıdaki gerçek tepe değer # cm (# inç).",
+  "{0} per # days at Eloy, Arizona, the fastest reliable basin. Konya Plain shows a stronger signal (# cm / # in) but our own review keeps it indicative.":
+    "{0} Eloy, Arizona'da # günde; en hızlı güvenilir havza. Konya Ovası daha güçlü bir sinyal gösteriyor (# cm / # inç) ama kendi incelememiz onu gösterge olarak tutuyor.",
+  "▶ #-min video":
+    "▶ # dk video",
+  "Selected region details":
+    "Seçilen bölgenin ayrıntıları",
+  "We used NASA-ISRO NISAR {0} L# {1} (Geocoded Unwrapped Interferogram) radar pairs to measure ground sinking in # basins over the same # days. Rates are in {2} (centimeters per # days; # in = # cm) along satellite {3} (line-of-sight: toward or away from the radar), where deeper red means faster sinking and pale tones mean near-zero motion. Low-coverage basins or series flagged by our automated quality checks are marked {4} so you always know which numbers are rock-solid.":
+    "NASA-ISRO NISAR {0} L# {1} (Coğrafi Konumlu Açılmış İnterferogram) radar çiftleriyle # havzada aynı # gün boyunca yer çökmesini ölçtük. Hızlar {2} cinsindendir (# günde santimetre; # inç = # cm), uydunun {3} yönünde (bakış doğrultusu: radara doğru ya da radardan uzağa); koyu kırmızı daha hızlı çökme, soluk tonlar sıfıra yakın hareket demektir. Kapsamı düşük havzalar ya da otomatik kalite kontrollerimizin işaretlediği seriler {4} olarak gösterilir; böylece hangi sayıların sağlam olduğunu her zaman bilirsiniz.",
+  "km² across measured basins, sank more than # cm (# in) in one summer (~# days)":
+    "km², ölçülen havzalarda; bir yazda (~#3 gün) #1 cm'den (#2 inç) fazla çöktü",
+  "live where ground sank more than # cm (# in) in one summer (GHSL population estimate)":
+    "kişi, bir yazda # cm'den (# inç) fazla çöken zeminde yaşıyor (GHSL nüfus tahmini)",
+  "medium · indicative only":
+    "orta · yalnızca gösterge",
+  "very high · indicative only":
+    "çok yüksek · yalnızca gösterge",
+  "Beat \"doing nothing\"":
+    "\"Hiçbir şey yapmamayı\" geç",
+  "Beat \"doing nothing\" (the # settings). Grade appears after the first full year, month # (now #/#).":
+    "\"Hiçbir şey yapmamayı\" (# ayarları) geç. Not, ilk tam yıldan sonra, #. ayda çıkar (şu an #/#).",
+  "Goal: at least #% of the income of doing nothing":
+    "Hedef: hiçbir şey yapmamanın gelirinin en az %#'i",
+  "Goal: at most half the permanent sinking of doing nothing":
+    "Hedef: hiçbir şey yapmamanın kalıcı çökmesinin en fazla yarısı",
+  "Goal: fewer dry wells than doing nothing, canal loss under #%":
+    "Hedef: hiçbir şey yapmamaktan daha az kuruyan kuyu, kanal kaybı %# altında",
+  "Protect wells & canals":
+    "Kuyuları ve kanalları koru",
+  "Your grade appears after month #":
+    "Notun #. aydan sonra çıkar",
+  "{0}{1}Keep #% of farm income while cutting permanent sinking in half. Graded A–F after the first year.":
+    "{0}{1}Kalıcı çökmeyi yarıya indirirken çiftlik gelirinin %#'ini koru. İlk yıldan sonra A–F arası not alırsın.",
+  "# dry wells · canal #%":
+    "# kuruyan kuyu · kanal %#",
+  "# Why do you report motion along the satellite's line of sight?":
+    "#. Hareketi neden uydunun bakış doğrultusunda veriyorsunuz?",
+  "# Why compare the same # days?":
+    "#. Neden aynı # günü karşılaştırıyorsunuz?",
+  "# How does the quality check work?":
+    "#. Kalite kontrolü nasıl çalışıyor?",
+  "# Why is Konya marked indicative?":
+    "#. Konya neden gösterge olarak işaretli?",
+  "# How did you check the satellite measurements with GPS?":
+    "#. Uydu ölçümlerini GPS ile nasıl kontrol ettiniz?",
+  "# What does “provisional” mean?":
+    "#. “Geçici” ne demek?",
+  "# Why is NASA's OPERA product not the headline comparison?":
+    "#. NASA'nın OPERA ürünü neden ana karşılaştırma değil?",
+  "# How did you estimate the exposed population?":
+    "#. Etkilenen nüfusu nasıl tahmin ettiniz?",
+  "# What does “permanent water storage loss” mean here?":
+    "#. Burada “kalıcı su depolama kaybı” ne demek?",
+  "# Can another team reproduce the results?":
+    "#. Başka bir ekip sonuçları yeniden üretebilir mi?",
+  "# What are the main limits?":
+    "#. Başlıca sınırlar neler?",
+  "# How can a city use the atlas?":
+    "#. Bir şehir atlası nasıl kullanabilir?",
+  "# km³ per year":
+    "yılda # km³",
+  "It is the estimated aquifer storage loss associated with ground compaction that does not recover in the seasonal cycle. The current Central Valley estimate is {0}; it is a model-based estimate, not a direct water-meter reading.":
+    "Mevsimlik döngüde geri gelmeyen zemin sıkışmasına bağlı tahmini akifer depolama kaybıdır. Orta Vadi için güncel tahmin {0}; bu doğrudan bir su sayacı okuması değil, modele dayalı bir tahmindir.",
+  "Its summer signal is stronger than the longer-term context supports, and the result depends on the reference and valid-pixel coverage. We keep it visible for transparency but leave it out of the reliable ranking.":
+    "Yaz sinyali uzun dönemli bağlamın desteklediğinden güçlü ve sonuç referansa ve geçerli piksel kapsamına bağlı. Şeffaflık için görünür tutuyoruz ama güvenilir sıralamanın dışında bırakıyoruz.",
+  "OPERA provides an independent shape check for Mexico City, but its comparison window is {0}, while NISAR covers {1}. Because the seasons differ, it is not a same-time validation.":
+    "OPERA, Mexico City için bağımsız bir desen kontrolü sağlıyor ama karşılaştırma dönemi {0}, NISAR ise {1} dönemini kapsıyor. Mevsimler farklı olduğu için aynı zamanlı bir doğrulama değil.",
+  "Radar measures movement toward or away from the satellite most directly. Turning that into vertical movement requires an assumption about horizontal motion, so we label line-of-sight (LOS) values clearly.":
+    "Radar en doğrudan uyduya doğru ya da uydudan uzağa hareketi ölçer. Bunu dikey harekete çevirmek yatay hareket hakkında bir varsayım gerektirir; bu yüzden bakış doğrultusu (LOS) değerlerini açıkça etiketliyoruz.",
+  "The atlas covers one shared summer window and uses provisional products, so it cannot establish a long-term annual trend. Radar observes a slanted view, and horizontal movement or atmospheric noise can affect a vertical estimate.":
+    "Atlas tek bir ortak yaz dönemini kapsıyor ve geçici ürünler kullanıyor; bu yüzden uzun vadeli yıllık bir eğilim ortaya koyamaz. Radar eğik bakar; yatay hareket ya da atmosferik gürültü dikey tahmini etkileyebilir.",
+  "The atlas uses the common window {0} so basin rates use the same part of the season. This improves comparability, though it does not make one summer a long-term trend.":
+    "Atlas ortak {0} dönemini kullanıyor; böylece havza hızları mevsimin aynı bölümünden geliyor. Bu karşılaştırılabilirliği artırır ama tek bir yazı uzun vadeli bir eğilime çevirmez.",
+  "These are early NISAR products that have not completed the mission team's calibration and validation. The NISAR project (NASA-JPL and ISRO) performs those steps; our team does not.":
+    "Bunlar görev ekibinin kalibrasyon ve doğrulamasını henüz tamamlamamış erken NISAR ürünleri. Bu adımları bizim ekibimiz değil, NISAR projesi (NASA-JPL ve ISRO) yapıyor.",
+  "Use it to identify places that may deserve a closer look, then compare the signal with local survey, groundwater, and infrastructure records. It is a screening tool, not a safety rating or a substitute for local engineering review.":
+    "Daha yakından bakılması gereken yerleri bulmak için kullanın, sonra sinyali yerel ölçüm, yeraltı suyu ve altyapı kayıtlarıyla karşılaştırın. Bir tarama aracıdır; güvenlik derecesi ya da yerel mühendislik incelemesinin yerine geçmez.",
+  "We compared NISAR with # continuous GPS stations in California's Central Valley. The agreement is {0}, with {1} at the final date.":
+    "NISAR'ı Kaliforniya Orta Vadisi'ndeki # sürekli GPS istasyonuyla karşılaştırdık. Uyum {0}, son tarihte {1}.",
+  "We overlaid the atlas movement screen on the {0} population grid and counted people where measured sinking exceeds {1}. The global summary reports {2} people across the measured basins.":
+    "Atlas hareket haritasını {0} nüfus ızgarasının üzerine koyduk ve ölçülen çökmenin {1} değerini aştığı yerlerdeki insanları saydık. Küresel özet, ölçülen havzalarda {2} kişi bildiriyor.",
+  "We screen each time series for sudden jumps that look like a radar phase error and review suspicious dates and reference areas. The review corrected Semarang's headline from # cm (# in) to # cm (# in); flagged basins stay indicative while under review.":
+    "Her zaman serisini radar faz hatasına benzeyen ani sıçramalar için tarıyor, şüpheli tarihleri ve referans alanlarını inceliyoruz. İnceleme, Semarang'ın ana değerini # cm'den (# inç) # cm'ye (# inç) düzeltti; işaretlenen havzalar inceleme sürerken gösterge olarak kalıyor.",
+  "Yes: the code, input products, quality labels, and result files are open in the repository. The documented pipeline can be rerun for a selected basin, and its checks expose the inputs and assumptions.":
+    "Evet: kod, girdi ürünleri, kalite etiketleri ve sonuç dosyaları depoda açık. Belgelenmiş hat seçilen bir havza için yeniden çalıştırılabilir ve kontrolleri girdileri ve varsayımları gösterir.",
+  "All # basins are measured over the same # days. Only the # that pass every check are ranked; the rest are shown as \"indicative\".":
+    "# havzanın hepsi aynı # günde ölçülüyor. Yalnızca her kontrolden geçen # tanesi sıralanıyor; geri kalanlar \"gösterge\" olarak gösteriliyor.",
+  "Comparing two passes shows how far the ground moved toward or away from the satellite (its \"line of sight\"), to a fraction of a centimetre.":
+    "İki geçişi karşılaştırmak, yerin uyduya doğru ya da uydudan uzağa (\"bakış doğrultusu\") ne kadar hareket ettiğini santimetrenin kesirlerine kadar gösterir.",
+  "Every basin's time series is tested for jumps of exactly one radar wave cycle (# cm) and for bad dates. Ten GPS stations check the result on the ground.":
+    "Her havzanın zaman serisi tam bir radar dalga döngüsü (# cm) kadar sıçramalar ve hatalı tarihler için test ediliyor. On GPS istasyonu sonucu yerde kontrol ediyor.",
+  "Four steps, each one checked. Plain English first; the technical details are folded further down for anyone who wants them.":
+    "Dört adım, her biri kontrol edildi. Önce sade anlatım; teknik ayrıntılar isteyenler için aşağıda katlanmış durumda.",
+  "Geocoded unwrapped interferogram: a pair of radar images processed to show ground movement":
+    "Coğrafi konumlu açılmış interferogram: yer hareketini göstermek için işlenmiş bir radar görüntü çifti",
+  "Ground motion: Central Valley, Karapınar and London":
+    "Yer hareketi: Orta Vadi, Karapınar ve Londra",
+  "How it works in four steps":
+    "Dört adımda nasıl çalışıyor",
+  "How we turn radar echoes into centimetres":
+    "Radar yankılarını santimetreye nasıl çeviriyoruz",
+  "Interferometric synthetic aperture radar (InSAR) compares radar echoes from separate satellite passes. It measures movement along the satellite's line of sight (LOS), toward or away from the satellite; a rate in cm/#d means centimetres per # days.":
+    "İnterferometrik yapay açıklıklı radar (InSAR), ayrı uydu geçişlerinden gelen radar yankılarını karşılaştırır. Uydunun bakış doğrultusundaki (LOS) hareketi, yani uyduya doğru ya da uydudan uzağa hareketi ölçer; cm/#g cinsinden bir hız # günde santimetre demektir.",
+  "NISAR flies over the same spot every # days and bounces microwaves off the ground, day or night, through clouds.":
+    "NISAR aynı noktanın üzerinden # günde bir geçer ve gece gündüz, bulutların içinden mikrodalgaları yere gönderip yankısını alır.",
+  "Satellite versus GPS at # stations":
+    "# istasyonda uydu ve GPS",
+  "Semarang before and after the error check":
+    "Hata kontrolünden önce ve sonra Semarang",
+  "Step #: satellite vs GPS, r = #":
+    "Adım #: uydu ve GPS, r = #.",
+  "Step #: the check caught a one-cycle jump in Semarang.":
+    "Adım #: kontrol Semarang'da tek döngülük bir sıçramayı yakaladı.",
+  "Step #: the atlas (filled = reliable, ring = indicative).":
+    "Adım #: atlas (dolu = güvenilir, halka = gösterge).",
+  "World map of the measured basins":
+    "Ölçülen havzaların dünya haritası",
+  "{0} # basins pass every check; the fastest is Eloy, Arizona at # cm (# in) per # days. About # people live on ground that sank more than # cm (# in) in one summer.":
+    "{0} #1 havza her kontrolden geçiyor; en hızlısı #4 günde #2 cm (#3 inç) ile Eloy, Arizona. Yaklaşık #5 kişi bir yazda #6 cm'den (#7 inç) fazla çöken zeminde yaşıyor.",
+  "{0} # sinking basins on three continents, all with the same open method and the same #-day window (# Jun – # Sep #), from provisional NISAR radar data.":
+    "{0} üç kıtada # çöken havza; hepsi aynı açık yöntemle ve aynı # günlük dönemde (# Haz – # Eyl #), geçici NISAR radar verisinden.",
+  "{0} Against # GPS stations: r = # and RMSE # cm (# in) at the final date, plus a second satellite view from the opposite direction.":
+    "{0} # GPS istasyonuna karşı: son tarihte r = # ve RMSE # cm (# inç); ayrıca karşı yönden ikinci bir uydu görünümü.",
+  "±# day":
+    "±# gün",
+  "Beat \"doing nothing\" (the # settings) on all three.":
+    "Üç hedefte de \"hiçbir şey yapmamayı\" (# ayarları) geç.",
   "# regions; # cm GNSS median RMSE (provisional)": "# bölge; # cm GNSS medyan RMSE (geçici)",
   "Methods, uncertainty limits, GNSS/OPERA cross-checks, and #-region ATLAS v# results for provisional NISAR L-band GUNW interferometry across Central Valley, Konya Basin, UK Fens, and global subsidence basins.":
     "Central Valley, Konya Havzası, Birleşik Krallık Fens ve küresel çökme havzalarında geçici NISAR L-bant GUNW interferometrisi için yöntemler, belirsizlik sınırları, GNSS/OPERA çapraz kontrolleri ve #-bölgelik ATLAS v# sonuçları.",

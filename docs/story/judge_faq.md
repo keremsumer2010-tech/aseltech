@@ -22,7 +22,7 @@ These are early NISAR products that have not completed the mission team's calibr
 OPERA provides an independent shape check for Mexico City, but its comparison window is **2025-12-25 to 2026-03-25**, while NISAR covers **2026-06-22 to 2026-10-20**. Because the seasons differ, it is not a same-time validation.
 
 ## 8. How did you estimate the exposed population?
-We overlaid the atlas movement screen on the **GHSL 2025** population grid and counted people where measured sinking exceeds **5 cm**. The global summary reports **1,167,429** people across the measured basins.
+We overlaid the atlas movement screen on the **GHSL 2025** population grid and counted people where measured sinking exceeds **5 cm**. The global summary reports **369,770** people across the measured basins.
 
 ## 9. What does “permanent water storage loss” mean here?
 It is the estimated aquifer storage loss associated with ground compaction that does not recover in the seasonal cycle. The current Central Valley estimate is **0.3174 km³ per year**; it is a model-based estimate, not a direct water-meter reading.
