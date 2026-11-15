@@ -2,10 +2,10 @@
   'use strict';
 
   var LEVELS = [
-    { id: 'tulare', name: '1. Tulare Basin, California', biome: 'tulare' },
-    { id: 'eloy', name: '2. Eloy, Arizona', biome: 'eloy' },
-    { id: 'konya', name: '3. Karapinar, Konya', biome: 'konya' },
-    { id: 'mexico', name: '4. Mexico City, Mexico', biome: 'mexico' }
+    { id: 'tulare', name: '1. Tulare Basin, California', biome: 'tulare', lon: -119.3, lat: 36.2, rate: '-10.1 cm', radarUrl: '../data/central_valley/disp/2026-10-14.png' },
+    { id: 'eloy', name: '2. Eloy, Arizona', biome: 'eloy', lon: -111.5, lat: 32.7, rate: '-8.4 cm', radarUrl: '../data/global/eloy/disp/2026-10-17.png' },
+    { id: 'konya', name: '3. Karapinar, Konya', biome: 'konya', lon: 33.5, lat: 37.7, rate: '-3.8 cm', radarUrl: '../data/karapinar/disp/2026-10-12.png' },
+    { id: 'mexico', name: '4. Mexico City, Mexico', biome: 'mexico', lon: -99.1, lat: 19.4, rate: '-4.9 cm', radarUrl: '../data/global/mexico_city/disp/2026-10-20.png' }
   ];
 
   var STORAGE_KEY = 'aquifer_run_progress_v1';
@@ -185,6 +185,22 @@
       }
     },
     draw: function (c) {
+      var prog = loadProgress();
+      if (window.RunArt && window.RunArt.worldMap) {
+        var pins = LEVELS.map(function (lv, idx) {
+          return {
+            id: lv.id,
+            name: lv.name,
+            lon: lv.lon,
+            lat: lv.lat,
+            rate: lv.rate,
+            stars: prog[lv.id] || 0,
+            locked: !isUnlocked(idx)
+          };
+        });
+        window.RunArt.worldMap(c, Engine.VIEW_W, Engine.VIEW_H, titleTime, pins, mapIdx);
+        return;
+      }
       c.fillStyle = '#0f172a';
       c.fillRect(0, 0, Engine.VIEW_W, Engine.VIEW_H);
       c.fillStyle = '#e6edf3';
@@ -192,7 +208,6 @@
       c.textAlign = 'center';
       c.fillText('SELECT A SINKING VALLEY', Engine.VIEW_W / 2, 74);
 
-      var prog = loadProgress();
       for (var k = 0; k < LEVELS.length; k++) {
         var bx = 70 + k * 212;
         var by = 150;
@@ -493,7 +508,7 @@
       Player.drawPlayer(c, L.player, cx, cy);
 
       if (L.scanActive > 0 && !settings.reducedMotion && window.RunArt && window.RunArt.radarSweep) {
-        window.RunArt.radarSweep(c, Engine.VIEW_W, Engine.VIEW_H, 1 - (L.scanActive / 3.0));
+        window.RunArt.radarSweep(c, Engine.VIEW_W, Engine.VIEW_H, 1 - (L.scanActive / 3.0), L.json.biome || 'tulare');
       }
 
       // HUD
@@ -643,6 +658,11 @@
   });
 
   function boot() {
+    if (window.RunArt && window.RunArt.loadRadar) {
+      LEVELS.forEach(function (lv) {
+        window.RunArt.loadRadar(lv.biome, lv.radarUrl);
+      });
+    }
     scenes.go('title');
     Engine.startLoop(
       function step(dt) {
