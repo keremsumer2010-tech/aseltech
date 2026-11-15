@@ -245,3 +245,5 @@ Evet. PC1 rolleri saat başı kontrolde değiştirebilir; değişiklik önce bu 
 - PC10 durmuş sayıldı (12:55) → dondurma betiği + 19:15 dondurma **PC1**; şema testi BACKLOG_ORTAK.
 
 - PC2 durmuş sayıldı (13:10) → Delhi --qc notu BACKLOG_ORTAK.
+
+- PC11: Pekin QC uyarısı (indicative kalır), Celaya son saat 18:30 (PC1 13:35).
