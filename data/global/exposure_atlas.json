@@ -6,11 +6,11 @@
   "quality_note": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.",
   "notes": "karapinar is reported separately as a local subset inside konya_plain and is never summed. totals_excluding_nested_karapinar sums reliable basins only (indicative-only basins in atlas.json are listed per city but excluded from the headline); totals_all_regions_excluding_nested_karapinar adds the indicative-only basins.",
   "totals_excluding_nested_karapinar": {
-    "people_lt_minus2cm": 7475011,
-    "people_lt_minus5cm": 1200716,
-    "area_km2_lt_minus5cm": 511.65,
+    "people_lt_minus2cm": 7336293,
+    "people_lt_minus5cm": 1167429,
+    "area_km2_lt_minus5cm": 477.72,
     "scope": "reliable basins only",
-    "n_basins": 16
+    "n_basins": 15
   },
   "totals_all_regions_excluding_nested_karapinar": {
     "people_lt_minus2cm": 19892445,
@@ -23,7 +23,7 @@
     {
       "id": "konya_plain",
       "name": "Konya Plain",
-      "country": "T\u00fcrkiye",
+      "country": "Türkiye",
       "people_lt_minus2cm": 138718,
       "people_lt_minus5cm": 33287,
       "area_km2_lt_minus5cm": 33.93,
@@ -526,7 +526,7 @@
     },
     {
       "id": "delta",
-      "name": "Sacramento\u2013San Joaquin Delta",
+      "name": "Sacramento–San Joaquin Delta",
       "country": "USA",
       "people_lt_minus2cm": 632,
       "people_lt_minus5cm": 155,
@@ -838,8 +838,8 @@
     },
     {
       "id": "karapinar",
-      "name": "Karap\u0131nar, Konya",
-      "country": "T\u00fcrkiye",
+      "name": "Karapınar, Konya",
+      "country": "Türkiye",
       "people_lt_minus2cm": 23424,
       "people_lt_minus5cm": 3734,
       "area_km2_lt_minus5cm": 3.1,

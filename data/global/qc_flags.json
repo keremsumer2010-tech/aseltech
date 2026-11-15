@@ -2,26 +2,6 @@
   "method": "Automatic time-series QC for atlas headline points (PC1).\n\nFor every region in data/global/atlas.json, look at the headline point's cumulative series\n(points.json, kind == \"most_subsiding\") and flag two failure modes that a single summary\nnumber hides:\n\n  phase_cycle_jump      one step whose size is within ±CYCLE_TOL of a full L-band phase cycle\n                        (lambda/2 = 12.1 cm LOS). Typical of an unwrapping error.\n  single_date_outlier   two consecutive steps of opposite sign, each larger than SPIKE_CM, that\n                        largely cancel: one acquisition is off (atmosphere, unwrapping), the\n                        surrounding dates agree.",
   "cycle_cm": 12.1,
   "flags": {
-    "queretaro": {
-      "flags": [
-        "phase_cycle_jump"
-      ],
-      "steps_cm": [
-        3.14,
-        -12.01,
-        2.74,
-        -13.58,
-        1.14,
-        -0.83,
-        -3.5
-      ],
-      "detail": "step 2 (2026-06-29→2026-07-23) = -12.01 cm ≈ one phase cycle (12.1 cm); step 4 (2026-08-28→2026-09-09) = -13.58 cm ≈ one phase cycle (12.1 cm)",
-      "headline_point": [
-        -100.20629,
-        20.38692
-      ],
-      "headline_without_flagged_steps_cm": 2.69
-    },
     "gorgan": {
       "flags": [
         "phase_cycle_jump"
@@ -61,6 +41,28 @@
       ],
       "headline_without_flagged_steps_cm": -11.77
     },
+    "beijing": {
+      "flags": [
+        "phase_cycle_jump"
+      ],
+      "steps_cm": [
+        0.77,
+        -10.11,
+        6.01,
+        -3.97,
+        1.01,
+        -3.58,
+        -2.81,
+        0.25,
+        -2.57
+      ],
+      "detail": "step 2 (2026-06-29→2026-07-11) = -10.11 cm ≈ one phase cycle (12.1 cm)",
+      "headline_point": [
+        116.80534,
+        39.73713
+      ],
+      "headline_without_flagged_steps_cm": -4.89
+    },
     "pekalongan": {
       "flags": [
         "phase_cycle_jump"
@@ -82,6 +84,26 @@
         -6.86996
       ],
       "headline_without_flagged_steps_cm": -9.2
+    },
+    "queretaro": {
+      "flags": [
+        "phase_cycle_jump"
+      ],
+      "steps_cm": [
+        3.14,
+        -12.01,
+        2.74,
+        -13.58,
+        1.14,
+        -0.83,
+        -3.5
+      ],
+      "detail": "step 2 (2026-06-29→2026-07-23) = -12.01 cm ≈ one phase cycle (12.1 cm); step 4 (2026-08-28→2026-09-09) = -13.58 cm ≈ one phase cycle (12.1 cm)",
+      "headline_point": [
+        -100.20629,
+        20.38692
+      ],
+      "headline_without_flagged_steps_cm": 2.69
     },
     "bangkok": {
       "flags": [

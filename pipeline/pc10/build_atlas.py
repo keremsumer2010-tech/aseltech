@@ -119,8 +119,19 @@ def _compute_confidence(
     n_refs: int | None,
     val_note: dict | None,
 ) -> str:
-    if val_note and val_note.get("confidence") in ("high", "medium", "low"):
-        return val_note["confidence"]
+    # PC1 (jury check): validation notes store the reviewed verdict as "recommended_confidence";
+    # only "confidence" used to be read, so e.g. Konya's reviewed "low" was ignored and it ranked #1.
+    # The more conservative of the computed class and the reviewed verdict wins (a review can lower,
+    # never raise, the confidence).
+    vn_conf = (val_note or {}).get("confidence") or (val_note or {}).get("recommended_confidence")
+    computed = _computed_confidence(valid_frac, ref_range, max_cm, n_refs)
+    if vn_conf in ("high", "medium", "low"):
+        order = {"low": 0, "medium": 1, "high": 2}
+        return min(computed, vn_conf, key=order.get)
+    return computed
+
+
+def _computed_confidence(valid_frac, ref_range, max_cm, n_refs) -> str:
 
     if valid_frac is not None and valid_frac < 0.15:
         return "low"
@@ -205,6 +216,8 @@ def _load_entry(
 
     val_note = None
     vn_file = ddir / "validation_note.json"
+    if not vn_file.exists():  # core regions keep their reviewed note under data/global/<id>/ (PC1)
+        vn_file = ROOT / "data" / "global" / site_id / "validation_note.json"
     if vn_file.exists():
         try:
             val_note = json.loads(vn_file.read_text(encoding="utf-8"))
@@ -298,7 +311,9 @@ def _load_entry(
         "indicative_only": conf == "low",
         "coverage": "ok",
         "path": rel_path,
-        "note": (val_note.get("note", "") if val_note else ""),
+        "note": (val_note.get("note", "") if val_note else "") or (
+            "Reviewed as low confidence: " + str(val_note.get("agreement_note", "")).split(";")[0][:200]
+            if val_note and val_note.get("recommended_confidence") == "low" and conf == "low" else ""),
         "_series_dir": str(ddir),
     }
 
@@ -404,6 +419,18 @@ def main() -> None:
                     e["rate_cm_per_100d_common"] = round((v1 - v0) / common_days * 100.0, 1)
                 else:
                     e["rate_cm_per_100d_common"] = None
+                # PC1 (jury check): the old rate_ci was centred on the full-period rate or was the reference
+                # robustness range, so the ranked value could fall outside its own "95% CI" (Konya -11.0 vs
+                # [-9.5, -8.3]). The CI now belongs to the ranked common-window rate: +-2 sigma_rate with
+                # sigma_rate = sigma_median / common_days * 100 (same noise model as detectability.json).
+                # The reference-choice spread is kept separately as rate_range_refs_cm_per_100d.
+                e["rate_range_refs_cm_per_100d"] = e.get("rate_ci_cm_per_100d")
+                rc, sg = e.get("rate_cm_per_100d_common"), e.get("sigma_cm_median")
+                if rc is not None and sg is not None:
+                    hw = 2.0 * float(sg) / common_days * 100.0
+                    e["rate_ci_cm_per_100d"] = [round(rc - hw, 1), round(rc + hw, 1)]
+                else:
+                    e["rate_ci_cm_per_100d"] = None
 
     # Time-series QC (PC1, tools/atlas_qc.py): a headline built on a one-cycle phase jump or a single
     # bad acquisition is not a measurement we can defend -> low confidence, reason in the note.

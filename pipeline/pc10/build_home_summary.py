@@ -93,7 +93,7 @@ def _qc_story(atlas: dict) -> dict:
         "series_before": {"dates": before["dates"], "disp_cm": b_cm},
         "series_after": {"dates": pt["dates"], "disp_cm": [round(v, 2) for v in pt["disp_cm"]]},
         "fixed_reference": fixed_ref,
-        "flagged": sorted(qc.get("flags", {}).keys()),
+        "flagged": sorted(k for k in qc.get("flags", {}) if k in {r["id"] for r in atlas["regions"]}),  # atlas regions only (PC1)
         "source": "docs/story/atlas_top5_check.md, data/global/qc_flags.json, data/global/atlas_changelog.json",
     }
 

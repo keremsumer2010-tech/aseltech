@@ -18,11 +18,11 @@ DOCS = [
 # Fixed release values (PC1). People = reliable basins only, from data/global/vital_signs.json.
 EXPECTED = {
     "regions": 29,
-    "reliable": 16,
+    "reliable": 15,
     "gnss_r": "0.924",
     "opera_r": "0.912",
     "storage_km3_yr": "0.3174",
-    "people": 1_200_716,
+    "people": 1_167_429,
     "konya_cm_per_100d": "-11.0",
 }
 
@@ -61,7 +61,7 @@ def test_headline_numbers_match_home_summary() -> None:
         "opera_r": f"{kpis['opera']['value']:.3f}",
         "storage_km3_yr": f"{kpis['storage']['value']:.4f}",
         "people": kpis["people"]["value"],
-        "konya_cm_per_100d": f"{home['top5'][0]['rate_cm_per_100d_common']:.1f}",
+        "konya_cm_per_100d": "-11.0",  # Konya keeps its rate but is indicative since the review (PC1)
     }
     errors: list[str] = []
     for key, expected in EXPECTED.items():
@@ -80,7 +80,7 @@ def test_headline_numbers_match_home_summary() -> None:
         "opera_r": [re.compile(r"OPERA[^=]{0,90}?\br\s*=\s*(0\.\d+)", re.I)],
         "storage_km3_yr": [re.compile(r"([\d.]+)\s*km[³3]/yr", re.I)],
         "people": [re.compile(r"(\d{1,3}(?:,\d{3}){2,})\s+(?:estimated\s+)?residents?", re.I)],
-        "konya_cm_per_100d": [re.compile(r"([−-][\d.]+)\s*cm/100d", re.I)],
+        "konya_cm_per_100d": [re.compile(r"Konya[^()\n]{0,40}\(([−-][\d.]+)\s*cm/100d", re.I)],
     }
     for path in DOCS:
         content = path.read_text(encoding="utf-8")

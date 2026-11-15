@@ -189,6 +189,65 @@
       "value_changes": [],
       "confidence_changes": [],
       "qc_flag_changes": []
+    },
+    {
+      "timestamp": "2026-11-15T10:41:09Z",
+      "n_regions": 29,
+      "added": [],
+      "removed": [],
+      "value_changes": [
+        {
+          "id": "beijing",
+          "old_cm": -8.4,
+          "new_cm": -15.0,
+          "reason": "Summary updated"
+        },
+        {
+          "id": "jakarta",
+          "old_cm": -6.8,
+          "new_cm": -5.9,
+          "reason": "Summary updated"
+        }
+      ],
+      "confidence_changes": [
+        {
+          "id": "isfahan",
+          "old": "low",
+          "new": "medium",
+          "reason": ""
+        }
+      ],
+      "qc_flag_changes": [
+        {
+          "id": "beijing",
+          "old": null,
+          "new": [
+            "phase_cycle_jump"
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-11-15T10:41:27Z",
+      "n_regions": 29,
+      "added": [],
+      "removed": [],
+      "value_changes": [],
+      "confidence_changes": [
+        {
+          "id": "isfahan",
+          "old": "medium",
+          "new": "low",
+          "reason": ""
+        },
+        {
+          "id": "konya_plain",
+          "old": "medium",
+          "new": "low",
+          "reason": ""
+        }
+      ],
+      "qc_flag_changes": []
     }
   ]
 }

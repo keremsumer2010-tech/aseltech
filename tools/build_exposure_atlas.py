@@ -15,7 +15,7 @@ import rasterio
 from rasterio.windows import from_bounds
 from pyproj import Transformer
 
-ROOT = Path(r"C:\Users\celik\Desktop\aseltech-pc8\aseltech")
+ROOT = Path(__file__).resolve().parent.parent  # was hard-coded to one team machine (PC1 fix)
 sys.path.insert(0, str(ROOT / "analysis"))
 
 from insar import (  # noqa: E402

@@ -67,7 +67,8 @@ class HomeSummaryTest(unittest.TestCase):
         sem = next(r for r in self.atlas["regions"] if r["id"] == "semarang")
         self.assertEqual(q["semarang"]["after_cm"], sem["max_cm_los"])
         self.assertEqual(q["semarang"]["before_cm"], q["series_before"]["disp_cm"][-1].__round__(1))
-        self.assertEqual(q["flagged"], sorted(_j(G / "qc_flags.json")["flags"]))
+        atlas_ids = {r["id"] for r in _j(G / "atlas.json")["regions"]}
+        self.assertEqual(q["flagged"], sorted(k for k in _j(G / "qc_flags.json")["flags"] if k in atlas_ids))
         self.assertEqual(len(q["series_before"]["dates"]), len(q["series_before"]["disp_cm"]))
         self.assertEqual(len(q["series_after"]["dates"]), len(q["series_after"]["disp_cm"]))
 
