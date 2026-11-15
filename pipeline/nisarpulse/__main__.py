@@ -42,6 +42,13 @@ def build_parser() -> argparse.ArgumentParser:
     run_p.add_argument("--no-catalog", action="store_true", help="Skip updating data/catalog.json.")
     run_p.add_argument("--qc", dest="qc", action="store_true", default=True, help="Enable pixel-level QC (default).")
     run_p.add_argument("--no-qc", dest="qc", action="store_false", help="Disable pixel-level QC.")
+
+    rep_p = sub.add_parser("reproduce", help="Reproduce a region's summary from its meta.json granule list.")
+    rep_p.add_argument("region", help="Region id (e.g. konya_plain, mashhad).")
+    rep_p.add_argument("--out-dir", type=Path, default=None, help="Output directory (default: analysis/out/repro_<id>).")
+    rep_p.add_argument("--dry-run", action="store_true", help="Print reproduction plan without running cumulative.")
+    rep_p.add_argument("--qc", dest="qc", action="store_true", default=True, help="Enable pixel-level QC (default).")
+    rep_p.add_argument("--no-qc", dest="qc", action="store_false", help="Disable pixel-level QC.")
     return parser
 
 
@@ -102,6 +109,12 @@ def parse_ref_lonlat(raw: str | None) -> tuple[float, float] | None:
 
 def main(argv: list[str] | None = None) -> int:
     args = parse_cli_args(argv)
+    if args.command == "reproduce":
+        from pipeline.nisarpulse.reproduce import reproduce_region
+
+        res = reproduce_region(args.region, out_dir=args.out_dir, qc=args.qc, dry_run=args.dry_run)
+        print(json.dumps(res, indent=2))
+        return 0
     if args.command != "run":
         return 1
 
