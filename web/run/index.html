@@ -49,6 +49,26 @@
   }
   .t-btn.active { background: rgba(77, 163, 255, 0.55); border-color: #4da3ff; }
   .t-btn-wide { width: 82px; }
+  @media (orientation: landscape) {
+    .touch-ui {
+      left: 50%; top: 50%; right: auto; bottom: auto;
+      width: min(100vw, calc(100vh * 16 / 9));
+      height: min(100vh, calc(100vw * 9 / 16));
+      transform: translate(-50%, -50%);
+    }
+  }
+  @media (orientation: portrait) {
+    .touch-ui {
+      left: 0; right: 0; top: 50%; bottom: auto; width: 100vw;
+      height: min(56.25vw, 100vh);
+      transform: translateY(-50%);
+    }
+    .t-group { bottom: max(8px, env(safe-area-inset-bottom)); gap: 6px; }
+    .t-left { left: max(8px, env(safe-area-inset-left)); }
+    .t-right { right: max(8px, env(safe-area-inset-right)); }
+    .t-btn { width: clamp(48px, 14vw, 60px); height: clamp(48px, 14vw, 60px); font-size: clamp(11px, 3vw, 14px); }
+    .t-btn-wide { width: clamp(60px, 18vw, 72px); }
+  }
   @media (max-width: 480px) {
     .t-group { gap: 8px; bottom: max(12px, env(safe-area-inset-bottom)); }
     .t-left { left: max(10px, env(safe-area-inset-left)); }
@@ -62,7 +82,7 @@
 <div id="wrap">
   <canvas id="gameCanvas" width="960" height="540" tabindex="0" aria-label="Aquifer Run game: run, jump, switch off pumps and keep the ground from sinking"></canvas>
 </div>
-<div class="touch-ui" id="touchUi" aria-hidden="true">
+<div class="touch-ui" id="touchUi" role="group" aria-label="Touch controls">
   <div class="t-group t-left">
     <button type="button" class="t-btn" data-key="left" aria-label="Move left">◀</button>
     <button type="button" class="t-btn" data-key="right" aria-label="Move right">▶</button>
