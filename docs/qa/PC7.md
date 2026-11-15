@@ -557,3 +557,9 @@ After a concurrent PC10 atlas refresh, the read-only atlas validator was rerun: 
 Regression checks during the rerun: `python -m pytest -q pipeline/nisarpulse/tests/test_qc.py pipeline/pc7/tests/test_atlas_robustness.py` → **8 passed**.
 
 Post-PC10-refresh JSON scan: **201 files**, 0 parse/non-standard-constant errors, 0 non-finite values; five missing `quality` fields are in other-owner shared files (`atlas_changelog.json`, `independent_validation.json`, `qc_flags.json`, `qc_manual.json`, `results_registry.json`). No edits made to those files.
+
+### Full-box rerun progress and reference-window decision
+
+The authorized sequential fetch/cut completed **9/9 provisional pairs** into the PC7 scratch directory; no raw `.h5` remains. Their common geographic coverage is `[116.26242, 39.68020, 116.87359, 40.21943]`, containing the entire required target `[116.35, 39.70, 116.85, 40.20]` and the assigned NW reference area.
+
+The first processing attempt rejected the anchor because it required all 49 pixels in a 7×7 reference window to be common-valid. A diagnostic across all nine new cuts found a window center at `[116.311554, 40.099969]`, **112.7 m** from the handoff anchor, with **48/49** common-valid pixels at the ≥0.5 coherence filter and mean coherence **0.8609**. The median reference can use those 48 valid cells while one cell remains masked. `run_atlas_city.py` now requires at least 48/49 cells; two network-free regression tests cover accepting one masked cell and rejecting two. `py_compile` passed and those tests passed **2/2**. Cached cuts will be reused for the processing rerun.

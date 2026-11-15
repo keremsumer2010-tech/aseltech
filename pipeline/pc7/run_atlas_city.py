@@ -25,6 +25,7 @@ ROOT = Path(__file__).resolve().parents[2]
 ANALYSIS = ROOT / "analysis"
 PROVISIONAL_START = "2026-06-17"
 REFERENCE_RADIUS_PX = 3
+MIN_REFERENCE_VALID_PIXELS = 48  # a 7x7 median can tolerate one masked cell
 
 
 def parse_pair(raw: str) -> tuple[float, float]:
@@ -94,7 +95,8 @@ def choose_reference_window(pair_files: list[Path], anchor: tuple[float, float],
     for row in range(rlo, rhi, 2):
         for col in range(clo, chi, 2):
             valid_win = common[row-radius:row+radius+1, col-radius:col+radius+1]
-            if valid_win.shape != (2*radius+1, 2*radius+1) or not valid_win.all():
+            if (valid_win.shape != (2*radius+1, 2*radius+1) or
+                    int(valid_win.sum()) < MIN_REFERENCE_VALID_PIXELS):
                 continue
             score = float(mean_coh[row-radius:row+radius+1, col-radius:col+radius+1].mean())
             if best is None or score > best[0]:
@@ -139,7 +141,7 @@ def _write_quality_metrics(data_dir: Path, cum_npz: Path,
     summary["reference_anchor"] = {
         "lon": reference_anchor[0], "lat": reference_anchor[1],
         "mean_coherence": round(reference_coherence, 4),
-        "window": "7x7 common-valid pixels; nearest high-coherence window within 3 km of source locality",
+        "window": "7x7; at least 48/49 common-valid pixels; nearest high-coherence window within 3 km of source locality",
     }
     summary["rate_cm_per_100d"] = round(
         float(summary["max_subsidence_cm"]) * 100 /
