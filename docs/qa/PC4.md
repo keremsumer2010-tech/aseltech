@@ -398,3 +398,8 @@ Kapsam: `web/index.html` (`1–163`). Genel İngilizce tonu akıcı ve tutarlı 
 - **3:** `web/present.html` 6 durağı ve `docs/story/presentation_cues.md` (`0:00–0:20`, `0:20–1:00`, `1:00–1:30`, `1:30–2:05`, `2:05–2:40`, `2:40–3:00`) birebir `three_minute_story.md` başlık ve cümleleriyle hizalandı.
 - **4:** `docs/story/qa_cards.md` (12 soru, 2 cümle yanıt + 3 dk zamanlı prova) hazır.
 - **5 (Kesip atma):** `docs/story/*.md` eski sayı taramasında `exposure.md:126` (`21 regions` → `29` toplam / `21` `exposure_atlas.json` satırı) ve `slides_notes.md:68` (`21 regions` → `29 regions`, `#1 Konya Plain −11.0 cm/100d` ortak pencere) güncellendi; `project_page.md` ve `submission_form.md` ilk paragrafına tek cümlelik öz işlendi. `python3 tools/sync_atlas_text.py` → `atlas 29/16/13; updated: nothing`.
+
+### 43. FİNAL Güncelleme — `web/index.html` 3 Dakikalık Jüri Yolu `REVIEW_1500` & Senkron (`2026-11-15 11:16 TR`)
+- PC1'in `web/index.html` üst kısmına eklediği 6 bölümlü (`Hero`, `1 · The atlas`, `2 · Our own error, caught`, `3 · Why you can trust it`, `4 · What it is for`, `5 · What is new`) metinler `REVIEW_1500.md` kurallarına ve kaynak JSON'lara (`home_summary.json`, `atlas.json`, `validation.json`, `storage_loss.json`) göre kontrol edildi: `0` yasaklı kelime, `0` emoji, `0` ünlem, zorunlu kalibrasyon cümlesi mevcut (`satır 86`).
+- Yalnızca `web/index.html:66` içinde `"one L-band phase cycle (12.1 cm)"` ifadesi fiziksel olarak doğru **`"one L-band half-cycle (12.1 cm)"`** (`λ = 24.2 cm`) şeklinde düzeltildi (sayılara ve JS'ye dokunulmadı).
+- `docs/story/three_minute_story.md` ve `web/present.html` metinleri doğrudan PC1'in canlı `web/index.html` 6 bölümüyle birebir senkronize edildi.
