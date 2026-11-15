@@ -558,7 +558,8 @@ async function initAtlas(){
       if (e && e.sourceId === 'sat') document.getElementById('offlinePill').hidden = false;
     });
 
-    map.on('load', () => {
+    // 'style.load' fires before the satellite tiles arrive, so the basins appear at once even on slow networks (PC1).
+    map.once('style.load', () => {
       mapReady = true;
       map.addSource('atlas-pts', {type: 'geojson', data: buildGeoJson(filteredRegions.length ? filteredRegions : sortedRegions)});
       map.addLayer({
