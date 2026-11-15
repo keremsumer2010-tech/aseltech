@@ -150,5 +150,5 @@ Using the single-command `pipeline/nisarpulse/` engine with identical `provision
 9. Abidin et al. (2015), *PIAHS* 372:115–120 (Jakarta): https://piahs.copernicus.org/articles/372/115/2015/
 10. Tapur & Bozyiğit (2015), *Marmara Coğrafya Dergisi* 31: https://dergipark.org.tr/tr/download/article-file/3454
 11. NASA SERVIR (2019), *SAR Handbook Ch. 2*: https://earthdata.nasa.gov/s3fs-public/2025-04/SARHB_CH2_Content.pdf
-12. USDA NASS Cropland Data Layer (`CDL`, 30 m): https://www.nass.usda.gov/Research_and_Science/Cropland/SARS1a.php
+12. USDA NASS Cropland Data Layer (`CDL`, 30 m): https://www.nass.usda.gov/Research_and_Science/Cropland/Release/
 13. Full `43`-source catalog & dataset contracts: [`docs/story/sources.md`](sources.md) · [`docs/story/validation_report.md`](validation_report.md) · [`docs/story/uncertainty.md`](uncertainty.md) · [`docs/story/cross_sensor.md`](cross_sensor.md) · [`docs/story/exposure.md`](exposure.md)
