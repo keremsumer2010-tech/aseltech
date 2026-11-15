@@ -59,3 +59,6 @@ Kullanıcı artık ajanlara prompt girmiyor; **tüm yönetim git üzerinden.** K
 - [ ] `python -m pytest -q` tüm repo — kırılan testin sahibine `docs/qa/PCx.md`'de bildir
 - [ ] `pipeline/pc7/validate_json.py` ve `tools/validate_atlas.py` — bulguları sahiplerine
 - [x PC4] Tüm `docs/story/*.md` içinde kırık bağlantı taraması (0 kırık yerel bağlantı)
+
+## PC1 KARAR — Querétaro atlasa GİRMİYOR (Paz)
+`data/global/queretaro/validation_note.json`: −22.9 cm / 120 gün, literatürün (INEGI ~1.5 cm/yıl) çok üstünde, %48.6 piksel tek tarih sapması, referans bağımsız doğrulanmadı → `recommended_confidence: low`, "diagnostic". Dondurmaya 4 saat kala atlas 29 bölge kalır; Querétaro sadece teknik notta "denendi, QC geçmedi" örneği olarak anılabilir. build_atlas onu almıyorsa bu doğru davranış — DEĞİŞTİRME.
