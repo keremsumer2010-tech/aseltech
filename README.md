@@ -10,8 +10,8 @@
 
 > *NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.*
 
-**We turned the first months of NASA-ISRO NISAR radar data into a self-checking global subsidence atlas: 29 basins measured with one open pipeline on the same 93 days, every number traceable to its file, and every headline checked against GPS, NASA's OPERA product and the literature.** Using provisional 24.2 cm L-band interferograms (`CRID P05023`, June–October 2026), **NISAR Vision** separates permanent clay compaction from seasonal rebound, quantifies canal and railway tilt, and connects measurements to a 24-month aquifer simulator.
-
+**We used NASA-ISRO's new NISAR radar satellite to measure where the ground is sinking in 29 places, and built checks that catch our own mistakes.**
+- **3-Minute Virtual Judge Path:** [Home](https://keremsumer2010-tech.github.io/aseltech/) → [How We Know (Science)](https://keremsumer2010-tech.github.io/aseltech/science.html) → [Global Atlas](https://keremsumer2010-tech.github.io/aseltech/atlas.html) → [A4 Bulletins](https://keremsumer2010-tech.github.io/aseltech/docs/bulletins/eloy.html) → [Aquifer Simulator](https://keremsumer2010-tech.github.io/aseltech/game/) → **[Overview Video (115s, 1080p)](docs/story/media/nisar_vision_overview.mp4)**
 - **Live Site:** https://keremsumer2010-tech.github.io/aseltech/
 - **Three-Minute Story Spec:** [docs/story/three_minute_story.md](docs/story/three_minute_story.md)
 - **Global Subsidence Atlas (29 Regions):** [web/atlas.html](web/atlas.html) (`https://keremsumer2010-tech.github.io/aseltech/atlas.html`)

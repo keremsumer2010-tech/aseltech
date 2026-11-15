@@ -5,11 +5,12 @@ Yeni veri/özellik yok: **toplama, birleştirme, sadeleştirme.** Veri dondurma 
 ## Sanal Yargıç Yolu (Cambridge, MA Virtual — 3 Dakikada Kendi Başına İnceleme Rotası)
 | Sıra | Süre | Durak | Yargıcın Gördüğü |
 |---|---|---|---|
-| 1 | `0:00–0:45` | **Ana Sayfa (`web/index.html`)** | Tek cümlelik öz, 5 büyük sayı (`29` havza · `1.17 M` kişi >5 cm / 2 in · `r = 0.92` GPS · `0.32 km³/yr` · `5` QC bayraklı), `#1 Eloy, Arizona (−8.6 cm / −3.4 in)` ve 9 iş özeti. Jargonlar (`LOS`, `GUNW`, `cm/100d`) ilk geçtiği yerde tek cümlede açıklanmış. |
-| 2 | `0:45–1:30` | **Küresel Atlas (`web/atlas.html`)** | 3B küre üzerinde 29 havza (`15` güvenilir / `14` gösterge), ortak 93 günlük pencere, `#1 Eloy, AZ`, 4 ABD havzası (`Eloy`, `Central Valley`, `Houston`, `Delta`) ve Konya Ovası dürüstlük/öz-denetim örneği. |
-| 3 | `1:30–2:00` | **Tek Sayfa Bülten (`docs/bulletins/eloy.html` / `konya_plain.html`)** | Su yöneticisinin doğrudan kullanacağı A4 bülten: hız, etkilenen nüfus (GHSL), kritik altyapı eğim ön taraması (`81/645`), güven rozeti ve zorunlu kalibrasyon dipnotu. |
-| 4 | `2:00–2:30` | **Yeraltı Suyu Simülatörü (`game/`)** | Terra Bella hızına kalibre edilmiş 24 aylık etkileşimli Terzaghi sıkışma modeli — pompalamayı artırıp kalıcı kil çökmesini 30 saniyede deneyimleme. |
-| 5 | `2:30–3:00` | **Tanıtım Videosu (`docs/story/media/nisar_vision_overview.mp4`)** | 9 işin tamamını İngilizce altyazılı, gerçek uydu/site görüntüleriyle özetleyen ≤3 dk (1080p) başvuru videosu. |
+| 1 | `0:00–0:35` | **Ana Sayfa (`web/index.html`)** | Tek cümlelik öz ("We used NASA-ISRO's new NISAR radar satellite to measure where the ground is sinking in 29 places, and built checks that catch our own mistakes"), 5 büyük sayı ve `#1 Eloy, Arizona (−8.6 cm / −3.4 in)`. |
+| 2 | `0:35–1:05` | **How We Know (`web/index.html#w2` / `web/science.html`)** | Kendi hatamızı yakalayan QC (Semarang 12.1 cm faz sıçraması düzeltmesi), 10 GPS istasyonu (`r = 0.924`) ve ikincil OPERA kontrolü (`r = 0.912`). |
+| 3 | `1:05–1:45` | **Küresel Atlas (`web/atlas.html`)** | 3B küre üzerinde 29 havza (`15` güvenilir / `14` gösterge), renk skalası, 4 ABD havzası (`Eloy`, `Central Valley`, `Houston`, `Delta`) ve Konya Ovası dürüstlük/öz-denetim örneği. |
+| 4 | `1:45–2:10` | **Tek Sayfa Bülten (`docs/bulletins/eloy.html` / `konya_plain.html`)** | Su yöneticisinin doğrudan kullanacağı A4 bülten: hız, etkilenen nüfus (GHSL), kritik altyapı eğim ön taraması (`81/645`) ve zorunlu kalibrasyon dipnotu. |
+| 5 | `2:10–2:35` | **Yeraltı Suyu Simülatörü (`game/`)** | Terra Bella hızına kalibre edilmiş 24 aylık etkileşimli Terzaghi sıkışma modeli — pompalamayı artırıp kalıcı kil çökmesini 30 saniyede deneyimleme. |
+| 6 | `2:35–3:00` | **Tanıtım Videosu (`docs/story/media/nisar_vision_overview.mp4`)** | 3 soru akışını (*What we found → How we know → What it's for*) İngilizce altyazılı, gerçek uydu/site görüntüleriyle özetleyen ≤3 dk (1080p) başvuru videosu. |
 
 ## Tek cümlelik özümüz (her yerde aynı)
 > **We turned the first months of NASA-ISRO NISAR radar data into a self-checking global subsidence atlas: 29 basins measured with one open pipeline on the same 93 days, every number traceable to its file, and every headline checked against GPS, NASA's OPERA product and the literature.**
