@@ -60,8 +60,8 @@ def numbers() -> dict:
             "indicative": atlas["n_indicative"],
             "window_days": atlas["common_window_days"],
             "window": atlas["common_window"],
-            "people": kpi_map.get("people", 1479844),
-            "area": 549.45,
+            "people": kpi_map.get("people"),
+            "area": load(G / "vital_signs.json")["area_km2_lt_minus5cm"],
             "fastest": {
                 "name": fastest["name"],
                 "rate_cm_per_100d": fastest.get("rate_cm_per_100d_common", fastest.get("rate_cm_per_100d")),
