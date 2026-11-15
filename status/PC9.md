@@ -1,7 +1,7 @@
 # PC9 durum
 
 - Görev: `docs/ATLAS_PLANI.md` PC9 — 5 bölge (`eloy`, `gorgan`, `cangzhou`, `houston`, `lagos`) NISAR Pulse + Karapınar tam yıl koordinasyonu
-- Durum: çalışıyor: `houston` (FAZ 1 #4, Öncelik B — `5/9` `.npz` alt küme hazır, `6–9` sürüyor; `eloy` + `cangzhou` + `gorgan` [`low` conf.] TAMAMLANDI)
+- Durum: çalışıyor: `houston` (FAZ 1 #4, Öncelik B — `6/9` `.npz` alt küme hazır, `7–9` sürüyor; `eloy` + `cangzhou` + `gorgan` [`low` conf.] TAMAMLANDI)
 - **ATLAS_PLANI FAZ 1 — `gorgan` (`54.43, 36.84`, ±0.25° — TAMAMLANDI, `confidence: "low"`):**
   - Komut: `python analysis/pc9/run_atlas_region.py run --name gorgan --center 54.43,36.84 --box-deg 0.25 --start 2026-06-17 --end 2026-10-31 --quality provisional --data-dir data/global/gorgan --no-catalog --resume` (`9` çift `2026-06-21 → 2026-10-19`, `120` gün, `gaps=0`, `1` çift QC'de elendi).
   - Sayılar: `max_subsidence_cm = -34.6 cm` LOS (`p2_cm = -33.1 cm`, `valid_fraction = 0.267 < 0.40`, `range_cm = [-34.6, -13.8]`, oran `0.601`), `confidence = "low"` (swath kenarı + Elburz eteklerinde DEM-siz topografik/unwrapping artefaktı).
