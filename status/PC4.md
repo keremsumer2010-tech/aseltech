@@ -1,1 +1,1 @@
-**PC4** (`2026-11-15 14:18 TR`): 5-dk kontrol #28 — `tasks/PC4.md` ve `docs/qa/PC5.md` §10 kontrol edildi, yeni açık görev veya uyumsuzluk yok. Tüm testler (`check_site.py` 43 sayfa / 0 kırık, 5/5 pytest PASS, `vital_signs.py --check` OK) yeşil. Takip devam ediyor.
+**PC4** (`2026-11-15 14:23 TR`): 5-dk kontrol #29 — `tasks/PC4.md` ve `docs/qa/PC5.md` §10 kontrol edildi, yeni açık görev veya uyumsuzluk yok. Tüm testler (`check_site.py` 43 sayfa / 0 kırık, 5/5 pytest PASS, `vital_signs.py --check` OK) yeşil. Takip devam ediyor.
