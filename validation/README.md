@@ -33,3 +33,4 @@ Independent ground-truth vertical displacement time series from continuous GNSS 
 | **P566** | -119.2293 | 36.3245 | 658 | `2025-01-01` → `2026-10-31` | **-0.02 cm** | **-0.93 cm** | Visalia / northeast basin edge (near-stable baseline) | [P566.sta](https://geodesy.unr.edu/NGLStationPages/stations/P566.sta) |
 
 *Note: Provisional/full-year ΔUp values above are computed from 7-day windows (`±3 days`) centered on the start and end dates to suppress daily GNSS scatter.*
+

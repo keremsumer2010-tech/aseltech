@@ -31,3 +31,4 @@ If your clone folder is `aseltech-pc9` you are **PC9**: task file `tasks/PC9.md`
 
 ## PC10 (global showcase)
 If your clone folder is `aseltech-pc10` you are **PC10**: task file `tasks/PC10.md`, status `status/PC10.md`, commit prefix `[PC10]`.
+

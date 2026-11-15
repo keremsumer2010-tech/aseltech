@@ -41,3 +41,4 @@ Klasör adın ve bilgisayarın söyler. Tablo: `docs/GOREV_DAGILIMI.md` §1. Emi
 
 Sadece PC1 (Kerem) değiştirir. Kural değişikliği `rules/`, görev değişikliği `tasks/` altında yapılır;
 bu dosya yalnızca giriş noktasıdır, kısa kalır.
+

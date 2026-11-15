@@ -216,3 +216,4 @@ Her madde gerçekten yaşanmış bir hatadan çıkar. Şablon:
 ## Geri alınabilir mi
 
 Hayır. Bunlar kısıt, tercih değil.
+

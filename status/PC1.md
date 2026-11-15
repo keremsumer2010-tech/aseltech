@@ -9,3 +9,4 @@
 - PC3 denetimi: analysis testleri bu bilgisayarda çalıştırıldı → 10 passed. İşaret konvansiyonu kaynaklı. Onaylandı.
 - AI: Claude → site kodu, planlama; Higgsfield (gpt_image_2_6) → 7 illüstrasyon (hepsi "AI-generated" etiketli, veri değil)
 - BLOCKED:
+
