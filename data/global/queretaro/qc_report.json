@@ -1,0 +1,24 @@
+{
+  "quality": "provisional",
+  "qc_enabled": true,
+  "corrected_pairs": [],
+  "dropped_dates": [
+    {
+      "date": "2026-07-11",
+      "outlier_frac": 0.459,
+      "merged_pair": [
+        "2026-06-29",
+        "2026-07-23"
+      ]
+    },
+    {
+      "date": "2026-08-16",
+      "outlier_frac": 0.42,
+      "merged_pair": [
+        "2026-07-23",
+        "2026-08-28"
+      ]
+    }
+  ],
+  "affected_pixel_pct": 48.57
+}

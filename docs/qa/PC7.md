@@ -605,3 +605,12 @@ Replayed the nine local `pipeline/subset/global_beijing/` provisional cuts offli
 | Confidence | low / indicative |
 
 The alternate-reference spread remains large and the supplied NW foothill reference lacks independent geology/GNSS verification in this run. Therefore Beijing is **not promoted to reliable**; PC5 review remains required. `validation_note.json`, `summary.json`, `meta.json`, `points.json`, `coverage.json`, `qc_report.json`, and `disp/` are synchronized. Reproduction: `python pipeline/pc7/rerun_beijing_without_july11.py` (offline; plane-only deramp, DEM lookup disabled). The requested `docs/JURI_3DK.md` was absent from this checkout; the final checklist in `tasks/PC7.md` was used.
+
+
+## 32. Final block 2 — Aguascalientes / Querétaro local subsets
+
+**Querétaro:** the 9 local provisional pairs were replayed offline over target bbox `[-100.64, 20.34, -100.14, 20.84]`; the clipped grid fully covers it. Output includes summary/meta/points/disp/coverage and PC5 uncertainty products. The algorithmic reference window is at `[-100.40549, 20.54515]` (mean coherence 0.7819), found within 5 km of the centroid derived from the published El Cimatario Park bounds. This is not independently established as a stable out-of-basin site (`reference_outside_basin=false`). The series QC merged two single-date excursions, affecting 48.57% of pixels. Headline −22.9 cm LOS, p2 −17.38 cm, −19.083 cm/100d is far above the earlier INEGI local PSI maxima of about 1.4–1.5 cm/year; the result is **diagnostic / low confidence, not ready for atlas or press use** pending reference and PC5 review. Uncertainty map: median 0.39 cm, p90 0.534 cm, 71.3% valid.
+
+**Aguascalientes:** nine local NPZ files exist, but their actual coverage is `[-102.37398, 21.60618, -102.01004, 22.15785]`, which misses the western portion of the required `[-102.54, 21.63, -102.04, 22.13]` full box and excludes the documented Cerro del Muerto reference anchor `[-102.431111, 21.880278]`. Common-valid reference-window searches around that source locality found no eligible 7×7 window out to 15 km. A full-box summary or “ready” label cannot be produced from these clipped arrays without inventing coverage/reference data. Existing files were preserved; no download was made.
+
+The requested `docs/JURI_3DK.md` was not present in this checkout; its absence was recorded in §31. The task’s local final checklist remains the source for the remaining blocks.

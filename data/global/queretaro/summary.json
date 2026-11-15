@@ -1,0 +1,81 @@
+{
+  "max_subsidence_cm": -22.9,
+  "max_subsidence_range_cm": [
+    -22.9,
+    -16.8
+  ],
+  "range_cm": [
+    -22.9,
+    -16.8
+  ],
+  "n_references": 3,
+  "reference_sensitivity": {
+    "alt_reference": {
+      "lon": -100.19586,
+      "lat": 20.81992
+    },
+    "max_subsidence_cm_at_same_location": -16.8
+  },
+  "reference_sensitivity_all": [
+    {
+      "alt_reference": {
+        "lon": -100.19586,
+        "lat": 20.81992
+      },
+      "max_subsidence_cm_at_same_location": -16.8
+    },
+    {
+      "alt_reference": {
+        "lon": -100.54635,
+        "lat": 20.81712
+      },
+      "max_subsidence_cm_at_same_location": -17.6
+    }
+  ],
+  "period": [
+    "2026-06-17",
+    "2026-10-15"
+  ],
+  "rate_cm_per_yr_estimate": -69.7,
+  "reference_point": {
+    "lon": -100.40549,
+    "lat": 20.545148,
+    "source": "Derived centroid of the published El Cimatario National Park boundary; park limits in CONANP/PAOT AN07.pdf; geology not independently verified"
+  },
+  "quality": "provisional",
+  "quality_note": "NISAR L2 GUNW CRID P05023 provisional products only; calibration and validation are carried out by NASA-JPL/ISRO.",
+  "component": "LOS",
+  "max_subsidence_location": {
+    "lon": -100.20629,
+    "lat": 20.38692
+  },
+  "max_subsidence_vertical_cm_estimate": -33.7,
+  "incidence_deg_at_max": 47.1,
+  "n_pairs": 9,
+  "method_note": "Headline value = most negative median of ~1 km blocks (13x13 px, >= 50 % valid pixels, within-block std <= 2 cm) of the cumulative LOS map. Rate = linear extrapolation of 120 days (2026-06-17 to 2026-10-15, summer season) to one year: an ESTIMATE that likely overstates the annual net rate because part of summer subsidence recovers in winter. Vertical value assumes purely vertical motion (LOS / cos(incidence)). range_cm = spread of the headline value when the whole chain is re-referenced to up to two other stable windows >= 30 km away.",
+  "p2_cm": -17.38,
+  "rate_cm_per_100d": -19.083,
+  "valid_fraction": 0.537,
+  "confidence": "low",
+  "ref_range_cm": 6.1,
+  "bbox": [
+    -100.64,
+    20.34,
+    -100.14,
+    20.84
+  ],
+  "reference_outside_basin": false,
+  "reference_anchor": {
+    "lon": -100.3568,
+    "lat": 20.5157,
+    "mean_coherence": 0.7819,
+    "window": "7x7; at least 48/49 common-valid pixels; nearest high-coherence window within 3 km of source locality"
+  },
+  "confidence_note": "Indicative only: reference geology/out-of-basin status and independent validation are not established by this local replay.",
+  "local_subset_coverage_bbox": [
+    -100.66438650654392,
+    20.318160461031013,
+    -100.11767128151511,
+    20.861623594277074
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "id": "queretaro",
+  "data_path": "data/global/queretaro/",
+  "n_voltage_literature_cm_per_yr": "INEGI reports local maxima of approximately 1.4–1.5 cm/year in earlier PSI inventories; not directly comparable to this provisional 120-day LOS result.",
+  "literature_sources": [
+    "INEGI Vol. 1: https://www.inegi.org.mx/contenidos/productos/prod_serv/contenidos/espanol/bvinegi/productos/nueva_estruc/702825188290.pdf",
+    "INEGI Vol. 3: https://www.inegi.org.mx/contenidos/productos/prod_serv/contenidos/espanol/bvinegi/productos/nueva_estruc/889463904441.pdf"
+  ],
+  "agreement_note": "Local replay gives -22.9 cm LOS and -19.083 cm/100d over 120 days, far above the earlier published local PSI maxima. QC automatically merged two high-impact single-date excursions (48.57% affected pixels); the park-boundary-derived reference candidate is not independently established as stable or outside the subsidence basin. Treat this as a diagnostic, not a validated city result.",
+  "recommended_confidence": "low",
+  "reviewed_by": "pending PC5",
+  "press_summary_approved": false,
+  "quality": "provisional",
+  "quality_note": "NISAR L2 GUNW P05023 provisional products; calibration and validation are carried out by NASA-JPL/ISRO."
+}

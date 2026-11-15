@@ -1,0 +1,26 @@
+{
+  "site": "queretaro",
+  "bbox": [
+    -100.64,
+    20.34,
+    -100.14,
+    20.84
+  ],
+  "subset_bbox": [
+    -100.66438650654392,
+    20.318160461031013,
+    -100.11767128151511,
+    20.861623594277074
+  ],
+  "quality": "provisional",
+  "coverage": "ok",
+  "granules": 9,
+  "chain_pairs": 9,
+  "period": [
+    "2026-06-17",
+    "2026-10-15"
+  ],
+  "gaps": [],
+  "raw_files_deleted_after_subsetting": true,
+  "network_used": false
+}
