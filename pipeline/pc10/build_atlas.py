@@ -232,7 +232,17 @@ def _load_entry(
     if detectable is False:
         conf = "low"
     if rob_spread is not None and abs(max_cm) > 0 and float(rob_spread) > abs(max_cm) / 2.0:
-        conf = "low"
+        # Independent-sensor agreement (GNSS or OPERA, r >= 0.8) outweighs an internal reference-choice
+        # spread: then this rule does not lower confidence (PC1; data/global/independent_validation.json).
+        ind_r = None
+        try:
+            iv = json.loads((ROOT / "data" / "global" / "independent_validation.json").read_text(encoding="utf-8"))
+            ind_r = (iv.get("regions", {}).get(site_id) or {}).get("r")
+        except Exception:
+            pass
+        op_r = (op_row or {}).get("r")
+        if max(x for x in (ind_r, op_r, -1) if isinstance(x, (int, float))) < 0.8:
+            conf = "low"
 
     # ATLAS v2: uncertainty fields (sigma_cm_median, rate_ci_cm_per_100d)
     sigma_med = None

@@ -1,0 +1,6 @@
+{
+  "note": "Independent (external-sensor) validation per region. build_atlas.py: if r >= 0.8 here or in opera_check.json, the internal robustness-spread rule cannot lower confidence below 'medium' (an internal reference-choice spread does not outweigh agreement with an independent sensor). PC1.",
+  "regions": {
+    "central_valley": {"method": "GNSS, 10 NGL stations, cross-station Pearson at final epoch 2026-10-14", "r": 0.924, "rmse_cm": 1.37, "source": "docs/story/validation_report.md"}
+  }
+}

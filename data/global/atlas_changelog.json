@@ -86,6 +86,22 @@
       "value_changes": [],
       "confidence_changes": [],
       "qc_flag_changes": []
+    },
+    {
+      "timestamp": "2026-11-15T00:09:09Z",
+      "n_regions": 27,
+      "added": [],
+      "removed": [],
+      "value_changes": [],
+      "confidence_changes": [
+        {
+          "id": "central_valley",
+          "old": "low",
+          "new": "medium",
+          "reason": ""
+        }
+      ],
+      "qc_flag_changes": []
     }
   ]
 }

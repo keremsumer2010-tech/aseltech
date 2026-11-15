@@ -10,8 +10,8 @@
   ],
   "common_window_days": 93,
   "n_regions": 27,
-  "n_reliable": 13,
-  "n_indicative": 14,
+  "n_reliable": 14,
+  "n_indicative": 13,
   "regions": [
     {
       "id": "konya_plain",
@@ -97,6 +97,52 @@
       "rank": 2
     },
     {
+      "id": "central_valley",
+      "name": "Central Valley (Tulare Basin)",
+      "country": "USA",
+      "lon": -119.02173,
+      "lat": 36.01119,
+      "max_cm_los": -7.8,
+      "p2_cm": -5.8,
+      "rate_cm_per_100d": -7.2,
+      "max_cm_vertical_est": -10.1,
+      "period": [
+        "2026-06-28",
+        "2026-10-14"
+      ],
+      "days": 108,
+      "n_pairs": 7,
+      "quality": "provisional",
+      "rate_cm_per_yr_estimate": -26.4,
+      "valid_fraction": 0.629,
+      "ref_range_cm": [
+        -7.8,
+        -4.7
+      ],
+      "detectable": true,
+      "robustness_spread": 5.3362,
+      "people_exposed": 92134,
+      "opera_check": {
+        "r": 0.399,
+        "rmse_cm": 2.95,
+        "rmse_cm_per_100d": 2.95,
+        "slope": 0.362,
+        "n": 7571
+      },
+      "sigma_cm_median": 0.294,
+      "rate_ci_cm_per_100d": [
+        -7.2,
+        -2.3
+      ],
+      "confidence": "medium",
+      "indicative_only": false,
+      "coverage": "ok",
+      "path": "data/central_valley/",
+      "note": "",
+      "rate_cm_per_100d_common": -7.3,
+      "rank": 3
+    },
+    {
       "id": "kashmar",
       "name": "Kashmar",
       "country": "",
@@ -134,7 +180,7 @@
       "path": "data/global/kashmar/",
       "note": "",
       "rate_cm_per_100d_common": -7.0,
-      "rank": 3
+      "rank": 4
     },
     {
       "id": "mashhad",
@@ -174,7 +220,7 @@
       "path": "data/global/mashhad/",
       "note": "",
       "rate_cm_per_100d_common": -6.9,
-      "rank": 4
+      "rank": 5
     },
     {
       "id": "mexico_city",
@@ -220,7 +266,7 @@
       "path": "data/global/mexico_city/",
       "note": "",
       "rate_cm_per_100d_common": -6.3,
-      "rank": 5
+      "rank": 6
     },
     {
       "id": "semarang",
@@ -229,7 +275,7 @@
       "lon": 110.60795,
       "lat": -6.80998,
       "max_cm_los": -6.2,
-      "p2_cm": -5.2,
+      "p2_cm": null,
       "rate_cm_per_100d": -6.5,
       "max_cm_vertical_est": -8.1,
       "period": [
@@ -240,7 +286,7 @@
       "n_pairs": 7,
       "quality": "provisional",
       "rate_cm_per_yr_estimate": -23.6,
-      "valid_fraction": 0.515,
+      "valid_fraction": null,
       "ref_range_cm": [
         -9.9,
         -6.2
@@ -260,7 +306,7 @@
       "path": "data/global/semarang/",
       "note": "",
       "rate_cm_per_100d_common": -5.5,
-      "rank": 6
+      "rank": 7
     },
     {
       "id": "kerman",
@@ -300,7 +346,7 @@
       "path": "data/global/kerman/",
       "note": "",
       "rate_cm_per_100d_common": -5.3,
-      "rank": 7
+      "rank": 8
     },
     {
       "id": "rafsanjan",
@@ -340,7 +386,7 @@
       "path": "data/global/rafsanjan/",
       "note": "",
       "rate_cm_per_100d_common": -4.2,
-      "rank": 8
+      "rank": 9
     },
     {
       "id": "can_tho",
@@ -349,7 +395,7 @@
       "lon": 105.86753,
       "lat": 10.27513,
       "max_cm_los": -3.4,
-      "p2_cm": -3.7,
+      "p2_cm": null,
       "rate_cm_per_100d": -2.8,
       "max_cm_vertical_est": -4.4,
       "period": [
@@ -360,7 +406,7 @@
       "n_pairs": 9,
       "quality": "provisional",
       "rate_cm_per_yr_estimate": -10.3,
-      "valid_fraction": 0.156,
+      "valid_fraction": null,
       "ref_range_cm": [
         -3.4,
         -3.1
@@ -380,7 +426,7 @@
       "path": "data/global/can_tho/",
       "note": "",
       "rate_cm_per_100d_common": -3.4,
-      "rank": 9
+      "rank": 10
     },
     {
       "id": "tianjin",
@@ -420,7 +466,7 @@
       "path": "data/global/tianjin/",
       "note": "",
       "rate_cm_per_100d_common": -2.8,
-      "rank": 10
+      "rank": 11
     },
     {
       "id": "cangzhou",
@@ -457,7 +503,7 @@
       "path": "data/global/cangzhou/",
       "note": "",
       "rate_cm_per_100d_common": -2.4,
-      "rank": 11
+      "rank": 12
     },
     {
       "id": "delta",
@@ -497,7 +543,7 @@
       "path": "data/delta/",
       "note": "",
       "rate_cm_per_100d_common": -1.4,
-      "rank": 12
+      "rank": 13
     },
     {
       "id": "quetta",
@@ -537,7 +583,7 @@
       "path": "data/global/quetta/",
       "note": "",
       "rate_cm_per_100d_common": -0.7,
-      "rank": 13
+      "rank": 14
     },
     {
       "id": "gorgan",
@@ -577,7 +623,7 @@
       "qc_flags": [
         "phase_cycle_jump"
       ],
-      "rank": 14
+      "rank": 15
     },
     {
       "id": "delhi",
@@ -620,7 +666,7 @@
       "qc_flags": [
         "phase_cycle_jump"
       ],
-      "rank": 15
+      "rank": 16
     },
     {
       "id": "bangkok",
@@ -629,7 +675,7 @@
       "lon": 100.73741,
       "lat": 13.81368,
       "max_cm_los": -7.5,
-      "p2_cm": -6.9,
+      "p2_cm": null,
       "rate_cm_per_100d": -6.2,
       "max_cm_vertical_est": -9.0,
       "period": [
@@ -640,7 +686,7 @@
       "n_pairs": 8,
       "quality": "provisional",
       "rate_cm_per_yr_estimate": -22.8,
-      "valid_fraction": 0.303,
+      "valid_fraction": null,
       "ref_range_cm": [
         -7.9,
         -7.5
@@ -664,7 +710,7 @@
         "literature_mismatch",
         "noisy_series"
       ],
-      "rank": 16
+      "rank": 17
     },
     {
       "id": "pekalongan",
@@ -673,7 +719,7 @@
       "lon": 109.48137,
       "lat": -6.86996,
       "max_cm_los": -22.2,
-      "p2_cm": -20.9,
+      "p2_cm": null,
       "rate_cm_per_100d": -18.5,
       "max_cm_vertical_est": -31.9,
       "period": [
@@ -684,7 +730,7 @@
       "n_pairs": 9,
       "quality": "provisional",
       "rate_cm_per_yr_estimate": -67.7,
-      "valid_fraction": 0.266,
+      "valid_fraction": null,
       "ref_range_cm": [
         -22.2,
         -12.4
@@ -707,52 +753,6 @@
       "qc_flags": [
         "phase_cycle_jump"
       ],
-      "rank": 17
-    },
-    {
-      "id": "central_valley",
-      "name": "Central Valley (Tulare Basin)",
-      "country": "USA",
-      "lon": -119.02173,
-      "lat": 36.01119,
-      "max_cm_los": -7.8,
-      "p2_cm": -5.8,
-      "rate_cm_per_100d": -7.2,
-      "max_cm_vertical_est": -10.1,
-      "period": [
-        "2026-06-28",
-        "2026-10-14"
-      ],
-      "days": 108,
-      "n_pairs": 7,
-      "quality": "provisional",
-      "rate_cm_per_yr_estimate": -26.4,
-      "valid_fraction": 0.629,
-      "ref_range_cm": [
-        -7.8,
-        -4.7
-      ],
-      "detectable": true,
-      "robustness_spread": 5.3362,
-      "people_exposed": 92134,
-      "opera_check": {
-        "r": 0.399,
-        "rmse_cm": 2.95,
-        "rmse_cm_per_100d": 2.95,
-        "slope": 0.362,
-        "n": 7571
-      },
-      "sigma_cm_median": 0.294,
-      "rate_ci_cm_per_100d": [
-        -7.2,
-        -2.3
-      ],
-      "confidence": "low",
-      "indicative_only": true,
-      "coverage": "ok",
-      "path": "data/central_valley/",
-      "note": "",
-      "rate_cm_per_100d_common": -7.3,
       "rank": 18
     },
     {
@@ -802,7 +802,7 @@
       "lon": 107.01151,
       "lat": -6.14056,
       "max_cm_los": -6.8,
-      "p2_cm": -10.2,
+      "p2_cm": null,
       "rate_cm_per_100d": -6.3,
       "max_cm_vertical_est": -9.3,
       "period": [
@@ -813,7 +813,7 @@
       "n_pairs": 8,
       "quality": "provisional",
       "rate_cm_per_yr_estimate": -23.2,
-      "valid_fraction": 0.029,
+      "valid_fraction": null,
       "ref_range_cm": null,
       "detectable": true,
       "robustness_spread": null,
@@ -876,7 +876,7 @@
       "lon": 116.83974,
       "lat": 39.79989,
       "max_cm_los": -1.4,
-      "p2_cm": -1.3,
+      "p2_cm": null,
       "rate_cm_per_100d": -1.2,
       "max_cm_vertical_est": -2.1,
       "period": [
@@ -887,7 +887,7 @@
       "n_pairs": 9,
       "quality": "provisional",
       "rate_cm_per_yr_estimate": -4.3,
-      "valid_fraction": 0.711,
+      "valid_fraction": null,
       "ref_range_cm": [
         -7.6,
         -1.4
@@ -959,7 +959,7 @@
       "lon": 120.56021,
       "lat": 23.62433,
       "max_cm_los": -2.7,
-      "p2_cm": -3.0,
+      "p2_cm": null,
       "rate_cm_per_100d": -2.5,
       "max_cm_vertical_est": -3.4,
       "period": [
@@ -970,7 +970,7 @@
       "n_pairs": 8,
       "quality": "provisional",
       "rate_cm_per_yr_estimate": -9.2,
-      "valid_fraction": 0.282,
+      "valid_fraction": null,
       "ref_range_cm": [
         -3.5,
         -1.1
@@ -1033,7 +1033,7 @@
       "lon": 105.71463,
       "lat": 20.98307,
       "max_cm_los": -2.5,
-      "p2_cm": -3.0,
+      "p2_cm": null,
       "rate_cm_per_100d": -2.1,
       "max_cm_vertical_est": -3.6,
       "period": [
@@ -1044,7 +1044,7 @@
       "n_pairs": 9,
       "quality": "provisional",
       "rate_cm_per_yr_estimate": -7.5,
-      "valid_fraction": 0.257,
+      "valid_fraction": null,
       "ref_range_cm": [
         -6.7,
         -2.2
@@ -1073,7 +1073,7 @@
       "lon": 106.91207,
       "lat": 10.9967,
       "max_cm_los": -4.2,
-      "p2_cm": -1.8,
+      "p2_cm": null,
       "rate_cm_per_100d": -3.5,
       "max_cm_vertical_est": -5.8,
       "period": [
@@ -1084,7 +1084,7 @@
       "n_pairs": 9,
       "quality": "provisional",
       "rate_cm_per_yr_estimate": -12.8,
-      "valid_fraction": 0.321,
+      "valid_fraction": null,
       "ref_range_cm": [
         -9.9,
         -4.2
@@ -1194,6 +1194,53 @@
       "rank_reliable": 2
     },
     {
+      "id": "central_valley",
+      "name": "Central Valley (Tulare Basin)",
+      "country": "USA",
+      "lon": -119.02173,
+      "lat": 36.01119,
+      "max_cm_los": -7.8,
+      "p2_cm": -5.8,
+      "rate_cm_per_100d": -7.2,
+      "max_cm_vertical_est": -10.1,
+      "period": [
+        "2026-06-28",
+        "2026-10-14"
+      ],
+      "days": 108,
+      "n_pairs": 7,
+      "quality": "provisional",
+      "rate_cm_per_yr_estimate": -26.4,
+      "valid_fraction": 0.629,
+      "ref_range_cm": [
+        -7.8,
+        -4.7
+      ],
+      "detectable": true,
+      "robustness_spread": 5.3362,
+      "people_exposed": 92134,
+      "opera_check": {
+        "r": 0.399,
+        "rmse_cm": 2.95,
+        "rmse_cm_per_100d": 2.95,
+        "slope": 0.362,
+        "n": 7571
+      },
+      "sigma_cm_median": 0.294,
+      "rate_ci_cm_per_100d": [
+        -7.2,
+        -2.3
+      ],
+      "confidence": "medium",
+      "indicative_only": false,
+      "coverage": "ok",
+      "path": "data/central_valley/",
+      "note": "",
+      "rate_cm_per_100d_common": -7.3,
+      "rank": 3,
+      "rank_reliable": 3
+    },
+    {
       "id": "kashmar",
       "name": "Kashmar",
       "country": "",
@@ -1231,8 +1278,8 @@
       "path": "data/global/kashmar/",
       "note": "",
       "rate_cm_per_100d_common": -7.0,
-      "rank": 3,
-      "rank_reliable": 3
+      "rank": 4,
+      "rank_reliable": 4
     },
     {
       "id": "mashhad",
@@ -1272,8 +1319,8 @@
       "path": "data/global/mashhad/",
       "note": "",
       "rate_cm_per_100d_common": -6.9,
-      "rank": 4,
-      "rank_reliable": 4
+      "rank": 5,
+      "rank_reliable": 5
     },
     {
       "id": "mexico_city",
@@ -1319,8 +1366,8 @@
       "path": "data/global/mexico_city/",
       "note": "",
       "rate_cm_per_100d_common": -6.3,
-      "rank": 5,
-      "rank_reliable": 5
+      "rank": 6,
+      "rank_reliable": 6
     },
     {
       "id": "semarang",
@@ -1329,7 +1376,7 @@
       "lon": 110.60795,
       "lat": -6.80998,
       "max_cm_los": -6.2,
-      "p2_cm": -5.2,
+      "p2_cm": null,
       "rate_cm_per_100d": -6.5,
       "max_cm_vertical_est": -8.1,
       "period": [
@@ -1340,7 +1387,7 @@
       "n_pairs": 7,
       "quality": "provisional",
       "rate_cm_per_yr_estimate": -23.6,
-      "valid_fraction": 0.515,
+      "valid_fraction": null,
       "ref_range_cm": [
         -9.9,
         -6.2
@@ -1360,8 +1407,8 @@
       "path": "data/global/semarang/",
       "note": "",
       "rate_cm_per_100d_common": -5.5,
-      "rank": 6,
-      "rank_reliable": 6
+      "rank": 7,
+      "rank_reliable": 7
     },
     {
       "id": "kerman",
@@ -1401,8 +1448,8 @@
       "path": "data/global/kerman/",
       "note": "",
       "rate_cm_per_100d_common": -5.3,
-      "rank": 7,
-      "rank_reliable": 7
+      "rank": 8,
+      "rank_reliable": 8
     },
     {
       "id": "rafsanjan",
@@ -1442,8 +1489,8 @@
       "path": "data/global/rafsanjan/",
       "note": "",
       "rate_cm_per_100d_common": -4.2,
-      "rank": 8,
-      "rank_reliable": 8
+      "rank": 9,
+      "rank_reliable": 9
     },
     {
       "id": "can_tho",
@@ -1452,7 +1499,7 @@
       "lon": 105.86753,
       "lat": 10.27513,
       "max_cm_los": -3.4,
-      "p2_cm": -3.7,
+      "p2_cm": null,
       "rate_cm_per_100d": -2.8,
       "max_cm_vertical_est": -4.4,
       "period": [
@@ -1463,7 +1510,7 @@
       "n_pairs": 9,
       "quality": "provisional",
       "rate_cm_per_yr_estimate": -10.3,
-      "valid_fraction": 0.156,
+      "valid_fraction": null,
       "ref_range_cm": [
         -3.4,
         -3.1
@@ -1483,8 +1530,8 @@
       "path": "data/global/can_tho/",
       "note": "",
       "rate_cm_per_100d_common": -3.4,
-      "rank": 9,
-      "rank_reliable": 9
+      "rank": 10,
+      "rank_reliable": 10
     },
     {
       "id": "tianjin",
@@ -1524,8 +1571,8 @@
       "path": "data/global/tianjin/",
       "note": "",
       "rate_cm_per_100d_common": -2.8,
-      "rank": 10,
-      "rank_reliable": 10
+      "rank": 11,
+      "rank_reliable": 11
     },
     {
       "id": "cangzhou",
@@ -1562,8 +1609,8 @@
       "path": "data/global/cangzhou/",
       "note": "",
       "rate_cm_per_100d_common": -2.4,
-      "rank": 11,
-      "rank_reliable": 11
+      "rank": 12,
+      "rank_reliable": 12
     },
     {
       "id": "delta",
@@ -1603,8 +1650,8 @@
       "path": "data/delta/",
       "note": "",
       "rate_cm_per_100d_common": -1.4,
-      "rank": 12,
-      "rank_reliable": 12
+      "rank": 13,
+      "rank_reliable": 13
     },
     {
       "id": "quetta",
@@ -1644,8 +1691,8 @@
       "path": "data/global/quetta/",
       "note": "",
       "rate_cm_per_100d_common": -0.7,
-      "rank": 13,
-      "rank_reliable": 13
+      "rank": 14,
+      "rank_reliable": 14
     }
   ],
   "indicative": [
@@ -1687,7 +1734,7 @@
       "qc_flags": [
         "phase_cycle_jump"
       ],
-      "rank": 14,
+      "rank": 15,
       "rank_indicative": 1
     },
     {
@@ -1731,7 +1778,7 @@
       "qc_flags": [
         "phase_cycle_jump"
       ],
-      "rank": 15,
+      "rank": 16,
       "rank_indicative": 2
     },
     {
@@ -1741,7 +1788,7 @@
       "lon": 100.73741,
       "lat": 13.81368,
       "max_cm_los": -7.5,
-      "p2_cm": -6.9,
+      "p2_cm": null,
       "rate_cm_per_100d": -6.2,
       "max_cm_vertical_est": -9.0,
       "period": [
@@ -1752,7 +1799,7 @@
       "n_pairs": 8,
       "quality": "provisional",
       "rate_cm_per_yr_estimate": -22.8,
-      "valid_fraction": 0.303,
+      "valid_fraction": null,
       "ref_range_cm": [
         -7.9,
         -7.5
@@ -1776,7 +1823,7 @@
         "literature_mismatch",
         "noisy_series"
       ],
-      "rank": 16,
+      "rank": 17,
       "rank_indicative": 3
     },
     {
@@ -1786,7 +1833,7 @@
       "lon": 109.48137,
       "lat": -6.86996,
       "max_cm_los": -22.2,
-      "p2_cm": -20.9,
+      "p2_cm": null,
       "rate_cm_per_100d": -18.5,
       "max_cm_vertical_est": -31.9,
       "period": [
@@ -1797,7 +1844,7 @@
       "n_pairs": 9,
       "quality": "provisional",
       "rate_cm_per_yr_estimate": -67.7,
-      "valid_fraction": 0.266,
+      "valid_fraction": null,
       "ref_range_cm": [
         -22.2,
         -12.4
@@ -1820,55 +1867,8 @@
       "qc_flags": [
         "phase_cycle_jump"
       ],
-      "rank": 17,
-      "rank_indicative": 4
-    },
-    {
-      "id": "central_valley",
-      "name": "Central Valley (Tulare Basin)",
-      "country": "USA",
-      "lon": -119.02173,
-      "lat": 36.01119,
-      "max_cm_los": -7.8,
-      "p2_cm": -5.8,
-      "rate_cm_per_100d": -7.2,
-      "max_cm_vertical_est": -10.1,
-      "period": [
-        "2026-06-28",
-        "2026-10-14"
-      ],
-      "days": 108,
-      "n_pairs": 7,
-      "quality": "provisional",
-      "rate_cm_per_yr_estimate": -26.4,
-      "valid_fraction": 0.629,
-      "ref_range_cm": [
-        -7.8,
-        -4.7
-      ],
-      "detectable": true,
-      "robustness_spread": 5.3362,
-      "people_exposed": 92134,
-      "opera_check": {
-        "r": 0.399,
-        "rmse_cm": 2.95,
-        "rmse_cm_per_100d": 2.95,
-        "slope": 0.362,
-        "n": 7571
-      },
-      "sigma_cm_median": 0.294,
-      "rate_ci_cm_per_100d": [
-        -7.2,
-        -2.3
-      ],
-      "confidence": "low",
-      "indicative_only": true,
-      "coverage": "ok",
-      "path": "data/central_valley/",
-      "note": "",
-      "rate_cm_per_100d_common": -7.3,
       "rank": 18,
-      "rank_indicative": 5
+      "rank_indicative": 4
     },
     {
       "id": "tehran",
@@ -1909,7 +1909,7 @@
       "note": "",
       "rate_cm_per_100d_common": -6.4,
       "rank": 19,
-      "rank_indicative": 6
+      "rank_indicative": 5
     },
     {
       "id": "jakarta",
@@ -1918,7 +1918,7 @@
       "lon": 107.01151,
       "lat": -6.14056,
       "max_cm_los": -6.8,
-      "p2_cm": -10.2,
+      "p2_cm": null,
       "rate_cm_per_100d": -6.3,
       "max_cm_vertical_est": -9.3,
       "period": [
@@ -1929,7 +1929,7 @@
       "n_pairs": 8,
       "quality": "provisional",
       "rate_cm_per_yr_estimate": -23.2,
-      "valid_fraction": 0.029,
+      "valid_fraction": null,
       "ref_range_cm": null,
       "detectable": true,
       "robustness_spread": null,
@@ -1947,7 +1947,7 @@
       "note": "",
       "rate_cm_per_100d_common": -5.6,
       "rank": 20,
-      "rank_indicative": 7
+      "rank_indicative": 6
     },
     {
       "id": "karapinar",
@@ -1985,7 +1985,7 @@
       "note": "",
       "rate_cm_per_100d_common": -3.7,
       "rank": 21,
-      "rank_indicative": 8
+      "rank_indicative": 7
     },
     {
       "id": "beijing",
@@ -1994,7 +1994,7 @@
       "lon": 116.83974,
       "lat": 39.79989,
       "max_cm_los": -1.4,
-      "p2_cm": -1.3,
+      "p2_cm": null,
       "rate_cm_per_100d": -1.2,
       "max_cm_vertical_est": -2.1,
       "period": [
@@ -2005,7 +2005,7 @@
       "n_pairs": 9,
       "quality": "provisional",
       "rate_cm_per_yr_estimate": -4.3,
-      "valid_fraction": 0.711,
+      "valid_fraction": null,
       "ref_range_cm": [
         -7.6,
         -1.4
@@ -2029,7 +2029,7 @@
         "single_date_outlier"
       ],
       "rank": 22,
-      "rank_indicative": 9
+      "rank_indicative": 8
     },
     {
       "id": "isfahan",
@@ -2070,7 +2070,7 @@
       "note": "",
       "rate_cm_per_100d_common": -2.1,
       "rank": 23,
-      "rank_indicative": 10
+      "rank_indicative": 9
     },
     {
       "id": "yunlin",
@@ -2079,7 +2079,7 @@
       "lon": 120.56021,
       "lat": 23.62433,
       "max_cm_los": -2.7,
-      "p2_cm": -3.0,
+      "p2_cm": null,
       "rate_cm_per_100d": -2.5,
       "max_cm_vertical_est": -3.4,
       "period": [
@@ -2090,7 +2090,7 @@
       "n_pairs": 8,
       "quality": "provisional",
       "rate_cm_per_yr_estimate": -9.2,
-      "valid_fraction": 0.282,
+      "valid_fraction": null,
       "ref_range_cm": [
         -3.5,
         -1.1
@@ -2108,7 +2108,7 @@
       "note": "",
       "rate_cm_per_100d_common": -1.6,
       "rank": 24,
-      "rank_indicative": 11
+      "rank_indicative": 10
     },
     {
       "id": "xian",
@@ -2146,7 +2146,7 @@
       "note": "",
       "rate_cm_per_100d_common": -1.4,
       "rank": 25,
-      "rank_indicative": 12
+      "rank_indicative": 11
     },
     {
       "id": "hanoi",
@@ -2155,7 +2155,7 @@
       "lon": 105.71463,
       "lat": 20.98307,
       "max_cm_los": -2.5,
-      "p2_cm": -3.0,
+      "p2_cm": null,
       "rate_cm_per_100d": -2.1,
       "max_cm_vertical_est": -3.6,
       "period": [
@@ -2166,7 +2166,7 @@
       "n_pairs": 9,
       "quality": "provisional",
       "rate_cm_per_yr_estimate": -7.5,
-      "valid_fraction": 0.257,
+      "valid_fraction": null,
       "ref_range_cm": [
         -6.7,
         -2.2
@@ -2187,7 +2187,7 @@
       "note": "",
       "rate_cm_per_100d_common": -0.9,
       "rank": 26,
-      "rank_indicative": 13
+      "rank_indicative": 12
     },
     {
       "id": "ho_chi_minh",
@@ -2196,7 +2196,7 @@
       "lon": 106.91207,
       "lat": 10.9967,
       "max_cm_los": -4.2,
-      "p2_cm": -1.8,
+      "p2_cm": null,
       "rate_cm_per_100d": -3.5,
       "max_cm_vertical_est": -5.8,
       "period": [
@@ -2207,7 +2207,7 @@
       "n_pairs": 9,
       "quality": "provisional",
       "rate_cm_per_yr_estimate": -12.8,
-      "valid_fraction": 0.321,
+      "valid_fraction": null,
       "ref_range_cm": [
         -9.9,
         -4.2
@@ -2228,7 +2228,7 @@
       "note": "",
       "rate_cm_per_100d_common": 4.6,
       "rank": 27,
-      "rank_indicative": 14
+      "rank_indicative": 13
     }
   ]
 }

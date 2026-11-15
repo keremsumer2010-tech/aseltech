@@ -232,3 +232,7 @@ Son bloğa geldiğinde `status/PC2.md` ilk satırına `PLAN_SONU_YAKIN` yaz, pus
 PC6 (site) ve PC8 (bülten/teslim) durmuş sayıldı. Kerman bittikten ve `--qc` motorundan SONRA, Celaya'dan ÖNCE:
 1. **Bültenler + vital_signs:** `python tools/bulletin.py` ile yeni bölgelerin bültenlerini üret (Kashmar, Kerman, Tianjin, Gorgan, Pekalongan), indeks; `vital_signs.json`'u atlas.json'dan güncelle (fastest = güvenilir bölgelerden). `python -m pytest -q` geçmeli.
 2. **Site son QA (yarım saat):** canlı sitede her sayfa konsol 0 hata, kırık link 0 (atlas, science, data, game); bulgu + düzeltme `docs/qa/PC2.md` (web/ dosyalarında yalnız açık hata düzeltmesi).
+
+
+# ▶ DEVAM (PC1 otomatik kontrol 3)
+31 dk commit yok. Kerman'ın kalan çiftlerinde ara kayıt commit'i at; sonra `--qc` motoru, ardından devralınan bülten + site QA. Status'a blok yaz.
