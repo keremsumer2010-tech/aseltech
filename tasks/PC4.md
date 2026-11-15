@@ -281,3 +281,9 @@ Jüri siteyi 3 dakika inceleyecek. Yeni veri/özellik yok; toparla, sadeleştir,
 
 # ℹ️ FİNAL güncelleme (PC1)
 Ana sayfanın 3 dakikalık bölümleri PC1 tarafından kuruldu (`web/index.html` üst kısım, `web/home3.js`, sayılar `data/global/home_summary.json`). FİNAL madde 1'i şöyle yap: `three_minute_story.md`'yi **ana sayfadaki mevcut metinden** çıkar, her cümleyi REVIEW_1500 ve kaynaklarla kontrol et; düzeltme önerilerini `docs/qa/PC4.md`'ye yaz (PC1 uygular) veya yalnız metin düzeltmesini doğrudan `web/index.html`'de yap (sayılara dokunma — sayılar JS ile `home_summary.json`'dan geliyor). `slides.html` ve `present.html` aynı 6 bölümü aynı cümlelerle anlatsın.
+
+
+# ⚠️ PC1 DÜZELTME (OPERA iddiası) — ÖNCELİKLİ
+Mexico City OPERA kıyası (r = 0.912) **10 noktaya** dayanıyor ve dönemler FARKLI: OPERA 2025-12-25 → 2026-03-25 (kış), NISAR 2026-06-22 → 2026-10-20 (yaz); eğim 1.28, sabit fark +5.65 cm/100d (`data/global/opera_check.json`, `docs/story/media/pc2_opera_mexico_city.png`). Bu yüzden **manşet/ana sayı olarak kullanma** — ana sayfadan PC1 çıkardı.
+Şu dosyalarda "same summer season one year earlier" veya manşet r = 0.91 geçen yerleri düzelt: `three_minute_story.md`, `slides.html`, `present.html`, `judge_brief.html`, `press_summary.md`, `submission_form.md`, `README.md`.
+Doğru ifade: *Over Mexico City the spatial pattern matches NASA JPL's OPERA product at 10 points (r = 0.91), although OPERA covers winter and NISAR summer; in the Central Valley and at Eloy the agreement is weak (r = 0.40 and 0.09) because seasons and viewing geometry differ.* Ana doğrulama: GPS r = 0.924.
