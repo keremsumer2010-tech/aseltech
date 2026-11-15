@@ -2,15 +2,6 @@
   "quality": "provisional",
   "qc_enabled": true,
   "corrected_pairs": [],
-  "dropped_dates": [
-    {
-      "date": "2026-07-11",
-      "reason": "forced bridge per PC1 final handoff; adjacent pair grids summed",
-      "merged_pair": [
-        "2026-06-29",
-        "2026-07-23"
-      ]
-    }
-  ],
+  "dropped_dates": [],
   "affected_pixel_pct": 0.0
 }

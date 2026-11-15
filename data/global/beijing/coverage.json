@@ -1,13 +1,7 @@
 {
-  "site": "beijing",
+  "site": "global_beijing",
   "bbox": [
     116.35,
-    39.7,
-    116.85,
-    40.2
-  ],
-  "subset_bbox": [
-    116.29061,
     39.7,
     116.85,
     40.2
@@ -15,7 +9,7 @@
   "quality": "provisional",
   "coverage": "ok",
   "granules": 9,
-  "chain_pairs": 8,
+  "chain_pairs": 9,
   "path": 47,
   "frame": 68,
   "period": [
@@ -24,6 +18,5 @@
   ],
   "gaps": [],
   "total_raw_mb": 21126.8,
-  "raw_files_deleted_after_subsetting": true,
-  "july_11_bridged": true
+  "error": null
 }
