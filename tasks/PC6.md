@@ -191,3 +191,7 @@ Mehmet hesabından etiketsiz commit'ler geliyor (isim değişikliği, logo, sim�
 
 # ℹ️ PC1 (15:10)
 Özellik dondurması var: lightbox gibi yeni özellik ekleme. Sıradaki: teslim ekran görüntüleri (yeni sıralama: #1 Eloy) ve bağlantı kontrolü.
+
+
+# ▶ DEVAM (PC1, 15:30)
+32 dk commit yok. Teslim ekran görüntüleri (#1 Eloy, yeni logo) ve bağlantı kontrolüyle devam et.
