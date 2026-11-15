@@ -16,7 +16,7 @@ Extracted from the live 3-minute jury path in [`web/index.html`](../../web/index
 - **Sentence (23 words):** `One open pipeline turns first NASA-ISRO NISAR radar data into centimetres of sinking across 29 basins over 93 days, checked against GPS.`
 - **Big numbers:**
   - **`29` basins** (`16 reliable, 13 indicative`) · `provisional` · `data/global/home_summary.json:kpis[0]` / `data/global/atlas.json`
-  - **`1.48 M` people** (`1,479,844` on `> 5 cm` sinking ground, `549.45 km²`) · `provisional` · `data/global/home_summary.json:kpis[1]` / `data/global/vital_signs.json`
+  - **`1.20 M` people** (`1,200,716` on `> 5 cm` sinking ground, `511.65 km²`) · `provisional` · `data/global/home_summary.json:kpis[1]` / `data/global/vital_signs.json`
   - **`r = 0.92` GPS** (`0.924`, 10 Central Valley stations) · `provisional` · `data/global/home_summary.json:kpis[2]` / `docs/story/validation_report.md`
   - **`0.32 km³/yr`** (`0.3174 km³/yr` permanent storage lost, Central Valley) · `mixed` · `data/global/home_summary.json:kpis[4]` / `data/central_valley_fullyear/storage_loss.json`
   - **`5` flagged basins** (shown as indicative) · `provisional` · `data/global/home_summary.json:qc_story.flagged`
@@ -65,9 +65,9 @@ Extracted from the live 3-minute jury path in [`web/index.html`](../../web/index
 ## Section 5 — 4 · What It Is For (`2:05–2:40`)
 
 - **Heading (7 words):** `From a radar measurement to a decision`
-- **Sentence (22 words):** `We turn sinking into 1.48 M exposed people, 0.32 km³/yr lost storage, 81/645 tilting corridors, 29 bulletins, and a 30-second simulator.`
+- **Sentence (22 words):** `We turn sinking into 1.20 M exposed people, 0.32 km³/yr lost storage, 81/645 tilting corridors, 29 bulletins, and a 30-second simulator.`
 - **Big numbers:**
-  - **`1.48 M` people** (`1,479,844` on `> 5 cm` sinking ground, `549.45 km²`) · `provisional` · `data/global/exposure_atlas.json` / `data/global/vital_signs.json`
+  - **`1.20 M` people** (`1,200,716` on `> 5 cm` sinking ground, `511.65 km²`) · `provisional` · `data/global/exposure_atlas.json` / `data/global/vital_signs.json`
   - **`0.32 km³/yr`** (`0.3174 km³/yr` permanent Central Valley storage lost) · `mixed` · `data/central_valley_fullyear/storage_loss.json`
   - **`81 / 645` sections `> 20 mm/km`** (corridors with tilt/damage probability) · `provisional` · `data/central_valley/assets.json`
 - **Visual:** `web/assets/simulator.jpg` (simulator capture) + `docs/story/media/pc9_fullyear_point.png` + `docs/story/media/pc7_risk_prob.png`.
