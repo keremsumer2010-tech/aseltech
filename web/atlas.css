@@ -79,6 +79,18 @@
 .tour-caption{position:absolute;left:14px;bottom:24px;z-index:6;background:rgba(11,18,32,.9);color:#fff;border:1px solid rgba(255,255,255,.22);border-radius:3px;padding:10px 14px;max-width:340px;font-size:.84rem}
 .tour-caption[hidden]{display:none}
 .tour-caption b{display:block;font-size:.98rem;margin-bottom:2px}
+.atlas-top5-card{position:absolute;left:14px;top:14px;z-index:6;background:rgba(255,255,255,.94);backdrop-filter:blur(6px);border:1px solid var(--line);border-radius:4px;padding:10px 12px;box-shadow:0 4px 16px rgba(0,0,0,.15);max-width:320px;font-size:.78rem}
+.top5-card-hdr{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px;border-bottom:1px solid var(--line);padding-bottom:5px}
+.top5-card-hdr b{font-size:.84rem;color:var(--text)}
+.top5-card-hdr small{font-weight:400;color:var(--mut)}
+.atlas-top5-table{width:100%;border-collapse:collapse;font-size:.75rem}
+.atlas-top5-table th{text-align:left;padding:3px 4px;font-size:.68rem;color:var(--mut);text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid var(--line)}
+.atlas-top5-table td{padding:4px 4px;border-bottom:1px solid rgba(226,232,240,.6);white-space:nowrap}
+.atlas-top5-table tbody tr{cursor:pointer;transition:background .15s}
+.atlas-top5-table tbody tr:hover{background:#f1f5f9}
+.atlas-top5-table tbody tr.is-active{background:#eef3fb;font-weight:600}
+.top5-foot{display:flex;justify-content:space-between;align-items:center;margin-top:6px;font-size:.7rem;color:var(--mut)}
+.top5-foot a{color:var(--acc);text-decoration:underline}
 .offline-pill{position:absolute;left:14px;top:12px;z-index:6;background:rgba(255,255,255,.92);color:var(--text);border:1px solid var(--line);border-radius:3px;padding:5px 9px;font-size:.74rem;font-weight:600}
 .offline-pill[hidden]{display:none}
 .atlas-legend{position:absolute;right:14px;bottom:24px;z-index:5;background:rgba(255,255,255,.94);border:1px solid var(--line);border-radius:3px;padding:10px 12px;font-size:.74rem;color:var(--text);max-width:230px}
@@ -105,6 +117,7 @@
 @media (max-width:980px){.atlas-tgrid{grid-template-columns:1fr}}
 @media (max-width:860px){
   .atlas-page{overflow:auto}
+  .atlas-top5-card{display:none}
   .atlas-wrap{grid-template-columns:1fr;grid-template-rows:52vh auto;height:auto}
   .vital-bar:not([hidden]) + .atlas-wrap{height:auto}
   .atlas-mapwrap{grid-row:1;min-height:52vh}

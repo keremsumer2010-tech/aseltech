@@ -544,10 +544,41 @@ async function initAtlas(){
     if (id && id !== activeId && sortedRegions.some(r => r.id === id)) selectRegion(id, true, false);
   });
 
+  const urlParams = new URLSearchParams(window.location.search);
+  const isJury = urlParams.get('jury') === '1' || urlParams.has('jury');
+
   const hashId = location.hash ? location.hash.slice(1) : '';
-  const initial = sortedRegions.find(r => r.id === hashId) || sortedRegions[0];
-  if (initial) selectRegion(initial.id, Boolean(hashId), false);
+  const firstReliable = sortedRegions.find(r => !isIndicative(r)) || sortedRegions[0];
+  const initial = sortedRegions.find(r => r.id === hashId) || firstReliable;
+  if (initial) selectRegion(initial.id, Boolean(hashId || isJury), false);
+  renderTop5Card(sortedRegions);
   renderTables(sortedRegions);
+}
+
+function renderTop5Card(regions){
+  const tb = document.getElementById('top5CardRows');
+  if (!tb || !Array.isArray(regions)) return;
+  const top5 = regions.filter(r => !isIndicative(r)).slice(0, 5);
+  tb.innerHTML = top5.map((r, i) => {
+    const rateVal = r.rate_cm_per_100d_common ?? r.rate_cm_per_100d;
+    const isAct = r.id === activeId ? ' class="is-active"' : '';
+    return `<tr data-id="${esc(r.id)}"${isAct} tabindex="0" role="button" aria-label="Select #${i + 1} ${esc(r.name)}">
+      <td><b>#${i + 1}</b></td>
+      <td><b>${esc(r.name)}</b></td>
+      <td class="mono" style="color:var(--hot);font-weight:700">${esc(fmtNum(rateVal))} cm</td>
+      <td>${confBadge(r)}</td>
+    </tr>`;
+  }).join('');
+  const activateRow = tr => {
+    stopTour();
+    selectRegion(tr.dataset.id, true, true);
+  };
+  tb.querySelectorAll('tr[data-id]').forEach(tr => {
+    tr.addEventListener('click', () => activateRow(tr));
+    tr.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); activateRow(tr); }
+    });
+  });
 }
 
 function renderTables(regions){
@@ -614,6 +645,7 @@ async function selectRegion(id, fly, updateHash){
     try{ history.replaceState(null, '', '#' + id); }catch(e){}
   }
   document.querySelectorAll('.atlas-item').forEach(el => el.classList.toggle('is-active', el.dataset.id === id));
+  document.querySelectorAll('#top5CardRows tr').forEach(tr => tr.classList.toggle('is-active', tr.dataset.id === id));
   if (fly && map && typeof r.lon === 'number' && typeof r.lat === 'number'){
     map.flyTo({center: [r.lon, r.lat], zoom: 5.5, duration: 1200});
   }
@@ -623,7 +655,7 @@ async function selectRegion(id, fly, updateHash){
   const [meta, pts, valNote] = await Promise.all([
     J(base + 'meta.json'),
     J(base + 'points.json'),
-    KNOWN_VALNOTE.has(r.id) ? J(base + 'validation_note.json') : Promise.resolve(null)
+    KNOWN_VALNOTE.has(r.id) ? J(`data/global/${r.id}/validation_note.json`) : Promise.resolve(null)
   ]);
   const hasBul = Boolean(r.bulletin || bulletinIds.has(r.id));
   const hasCard = Boolean(r.city_card || KNOWN_CARDS.has(r.id));

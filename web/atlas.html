@@ -79,11 +79,22 @@
       <div id="cmpBody"></div>
     </section>
 
-    <div class="atlas-list" id="atlasList" role="list"></div>
     <section class="atlas-detail" id="atlasDetail" hidden></section>
+    <div class="atlas-list" id="atlasList" role="list"></div>
   </aside>
   <section class="atlas-mapwrap" aria-label="Interactive 3D globe of measured regions">
     <div id="atlasMap"></div>
+    <div class="atlas-top5-card" id="atlasTop5Card" aria-label="Top 5 reliable sinking basins">
+      <div class="top5-card-hdr">
+        <b>Top 5 Basins <small>(93-d window)</small></b>
+        <span class="qbadge provisional">PROVISIONAL</span>
+      </div>
+      <table class="atlas-top5-table">
+        <thead><tr><th>#</th><th>Region</th><th>Rate</th><th>Conf</th></tr></thead>
+        <tbody id="top5CardRows"></tbody>
+      </table>
+      <div class="top5-foot"><span>Click to select</span><a href="#atlasTables">All 29 basins ↓</a></div>
+    </div>
     <div class="atlas-toolbar">
       <div class="atlas-layers" id="atlasLayers" role="group" aria-label="Map layer">
         <button type="button" class="al-btn is-active" data-layer="disp">Subsidence</button>
