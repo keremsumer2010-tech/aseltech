@@ -233,3 +233,5 @@ Evet. PC1 rolleri saat başı kontrolde değiştirebilir; değişiklik önce bu 
 - (otomatik kontrol 6) PC10 durmuş: atlas yeniden üretimi + bülten + vital_signs → PC1; registry özetleri, thumb, alan ekseni, şema → BACKLOG §E.
 
 - (otomatik kontrol 8) PC7 durmuş: teknik not + slayt → PC1; Pekin 11 Tem düzeltmesi, Aguascalientes, Querétaro, küresel risk → BACKLOG §E. Çalışan tek ajan: PC9 (Lagos → Konya tam yıl).
+
+- (otomatik kontrol) PC9 durmuş: Mexico City tam yıl + annualization → BACKLOG §E. Çalışan ajan yok; atlas, metin senkronu ve 19:00 SIGNOFF kontrolü PC1'de.

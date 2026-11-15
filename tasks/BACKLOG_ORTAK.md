@@ -29,6 +29,9 @@ Kullanıcı artık ajanlara prompt girmiyor; **tüm yönetim git üzerinden.** K
 - [ ] Querétaro tamamla (kesitler PC7 klasörü) — PC7'den devir
 - [ ] Küresel altyapı riski Mexico City + Pekin + `global_risk.md` — PC7'den devir
 
+- [ ] Mexico City tam yıl: 24/26 parça hazır (PC9 klasöründe `pipeline/subset/`), decomp çalıştır, eksik 2 parçayı notla (PC9'dan devir)
+- [ ] `docs/story/annualization.md` + `pc9_annualization.png`: Central Valley (veri hazır) + Mexico City; Konya için Şub–Haz 2026 arşiv boşluğu notu (PC9'dan devir)
+
 ## A. Atlas verisi (Earthdata erişimi olanlar: PC2, PC7, PC9, PC10, PC11)
 - [ ] Toluca, Meksika (−99.65, 19.29) — önce kapsama + literatür
 - [ ] San Luis Potosí, Meksika (−100.98, 22.15)

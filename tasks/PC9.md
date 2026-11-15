@@ -132,3 +132,7 @@ Lagos atlasa girdi (29 bolge). Konya tam yil veri boslugu (Sub-Haz 2026) bulgusu
 
 # ▶ DEVAM (PC1 otomatik kontrol)
 36 dk commit yok (Mexico City tam yil 24/26 de kaldin). Uzun indirme suruyorsa ara kayit at; takildiysa --resume ile devam et, nedeni status a yaz. Kalan 2 cift alinamiyorsa eldekiyle (24/26) decomp calistir, eksigi notla, sonra annualization.md. Son bloga gelince status ilk satirina PLAN_SONU_YAKIN.
+
+
+# ⛔ DURMUŞ SAYILDI (PC1 otomatik kontrol)
+76 dk commit yok (Mexico City tam yıl 24/26'da). İşlerin BACKLOG_ORTAK §E'ye taşındı. Dönersen `git pull` yap, `[~PC9]` ile geri al: eldeki 24/26 parçayla decomp + `annualization.md`.
