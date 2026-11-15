@@ -97,7 +97,7 @@ görünmeyen öğenin adımı kendiliğinden atlanır.
 |---|---|---|
 | `data/` | Sitenin okuduğu her şey (format: `rules/VERI_SOZLESMESI.md`) | `catalog.json` (explorer/data), `numbers_registry.json`, `results_registry.json` (data/science), `nisar_tle.json` (atlas uydusu), `global/` (atlas: `atlas.json`, `home_summary.json`, şehir başına klasör) |
 | `data/<bölge>/` | Bölge çıktıları: `meta.json`, `points.json`, `summary.json`, `disp/*.png` | central_valley, karapinar, konya_plain, delta, uk, uk_clay, fens, *_fullyear, *_p114/_p172 |
-| `pipeline/` | NISAR verisini arama, indirme, kesme | `nisarvision/` (ana paket: `python -m nisarvision`), `search.py`, `download.py`, `subset.py`, `subset/` (.npz alt kümeler), `pc2/`, `pc7/`, `pc10/` (PC'lere özel betikler; `pc10/build_atlas.py` atlası kurar) |
+| `pipeline/` | NISAR verisini arama, indirme, kesme | `nisarvision/` (ana paket: `python -m nisarvision`), `search.py`, `download.py`, `subset.py`, `subset/` (.npz alt kümeler: 1,7 GB, depoda değil, `.gitignore`da; geri almak için `pipeline/subset/README.md`), `pc2/`, `pc7/`, `pc10/` (PC'lere özel betikler; `pc10/build_atlas.py` atlası kurar) |
 | `analysis/` | Faz → cm, kümülatif seri, ayrıştırma | `insar.py`, `cumulative.py`, `gunw_io.py`, `web_grid.py`, `decomp/`, `pc5/ pc6/ pc8/ pc9/`, `out/` (ara çıktılar) |
 | `validation/` | GNSS/GPS doğrulaması | `fetch_gnss.py`, `compare.py`, `gnss/*.csv`, `gnss_stations.csv` |
 | `risk/` | Altyapı riski (OSM) | `compute_risk.py`, `probabilistic_risk.py`, `*_infra.geojson` |

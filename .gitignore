@@ -26,3 +26,6 @@ dist/
 Thumbs.db
 .idea/
 .vscode/
+
+# Ham radar kesitleri (1,7 GB): depoda tutulmaz, pipeline/subset/README.md
+pipeline/subset/**/*.npz
