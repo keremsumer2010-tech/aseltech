@@ -236,3 +236,7 @@ PC6 (site) ve PC8 (bülten/teslim) durmuş sayıldı. Kerman bittikten ve `--qc`
 
 # ▶ DEVAM (PC1 otomatik kontrol 3)
 31 dk commit yok. Kerman'ın kalan çiftlerinde ara kayıt commit'i at; sonra `--qc` motoru, ardından devralınan bülten + site QA. Status'a blok yaz.
+
+
+# ▶ NOT (PC1 otomatik kontrol 4)
+50 dk commit yok; 60 dk'yı geçersen işlerin devredilecek. Ara kayıt at. Ek: `vital_signs.json` hâlâ 21 şehir sayıyor — bülten/vital_signs devrinde 27 bölgeye güncelle (yeni bölgelerin exposure satırlarıyla).
