@@ -48,3 +48,33 @@ All five Priority-A basins below were processed end-to-end with `pipeline.nisarp
 | `mashhad` | P078 / F070 | `2026-06-19 → 2026-10-17` | 9 | -8.6 | -6.68 | -7.17 | 0.705 | `medium` |
 | `quetta` | P041 / F017 | `2026-06-17 → 2026-10-15` | 9 | -3.8 | -2.50 | -3.17 | 0.713 | `medium` |
 | `delhi` | P106 / F074 | `2026-06-21 → 2026-10-19` | 8 | -4.3 | -4.45 | -3.58 | 0.053 | `low` |
+
+## Reproduce any atlas region in one command
+
+Every published atlas region can be reproduced directly from its `meta.json` granule list (`pipeline/nisarpulse/reproduce.py`):
+
+```bash
+python -m pipeline.nisarpulse reproduce <id>
+# Dry-run plan (offline, 0 bytes):
+python -m pipeline.nisarpulse reproduce <id> --dry-run
+```
+
+When cached `.npz` subsets are present in `pipeline/subset/<id>/`, `reproduce` recomputes the full cumulative chain with `--qc` enabled and compares the resulting `summary.json` against the published record (without overwriting `data/`):
+
+| Region | Granules | Original `max_subsidence_cm` | Reproduced `max_subsidence_cm` | `range_cm` (Orig / Repro) | Rate (Orig / Repro) | Diff (`cm`) | Runtime |
+|---|---:|---:|---:|---|---|---:|---:|
+| `konya_plain` | 8 / 8 | `-9.6` | `-9.6` | `[-14.0, -9.6]` / `[-14.0, -9.6]` | `-32.5` / `-32.5 cm/yr` | **`0.0`** | `64.0 s` |
+| `mashhad` | 9 / 9 | `-8.6` | `-8.6` | `[-8.6, -6.0]` / `[-8.6, -6.0]` | `-26.3` / `-26.3 cm/yr` | **`0.0`** | `12.5 s` |
+
+Expected JSON output (`mode: "reproduced"` when subsets are cached, or `mode: "dry-run"` listing missing granules if offline without cache):
+
+```json
+{
+  "mode": "reproduced",
+  "region": "mashhad",
+  "granules": 9,
+  "cached": 9,
+  "diff_max_cm": 0.0,
+  "elapsed_s": 12.516
+}
+```
