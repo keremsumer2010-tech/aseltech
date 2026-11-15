@@ -9,7 +9,7 @@
 ## 1. What Is Included
 
 1. **Global Subsidence Atlas (`data/global/atlas.json`, `web/atlas.html`):**
-   - **29 regions** (`16` reliable, `13` indicative) processed with one open-source pipeline (`pipeline/nisarpulse/`) and ranked on the common 93-day summer window (`2026-06-28 → 2026-09-29`).
+   - **29 regions** (`16` reliable, `13` indicative) processed with one open-source pipeline (`pipeline/nisarvision/`) and ranked on the common 93-day summer window (`2026-06-28 → 2026-09-29`).
    - `#1` reliable: **Konya Plain** (`−11.0 cm/100d` common, `−9.6 cm` over `108 d`, `11.6%` valid-coverage caution).
    - Interactive 4-step reading guide, `"What changed"` (`atlas_changelog.json`, latest 10), `rate_ci_cm_per_100d` confidence intervals, `sigma_cm.png` toggle, and bidirectional `?basin=` links with the simulator.
    - Schema contract (`data/global/atlas.schema.json`) and automated tests (`tests/test_atlas_schema.py`, `tests/test_site_numbers.py`, `tools/vital_signs.py --check`).

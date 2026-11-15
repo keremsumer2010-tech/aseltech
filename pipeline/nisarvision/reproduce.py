@@ -83,7 +83,7 @@ def reproduce_region(
             "elapsed_s": round(time.monotonic() - t0, 3),
         }
 
-    from pipeline.nisarpulse.process import run_cumulative
+    from pipeline.nisarvision.process import run_cumulative
 
     target_out = out_dir or (root / "analysis" / "out" / f"repro_{region_id}")
     quality_mode = "mixed" if orig_summary.get("quality") == "mixed" else "provisional"

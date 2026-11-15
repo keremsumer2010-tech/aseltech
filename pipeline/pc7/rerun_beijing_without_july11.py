@@ -47,7 +47,7 @@ def main() -> None:
         sys.path.insert(0, str(ROOT / "analysis"))
         import cumulative  # type: ignore[import-not-found]
         import gunw_io  # type: ignore[import-not-found]
-        import pipeline.nisarpulse.qc as qc
+        import pipeline.nisarvision.qc as qc
 
         old_root, old_ref = cumulative.ROOT, cumulative.choose_reference
         old_bbox = gunw_io.BBOX.get(CITY)

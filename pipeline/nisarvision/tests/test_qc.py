@@ -9,11 +9,11 @@ from pathlib import Path
 
 import numpy as np
 
-from pipeline.nisarpulse.__main__ import parse_cli_args
-from pipeline.nisarpulse.qc import L_BAND_CYCLE_CM, qc_stack, write_qc_report
+from pipeline.nisarvision.__main__ import parse_cli_args
+from pipeline.nisarvision.qc import L_BAND_CYCLE_CM, qc_stack, write_qc_report
 
 
-class TestNisarPulseQC(unittest.TestCase):
+class TestNisarVisionQC(unittest.TestCase):
     def test_cycle_jump_correction_by_connected_component(self) -> None:
         dates = ["2026-07-01", "2026-07-13", "2026-07-25", "2026-08-06"]
         shape = (20, 20)

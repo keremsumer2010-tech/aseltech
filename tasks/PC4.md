@@ -125,7 +125,7 @@ Doğrulanmış kaynak. Jüri tek bir uydurma sayı yakalarsa tüm projenin Valid
 ---
 # 20:10 PC1 — TEKNİK NOT (sahibi sensin; `docs/OZGUN_KATKILAR.md` §T) — 20:00 madde 1–2'den sonra
 `docs/story/technical_note.md` + yazdırılabilir `docs/story/technical_note.html` (tek dosya, A4 yazdırma CSS'i):
-NASA teknik rapor tarzı, 4–6 sayfa: Abstract (150 kelime) · 1 Data (ürünler, tarihler, kalite sınıfları) · 2 Methods (faz→cm, düzeltmeler, zincir, ayrıştırma) · 3 Validation (10 GPS, ikinci geçiş p114, C-band OPERA) · 4 Uncertainty (piksel σ, referans duyarlılığı, atmosfer) · 5 Results (108 gün, tam yıl, Delta, Konya, küresel) · 6 Original contributions (O1 depolama kaybı, O2 olasılıksal mühendislik riski, O3 NISAR Pulse aracı) · 7 Limitations · References (hepsi doğrulanmış link).
+NASA teknik rapor tarzı, 4–6 sayfa: Abstract (150 kelime) · 1 Data (ürünler, tarihler, kalite sınıfları) · 2 Methods (faz→cm, düzeltmeler, zincir, ayrıştırma) · 3 Validation (10 GPS, ikinci geçiş p114, C-band OPERA) · 4 Uncertainty (piksel σ, referans duyarlılığı, atmosfer) · 5 Results (108 gün, tam yıl, Delta, Konya, küresel) · 6 Original contributions (O1 depolama kaybı, O2 olasılıksal mühendislik riski, O3 NISAR Vision aracı) · 7 Limitations · References (hepsi doğrulanmış link).
 Her sayı `data/*` dosyasından; O1/O2/O3 sonuçları gelmeden önce yerlerine "[pending PC8/PC7/PC2]" yaz, gelince doldur. `slides.html`'e 1 slayt: "What is new in our work" (O1–O3).
 Yazma alanına eklendi: `docs/story/technical_note.md`, `docs/story/technical_note.html`.
 

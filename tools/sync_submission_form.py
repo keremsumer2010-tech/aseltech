@@ -91,7 +91,7 @@ def patch(md: str, f: dict) -> str:
     )
     item4 = (
         f"4. 2026 Global Subsidence Atlas & Population Exposure ({f['win'][0]} to {f['win'][1]}, {f['days']}-day common window, provisional): "
-        f"One open pipeline (pipeline/nisarpulse) measures {f['n']} basins on the same {f['days']} days; {f['n_rel']} pass quality control and {f['n_ind']} are indicative only. "
+        f"One open pipeline (pipeline/nisarvision) measures {f['n']} basins on the same {f['days']} days; {f['n_rel']} pass quality control and {f['n_ind']} are indicative only. "
         f"Reliable ranking: {top} [data/global/atlas.json]. Automated time-series checks (tools/atlas_qc.py) caught a full 12.1 cm phase-cycle jump in Semarang "
         f"(-12.1 to -6.2 cm after correction) and moved Tehran from -3.5 to -7.4 cm LOS with an off-basin reference [data/global/atlas_changelog.json]; "
         f"indicative-only basins include {ind_names}. Intersecting GHSL GHS-POP E2025 (100 m) with displacement above each city's 2-sigma noise floor shows "

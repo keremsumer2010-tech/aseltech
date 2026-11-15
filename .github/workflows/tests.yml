@@ -3,11 +3,11 @@ name: NISAR Vision Tests
 on:
   push:
     paths:
-      - "pipeline/nisarpulse/**"
+      - "pipeline/nisarvision/**"
       - ".github/workflows/tests.yml"
   pull_request:
     paths:
-      - "pipeline/nisarpulse/**"
+      - "pipeline/nisarvision/**"
 
 jobs:
   test:
@@ -18,4 +18,4 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install pytest requests numpy
-      - run: python -m pytest pipeline/nisarpulse -q
+      - run: python -m pytest pipeline/nisarvision -q

@@ -88,7 +88,7 @@ Neden: Sıralama tek bir referans ve tek bir koherens eşiğine dayanıyor. NASA
 4. Testler `pipeline/pc7/tests/` (ağsız), `python -m pytest -q` geçmeli.
 
 **B. Yeni şehirler (A bitince; Kerem'in bilgisayarında netrc var)**
-NISAR Pulse ile kalite standardında (±0.25°, havza dışı referans, p2, cm/100d), önce ASF kapsaması, yoksa "no coverage":
+NISAR Vision ile kalite standardında (±0.25°, havza dışı referans, p2, cm/100d), önce ASF kapsaması, yoksa "no coverage":
 - **Xi'an, Çin** 108.95, 34.27 (yer çatlakları, yayımlanmış çökme)
 - **Taiyuan, Çin** 112.55, 37.85
 - **Querétaro, Meksika** −100.39, 20.59
@@ -98,7 +98,7 @@ NISAR Pulse ile kalite standardında (±0.25°, havza dışı referans, p2, cm/1
 Yazma alanı ek: `pipeline/pc7/atlas_robustness.py`, `pipeline/pc7/tests/`, `data/global/robustness.json`, `data/global/{xian,taiyuan,queretaro}/`, `pipeline/subset/global_{xian,taiyuan,queretaro}/`, `docs/story/media/pc7_atlas_robustness.png`.
 
 ## ▶ SIRADAKİ (Cmt 23:15, PC1) — A bitti (sonuç: yerel yığınlar kutuyu kapsamadığı için "inconclusive"), şimdi B
-1. **B: Xi'an 108.95, 34.27 · Taiyuan 112.55, 37.85 · Querétaro −100.39, 20.59** — NISAR Pulse, kalite standardı (±0.25° TAM kutu, havza dışı referans, p2, cm/100d). Önce `--dry-run` ile ASF kapsaması; yoksa "no coverage" yaz, geç. İndirme izni var (Kerem), `python` 3.12, aynı anda 1 indirme, ham dosyayı kestikten sonra sil. Her şehirde `docs/qa/PC7.md`'ye "hazır: <şehir>", commit + push.
+1. **B: Xi'an 108.95, 34.27 · Taiyuan 112.55, 37.85 · Querétaro −100.39, 20.59** — NISAR Vision, kalite standardı (±0.25° TAM kutu, havza dışı referans, p2, cm/100d). Önce `--dry-run` ile ASF kapsaması; yoksa "no coverage" yaz, geç. İndirme izni var (Kerem), `python` 3.12, aynı anda 1 indirme, ham dosyayı kestikten sonra sil. Her şehirde `docs/qa/PC7.md`'ye "hazır: <şehir>", commit + push.
 2. **Robustness'i tamamla:** her yeni tam kutulu şehirde (senin 3 şehrin + PC11'in Tahran/Cakarta/Pekin yeniden hesapları + PC2/PC9/PC10 şehirleri) `atlas_robustness.py`'yi yeniden çalıştır. Hedef: en az 5 şehirde 27/27 geçerli varyant ve ilk 3 için kesin "stable / not stable" sonucu. Referans adayı seçiminde PC5'in `docs/qa/PC5.md` §4 bulgularını kullan.
 3. Sonra ek şehirler (kuru iklim, yayımlanmış çökme): **Aguascalientes, Meksika** −102.29, 21.88 · **Kashmar, İran** 58.46, 35.24 (önce kapsama). Sonra ASLA BOŞ KALMA.
 Yazma alanı ek: `data/global/{xian,taiyuan,queretaro,aguascalientes,kashmar}/`, `pipeline/subset/global_<bu şehirler>/`.
@@ -112,7 +112,7 @@ Her döngü başında ve her push'tan önce aynen şu sıra:
 Commit edilmemiş KENDİ değişikliğin varken asla pull yapma; önce commit et. Bu kuralla "unstaged changes" hatası bir engel DEĞİLDİR, BLOCKED yazma. Sadece başka birinin dosyasında çakışma çıkarsa BLOCKED yaz.
 
 ## FAZ 1 — Yeni atlas şehirleri (Cmt 23:30 → Paz 03:00)
-NISAR Pulse, kalite standardı: ±0.25° TAM kutu, havza dışı referans, `p2_cm`, `rate_cm_per_100d`. Her şehirde önce `--dry-run` (ASF kapsaması); kapsama yoksa `docs/qa/PC7.md`'ye "no coverage: <şehir>" yaz, sıradakine geç.
+NISAR Vision, kalite standardı: ±0.25° TAM kutu, havza dışı referans, `p2_cm`, `rate_cm_per_100d`. Her şehirde önce `--dry-run` (ASF kapsaması); kapsama yoksa `docs/qa/PC7.md`'ye "no coverage: <şehir>" yaz, sıradakine geç.
 1. Xi'an 108.95, 34.27  2. Taiyuan 112.55, 37.85  3. Querétaro −100.39, 20.59  4. Aguascalientes −102.29, 21.88  5. Kashmar 58.46, 35.24
 Her şehirde: `summary.json` + `meta.json` + `points.json` (`data/global/<şehir>/`), literatür büyüklük kıyası (kaynak linkiyle) `docs/qa/PC7.md`'ye, "hazır: <şehir>" satırı (PC10 atlasa ekler, PC5 karar verir), commit + push.
 İndirme: Kerem izin verdi. `python` (3.12). Aynı anda 1 indirme, ham dosyayı kestikten sonra sil, boş disk < 20 GB ise dur.

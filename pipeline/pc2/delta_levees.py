@@ -37,7 +37,7 @@ def fetch_levees(cache_path: Path) -> dict:
 out body geom;
 """
     last_err = None
-    headers = {"User-Agent": "NISAR-Pulse-SpaceApps2026/1.0"}
+    headers = {"User-Agent": "NISAR-Vision-SpaceApps2026/1.0"}
     for url in OVERPASS_URLS:
         try:
             r = requests.post(url, data={"data": query}, headers=headers, timeout=70)

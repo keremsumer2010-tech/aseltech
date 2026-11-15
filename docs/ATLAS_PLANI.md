@@ -45,7 +45,7 @@ PC1 planı inceledi; 4 zayıflık düzeltildi. Bu bölüm diğer her şeyin ön�
 Mevcut: Mexico City, Tahran, Cakarta, Pekin (PC10), Central Valley, Karapınar, Konya Ovası, Delta.
 
 ## PC10 — atlas veri sahibi
-1. Kendi 5 bölgen: `python -m pipeline.nisarpulse run --name <şehir> --bbox ... --start 2026-06-17 --end 2026-10-31 --quality provisional` (önce `--dry-run`). Çıktı `data/global/<şehir>/`.
+1. Kendi 5 bölgen: `python -m pipeline.nisarvision run --name <şehir> --bbox ... --start 2026-06-17 --end 2026-10-31 --quality provisional` (önce `--dry-run`). Çıktı `data/global/<şehir>/`.
 2. **`data/global/atlas.json`** üreticisi: `pipeline/pc10/build_atlas.py` — tüm `data/global/*/summary.json` + Central Valley, Karapınar, Konya Ovası, Delta → her kayıt `{id, name, country, lon, lat, max_cm_los, max_cm_vertical_est, period, n_pairs, quality, rate_cm_per_yr_estimate, coverage:"ok|partial|none", note}` + sıralama (en çok çökenden). Her yeni şehirden sonra yeniden çalıştır.
 3. `docs/story/global_atlas.md`: atlasın sade anlatımı (yöntem aynı, dönem ~108 gün, provisional, LOS uyarısı), ilk 10 tablo.
 
@@ -97,7 +97,7 @@ Mevcut: Mexico City, Tahran, Cakarta, Pekin (PC10), Central Valley, Karapınar, 
 4. `project_page.md` ve `judge_faq.md`'ye atlas.
 **PC4 ikinci tur (22:15) — 1–4 BİTTİ, sıradakiler:**
 5. **Şehir kartları** `docs/story/atlas_cities/<id>.md` (id = atlas.json'daki id): her şehir için ≤150 kelime — neden çöküyor (yeraltı suyu/kil, kaynaklı), kim etkileniyor, yayımlanmış hız (kaynak + yıl), bizim değerimiz (cm/100d, dönem, güven), NISAR'ın kattığı. Uydurma yok; kaynak bulunamazsa "no published rate found" yaz. Önce mevcut 9 bölge, sonra yeni şehirler geldikçe. PC6 atlas panelinden bağlar.
-6. **`docs/story/atlas_methods.md`**: tek sayfa yöntem ve sınırlar — aynı kutu (±0.25°), havza dışı referans, cm/100d neden, güven sınıfı kuralları, LOS→dikey uyarısı, provisional/kalibrasyon cümlesi, her şehri yeniden üreten `python -m pipeline.nisarpulse run ...` komutu (summary.json'daki değerlerle). NASA mühendisinin "nasıl yaptınız" sorusunun cevabı.
+6. **`docs/story/atlas_methods.md`**: tek sayfa yöntem ve sınırlar — aynı kutu (±0.25°), havza dışı referans, cm/100d neden, güven sınıfı kuralları, LOS→dikey uyarısı, provisional/kalibrasyon cümlesi, her şehri yeniden üreten `python -m pipeline.nisarvision run ...` komutu (summary.json'daki değerlerle). NASA mühendisinin "nasıl yaptınız" sorusunun cevabı.
 7. **`docs/story/atlas_data_dictionary.md`**: atlas.json'daki her alanın adı, birimi, anlamı, örnek değer; Data sayfası için (PC6 bağlar).
 8. `judge_faq.md`'ye atlas zor soruları: "sıralamanız literatürden neden farklı?", "108 gün yıllık hızı temsil eder mi?", "tropik şehirlerde koherens?", "referansı nasıl seçtiniz?", "bu şehri ilk siz mi ölçtünüz?" — PC5'in `atlas_validation.md`'sine dayanarak.
 9. Yeni şehir her geldiğinde: press_summary, slides, technical_note, şehir kartı senkronu.

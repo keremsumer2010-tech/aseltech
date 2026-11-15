@@ -81,7 +81,7 @@ Extracted from the live 3-minute jury path in [`web/index.html`](../../web/index
 - **Sentence (24 words):** `We built a comparable 29-basin atlas, self-checking QC ranking, decision-ready storage and tilt metrics, and an open one-command pipeline on public NASA data.`
 - **Big numbers:**
   - **`4` original contributions** (`comparable 29-basin atlas`, `self-checking QC`, `decision metrics`, `open one-command engine`) · `open source` · `README.md`
-  - **`1` open command** (`python -m pipeline.nisarpulse run ...` + `python pipeline/pc10/build_atlas.py`) · `open source` · `docs/story/engine.md`
+  - **`1` open command** (`python -m pipeline.nisarvision run ...` + `python pipeline/pc10/build_atlas.py`) · `open source` · `docs/story/engine.md`
 - **Visual:** One-command reproduction block (`web/index.html#w9`) + 4 contribution summary.
 - **Link:** `Get the code and data →` (`data.html`) / `GitHub` (`https://github.com/keremsumer2010-tech/aseltech`)
 
@@ -96,4 +96,4 @@ Extracted from the live 3-minute jury path in [`web/index.html`](../../web/index
 | `1:00–1:30` | **Stop 3 · 03 GPS & Validation** | `#w3` | `Proof on the ground and uncertainty` | `r = 0.924` GPS, `≈ 0.3 cm` noise, OPERA `r = 0.912` (winter vs summer) |
 | `1:30–2:00` | **Stop 4 · 04 People & 05 Water** | `#w4` + `#w5` | `1.20 M people on sinking ground & 0.3174 km³/yr water lost` | `1,200,716` people (`511.65 km²`), `0.3174 km³/yr` lost |
 | `2:00–2:30` | **Stop 5 · 06 Tilt & 07 Bulletins** | `#w6` + `#w7` | `81 / 645 tilting corridors & 29 one-page bulletins` | `81 / 645 > 20 mm/km`, `29` printable A4 bulletins |
-| `2:30–3:00` | **Stop 6 · 08 Simulator & 09 Engine** | `#w8` + `#w9` | `A 30-second simulator & an open one-command engine` | `24-mo` simulator (`game/`), `1` command (`pipeline.nisarpulse`) |
+| `2:30–3:00` | **Stop 6 · 08 Simulator & 09 Engine** | `#w8` + `#w9` | `A 30-second simulator & an open one-command engine` | `24-mo` simulator (`game/`), `1` command (`pipeline.nisarvision`) |

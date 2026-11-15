@@ -16,11 +16,11 @@ Hedef: "güzel bir harita" değil, **bir su yöneticisinin ve bir mühendisin ya
 ## O3 — "NISAR Vision" komut satırı aracı: herhangi bir bölge için tek komut · sahibi PC2
 **Soru:** "Başka bir mühendis bunu kendi bölgesi için yarın çalıştırabilir mi?"
 **Neden özgün:** hackathon projelerinin çoğu bir kerelik notebook. Bizim hattımız (arama → indirme → kesme → faz→cm → kümülatif → kalite etiketli veri sözleşmesi → site kataloğu) 7 bölge + 4 şehirde zaten çalıştı. Bunu tek, test edilmiş, belgeli bir araca çevirmek = "operasyonel" ürün.
-**Yöntem:** `python -m nisarpulse run --name <ad> --bbox w,s,e,n --start YYYY-MM-DD --end YYYY-MM-DD [--track N] [--quality provisional]` → `data/<ad>/` sözleşme dosyaları + `data/catalog.json` güncellemesi. Mevcut PC2/PC3 kodlarını sarmalar (değiştirmez). `--dry-run` (sadece arama ve plan), `--resume`. Ağ gerektirmeyen birim testleri + GitHub Actions'ta test çalıştırma.
-**Çıktı:** `nisarpulse/` paketi (veya `pipeline/nisarpulse/`), `nisarpulse/README.md` (5 dakikada başla), `.github/workflows/tests.yml` (sadece testler), `docs/story/engine.md`.
+**Yöntem:** `python -m nisarvision run --name <ad> --bbox w,s,e,n --start YYYY-MM-DD --end YYYY-MM-DD [--track N] [--quality provisional]` → `data/<ad>/` sözleşme dosyaları + `data/catalog.json` güncellemesi. Mevcut PC2/PC3 kodlarını sarmalar (değiştirmez). `--dry-run` (sadece arama ve plan), `--resume`. Ağ gerektirmeyen birim testleri + GitHub Actions'ta test çalıştırma.
+**Çıktı:** `nisarvision/` paketi (veya `pipeline/nisarvision/`), `nisarvision/README.md` (5 dakikada başla), `.github/workflows/tests.yml` (sadece testler), `docs/story/engine.md`.
 
 ## T — Teknik not (NASA teknik rapor tarzı) · sahibi PC4
 4–6 sayfa, `docs/story/technical_note.md` (+ yazdırılabilir HTML/PDF): Abstract · Data · Methods · Validation (GPS, ikinci geçiş, C-band) · Uncertainty · Results (108 gün, tam yıl, kalıcı kayıp O1, risk O2, küresel) · Limitations · Original contributions (O1–O3) · References. Jüriden NASA mühendisi okuyacak belge bu.
 
 ## Site entegrasyonu (PC3)
-O1, O2, O3 ve teknik not hazır oldukça: ana sayfaya "What is new in our work" (3 kart), Science'a O1/O2 bölümleri, Data'ya `nisarpulse` kurulumu, teknik not indirme bağlantısı.
+O1, O2, O3 ve teknik not hazır oldukça: ana sayfaya "What is new in our work" (3 kart), Science'a O1/O2 bölümleri, Data'ya `nisarvision` kurulumu, teknik not indirme bağlantısı.

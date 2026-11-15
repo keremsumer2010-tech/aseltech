@@ -398,7 +398,7 @@ Doğrulayıcı: `tools/validate_atlas.py` (çevrimdışı, salt-okunur). `python
 - Veri sözleşmesi taraması: `python pipeline/pc7/offline_site_qa.py data` 84 JSON/GeoJSON dosyasında 0 parse hatası, 218 sıralı tarih dizisi ve 175 `points.json`/`meta.json` tarih karşılaştırmasında 0 uyumsuzluk buldu. Ayrıntılı kalite alanı uyarıları bu raporun §2 tablosunda; eksikler diğer sahiplerin dosyalarında olduğundan değiştirilmedi.
 - `python pipeline/pc7/validate_json.py`: 83 JSON; 0 parse/non-standard constant hatası, 0 non-finite sayı; 4 eksik `quality` (`data/global/{central_valley,delta,karapinar,konya_plain}/validation_note.json`). 20 dosyada kalite kardeş `meta.json` üzerinden miras alınıyor.
 - Atlas denetimi `python tools/validate_atlas.py`: 8 atlas kaydı ve 9 şehir klasörü; 128 bulgu (119 hata, 9 uyarı). Esas kalanlar şehir bbox'larının 0.50° standardına uymaması, eksik özet/atlas metrikleri, referans havzası kanıtı, boş `note` alanları ve Isfahan'ın atlas kaydının olmaması. Şehir klasörleri ve `atlas.json` PC10/diğer veri sahiplerine ait olduğundan değiştirilmedi.
-- Genel `python -m pytest -q` toplama aşamasında durdu: `analysis/pc5/test_cross_sensor.py` ve `pipeline/nisarpulse/tests/test_nisarpulse.py`, eksik `requests` modülü yüzünden import edilemedi. Bu çevrimdışı turda paket kurulmadı/indirilmedi. PC7 O2 testi ayrı olarak `2 passed`.
+- Genel `python -m pytest -q` toplama aşamasında durdu: `analysis/pc5/test_cross_sensor.py` ve `pipeline/nisarvision/tests/test_nisarvision.py`, eksik `requests` modülü yüzünden import edilemedi. Bu çevrimdışı turda paket kurulmadı/indirilmedi. PC7 O2 testi ayrı olarak `2 passed`.
 - Fens analizi yerel `pipeline/subset/fens_gcov/` kesitlerinden tekrar üretildi; `data/fens/crops.json` önceki sürümle semantik olarak aynı. Veri indirme yapılmadı.
 - `node pipeline/pc7/game_strategy_test.js`: 10 stratejinin tamamı 24 ay çalıştı; kuru yıl %0–150 pompalama serisi monoton, kalıcı çökme toplamı aşmıyor, gelir ve çökme değerleri sonlu ve negatif değil.
 - `python pipeline/pc7/offline_site_qa.py text` 27 statik metin uyarısı verdi. Bunların çoğu kod örneklerindeki koordinat/ürün kimliği, tarih veya sayım değerleri; olası gerçek birimsiz metin bulgusu `web/science.html` içindeki `−4.7` değeridir. Site sahipliği PC3/PC1'de olduğundan düzenleme yapılmadı; bulgu sahibi dosyasında düzeltilecek.
@@ -427,7 +427,7 @@ Son JSON doğrulaması `python pipeline/pc7/validate_json.py`: 93 JSON, 0 parse 
 
 ## 17. B yeni şehirler — kapsam ve referans ön incelemesi
 
-NISAR Pulse `--dry-run` (2026-06-17–2026-10-31, ±0.25°, provisional) indirme yapmadan üç şehirde de 9 zincir çifti buldu; kapsama var, dolayısıyla `no coverage` sonucu değil:
+NISAR Vision `--dry-run` (2026-06-17–2026-10-31, ±0.25°, provisional) indirme yapmadan üç şehirde de 9 zincir çifti buldu; kapsama var, dolayısıyla `no coverage` sonucu değil:
 
 | Şehir | ASF path/frame | Tarih aralığı | Tahmini toplam ham veri | Durum |
 |---|---|---|---:|---|
@@ -437,11 +437,11 @@ NISAR Pulse `--dry-run` (2026-06-17–2026-10-31, ±0.25°, provisional) indirme
 
 Referans kaynağı kontrolü henüz savunulabilir birer havza-dışı koordinat vermiyor. Xi'an SBAS çalışması kararlı bir referans bölgesini haritada işaretliyor, fakat metin koordinat yayımlamıyor ([Shi et al. 2020](https://www.mdpi.com/2072-4292/12/22/3756), §4.1/Fig. 3). Taiyuan çalışmasında K001 (112.7°E, 37.7°N) düşük düşey hızla kararlı yer olarak tanımlanıyor; ancak koordinat hedef ±0.25° kutunun içinde ve çalışmada referans noktası havza dışında diye belirtilmiyor ([Zhao et al. 2018](https://www.mdpi.com/2072-4292/10/9/1499)). INEGI Querétaro için 2015–2018 PSI haritası yayımlıyor fakat özet kaydı belirli bir kararlı referans koordinatı sağlamıyor ([INEGI, 2019](https://www.inegi.org.mx/app/biblioteca/ficha.html?upc=889463849674)); ek bir çalışmada şehrin doğu kesimi kararlı alan diye tarif ediliyor, yine de tekil koordinat doğrulanmıyor ([Pacheco-Martínez et al.](https://doczz.net/doc/986787/dinsar-analysis-of-differential-ground-subsidence-affecti...)). Bu yüzden bu aşamada koordinat uydurulmadı ve `ready` denmedi.
 
-`python -m pipeline.nisarpulse run --dry-run` çıktıları yalnız katalog/ASF kapsama ön kontrolüdür; dosya indirme ve üretim analizi henüz yapılmadı. B kalite standardı havza-dışı, bilinen sabit referans gerektirdiğinden bu kanıt tamamlanmadan sonuçları yayımlamak uygun değil. A sağlamlık çıktıları ve `data/global/atlas.json` değiştirilmedi.
+`python -m pipeline.nisarvision run --dry-run` çıktıları yalnız katalog/ASF kapsama ön kontrolüdür; dosya indirme ve üretim analizi henüz yapılmadı. B kalite standardı havza-dışı, bilinen sabit referans gerektirdiğinden bu kanıt tamamlanmadan sonuçları yayımlamak uygun değil. A sağlamlık çıktıları ve `data/global/atlas.json` değiştirilmedi.
 
 ## 18. Uzun plan FAZ 1 — provisional kapsam ön kontrolü
 
-Python 3.12.10 ile her şehir için NISAR Pulse `--dry-run`, `--box-deg 0.25`, `2026-06-17`–`2026-10-31`, `quality=provisional`, `--no-catalog` çalıştırıldı. CMR erişimi için ağ izni kullanıldı; dry-run ürün indirmedi.
+Python 3.12.10 ile her şehir için NISAR Vision `--dry-run`, `--box-deg 0.25`, `2026-06-17`–`2026-10-31`, `quality=provisional`, `--no-catalog` çalıştırıldı. CMR erişimi için ağ izni kullanıldı; dry-run ürün indirmedi.
 
 | Şehir | Tam hedef bbox `[w,s,e,n]` | Path/frame | Zincir | Dönem | Tahmini ham toplam |
 |---|---|---|---:|---|---:|
@@ -475,7 +475,7 @@ Referans notu: Shi et al. çalışması Xingping'i “no deformation” referans
 
 Diğer şehirler için ilk kaynak taraması: Aguascalientes Valley çalışması, vadinin çevresindeki kaya yüzleklerini kararlı referans alanları olarak kabul ediyor ([Cigna et al. 2015](https://www.mdpi.com/2072-4292/7/12/15868)). INEGI, batıdaki Cerro del Muerto zirvesini 21°52′49″N, 102°25′52″W olarak listeliyor; bu kaynaklı yerellik adayını NISAR kesitindeki gerçek koherensli pencereye bağlayacağım ([INEGI](https://www.inegi.org.mx/contenidos/productos/prod_serv/contenidos/espanol/bvinegi/productos/nueva_estruc/889463916680.pdf)). Taiyuan için K001 (112.7°E, 37.7°N; 0.95 mm/y) düşük düşey hızla kararlı denmiş olsa da kaynak istasyonu Taiyuan havzasında konumlandırıyor; kalite standardındaki havza-dışı koşulunu sağlamaz ([Zhao et al. 2018](https://www.mdpi.com/2072-4292/10/9/1499)). Kashmar için yayımlanmış çalışma, 58°12′E boylamının batısında tarımsal çökme alanı dışında sıfıra yakın hareket bildiriyor, ancak aranabilir metinde tam bir referans koordinatı vermiyor; bu kısmi değerden nokta çıkarmayacağım ([Motagh et al.](https://academic.oup.com/gji/article/174/1/287/577293)). Querétaro için INEGI'nin 2014–2018 haritası maksimum 1.4 cm/y, 2015–2018 çökme envanteri 1.5 cm/y veriyor ([INEGI Vol. 1](https://www.inegi.org.mx/contenidos/productos/prod_serv/contenidos/espanol/bvinegi/productos/nueva_estruc/702825188290.pdf), [Vol. 3](https://www.inegi.org.mx/contenidos/productos/prod_serv/contenidos/espanol/bvinegi/productos/nueva_estruc/889463904441.pdf)); Aguascalientes için 2015–2020 yerel maksimumu >12 cm/y raporlanmış ([Figueroa-Miranda et al.](https://www.sciencedirect.com/science/article/pii/S0034425720306271)). Querétaro'nun güneyindeki El Cimatario Ulusal Parkı için resmi koordinat sınırları 20°28′30″–20°33′23″N, 100°19′37″–100°23′12″W olarak yayımlı; kaynak, burayı korunan volkanik alan diye tanımlıyor ([CONANP / park kaydı](https://paot.org.mx/centro/ine-semarnat/anp/AN07.pdf), [yerel jeoloji](https://www.scielo.org.mx/scielo.php?pid=S0185-092X2017000200084&script=sci_arttext)). Bu, havza dışı aday alanı sağlar; NISAR yüksek-koherensli gerçek pencere ve yerel hareket kontrolü yine gerekli.
 
-Xi'an indirmesi sürerken tüm yerel test paketi tekrar çalıştırıldı: `python -m pytest -q` → **83 passed, 1 PendingDeprecationWarning, 27.56 s**. İndirme çalışma anında tek `.h5.part` dosyasıydı; boş disk yaklaşık 482 GB, NISAR Pulse güvenli alan eşiği 20 GB'ın üzerindeydi.
+Xi'an indirmesi sürerken tüm yerel test paketi tekrar çalıştırıldı: `python -m pytest -q` → **83 passed, 1 PendingDeprecationWarning, 27.56 s**. İndirme çalışma anında tek `.h5.part` dosyasıydı; boş disk yaklaşık 482 GB, NISAR Vision güvenli alan eşiği 20 GB'ın üzerindeydi.
 
 Yerel sözleşme taraması `python pipeline/pc7/validate_json.py`: **111 JSON**, 0 parse/non-standard constant hatası, 0 NaN/Infinity; yalnız `data/numbers_registry.json` `quality` alanından yoksun (başka sahibin dosyası, değiştirilmedi). 18 `points.json` quality alanını kardeş `meta.json`'dan miras alıyor.
 
@@ -491,7 +491,7 @@ Kontroller: `meta.json` 10 tarih içeriyor; 12 noktanın her biriyle tarihler e�
 
 ## 23. FAZ 1 — Taiyuan kapsamı ve referans kapısı
 
-Taiyuan için Python 3.12 ile elevated, indirmesiz NISAR Pulse dry-run çalıştırıldı: bbox `[112.30, 37.60, 112.80, 38.10]`, 2026-06-17–2026-10-31, provisional. ASF 9 ardışık çift, 0 boşluk, P068/F020 ve 20,247.7 MB tahmini ham veri gösterdi.
+Taiyuan için Python 3.12 ile elevated, indirmesiz NISAR Vision dry-run çalıştırıldı: bbox `[112.30, 37.60, 112.80, 38.10]`, 2026-06-17–2026-10-31, provisional. ASF 9 ardışık çift, 0 boşluk, P068/F020 ve 20,247.7 MB tahmini ham veri gösterdi.
 
 Referans kapısı henüz geçilmedi. Taiyuan Basin çalışması havzayı batıda Lüliang, doğuda Taihang dağlarıyla sınırlar; K001'i kararlı istasyon seçse de GPS istasyonlarını havza çalışma alanı içinde tarif eder. Diğer kaynak J004'ü Fenyang'da konumlandırır ve onu havza CGPS ağına dahil eder. Dolayısıyla K001/J004'ü “havza dışı” referans diye kullanmak kalite standardıyla çelişir. Kaynaklar: [Tang et al., 2021, basin geology and GPS stations](https://gfzpublic.gfz-potsdam.de/pubman/item/item_5008823_4/component/file_5009699/5008823.pdf), [Tang et al., 2018, station locations and K001 stability](https://www.mdpi.com/2072-4292/10/9/1499). Bu turda indirme/şehir analizi yapılmadı ve “hazır: Taiyuan” yazılmadı. Dış havzada belgeli sabit referans bulunmadan tahmini koordinat kullanmayacağım.
 
@@ -517,7 +517,7 @@ Tam zincirden sonra tekrarlanan yerel kontroller: robustness **14 şehir**, yaln
 
 ## 27. Kashmar — provisional kapsam ve referans adayı
 
-NISAR Pulse dry-run, hedef bbox `[58.21,34.99,58.71,35.49]` içinde P078/F071, 9 provisional ardışık çift, 0 boşluk ve 20,354.3 MB tahmini ham kapsam döndürdü. Koordinatlı saha yerelliği kaynağı “Kashmar, SW Rivash (Sorkhkuh), Band-e Ghoraa” için `35°30′N, 58°12′E, 1800 m` yayımlar ([Allium taxonomic review, locality record](https://www.ipk-gatersleben.de/fileadmin/content-ipk/Infrastruktur/Genbank/Allium_Database/IrMeRevAllN.pdf)). Kashmar Valley InSAR çalışması vadiyi kuzey/güney dağlarla çevrili topografik havza olarak tarif eder ve çevre alanlarda anlamlı yüzey deformasyonu görülmediğini, bu alanların stabil sayıldığını bildirir ([Motagh et al. 2008](https://academic.oup.com/gji/article/174/1/287/577293)). Bu nedenle Sorkhkuh dağ yerelliği kaynaklı referans adayıdır; gerçek NISAR ortak-valid 7×7 pencere, koherens ve havza sınırı uyumu üretim kesitlerinde ayrıca doğrulanacak.
+NISAR Vision dry-run, hedef bbox `[58.21,34.99,58.71,35.49]` içinde P078/F071, 9 provisional ardışık çift, 0 boşluk ve 20,354.3 MB tahmini ham kapsam döndürdü. Koordinatlı saha yerelliği kaynağı “Kashmar, SW Rivash (Sorkhkuh), Band-e Ghoraa” için `35°30′N, 58°12′E, 1800 m` yayımlar ([Allium taxonomic review, locality record](https://www.ipk-gatersleben.de/fileadmin/content-ipk/Infrastruktur/Genbank/Allium_Database/IrMeRevAllN.pdf)). Kashmar Valley InSAR çalışması vadiyi kuzey/güney dağlarla çevrili topografik havza olarak tarif eder ve çevre alanlarda anlamlı yüzey deformasyonu görülmediğini, bu alanların stabil sayıldığını bildirir ([Motagh et al. 2008](https://academic.oup.com/gji/article/174/1/287/577293)). Bu nedenle Sorkhkuh dağ yerelliği kaynaklı referans adayıdır; gerçek NISAR ortak-valid 7×7 pencere, koherens ve havza sınırı uyumu üretim kesitlerinde ayrıca doğrulanacak.
 
 ## 28. Kashmar — provisional analiz tamamlandı
 
@@ -538,7 +538,7 @@ Saha kaydının 35°30′N, 58°12′E noktasından NISAR gridinde seçilen ger�
 Tam şehir sonrası QA anlık görüntüsü: `python -m pytest -q pipeline/pc7/tests/test_atlas_robustness.py` **4 passed**; `python pipeline/pc7/validate_json.py` **195 JSON**, 0 parse/NaN/Infinity; 4 `quality` eksiği başka sahiplerin dosyalarında. Atlas validator **22 region/26 şehir klasörü, 239 bulgu (215 hata, 24 uyarı)**. Robustness **16 şehir**, `common_27=1`; 9 tamamlanmış varyant sıralamasında Kendall tau ortalaması **0.2593** (min −0.3333, max 1.0); `top3_stable=null`, ilk üç sıra için yeterli kararlı ortak varyant yok. Çıktılar `data/global/robustness.json`, `docs/story/media/pc7_atlas_robustness.png`.
 ## 29. Beijing handoff — pre-run checks
 
-The latest PC1 handoff assigns Beijing’s full-box rerun to PC7. An elevated NISAR Pulse dry-run for center `(116.60, 39.95)`, half-width `0.25°`, and reference anchor `(116.31061, 40.10068)` found **9 provisional pairs, 0 temporal gaps**, and **21,126.8 MB** catalogued raw data. No files were downloaded by the dry-run.
+The latest PC1 handoff assigns Beijing’s full-box rerun to PC7. An elevated NISAR Vision dry-run for center `(116.60, 39.95)`, half-width `0.25°`, and reference anchor `(116.31061, 40.10068)` found **9 provisional pairs, 0 temporal gaps**, and **21,126.8 MB** catalogued raw data. No files were downloaded by the dry-run.
 
 The existing `pipeline/subset/global_beijing/` stack is not a full-box input: the PC11 QA record gives common coverage `[116.2226, 39.7297, 116.8735, 40.1697]`, while the requested target box is `[116.35, 39.70, 116.85, 40.20]`. Fresh cuts are therefore required for the standardized box. `run_atlas_city.py` gained `--subset-dir` so the new cuts stay in scratch rather than PC2’s shared subset path. The production command was launched with QC enabled by the cumulative engine defaults; the raw-data transfer/result is still pending, so there is no “ready” claim yet.
 
@@ -546,7 +546,7 @@ Pre-rerun `python tools/validate_atlas.py`: **26 atlas regions / 26 city folders
 
 ### Existing-stack July 11 QC diagnostic (not a standardized result)
 
-The current `pipeline/nisarpulse.qc.qc_stack` was exercised through `analysis/cumulative.py` in a temporary work root on the existing 9-pair Beijing cuts. The run kept all 9 pairs and reported **0 corrected pairs, 0 dropped dates, 0.0% affected pixels**; its in-basin automatic reference produced `valid_fraction=0.711` and a −2.2 cm old-stack headline, so those are diagnostic only and must not replace the handoff result. The supplied NW foothill anchor had no all-pair common-valid 7×7 window within 3 km in those old cuts.
+The current `pipeline/nisarvision.qc.qc_stack` was exercised through `analysis/cumulative.py` in a temporary work root on the existing 9-pair Beijing cuts. The run kept all 9 pairs and reported **0 corrected pairs, 0 dropped dates, 0.0% affected pixels**; its in-basin automatic reference produced `valid_fraction=0.711` and a −2.2 cm old-stack headline, so those are diagnostic only and must not replace the handoff result. The supplied NW foothill anchor had no all-pair common-valid 7×7 window within 3 km in those old cuts.
 
 As a separate date-level check of the stored 12-point series, only **1 of 12** points had opposite July-adjacent steps both above 5 cm (`p01`: −8.26 cm, then +7.00 cm); the other 11 points did not meet that criterion. This is below the QC engine’s >30% scene threshold and does not support dropping 2026-07-11 scene-wide. Full-box fresh cuts remain necessary before final reference/QC judgment.
 
@@ -554,7 +554,7 @@ During the transfer, `python pipeline/pc7/validate_json.py` scanned **195 JSON f
 
 After a concurrent PC10 atlas refresh, the read-only atlas validator was rerun: **27 atlas regions / 27 city folders, 225 findings (200 errors, 25 warnings)**. This is 37 fewer total findings than the pre-refresh snapshot; the atlas remains PC10-owned and was not edited by PC7.
 
-Regression checks during the rerun: `python -m pytest -q pipeline/nisarpulse/tests/test_qc.py pipeline/pc7/tests/test_atlas_robustness.py` → **8 passed**.
+Regression checks during the rerun: `python -m pytest -q pipeline/nisarvision/tests/test_qc.py pipeline/pc7/tests/test_atlas_robustness.py` → **8 passed**.
 
 Post-PC10-refresh JSON scan: **201 files**, 0 parse/non-standard-constant errors, 0 non-finite values; five missing `quality` fields are in other-owner shared files (`atlas_changelog.json`, `independent_validation.json`, `qc_flags.json`, `qc_manual.json`, `results_registry.json`). No edits made to those files.
 

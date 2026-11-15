@@ -1,6 +1,6 @@
-"""PC9 wrapper for `pipeline.nisarpulse` that guards against all-NaN DEM caches.
+"""PC9 wrapper for `pipeline.nisarvision` that guards against all-NaN DEM caches.
 
-Without modifying PC3's `analysis/cumulative.py` or `pipeline/nisarpulse/`,
+Without modifying PC3's `analysis/cumulative.py` or `pipeline/nisarvision/`,
 this wrapper removes any cached `analysis/out/<site>_dem.npy` with zero finite
 pixels and ensures `dem.dem_on_grid` raises `RuntimeError` instead of returning
 an all-NaN array so `cumulative.py` falls back cleanly to plane-only deramp.
@@ -19,7 +19,7 @@ if str(ANALYSIS_DIR) not in sys.path:
     sys.path.insert(0, str(ANALYSIS_DIR))
 
 import dem as _dem  # noqa: E402
-from pipeline.nisarpulse.__main__ import main as _nisarpulse_main  # noqa: E402
+from pipeline.nisarvision.__main__ import main as _nisarvision_main  # noqa: E402
 
 
 def _clean_nan_dem_caches() -> None:
@@ -46,7 +46,7 @@ def main(argv: list[str] | None = None) -> int:
         return arr
 
     _dem.dem_on_grid = _safe_dem_on_grid
-    rc = _nisarpulse_main(argv)
+    rc = _nisarvision_main(argv)
     if rc == 0:
         _enrich_summary(argv if argv is not None else sys.argv[1:])
     return rc

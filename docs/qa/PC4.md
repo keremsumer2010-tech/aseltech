@@ -289,7 +289,7 @@ Kapsam: `web/index.html` (`1–163`). Genel İngilizce tonu akıcı ve tutarlı 
   - Her kart $\le 150$ kelime; jeolojik çökme etmeni (kil, akifer boşalımı, turba oksidasyonu), etkilenen nüfus ve altyapı koridorları, hakemli literatür hızları (DOI linkleriyle), NISAR L-band ölçümü (`cm/100d`, dönem, geçerli piksel, güven sınıfı) ve NISAR'ın katkısı içerir.
   - PC5 onayı olmayan sayılara açıkça `preliminary` şerhi düşülmüştür.
 - **Atlas Yöntem Belgesi ([`docs/story/atlas_methods.md`](../story/atlas_methods.md)):**
-  - Standart $\pm 0.25^\circ$ kutu, $1\text{ km}$ blok medyan ve $p_2$ filtreleme, sıralamada dönemden bağımsız `rate_cm_per_100d` seçilme gerekçesi, havza dışı kayaç referans seçimi ve duyarlılık oranı, güven sınıflandırması (§4), LOS-dikey geometrisi, provisional kalibrasyon şerhi ve `pipeline.nisarpulse` CLI komutları tek sayfada belgelendi.
+  - Standart $\pm 0.25^\circ$ kutu, $1\text{ km}$ blok medyan ve $p_2$ filtreleme, sıralamada dönemden bağımsız `rate_cm_per_100d` seçilme gerekçesi, havza dışı kayaç referans seçimi ve duyarlılık oranı, güven sınıflandırması (§4), LOS-dikey geometrisi, provisional kalibrasyon şerhi ve `pipeline.nisarvision` CLI komutları tek sayfada belgelendi.
 - **Atlas Veri Sözlüğü ([`docs/story/atlas_data_dictionary.md`](../story/atlas_data_dictionary.md)):**
   - `data/global/atlas.json` dosyasındaki üst düzey şema ve 22 bölgesel anahtarın tamamı (alan adı, tipi, birimi, anlamı, formülü ve örnek değerleri) belgelendi.
 - **Jüri Atlas Zor Soruları ([`docs/story/judge_faq.md`](../story/judge_faq.md) #22–26):**

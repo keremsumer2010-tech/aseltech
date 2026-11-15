@@ -74,34 +74,34 @@ NISAR measures ground displacement along the satellite's oblique Line-of-Sight (
 
 ## 7. Pipeline Reproducibility
 
-Every regional result in this atlas can be regenerated from raw ASF DAAC GUNW products using the open-source `pipeline.nisarpulse` tool:
+Every regional result in this atlas can be regenerated from raw ASF DAAC GUNW products using the open-source `pipeline.nisarvision` tool:
 
 ```bash
 # Sacramento–San Joaquin Delta (USA)
-python -m pipeline.nisarpulse run --name delta --bbox -121.80,37.85,-121.35,38.25 \
+python -m pipeline.nisarvision run --name delta --bbox -121.80,37.85,-121.35,38.25 \
   --ref-lonlat -121.75,37.95 --start 2026-06-17 --end 2026-10-15 --quality provisional
 
 # Central Valley (USA)
-python -m pipeline.nisarpulse run --name central_valley --center -119.0217,36.0112 \
+python -m pipeline.nisarvision run --name central_valley --center -119.0217,36.0112 \
   --box-deg 0.25 --ref-lonlat -118.80,36.00 --start 2026-06-28 --end 2026-10-14 --quality provisional
 
 # Mexico City (Mexico)
-python -m pipeline.nisarpulse run --name mexico_city --center -99.0362,19.2749 \
+python -m pipeline.nisarvision run --name mexico_city --center -99.0362,19.2749 \
   --box-deg 0.25 --ref-lonlat -99.184,19.377 --start 2026-06-22 --end 2026-10-20 --quality provisional
 
 # Isfahan (Iran)
-python -m pipeline.nisarpulse run --name isfahan --center 51.67,32.65 \
+python -m pipeline.nisarvision run --name isfahan --center 51.67,32.65 \
   --box-deg 0.25 --ref-lonlat 51.589,32.355 --start 2026-06-18 --end 2026-10-16 --quality provisional
 
 # Rafsanjan (Iran)
-python -m pipeline.nisarpulse run --name rafsanjan --center 55.99,30.40 \
+python -m pipeline.nisarvision run --name rafsanjan --center 55.99,30.40 \
   --box-deg 0.25 --ref-lonlat 56.236,30.646 --start 2026-06-23 --end 2026-10-21 --quality provisional
 
 # Bangkok (Thailand) [Indicative]
-python -m pipeline.nisarpulse run --name bangkok --center 100.7374,13.8137 \
+python -m pipeline.nisarvision run --name bangkok --center 100.7374,13.8137 \
   --box-deg 0.25 --start 2026-06-21 --end 2026-10-19 --quality provisional
 
 # Jakarta (Indonesia) [Indicative]
-python -m pipeline.nisarpulse run --name jakarta --center 107.0115,-6.1406 \
+python -m pipeline.nisarvision run --name jakarta --center 107.0115,-6.1406 \
   --box-deg 0.25 --ref-lonlat 106.911,-6.116 --start 2026-06-27 --end 2026-10-13 --quality provisional
 ```

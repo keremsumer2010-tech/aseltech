@@ -45,7 +45,7 @@ Every public webpage, slide, bulletin, and story document must carry the verbati
 ## 4. Basis for `"to our knowledge"` Wording
 
 - **Mexico City Disclaimed:** NASA-JPL previously published preliminary NISAR L-band InSAR subsidence results for Mexico City (`Oct 2025 – Jan 2026`, `> 2 cm/month`); we make **zero** "first with NISAR" claim for Mexico City.
-- **Standardized 20-Basin Pipeline Audit:** A literature audit as of `2026-11-14` (`docs/story/atlas_validation.md`, `docs/story/judge_faq.md` #26) identified no prior peer-reviewed spaceborne NISAR L-band multi-basin comparative ranking using one open-source pipeline (`pipeline/nisarpulse/`). Allowed phrasing is strictly qualified: *"To our knowledge, one of the first standardized multi-basin comparisons built on provisional NISAR L-band GUNW data using a single open-source pipeline."*
+- **Standardized 20-Basin Pipeline Audit:** A literature audit as of `2026-11-14` (`docs/story/atlas_validation.md`, `docs/story/judge_faq.md` #26) identified no prior peer-reviewed spaceborne NISAR L-band multi-basin comparative ranking using one open-source pipeline (`pipeline/nisarvision/`). Allowed phrasing is strictly qualified: *"To our knowledge, one of the first standardized multi-basin comparisons built on provisional NISAR L-band GUNW data using a single open-source pipeline."*
 
 
 ---

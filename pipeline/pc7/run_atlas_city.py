@@ -111,7 +111,7 @@ def _write_quality_metrics(data_dir: Path, cum_npz: Path,
                            reference_source: str, reference_anchor: tuple[float, float],
                            reference_actual: tuple[float, float], reference_coherence: float,
                            reference_outside_basin: bool) -> dict[str, Any]:
-    from pipeline.nisarpulse.process import compute_quality_metrics
+    from pipeline.nisarvision.process import compute_quality_metrics
 
     with np.load(cum_npz, allow_pickle=False) as grid:
         cum = np.asarray(grid["cum_cm"], dtype=np.float32)
@@ -165,8 +165,8 @@ def process_city(name: str, bbox: tuple[float, float, float, float],
                  reference_outside_basin: bool,
                  subset_dir: Path | None = None,
                  start: str = PROVISIONAL_START, end: str = "2026-10-31") -> dict[str, Any]:
-    from pipeline.nisarpulse.fetch import fetch_subsets
-    from pipeline.nisarpulse.search import search_granules
+    from pipeline.nisarvision.fetch import fetch_subsets
+    from pipeline.nisarvision.search import search_granules
 
     if start < PROVISIONAL_START:
         raise ValueError("provisional processing cannot start before 2026-06-17")
@@ -266,7 +266,7 @@ def main() -> int:
                         help="Optional scratch directory for cuts; avoids writing PC2-owned pipeline/subset paths")
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args()
-    from pipeline.nisarpulse.search import search_granules
+    from pipeline.nisarvision.search import search_granules
     bbox = core_bbox(parse_pair(args.center))
     ref = parse_pair(args.reference)
     if args.dry_run:

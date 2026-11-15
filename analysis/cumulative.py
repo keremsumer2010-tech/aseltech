@@ -272,7 +272,7 @@ def main():
     if a.qc:
         if str(ROOT) not in sys.path:
             sys.path.insert(0, str(ROOT))
-        from pipeline.nisarpulse.qc import qc_stack, write_qc_report  # noqa: E402
+        from pipeline.nisarvision.qc import qc_stack, write_qc_report  # noqa: E402
         cc_list = [d["conncomp"] if "conncomp" in d and d["conncomp"].size else None for _, _, _, d in used]
         pair_cm, dates, qc_report = qc_stack(pair_cm, dates, cc_list)
         valid_all = np.logical_and.reduce([np.isfinite(cm) for cm in pair_cm])

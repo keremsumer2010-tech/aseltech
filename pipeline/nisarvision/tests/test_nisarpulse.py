@@ -1,4 +1,4 @@
-"""Offline unit tests for pipeline.nisarpulse."""
+"""Offline unit tests for pipeline.nisarvision."""
 
 from __future__ import annotations
 
@@ -7,13 +7,13 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from pipeline.nisarpulse.__main__ import parse_cli_args, parse_ref_lonlat, write_coverage_report
-from pipeline.nisarpulse.catalog import upsert_catalog
-from pipeline.nisarpulse.process import compute_quality_metrics
-from pipeline.nisarpulse.search import bbox_from_center, build_chain, classify_quality, parse_bbox
+from pipeline.nisarvision.__main__ import parse_cli_args, parse_ref_lonlat, write_coverage_report
+from pipeline.nisarvision.catalog import upsert_catalog
+from pipeline.nisarvision.process import compute_quality_metrics
+from pipeline.nisarvision.search import bbox_from_center, build_chain, classify_quality, parse_bbox
 
 
-class TestNisarPulse(unittest.TestCase):
+class TestNisarVision(unittest.TestCase):
     def test_parse_bbox_valid(self) -> None:
         self.assertEqual(
             parse_bbox("-121.85, 37.95, -121.45, 38.20"),

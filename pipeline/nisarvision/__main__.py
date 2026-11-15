@@ -1,4 +1,4 @@
-"""CLI entrypoint for `python -m pipeline.nisarpulse`."""
+"""CLI entrypoint for `python -m pipeline.nisarvision`."""
 
 from __future__ import annotations
 
@@ -8,15 +8,15 @@ import sys
 import time
 from pathlib import Path
 
-from pipeline.nisarpulse.catalog import upsert_catalog
-from pipeline.nisarpulse.search import bbox_from_center, parse_bbox, search_granules
+from pipeline.nisarvision.catalog import upsert_catalog
+from pipeline.nisarvision.search import bbox_from_center, parse_bbox, search_granules
 
 ROOT = Path(__file__).resolve().parent.parent.parent
 
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        prog="python -m pipeline.nisarpulse",
+        prog="python -m pipeline.nisarvision",
         description="NISAR Vision: single-command InSAR subsidence pipeline.",
     )
     sub = parser.add_subparsers(dest="command", required=True)
@@ -110,7 +110,7 @@ def parse_ref_lonlat(raw: str | None) -> tuple[float, float] | None:
 def main(argv: list[str] | None = None) -> int:
     args = parse_cli_args(argv)
     if args.command == "reproduce":
-        from pipeline.nisarpulse.reproduce import reproduce_region
+        from pipeline.nisarvision.reproduce import reproduce_region
 
         res = reproduce_region(args.region, out_dir=args.out_dir, qc=args.qc, dry_run=args.dry_run)
         print(json.dumps(res, indent=2))
@@ -161,8 +161,8 @@ def main(argv: list[str] | None = None) -> int:
         print(f"No coverage for [{args.name}]; wrote {target_data_dir / 'coverage.json'}.")
         return 0
 
-    from pipeline.nisarpulse.fetch import fetch_subsets
-    from pipeline.nisarpulse.process import run_cumulative
+    from pipeline.nisarvision.fetch import fetch_subsets
+    from pipeline.nisarvision.process import run_cumulative
 
     try:
         fetch_subsets(args.name, bbox, chain, resume=args.resume)

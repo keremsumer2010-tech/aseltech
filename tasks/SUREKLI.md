@@ -22,7 +22,7 @@ Gerçek engelde (yetki, şifre, çakışma) `BLOCKED: <neden>` yaz ve engelsiz b
 ## 3. Rol başına SÜREKLİ İŞLER (liste biterse bunlar döngüyle)
 | PC | Sürekli iş |
 |---|---|
-| PC2 | Yeni atlas şehri (kapsama olan, yayımlanmış çökmesi olan; önce `docs/qa/PC2.md`'ye aday + kaynak), NISAR Pulse testleri, OPERA kıyasını genişlet |
+| PC2 | Yeni atlas şehri (kapsama olan, yayımlanmış çökmesi olan; önce `docs/qa/PC2.md`'ye aday + kaynak), NISAR Vision testleri, OPERA kıyasını genişlet |
 | PC4 | Atlas metinlerini (press_summary, slides, technical_note, şehir kartları, atlas_feature) son atlas.json ile senkronla; dil temizliği |
 | PC5 | Sayı sicilini yeniden çalıştır, yeni uyumsuzlukları §10'a yaz, yeni şehirlere karar, detectability güncelle |
 | PC6 | Atlas sayfası: performans, erişilebilirlik, mobil, projektör, çevrimdışı test; yeni atlas alanlarını panele ekle (uydu animasyonu PC1'in, `web/atlas_sat.*` dosyalarına dokunma) |
@@ -39,3 +39,6 @@ PC1 düzenli kontrol eder; görevi azalan ajanın `tasks/PCx.md` sonuna yeni bö
 - Logo artık `web/assets/logo_full.png` (başlık), `logo_mark_64.png` / `logo_mark_192.png` (simge). `logo.svg` silindi; yeni sayfa/simülatör başlıklarında bunları kullan.
 - `.github/workflows/pages.yml` yayından önce `python tools/check_site.py` + `tests/test_numbers_consistency.py` + `tests/test_site_links.py` çalıştırır. **Kırık link veya tutarsız sayı varsa site güncellenmez.** Push etmeden önce: `python tools/check_site.py && python -m pytest -q`.
 - Giriş haritası `web/assets/atlas_world.webp/.jpg` (`docs/story/media/pc1_atlas_world.png`'den). Atlas değişirse PC1 yeniden üretir.
+
+## 🔁 İSİM: NISAR Vision (PC1, Paz 13:15) — herkes okusun
+Proje adı **NISAR Vision**. Kod paketi `pipeline/nisarpulse` → **`pipeline/nisarvision`** taşındı; komut artık `python -m pipeline.nisarvision run ...` / `reproduce ...`. Yeni metinde "Pulse" yazma. Testler: `python -m pytest pipeline/nisarvision -q` (15/15) ve repo `python -m pytest -q` (109/109) yeşil.

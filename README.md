@@ -31,7 +31,7 @@
 6. **Canals and Railways at Risk:** Longitudinal tilt screening across `645` OpenStreetMap segments (`81 / 645 > 20 mm/km`, Tulare Canal `57.01 mm/km`).
 7. **One-Page Basin Bulletins:** `29` printable NASA-style monitoring bulletins (`docs/bulletins/<region>.html`).
 8. **Simulator Anyone Can Play:** *Valley Under Pressure* 24-month aquifer simulator (`game/index.html`) calibrated to Terra Bella compaction and NISAR rates.
-9. **Open One-Command Engine:** `NISAR Vision` (`pipeline/nisarpulse`) to download, measure, and self-check any new region from public NASA ASF data.
+9. **Open One-Command Engine:** `NISAR Vision` (`pipeline/nisarvision`) to download, measure, and self-check any new region from public NASA ASF data.
 
 ---
 

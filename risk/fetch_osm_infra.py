@@ -50,7 +50,7 @@ def query_overpass(ql: str, timeout: int = 120) -> dict:
                 req = urllib.request.Request(
                     endpoint,
                     data=payload,
-                    headers={"User-Agent": "aseltech-nisar-pulse/1.0 (NASA Space Apps 2026)"},
+                    headers={"User-Agent": "aseltech-nisar-vision/1.0 (NASA Space Apps 2026)"},
                     method="POST",
                 )
                 with urllib.request.urlopen(req, timeout=timeout) as resp:

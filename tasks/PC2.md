@@ -134,14 +134,14 @@ Her dosyada push; status/PC2.md'yi `[PC2]` önekli commit'lerle güncelle.
 ---
 # 20:10 PC1 — ÖZGÜN KATKI O3 (sahibi sensin; `docs/OZGUN_KATKILAR.md` §O3)
 Sıra: (a) çalışan indirmeyi (p114 tam yıl) bitir → (b) O3 → (c) 20:00 listesinin kalanı.
-O3 "NISAR Pulse" komut satırı aracı — adım adım:
-1. `pipeline/nisarpulse/` paketi: `__main__.py` (argparse), `search.py`, `fetch.py`, `process.py`, `catalog.py`. Mevcut `pipeline/*.py` ve `analysis/*.py` fonksiyonlarını import ederek sarmala, DEĞİŞTİRME.
-2. Komut: `python -m pipeline.nisarpulse run --name <ad> --bbox w,s,e,n --start ... --end ... [--track N] [--quality provisional|mixed] [--dry-run] [--resume]`. Çıktı: `data/<ad>/meta.json, disp/, points.json, summary.json` (sözleşme) + `data/catalog.json` kaydı.
+O3 "NISAR Vision" komut satırı aracı — adım adım:
+1. `pipeline/nisarvision/` paketi: `__main__.py` (argparse), `search.py`, `fetch.py`, `process.py`, `catalog.py`. Mevcut `pipeline/*.py` ve `analysis/*.py` fonksiyonlarını import ederek sarmala, DEĞİŞTİRME.
+2. Komut: `python -m pipeline.nisarvision run --name <ad> --bbox w,s,e,n --start ... --end ... [--track N] [--quality provisional|mixed] [--dry-run] [--resume]`. Çıktı: `data/<ad>/meta.json, disp/, points.json, summary.json` (sözleşme) + `data/catalog.json` kaydı.
 3. `--dry-run`: ASF araması, bulunan çift sayısı, toplam boyut, zincir boşlukları; hiçbir şey indirmez.
-4. Testler (ağsız): bbox ayrıştırma, çift zinciri oluşturma (boşluk tespiti), quality etiketleme kuralı (≥2026-06-17 provisional), catalog güncellemesi → `pipeline/nisarpulse/tests/`. `python -m pytest pipeline/nisarpulse -q` geçmeli.
+4. Testler (ağsız): bbox ayrıştırma, çift zinciri oluşturma (boşluk tespiti), quality etiketleme kuralı (≥2026-06-17 provisional), catalog güncellemesi → `pipeline/nisarvision/tests/`. `python -m pytest pipeline/nisarvision -q` geçmeli.
 5. `.github/workflows/tests.yml`: push'ta sadece testler (indirme yok). PC1 izniyle `.github/` altına sadece bu dosyayı ekle; `pages.yml`'e DOKUNMA.
-6. Kanıt: aracı küçük bir bölgede uçtan uca çalıştır (ör. Delta veya küçük bir Konya alt kutusu) ve komutu + süreyi `docs/story/engine.md`'ye yaz. "5 dakikada başla" bölümüyle `pipeline/nisarpulse/README.md`.
-Yazma alanına eklendi: `pipeline/nisarpulse/`, `.github/workflows/tests.yml`, `docs/story/engine.md`.
+6. Kanıt: aracı küçük bir bölgede uçtan uca çalıştır (ör. Delta veya küçük bir Konya alt kutusu) ve komutu + süreyi `docs/story/engine.md`'ye yaz. "5 dakikada başla" bölümüyle `pipeline/nisarvision/README.md`.
+Yazma alanına eklendi: `pipeline/nisarvision/`, `.github/workflows/tests.yml`, `docs/story/engine.md`.
 
 ---
 # 20:50 PC1 — BÜYÜK GÖREV: `docs/ATLAS_PLANI.md`
@@ -151,7 +151,7 @@ Yazma alanına eklendi: `pipeline/nisarpulse/`, `.github/workflows/tests.yml`, `
 # 🌍 ATLAS FİNAL — PC2 (Paz 00:20, PC1) · plan: `docs/ATLAS_FINAL.md`
 1. Kendi 5 şehrini bitir (Isfahan, Rafsanjan, Mashhad, Quetta, Delhi), her birinde "hazır" notu.
 2. **NISAR vs OPERA (NASA'nın kendi çökme ürünü) çapraz kontrolü:** JPL OPERA DISP-S1 (ASF, Earthdata) ile aynı dönem ve kutuda: Central Valley (`pipeline/subset/opera_disp` varsa kullan), Houston/Katy, Eloy, Mexico City (kapsama varsa). Ortak piksellerde r, RMSE, eğim; LOS geometri farkı notu. Çıktı `data/global/opera_check.json` (`{id, r, rmse_cm, slope, n, period, note}`), `docs/story/opera_check.md`, `docs/story/media/pc2_opera_*.png`.
-3. NISAR Pulse testleri ve `docs/story/engine.md` "N şehirde çalıştı" güncel kanıt.
+3. NISAR Vision testleri ve `docs/story/engine.md` "N şehirde çalıştı" güncel kanıt.
 
 
 # ♻️ SÜREKLİ KURAL (Paz 00:45, PC1)
@@ -198,7 +198,7 @@ Kapsam hedefi Paz 14:00'te ≥20 şehir. Her yeni şehirde 6'lı paketin 1. par�
 
 # 🚀 KENDİ KENDİNİ DENETLEYEN MOTOR + OPERA AÇIKLAMASI + YENİ BÖLGELER (Paz 03:35, PC1)
 Belirsizlik haritaları ve OPERA kıyası için teşekkürler. Sıradaki 3 iş atlası en çok ilerletecek olanlar:
-1. **NISAR Pulse `--qc` (varsayılan açık) — motor kendi hatasını düzeltsin:** kümülatif toplama ÖNCE, her piksel serisinde her adımı komşu adımların medyanıyla karşılaştır; fark ±2 cm içinde k·12.1 cm ise (L-band tam faz döngüsü, λ/2) ve aynı bağlı bileşende piksellerin çoğunda tutarlıysa o çifte −k·12.1 cm düzeltme uygula; ardışık zıt işaretli >5 cm adım çiftini "tek tarih aykırı" say, piksellerin >%30'unda aykırıysa o tarihi düşür. Her bölge için `qc_report.json` (düzeltilen çift, düşürülen tarih, etkilenen piksel %). Sentetik yığınla ağsız testler (`pipeline/nisarpulse/tests/`). `tools/atlas_qc.py` sadece başlık noktasına bakıyor; seninki tüm piksellere bakacak. Sonra Delhi'yi `--qc` ile yeniden çalıştır; PC11'e (Pekin) ve PC10'a kullanım notu.
+1. **NISAR Vision `--qc` (varsayılan açık) — motor kendi hatasını düzeltsin:** kümülatif toplama ÖNCE, her piksel serisinde her adımı komşu adımların medyanıyla karşılaştır; fark ±2 cm içinde k·12.1 cm ise (L-band tam faz döngüsü, λ/2) ve aynı bağlı bileşende piksellerin çoğunda tutarlıysa o çifte −k·12.1 cm düzeltme uygula; ardışık zıt işaretli >5 cm adım çiftini "tek tarih aykırı" say, piksellerin >%30'unda aykırıysa o tarihi düşür. Her bölge için `qc_report.json` (düzeltilen çift, düşürülen tarih, etkilenen piksel %). Sentetik yığınla ağsız testler (`pipeline/nisarvision/tests/`). `tools/atlas_qc.py` sadece başlık noktasına bakıyor; seninki tüm piksellere bakacak. Sonra Delhi'yi `--qc` ile yeniden çalıştır; PC11'e (Pekin) ve PC10'a kullanım notu.
 2. **OPERA uyumsuzluğunu açıkla (jüri soracak):** Mexico City r=0.91 iken Central Valley r=0.40, Eloy r=0.09. Sırayla test et ve `opera_check.md`'ye yaz: (a) zaman penceresi örtüşmesi (aynı tarihler mi), (b) bakış geometrisi — OPERA Sentinel-1 LOS ile NISAR sol bakış LOS farklı: ikisini de dikey tahmine çevirip (cos θ) kıyasla, (c) referans noktası hizalaması (aynı sabit noktaya göre yeniden referansla), (d) çözünürlük/ortalama (1 km bloklarda kıyasla), (e) tarım alanlarında C-band/L-band farkı (toprak nemi, bitki). Her test sonrası r, RMSE, eğim tablosu. Açıklanamıyorsa dürüstçe yaz. `results_registry.json` `opera_check` satırına özet + anahtar sayı.
 3. **Yeni bölgeler (PC11'den devir; PC11 hâlâ Tahran/Pekin/Cakarta'da):** **Kerman, İran** (57.07, 30.28; literatürde >30 cm/yıl) ve **Tianjin, Çin** (117.20, 39.10). `--qc` ile, kalite standardında; "hazır" notu.
 En geç 10 dk'da bir commit + push.
@@ -209,8 +209,8 @@ Bu bölüm, önceki bölümlerde bitmemiş işleri de kapsar ve geçerli olan TE
 | Saat | Blok | Çıktı |
 |---|---|---|
 | 04:15–06:00 | **Kerman + Tianjin bitir** (sürüyor), `--qc` ile, kalite standardı; "hazır" notu | `data/global/{kerman,tianjin}/` |
-| 06:00–08:00 | **NISAR Pulse `--qc` motoru** (önceki bölüm madde 1; başlamadıysan şimdi): piksel düzeyinde faz döngüsü düzeltme + aykırı tarih atma, `qc_report.json`, ağsız testler; **Delhi'yi `--qc` ile yeniden çalıştır** | `pipeline/nisarpulse/qc.py` + testler, `data/global/delhi/qc_report.json` |
-| 08:00–09:30 | **Tek komutla yeniden üretilebilirlik:** `python -m pipeline.nisarpulse reproduce <id>` — bölgenin `meta.json` granül listesinden aynı summary'yi yeniden üretir; README'ye "atlası yeniden üret" bölümü; GitHub Actions'ta ağsız `--dry-run` testi | `pipeline/nisarpulse/reproduce.py`, `docs/story/engine.md` güncel |
+| 06:00–08:00 | **NISAR Vision `--qc` motoru** (önceki bölüm madde 1; başlamadıysan şimdi): piksel düzeyinde faz döngüsü düzeltme + aykırı tarih atma, `qc_report.json`, ağsız testler; **Delhi'yi `--qc` ile yeniden çalıştır** | `pipeline/nisarvision/qc.py` + testler, `data/global/delhi/qc_report.json` |
+| 08:00–09:30 | **Tek komutla yeniden üretilebilirlik:** `python -m pipeline.nisarvision reproduce <id>` — bölgenin `meta.json` granül listesinden aynı summary'yi yeniden üretir; README'ye "atlası yeniden üret" bölümü; GitHub Actions'ta ağsız `--dry-run` testi | `pipeline/nisarvision/reproduce.py`, `docs/story/engine.md` güncel |
 | 09:30–11:00 | **Yeni bölgeler (PC11'den devir):** **Celaya, Meksika** (−100.81, 20.52) ve **Hamadan–Kabudarahang, İran** (48.72, 35.21; önce kapsama + literatür) | `data/global/{celaya,kabudarahang}/` |
 | 11:00–12:15 | **OPERA ek kıyası:** PC9 Houston'ı bitirince Houston için de OPERA; `opera_check.json` + md güncel; `results_registry` `opera_check` ve `engine` satırları güncel sayılarla | — |
 | 12:15–20:00 | SUREKLI: yeni bölge adayları (kaynaklı), motor testleri, QC işaretli bölgeleri `--qc` ile yeniden işleme önerisi | — |
@@ -249,7 +249,7 @@ PC6 (site) ve PC8 (bülten/teslim) durmuş sayıldı. Kerman bittikten ve `--qc`
 # 🏁 FİNAL — TOPLAMA VE BİRLEŞTİRME (PC1, Paz 11:15 TR) · önce `docs/JURI_3DK.md`'yi oku
 Jüri siteyi 3 dakika inceleyecek. Yeni veri/özellik yok; toparla, sadeleştir, tutarlı yap. Ana sayfayı PC1 kuruyor. Bu bölüm önceki tüm planların ÜSTÜNDEDİR. Her blok sonunda commit + push (önce kendi dosyaların → pull --rebase → push), status satırı. Veri dondurma 20:00, teslim 22:00.
 **Rol: "tek komutla yeniden üret" kanıtı.**
-1. (11:15–13:00) **`python -m pipeline.nisarpulse reproduce <id>`:** bölgenin `meta.json` granül listesinden aynı summary'yi yeniden üretir (önbellekteki kesitlerle çalışabilsin, yoksa `--dry-run` planı yazsın); `pipeline/nisarpulse/tests/test_reproduce.py` (ağsız).
+1. (11:15–13:00) **`python -m pipeline.nisarvision reproduce <id>`:** bölgenin `meta.json` granül listesinden aynı summary'yi yeniden üretir (önbellekteki kesitlerle çalışabilsin, yoksa `--dry-run` planı yazsın); `pipeline/nisarvision/tests/test_reproduce.py` (ağsız).
 2. (13:00–14:00) **Kanıt kaydı:** Konya Ovası ve Mashhad için `reproduce` çıktısı summary'yle birebir mi (fark tablosu) → `docs/story/engine.md`'ye "Reproduce any atlas region in one command" bölümü (komut + beklenen çıktı + süre).
 3. (14:00–15:30) **Delhi `--qc`:** motorla 1 Eylül aykırısını temizleyip yeniden hesapla (motor yoksa o tarihi içeren çiftleri çıkar); "hazır: delhi".
 4. (15:30–17:00) README ve Data sayfası için 6 satırlık "Run it yourself" kutusu metni (PC1/PC6'ya `docs/qa/PC2.md`'de).

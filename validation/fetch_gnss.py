@@ -58,7 +58,7 @@ def fetch_text(url: str, timeout: int = 30, retries: int = 3) -> str:
         try:
             req = urllib.request.Request(
                 url,
-                headers={"User-Agent": "Mozilla/5.0 (compatible; aseltech-nisar-pulse/1.0)"},
+                headers={"User-Agent": "Mozilla/5.0 (compatible; aseltech-nisar-vision/1.0)"},
             )
             with urllib.request.urlopen(req, timeout=timeout) as resp:
                 return resp.read().decode("utf-8", errors="replace")

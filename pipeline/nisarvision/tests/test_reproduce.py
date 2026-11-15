@@ -1,4 +1,4 @@
-"""Offline unit tests for `python -m pipeline.nisarpulse reproduce <id>`."""
+"""Offline unit tests for `python -m pipeline.nisarvision reproduce <id>`."""
 
 from __future__ import annotations
 
@@ -7,8 +7,8 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from pipeline.nisarpulse.__main__ import parse_cli_args
-from pipeline.nisarpulse.reproduce import (
+from pipeline.nisarvision.__main__ import parse_cli_args
+from pipeline.nisarvision.reproduce import (
     find_cached_subsets,
     find_region_dir,
     parse_granule_pair,

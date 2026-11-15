@@ -202,7 +202,7 @@ Evet. PC1 rolleri saat başı kontrolde değiştirebilir; değişiklik önce bu 
 
 
 ## 20:10 Özgün katkılar 2.0 sahiplik ekleri
-- PC2: `pipeline/nisarpulse/`, `.github/workflows/tests.yml`, `docs/story/engine.md`
+- PC2: `pipeline/nisarvision/`, `.github/workflows/tests.yml`, `docs/story/engine.md`
 - PC7: `risk/probabilistic_risk.py`, `risk/test_probabilistic_risk.py`, `data/central_valley/assets_prob.json`, `docs/story/engineering_risk.md`, (20:00 hata ayıklama için) `web/index.html` görsel yolu ve `web/explorer.html` uyarısı, `requirements.txt`
 - PC8: `analysis/pc8/storage_loss.py`, `data/*_fullyear/storage_loss.json`, `docs/story/storage_loss.md`, (20:00) NaN temizliği `data/*/uncertainty/meta.json`, `data/central_valley_s1/cross_sensor.json` quality
 - PC4: `docs/story/technical_note.md|html`
@@ -211,7 +211,7 @@ Evet. PC1 rolleri saat başı kontrolde değiştirebilir; değişiklik önce bu 
 ## 20:50 Atlas sahiplik ekleri
 - PC11 (21:40): `data/global/{tehran,jakarta,beijing}/` (PC10'dan devir) · `data/global/<celaya,tianjin,kerman,bulacan>/` · `pipeline/subset/global_<bu şehirler>/` · `docs/qa/PC11.md` · `status/PC11.md`
 - PC10: `data/global/<kendi şehirleri>/`, `data/global/atlas.json`, `pipeline/pc10/build_atlas.py`, `docs/story/global_atlas.md`
-- PC2: `data/global/<kendi şehirleri>/`, `pipeline/nisarpulse/`
+- PC2: `data/global/<kendi şehirleri>/`, `pipeline/nisarvision/`
 - PC9: `data/global/<kendi şehirleri>/`
 - PC3: `web/atlas.html` (+ web/ geneli)
 - PC6: `docs/story/media/demo_30s_v2.mp4`, `analysis/pc6/` (3D render)
@@ -236,7 +236,7 @@ Evet. PC1 rolleri saat başı kontrolde değiştirebilir; değişiklik önce bu 
 
 - (otomatik kontrol) PC9 durmuş: Mexico City tam yıl + annualization → BACKLOG §E. Çalışan ajan yok; atlas, metin senkronu ve 19:00 SIGNOFF kontrolü PC1'de.
 
-- (Paz 11:15) FİNAL: PC1 ana sayfa (`web/index.html` üst, `web/app.js` ilgili); PC10 `data/global/home_summary.json` + `pipeline/pc10/build_home_summary.py` + thumb; PC4 `docs/story/three_minute_story.md`, README; PC6 menü/atlas jüri modu/simülatör/hız; PC7 Pekin+Aguascalientes+Querétaro + `tests/test_numbers_consistency.py`; PC2 `pipeline/nisarpulse/reproduce`; PC8 `docs/story/judge_brief.*`, submission_form; PC11 Cakarta + mobil test.
+- (Paz 11:15) FİNAL: PC1 ana sayfa (`web/index.html` üst, `web/app.js` ilgili); PC10 `data/global/home_summary.json` + `pipeline/pc10/build_home_summary.py` + thumb; PC4 `docs/story/three_minute_story.md`, README; PC6 menü/atlas jüri modu/simülatör/hız; PC7 Pekin+Aguascalientes+Querétaro + `tests/test_numbers_consistency.py`; PC2 `pipeline/nisarvision/reproduce`; PC8 `docs/story/judge_brief.*`, submission_form; PC11 Cakarta + mobil test.
 
 ## Devir (PC1, Paz 12:30)
 - PC7 durmuş sayıldı → final QA (`docs/qa/FINAL_QA.md`) **PC4**.

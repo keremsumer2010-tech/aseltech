@@ -124,7 +124,7 @@ Kalıcı/geri dönen ayrımı orada (trend + mevsimsel genlik) → `decomp.json`
 
 > **19:45 PC1 — TEK SIRA ARTIK BURASI:** `docs/CALISMA_HARITASI.md` içindeki kendi bölümün. Yukarıdan aşağı yap, bitince "ASLA BOŞ KALMA" döngüsü. Teslime kadar durma.
 
-> **20:10 PC1:** `docs/OZGUN_KATKILAR.md` — O1 (PC8), O2 (PC7), O3 (PC2) ve teknik not (PC4) hazır oldukça siteye bağla: ana sayfaya "What is new in our work" 3 kart, Science'a O1/O2 bölümleri, Data'ya `nisarpulse` kurulumu, teknik not bağlantısı.
+> **20:10 PC1:** `docs/OZGUN_KATKILAR.md` — O1 (PC8), O2 (PC7), O3 (PC2) ve teknik not (PC4) hazır oldukça siteye bağla: ana sayfaya "What is new in our work" 3 kart, Science'a O1/O2 bölümleri, Data'ya `nisarvision` kurulumu, teknik not bağlantısı.
 
 ---
 # 20:50 PC1 — BÜYÜK GÖREV: `docs/ATLAS_PLANI.md`
