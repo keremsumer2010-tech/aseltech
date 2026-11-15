@@ -1,19 +1,23 @@
 {
   "title": "Global Atlas Population and Area Exposure on Sinking Ground (108-day equivalent)",
-  "generated_utc": "2026-11-15T08:44:46Z",
+  "generated_utc": "2026-11-15T08:16:54Z",
   "source": "GHSL GHS-POP E2025 R2023A 3-arcsecond (~100 m, WGS84, European Commission JRC) intersected with provisional NISAR L2 GUNW cumulative LOS displacement scaled to 108 days, excluding pixels with |disp| < 2*sigma (data/global/detectability.json)",
   "quality": "provisional",
   "quality_note": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.",
-  "notes": "karapinar is reported separately as a local subset inside konya_plain and is never summed. totals_excluding_nested_karapinar reflects the verified headline baseline; totals_all_regions_excluding_nested_karapinar reports raw unthresholded sums across all 28 independent basins.",
+  "notes": "karapinar is reported separately as a local subset inside konya_plain and is never summed. totals_excluding_nested_karapinar sums reliable basins only (indicative-only basins in atlas.json are listed per city but excluded from the headline); totals_all_regions_excluding_nested_karapinar adds the indicative-only basins.",
   "totals_excluding_nested_karapinar": {
-    "people_lt_minus2cm": 8251911,
-    "people_lt_minus5cm": 1479844,
-    "area_km2_lt_minus5cm": 549.45
+    "people_lt_minus2cm": 7475011,
+    "people_lt_minus5cm": 1200716,
+    "area_km2_lt_minus5cm": 511.65,
+    "scope": "reliable basins only",
+    "n_basins": 16
   },
   "totals_all_regions_excluding_nested_karapinar": {
     "people_lt_minus2cm": 19892445,
     "people_lt_minus5cm": 3939339,
-    "area_km2_lt_minus5cm": 1882.54
+    "area_km2_lt_minus5cm": 1882.54,
+    "scope": "reliable and indicative-only basins",
+    "n_basins": 28
   },
   "cities": [
     {

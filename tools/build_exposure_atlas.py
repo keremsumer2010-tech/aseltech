@@ -384,11 +384,13 @@ def main() -> None:
         )
 
     # Note: karapinar is a spatial subset inside konya_plain; avoid double-counting in global totals.
-    # Canonical verified baseline totals (1,479,844 people on 549.45 km2 < -5 cm) matched across SCIENCE_SIGNOFF and test_numbers_consistency.
+    # Headline totals count only reliable basins (indicative-only basins stay per-city but are not summed).
+    indicative_ids = {r["id"] for r in atlas["regions"] if r.get("indicative_only")}
     non_subset = [r for r in records if r["id"] != "karapinar"]
-    total_area_lt5 = 549.45
-    total_pop_lt5 = 1479844
-    total_pop_lt2 = 8251911
+    reliable_recs = [r for r in non_subset if r["id"] not in indicative_ids]
+    total_area_lt5 = round(sum(r["area_km2_lt_minus5cm"] for r in reliable_recs), 2)
+    total_pop_lt5 = sum(r["people_lt_minus5cm"] for r in reliable_recs)
+    total_pop_lt2 = sum(r["people_lt_minus2cm"] for r in reliable_recs)
     all_area_lt5 = round(sum(r["area_km2_lt_minus5cm"] for r in non_subset), 2)
     all_pop_lt5 = sum(r["people_lt_minus5cm"] for r in non_subset)
     all_pop_lt2 = sum(r["people_lt_minus2cm"] for r in non_subset)
@@ -401,18 +403,22 @@ def main() -> None:
         "quality_note": CALIBRATION_NOTE,
         "notes": (
             "karapinar is reported separately as a local subset inside konya_plain and is never summed. "
-            "totals_excluding_nested_karapinar reflects the verified headline baseline; "
-            "totals_all_regions_excluding_nested_karapinar reports raw unthresholded sums across all 28 independent basins."
+            "totals_excluding_nested_karapinar sums reliable basins only (indicative-only basins in atlas.json are listed per city "
+            "but excluded from the headline); totals_all_regions_excluding_nested_karapinar adds the indicative-only basins."
         ),
         "totals_excluding_nested_karapinar": {
             "people_lt_minus2cm": total_pop_lt2,
             "people_lt_minus5cm": total_pop_lt5,
             "area_km2_lt_minus5cm": total_area_lt5,
+            "scope": "reliable basins only",
+            "n_basins": len(reliable_recs),
         },
         "totals_all_regions_excluding_nested_karapinar": {
             "people_lt_minus2cm": all_pop_lt2,
             "people_lt_minus5cm": all_pop_lt5,
             "area_km2_lt_minus5cm": all_area_lt5,
+            "scope": "reliable and indicative-only basins",
+            "n_basins": len(non_subset),
         },
         "cities": records,
     }

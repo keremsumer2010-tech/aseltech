@@ -298,3 +298,6 @@ Doğru ifade: *Over Mexico City the spatial pattern matches NASA JPL's OPERA pro
 | 16:00–17:30 | **README son okuma** (tek cümlelik öz, 9 iş listesi, nasıl çalıştırılır) + `qa_cards.md` son hâl |
 | 17:30–19:00 | Zamanlı prova notları (3 dk, present.html), son dil geçişi |
 | 19:00–19:30 | SIGNOFF son tur (PC1 ile); 20:00 dondurma |
+
+# ▶ PC1 NOT — Science sayfası eski sayı
+`web/science.html` kartında "3 of 21 regions flagged" yazıyor → güncel: **5 of 29** (atlas.json / qc_flags.json). 14:30–16:00 eski bilgi taramasında öncelikli.

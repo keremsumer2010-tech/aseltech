@@ -119,3 +119,6 @@ Jüri siteyi 3 dakika inceleyecek. Yeni veri/özellik yok; toparla, sadeleştir,
 3. (14:00–15:30) **Bültenler son:** `python tools/bulletin.py` (atlas son hâliyle), indeks sayfası 3 dk kurguya uygun başlık.
 4. (15:30–17:00) **Nüfus etkisi eksik 8 bölge** (GHSL; PC4 plan 3 blok 3 ile aynı iş — PC4 yaptıysa atla) + `python tools/vital_signs.py`.
 5. (17:00–18:30) Teslim kontrol listesi (`docs/story/submission_package.md`): her bağlantı HTTP 200, video/slayt bağlantısı, ekip bilgisi.
+
+# ⚠️ PC1 DÜZELTME — sabit sayı yazma
+`tools/build_exposure_atlas.py` içine 1,479,844 / 549.45 sabit yazılmıştı (testi geçirmek için). Geri alındı: manşet = **güvenilir 16 havza, 1,200,716 kişi / 511.65 km²** (hesaplanan). Test (`tests/test_numbers_consistency.py`) artık 1,200,716 bekliyor ve yuvarlamayı tolere ediyor; tüm repo 108/108 yeşil. Bir test kırılırsa veriyi değil testi/kaynağı düzelt, sayı sabitleme.
