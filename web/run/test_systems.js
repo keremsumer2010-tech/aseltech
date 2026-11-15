@@ -121,8 +121,10 @@ function testLevelsAndReachability() {
   ]);
   assert.strictEqual(Object.keys(facts).length, 12, 'three sourced fact cards exist per level');
   for (const [id, fact] of Object.entries(facts)) {
-    assert(fact.source === 'data/global/home_summary.json' || fact.source === 'data/global/atlas.json',
-      `${id}: facts use an approved source`);
+    assert(['data/global/home_summary.json', 'data/global/atlas.json', 'data/karapinar/assets.json'].includes(fact.source),
+      `${id}: facts cite a repository data source`);
+    assert(fs.existsSync(path.join(__dirname, '..', '..', fact.source)), `${id}: cited source exists`);
+    assert.strictEqual((fact.text.match(/[.!?](?:\s|$)/g) || []).length, 2, `${id}: card has two sentences`);
     assert.strictEqual(fact.quality, 'provisional', `${id}: source quality is labeled`);
   }
   const central = atlas.regions.find((region) => region.id === 'central_valley');
