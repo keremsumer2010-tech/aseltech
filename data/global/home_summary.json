@@ -1,0 +1,178 @@
+{
+  "generated_utc": "2026-11-15T08:09:16Z",
+  "one_liner": "We turned the first months of NASA-ISRO NISAR radar data into a self-checking global subsidence atlas: 29 basins measured with one open pipeline on the same 93 days, every number traceable to its file, and every headline checked against GPS, NASA's OPERA product and the literature.",
+  "common_window": [
+    "2026-06-28",
+    "2026-09-29"
+  ],
+  "kpis": [
+    {
+      "key": "regions",
+      "label": "basins in one atlas",
+      "value": 29,
+      "unit": "",
+      "detail": "16 reliable, 13 indicative",
+      "source": "data/global/atlas.json"
+    },
+    {
+      "key": "people",
+      "label": "people living on ground sinking more than 5 cm",
+      "value": 1479844,
+      "unit": "",
+      "detail": "549.45 km² in the measured basins (GHSL 2025 population)",
+      "source": "data/global/vital_signs.json"
+    },
+    {
+      "key": "gnss",
+      "label": "agreement with 10 GPS stations (Central Valley)",
+      "value": 0.924,
+      "unit": "r",
+      "detail": "RMSE 1.37 cm at the final date",
+      "source": "docs/story/validation_report.md"
+    },
+    {
+      "key": "opera",
+      "label": "agreement with NASA JPL OPERA (Mexico City)",
+      "value": 0.912,
+      "unit": "r",
+      "detail": "same summer season, OPERA one year earlier (2025 vs 2026)",
+      "source": "data/global/opera_check.json"
+    },
+    {
+      "key": "storage",
+      "label": "permanent aquifer storage lost per year (Central Valley)",
+      "value": 0.3174,
+      "unit": "km³/yr",
+      "detail": "inelastic compaction ≈ storage that does not come back",
+      "source": "data/central_valley_fullyear/storage_loss.json"
+    }
+  ],
+  "top5": [
+    {
+      "id": "konya_plain",
+      "name": "Konya Plain",
+      "country": "Türkiye",
+      "rank": 1,
+      "rate_cm_per_100d_common": -11.0,
+      "max_cm_los": -9.6,
+      "confidence": "medium",
+      "valid_fraction": null,
+      "note": "low valid coverage (11.6 %); kept with caution"
+    },
+    {
+      "id": "eloy",
+      "name": "Eloy",
+      "country": "USA",
+      "rank": 2,
+      "rate_cm_per_100d_common": -8.6,
+      "max_cm_los": -8.0,
+      "confidence": "high",
+      "valid_fraction": 0.696,
+      "note": ""
+    },
+    {
+      "id": "central_valley",
+      "name": "Central Valley (Tulare Basin)",
+      "country": "USA",
+      "rank": 3,
+      "rate_cm_per_100d_common": -7.3,
+      "max_cm_los": -7.8,
+      "confidence": "medium",
+      "valid_fraction": 0.629,
+      "note": ""
+    },
+    {
+      "id": "kashmar",
+      "name": "Kashmar",
+      "country": "",
+      "rank": 4,
+      "rate_cm_per_100d_common": -7.0,
+      "max_cm_los": -6.2,
+      "confidence": "high",
+      "valid_fraction": 0.728,
+      "note": ""
+    },
+    {
+      "id": "mashhad",
+      "name": "Mashhad",
+      "country": "Iran",
+      "rank": 5,
+      "rate_cm_per_100d_common": -6.9,
+      "max_cm_los": -8.6,
+      "confidence": "medium",
+      "valid_fraction": 0.705,
+      "note": ""
+    }
+  ],
+  "qc_story": {
+    "headline": "The atlas caught its own error",
+    "semarang": {
+      "before_cm": -12.1,
+      "after_cm": -6.2,
+      "why": "the whole −12.1 cm came from one step of 11.2 cm, one full L-band phase cycle (12.1 cm): an unwrapping error; re-processed, the peak moved to the subsiding north coast"
+    },
+    "series_before": {
+      "dates": [
+        "2026-06-25",
+        "2026-07-07",
+        "2026-07-19",
+        "2026-08-12",
+        "2026-08-24",
+        "2026-09-05",
+        "2026-09-17",
+        "2026-09-29",
+        "2026-10-11"
+      ],
+      "disp_cm": [
+        0.0,
+        -3.25,
+        0.25,
+        -2.12,
+        -2.26,
+        -0.93,
+        -1.57,
+        -0.87,
+        -12.05
+      ]
+    },
+    "series_after": {
+      "dates": [
+        "2026-06-25",
+        "2026-07-07",
+        "2026-07-19",
+        "2026-08-12",
+        "2026-08-24",
+        "2026-09-05",
+        "2026-09-17",
+        "2026-09-29"
+      ],
+      "disp_cm": [
+        0.0,
+        -4.47,
+        -2.17,
+        -7.31,
+        -6.05,
+        -5.97,
+        -5.68,
+        -6.2
+      ]
+    },
+    "fixed_reference": [
+      {
+        "id": "tehran",
+        "before_cm": -3.5,
+        "after_cm": -7.4
+      }
+    ],
+    "flagged": [
+      "bangkok",
+      "beijing",
+      "delhi",
+      "gorgan",
+      "pekalongan"
+    ],
+    "source": "docs/story/atlas_top5_check.md, data/global/qc_flags.json, data/global/atlas_changelog.json"
+  },
+  "calibration_note": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.",
+  "quality": "provisional"
+}
