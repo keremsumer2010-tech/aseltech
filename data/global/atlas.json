@@ -278,7 +278,7 @@
       "lon": 110.60795,
       "lat": -6.80998,
       "max_cm_los": -6.2,
-      "p2_cm": null,
+      "p2_cm": -5.2,
       "rate_cm_per_100d": -6.5,
       "max_cm_vertical_est": -8.1,
       "period": [
@@ -289,7 +289,7 @@
       "n_pairs": 7,
       "quality": "provisional",
       "rate_cm_per_yr_estimate": -23.6,
-      "valid_fraction": null,
+      "valid_fraction": 0.515,
       "ref_range_cm": [
         -9.9,
         -6.2
@@ -438,7 +438,7 @@
       "lon": 105.86753,
       "lat": 10.27513,
       "max_cm_los": -3.4,
-      "p2_cm": null,
+      "p2_cm": -3.7,
       "rate_cm_per_100d": -2.8,
       "max_cm_vertical_est": -4.4,
       "period": [
@@ -449,7 +449,7 @@
       "n_pairs": 9,
       "quality": "provisional",
       "rate_cm_per_yr_estimate": -10.3,
-      "valid_fraction": null,
+      "valid_fraction": 0.156,
       "ref_range_cm": [
         -3.4,
         -3.1
@@ -764,7 +764,7 @@
       "lon": 100.73741,
       "lat": 13.81368,
       "max_cm_los": -7.5,
-      "p2_cm": null,
+      "p2_cm": -6.9,
       "rate_cm_per_100d": -6.2,
       "max_cm_vertical_est": -9.0,
       "period": [
@@ -775,7 +775,7 @@
       "n_pairs": 8,
       "quality": "provisional",
       "rate_cm_per_yr_estimate": -22.8,
-      "valid_fraction": null,
+      "valid_fraction": 0.303,
       "ref_range_cm": [
         -7.9,
         -7.5
@@ -808,7 +808,7 @@
       "lon": 109.48137,
       "lat": -6.86996,
       "max_cm_los": -22.2,
-      "p2_cm": null,
+      "p2_cm": -20.9,
       "rate_cm_per_100d": -18.5,
       "max_cm_vertical_est": -31.9,
       "period": [
@@ -819,7 +819,7 @@
       "n_pairs": 9,
       "quality": "provisional",
       "rate_cm_per_yr_estimate": -67.7,
-      "valid_fraction": null,
+      "valid_fraction": 0.266,
       "ref_range_cm": [
         -22.2,
         -12.4
@@ -935,7 +935,7 @@
       "lon": 107.01151,
       "lat": -6.14056,
       "max_cm_los": -6.8,
-      "p2_cm": null,
+      "p2_cm": -10.2,
       "rate_cm_per_100d": -6.3,
       "max_cm_vertical_est": -9.3,
       "period": [
@@ -946,7 +946,7 @@
       "n_pairs": 8,
       "quality": "provisional",
       "rate_cm_per_yr_estimate": -23.2,
-      "valid_fraction": null,
+      "valid_fraction": 0.029,
       "ref_range_cm": null,
       "detectable": true,
       "robustness_spread": null,
@@ -1049,7 +1049,7 @@
       "lon": 120.56021,
       "lat": 23.62433,
       "max_cm_los": -2.7,
-      "p2_cm": null,
+      "p2_cm": -3.0,
       "rate_cm_per_100d": -2.5,
       "max_cm_vertical_est": -3.4,
       "period": [
@@ -1060,7 +1060,7 @@
       "n_pairs": 8,
       "quality": "provisional",
       "rate_cm_per_yr_estimate": -9.2,
-      "valid_fraction": null,
+      "valid_fraction": 0.282,
       "ref_range_cm": [
         -3.5,
         -1.1
@@ -1123,7 +1123,7 @@
       "lon": 105.71463,
       "lat": 20.98307,
       "max_cm_los": -2.5,
-      "p2_cm": null,
+      "p2_cm": -3.0,
       "rate_cm_per_100d": -2.1,
       "max_cm_vertical_est": -3.6,
       "period": [
@@ -1134,7 +1134,7 @@
       "n_pairs": 9,
       "quality": "provisional",
       "rate_cm_per_yr_estimate": -7.5,
-      "valid_fraction": null,
+      "valid_fraction": 0.257,
       "ref_range_cm": [
         -6.7,
         -2.2
@@ -1163,7 +1163,7 @@
       "lon": 106.91207,
       "lat": 10.9967,
       "max_cm_los": -4.2,
-      "p2_cm": null,
+      "p2_cm": -1.8,
       "rate_cm_per_100d": -3.5,
       "max_cm_vertical_est": -5.8,
       "period": [
@@ -1174,7 +1174,7 @@
       "n_pairs": 9,
       "quality": "provisional",
       "rate_cm_per_yr_estimate": -12.8,
-      "valid_fraction": null,
+      "valid_fraction": 0.321,
       "ref_range_cm": [
         -9.9,
         -4.2
@@ -1469,7 +1469,7 @@
       "lon": 110.60795,
       "lat": -6.80998,
       "max_cm_los": -6.2,
-      "p2_cm": null,
+      "p2_cm": -5.2,
       "rate_cm_per_100d": -6.5,
       "max_cm_vertical_est": -8.1,
       "period": [
@@ -1480,7 +1480,7 @@
       "n_pairs": 7,
       "quality": "provisional",
       "rate_cm_per_yr_estimate": -23.6,
-      "valid_fraction": null,
+      "valid_fraction": 0.515,
       "ref_range_cm": [
         -9.9,
         -6.2
@@ -1633,7 +1633,7 @@
       "lon": 105.86753,
       "lat": 10.27513,
       "max_cm_los": -3.4,
-      "p2_cm": null,
+      "p2_cm": -3.7,
       "rate_cm_per_100d": -2.8,
       "max_cm_vertical_est": -4.4,
       "period": [
@@ -1644,7 +1644,7 @@
       "n_pairs": 9,
       "quality": "provisional",
       "rate_cm_per_yr_estimate": -10.3,
-      "valid_fraction": null,
+      "valid_fraction": 0.156,
       "ref_range_cm": [
         -3.4,
         -3.1
@@ -1969,7 +1969,7 @@
       "lon": 100.73741,
       "lat": 13.81368,
       "max_cm_los": -7.5,
-      "p2_cm": null,
+      "p2_cm": -6.9,
       "rate_cm_per_100d": -6.2,
       "max_cm_vertical_est": -9.0,
       "period": [
@@ -1980,7 +1980,7 @@
       "n_pairs": 8,
       "quality": "provisional",
       "rate_cm_per_yr_estimate": -22.8,
-      "valid_fraction": null,
+      "valid_fraction": 0.303,
       "ref_range_cm": [
         -7.9,
         -7.5
@@ -2014,7 +2014,7 @@
       "lon": 109.48137,
       "lat": -6.86996,
       "max_cm_los": -22.2,
-      "p2_cm": null,
+      "p2_cm": -20.9,
       "rate_cm_per_100d": -18.5,
       "max_cm_vertical_est": -31.9,
       "period": [
@@ -2025,7 +2025,7 @@
       "n_pairs": 9,
       "quality": "provisional",
       "rate_cm_per_yr_estimate": -67.7,
-      "valid_fraction": null,
+      "valid_fraction": 0.266,
       "ref_range_cm": [
         -22.2,
         -12.4
@@ -2144,7 +2144,7 @@
       "lon": 107.01151,
       "lat": -6.14056,
       "max_cm_los": -6.8,
-      "p2_cm": null,
+      "p2_cm": -10.2,
       "rate_cm_per_100d": -6.3,
       "max_cm_vertical_est": -9.3,
       "period": [
@@ -2155,7 +2155,7 @@
       "n_pairs": 8,
       "quality": "provisional",
       "rate_cm_per_yr_estimate": -23.2,
-      "valid_fraction": null,
+      "valid_fraction": 0.029,
       "ref_range_cm": null,
       "detectable": true,
       "robustness_spread": null,
@@ -2261,7 +2261,7 @@
       "lon": 120.56021,
       "lat": 23.62433,
       "max_cm_los": -2.7,
-      "p2_cm": null,
+      "p2_cm": -3.0,
       "rate_cm_per_100d": -2.5,
       "max_cm_vertical_est": -3.4,
       "period": [
@@ -2272,7 +2272,7 @@
       "n_pairs": 8,
       "quality": "provisional",
       "rate_cm_per_yr_estimate": -9.2,
-      "valid_fraction": null,
+      "valid_fraction": 0.282,
       "ref_range_cm": [
         -3.5,
         -1.1
@@ -2337,7 +2337,7 @@
       "lon": 105.71463,
       "lat": 20.98307,
       "max_cm_los": -2.5,
-      "p2_cm": null,
+      "p2_cm": -3.0,
       "rate_cm_per_100d": -2.1,
       "max_cm_vertical_est": -3.6,
       "period": [
@@ -2348,7 +2348,7 @@
       "n_pairs": 9,
       "quality": "provisional",
       "rate_cm_per_yr_estimate": -7.5,
-      "valid_fraction": null,
+      "valid_fraction": 0.257,
       "ref_range_cm": [
         -6.7,
         -2.2
@@ -2378,7 +2378,7 @@
       "lon": 106.91207,
       "lat": 10.9967,
       "max_cm_los": -4.2,
-      "p2_cm": null,
+      "p2_cm": -1.8,
       "rate_cm_per_100d": -3.5,
       "max_cm_vertical_est": -5.8,
       "period": [
@@ -2389,7 +2389,7 @@
       "n_pairs": 9,
       "quality": "provisional",
       "rate_cm_per_yr_estimate": -12.8,
-      "valid_fraction": null,
+      "valid_fraction": 0.321,
       "ref_range_cm": [
         -9.9,
         -4.2

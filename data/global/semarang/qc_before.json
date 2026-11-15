@@ -1,0 +1,6 @@
+{
+  "note": "Semarang headline-point series BEFORE the fix: the last pair (2026-09-29 to 2026-10-11) carried a -11.18 cm step = one L-band phase cycle (unwrapping error). Cumulative of the steps_cm that tools/atlas_qc.py reported on the 2026-11-14 atlas build (data/global/qc_flags.json). Used by pipeline/pc10/build_home_summary.py for the before/after story.",
+  "dates": ["2026-06-25", "2026-07-07", "2026-07-19", "2026-08-12", "2026-08-24", "2026-09-05", "2026-09-17", "2026-09-29", "2026-10-11"],
+  "disp_cm": [0.0, -3.25, 0.25, -2.12, -2.26, -0.93, -1.57, -0.87, -12.05],
+  "removed_pair": "2026-09-29_2026-10-11"
+}

@@ -457,6 +457,10 @@ def main() -> None:
     _update_changelog(out_path.parent, prev_atlas, atlas)
     out_path.write_text(json.dumps(atlas, indent=2, ensure_ascii=False), encoding="utf-8")
     subprocess.run([sys.executable, str(ROOT / "tools" / "atlas_exports.py"), str(out_path)], check=False)
+    # Automatically rebuild home_summary.json (single source of truth for homepage KPIs)
+    home_builder = ROOT / "pipeline" / "pc10" / "build_home_summary.py"
+    if home_builder.exists():
+        subprocess.run([sys.executable, str(home_builder)], check=False)
     print(f"Wrote {out_path} ({len(entries)} regions: {len(reliable)} reliable, {len(indicative)} indicative, common={common_window})")
     for e in entries:
         print(
