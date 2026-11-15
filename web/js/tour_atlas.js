@@ -5,7 +5,7 @@
     {el: null, title: 'Welcome to the Subsidence Atlas',
       text: 'Every place on this page is sinking because groundwater is pumped out faster than it refills, measured by the NASA-ISRO NISAR radar satellite. This one-minute tour shows you how to read it.'},
     {el: '#vitalBar', title: 'The headline numbers',
-      text: 'How many cities we measured, the fastest-sinking place, how much land dropped more than 5 cm, and roughly how many people live on it.'},
+      text: 'How many cities we measured, the fastest-sinking place, how much land is sinking (more than 5 cm, 2 inches, in one summer), and roughly how many people live on it.'},
     {el: '#atlasMap', title: 'The globe',
       text: 'Each dot is a measured basin; the colour shows how fast it sinks. Drag to turn the globe, scroll or pinch to zoom, and <b>click a dot</b> to open that place.'},
     {el: '#atlasTop5Card', title: 'Top 5 at a glance',
