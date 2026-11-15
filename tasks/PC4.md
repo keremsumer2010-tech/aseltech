@@ -406,3 +406,19 @@ Dosya sahipliği: web/index.html ve web/science.html PC7/PC1 için ayrık kalsı
 
 # ⛔ DURMUŞ SAYILDI (PC1, 19:15)
 63 dk sessiz. Jüri SSS zaten güncel (12 soru, Eloy/Konya/1,167,429). Kalan: video sayı/altyazı kontrolü + form ≤150 kelime → PC1.
+
+# 🎮 YENİ BÜYÜK GÖREV — AQUIFER RUN oyun MOTORU (PC1, Paz 19:45 →) · önceki her şeyin yerine bu
+Önce **`web/run/DESIGN.md`**'yi baştan sona oku (tasarım + modül sözleşmesi). Sen **motoru** yazıyorsun; grafikler PC1'in (`web/run/art.js`, `window.RunArt`), bölümler ve bilim mekaniği PC7'nin (`web/run/systems.js`, `levels/*.json`). Sadece kendi dosyaların: `web/run/index.html`, `engine.js`, `player.js`, `main.js`, `test_engine.js`. Kütüphane yok, build yok, düz JS. Her adım ayrı commit `[PC4]`.
+
+| Sıra | İş | Bitti ölçütü |
+|---|---|---|
+| 1 | **index.html kabuğu:** tam ekran canvas (960×540 mantıksal, ölçeklenir, `imageSmoothingEnabled=false`), script sırası art→engine→player→systems→main, dokunmatik butonlar (sol/sağ, JUMP, ACTION) yalnız dokunmatik cihazda | sayfa açılıyor, konsol hatası 0 |
+| 2 | **engine.js:** sabit adımlı döngü (60 Hz, accumulator), sahne yöneticisi (title/map/level/report/pause), girdi (klavye + dokunma + gamepad) → `input.left/right/jump/jumpPressed/action/actionPressed`, kamera (yumuşak takip, ileri bakış, seviye sınırları), karo haritası (level JSON `tiles`+`legend`), AABB–karo çarpışması (x ve y ayrı çözülür), `setTile(x,y,name)` (çöken karolar için) | Nisa yer karolarında yürüyor, duvardan geçmiyor |
+| 3 | **player.js:** koşu ivmesi/sürtünme, değişken zıplama (basılı tut = yüksek), coyote time 0.1 s, jump buffer 0.1 s, düşüş hızı sınırı, merdiven yok; animasyon durumu `idle/run/jump/action` → `RunArt.drawSprite('nisa_'+state, frame, ...)`; çukura düşünce son checkpoint'e dön, −1 kalp | his akıcı; 3 kalp bitince bölüm başı |
+| 4 | **Varlık sistemi:** level `entities` listesini sınıflara bağla (pump, crop, drop, chip, dust, checkpoint, flag, farmer); her kare `RunSystems.update(state, dt, events)` çağır; olaylar: `pickup`, `action{target}`, `fall`, `reachFlag`; `RunSystems.sinkTilesToDrop()` dönen karoları 1 karo aşağı taşı (animasyonlu) | PC7'nin sistemleriyle çalışıyor |
+| 5 | **Sahneler (main.js):** başlık ekranı (`RunArt.title`), 4 bölümlük harita (kilit: önceki bölüm bitince açılır, yıldızlar localStorage), bölüm, duraklat, **karne** (`RunSystems.score` → yıldızlar, akifer eğrisi, cm çökme, gerçek NISAR sayısı, kalibrasyon cümlesi) | baştan sona oynanıyor |
+| 6 | **NISAR taraması:** her `nisar.scanEverySec` saniyede uydu geçer, `RunArt.radarSweep` 3 sn; bu sürede `sink` karoları vurgulanır | görülüyor |
+| 7 | **Ayarlar:** ses aç/kapa, "reduced motion" (sarsıntı + tarama animasyonu kapalı); Esc/P duraklat | çalışıyor |
+| 8 | **test_engine.js** (Node): çarpışma (yere oturma, duvar), zıplama yüksekliği aralığı, coyote time | `node web/run/test_engine.js` yeşil |
+| 9 | Siteye bağla: ana sayfadaki "For kids: Water Hero" düğmesi → `run/` ("Play Aquifer Run"); `tools/check_site.py` 0 kırık | push öncesi `python tools/check_site.py && python -m pytest -q` |
+RunArt hazır değilse geçici dikdörtgen çiz (`RunArt` yoksa düz renk), PC1'in atlası gelince otomatik kullanılsın.

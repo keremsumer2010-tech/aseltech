@@ -294,3 +294,17 @@ Cambridge görevin henüz başlamadı. 18:40'a kadar commit yoksa 1–3. işleri
 
 # 🔁 DEVİR (PC1, 18:35)
 1–3. işler (How we know + Science sadeleştirme + jargon/inç) PC1 tarafından yapılıyor; `web/index.html` ve `web/science.html`e dokunma. Sende 5. iş (02:00 son QA) kalır; SSS PC4te.
+
+# 🎮 YENİ BÜYÜK GÖREV — AQUIFER RUN bölümler + bilim mekaniği (PC1, Paz 19:45 →)
+Önce **`web/run/DESIGN.md`**'yi baştan sona oku. Sen **oyun içeriği ve bilimi** yazıyorsun; motor PC4'ün (`engine.js`, `player.js`, `main.js`), grafik PC1'in (`art.js`). Sadece kendi dosyaların: `web/run/systems.js`, `web/run/levels/*.json`, `web/run/facts.json`, `web/run/test_systems.js`. Düz JS (UMD: tarayıcıda `window.RunSystems`, Node'da `module.exports`). Her adım ayrı commit `[PC7]`.
+
+| Sıra | İş | Bitti ölçütü |
+|---|---|---|
+| 1 | **systems.js — akifer modeli:** `createLevelState(level)`; her saniye çalışan pompa başına `drainPerPump` düşüş, yağmur damlası `rainRefill` artış; `redLine` altındayken her 2 sn bir `sink` karosu kalıcı çöker (önce oyuncuya yakın ve NISAR'ın işaretlediği karolar); `aquiferInfo()`, `sinkTilesToDrop()`; 1 karo = 2 cm | birim testleri |
+| 2 | **Varlık kuralları:** pompa (ACTION → kapanır, +150), ekin (ACTION, depo −2 → yeşil, +100; çiftçi konuşma balonu ve bir pompayı kapatır), damla (+1 depo, +10), çip (+300, fact kartı), toz şeytanı (değince depo −3; hareket halinde ACTION ile su püskürt → 4 sn sakin), kırık kanal (ACTION, depo −3 → köprü), checkpoint, bayrak | olaylar PC4 motoruyla aynı isimleri kullanır (DESIGN.md §10) |
+| 3 | **4 bölüm JSON:** `tulare` (öğretici: önce damla topla, sonra pompa kapat, sonra ekin sula; tabelalar kısa İngilizce ipucu), `eloy` (yarıklar + toz şeytanları), `konya` (çöken karonun altında obruk açılır), `mexico` (şehir, eğik binalar, metro bölümü). Her biri 180–260 karo genişliğinde, 15 yüksekliğinde, 3 gizli çip, 2 checkpoint; zorluk kademeli | her bölüm baştan sona tamamlanabilir |
+| 4 | **facts.json:** her bölüm için 3 kart (kısa, 2 cümle, çocuk dili) + `source` alanı: sayılar YALNIZCA `data/global/atlas.json`, `data/central_valley/summary.json`, `data/karapinar/...` gibi repodaki dosyalardan (ör. Tulare −7.8 cm/108 gün, Eloy −8.6 cm/100 gün #1 güvenilir, Konya gösterge ve obruk ilişkisi, Mexico City −6.3). Abartı yok; Konya için "kendi incelememiz gösterge tuttu" dürüstlüğü | her kartın kaynağı var |
+| 5 | **Puan + karne:** `score(state)` → `{score, stars:[bitirdi, kırmızı çizgi hiç geçilmedi, 3 çip], report:{aquiferCurve:[...], cmSunk, realFactCm, realFactText, oneLine}}`; kalibrasyon cümlesi metni | testli |
+| 6 | **test_systems.js** (Node): akifer matematiği, yıldız kuralları, **her bölüm JSON'u geçerli** (genişlik/yükseklik tutarlı, legend tam, bayrak var), **erişilebilirlik**: basit BFS ile başlangıçtan bayrağa zıplama menziliyle (yatay 4, dikey 3 karo) yol var | `node web/run/test_systems.js` yeşil |
+| 7 | `tests/test_run_game.py`: yukarıdaki iki Node testini pytest'ten çalıştır (node yoksa skip) | repo `python -m pytest -q` yeşil |
+PC4'ün motoru gelmeden `systems.js`'i Node testleriyle geliştir; entegrasyonda olay isimleri DESIGN.md'deki gibi olsun.
