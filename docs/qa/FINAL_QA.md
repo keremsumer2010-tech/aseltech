@@ -1,25 +1,26 @@
-# Final QA Report (`docs/qa/FINAL_QA.md`)
+# Final site QA · Cambridge pass
 
-**Date:** 2026-11-15 15:40 TR · **Owner:** PC4 (reassigned from PC7) · **Status:** All gates green
+**Date:** 2026-11-15  
+**Live site:** https://keremsumer2010-tech.github.io/aseltech/  
+**Published revision observed:** baseline deployment before the local Cambridge edits. The updated home and science pages were not yet published during this live review.
 
-## 1. Link, Asset & Publishing Gate
-- `python3 tools/check_site.py`: **43 pages checked, 0 broken links** (`web/*.html`, `docs/story/*.html`, `docs/bulletins/*.html`, `game/index.html`, `web3d/`).
-- `python3 -m pytest tests/test_site_links.py -v`: **PASSED** (1/1).
+## Viewports and pages
 
-## 2. JavaScript Syntax & Module Checks (`node --check`)
-All 14 site, i18n, and simulator JS files pass `node --check` with zero syntax errors:
-- `web/js/atlas.js`, `web/js/atlas_sat.js`, `web/js/docs.js`, `web/js/explorer.js`, `web/js/home3.js`, `web/js/i18n.js`, `web/js/i18n_tr.js`, `web/js/tour.js`, `web/js/tour_atlas.js`
-- `game/game.js`, `game/i18n_load.js`, `game/model.js`, `game/tests.js`, `game/tour_steps.js`
+Reviewed the live Home, Atlas, Science, Data, FAQ, Present, and Simulator pages at **1440 × 900** and **375 × 812**.
 
-## 3. Data & Headline Number Consistency
-- `python3 -m pytest tests/ -v`: **11/11 PASSED** (`test_atlas_schema.py`, `test_home_summary.py` [6 tests], `test_numbers_consistency.py`, `test_site_links.py`, `test_site_numbers.py` [2 tests]).
-- `python3 tools/vital_signs.py --check`: **OK** (`29 regions, fastest=eloy -8.6 cm/100d`, `15 reliable / 14 indicative`, `1,167,429 residents on 477.72 km²`).
-- `python3 analysis/pc5/numbers_registry.py`: **OK** (`total=45 approved=30 preliminary=15 rejected=0 discrepancies=0`).
+- No horizontal document overflow was measured on any page at either viewport. At 375 px, the header navigation is horizontally scrollable; later links require a horizontal swipe.
+- Images with a non-empty source loaded on the pages reviewed. The homepage has an empty-source image element for its hidden lightbox, which is a placeholder and not a visible broken image.
+- Page controls and links had accessible names; no unnamed buttons or form controls were found. This pass inspected control labels and targets; it did not activate every control.
+- The page content was readable at both widths. The homepage's initial mobile view is dense: its headline and world map occupy most of the first screen, with the evidence section further down.
 
-## 4. Mobile (375 px) & Overflow CSS Guards
-- `web/css/atlas.css`: `.atlas-page{overflow-x:hidden;overflow-y:auto}` and `.atlas-tscroll{overflow-x:auto}`
-- `web/css/style.css`: `.site-nav{overflow-x:auto}`, `@media (max-width:860px)` table/code `overflow-x:auto;max-width:100%`
-- `web/css/home3.css`: `.code{overflow-x:auto}`
-- `game/style.css`: `body { overflow-x: hidden; overflow-y: auto; }` at mobile breakpoint.
-- `tools/bulletin.py`: `@media (max-width:600px)` table horizontal scroll, padding reduction, 2-column pkg-bar across all 29 A4 bulletins (`docs/bulletins/*.html`).
-- *Environment note:* Headless Chromium / Playwright is not installed in this Linux container (`ModuleNotFoundError: No module named 'playwright'`), so live browser DOM/console execution at `1920×1080` and `375×812` should be spot-checked on PC1/PC6 before 20:00 freeze.
+## Console and defects
+
+- **Present page:** the browser reported `SyntaxError: Identifier 'ROOT' has already been declared` on `present.html`. The duplicate declarations are in that page's scripts and are outside PC7's authorized file list; recorded for the page owner to fix.
+- **Other reviewed pages:** no page-specific console error was observed during this pass.
+- The live build predates the Cambridge edits to `web/index.html`, `web/science.html`, and `web/css/cambridge.css`. Their final responsive appearance and browser console state still need a post-deploy check.
+
+## Local checks
+
+Before the commit attempt, `python tools/check_site.py` reported **43 pages checked, 0 broken links**. `python -m pytest -q` reported **109 passed, 1 warning** (`PendingDeprecationWarning` from `analysis/cumulative.py`).
+
+The local preview server could not bind to localhost under the current sandbox network restrictions, so the edited pages could not be opened in the browser before deployment.
