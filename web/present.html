@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NISAR Pulse — Lincoln Presentation Mode (6 Stops)</title>
+<meta name="description" content="6-stop offline-ready presentation deck for NISAR Pulse: Home summary, 29-region Atlas, Konya Plain, Semarang QC catch, Central Valley GNSS validation, and Simulator.">
+<link rel="stylesheet" href="style.css">
+<style>
+  html,body{height:100%;margin:0;background:#fff;color:var(--text);overflow:hidden}
+  .pres-wrap{display:flex;flex-direction:column;height:100vh}
+  .pres-bar{display:flex;align-items:center;justify-content:space-between;padding:10px 24px;border-bottom:1px solid var(--line);background:#fff;gap:16px;flex-shrink:0}
+  .pres-brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:.95rem;color:var(--text)}
+  .pres-dots{display:flex;gap:8px;align-items:center}
+  .pres-dot{width:28px;height:28px;border-radius:3px;border:1px solid var(--line);background:var(--bg2);color:var(--mut);font:600 .8rem/1 var(--mono);cursor:pointer}
+  .pres-dot.active{background:var(--acc);color:#fff;border-color:var(--acc)}
+  .pres-controls{display:flex;gap:8px;align-items:center}
+  .pres-btn{padding:6px 12px;border:1px solid var(--line);background:#fff;color:var(--text);border-radius:3px;font:600 .84rem/1.2 var(--font);cursor:pointer}
+  .pres-btn:hover{background:var(--bg2)}
+  .pres-stage{flex:1;overflow-y:auto;padding:clamp(24px,4vh,48px) clamp(24px,6vw,88px);display:flex;align-items:center;justify-content:center}
+  .slide{display:none;width:100%;max-width:1180px}
+  .slide.active{display:grid;grid-template-columns:1.25fr .95fr;gap:clamp(24px,4vw,56px);align-items:center}
+  .slide.single.active{grid-template-columns:1fr}
+  .slide-kicker{font:700 .78rem/1.3 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--acc);margin:0 0 12px}
+  .slide-headline{font-size:clamp(1.65rem,3.1vw,2.65rem);line-height:1.15;letter-spacing:-.02em;margin:0 0 18px;color:var(--text)}
+  .slide-sub{font-size:clamp(1rem,1.35vw,1.18rem);line-height:1.55;color:var(--mut);margin:0 0 22px}
+  .slide-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+  .slide-source{font-size:.82rem;color:var(--dim);border-top:1px solid var(--line);padding-top:12px;line-height:1.45}
+  .card-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .metric-card{background:var(--bg2);border:1px solid var(--line);border-radius:4px;padding:16px 18px}
+  .metric-val{font:700 clamp(1.35rem,2.2vw,1.95rem)/1.1 var(--mono);color:var(--text);margin-bottom:6px}
+  .metric-val.hot{color:var(--hot)}
+  .metric-val.ok{color:var(--ok)}
+  .metric-lbl{font-size:.84rem;color:var(--mut);line-height:1.35}
+  .mini-table{width:100%;border-collapse:collapse;font-size:.9rem;background:#fff;border:1px solid var(--line)}
+  .mini-table th,.mini-table td{padding:9px 12px;border-bottom:1px solid var(--line);text-align:left}
+  .mini-table th{background:var(--bg2);font:600 .76rem/1.2 var(--mono);text-transform:uppercase;color:var(--mut)}
+  .mini-table td.num{font-family:var(--mono);font-weight:600;text-align:right}
+  .slide-img{width:100%;border:1px solid var(--line);border-radius:4px;display:block;max-height:52vh;object-fit:cover}
+  .pres-foot{padding:8px 24px;border-top:1px solid var(--line);background:var(--bg2);display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:.78rem;color:var(--mut);flex-shrink:0}
+  @media (max-width:900px){
+    html,body{overflow:auto}
+    .pres-wrap{height:auto;min-height:100vh}
+    .slide.active{grid-template-columns:1fr}
+    .card-grid{grid-template-columns:1fr}
+    .pres-bar{flex-wrap:wrap}
+  }
+</style>
+</head>
+<body>
+<div class="pres-wrap">
+  <header class="pres-bar">
+    <div class="pres-brand">
+      <span class="logo-mark" aria-hidden="true"></span>
+      <span>NISAR Pulse · Presentation Mode</span>
+    </div>
+    <nav class="pres-dots" aria-label="Presentation stops">
+      <button type="button" class="pres-dot active" data-go="0" title="1. Home Summary">1</button>
+      <button type="button" class="pres-dot" data-go="1" title="2. Global Atlas">2</button>
+      <button type="button" class="pres-dot" data-go="2" title="3. Konya Plain">3</button>
+      <button type="button" class="pres-dot" data-go="3" title="4. Self-Caught QC">4</button>
+      <button type="button" class="pres-dot" data-go="4" title="5. Results &amp; GNSS">5</button>
+      <button type="button" class="pres-dot" data-go="5" title="6. Simulator">6</button>
+    </nav>
+    <div class="pres-controls">
+      <button type="button" class="pres-btn" id="prevBtn" aria-label="Previous stop">← Prev</button>
+      <span class="mono small" id="stepCounter">1 / 6</span>
+      <button type="button" class="pres-btn" id="nextBtn" aria-label="Next stop">Next →</button>
+      <button type="button" class="pres-btn" id="fsBtn" title="Toggle fullscreen (F)">Fullscreen</button>
+    </div>
+  </header>
+
+  <main class="pres-stage">
+    <!-- Stop 1: Home Summary -->
+    <section class="slide active" data-slide="0">
+      <div>
+        <p class="slide-kicker">Stop 1 of 6 · Home Summary (2026 NISAR L-Band)</p>
+        <h1 class="slide-headline">Central Valley sank up to −7.8 cm (LOS) in 108 days, losing 0.3174 km³/yr of permanent aquifer storage.</h1>
+        <p class="slide-sub">Using provisional NASA-ISRO NISAR L-band interferograms (24.2 cm wavelength), our open-source pipeline tracks pumping-driven land subsidence across agricultural basins, canals, and karst sinkhole corridors.</p>
+        <div class="slide-actions">
+          <a class="btn primary" href="index.html">Open Home Page →</a>
+          <a class="btn" href="science.html">Science &amp; Methods</a>
+        </div>
+        <p class="slide-source"><strong>Source:</strong> Data: NASA-ISRO NISAR, ASF DAAC. Analysis: Team Taykut (<code>data/central_valley/summary.json</code>, <code>data/central_valley_fullyear/storage_loss.json</code>).</p>
+      </div>
+      <div class="card-grid">
+        <div class="metric-card">
+          <div class="metric-val hot">−7.8 cm</div>
+          <div class="metric-lbl">Central Valley peak LOS subsidence (28 Jun – 14 Oct 2026; −10.1 cm vertical est.)</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-val">239.54 km²</div>
+          <div class="metric-lbl">Area sinking faster than −5 cm LOS (1,578.27 km² below −2 cm)</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-val">0.3174 km³/yr</div>
+          <div class="metric-lbl">Permanent aquifer storage loss (317.41 million m³/yr, mixed 11-mo chain)</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-val ok">r = 0.924</div>
+          <div class="metric-lbl">Agreement with 10 continuous GNSS stations (1.00 cm median RMSE)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stop 2: Atlas Ranking -->
+    <section class="slide" data-slide="1">
+      <div>
+        <p class="slide-kicker">Stop 2 of 6 · Global Subsidence Atlas (Common 93-Day Window)</p>
+        <h1 class="slide-headline">Across 29 regions (16 reliable, 13 indicative), Konya Plain ranks #1 at −11.0 cm/100d over the shared summer window.</h1>
+        <p class="slide-sub">All basins are processed with one open-source pipeline and ranked on a common 93-day window (28 Jun – 29 Sep 2026) so differences in acquisition start and end dates do not bias the leaderboard.</p>
+        <div class="slide-actions">
+          <a class="btn primary" href="atlas.html">Open Global Atlas →</a>
+          <a class="btn" href="data.html">Download Atlas JSON</a>
+        </div>
+        <p class="slide-source"><strong>Source:</strong> Data: NASA-ISRO NISAR, ASF DAAC. Analysis: Team Taykut (<code>data/global/atlas.json</code>, <code>data/global/vital_signs.json</code>: 1,479,844 residents on 549.45 km² &lt; −5 cm).</p>
+      </div>
+      <div>
+        <table class="mini-table" aria-label="Top 5 reliable regions by common 93-day rate">
+          <thead>
+            <tr><th>Rank</th><th>Region</th><th>Common (cm/100d)</th><th>Confidence</th></tr>
+          </thead>
+          <tbody id="presAtlasTop5">
+            <tr><td class="num">1</td><td>Konya Plain (Turkey)</td><td class="num">−11.0</td><td>medium (11.6% cov.)</td></tr>
+            <tr><td class="num">2</td><td>Eloy (USA)</td><td class="num">−8.6</td><td>high</td></tr>
+            <tr><td class="num">3</td><td>Central Valley (USA)</td><td class="num">−7.3</td><td>medium (GNSS r=0.924)</td></tr>
+            <tr><td class="num">4</td><td>Kashmar (Iran)</td><td class="num">−7.0</td><td>high</td></tr>
+            <tr><td class="num">5</td><td>Mashhad (Iran)</td><td class="num">−6.9</td><td>high</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Stop 3: Konya Panel -->
+    <section class="slide" data-slide="2">
+      <div>
+        <p class="slide-kicker">Stop 3 of 6 · Konya Plain &amp; Karapınar Sinkholes</p>
+        <h1 class="slide-headline">Konya Plain subsides −11.0 cm/100d (−9.6 cm over 108 d), while Karapınar sinks 6.4× faster within 1 km of sinkholes.</h1>
+        <p class="slide-sub">We flag Konya Plain with an explicit 11.6% valid-coverage caution rather than hiding sparse pixels. In nested Karapınar, two independent spatial permutation tests confirm sinkhole-proximity subsidence above background.</p>
+        <div class="slide-actions">
+          <a class="btn primary" href="atlas.html#konya_plain">Open Konya Panel →</a>
+          <a class="btn" href="game/index.html?basin=konya_plain">Simulate Konya Basin</a>
+        </div>
+        <p class="slide-source"><strong>Source:</strong> Data: NASA-ISRO NISAR, ASF DAAC; AFAD Karapınar inventory. Analysis: Team Taykut (<code>data/global/konya_plain/summary.json</code>, <code>data/karapinar/summary.json</code>).</p>
+      </div>
+      <div class="card-grid">
+        <div class="metric-card">
+          <div class="metric-val hot">−11.0 cm/100d</div>
+          <div class="metric-lbl">Konya Plain common 93-day rate (−9.6 cm LOS over 108 d)</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-val">11.6% valid</div>
+          <div class="metric-lbl">Coverage caution retained transparently in the atlas</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-val hot">−4.15 cm vs −0.65 cm</div>
+          <div class="metric-lbl">Karapınar mean LOS &lt; 1 km vs &gt; 5 km from 29 mapped sinkholes (6.4×)</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-val ok">p = 0.0001</div>
+          <div class="metric-lbl">1.04 km block permutation (p = 0.0207 on 3,423 constellation shifts)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stop 4: Self-Caught QC -->
+    <section class="slide" data-slide="3">
+      <div>
+        <p class="slide-kicker">Stop 4 of 6 · Self-Caught Time-Series QC</p>
+        <h1 class="slide-headline">We caught our own error: automated QC flagged a 12.1 cm phase jump in Semarang, and re-processing recovered −6.2 cm LOS.</h1>
+        <p class="slide-sub">Instead of publishing raw peak numbers, <code>tools/atlas_qc.py</code> scans every headline time series for half-cycle unwrapping jumps (12.1 cm) and cancelling single-date spikes (&gt; 5 cm), segregating 6 flagged basins as indicative.</p>
+        <div class="slide-actions">
+          <a class="btn primary" href="science.html">Inspect QC Rules →</a>
+          <a class="btn" href="atlas.html">View Indicative Filter</a>
+        </div>
+        <p class="slide-source"><strong>Source:</strong> Analysis: Team Taykut (<code>tools/atlas_qc.py</code>, <code>data/global/qc_flags.json</code>, <code>data/global/semarang/summary.json</code>).</p>
+      </div>
+      <div class="card-grid">
+        <div class="metric-card">
+          <div class="metric-val">12.1 cm</div>
+          <div class="metric-lbl">NISAR L-band half-wavelength unwrapping jump threshold caught at epoch 10–11</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-val ok">−6.2 cm LOS</div>
+          <div class="metric-lbl">Semarang re-processed coastal subsidence (#7 reliable, −5.5 cm/100d)</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-val">6 Flagged</div>
+          <div class="metric-lbl">Gorgan, Delhi, Pekalongan, Beijing, Bangkok + unverified moved to indicative</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-val">r ≥ 0.80 rule</div>
+          <div class="metric-lbl">Central Valley (#3) retained medium confidence via independent GNSS (r = 0.924)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stop 5: Results Cards -->
+    <section class="slide" data-slide="4">
+      <div>
+        <p class="slide-kicker">Stop 5 of 6 · Results &amp; Independent Checks</p>
+        <h1 class="slide-headline">NISAR matches 10 GNSS stations at r = 0.924, flags 81/645 canal and rail segments, and stays below detection in London clay.</h1>
+        <p class="slide-sub">Independent GNSS cross-checks, longitudinal infrastructure tilt, and a zero-subsidence negative control establish both sensitivity and noise floor before any policy interpretation.</p>
+        <div class="slide-actions">
+          <a class="btn primary" href="data.html">Open Results &amp; Downloads →</a>
+          <a class="btn" href="explorer.html">Open Time-Series Explorer</a>
+        </div>
+        <p class="slide-source"><strong>Source:</strong> Data: NASA-ISRO NISAR, ASF DAAC; Nevada Geodetic Lab GNSS; OpenStreetMap. Analysis: Team Taykut (<code>data/central_valley/validation.json</code>, <code>assets.json</code>, <code>data/uk_clay/detection.json</code>).</p>
+      </div>
+      <div class="card-grid">
+        <div class="metric-card">
+          <div class="metric-val ok">1.00 cm RMSE</div>
+          <div class="metric-lbl">10-station GNSS median RMSE (0.76 cm on 4 active sites &gt; 2 cm)</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-val hot">81 / 645</div>
+          <div class="metric-lbl">Infrastructure segments &gt; 20 mm/km tilt (Tulare Canal 57.01 mm/km; ±25% rank-invariant)</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-val">−16.8 ± 2.2 cm/yr</div>
+          <div class="metric-lbl">Earlimart permanent rate vs 11.7 cm seasonal rebound (R² = 0.97)</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-val ok">3σ = 3.62 cm</div>
+          <div class="metric-lbl">London clay negative control: below_detection (97.7% within ±1.5 cm)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stop 6: Simulator -->
+    <section class="slide" data-slide="5">
+      <div>
+        <p class="slide-kicker">Stop 6 of 6 · Valley Under Pressure Simulator</p>
+        <h1 class="slide-headline">Test 24-month groundwater pumping and recharge decisions against calibrated 1970–2026 Terra Bella compaction.</h1>
+        <p class="slide-sub">Users manage seasonal pumping across Central Valley, Konya Plain, and Karapınar to see how crossing the preconsolidation head triggers irreversible clay compaction.</p>
+        <div class="slide-actions">
+          <a class="btn primary" href="game/index.html">Launch Simulator →</a>
+          <a class="btn" href="../docs/story/presentation_cues.md">Speaker Cues</a>
+        </div>
+        <p class="slide-source"><strong>Source:</strong> Model calibrated to USGS/NGL Terra Bella compaction (1970–2026) and NISAR L-band rates (<code>web/game/index.html</code>).</p>
+      </div>
+      <div>
+        <img class="slide-img" src="assets/simulator.jpg" alt="Valley Under Pressure 24-month groundwater subsidence simulator interface">
+      </div>
+    </section>
+  </main>
+
+  <footer class="pres-foot">
+    <span><em>NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.</em></span>
+    <span>Keys: ← / → or Space · F fullscreen</span>
+  </footer>
+</div>
+
+<script>
+(function(){
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const dots = Array.from(document.querySelectorAll('.pres-dot'));
+  const counter = document.getElementById('stepCounter');
+  let idx = 0;
+
+  function show(n){
+    idx = (n + slides.length) % slides.length;
+    slides.forEach((s, i) => s.classList.toggle('active', i === idx));
+    dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+    counter.textContent = (idx + 1) + ' / ' + slides.length;
+  }
+
+  document.getElementById('prevBtn').addEventListener('click', () => show(idx - 1));
+  document.getElementById('nextBtn').addEventListener('click', () => show(idx + 1));
+  dots.forEach(d => d.addEventListener('click', () => show(Number(d.dataset.go))));
+  document.getElementById('fsBtn').addEventListener('click', () => {
+    if (!document.fullscreenElement) document.documentElement.requestFullscreen?.();
+    else document.exitFullscreen?.();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); show(idx + 1); }
+    else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); show(idx - 1); }
+    else if (e.key === 'Home') { e.preventDefault(); show(0); }
+    else if (e.key === 'End') { e.preventDefault(); show(slides.length - 1); }
+    else if (e.key === 'f' || e.key === 'F') {
+      if (!document.fullscreenElement) document.documentElement.requestFullscreen?.();
+      else document.exitFullscreen?.();
+    }
+  });
+
+  // Progressive enhancement from local atlas.json when served over HTTP
+  const ROOT = location.pathname.includes('/web/') ? '../' : '';
+  fetch(ROOT + 'data/global/atlas.json').then(r => r.ok ? r.json() : null).then(a => {
+    if (!a || !Array.isArray(a.regions)) return;
+    const rel = a.regions.filter(r => !r.indicative_only).slice(0, 5);
+    const tbody = document.getElementById('presAtlasTop5');
+    if (tbody && rel.length) {
+      tbody.innerHTML = rel.map((r, i) =>
+        '<tr><td class="num">' + (i + 1) + '</td><td>' + r.name + (r.country ? ' (' + r.country + ')' : '') +
+        '</td><td class="num">' + Number(r.rate_cm_per_100d_common).toFixed(1) + '</td><td>' + (r.confidence || 'medium') + '</td></tr>'
+      ).join('');
+    }
+  }).catch(() => {});
+})();
+</script>
+</body>
+</html>
