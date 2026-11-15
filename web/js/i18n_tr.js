@@ -432,6 +432,7 @@ Object.assign(window.I18N_TR, {
   "Find and compare": "Bulun ve karşılaştırın",
   "Search a city, filter by confidence or country, rank by speed or by area, switch between line-of-sight and vertical values, or put two cities side by side.":
     "Bir şehir arayın, güvene ya da ülkeye göre filtreleyin, hıza ya da alana göre sıralayın, görüş hattı ile düşey değerler arasında geçiş yapın veya iki şehri yan yana koyun.",
+  "Details below ↓": "Ayrıntılar aşağıda ↓",
   "Every measured place": "Ölçülen her yer",
   "The full ranked list. Click a place to see its sinking over time, its map and the caveats for that measurement.":
     "Sıralı tam liste. Bir yere tıklayın; zaman içindeki çökmesini, haritasını ve o ölçümle ilgili uyarıları görün.",

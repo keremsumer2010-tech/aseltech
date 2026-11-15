@@ -244,7 +244,7 @@ async function initVitalSigns(){
     document.getElementById('vcPeople').hidden = false;
     shown++;
   }
-  if (shown > 0) document.getElementById('vitalBar').hidden = false;
+  if (shown > 0){ document.getElementById('vitalBar').hidden = false; fitVitalBar(); }
 }
 
 async function initDataBox(){
@@ -342,6 +342,13 @@ function buildGeoJson(regions){
   };
 }
 
+function fitVitalBar(){
+  const v = document.getElementById('vitalBar');
+  document.documentElement.style.setProperty('--vb', (v && !v.hidden ? v.offsetHeight : 0) + 'px');
+  if (map && map.resize) map.resize();
+}
+window.addEventListener('resize', fitVitalBar);
+
 function renderListAndMap(){
   const q = (document.getElementById('atlasSearch')?.value || '').trim().toLowerCase();
   const cf = document.getElementById('atlasConfFilter')?.value || 'all';
@@ -353,32 +360,6 @@ function renderListAndMap(){
     if (cf === 'indicative' && !isIndicative(r)) return false;
     if (ctry !== 'all' && (r.country || '') !== ctry) return false;
     return true;
-  });
-
-  const listEl = document.getElementById('atlasList');
-  listEl.innerHTML = filteredRegions.length ? filteredRegions.map((r, idx) => {
-    let rateTxt;
-    if (sortAxis === 'area'){
-      const aVal = r.area_km2_lt_minus5cm_common;
-      rateTxt = (typeof aVal === 'number' && Number.isFinite(aVal)) ? `${fmtNum(aVal)} km²` : 'no area';
-    } else {
-      const val = unitMode === 'vert' ? r.max_cm_vertical_est : r.rate_cm_per_100d;
-      const unit = unitMode === 'vert' ? 'cm vert (est.)' : 'cm/100d';
-      rateTxt = (typeof val === 'number' && Number.isFinite(val)) ? `${fmtNum(val)} ${unit}` : 'no data';
-    }
-    const indCls = isIndicative(r) ? ' is-indicative' : '';
-    const actCls = r.id === activeId ? ' is-active' : '';
-    const updBadge = /recomputed/i.test(r.note || '') ? ' <span class="cbadge updated">Updated</span>' : '';
-    const rankNum = sortAxis === 'area' ? `#${idx + 1}` : (r.rank ? `#${r.rank}` : '');
-    const areaSubNote = sortAxis === 'area' ? ' <span style="font-size:0.72rem;color:var(--mut)">&lt;&minus;5cm</span>' : '';
-    return `<button type="button" class="atlas-item${indCls}${actCls}" data-id="${esc(r.id)}">
-      <span class="ai-left"><span class="ai-name">${rankNum ? rankNum + ' · ' : ''}${esc(r.name)}</span><span class="ai-sub">${r.country ? esc(r.country) + ' · ' : ''}${confBadge(r)}${updBadge}</span></span>
-      <span class="ai-right"><span class="ai-rate" style="color:${sortAxis === 'area' ? 'var(--acc)' : rateColor(r.rate_cm_per_100d)}">${esc(rateTxt)}${areaSubNote}</span></span>
-    </button>`;
-  }).join('') : '<p class="small">No regions match this filter.</p>';
-
-  listEl.querySelectorAll('.atlas-item').forEach(btn => {
-    btn.addEventListener('click', () => { stopTour(); selectRegion(btn.dataset.id, true, true); });
   });
 
   if (map && mapReady && map.getSource('atlas-pts')){
@@ -469,7 +450,7 @@ async function initAtlas(){
   if (Array.isArray(ex?.cities)) ex.cities.forEach(c => expMap.set(c.id, c));
   initDataBox();
   if (!atlasData || !Array.isArray(atlasData.regions)){
-    document.getElementById('atlasList').innerHTML = '<p class="small">Could not load data/global/atlas.json.</p>';
+    document.getElementById('atlasPanel').insertAdjacentHTML('beforeend','<p class="small">Could not load data/global/atlas.json.</p>');
     return;
   }
   sortAxis = 'rate';
@@ -723,7 +704,6 @@ async function selectRegion(id, fly, updateHash){
   if (updateHash && location.hash !== '#' + id){
     try{ history.replaceState(null, '', '#' + id); }catch(e){}
   }
-  document.querySelectorAll('.atlas-item').forEach(el => el.classList.toggle('is-active', el.dataset.id === id));
   document.querySelectorAll('#top5CardRows tr').forEach(tr => tr.classList.toggle('is-active', tr.dataset.id === id));
   if (fly && map && typeof r.lon === 'number' && typeof r.lat === 'number'){
     map.flyTo({center: [r.lon, r.lat], zoom: 5.5, duration: 1200});
@@ -802,6 +782,8 @@ async function selectRegion(id, fly, updateHash){
     ? `<div class="atlas-val-box"><b>Validation note${valNote.literature_vertical_cm_per_yr ? ` (lit. ${esc(valNote.literature_vertical_cm_per_yr)} cm/yr)` : ''}:</b> ${esc(valNote.agreement_note)}</div>` : '';
   const detail = document.getElementById('atlasDetail');
   detail.hidden = false;
+  const jump = document.getElementById('detailJump');
+  if (jump){ jump.hidden = false; }
   detail.innerHTML = `
     <h2>${esc(r.name)}${r.country ? ` <small class="small">(${esc(r.country)})</small>` : ''}</h2>
     <p style="margin:0 0 8px">${confBadge(r)} <span class="qbadge provisional">${esc((r.quality || 'provisional').toUpperCase())}</span>${isRecomputed ? ' <span class="cbadge updated">Updated</span>' : ''}</p>

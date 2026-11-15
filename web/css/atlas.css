@@ -7,9 +7,13 @@
 .vc-lbl{display:block;font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--mut);font-weight:600}
 .vital-card b{display:block;font-size:1.35rem;font-family:var(--mono);color:var(--acc);margin:2px 0}
 .vital-card small{font-size:.74rem;color:var(--mut)}
-.atlas-wrap{display:grid;grid-template-columns:430px 1fr;height:calc(100vh - var(--hdr));margin-top:var(--hdr)}
-.vital-bar:not([hidden]) + .atlas-wrap{margin-top:0;height:calc(100vh - var(--hdr) - 86px)}
-.atlas-panel{overflow-y:auto;padding:20px 20px 32px;border-right:1px solid var(--line);background:var(--bg)}
+.atlas-wrap{display:block;height:calc(100vh - var(--hdr) - var(--vb,0px));min-height:420px;margin-top:var(--hdr)}
+.vital-bar:not([hidden]) + .atlas-wrap{margin-top:0}
+.atlas-wrap .atlas-mapwrap{height:100%}
+.atlas-panel{display:grid;grid-template-columns:minmax(300px,430px) minmax(0,1fr);gap:28px;align-items:start;max-width:1160px;margin:0 auto;padding:32px 24px 24px;background:var(--bg)}
+.atlas-panel .atlas-detail{border-top:0;margin-top:0;padding-top:0}
+.detail-jump{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);z-index:6;background:var(--acc);color:#fff;padding:8px 16px;border-radius:20px;font:600 .8rem var(--font);box-shadow:0 2px 10px rgba(0,0,0,.35);text-decoration:none}
+.detail-jump[hidden]{display:none}
 .atlas-panel h1{font-size:1.55rem;margin:0 0 .3em}
 .atlas-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0 12px}
 .atlas-stat{background:var(--bg2);border:1px solid var(--line);border-radius:3px;padding:8px 10px}
@@ -27,7 +31,6 @@
 .cmp-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0}
 .cmp-col{background:#fff;border:1px solid var(--line);border-radius:3px;padding:8px;font-size:.78rem}
 .cmp-col b{display:block;font-size:.86rem;margin-bottom:4px}
-.atlas-list{display:flex;flex-direction:column;gap:6px;margin:10px 0 16px}
 .atlas-item{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;text-align:left;padding:9px 11px;background:#fff;border:1px solid var(--line);border-radius:3px;cursor:pointer;font:500 .88rem var(--font);color:var(--text)}
 .atlas-item.is-indicative{opacity:.76}
 .atlas-item:hover,.atlas-item.is-active{border-color:var(--acc);background:#f5f8ff;opacity:1}
@@ -120,10 +123,8 @@
 @media (max-width:860px){
   .atlas-page{overflow:auto}
   .atlas-top5-card{display:none}
-  .atlas-wrap{grid-template-columns:1fr;grid-template-rows:52vh auto;height:auto}
-  .vital-bar:not([hidden]) + .atlas-wrap{height:auto}
-  .atlas-mapwrap{grid-row:1;min-height:52vh}
-  .atlas-panel{grid-row:2;border-right:0}
+  .atlas-wrap{height:70vh}
+  .atlas-panel{grid-template-columns:1fr;gap:18px;padding:20px 16px}
   .atlas-legend{right:10px;bottom:10px;padding:7px 9px}
   .tour-caption{left:10px;bottom:10px;max-width:220px;font-size:.78rem}
   .atlas-toolbar{top:10px;right:10px}
@@ -132,7 +133,7 @@
 @media print{
   @page{size:A4 portrait;margin:10mm}
   body.atlas-page{background:#fff;color:#000;overflow:visible}
-  .site-header,.atlas-wrap{display:none!important}
+  .site-header,.atlas-wrap,.atlas-panel{display:none!important}
   .vital-bar{margin-top:0;padding:6px 0;border:0;background:#fff;grid-template-columns:repeat(4,1fr);gap:6px}
   .vital-card{padding:6px 8px;border:1px solid #cbd5e1}
   .vital-card b{font-size:11pt}

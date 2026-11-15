@@ -31,7 +31,42 @@
   <div class="vital-card" id="vcPeople" hidden><span class="vc-lbl">People on sinking ground</span><b id="vPeople">—</b><small>live where ground sank more than 5 cm (2.0 in) in one summer (GHSL population estimate)</small></div>
 </section>
 <main class="atlas-wrap">
-  <aside class="atlas-panel" aria-label="Global atlas controls and region details">
+  <section class="atlas-mapwrap" aria-label="Interactive 3D globe of measured regions">
+    <div id="atlasMap"></div>
+    <div class="atlas-top5-card" id="atlasTop5Card" aria-label="Top 5 reliable sinking basins">
+      <div class="top5-card-hdr">
+        <b>Top 5 Basins <small>(93-d window)</small></b>
+        <span class="qbadge provisional">PROVISIONAL</span>
+      </div>
+      <table class="atlas-top5-table">
+        <thead><tr><th>#</th><th>Region</th><th>Rate</th><th>Conf</th></tr></thead>
+        <tbody id="top5CardRows"></tbody>
+      </table>
+      <div class="top5-foot"><span>Click to select</span><a href="#atlasTables">All 20 basins ↓</a></div>
+    </div>
+    <div class="atlas-toolbar">
+      <div class="atlas-layers" id="atlasLayers" role="group" aria-label="Map layer">
+        <button type="button" class="al-btn is-active" data-layer="disp">Subsidence</button>
+        <button type="button" class="al-btn" data-layer="sigma">Uncertainty (&sigma;)</button>
+        <button type="button" class="al-btn" data-layer="conf">Confidence</button>
+      </div>
+      <button type="button" class="tour-btn" id="tourBtn">Tour top 5</button>
+      <button type="button" class="tour-btn" id="guideBtn" title="Step-by-step guide to this page">? How to use</button>
+    </div>
+    <a class="detail-jump" id="detailJump" href="#atlasDetail" hidden>Details below ↓</a>
+    <div class="tour-caption" id="tourCaption" hidden></div>
+    <div class="offline-pill" id="offlinePill" hidden>Offline basemap: NASA Blue Marble</div>
+    <div class="atlas-legend" id="atlasLegend">
+      <b>Rate (cm / 100 days, LOS)</b>
+      <div class="al-row"><span class="al-dot" style="background:#991b1b"></span><span>&le; &minus;6.0 cm/100d</span></div>
+      <div class="al-row"><span class="al-dot" style="background:#c8321f"></span><span>&minus;4.0 to &minus;6.0 cm/100d</span></div>
+      <div class="al-row"><span class="al-dot" style="background:#d97706"></span><span>&minus;2.0 to &minus;4.0 cm/100d</span></div>
+      <div class="al-row"><span class="al-dot" style="background:#64748b"></span><span>&gt; &minus;2.0 cm/100d</span></div>
+    </div>
+  </section>
+</main>
+  <section class="atlas-panel" id="atlasPanel" aria-label="Global atlas controls and region details">
+  <div class="ap-side">
     <p class="chapter">Global Atlas · 2026</p>
     <h1>Sinking basins worldwide</h1>
     <p class="small">We used NASA-ISRO NISAR <b>provisional</b> L2 <b>GUNW</b> (Geocoded Unwrapped Interferogram) radar pairs to measure ground sinking in 20 basins over the same 93 days. Rates are in <b>cm/100d</b> (centimeters per 100 days; 1 in = 2.54 cm) along satellite <b>LOS</b> (line-of-sight: toward or away from the radar), where deeper red means faster sinking and pale tones mean near-zero motion. Low-coverage basins or series flagged by our automated quality checks are marked <b>indicative only</b> so you always know which numbers are rock-solid.</p>
@@ -86,42 +121,10 @@
       <div id="cmpBody"></div>
     </section>
 
-    <section class="atlas-detail" id="atlasDetail" hidden></section>
-    <div class="atlas-list" id="atlasList" role="list"></div>
-  </aside>
-  <section class="atlas-mapwrap" aria-label="Interactive 3D globe of measured regions">
-    <div id="atlasMap"></div>
-    <div class="atlas-top5-card" id="atlasTop5Card" aria-label="Top 5 reliable sinking basins">
-      <div class="top5-card-hdr">
-        <b>Top 5 Basins <small>(93-d window)</small></b>
-        <span class="qbadge provisional">PROVISIONAL</span>
-      </div>
-      <table class="atlas-top5-table">
-        <thead><tr><th>#</th><th>Region</th><th>Rate</th><th>Conf</th></tr></thead>
-        <tbody id="top5CardRows"></tbody>
-      </table>
-      <div class="top5-foot"><span>Click to select</span><a href="#atlasTables">All 20 basins ↓</a></div>
-    </div>
-    <div class="atlas-toolbar">
-      <div class="atlas-layers" id="atlasLayers" role="group" aria-label="Map layer">
-        <button type="button" class="al-btn is-active" data-layer="disp">Subsidence</button>
-        <button type="button" class="al-btn" data-layer="sigma">Uncertainty (&sigma;)</button>
-        <button type="button" class="al-btn" data-layer="conf">Confidence</button>
-      </div>
-      <button type="button" class="tour-btn" id="tourBtn">Tour top 5</button>
-      <button type="button" class="tour-btn" id="guideBtn" title="Step-by-step guide to this page">? How to use</button>
-    </div>
-    <div class="tour-caption" id="tourCaption" hidden></div>
-    <div class="offline-pill" id="offlinePill" hidden>Offline basemap: NASA Blue Marble</div>
-    <div class="atlas-legend" id="atlasLegend">
-      <b>Rate (cm / 100 days, LOS)</b>
-      <div class="al-row"><span class="al-dot" style="background:#991b1b"></span><span>&le; &minus;6.0 cm/100d</span></div>
-      <div class="al-row"><span class="al-dot" style="background:#c8321f"></span><span>&minus;4.0 to &minus;6.0 cm/100d</span></div>
-      <div class="al-row"><span class="al-dot" style="background:#d97706"></span><span>&minus;2.0 to &minus;4.0 cm/100d</span></div>
-      <div class="al-row"><span class="al-dot" style="background:#64748b"></span><span>&gt; &minus;2.0 cm/100d</span></div>
-    </div>
-  </section>
-</main>
+  </div>
+  <section class="atlas-detail" id="atlasDetail" aria-label="Selected region details" hidden></section>
+</section>
+
 <section class="atlas-tables" id="atlasTables" aria-label="Fastest-sinking places ranking tables">
   <div class="print-only-hdr">
     <h1>NISAR Global Subsidence Atlas 2026</h1>

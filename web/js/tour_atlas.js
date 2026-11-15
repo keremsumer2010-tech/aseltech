@@ -15,9 +15,7 @@
     {el: '#tourBtn', title: 'Let the map present',
       text: '<b>Tour top 5</b> flies through the five fastest basins automatically. Handy when you show this to someone.'},
     {el: '.atlas-controls', title: 'Find and compare',
-      text: 'Search a city, filter by confidence or country, rank by speed or by area, switch between line-of-sight and vertical values, or put two cities side by side.'},
-    {el: '#atlasList', title: 'Every measured place',
-      text: 'The full ranked list. Click a place to see its sinking over time, its map and the caveats for that measurement.'},
+      text: 'Below the globe: search a city, filter by confidence or country, rank by speed or by area, switch between line-of-sight and vertical values, or put two cities side by side.'},
     {el: '#atlasTables', title: 'Rankings and downloads',
       text: 'Further down: ranking tables for reliable and indicative places, the change log, and open downloads (JSON, GeoJSON, CSV) with a citation.'},
     {el: '#guideBtn', title: 'See this again',
@@ -31,8 +29,7 @@
   // First visit: wait for the list and the map to exist so the lit areas are the real ones.
   let tries = 0;
   (function wait() {
-    const list = document.getElementById('atlasList');
-    const ready = list && list.children.length > 1 && document.querySelector('#atlasMap canvas');
+    const ready = document.querySelectorAll('#top5CardRows tr').length && document.querySelector('#atlasMap canvas');
     if (ready || tries > 40) { if (window.GuidedTour) setTimeout(() => GuidedTour.auto(steps, opts), 600); return; }
     tries++; setTimeout(wait, 250);
   })();
