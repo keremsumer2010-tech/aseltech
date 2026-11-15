@@ -22,8 +22,12 @@
     "Chen et al. / Gong et al. Beijing Plain InSAR studies",
     "Zhou et al. / Gao et al. Chaoyang-Tongzhou InSAR"
   ],
-  "agreement_note": "After bridging the 2026-07-11 acquisition, the local full-box result is -8.4 cm LOS over 120 days (-7.0 cm/100d). Two alternate reference windows give -2.3 and -4.5 cm at the same location; the headline remains reference-sensitive. The NW foothill anchor is PC1-supplied; independent geology/GNSS verification was not completed. Treat as indicative pending PC5 review.",
+  "agreement_note": "After bridging the 2026-07-11 acquisition, the local full-box result is -8.4 cm LOS over 120 days (-7.0 cm/100d). Two alternate reference windows give -2.3 and -4.5 cm at the same location; the headline remains reference-sensitive. The NW foothill anchor is PC1-supplied; independent geology/GNSS verification was not completed. QC: step 2 (2026-06-29→2026-07-11) = -10.11 cm ≈ one phase cycle (12.1 cm). Confidence is low (indicative only).",
   "recommended_confidence": "low",
+  "indicative_only": true,
+  "qc_flags": [
+    "phase_cycle_jump"
+  ],
   "press_summary_approved": false,
   "press_summary_gate_note": "Exclude -1.4 cm from press summary until PC10 re-runs with NW mountain/bedrock reference.",
   "first_nisar_measurement": {

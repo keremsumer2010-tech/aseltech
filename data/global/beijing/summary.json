@@ -49,7 +49,12 @@
  "p2_cm": -13.06,
  "rate_cm_per_100d": -12.5,
  "valid_fraction": 0.675,
- "confidence": "high",
+ "confidence": "low",
+ "indicative_only": true,
+ "qc_flags": [
+  "phase_cycle_jump"
+ ],
+ "qc_note": "QC flagged: step 2 (2026-06-29→2026-07-11) = -10.11 cm ≈ one phase cycle (12.1 cm). Confidence downgraded to low (indicative only).",
  "ref_range_cm": [
   -8.1,
   -5.5
