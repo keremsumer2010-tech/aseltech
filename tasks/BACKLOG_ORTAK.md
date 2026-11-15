@@ -58,4 +58,4 @@ Kullanıcı artık ajanlara prompt girmiyor; **tüm yönetim git üzerinden.** K
 ## D. Kalite (herkes)
 - [ ] `python -m pytest -q` tüm repo — kırılan testin sahibine `docs/qa/PCx.md`'de bildir
 - [ ] `pipeline/pc7/validate_json.py` ve `tools/validate_atlas.py` — bulguları sahiplerine
-- [ ] Tüm `docs/story/*.md` içinde kırık bağlantı taraması
+- [x PC4] Tüm `docs/story/*.md` içinde kırık bağlantı taraması (0 kırık yerel bağlantı)
