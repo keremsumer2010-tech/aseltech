@@ -383,7 +383,8 @@
 - **SUREKLI KONTROL & TEST TARAMASI (12:00):**
   - `python tools/atlas_completeness.py` calistirildi: 29 bolge icin 171/174 hucre tamam, PC8: **0 eksik**.
   - `docs/story/submission_form.md` senkronizasyonu teyit edildi; ultra-kisa 141/150 karakter, standart 282/500 karakter.
-  - Tum repo test taramasi yapildi (`python -m pytest -q`): 107 test gecti, 1 test (`test_headline_numbers_match_home_summary`) yalnizca `docs/story/slides.html` (PC4 calisma alani) nedeniyle beklemede.
+  - PC4 `slides.html` senkronizasyonunu tamamladi (commit `aeb9a55`). `pytest tests/` calistirildi: **10/10 test basariyla gecti** (tum sayisal tutarlilik ve sema testleri `100% PASS`).
+
 
 
 - **SUREKLI KONTROL (11:48):** 29 bolge atlas.json ve exposure_atlas.json senkron. PC4'e bildirim: commit 01c7d03 ile guncellenen `docs/story/slides.html` icinde 0.32 km3/yr (beklenen 0.3174), 5 regions (beklenen 29) ve opera_r 0.91 (beklenen 0.912) degerleri `tests/test_numbers_consistency.py` testini kiriyor.
