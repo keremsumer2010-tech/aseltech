@@ -3,8 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Global Subsidence Atlas 2026 — NISAR Pulse</title>
-<meta name="description" content="2026 NISAR global groundwater subsidence atlas: cities and basins measured with the same open method and ranked by rate per 100 days (LOS).">
+<title>Global Subsidence Atlas 2026 (29 Regions) — NISAR Pulse</title>
+<meta name="description" content="2026 NISAR global groundwater subsidence atlas across 29 regions (16 reliable, 13 indicative) ranked over a common 93-day window by rate per 100 days (LOS, provisional).">
+<meta property="og:image" content="https://keremsumer2010-tech.github.io/aseltech/docs/story/media/pc10_global.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="vendor/maplibre-gl.css">
@@ -37,6 +38,16 @@
       <div class="atlas-stat"><b id="stRel">—</b><span>Reliable</span></div>
       <div class="atlas-stat"><b id="stInd">—</b><span>Indicative only</span></div>
     </div>
+
+    <details class="atlas-guide" open style="margin:10px 0;padding:8px 10px;border:1px solid rgba(255,255,255,.12);border-radius:8px;font-size:12px;line-height:1.45;">
+      <summary style="cursor:pointer;font-weight:600;">How to read this map (4 steps)</summary>
+      <ol style="margin:6px 0 0 16px;padding:0;">
+        <li><b>LOS vs. vertical:</b> Numbers show radar line-of-sight (LOS) motion; use <i>Values: LOS</i> to toggle approximate vertical (LOS / cos &theta;).</li>
+        <li><b>Color scale:</b> Deeper red marks faster sinking (cm or cm/100d over the 93-day common window); pale tones mark near-zero motion.</li>
+        <li><b>Confidence badge:</b> <code>high</code> / <code>medium</code> badges indicate consistent multi-reference stacks and solid valid coverage (<code>reliable</code>).</li>
+        <li><b>Indicative only:</b> Low-coverage scenes or QC-flagged series (phase-cycle jumps or single-date spikes) are separated as <code>indicative only</code>.</li>
+      </ol>
+    </details>
 
     <div class="atlas-controls" aria-label="Search, filter and display options">
       <input type="search" id="atlasSearch" class="atlas-input" placeholder="Search city or country..." aria-label="Search city or country">

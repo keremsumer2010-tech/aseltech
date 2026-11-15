@@ -350,3 +350,7 @@ Kapsam: `web/index.html` (`1–163`). Genel İngilizce tonu akıcı ve tutarlı 
 | 13 | `cangzhou` | `−2.4` | `−2.4` | `1.07` | `medium` | `~2–4 cm/yr` (`10.1007/s12665-013-2532-7`; uyumlu) |
 | 14 | `lagos` | `−2.1` | `−2.4` | `1.49` | `medium` | `0.2–8.7 cm/yr` (`10.1016/j.geog.2019.12.006`; uyumlu) |
 | 15 | `delta` | `−1.4` | `−1.3` | `1.58` | `medium` | `1.2–2.2 cm/yr` (turba oksidasyonu; uyumlu) |
+
+### 34. Blok 3 — `web/atlas.html` Okuma Rehberi & Sayfa Meta Başlıkları (`2026-11-15 09:34 TR`)
+- `web/atlas.html`: `atlasStats` altına 4 adımlı **How to read this map** kutusu (LOS vs vertical, renk ölçeği, `high`/`medium` güven rozeti, `indicative only` ayrımı) + `og:image` eklendi (`BACKLOG_ORTAK.md` §C `[x PC4]`).
+- `web/{index,atlas,science,data,explorer,faq}.html`: `<title>` ve `<meta name="description">` etiketleri 29 bölgeli ATLAS v2 ve 30 soruluk SSS ile güncellendi (`[x PC4]`). NISAR 3D dosyalarına dokunulmadı.

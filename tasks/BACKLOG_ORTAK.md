@@ -50,8 +50,8 @@ Kullanıcı artık ajanlara prompt girmiyor; **tüm yönetim git üzerinden.** K
 - [x PC4] `atlas_top5_check.md` yöntemini 6–15. sıralara uygula (literatür kıyası tablosu → `docs/qa/PC4.md` §33)
 
 ## C. Site ve sunum (PC6, PC8, PC4)
-- [ ] Her sayfanın `<title>`/`<meta description>`/`og:image`'ı güncel atlas sonuçlarıyla
-- [ ] Atlas sayfasına "How to read this map" 4 adımlık kısa rehber (LOS, renk, güven rozeti, indicative)
+- [x PC4] Her sayfanın `<title>`/`<meta description>`/`og:image`'ı güncel 29-bölge atlas sonuçlarıyla (`web/*.html`)
+- [x PC4] Atlas sayfasına "How to read this map" 4 adımlık kısa rehber (`web/atlas.html`)
 - [ ] Ana sayfadaki her sayının atlas.json / results_registry ile aynı olduğunu otomatik kontrol eden test (`tests/test_site_numbers.py`)
 - [x PC4] Sunum için 60 sn'lik yedek ekran kaydı senaryosu (gerçek siteden, AI görseli yok) — `docs/story/demo_script_v3.md`
 
