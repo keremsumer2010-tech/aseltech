@@ -1,0 +1,22 @@
+{
+  "site": "global_jakarta",
+  "bbox": [
+    106.58,
+    -6.4,
+    107.08,
+    -5.9
+  ],
+  "quality": "provisional",
+  "coverage": "ok",
+  "granules": 16,
+  "chain_pairs": 8,
+  "path": 10,
+  "frame": 174,
+  "period": [
+    "2026-06-26",
+    "2026-10-12"
+  ],
+  "gaps": [],
+  "total_raw_mb": 17684.2,
+  "error": null
+}
