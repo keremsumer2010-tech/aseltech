@@ -295,6 +295,8 @@ Toplam bulgu: 27.
 
 Kontroller: 0–150% pompalama serisinde çökme monoton arttı; kalıcı çökme toplam çökme değerini aşmadı; ölçümler sonlu ve negatif olmayan büyüklüklerdi. Bu model çalıştırmasında sayısal hata görülmedi. Daha fazla pompalama daha yüksek gelir de üretti; bu, modelin kısa dönem gelir fonksiyonunun sonucu ve gerçek dünya tahmini olarak yorumlanmamalı. Su yılı sınıfları ve bazı ekonomik/fiziksel parametreler modelde açıklayıcı/temsili olarak işaretlidir.
 
+Tekrar kontrolü (2026-11-15): `node pipeline/pc7/game_strategy_test.js` 10 stratejinin her birini 24 ay çalıştırdı; pompalama monotonluğu, kalıcı çökme sınırı ve sonlu/negatif olmayan sonuç kontrollerinin üçü de `true` döndü. Oyun dosyalarına dokunulmadı.
+
 ## 5. Q10 Fens GCOV zaman serisi (yerel kesitler, offline)
 
 Son pull'da sekiz PC2 kesiti bulundu: 2026-06-22, 07-04, 07-16, 08-21, 09-02, 09-14, 09-26 ve 10-08. Hepsinin `quality` değeri `provisional`; aynı EPSG:32630 40 m ızgarasında HH/HV dB alanları var. `pipeline/pc7/analyze_fens_crops.py` her tarihte aynı dört ayrı 12 × 12 piksel (480 m × 480 m) pencerenin sonlu HH/HV piksellerini ortaladı; koordinatlar pencere merkezlerinden dönüştürüldü.
