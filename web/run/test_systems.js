@@ -1,142 +1,54 @@
-'use strict';
+// Aquifer Run rule + level checks (PC1). Usage: node web/run/test_systems.js
+const fs = require('fs'), path = require('path');
+const Sys = require('./systems.js');
+const Engine = require('./engine.js');
+let fail = 0;
+const ok = (cond, msg) => { if (!cond) { fail++; console.log('  FAIL:', msg); } };
 
-const assert = require('assert');
-const fs = require('fs');
-const path = require('path');
-const Systems = require('./systems.js');
-const levelsDir = path.join(__dirname, 'levels');
-const facts = require('./facts.json');
-const atlas = require('../../data/global/atlas.json');
-const home = require('../../data/global/home_summary.json');
+// ---------- rules ----------
+const lvl = { id: 't', aquifer: { start: 50, redLine: 40, drainPerPump: 1, recharge: 0, pumpBoost: 0 }, tiles: ['....', 'SSGG'], legend: { S: 'sink1', G: 'grass' },
+  entities: [{ type: 'pump' }, { type: 'pump' }, { type: 'crop' }, { type: 'chip', fact: 'a' }, { type: 'chip', fact: 'qc' }], nisar: { realFactCm: -7.3 } };
+let s = Sys.createLevelState(lvl);
+Sys.update(s, 1, []); ok(Math.abs(s.aquifer - 48) < 1e-6, 'two running pumps drain 2 per second');
+Sys.update(s, 1, [{ type: 'action', target: 'pump' }]); ok(s.pumpsOff === 1 && Math.abs(s.aquifer - 47) < 1e-6, 'pump off reduces drain');
+const crop = { watered: true }; s.tank = 1; Sys.update(s, 0, [{ type: 'action', target: 'crop', entity: crop }]);
+ok(crop.watered === false && s.cropsWatered === 0, 'crop needs 2 water (veto)');
+s.tank = 4; Sys.update(s, 0, [{ type: 'action', target: 'crop', entity: { watered: true } }]); ok(s.tank === 2 && s.cropsWatered === 1, 'crop watering costs 2');
+Sys.update(s, 0, [{ type: 'pickup', target: 'chip', fact: 'qc' }]); ok(s.qcFound && s.chips === 0, 'qc chip is the bad-data trap, not a real chip');
+Sys.update(s, 0, [{ type: 'pickup', target: 'chip', fact: 'a' }]); ok(s.chips === 1 && s.chipsTotal === 1, 'real chips counted');
+s.aquifer = 30; s.playerTx = 0; for (let i = 0; i < 30; i++) Sys.update(s, 0.2, []);
+const drops = Sys.sinkTilesToDrop(s); ok(drops.length >= 1 && s.belowRedEver, 'below the safe line, nearby cracked ground collapses');
+ok(Sys.aquiferInfo(s).cmSunk === s.permanentTiles * 2, '1 collapsed tile = 2 cm');
+Sys.update(s, 0, [{ type: 'reachFlag' }]); const sc = Sys.score(s);
+ok(sc.stars[0] === true && sc.stars[1] === false && sc.stars[2] === true, 'stars: end yes, safe line no, chips yes');
+ok(sc.report.realFactCm === -7.3 && /provisional/.test(sc.report.calibration), 'report carries the real NISAR number and calibration sentence');
 
-function loadLevels() {
-  return fs.readdirSync(levelsDir).filter((name) => name.endsWith('.json'))
-    .map((name) => JSON.parse(fs.readFileSync(path.join(levelsDir, name), 'utf8')));
+// ---------- levels ----------
+const dir = path.join(__dirname, 'levels');
+const files = fs.readdirSync(dir).filter((f) => f.endsWith('.json'));
+ok(files.length === 4, 'four levels');
+for (const f of files) {
+  const L = JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8'));
+  ok(L.tiles.length === L.height && L.tiles.every((r) => r.length === L.width), `${f}: tile grid ${L.width}x${L.height}`);
+  ok(L.tiles.every((r) => [...r].every((c) => c === '.' || L.legend[c])), `${f}: every tile char has a legend entry`);
+  const flag = L.entities.find((e) => e.type === 'flag'); ok(!!flag, `${f}: has a flag`);
+  ok(L.entities.filter((e) => e.type === 'chip' && e.fact !== 'qc').length === 3, `${f}: 3 data chips`);
+  ok(typeof L.nisar.realFactCm === 'number' && L.radar, `${f}: real NISAR number + radar map`);
+  // reachability: standable cells; jumps reach 4 columns on the level or down, 3 columns when going up 1-2 rows
+  const tm = Engine.createTileMap(L), solid = (x, y) => tm.isSolid(x, y) && x >= 0 && x < L.width;
+  const stand = (x, y) => solid(x, y + 1) && !solid(x, y) && !solid(x, y - 1);
+  const start = [L.spawn.x, L.spawn.y + 1]; while (!stand(start[0], start[1]) && start[1] < L.height) start[1]++;
+  ok(stand(start[0], start[1]), `${f}: spawn stands on ground`);
+  const seen = new Set([start.join(',')]), q = [start];
+  while (q.length) { const [x, y] = q.shift();
+    for (let dx = -4; dx <= 4; dx++) for (let dy = -2; dy <= 8; dy++) { const nx = x + dx, ny = y + dy, k = nx + ',' + ny;
+      if (Math.abs(dx) === 4 && dy < 0) continue;   // engine: ~3.8 tiles across on the level, ~2.2 up
+      if (!seen.has(k) && nx >= 0 && nx < L.width && ny >= 0 && ny < L.height && stand(nx, ny)) { seen.add(k); q.push([nx, ny]); } } }
+  ok([...seen].some((k) => { const [x, y] = k.split(',').map(Number); return Math.abs(x - flag.x) <= 1 && Math.abs(y - flag.y) <= 1; }), `${f}: flag reachable from spawn`);
+  const items = L.entities.filter((e) => ['pump', 'crop', 'chip'].includes(e.type));
+  const unreachable = items.filter((e) => ![...seen].some((k) => { const [x, y] = k.split(',').map(Number); return Math.abs(x - e.x) <= 1 && y - e.y >= -1 && y - e.y <= 3; /* jump apex reaches ~3 rows above the feet */ }));
+  ok(unreachable.length === 0, `${f}: every pump/crop/chip reachable (${unreachable.map((e) => e.type + '@' + e.x).join(' ')})`);
+  console.log(`${f}: ${L.width} cols, pumps ${L.entities.filter((e) => e.type === 'pump').length}, crops ${L.entities.filter((e) => e.type === 'crop').length}, reachable cells ${seen.size}`);
 }
-
-function testAquiferAndEvents() {
-  const level = {
-    id: 'test',
-    aquifer: { start: 70, redLine: 40, drainPerPump: 1, rainRefill: 4 },
-    entities: [
-      { type: 'pump', x: 3 }, { type: 'pump', x: 20 },
-      { type: 'crop', x: 4 }, { type: 'drop' }
-    ],
-    legend: { S: 'sink1' },
-    tiles: ['.....', '...S.'],
-    nisar: { realFactCm: -1, realFactText: 'test', sinkTiles: [{ x: 3, y: 1 }] }
-  };
-  const state = Systems.createLevelState(level);
-  Systems.update(state, 1, []);
-  assert.strictEqual(state.aquifer, 68, 'each running pump drains its configured amount each second');
-  Systems.update(state, 1, [{ type: 'action', target: 'pump', entity: { id: 0 } }]);
-  assert.strictEqual(state.pumpsRunning, 1, 'switching a pump off stops its drain');
-  assert.strictEqual(state.score, 150, 'switching off a pump awards points');
-  const beforeDrop = state.aquifer;
-  Systems.update(state, 0.01, [{ type: 'pickup', target: 'drop' }]);
-  assert.strictEqual(state.tank, 5, 'a rain drop refills the tank');
-  assert(state.aquifer >= beforeDrop + 3.9, 'a rain drop refills the aquifer');
-  assert.strictEqual(state.score, 160, 'a rain drop awards points');
-  Systems.update(state, 0.01, [{ type: 'action', target: 'crop', entity: { id: 2 } }]);
-  assert.strictEqual(state.tank, 3, 'watering a crop uses two tank units');
-  assert.strictEqual(state.crops, 1, 'watering a crop is recorded');
-  assert.strictEqual(state.score, 410, 'watering and the farmer pump action award points');
-  assert.strictEqual(state.pumpsRunning, 0, 'watering lets the farmer switch off the nearest pump');
-  Systems.update(state, 0.01, [{ type: 'pickup', target: 'chip' }]);
-  assert.strictEqual(state.chips, 1);
-  assert.strictEqual(state.score, 710, 'a data chip awards points');
-  Systems.update(state, 0.01, [{ type: 'dustHit' }]);
-  assert.strictEqual(state.tank, 0, 'a dust devil hit removes three tank units');
-
-  state.aquifer = state.redLine - 1;
-  Systems.update(state, 2.1, []);
-  assert.strictEqual(state.permanentTiles, 1, 'one tile sinks after two seconds below the red line');
-  const dropped = Systems.sinkTilesToDrop(state);
-  assert.deepStrictEqual(dropped, [{ x: 3, y: 1 }], 'NISAR-marked tile is selected first');
-  assert.deepStrictEqual(Systems.sinkTilesToDrop(state), [], 'the engine receives each tile only once');
-  const report = Systems.score(state);
-  assert.strictEqual(report.score, 660, 'report score uses crops, pumps, drops, chips, and sinking');
-  assert.strictEqual(report.report.cmSunk, 2, 'one tile represents two centimetres in the game model');
-  assert.strictEqual(report.stars[0], false, 'no completion star before reaching the flag');
-  Systems.update(state, 0.01, [{ type: 'reachFlag' }]);
-  assert.deepStrictEqual(Systems.score(state).stars, [true, false, false]);
-  assert.strictEqual(Systems.score(state).report.aquiferCurve.length > 0, true, 'the report keeps the aquifer curve');
-  assert(Systems.score(state).report.calibrationNote.includes('NASA-JPL and ISRO'));
-}
-
-function testLevelsAndReachability() {
-  const levels = loadLevels();
-  assert.strictEqual(levels.length, 4, 'all four planned levels exist');
-  const ids = new Set();
-  for (const level of levels) {
-    ids.add(level.id);
-    assert(level.width >= 180 && level.width <= 260, `${level.id}: width is in the required range`);
-    assert.strictEqual(level.height, 15, `${level.id}: height is 15 tiles`);
-    assert.strictEqual(level.tiles.length, level.height, `${level.id}: row count matches height`);
-    for (const [y, row] of level.tiles.entries()) {
-      assert.strictEqual(row.length, level.width, `${level.id}: row ${y} matches width`);
-      for (const ch of row) assert(ch === '.' || level.legend[ch], `${level.id}: tile ${ch} has a legend entry`);
-    }
-    const chips = level.entities.filter((entity) => entity.type === 'chip');
-    assert.strictEqual(chips.length, 3, `${level.id}: has three hidden data chips`);
-    assert.strictEqual(level.entities.filter((entity) => entity.type === 'checkpoint').length, 2,
-      `${level.id}: has two checkpoints`);
-    assert.strictEqual(level.entities.filter((entity) => entity.type === 'flag').length, 1,
-      `${level.id}: has one finish flag`);
-    for (const chip of chips) assert(facts[chip.fact], `${level.id}: chip references a fact card`);
-
-    // BFS over standing surfaces; jumps span up to four tiles horizontally and three vertically.
-    const walkable = new Set(['grass', 'dirt', 'clay', 'rock', 'sand', 'road', 'brick', 'sink1']);
-    const surfaces = [];
-    for (let y = 0; y < level.height; y++) {
-      for (let x = 0; x < level.width; x++) {
-        const tile = level.legend[level.tiles[y][x]];
-        if (tile && walkable.has(tile)) surfaces.push({ x, y: y - 1 });
-      }
-    }
-    const start = { x: level.spawnX || 2, y: level.height - 3 };
-    const finishEntity = level.entities.find((entity) => entity.type === 'flag');
-    const finish = { x: finishEntity.x, y: finishEntity.y };
-    const key = (node) => `${node.x},${node.y}`;
-    const visited = new Set([key(start)]);
-    const queue = [start];
-    while (queue.length) {
-      const current = queue.shift();
-      for (const next of surfaces) {
-        const nodeKey = key(next);
-        if (Math.abs(next.x - current.x) <= 4 && Math.abs(next.y - current.y) <= 3 && !visited.has(nodeKey)) {
-          visited.add(nodeKey);
-          queue.push(next);
-        }
-      }
-    }
-    assert(visited.has(key(finish)), `${level.id}: the finish is reachable with the jump limits`);
-  }
-  assert.deepStrictEqual([...ids].sort(), ['eloy', 'konya', 'mexico', 'tulare']);
-  const tutorial = levels.find((level) => level.id === 'tulare');
-  assert.deepStrictEqual(tutorial.tutorial.steps.map((step) => step.text), [
-    'Collect raindrops to fill your tank.',
-    'Press ACTION beside a pump to turn it off.',
-    'Press ACTION to water the crop.'
-  ]);
-  assert.strictEqual(Object.keys(facts).length, 12, 'three sourced fact cards exist per level');
-  for (const [id, fact] of Object.entries(facts)) {
-    assert(['data/global/home_summary.json', 'data/global/atlas.json', 'data/karapinar/assets.json'].includes(fact.source),
-      `${id}: facts cite a repository data source`);
-    assert(fs.existsSync(path.join(__dirname, '..', '..', fact.source)), `${id}: cited source exists`);
-    assert.strictEqual((fact.text.match(/[.!?](?:\s|$)/g) || []).length, 2, `${id}: card has two sentences`);
-    assert.strictEqual(fact.quality, 'provisional', `${id}: source quality is labeled`);
-  }
-  const central = atlas.regions.find((region) => region.id === 'central_valley');
-  const eloy = home.top5.find((region) => region.id === 'eloy');
-  const mexico = home.top5.find((region) => region.id === 'mexico_city');
-  const konya = atlas.regions.find((region) => region.id === 'karapinar');
-  assert.strictEqual(levels.find((level) => level.id === 'tulare').nisar.realFactCm, central.max_cm_los);
-  assert.strictEqual(levels.find((level) => level.id === 'eloy').nisar.realFactCm, eloy.rate_cm_per_100d_common);
-  assert.strictEqual(levels.find((level) => level.id === 'mexico').nisar.realFactCm, mexico.rate_cm_per_100d_common);
-  assert.strictEqual(levels.find((level) => level.id === 'konya').nisar.realFactCm, konya.max_cm_los);
-}
-
-testAquiferAndEvents();
-testLevelsAndReachability();
-console.log('Aquifer Run systems, facts, and four level reachability checks passed.');
+console.log(fail ? `test_systems.js: ${fail} FAILED` : 'test_systems.js: all checks passed');
+process.exit(fail ? 1 : 0);

@@ -1,203 +1,147 @@
+/* AQUIFER RUN — game rules (PC1). UMD: window.RunSystems in the browser, module.exports in Node.
+ * Contract: web/run/DESIGN.md §10. Events come from main.js:
+ *   {type:'pickup', target:'drop'|'chip', fact} · {type:'action', target:'pump'|'crop'|'dust', entity}
+ *   {type:'dustHit'} · {type:'fall'} · {type:'reachFlag'}
+ * Before each update main.js sets state.playerTx (player tile column) so sinking happens where the
+ * player can see it.
+ */
 (function (root, factory) {
   if (typeof module === 'object' && module.exports) module.exports = factory();
   else root.RunSystems = factory();
-}(typeof window !== 'undefined' ? window : this, function () {
+})(typeof self !== 'undefined' ? self : this, function () {
   'use strict';
+  var CM_PER_TILE = 2;          // one collapsed tile = 2 cm of permanent sinking (shown on the report)
+  var SINK_EVERY = 2.0;         // seconds between collapses while below the safe line
+  var SINK_NEAR = 14;           // only tiles within this many columns of the player collapse
 
-  function clamp(value, min, max) { return Math.max(min, Math.min(max, value)); }
-  function tileCandidates(level) {
-    var out = [];
-    var legend = level.legend || {};
-    var tiles = level.tiles || [];
-    for (var y = 0; y < tiles.length; y++) {
-      for (var x = 0; x < tiles[y].length; x++) {
-        if (legend[tiles[y].charAt(x)] === 'sink1') out.push({ x: x, y: y });
-      }
-    }
-    var marked = level.nisar && level.nisar.sinkTiles || [];
-    for (var i = 0; i < marked.length; i++) {
-      if (!out.some(function (tile) { return tile.x === marked[i].x && tile.y === marked[i].y; })) {
-        out.push({ x: marked[i].x, y: marked[i].y });
-      }
-    }
-    return out;
-  }
+  function count(level, type) { return (level.entities || []).filter(function (e) { return e.type === type; }).length; }
 
   function createLevelState(level) {
-    var aquifer = level.aquifer || {};
-    var pumps = (level.entities || []).filter(function (e) { return e.type === 'pump'; }).length;
+    var a = level.aquifer || {}, legend = level.legend || {}, sinkTiles = [];
+    (level.tiles || []).forEach(function (row, y) {
+      for (var x = 0; x < row.length; x++) { var n = legend[row.charAt(x)]; if (n && n.indexOf('sink') === 0) sinkTiles.push({ x: x, y: y, depth: 0 }); }
+    });
+    var chips = (level.entities || []).filter(function (e) { return e.type === 'chip'; });
+    var start = a.start == null ? 70 : a.start;
     return {
-      level: level,
-      tankMax: 10,
-      tank: 4,
-      aquifer: Number(aquifer.start === undefined ? 70 : aquifer.start),
-      redLine: Number(aquifer.redLine === undefined ? 40 : aquifer.redLine),
-      drainPerPump: Number(aquifer.drainPerPump === undefined ? 0.9 : aquifer.drainPerPump),
-      rainRefill: Number(aquifer.rainRefill === undefined ? 4 : aquifer.rainRefill),
-      rainEverySec: Number(aquifer.rainEverySec || 0),
-      rainClock: 0,
-      sinkClock: 0,
-      elapsed: 0,
-      aquiferHistory: [],
-      pumpsRunning: pumps,
-      offPumps: {},
-      score: 0,
-      chips: 0,
-      crops: 0,
-      pumpsOff: 0,
-      drops: 0,
-      completed: false,
-      wasBelowRed: Number(aquifer.start === undefined ? 70 : aquifer.start) < Number(aquifer.redLine === undefined ? 40 : aquifer.redLine),
-      permanentTiles: 0,
-      sinkCandidates: tileCandidates(level),
-      markedTiles: (level.nisar && level.nisar.sinkTiles || []).map(function (t) { return t.x + ',' + t.y; }),
-      pendingDrops: [],
-      playerX: Number(level.spawnX || 2),
-      levelEnded: false
+      levelId: level.id, levelName: level.name, nisar: level.nisar || {},
+      tank: 2, tankMax: 10, aquifer: start, redLine: a.redLine == null ? 40 : a.redLine,
+      drainPerPump: a.drainPerPump == null ? 0.35 : a.drainPerPump,
+      recharge: a.recharge == null ? 0.05 : a.recharge,
+      cropRefill: a.cropRefill == null ? 3 : a.cropRefill,
+      pumpBoost: a.pumpBoost == null ? 4 : a.pumpBoost,   // switching a pump off lets pressure recover at once
+      pumpsTotal: count(level, 'pump'), pumpsOff: 0,
+      cropsTotal: count(level, 'crop'), cropsWatered: 0,
+      chipsTotal: chips.filter(function (c) { return c.fact !== 'qc'; }).length, chips: 0, qcFound: false,
+      drops: 0, falls: 0, dustHits: 0, score: 0, time: 0,
+      sinkTiles: sinkTiles, pending: [], permanentTiles: 0, sinkTimer: 0,
+      belowRedEver: false, minAquifer: start, history: [start], histTimer: 0,
+      facts: [], messages: [], finished: false, playerTx: 0,
     };
   }
 
-  function nearestPump(state, x) {
-    var entities = state.level.entities || [];
-    var best = -1, distance = Infinity;
-    for (var i = 0; i < entities.length; i++) {
-      if (entities[i].type !== 'pump' || state.offPumps[i]) continue;
-      var d = Math.abs((entities[i].x || 0) - x);
-      if (d < distance) { distance = d; best = i; }
-    }
-    return best;
-  }
+  function say(state, text, kind) { state.messages.push({ text: text, kind: kind || 'info' }); }
 
-  function processEvents(state, events) {
-    for (var i = 0; i < events.length; i++) {
-      var event = events[i] || {};
-      if (event.type === 'playerPosition' && Number.isFinite(event.x)) state.playerX = event.x;
-      if (event.type === 'reachFlag') { state.completed = true; state.levelEnded = true; }
-      if (event.type === 'fall') state.score = Math.max(0, state.score - 50);
-      if (event.type === 'pickup' && event.target === 'drop') {
-        state.drops += 1;
-        state.tank = clamp(state.tank + 1, 0, state.tankMax);
-        state.aquifer = clamp(state.aquifer + state.rainRefill, 0, 100);
-        state.score += 10;
+  function handle(state, ev) {
+    if (ev.type === 'pickup' && ev.target === 'drop') {
+      state.drops++; state.score += 10;
+      if (state.tank < state.tankMax) state.tank++; else say(state, 'Tank full! Water a thirsty crop.', 'info');
+    } else if (ev.type === 'pickup' && ev.target === 'chip') {
+      if (ev.fact === 'qc') {
+        state.qcFound = true; state.score += 150;
+        say(state, 'Bad reading! It jumped 12.1 cm in one step. Our check flags data like this.', 'science');
+      } else {
+        state.chips++; state.score += 300; if (ev.fact) state.facts.push(ev.fact);
+        say(state, 'NISAR data chip ' + state.chips + '/' + state.chipsTotal + ' collected!', 'good');
       }
-      if (event.type === 'pickup' && event.target === 'chip') {
-        state.chips += 1;
-        state.score += 300;
+    } else if (ev.type === 'action' && ev.target === 'pump') {
+      state.pumpsOff++; state.score += 150; state.aquifer = Math.min(100, state.aquifer + state.pumpBoost);
+      var left = state.pumpsTotal - state.pumpsOff;
+      say(state, left > 0 ? 'Pump off! ' + left + ' still draining the ground.' : 'All pumps off! The water underground can recover.', 'good');
+    } else if (ev.type === 'action' && ev.target === 'crop') {
+      if (state.tank >= 2) {
+        state.tank -= 2; state.cropsWatered++; state.score += 100;
+        state.aquifer = Math.min(100, state.aquifer + state.cropRefill);
+        say(state, 'Crops saved with rainwater, so this farm pumps less!', 'good');
+      } else {
+        if (ev.entity) ev.entity.watered = false;   // veto: not enough water
+        say(state, 'You need 2 water to help this crop. Catch raindrops first!', 'warn');
       }
-      if (event.type === 'dustHit') state.tank = Math.max(0, state.tank - 3);
-      if (event.type !== 'action') continue;
-
-      if (event.target === 'pump') {
-        var pump = event.entity && event.entity.id;
-        if (pump !== undefined && !state.offPumps[pump]) {
-          state.offPumps[pump] = true;
-          state.pumpsRunning = Math.max(0, state.pumpsRunning - 1);
-          state.pumpsOff += 1;
-          state.score += 150;
-        }
-      } else if (event.target === 'crop') {
-        var crop = event.entity && event.entity.id;
-        if (state.tank >= 2 && (crop === undefined || !state.level.entities[crop]._watered)) {
-          state.tank -= 2;
-          if (crop !== undefined) state.level.entities[crop]._watered = true;
-          state.crops += 1;
-          state.score += 100;
-          var cropX = crop !== undefined && state.level.entities[crop]
-            ? state.level.entities[crop].x : state.playerX;
-          var pumpIndex = nearestPump(state, cropX);
-          if (pumpIndex >= 0) {
-            state.offPumps[pumpIndex] = true;
-            state.pumpsRunning = Math.max(0, state.pumpsRunning - 1);
-            state.pumpsOff += 1;
-            state.score += 150;
-          }
-        }
-      } else if (event.target === 'canal' && state.tank >= 3) {
-        state.tank -= 3;
-        state.score += 50;
-      } else if (event.target === 'dust') {
-        state.score += 10;
-      }
+    } else if (ev.type === 'action' && ev.target === 'dust') {
+      if (state.tank >= 1) { state.tank -= 1; state.score += 50; say(state, 'A splash of water calmed the dust devil.', 'good'); }
+      else { if (ev.entity) ev.entity.calmed = false; say(state, 'No water left to spray!', 'warn'); }
+    } else if (ev.type === 'dustHit') {
+      state.dustHits++; var lost = Math.min(3, state.tank); state.tank -= lost;
+      say(state, 'The dust devil stole ' + lost + ' water!', 'warn');
+    } else if (ev.type === 'fall') {
+      state.falls++; state.score = Math.max(0, state.score - 50);
+    } else if (ev.type === 'reachFlag') {
+      state.finished = true;
     }
   }
 
   function update(state, dt, events) {
-    if (!state || !Number.isFinite(dt) || dt <= 0) return state;
-    processEvents(state, Array.isArray(events) ? events : []);
-    if (state.levelEnded) {
-      state.elapsed += dt;
-      var finalValue = Math.round(state.aquifer * 100) / 100;
-      state.aquiferHistory.push({ t: Math.round(state.elapsed * 100) / 100, value: finalValue });
-      return state;
-    }
-    state.elapsed += dt;
-    state.aquifer = clamp(state.aquifer - state.pumpsRunning * state.drainPerPump * dt, 0, 100);
-    if (state.rainEverySec > 0) {
-      state.rainClock += dt;
-      while (state.rainClock >= state.rainEverySec) {
-        state.rainClock -= state.rainEverySec;
-        state.aquifer = clamp(state.aquifer + state.rainRefill, 0, 100);
-      }
-    }
-    var below = state.aquifer < state.redLine;
-    if (below) {
-      state.wasBelowRed = true;
-      state.sinkClock += dt;
-      while (state.sinkClock >= 2) {
-        state.sinkClock -= 2;
-        if (state.sinkCandidates.length) {
-          state.sinkCandidates.sort(function (a, b) {
-            var aMarked = state.markedTiles.indexOf(a.x + ',' + a.y) >= 0 ? 0 : 1;
-            var bMarked = state.markedTiles.indexOf(b.x + ',' + b.y) >= 0 ? 0 : 1;
-            var aDist = Math.abs(a.x - state.playerX), bDist = Math.abs(b.x - state.playerX);
-            return aMarked - bMarked || aDist - bDist || a.y - b.y;
-          });
-          state.pendingDrops.push(state.sinkCandidates.shift());
-          state.permanentTiles += 1;
-          state.score = Math.max(0, state.score - 50);
-        }
-      }
-    } else state.sinkClock = 0;
-    if (state.aquiferHistory.length === 0 || state.elapsed - state.aquiferHistory[state.aquiferHistory.length - 1].t >= 1) {
-      state.aquiferHistory.push({ t: Math.round(state.elapsed * 100) / 100, value: Math.round(state.aquifer * 100) / 100 });
-    }
+    if (!state || state.finished) { (events || []).forEach(function (e) { if (state) handle(state, e); }); return state; }
+    state.time += dt;
+    (events || []).forEach(function (e) { handle(state, e); });
+    var running = Math.max(0, state.pumpsTotal - state.pumpsOff);
+    state.aquifer += (state.recharge - running * state.drainPerPump) * dt;
+    state.aquifer = Math.max(0, Math.min(100, state.aquifer));
+    state.minAquifer = Math.min(state.minAquifer, state.aquifer);
+    state.histTimer += dt;
+    if (state.histTimer >= 1) { state.histTimer = 0; state.history.push(Math.round(state.aquifer * 10) / 10); }
+
+    if (state.aquifer < state.redLine) {
+      if (!state.belowRedEver) say(state, 'Below the safe line! The clay squeezes and the ground starts to sink.', 'danger');
+      state.belowRedEver = true;
+      state.sinkTimer += dt;
+      var every = SINK_EVERY * (0.5 + state.aquifer / state.redLine * 0.5);  // deeper = faster
+      if (state.sinkTimer >= every) { state.sinkTimer = 0; collapseOne(state); }
+    } else state.sinkTimer = 0;
     return state;
   }
 
-  function aquiferInfo(state) {
-    return {
-      value: Math.round(state.aquifer * 100) / 100,
-      redLine: state.redLine,
-      belowRed: state.aquifer < state.redLine,
-      permanentTiles: state.permanentTiles,
-      cmSunk: state.permanentTiles * 2
-    };
+  function collapseOne(state) {
+    var best = null, bestD = 1e9;
+    state.sinkTiles.forEach(function (t) {
+      if (t.depth >= 2) return;
+      var d = Math.abs(t.x - state.playerTx);
+      if (d <= SINK_NEAR && d < bestD) { best = t; bestD = d; }
+    });
+    if (!best) return;
+    state.pending.push({ x: best.x, y: best.y });
+    best.y += 1; best.depth += 1;            // the ground under it can sink once more
+    state.permanentTiles++; state.score = Math.max(0, state.score - 50);
   }
 
-  function sinkTilesToDrop(state) {
-    var drops = state.pendingDrops.slice();
-    state.pendingDrops.length = 0;
-    return drops;
+  function sinkTilesToDrop(state) { var p = state.pending; state.pending = []; return p; }
+
+  function aquiferInfo(state) {
+    return { value: state.aquifer, redLine: state.redLine, belowRed: state.aquifer < state.redLine,
+      permanentTiles: state.permanentTiles, cmSunk: state.permanentTiles * CM_PER_TILE };
   }
 
   function score(state) {
-    var nisar = state.level.nisar || {};
-    var realFactCm = Number.isFinite(nisar.realFactCm) ? nisar.realFactCm : null;
-    var realFactText = nisar.realFactText || 'This level is a learning model, not a forecast.';
-    var report = {
-      aquiferCurve: state.aquiferHistory.slice(),
-      cmSunk: state.permanentTiles * 2,
-      realFactCm: realFactCm,
-      realFactText: realFactText,
-      oneLine: state.permanentTiles ? 'The aquifer fell below its red line and the ground dropped permanently.' : 'The ground stayed above its red line in this run.',
-      calibrationNote: 'NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.'
-    };
+    var stars = [!!state.finished, !state.belowRedEver, state.chips >= state.chipsTotal && state.chipsTotal > 0];
+    var cm = state.permanentTiles * CM_PER_TILE, n = state.nisar || {};
+    var oneLine = !state.belowRedEver
+      ? 'You never let the water drop below the safe line, so the clay was not crushed. That is what good groundwater management looks like.'
+      : cm === 0 ? 'The water dipped below the safe line, but you acted before the ground collapsed.'
+        : 'The ground sank ' + cm + ' cm for good while the water was too low. Real valleys cannot undo this: the squeezed clay never holds water again.';
     return {
-      score: Math.max(0, state.crops * 100 + state.pumpsOff * 150 + state.drops * 10 + state.chips * 300 - state.permanentTiles * 50),
-      stars: [!!state.completed, !!state.completed && !state.wasBelowRed, !!state.completed && state.chips >= 3],
-      report: report
+      score: state.score + state.tank * 10, stars: stars,
+      report: {
+        aquiferCurve: state.history.slice(), redLine: state.redLine, cmSunk: cm, minAquifer: Math.round(state.minAquifer),
+        pumpsOff: state.pumpsOff, pumpsTotal: state.pumpsTotal, cropsWatered: state.cropsWatered, cropsTotal: state.cropsTotal,
+        chips: state.chips, chipsTotal: state.chipsTotal, qcFound: state.qcFound, time: Math.round(state.time),
+        realFactCm: n.realFactCm, realFactText: n.realFactText || '', oneLine: oneLine,
+        calibration: 'NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.',
+      },
     };
   }
 
-  return { createLevelState: createLevelState, update: update, aquiferInfo: aquiferInfo, sinkTilesToDrop: sinkTilesToDrop, score: score };
-}));
+  function popMessages(state) { var m = state.messages; state.messages = []; return m; }
+
+  return { CM_PER_TILE: CM_PER_TILE, createLevelState: createLevelState, update: update, sinkTilesToDrop: sinkTilesToDrop,
+    aquiferInfo: aquiferInfo, score: score, popMessages: popMessages };
+});

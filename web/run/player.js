@@ -122,9 +122,10 @@
     }
     var Art = global.RunArt;
     if (Art && Art.drawSprite) {
-      var frameCount = player.animState === 'run' ? 4 : (player.animState === 'jump' ? 1 : 2);
-      var frame = Math.floor(player.animTimer * 8) % frameCount;
-      Art.drawSprite(ctx, 'nisa_' + player.animState, frame, sx - 8, sy - 8, player.facing < 0);
+      // art v2 sprite is 48x84 with the feet at ~81 px: align feet with the 32x64 hitbox (PC1)
+      var name = 'nisa_' + player.animState, frameCount = (Art.frames && Art.frames(name)) || 1;
+      var frame = Math.floor(player.animTimer * (player.animState === 'run' ? 12 : 4)) % frameCount;
+      Art.drawSprite(ctx, name, frame, sx - 8, sy - 17, player.facing < 0);
       return;
     }
     // Fallback crisp placeholder when RunArt is not loaded yet

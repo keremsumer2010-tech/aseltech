@@ -6,6 +6,8 @@
 <title>Aquifer Run — NISAR Vision</title>
 <meta name="description" content="Side-scrolling groundwater platformer based on real NASA-ISRO NISAR subsidence measurements across Tulare Basin, Eloy, Karapinar, and Mexico City.">
 <link rel="icon" href="../assets/logo_mark_64.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
   html, body {
@@ -24,8 +26,6 @@
     aspect-ratio: 16 / 9;
     width: min(100vw, calc(100vh * 16 / 9));
     height: min(100vh, calc(100vw * 9 / 16));
-    image-rendering: pixelated;
-    image-rendering: crisp-edges;
     background: #101824;
   }
   .touch-ui {
@@ -40,7 +40,7 @@
   .t-left { left: max(16px, env(safe-area-inset-left)); }
   .t-right { right: max(16px, env(safe-area-inset-right)); }
   .t-btn {
-    width: 64px; height: 64px; border-radius: 14px;
+    width: 72px; height: 72px; border-radius: 50%;
     border: 2px solid rgba(255,255,255,0.35);
     background: rgba(15, 23, 34, 0.65);
     color: #fff; font-weight: 700; font-size: 14px;
@@ -53,7 +53,7 @@
 </head>
 <body>
 <div id="wrap">
-  <canvas id="gameCanvas" width="960" height="540" aria-label="Aquifer Run game canvas"></canvas>
+  <canvas id="gameCanvas" width="960" height="540" tabindex="0" aria-label="Aquifer Run game: run, jump, switch off pumps and keep the ground from sinking"></canvas>
 </div>
 <div class="touch-ui" id="touchUi" aria-hidden="true">
   <div class="t-group t-left">
