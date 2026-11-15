@@ -149,8 +149,8 @@ html{scroll-behavior:smooth}
 @media (min-width:1200px){
   .hero-atlas{grid-template-columns:minmax(340px,.62fr) minmax(0,1.38fr);column-gap:36px;padding-left:3.2vw;padding-right:3.2vw}
   .hero-atlas h1{font-size:clamp(2.1rem,2.9vw,3.1rem)}
-  .ha-cta{flex-wrap:nowrap}
-  .ha-cta .btn{padding:13px 14px;font-size:.72rem}
+  .ha-cta{flex-wrap:wrap}
+  .ha-cta .btn{padding:13px 14px;font-size:.72rem;white-space:nowrap}
 }
 h1,h2{text-wrap:balance}
 .work .what,.work .why{text-wrap:pretty}

@@ -24,6 +24,8 @@ Object.assign(window.I18N_TR, {
   "Home": "Ana sayfa",
   "Atlas": "Atlas",
   "Simulator": "Simülatör",
+  "Game": "Oyun",
+  "Play Aquifer Run": "Aquifer Run oyna",
   "Science": "Bilim",
   "Data": "Veri",
   "Present": "Sunum",
