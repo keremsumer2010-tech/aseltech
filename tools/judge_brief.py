@@ -157,7 +157,7 @@ section {{ margin-bottom: 4.5mm }}
 @media print {{ html {{ background: #fff }} .page {{ margin: 0 }} }}
 </style></head>
 <body><div class="page">
-<div class="kicker">NASA Space Apps 2026 · Dancing with the SARs · Team Taykut</div>
+<div class="kicker">NASA Space Apps 2026 · Dancing with the SARs · Team Aseltech</div>
 <h1>NISAR Vision: Follow the Water</h1>
 <p class="core">{core}</p>
 <div class="nums">
