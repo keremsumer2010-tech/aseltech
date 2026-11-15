@@ -1,0 +1,22 @@
+{
+  "site": "houston",
+  "bbox": [
+    -96.05,
+    29.55,
+    -95.55,
+    30.05
+  ],
+  "quality": "provisional",
+  "coverage": "ok",
+  "granules": 9,
+  "chain_pairs": 9,
+  "path": 62,
+  "frame": 16,
+  "period": [
+    "2026-06-18",
+    "2026-10-16"
+  ],
+  "gaps": [],
+  "total_raw_mb": 20183.4,
+  "error": null
+}
