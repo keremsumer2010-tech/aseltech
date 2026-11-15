@@ -37,7 +37,7 @@ No — regional L-band interferometry cannot predict exact collapse dates or loc
 NISAR's 24.2 cm L-band wavelength penetrates irrigated crops and preserves `80.4%` valid coherence in summer Tulare farmland where C-band (`5.55 cm`) decorrelates, while in urban Mexico City (`r = 0.912`) both sensors agree closely. Additionally, public `OPERA_L3_DISP-S1_V1` coverage ends at `2026-04-26`, before the June–October 2026 NISAR window.
 
 **Q11. How many people live on sinking ground in your global atlas?**  
-Intersecting `GHSL GHS-POP E2025` (`100 m`) with 108-day scaled subsidence `< −5 cm` (`|disp| >= 2σ`, excluding nested `karapinar` to avoid double-counting) places **`1,479,844` residents** on **`549.45 km²`** of sinking ground (`8,251,911` below `−2 cm`). Eight newest regions await GHSL tile intersection and are documented in `docs/qa/PC4.md` §39.
+Intersecting `GHSL GHS-POP E2025` (`100 m`) with 108-day scaled subsidence `< −5 cm` (`|disp| >= 2σ`, excluding nested `karapinar` to avoid double-counting) places **`1,200,716` residents** on **`511.65 km²`** of sinking ground (`7,475,011` below `−2 cm`) across all 29 atlas regions.
 
 **Q12. How did you use AI, and are any images AI-generated?**  
 AI assistants (Anthropic Claude and Google Gemini) helped draft analysis scripts, tests, and documentation, with every number read directly from repository JSONs and checked by Team Taykut. There are **zero AI-generated images** anywhere on the website, presentation deck, 3D viewer, or simulator.

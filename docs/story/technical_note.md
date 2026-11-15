@@ -89,11 +89,11 @@ Using the single-command `pipeline/nisarpulse/` engine with identical `provision
 | 4 | **Kashmar** | `2026-06-19 → 2026-10-17` (9, 120 d) | **−7.0** | −5.2 | −6.2 | 72.8% | high |
 | 5 | **Mashhad, Iran** | `2026-06-19 → 2026-10-17` (9, 120 d) | **−6.9** | −7.2 | −8.6 | 70.5% | medium |
 | 6 | **Mexico City, Mexico** | `2026-06-22 → 2026-10-20` (8, 120 d) | **−6.3** | −5.8 | −7.0 | 63.9% | medium |
-| 7 | **Semarang, Indonesia** | `2026-06-25 → 2026-09-29` (7, 96 d) | **−5.5** | −6.5 | −6.2 | — | medium |
+| 7 | **Semarang, Indonesia** | `2026-06-25 → 2026-09-29` (7, 96 d) | **−5.5** | −6.5 | −6.2 | 51.5% | medium |
 | 8 | **Kerman** | `2026-06-19 → 2026-10-17` (9, 120 d) | **−5.3** | −5.1 | −6.1 | 96.8% | high |
 | 9 | **Rafsanjan, Iran** | `2026-06-23 → 2026-10-21` (9, 120 d) | **−4.2** | −4.8 | −5.8 | 84.7% | medium |
 | 10 | **Houston** | `2026-06-18 → 2026-10-16` (9, 120 d) | **−4.0** | −4.3 | −5.2 | 46.1% | medium |
-| 11 | **Can Tho, Vietnam** | `2026-06-17 → 2026-10-15` (9, 120 d) | **−3.4** | −2.8 | −3.4 | — | medium |
+| 11 | **Can Tho, Vietnam** | `2026-06-17 → 2026-10-15` (9, 120 d) | **−3.4** | −2.8 | −3.4 | 15.6% | medium |
 | 12 | **Tianjin** | `2026-06-21 → 2026-10-19` (8, 120 d) | **−2.8** | −2.4 | −2.9 | 63.4% | medium |
 | 13 | **Cangzhou, China** | `2026-06-21 → 2026-10-19` (8, 120 d) | **−2.4** | −2.0 | −2.4 | 43.2% | medium |
 | 14 | **Lagos** | `2026-06-24 → 2026-10-10` (8, 108 d) | **−2.1** | −2.2 | −2.4 | 32.8% | medium |
@@ -101,17 +101,17 @@ Using the single-command `pipeline/nisarpulse/` engine with identical `provision
 | 16 | **Quetta, Pakistan** | `2026-06-17 → 2026-10-15` (9, 120 d) | **−0.7** | −3.2 | −3.8 | 71.3% | medium |
 | 17 | **Gorgan** | `2026-06-21 → 2026-10-19` (9, 120 d) | **−22.7** | −28.8 | −34.6 | 26.7% | low · indicative only · QC: phase cycle jump |
 | 18 | **Delhi, India** | `2026-06-21 → 2026-10-19` (8, 120 d) | **−15.6** | −18.6 | −22.3 | 28.3% | low · indicative only · QC: phase cycle jump |
-| 19 | **Bangkok, Thailand** | `2026-06-21 → 2026-10-19` (8, 120 d) | **−12.5** | −6.2 | −7.5 | — | low · indicative only · QC: literature mismatch, noisy series |
-| 20 | **Pekalongan, Indonesia** | `2026-06-20 → 2026-10-18` (9, 120 d) | **−11.9** | −18.5 | −22.2 | — | low · indicative only · QC: phase cycle jump |
+| 19 | **Bangkok, Thailand** | `2026-06-21 → 2026-10-19` (8, 120 d) | **−12.5** | −6.2 | −7.5 | 30.3% | low · indicative only · QC: literature mismatch, noisy series |
+| 20 | **Pekalongan, Indonesia** | `2026-06-20 → 2026-10-18` (9, 120 d) | **−11.9** | −18.5 | −22.2 | 26.6% | low · indicative only · QC: phase cycle jump |
 | 21 | **Beijing, China** | `2026-06-17 → 2026-10-15` (9, 120 d) | **−11.2** | −9.2 | −11.1 | 52.3% | low · indicative only · QC: phase cycle jump, single date outlier |
 | 22 | **Tehran, Iran** | `2026-06-18 → 2026-10-16` (9, 120 d) | **−6.4** | −6.2 | −7.4 | 38.1% | low · indicative only |
-| 23 | **Jakarta, Indonesia** | `2026-06-27 → 2026-10-13` (8, 108 d) | **−5.6** | −6.3 | −6.8 | — | low · indicative only |
+| 23 | **Jakarta, Indonesia** | `2026-06-27 → 2026-10-13` (8, 108 d) | **−5.6** | −6.3 | −6.8 | 2.9% | low · indicative only |
 | 24 | **Karapınar, Konya, Türkiye** | `2026-06-26 → 2026-10-12` (8, 108 d) | **−3.7** | −5.5 | −5.9 | 14.2% | low · indicative only |
 | 25 | **Isfahan, Iran** | `2026-06-18 → 2026-10-16` (9, 120 d) | **−2.1** | −2.1 | −2.5 | 32.5% | low · indicative only |
-| 26 | **Yunlin, Taiwan** | `2026-06-28 → 2026-10-14` (8, 108 d) | **−1.6** | −2.5 | −2.7 | — | low · indicative only |
+| 26 | **Yunlin, Taiwan** | `2026-06-28 → 2026-10-14` (8, 108 d) | **−1.6** | −2.5 | −2.7 | 28.2% | low · indicative only |
 | 27 | **Xi'an, China** | `2026-06-19 → 2026-10-17` (9, 120 d) | **−1.4** | −1.2 | −1.5 | 36.2% | low · indicative only |
-| 28 | **Hanoi, Vietnam** | `2026-06-19 → 2026-10-17` (9, 120 d) | **−0.9** | −2.1 | −2.5 | — | low · indicative only |
-| 29 | **Ho Chi Minh City, Vietnam** | `2026-06-17 → 2026-10-15` (9, 120 d) | **4.6** | −3.5 | −4.2 | — | low · indicative only |
+| 28 | **Hanoi, Vietnam** | `2026-06-19 → 2026-10-17` (9, 120 d) | **−0.9** | −2.1 | −2.5 | 25.7% | low · indicative only |
+| 29 | **Ho Chi Minh City, Vietnam** | `2026-06-17 → 2026-10-15` (9, 120 d) | **4.6** | −3.5 | −4.2 | 32.1% | low · indicative only |
 
 *Generated from `data/global/atlas.json` by `tools/sync_atlas_text.py`: 29 regions, 16 reliable, 13 indicative; ranked by the common window 2026-06-28 → 2026-09-29 (reliable regions first). LOS, provisional NISAR data.*
 <!-- ATLAS_TABLE_END -->

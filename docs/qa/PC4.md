@@ -403,3 +403,8 @@ Kapsam: `web/index.html` (`1–163`). Genel İngilizce tonu akıcı ve tutarlı 
 - PC1'in `web/index.html` üst kısmına eklediği 6 bölümlü (`Hero`, `1 · The atlas`, `2 · Our own error, caught`, `3 · Why you can trust it`, `4 · What it is for`, `5 · What is new`) metinler `REVIEW_1500.md` kurallarına ve kaynak JSON'lara (`home_summary.json`, `atlas.json`, `validation.json`, `storage_loss.json`) göre kontrol edildi: `0` yasaklı kelime, `0` emoji, `0` ünlem, zorunlu kalibrasyon cümlesi mevcut (`satır 86`).
 - Yalnızca `web/index.html:66` içinde `"one L-band phase cycle (12.1 cm)"` ifadesi fiziksel olarak doğru **`"one L-band half-cycle (12.1 cm)"`** (`λ = 24.2 cm`) şeklinde düzeltildi (sayılara ve JS'ye dokunulmadı).
 - `docs/story/three_minute_story.md` ve `web/present.html` metinleri doğrudan PC1'in canlı `web/index.html` 6 bölümüyle birebir senkronize edildi.
+
+### 44. PC8 29-Bölge GHSL Senkronu & `home_summary.json` Güncellemesi (`2026-11-15 11:21 TR`)
+- PC8 (`fdc2b99`) tüm 29 bölgeyi `exposure_atlas.json` içine eklediği için `vital_signs.json` değeri `1,479,844` / `549.45 km²` → **`1,200,716` sakin / `511.65 km²`** (`7,475,011 < −2 cm`) olarak güncellendi.
+- `python3 pipeline/pc10/build_home_summary.py` çalıştırılarak `data/global/home_summary.json` yenilendi (`tests/test_home_summary.py` 6/6 PASS).
+- `SCIENCE_SIGNOFF.md`, `README.md`, `three_minute_story.md`, `presentation_cues.md`, `qa_cards.md`, `press_summary.md`, `demo_script_v3.md`, `slides_notes.md`, `RELEASE_NOTES.md`, `web/present.html` ve `web/index.html` statik yedek metinleri **`1,200,716` (`1.20 M`) / `511.65 km²`** ile senkronize edildi; `tools/sync_atlas_text.py` ile `technical_note.md/.html` tabloları güncellendi (`PC7` Pekin `11 Jul` köprülemesi sonrası).

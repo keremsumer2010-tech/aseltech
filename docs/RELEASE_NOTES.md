@@ -29,7 +29,7 @@
 - **Provisional & Mixed Products:** Core NISAR `GUNW`/`GCOV` products (`CRID P05023`, `>= 2026-06-17`) are provisional; full-year chains (`central_valley_fullyear`, `karapinar_fullyear`) mix pre-calibration `beta` granules (`< 2026-06-17`).
 - **LOS Geometry:** Single-orbit vertical conversions (`LOS / cos θ`) are estimates assuming negligible horizontal motion.
 - **Summer Window & Archive Gaps:** 93–120 day June–October windows capture peak pumping and overstate net annual compaction where winter rebound occurs; `konya_plain_fullyear` has a `156–168` day Feb–Jun 2026 archive gap.
-- **Automated QC & Exposure Gaps:** `tools/atlas_qc.py` flags `12.1 cm` half-cycle jumps and `> 5 cm` cancelling single-date spikes (isolating `6` basins as indicative), while `8` newest regions (`kashmar`, `kerman`, `houston`, `can_tho`, `tianjin`, `lagos`, `gorgan`, `pekalongan`) await `GHSL` exposure rows in `exposure_atlas.json` (`docs/qa/PC4.md` §39).
+- **Automated QC & Exposure:** `tools/atlas_qc.py` flags `12.1 cm` half-cycle jumps and `> 5 cm` cancelling single-date spikes (isolating `5` QC-flagged basins as indicative), while `exposure_atlas.json` covers all `29` regions (`1,200,716` residents on `511.65 km²` `< −5 cm`, excluding nested `karapinar`).
 
 ---
 

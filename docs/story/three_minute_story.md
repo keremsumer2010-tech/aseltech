@@ -16,7 +16,7 @@ Extracted directly from the live 3-minute jury path in [`web/index.html`](../../
 - **Sentence (25 words):** `29 basins, one open pipeline, the same 93 days for all; every number traces to its file, checked against GPS, OPERA and the literature.`
 - **Big numbers:**
   - **`29` basins** (`16 reliable, 13 indicative`) · `provisional` · `data/global/home_summary.json` / `atlas.json`
-  - **`1.48 M` people** (`1,479,844` on `< −5 cm` ground) · `provisional` · `data/global/vital_signs.json:people_on_sinking_ground`
+  - **`1.20 M` people** (`1,200,716` on `< −5 cm` ground) · `provisional` · `data/global/vital_signs.json:people_on_sinking_ground`
   - **`r = 0.92` GPS** (`0.924`, Central Valley) · `r = 0.91` OPERA (`0.912`, Mexico City) · **`0.32 km³/yr`** storage lost (`0.3174 km³/yr`, `mixed`)
 - **Visual:** Central Valley displacement loop (`docs/story/media/hero_poster.webp` / `#heroVideo`).
 - **Link:** `See it in 3 minutes` (`#kpis`) / `Open the atlas` (`atlas.html`)
@@ -63,9 +63,9 @@ Extracted directly from the live 3-minute jury path in [`web/index.html`](../../
 ## Section 5 — 4 · What It Is For (`2:05–2:40`)
 
 - **Heading (7 words):** `From a radar measurement to a decision`
-- **Sentence (24 words):** `We turn sinking into 1.48 M exposed people, 0.32 km³/yr lost storage, 81/645 tilting corridors, 29 basin bulletins, and a 30-second simulator.`
+- **Sentence (24 words):** `We turn sinking into 1.20 M exposed people, 0.32 km³/yr lost storage, 81/645 tilting corridors, 29 basin bulletins, and a 30-second simulator.`
 - **Big numbers:**
-  - **`1.48 M` people** (`1,479,844` on `< −5 cm` ground) · `provisional` · `data/global/exposure_atlas.json`
+  - **`1.20 M` people** (`1,200,716` on `< −5 cm` ground) · `provisional` · `data/global/exposure_atlas.json`
   - **`0.32 km³/yr`** (`0.3174 km³/yr` permanent Central Valley storage lost) · `mixed` · `data/central_valley_fullyear/storage_loss.json`
   - **`81 / 645` segments `> 20 mm/km`** (plus damage probability per corridor) · `provisional` · `data/central_valley/assets.json`
 - **Visual:** `web/assets/simulator.jpg` (real simulator capture) + 5 impact cards.
