@@ -614,3 +614,19 @@ The alternate-reference spread remains large and the supplied NW foothill refere
 **Aguascalientes:** nine local NPZ files exist, but their actual coverage is `[-102.37398, 21.60618, -102.01004, 22.15785]`, which misses the western portion of the required `[-102.54, 21.63, -102.04, 22.13]` full box and excludes the documented Cerro del Muerto reference anchor `[-102.431111, 21.880278]`. Common-valid reference-window searches around that source locality found no eligible 7×7 window out to 15 km. A full-box summary or “ready” label cannot be produced from these clipped arrays without inventing coverage/reference data. Existing files were preserved; no download was made.
 
 The requested `docs/JURI_3DK.md` was not present in this checkout; its absence was recorded in §31. The task’s local final checklist remains the source for the remaining blocks.
+
+
+## 33. Final block 3 — headline-number consistency guard
+
+Added `tests/test_numbers_consistency.py`. It compares the requested atlas totals, reliable count, GNSS/OPERA correlations, aquifer-storage figure, GHSL population, and Konya rate against the declared final values; contradictions are emitted as `file:line` in pytest output. Targeted run currently **fails with 6 actionable mismatches**:
+
+| File:line | Found | Expected |
+|---|---:|---:|
+| `data/global/home_summary.json:18` | 1,200,716 residents | 1,479,844 |
+| `docs/story/slides.html:466` | 0.317 km³/yr | 0.3174 km³/yr |
+| `docs/story/submission_form.md:71` | 0.317 km³/yr | 0.3174 km³/yr |
+| `docs/story/submission_form.md:73` | GPS r = 0.92 | 0.924 |
+| `docs/story/submission_form.md:73` | OPERA r = 0.91 | 0.912 |
+| `docs/story/submission_form.md:73` | 1,200,716 residents | 1,479,844 |
+
+These are owner-authored delivery files; the test and QA report record them without editing them. Other repeated figures were consistent in the targeted scan.
