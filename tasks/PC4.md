@@ -316,3 +316,16 @@ Doğru ifade: *Over Mexico City the spatial pattern matches NASA JPL's OPERA pro
 | 16:30–17:30 | **README son hâl:** üstte site linki + logo (`web/assets/logo_mark_192.png`, PC1 koydu), tek cümle, 9 iş listesi (ana sayfayla aynı), çalıştırma komutları | `README.md` |
 | 17:30–19:00 | 3 dk prova metni `docs/JURI_3DK.md` ile present.html birebir; süre tablosu | `docs/story/three_minute_story.md` |
 | 19:00–20:00 | SIGNOFF son tur (PC1 ile), dondurma |
+
+# 🆕 YENİ GÖREV — PC4 (PC1, Paz 13:45 → 20:00) · 12:30 planın bitti, 5-dk kontrol döngüsünü BIRAK, bunları yap
+Ad artık **NISAR Vision**, motor `pipeline/nisarvision`. Push öncesi her seferinde: `python tools/check_site.py && python -m pytest -q`. PC6'nın alanına (atlas/simülatör tasarımı, ekran görüntüleri, link listesi) girme.
+
+| Saat | Blok | Çıktı |
+|---|---|---|
+| 13:45–15:15 | **Başvuru formu metinleri (EN, en kritik iş):** Space Apps formunun 6 sorusu — *What does it do / Benefits / Intended impact / Tools & languages / Creativity / Factors considered* — ana sayfadaki 9 işe göre yeniden yaz. Kurallar: ad NISAR Vision; ana iş = 29 havzalık küresel atlas + kendi hatasını yakalayan QC + GPS r = 0.92 (medyan 1.0 cm) + 1.20 M kişi + 0.32 km³/yr + 81/645 altyapı (ön tarama, güvenlik değerlendirmesi DEĞİL) + 29 bülten + simülatör + açık motor. **Doğruluk:** GUNW'yi JPL açar (biz açmıyoruz); Copernicus DEM yalnızca yüksekliğe bağlı troposfer düzeltmesi; ana ölçüm LOS, dikey yalnızca tahmin; "matematiksel kanıt / kırılmadan önce kesin" gibi abartı yok; kalibrasyon cümlesi aynen; AI kullanımı (Claude Code, Gemini/Antigravity, OpenAI Codex) ve "sitede AI görseli yok". Dil yüzdeleri: Python 68.8 / JS 17.1 / HTML 8.4 / CSS 5.7 | `docs/story/submission_form.md` ilgili bölümler + `tools/sync_submission_form.py` uyumu |
+| 15:15–16:00 | Aynı 6 cevabın **Türkçe** kopyası (Kerem forma bakarken kullanacak) | `docs/story/submission_form_tr.md` |
+| 16:00–17:15 | **Jüri SSS yenile:** `docs/story/judge_faq.md` (FAQ sayfası bunu gösterir) → NASA mühendisinin soracağı en olası 12 soru, her biri ≤3 cümle: neden LOS, neden 93 gün ortak pencere, QC nasıl çalışır (Semarang ve **Pekin −10.1 cm sıçrama** örneği), OPERA neden manşet değil, provisional ne demek, Konya %11.6 kapsama uyarısı, GHSL nüfus yöntemi, kalıcı su kaybı nasıl ayrıldı, Querétaro neden atlasta yok, tekrar üretilebilirlik | `docs/story/judge_faq.md` |
+| 17:15–18:15 | **Science sayfası kart denetimi:** `web/science.html` kartlarının her sayısı `data/global/atlas.json`/`home_summary.json`/`results_registry.json` ile aynı mı (ör. "12/12 detectable", "Konya −9.6 LOS"); eskiyse kaynağı düzelt | `data/results_registry.json` + `docs/qa/PC4.md` tablo |
+| 18:15–19:00 | **29 bültenin son okuması:** ad NISAR Vision, kalibrasyon cümlesi, güven/QC notu atlasla aynı; 3 rastgele bülten telefonda (375 px) yatay kayma 0 | `docs/qa/PC4.md` |
+| 19:00–19:30 | SIGNOFF son tur PC1 ile (`docs/qa/SCIENCE_SIGNOFF.md`) | imza satırı |
+| 19:30–20:00 | Dondurma sonrası `check_site` + pytest; teslime kadar yalnızca yazım düzeltmesi | — |
