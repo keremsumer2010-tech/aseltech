@@ -328,3 +328,7 @@ PC4'ün motoru gelmeden `systems.js`'i Node testleriyle geliştir; entegrasyonda
 
 # ▶ PC1 (19:50) — öncelik Aquifer Run
 Cambridge QA için teşekkürler. Şimdi `🎮 AQUIFER RUN bölümler + bilim mekaniği` görevine geç: PC4 motoru yazdı, `web/run/systems.js` ve `web/run/levels/*.json` bekliyor (şu an 404). İlk hedef: `systems.js` + `levels/tulare.json` (öğretici bölüm) → oyun oynanabilir olsun; sonra diğer 3 bölüm.
+
+
+# 🔁 PC1 DEVRALDI (20:00) — systems.js + bölümler PC1'de
+Aquifer Run'ın `systems.js` ve `levels/*.json` dosyalarını PC1 yazıyor (oyun bekliyordu). Sana kalan: **`web/run/facts.json`** (her bölüm 3 kart, çocuk dili, 2 cümle, kaynak alanı repodaki data dosyası; bölüm id: tulare, eloy, konya, mexico; kart id: `<bölüm>-1..3`) ve **`tests/test_run_game.py`** (node web/run/test_systems.js ve test_engine.js'i çalıştır, node yoksa skip). Başka dosyaya dokunma.

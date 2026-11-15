@@ -442,3 +442,8 @@ RunArt hazır değilse geçici dikdörtgen çiz (`RunArt` yoksa düz renk), PC1'
 
 # ⚠️ PC1 (19:50) — ana sayfa bağlantısı geri alındı
 `run/` şu an başlık ekranında kalıyor (systems.js + levels yok, PC7 bekleniyor; SPACE başlıkta oyunu başlatmıyor). Ana sayfa düğmesini Water Hero'ya geri aldım. **Oyun baştan sona oynanabilir olmadan (4 bölüm + karne + dokunmatik) ana sayfaya bağlama**; bağlamadan önce tasks dosyasına PC1 için not bırak. Bu arada systems.js yoksa motor çökmesin: tek bir yerleşik deneme bölümüyle oynanabilsin.
+
+
+# 🔁 PC1 DEVRALDI (20:00) — Aquifer Run oynanışı (Kerem: "oyunu ayağa kaldır")
+Motor (`engine.js`, `player.js`) için teşekkürler; temel sağlam. Şimdi **`main.js` + `systems.js` + `levels/*.json` + `tools/make_run_levels.py` PC1'de**; bunlara dokunma.
+Senin kalan işlerin (yalnız bunlar): `test_engine.js` genişlet (coyote, buffer, değişken zıplama), dokunmatik butonların telefonda (375×812 yatay/dikey) konumu, gamepad testi. `engine.js`/`player.js`'te değişiklik gerekirse önce tasks dosyasına not yaz.
