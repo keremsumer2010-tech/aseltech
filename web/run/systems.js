@@ -57,8 +57,74 @@
     };
   }
 
-  function update(state, dt) {
+  function nearestPump(state, x) {
+    var entities = state.level.entities || [];
+    var best = -1, distance = Infinity;
+    for (var i = 0; i < entities.length; i++) {
+      if (entities[i].type !== 'pump' || state.offPumps[i]) continue;
+      var d = Math.abs((entities[i].x || 0) - x);
+      if (d < distance) { distance = d; best = i; }
+    }
+    return best;
+  }
+
+  function processEvents(state, events) {
+    for (var i = 0; i < events.length; i++) {
+      var event = events[i] || {};
+      if (event.type === 'playerPosition' && Number.isFinite(event.x)) state.playerX = event.x;
+      if (event.type === 'reachFlag') { state.completed = true; state.levelEnded = true; }
+      if (event.type === 'fall') state.score = Math.max(0, state.score - 50);
+      if (event.type === 'pickup' && event.target === 'drop') {
+        state.drops += 1;
+        state.tank = clamp(state.tank + 1, 0, state.tankMax);
+        state.aquifer = clamp(state.aquifer + state.rainRefill, 0, 100);
+        state.score += 10;
+      }
+      if (event.type === 'pickup' && event.target === 'chip') {
+        state.chips += 1;
+        state.score += 300;
+      }
+      if (event.type === 'dustHit') state.tank = Math.max(0, state.tank - 3);
+      if (event.type !== 'action') continue;
+
+      if (event.target === 'pump') {
+        var pump = event.entity && event.entity.id;
+        if (pump !== undefined && !state.offPumps[pump]) {
+          state.offPumps[pump] = true;
+          state.pumpsRunning = Math.max(0, state.pumpsRunning - 1);
+          state.pumpsOff += 1;
+          state.score += 150;
+        }
+      } else if (event.target === 'crop') {
+        var crop = event.entity && event.entity.id;
+        if (state.tank >= 2 && (crop === undefined || !state.level.entities[crop]._watered)) {
+          state.tank -= 2;
+          if (crop !== undefined) state.level.entities[crop]._watered = true;
+          state.crops += 1;
+          state.score += 100;
+          var cropX = crop !== undefined && state.level.entities[crop]
+            ? state.level.entities[crop].x : state.playerX;
+          var pumpIndex = nearestPump(state, cropX);
+          if (pumpIndex >= 0) {
+            state.offPumps[pumpIndex] = true;
+            state.pumpsRunning = Math.max(0, state.pumpsRunning - 1);
+            state.pumpsOff += 1;
+            state.score += 150;
+          }
+        }
+      } else if (event.target === 'canal' && state.tank >= 3) {
+        state.tank -= 3;
+        state.score += 50;
+      } else if (event.target === 'dust') {
+        state.score += 10;
+      }
+    }
+  }
+
+  function update(state, dt, events) {
     if (!state || !Number.isFinite(dt) || dt <= 0) return state;
+    processEvents(state, Array.isArray(events) ? events : []);
+    if (state.levelEnded) return state;
     state.elapsed += dt;
     state.aquifer = clamp(state.aquifer - state.pumpsRunning * state.drainPerPump * dt, 0, 100);
     if (state.rainEverySec > 0) {
