@@ -217,3 +217,18 @@ PC4 (metin) durmuş sayıldı. Pekin'den SONRA, küresel altyapı riskinden ÖNC
 1. **Teknik not senkronu:** `docs/story/technical_note.md` + `.html` — atlas v2 (26 bölge, ortak 93 günlük pencere, QC: Delhi/Pekin/Bangkok/Gorgan/Pekalongan indicative, Semarang düzeltildi −6.2 cm), OPERA açıklaması (`opera_check.md`), bağımsız kontrol (`atlas_top5_check.md`). Sayılar yalnız atlas.json'dan.
 2. **Slaytlar:** `docs/story/slides.html` atlas slaytı ve sayılar aynı kaynaktan; ≤7 slayt.
 Sonra küresel altyapı riski (zaman kalırsa sadece Mexico City).
+
+# 🚀 YENİ PLAN — PC7 (PC1, Pekin tamamlandıktan sonra) · 8 saat · veri dondurma Paz 20:00
+Pekin tam kutu sonucu (−11.1 cm LOS, −9.25 cm/100d; eski −1.4) atlasın en önemli düzeltmelerinden biri — çok iyi iş. Sıradaki bloklar, sırayla:
+
+| Süre | Blok | Çıktı |
+|---|---|---|
+| ~45 dk | **Pekin'i sağlamlaştır:** literatürle kıyas (Pekin Chaoyang/Tongzhou çökme hızları, kaynak + DOI) ve `qc_report.json` özetini `data/global/beijing/validation_note.json`'a yaz; "hazır: beijing (full-box)" notu PC10 için; changelog'a girecek gerekçe cümlesi (−1.4 → −11.1: referans havza içindeydi + 11 Temmuz aykırısı) | validation_note, `docs/qa/PC7.md` |
+| ~1 sa | **Aguascalientes'i bitir** (8/9 kesit hazır): son çift + summary/meta/points/disp + belirsizlik haritası; "hazır" | `data/global/aguascalientes/` |
+| ~1 sa | **Sağlamlık belgesi:** `docs/story/robustness.md` (yöntem: 27 varyant; sonuç: 18/27 geçerli, ilk 3 için "inconclusive" neden; Central Valley'de vadi içi referans adayının spread'i şişirdiği; bağımsız doğrulama önceliği kuralı `data/global/independent_validation.json`); `results_registry.json` `robustness` satırına özet + anahtar sayı | robustness.md |
+| ~1.5 sa | **Teknik not + slayt senkronu (PC4'ten devir):** `docs/story/technical_note.md/html` ve `slides.html` — atlas v2 (27+ bölge, ortak 93 günlük pencere 2026-06-28→09-29, QC ile indicative bölgeler, Semarang −6.2 düzeltmesi, Pekin −11.1, Central Valley 3. sıra/bağımsız GNSS), OPERA açıklaması (`opera_check.md`), bağımsız kontrol (`atlas_top5_check.md`). Sayılar yalnız `atlas.json`/`SCIENCE_SIGNOFF.md`'den | technical_note, slides |
+| ~2 sa | **Küresel altyapı riski — Mexico City ve Pekin:** OSM metro/raylı hatlar, O2 yöntemi değişmeden (1 km segment, β, Monte Carlo σ, P(β>1/500), P(Δ>10 cm)) | `data/risk_global/{mexico_city,beijing}.json`, `pc7_risk_*.png` |
+| ~45 dk | **`docs/story/global_risk.md`** (≤1 sayfa: eşiği aşan km, en riskli 3 segment, belirsizlik, sınırlamalar — nedensellik iddiası yok) + `results_registry` satırı | global_risk.md |
+| 18:00–20:00 | Son QA: `python -m pytest -q`, `pipeline/pc7/validate_json.py`, `tools/validate_atlas.py`; bulgular sahiplerine | `docs/qa/PC7.md` FINAL |
+
+Kurallar aynı: önce kendi dosyalarını commit → pull --rebase → push, en geç 10 dk'da bir; `python` 3.12; aynı anda tek indirme. Son bloğa gelince `status/PC7.md` ilk satırına `PLAN_SONU_YAKIN`.
