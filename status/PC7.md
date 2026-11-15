@@ -34,4 +34,4 @@
 - Tam pytest tekrarlandı: 83 passed, 1 PendingDeprecationWarning; Xi'an indirmesi sürerken.
 - JSON sözleşme taraması: 111 dosyada parse/NaN hatası yok; data/numbers_registry.json quality eksikliği başka sahibin dosyası.
 - AI: Codex → CMR dry-run, kaynak incelemesi ve PC7 QA kaydı.
-- BLOCKED: yok
+- BLOCKED: git pull --rebase origin main failed: error: cannot open '.git/FETCH_HEAD': Permission denied
