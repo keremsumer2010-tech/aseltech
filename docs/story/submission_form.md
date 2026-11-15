@@ -40,7 +40,7 @@ NASA's NISAR Land Subsidence StoryMap showed California's sinking valley with 20
 
 - **Live Interactive Application (`web/`, `web/explorer.html`, `game/`, `web3d/`):**
 ```text
-https://keremsumer2010-tech.github.io/aseltech/web/index.html
+https://keremsumer2010-tech.github.io/aseltech/
 ```
 
 - **Public GitHub Source Code & Data Repository:**

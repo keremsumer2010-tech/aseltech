@@ -11,7 +11,7 @@ Kullanıcı artık ajanlara prompt girmiyor; **tüm yönetim git üzerinden.** K
 - [ ] Oyun ↔ atlas bağlantısı (`tasks/PC6.md` "OYUN ↔ ATLAS" 1–5)
 - [ ] Sunum modu `web/present.html` (Lincoln demosu, ok tuşlarıyla bölüm turu)
 - [ ] "What changed" kutusu + sıralamada hata çubukları (atlas sayfası)
-- [~PC4] Teslim paketi `docs/story/submission_package.md` (Space Apps gerekleri, AI beyanı, NASA veri listesi, tüm linkler 200)
+- [x PC4] Teslim paketi `docs/story/submission_package.md` (Space Apps gerekleri, AI beyanı, NASA veri listesi, tüm linkler 200)
 - [x PC4] Jüri SSS 30 soru (`docs/story/judge_faq.md`) — yeni sıralama, QC, OPERA, ortak pencere
 
 - [ ] NISAR Pulse `--qc` motoru (PC2'den devir; `tasks/PC2.md` "KENDİ KENDİNİ DENETLEYEN MOTOR" madde 1)

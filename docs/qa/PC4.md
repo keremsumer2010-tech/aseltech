@@ -316,3 +316,7 @@ Kapsam: `web/index.html` (`1–163`). Genel İngilizce tonu akıcı ve tutarlı 
 ### 30. Kırık Bağlantı Taraması & `validate_atlas.py` Denetimi (`2026-11-15 09:15 TR`)
 - **`docs/story/*.md` + `docs/story/atlas_cities/*.md` yerel bağlantı taraması:** `0` kırık yerel bağlantı (`broken local links: 0`).
 - **`tools/validate_atlas.py` (`29` bölge):** `274` bulgu (`248` error, `26` warning): (a) yeni ATLAS v2 sıralama anahtarı `rate_cm_per_100d_common` olduğu halde `validate_atlas.py` hâlâ `rate_cm_per_100d` sıralaması arıyor (**PC10**); (b) `kashmar`, `kerman`, `houston`, `tianjin`, `lagos` için `atlas.json` içinde `country: ""`; (c) bazı `summary.json` dosyalarında `p2_cm`, `valid_fraction`, `confidence`, `ref_range_cm` alanları eksik (`konya_plain`, `semarang`, `can_tho`, `delta`, `bangkok`, `pekalongan`, `jakarta`, `yunlin`, `hanoi`, `ho_chi_minh`). **PC10/PC2** incelemeli.
+
+### 31. Teslim Paketi & Canlı URL Denetimi (`2026-11-15 09:17 TR`)
+- `docs/story/submission_package.md` oluşturuldu (`BACKLOG_ORTAK.md` §E `[x PC4]`).
+- Canlı URL kontrolünde `https://keremsumer2010-tech.github.io/aseltech/web/index.html` adresinin `HTTP 404` döndürdüğü tespit edildi (Pages `web/.` içeriğini kökte yayınlıyor); `docs/story/submission_form.md:43` doğrulanmış **`https://keremsumer2010-tech.github.io/aseltech/`** (`HTTP 200`) ile düzeltildi.
