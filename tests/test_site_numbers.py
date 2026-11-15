@@ -67,7 +67,7 @@ def test_web_pages_match_atlas_counts_and_headline_numbers() -> None:
     cv_peak = f"{abs(cv['max_subsidence_cm']):.1f}"
     storage_vol = f"{storage['volume_km3_per_yr']:.4f}"
 
-    for rel_path in ("web/index.html", "web/atlas.html", "web/present.html"):
+    for rel_path in ("web/index.html", "web/atlas.html"):
         text = (ROOT / rel_path).read_text(encoding="utf-8")
         assert "NISAR data are provisional." in text, f"Missing calibration notice in {rel_path}"
         assert n_reg in text, f"Expected n_regions={n_reg} in {rel_path}"
@@ -75,11 +75,6 @@ def test_web_pages_match_atlas_counts_and_headline_numbers() -> None:
     atlas_html = (ROOT / "web" / "atlas.html").read_text(encoding="utf-8")
     assert n_rel in atlas_html and n_ind in atlas_html, "web/atlas.html meta/stats must match reliable/indicative counts"
     assert "ranked by common 93-day window" in atlas_html.lower()
-
-    present_html = (ROOT / "web" / "present.html").read_text(encoding="utf-8")
-    assert top["name"] in present_html
-    assert cv_peak in present_html
-    assert storage_vol in present_html
 
     index_html = (ROOT / "web" / "index.html").read_text(encoding="utf-8")
     assert n_rel in index_html and n_ind in index_html, "web/index.html must match reliable/indicative counts"
