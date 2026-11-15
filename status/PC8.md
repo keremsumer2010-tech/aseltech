@@ -1,3 +1,3 @@
-# PC8 durum
+﻿# PC8 durum
 
-- Durum: %100 (01:42 TR; 21 bölge güncel, yeni şehir/görev yok); sıradaki: 3 dk sonra kontrol.
+- Durum: FINAL 1/5 bitti (11:13 TR; judge_brief.html+pdf A4 tek sayfa); sirada: FINAL 2 submission_form (home_summary.json henuz yok, vital_signs.json kullaniliyor).

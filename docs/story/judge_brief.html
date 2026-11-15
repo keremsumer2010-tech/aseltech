@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>NISAR Pulse - one-page brief for judges</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+@page { size: A4; margin: 0 }
+* { box-sizing: border-box }
+html { background: #e9edf1 }
+body { margin: 0; font: 10pt/1.4 "Segoe UI", Arial, sans-serif; color: #14202b }
+.page { width: 210mm; height: 297mm; margin: 0 auto; background: #fff; padding: 13mm 14mm 10mm; display: flex; flex-direction: column; overflow: hidden }
+.kicker { font-size: 8.5pt; letter-spacing: .08em; text-transform: uppercase; color: #5a6b7a }
+h1 { font-size: 21pt; margin: 2mm 0 3mm; line-height: 1.1 }
+.core { font-size: 11.5pt; line-height: 1.45; margin: 0 0 5mm; padding: 3.5mm 4mm; border-left: 3px solid #1b6fb3; background: #f2f7fb }
+.nums { display: grid; grid-template-columns: repeat(5, 1fr); gap: 2.5mm; margin-bottom: 5mm }
+.num { border: 1px solid #cfd9e2; border-radius: 3px; padding: 3mm 2.5mm; display: flex; flex-direction: column }
+.num b { font-size: 17pt; line-height: 1.05; color: #0d4f86 }
+.num span { font-size: 8.5pt; font-weight: 600; margin-top: 1.5mm }
+.num i { font-size: 7.5pt; font-style: normal; color: #5a6b7a; margin-top: 1mm }
+h2 { font-size: 10.5pt; margin: 0 0 2mm; text-transform: uppercase; letter-spacing: .05em; color: #0d4f86 }
+ol, ul { margin: 0; padding-left: 5mm }
+li { margin-bottom: 1.6mm }
+.links { list-style: none; padding: 0 }
+.links li { margin-bottom: 1mm }
+.links b { display: inline-block; width: 22mm }
+a { color: #0d4f86; text-decoration: none; word-break: break-all }
+section { margin-bottom: 4.5mm }
+.sections li { margin-bottom: 1mm }
+.foot { margin-top: auto; font-size: 8pt; color: #3d4c59; border-top: 1px solid #cfd9e2; padding-top: 2.5mm }
+@media print { html { background: #fff } .page { margin: 0 } }
+</style></head>
+<body><div class="page">
+<div class="kicker">NASA Space Apps 2026 · Dancing with the SARs · Team Taykut</div>
+<h1>NISAR Pulse: Follow the Water</h1>
+<p class="core">We turned the first months of NASA-ISRO NISAR radar data into a self-checking global subsidence atlas: 29 basins measured with one open pipeline on the same 93 days, every number traceable to its file, and every headline checked against GPS, NASA's OPERA product and the literature.</p>
+<div class="nums">
+<div class="num"><b>29</b><span>basins measured</span><i>16 reliable, 13 indicative</i></div>
+<div class="num"><b>-11.0 cm</b><span>fastest: Konya Plain</span><i>per 100 days, line of sight, 93-day common window</i></div>
+<div class="num"><b>1.48 M</b><span>people on sinking ground</span><i>1,479,844 residents on 549 km2 below -5 cm</i></div>
+<div class="num"><b>r = 0.92</b><span>agreement with GPS</span><i>10 stations, Central Valley</i></div>
+<div class="num"><b>0.32 km3/yr</b><span>permanent aquifer loss</span><i>Central Valley, mixed-quality series</i></div>
+</div>
+<section><h2>What the site shows in three minutes</h2>
+<ul class="sections">
+<li><strong>Hero.</strong> One sentence and three numbers: basins, people, GPS agreement.</li>
+<li><strong>Atlas.</strong> All 29 basins ranked on the same 93 days (2026-06-28 to 2026-09-29).</li>
+<li><strong>We caught our own error.</strong> Semarang before and after quality control.</li>
+<li><strong>Why you can trust it.</strong> GPS, OPERA, formal uncertainty, and the calibration notice.</li>
+<li><strong>What it is for.</strong> People, water, canals, bulletins, simulator.</li>
+<li><strong>Original and open.</strong> Four contributions and one reproduction command.</li>
+</ul></section>
+<section><h2>Four original contributions</h2><ol>
+<li><strong>One window, one method, 29 basins.</strong> A comparable global ranking from the first provisional NISAR data: one 93-day window, one open pipeline.</li>
+<li><strong>An atlas that checks itself.</strong> Time-series quality control caught a full phase-cycle error in Semarang (-12.1 to -6.2 cm) and flagged other basins as indicative.</li>
+<li><strong>Independent evidence.</strong> GPS agreement in the Central Valley and NASA OPERA agreement in Mexico City (r = 0.91).</li>
+<li><strong>From measurement to decision.</strong> People and aquifer loss, canal tilt risk, one-page bulletins, a 24-month simulator, one command to reproduce.</li>
+</ol></section>
+<section><h2>Links</h2><ul class="links">
+<li><b>Site</b> <a href="https://keremsumer2010-tech.github.io/aseltech/">https://keremsumer2010-tech.github.io/aseltech/</a></li>
+<li><b>Atlas</b> <a href="https://keremsumer2010-tech.github.io/aseltech/atlas.html">https://keremsumer2010-tech.github.io/aseltech/atlas.html</a></li>
+<li><b>Simulator</b> <a href="https://keremsumer2010-tech.github.io/aseltech/game/">https://keremsumer2010-tech.github.io/aseltech/game/</a></li>
+<li><b>Bulletins</b> <a href="https://keremsumer2010-tech.github.io/aseltech/bulletins/">https://keremsumer2010-tech.github.io/aseltech/bulletins/</a></li>
+<li><b>Repository</b> <a href="https://github.com/keremsumer2010-tech/aseltech">https://github.com/keremsumer2010-tech/aseltech</a></li>
+</ul></section>
+<div class="foot"><strong>Calibration notice.</strong> NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.<br>
+Numbers are read from data/global/vital_signs.json, atlas.json, exposure_atlas.json and the Central Valley validation file. Line-of-sight (LOS) means motion toward or away from the satellite.</div>
+</div></body></html>
