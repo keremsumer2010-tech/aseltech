@@ -1,3 +1,3 @@
 ﻿# PC8 durum
 
-- Durum: FINAL 2/5 bitti (teslim formu 29 havza, karakter sayimi tamam); sirada: FINAL 3 bultenler + FINAL 4 eksik 8 bolge nufus (kashmar kerman houston can_tho tianjin lagos gorgan pekalongan).
+- Durum: FINAL 3/5 ve 4/5 bitti (29 bülten ve 29 bölge GHSL nüfus etkisi exposure_atlas/vital_signs üretildi, testler geçti); sırada: FINAL 5 teslim kontrol listesi (submission_package.md bağlantı kontrolü).
