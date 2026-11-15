@@ -8,7 +8,7 @@
 
 ## 2. JavaScript Syntax & Module Checks (`node --check`)
 All 10 site and simulator JS files pass `node --check` with zero syntax errors:
-- `web/app.js`, `web/atlas.js`, `web/atlas_sat.js`, `web/docs.js`, `web/explorer.js`, `web/home3.js`, `web/nisar3d.js`
+- `web/app.js`, `web/nisar3d.js`, `web/js/atlas.js`, `web/js/atlas_sat.js`, `web/js/docs.js`, `web/js/explorer.js`, `web/js/home3.js`
 - `game/game.js`, `game/model.js`, `game/tests.js`
 
 ## 3. Data & Headline Number Consistency
@@ -16,8 +16,8 @@ All 10 site and simulator JS files pass `node --check` with zero syntax errors:
 - `python3 tools/vital_signs.py --check`: **OK** (`29 regions, fastest=konya_plain -11.0 cm/100d`).
 
 ## 4. Mobile (375 px) & Overflow CSS Guards
-- `web/atlas.css`: `.atlas-page{overflow-x:hidden;overflow-y:auto}` and `.atlas-tscroll{overflow-x:auto}`
-- `web/style.css`: `.site-nav{overflow-x:auto}`, `@media (max-width:860px)` table/code `overflow-x:auto;max-width:100%`
-- `web/home3.css`: `.code{overflow-x:auto}`
+- `web/css/atlas.css`: `.atlas-page{overflow-x:hidden;overflow-y:auto}` and `.atlas-tscroll{overflow-x:auto}`
+- `web/css/style.css`: `.site-nav{overflow-x:auto}`, `@media (max-width:860px)` table/code `overflow-x:auto;max-width:100%`
+- `web/css/home3.css`: `.code{overflow-x:auto}`
 - `game/style.css`: `body { overflow-x: hidden; overflow-y: auto; }` at mobile breakpoint.
 - *Environment note:* Headless Chromium / Playwright is not installed in this Linux container (`ModuleNotFoundError: No module named 'playwright'`), so live browser DOM/console execution at `1920×1080` and `375×812` should be spot-checked on PC1/PC6 before 20:00 freeze.
