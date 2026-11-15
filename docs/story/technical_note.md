@@ -74,35 +74,47 @@ We treat external comparisons strictly as consistency checks rather than formal 
 - **Sacramento–San Joaquin Delta (`2026-06-17 → 2026-10-15`, `9` pairs):** `1 km` block-median peak **`−1.3 cm` LOS** (`−1.6 cm` vert. est. at `35.8°`); `N = 87` OSM levee alignment samples show a `10th` percentile of `−3.48 cm` LOS and reach `−11.36 cm` on a `4.09 km` segment (`docs/story/delta.md`).
 - **Konya Closed Basin & Karapınar Sinkholes (`2026-06-26 → 2026-10-12`, `8` pairs):** Full-basin `1 km` median peak reaches **`−9.6 cm` LOS** south of Konya city (`−12.1 cm` vert. est., `32.628°E, 37.816°N`, `docs/story/konya_plain.md`). Inside Karapınar (`−5.9 cm` LOS peak, `−8.0 cm` vert. est., `3.10 km² <= −5 cm`, `28.66 km² <= −2 cm`), pixels within `0–1 km` of `29` verified sinkholes sink **`6.4×` faster** (`−4.15 cm` vs. `−0.65 cm` beyond `5 km`); discrete `1.04 km` block permutations (`p = 0.0001`, Welch `p = 9.7 × 10⁻⁸`) and `3,423` rigid constellation shifts (`p = 0.0207`, `docs/story/sinkhole_stats.md`) confirm significant spatial association over shared drawdown.
 - **Population, Crop & UK Fens Polarimetry (`exposure.md`, `polarization.md`):** Across Central Valley + Konya Basin `> 2 cm` LOS footprints, **`141,555` estimated residents** (`71,701` CV + `69,854` Konya Basin, `11,572` in Karapınar; `196,949` with `<= 2.5 km` basin interpolation) live on subsiding ground; **`79.2%` (`1,251.37 km²`)** of Central Valley `> 2 cm` land is cultivated cropland led by **citrus (`355.64 km²`)** and **pistachios (`230.92 km²`)**. In the UK Fens (`4` fields, `8` `GCOV` dates), `HH` sits **`~7 dB` brighter** than `HV` (`4.27` vs. `3.49 dB` temporal range).
-- **Global Cities (`docs/story/global_showcase.md`, `docs/story/atlas_top5_check.md`):** Unmodified pipeline execution records 1 km peak LOS subsidence across `21` worldwide regions (`9` reliable, `12` indicative) ranked over a common `93`-day window (`2026-06-28 → 2026-09-29`). Reliable Top 5 are **`Konya Plain` (`−11.0 cm/100d` common, `−9.6 cm` LOS, caution: 11.6% valid)**, **`Eloy` (`−8.6 cm/100d` common, `−8.0 cm` LOS)**, **`Mashhad` (`−6.9 cm/100d` common, `−8.6 cm` LOS)**, **`Mexico City` (`−6.3 cm/100d` common, `−7.0 cm` LOS, off-basin rerun)**, and **`Semarang` (`−5.5 cm/100d` common, `−6.2 cm` LOS, reprocessed without the `2026-10-11` phase-cycle jump)**. **Cangzhou** enters at `#7` (`−2.4 cm` LOS), **Tehran** reads **`−7.4 cm`** (off-basin Alborz bedrock ref, indicative), and **Delhi, Beijing, and Bangkok** remain **`indicative only`** due to QC flags.
+- **Global Cities (`docs/story/global_showcase.md`, `docs/story/atlas_top5_check.md`):** Unmodified pipeline execution records 1 km peak LOS subsidence across `29` worldwide regions (`16` reliable, `13` indicative) ranked over a common `93`-day window (`2026-06-28 → 2026-09-29`). Reliable Top 5 are **`Konya Plain` (`−11.0 cm/100d` common, `−9.6 cm` LOS, caution: 11.6% valid)**, **`Eloy` (`−8.6 cm/100d` common, `−8.0 cm` LOS)**, **`Mashhad` (`−6.9 cm/100d` common, `−8.6 cm` LOS)**, **`Mexico City` (`−6.3 cm/100d` common, `−7.0 cm` LOS, off-basin rerun)**, and **`Semarang` (`−5.5 cm/100d` common, `−6.2 cm` LOS, reprocessed without the `2026-10-11` phase-cycle jump)**. **Cangzhou** enters at `#7` (`−2.4 cm` LOS), **Tehran** reads **`−7.4 cm`** (off-basin Alborz bedrock ref, indicative), and **Delhi, Beijing, and Bangkok** remain **`indicative only`** due to QC flags.
 
 ### 5.1 Global Subsidence Atlas (2026 Provisional Benchmark)
 
 Using the single-command `pipeline/nisarpulse/` engine with identical `provisional`-only (`>= 2026-06-17`, `P05023`) thresholds and standardized `±0.25°` boxes across basins worldwide (`docs/ATLAS_PLANI.md` §1–§4), our **2026 NISAR Global Subsidence Atlas v2** (`data/global/atlas.json`, audited in [`atlas_top5_check.md`](atlas_top5_check.md) and [`atlas_validation.md`](atlas_validation.md)) ranks `21` completed regions by **`rate_cm_per_100d_common` (`cm / 100 days LOS` over the common `93`-day window `2026-06-28 → 2026-09-29`)** among QC-verified basins—*to our knowledge, one of the first standardized multi-basin comparisons built on provisional NISAR L-band GUNW data using a single open-source pipeline*. **LOS & Period Caveat:** all values are Line-of-Sight (`LOS`, not vertical) over single `96–120`-day summer–autumn windows; `tools/atlas_qc.py` splits `9` `reliable` regions (ranks 1–9) from `12` `indicative only` entries (ranks 10–21):
 
-| Rank | Region / City | Period (`n` pairs, days) | Common Rate (`cm/100d`) | Full Rate (`cm/100d`) | Peak 1 km LOS (`cm`) | Vertical Est. (`cm`) | Valid Px | Atlas Tier / QC Status (`atlas_top5_check.md`) |
-|---:|---|---|---:|---:|---:|---:|---:|---|
-| 1 | **Konya Plain, Türkiye** | `2026-06-26 → 2026-10-12 (8, 108 d)` | **`−11.0`** | `−8.9` | `−9.6` | `−12.1` | `11.6%` | **`reliable`** (`medium`; keep with caution: low coverage) |
-| 2 | **Eloy, USA** | `2026-06-19 → 2026-10-17 (9, 120 d)` | **`−8.6`** | `−6.7` | `−8.0` | `−10.3` | `69.6%` | **`reliable`** (`high`; Picacho Basin alluvium) |
-| 3 | **Mashhad, Iran** | `2026-06-19 → 2026-10-17 (9, 120 d)` | **`−6.9`** | `−7.2` | `−8.6` | `−11.3` | `70.5%` | **`reliable`** (`medium`; consistent with PSInSAR) |
-| 4 | **Mexico City, Mexico** *(off-basin)* | `2026-06-22 → 2026-10-20 (8, 120 d)` | **`−6.3`** | `−5.8` | `−7.0` | `−9.7` | `63.9%` | **`reliable`** (`medium`; **PC5 Approved**) |
-| 5 | **Semarang, Indonesia** *(QC-reprocessed)* | `2026-06-25 → 2026-09-29 (7, 96 d)` | **`−5.5`** | `−6.5` | `−6.2` | `−8.1` | `51.5%` | **`reliable`** (`medium`; `10-11` phase jump removed, coast peak) |
-| 6 | **Rafsanjan, Iran** | `2026-06-23 → 2026-10-21 (9, 120 d)` | **`−4.2`** | `−4.8` | `−5.8` | `−7.4` | `84.7%` | **`reliable`** (`medium`; **PC5 Approved**) |
-| 7 | **Cangzhou, China** | `2026-06-21 → 2026-10-19 (8, 120 d)` | **`−2.4`** | `−2.0` | `−2.4` | `−3.2` | `43.2%` | **`reliable`** (`medium`; North China Plain) |
-| 8 | **Sacramento–San Joaquin Delta, USA** | `2026-06-17 → 2026-10-15 (9, 120 d)` | **`−1.4`** | `−1.1` | `−1.3` | `−1.6` | `43.4%` | **`reliable`** (`medium`; **PC5 Approved**) |
-| 9 | **Quetta, Pakistan** | `2026-06-17 → 2026-10-15 (9, 120 d)` | **`−0.7`** | `−3.2` | `−3.8` | `−5.5` | `71.3%` | **`reliable`** (`medium`; valley overdraft) |
-| 10 | **Bangkok, Thailand** | `2026-06-21 → 2026-10-19 (8, 120 d)` | **`−12.5`** | `−6.2` | `−7.5` | `−9.0` | `30.3%` | **`indicative only`** (`low`; QC: `literature_mismatch`) |
-| 11 | **Central Valley (Tulare Basin), USA** | `2026-06-28 → 2026-10-14 (7, 108 d)` | **`−7.3`** | `−7.2` | `−7.8` | `−10.1` | `62.9%` | **`indicative only`** (`low` in v2; 10-GPS `r = 0.924`, **PC5 Approved**) |
-| 12 | **Tehran, Iran** *(bedrock rerun)* | `2026-06-18 → 2026-10-16 (9, 120 d)` | **`−6.4`** | `−6.2` | `−7.4` | `−9.8` | `38.1%` | **`indicative only`** (`low`; Alborz bedrock ref `−7.4 cm`) |
-| 13 | **Jakarta, Indonesia** | `2026-06-27 → 2026-10-13 (8, 108 d)` | **`−5.6`** | `−6.3` | `−6.8` | `−9.3` | `2.9%` | **`indicative only`** (`low`, tropical decorrelation) |
-| 14 | **Karapınar, Türkiye** | `2026-06-26 → 2026-10-12 (8, 108 d)` | **`−3.7`** | `−5.5` | `−5.9` | `−8.0` | `14.2%` | **`indicative only`** (`low`; **PC5 Conditional** sinkholes) |
-| 15 | **Delhi, India** | `2026-06-21 → 2026-10-19 (8, 120 d)` | **`−3.2`** | `−3.6` | `−4.3` | `−5.4` | `5.3%` | **`indicative only`** (`low`; QC: `single_date_outlier`) |
-| 16 | **Beijing, China** | `2026-06-17 → 2026-10-15 (9, 120 d)` | **`−2.6`** | `−1.2` | `−1.4` | `−2.1` | `71.1%` | **`indicative only`** (`low`; QC: `single_date_outlier`) |
-| 17 | **Isfahan, Iran** | `2026-06-18 → 2026-10-16 (9, 120 d)` | **`−2.1`** | `−2.1` | `−2.5` | `−3.4` | `32.5%` | **`indicative only`** (`low`; **PC5 Approved**) |
-| 18 | **Yunlin, Taiwan** | `2026-06-28 → 2026-10-14 (8, 108 d)` | **`−1.6`** | `−2.5` | `−2.7` | `−3.4` | `28.2%` | **`indicative only`** (`low`; Choushui fan) |
-| 19 | **Xi'an, China** | `2026-06-19 → 2026-10-17 (9, 120 d)` | **`−1.4`** | `−1.2` | `−1.5` | `−2.0` | `36.2%` | **`indicative only`** (`low`; Weihe basin) |
-| 20 | **Hanoi, Vietnam** | `2026-06-19 → 2026-10-17 (9, 120 d)` | **`−0.9`** | `−2.1` | `−2.5` | `−3.6` | `25.7%` | **`indicative only`** (`low`; Red River delta) |
-| 21 | **Ho Chi Minh City, Vietnam** | `2026-06-17 → 2026-10-15 (9, 120 d)` | **`+4.6`** | `−3.5` | `−4.2` | `−5.8` | `32.1%` | **`indicative only`** (`low`; wet-season common-window rebound) |
+<!-- ATLAS_TABLE_START -->
+| Rank | Region | Period (pairs, days) | Common-window rate (cm/100d) | Full-period rate (cm/100d) | Peak 1 km LOS (cm) | Valid px | Confidence / QC |
+|---:|---|---|---:|---:|---:|---:|---|
+| 1 | **Konya Plain, Türkiye** | `2026-06-26 → 2026-10-12` (8, 108 d) | **−11.0** | −8.9 | −9.6 | — | medium |
+| 2 | **Eloy, USA** | `2026-06-19 → 2026-10-17` (9, 120 d) | **−8.6** | −6.7 | −8.0 | 69.6% | high |
+| 3 | **Central Valley (Tulare Basin), USA** | `2026-06-28 → 2026-10-14` (7, 108 d) | **−7.3** | −7.2 | −7.8 | 62.9% | medium |
+| 4 | **Kashmar** | `2026-06-19 → 2026-10-17` (9, 120 d) | **−7.0** | −5.2 | −6.2 | 72.8% | high |
+| 5 | **Mashhad, Iran** | `2026-06-19 → 2026-10-17` (9, 120 d) | **−6.9** | −7.2 | −8.6 | 70.5% | medium |
+| 6 | **Mexico City, Mexico** | `2026-06-22 → 2026-10-20` (8, 120 d) | **−6.3** | −5.8 | −7.0 | 63.9% | medium |
+| 7 | **Semarang, Indonesia** | `2026-06-25 → 2026-09-29` (7, 96 d) | **−5.5** | −6.5 | −6.2 | — | medium |
+| 8 | **Kerman** | `2026-06-19 → 2026-10-17` (9, 120 d) | **−5.3** | −5.1 | −6.1 | 96.8% | high |
+| 9 | **Rafsanjan, Iran** | `2026-06-23 → 2026-10-21` (9, 120 d) | **−4.2** | −4.8 | −5.8 | 84.7% | medium |
+| 10 | **Houston** | `2026-06-18 → 2026-10-16` (9, 120 d) | **−4.0** | −4.3 | −5.2 | 46.1% | medium |
+| 11 | **Can Tho, Vietnam** | `2026-06-17 → 2026-10-15` (9, 120 d) | **−3.4** | −2.8 | −3.4 | — | medium |
+| 12 | **Tianjin** | `2026-06-21 → 2026-10-19` (8, 120 d) | **−2.8** | −2.4 | −2.9 | 63.4% | medium |
+| 13 | **Cangzhou, China** | `2026-06-21 → 2026-10-19` (8, 120 d) | **−2.4** | −2.0 | −2.4 | 43.2% | medium |
+| 14 | **Lagos** | `2026-06-24 → 2026-10-10` (8, 108 d) | **−2.1** | −2.2 | −2.4 | 32.8% | medium |
+| 15 | **Sacramento–San Joaquin Delta, USA** | `2026-06-17 → 2026-10-15` (9, 120 d) | **−1.4** | −1.1 | −1.3 | — | medium |
+| 16 | **Quetta, Pakistan** | `2026-06-17 → 2026-10-15` (9, 120 d) | **−0.7** | −3.2 | −3.8 | 71.3% | medium |
+| 17 | **Gorgan** | `2026-06-21 → 2026-10-19` (9, 120 d) | **−22.7** | −28.8 | −34.6 | 26.7% | low · indicative only · QC: phase cycle jump |
+| 18 | **Delhi, India** | `2026-06-21 → 2026-10-19` (8, 120 d) | **−15.6** | −18.6 | −22.3 | 28.3% | low · indicative only · QC: phase cycle jump |
+| 19 | **Bangkok, Thailand** | `2026-06-21 → 2026-10-19` (8, 120 d) | **−12.5** | −6.2 | −7.5 | — | low · indicative only · QC: literature mismatch, noisy series |
+| 20 | **Pekalongan, Indonesia** | `2026-06-20 → 2026-10-18` (9, 120 d) | **−11.9** | −18.5 | −22.2 | — | low · indicative only · QC: phase cycle jump |
+| 21 | **Beijing, China** | `2026-06-17 → 2026-10-15` (9, 120 d) | **−11.2** | −9.2 | −11.1 | 52.3% | low · indicative only · QC: phase cycle jump, single date outlier |
+| 22 | **Tehran, Iran** | `2026-06-18 → 2026-10-16` (9, 120 d) | **−6.4** | −6.2 | −7.4 | 38.1% | low · indicative only |
+| 23 | **Jakarta, Indonesia** | `2026-06-27 → 2026-10-13` (8, 108 d) | **−5.6** | −6.3 | −6.8 | — | low · indicative only |
+| 24 | **Karapınar, Konya, Türkiye** | `2026-06-26 → 2026-10-12` (8, 108 d) | **−3.7** | −5.5 | −5.9 | 14.2% | low · indicative only |
+| 25 | **Isfahan, Iran** | `2026-06-18 → 2026-10-16` (9, 120 d) | **−2.1** | −2.1 | −2.5 | 32.5% | low · indicative only |
+| 26 | **Yunlin, Taiwan** | `2026-06-28 → 2026-10-14` (8, 108 d) | **−1.6** | −2.5 | −2.7 | — | low · indicative only |
+| 27 | **Xi'an, China** | `2026-06-19 → 2026-10-17` (9, 120 d) | **−1.4** | −1.2 | −1.5 | 36.2% | low · indicative only |
+| 28 | **Hanoi, Vietnam** | `2026-06-19 → 2026-10-17` (9, 120 d) | **−0.9** | −2.1 | −2.5 | — | low · indicative only |
+| 29 | **Ho Chi Minh City, Vietnam** | `2026-06-17 → 2026-10-15` (9, 120 d) | **4.6** | −3.5 | −4.2 | — | low · indicative only |
+
+*Generated from `data/global/atlas.json` by `tools/sync_atlas_text.py`: 29 regions, 16 reliable, 13 indicative; ranked by the common window 2026-06-28 → 2026-09-29 (reliable regions first). LOS, provisional NISAR data.*
+<!-- ATLAS_TABLE_END -->
 
 ---
 
