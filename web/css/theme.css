@@ -190,3 +190,6 @@ h1,h2{text-wrap:balance}
 @media (max-width:520px){.hiw-steps{grid-template-columns:1fr}}
 
 .work .btn.line{color:var(--acc);border-color:var(--acc);background:#fff}
+.wcta-stack{display:inline-flex;flex-direction:column;gap:10px;align-items:stretch;margin-top:6px;max-width:100%}
+.wcta-stack>.btn{text-align:center}
+.wcta-sub{display:flex;flex-wrap:wrap;gap:10px}
