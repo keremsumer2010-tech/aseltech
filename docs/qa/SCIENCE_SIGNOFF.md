@@ -69,3 +69,20 @@ Rows 4 and 5 were not re-derived in this review (sources: `data/central_valley/a
 ## 6. PC4 Final 10-Row Verification (`2026-11-15 11:20 TR`)
 
 All 10 headline rows above (`#1`–`#10`) were verified directly against their JSON sources (`data/central_valley/{summary,area_stats,validation,assets}.json`, `data/central_valley_fullyear/{decomp,storage_loss}.json`, `data/karapinar/summary.json`, `data/uk_clay/detection.json`, `data/global/{atlas,vital_signs}.json`, and `docs/story/risk_sensitivity.md`): **10/10 match** (`assets.json` max gradient `57.01 mm/km`, `81/645` segments `> 20 mm/km`; `decomp.json` `p01` `−16.77 ± 2.24 cm/yr`, seasonal `11.67 cm`, `R² = 0.972`; `atlas.json` `29` regions `16` reliable / `13` indicative, `#1 konya_plain −11.0 cm/100d`; `vital_signs.json` `1,200,716` residents / `511.65 km²`, `7,475,011 < −2 cm`).
+
+
+## 7. PC4 Afternoon Pre-Freeze Re-Verification (`2026-11-15 13:55 TR`)
+
+All 10 headline rows re-verified post-feature freeze (`91abbc3`):
+1. **Central Valley Peak:** `data/central_valley/summary.json` → `−7.8 cm` LOS (`−10.1 cm` vert. est., `[−7.8, −4.7] cm` 3-ref range) — MATCH
+2. **Central Valley Sinking Area:** `data/central_valley/area_stats.json` → `239.54 km² < −5 cm`, `1,578.27 km² < −2 cm` — MATCH
+3. **GNSS Validation:** `data/central_valley/validation.json` → `r = 0.924`, median RMSE `1.00 cm` (10 stations) — MATCH
+4. **Infrastructure Tilt:** `data/central_valley/assets.json` → `81 / 645` segments `> 10 mm/km` (Tulare Canal `57.01 mm/km`) — MATCH
+5. **Full-Year Decomposition:** `data/central_valley_fullyear/decomp.json` → `−16.77 ± 2.24 cm/yr` permanent vs. `11.67 cm` seasonal (`R² = 0.97`) — MATCH
+6. **Storage Loss:** `data/central_valley_fullyear/storage_loss.json` → `0.3174 km³/yr` — MATCH
+7. **Karapınar & Sinkholes:** `data/karapinar/summary.json` → `−5.9 cm` LOS (`−8.0 cm` vert. est.), `6.4×` contrast within 1 km (`p = 0.0001` blocks, `p = 0.0207` constellation) — MATCH
+8. **London Clay Negative Control:** `data/uk_clay/detection.json` → `below_detection`, `3σ = 3.62 cm`, chain `σ = 1.21 cm` — MATCH
+9. **Global Atlas:** `data/global/atlas.json` → `29` regions (`16` reliable / `13` indicative), #1 `konya_plain` `−11.0 cm/100d` — MATCH
+10. **Global GHSL Exposure:** `data/global/vital_signs.json` → `1,200,716` residents on `511.65 km²` (`7,475,011 < −2 cm`) — MATCH
+
+**Status:** Ready for final 19:15 data freeze and PC1 joint sign-off.
