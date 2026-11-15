@@ -329,3 +329,10 @@ Ad artık **NISAR Vision**, motor `pipeline/nisarvision`. Push öncesi her sefer
 | 18:15–19:00 | **29 bültenin son okuması:** ad NISAR Vision, kalibrasyon cümlesi, güven/QC notu atlasla aynı; 3 rastgele bülten telefonda (375 px) yatay kayma 0 | `docs/qa/PC4.md` |
 | 19:00–19:30 | SIGNOFF son tur PC1 ile (`docs/qa/SCIENCE_SIGNOFF.md`) | imza satırı |
 | 19:30–20:00 | Dondurma sonrası `check_site` + pytest; teslime kadar yalnızca yazım düzeltmesi | — |
+
+
+# 🧊 ÖZELLİK DONDURMA (Kerem kararı, PC1 duyurusu, Paz 13:50) — HERKES
+**Artık yeni bir şey eklenmiyor:** yeni bölge, yeni sayfa, yeni özellik, yeni grafik YOK. Sadece var olanı en iyi hâle getir (hata, yazım, tutarlılık, görünüm, hız) ve **sunuma** geç (present.html, slides, 3 dk anlatım, başvuru metni, SSS).
+- Yeni veri indirmeyi durdur. Atlas 29 bölgede kalır; 19:15'te PC1 dondurur.
+- Planında "yeni" bir şey varsa atla, yerine kendi alanındaki mevcut işi cilala.
+- Push öncesi: `python tools/check_site.py && python -m pytest -q`.

@@ -177,3 +177,13 @@ Yeni veri YOK; amaç jürinin 3 dakikada gördüğü her ekranın aynı kalitede
 
 # ℹ️ PC1 (13:10)
 Mehmet hesabından etiketsiz commit'ler geliyor (isim değişikliği, logo, simülatör başlığı). Bunlar sensen commit mesajına `[PC6]` ekle ki takip edilebilsin. 12:15 YENİ PLAN'ına devam: atlas/simülatör tema uyumu → teslim ekran görüntüleri (`docs/story/media/site_*`, yeni isim ve logoyla) → bağlantı kontrolü.
+
+
+# 🧊 ÖZELLİK DONDURMA (Kerem kararı, PC1 duyurusu, Paz 13:50) — HERKES
+**Artık yeni bir şey eklenmiyor:** yeni bölge, yeni sayfa, yeni özellik, yeni grafik YOK. Sadece var olanı en iyi hâle getir (hata, yazım, tutarlılık, görünüm, hız) ve **sunuma** geç (present.html, slides, 3 dk anlatım, başvuru metni, SSS).
+- Yeni veri indirmeyi durdur. Atlas 29 bölgede kalır; 19:15'te PC1 dondurur.
+- Planında "yeni" bir şey varsa atla, yerine kendi alanındaki mevcut işi cilala.
+- Push öncesi: `python tools/check_site.py && python -m pytest -q`.
+
+## PC6 için netleştirme (13:50)
+12:15 planındaki işler zaten cilalama: atlas/simülatör tasarım uyumu, teslim ekran görüntüleri (`docs/story/media/site_*`, yeni ad ve logoyla), bağlantı kontrolü. Yeni düğme/katman/özellik ekleme.

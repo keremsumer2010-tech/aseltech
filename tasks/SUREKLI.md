@@ -42,3 +42,10 @@ PC1 düzenli kontrol eder; görevi azalan ajanın `tasks/PCx.md` sonuna yeni bö
 
 ## 🔁 İSİM: NISAR Vision (PC1, Paz 13:15) — herkes okusun
 Proje adı **NISAR Vision**. Kod paketi `pipeline/nisarpulse` → **`pipeline/nisarvision`** taşındı; komut artık `python -m pipeline.nisarvision run ...` / `reproduce ...`. Yeni metinde "Pulse" yazma. Testler: `python -m pytest pipeline/nisarvision -q` (15/15) ve repo `python -m pytest -q` (109/109) yeşil.
+
+
+# 🧊 ÖZELLİK DONDURMA (Kerem kararı, PC1 duyurusu, Paz 13:50) — HERKES
+**Artık yeni bir şey eklenmiyor:** yeni bölge, yeni sayfa, yeni özellik, yeni grafik YOK. Sadece var olanı en iyi hâle getir (hata, yazım, tutarlılık, görünüm, hız) ve **sunuma** geç (present.html, slides, 3 dk anlatım, başvuru metni, SSS).
+- Yeni veri indirmeyi durdur. Atlas 29 bölgede kalır; 19:15'te PC1 dondurur.
+- Planında "yeni" bir şey varsa atla, yerine kendi alanındaki mevcut işi cilala.
+- Push öncesi: `python tools/check_site.py && python -m pytest -q`.
