@@ -92,8 +92,8 @@ def choose_reference_window(pair_files: list[Path], anchor: tuple[float, float],
 
     best: tuple[float, int, int] | None = None
     radius = REFERENCE_RADIUS_PX
-    for row in range(rlo, rhi, 2):
-        for col in range(clo, chi, 2):
+    for row in range(rlo, rhi):
+        for col in range(clo, chi):
             valid_win = common[row-radius:row+radius+1, col-radius:col+radius+1]
             if (valid_win.shape != (2*radius+1, 2*radius+1) or
                     int(valid_win.sum()) < MIN_REFERENCE_VALID_PIXELS):
