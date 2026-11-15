@@ -65,3 +65,4 @@ Kullanıcı artık ajanlara prompt girmiyor; **tüm yönetim git üzerinden.** K
 
 - [ ] `tests/test_atlas_schema.py`: atlas.json alan/sıra/sayım testi (PC10 durdu, PC1 12:55)
 - [ ] Delhi `--qc` sonucunu atlas notuna ve `data/global/delhi/validation_note.json`'a işle (PC2 durdu, PC1 13:10)
+- [ ] data/global/beijing/summary.json confidence high→low + validation_note QC notu (PC11 durdu, PC1 15:10)

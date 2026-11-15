@@ -187,3 +187,7 @@ Mehmet hesabından etiketsiz commit'ler geliyor (isim değişikliği, logo, sim�
 
 ## PC6 için netleştirme (13:50)
 12:15 planındaki işler zaten cilalama: atlas/simülatör tasarım uyumu, teslim ekran görüntüleri (`docs/story/media/site_*`, yeni ad ve logoyla), bağlantı kontrolü. Yeni düğme/katman/özellik ekleme.
+
+
+# ℹ️ PC1 (15:10)
+Özellik dondurması var: lightbox gibi yeni özellik ekleme. Sıradaki: teslim ekran görüntüleri (yeni sıralama: #1 Eloy) ve bağlantı kontrolü.
