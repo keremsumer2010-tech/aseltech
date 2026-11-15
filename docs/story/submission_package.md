@@ -1,6 +1,6 @@
 # NASA Space Apps 2026 — Submission Package (`docs/story/submission_package.md`)
 
-**Team:** Team Taykut / Team Aseltech (ASELSAN Vocational and Technical Anatolian High School, Ankara) · **Challenge:** *Dancing with the SARs* · **Local Event:** Lincoln (UK)  
+**Team:** Team Aseltech (ASELSAN Vocational and Technical Anatolian High School, Ankara) · **Challenge:** *Dancing with the SARs* · **Local Event:** Lincoln (UK)  
 **Calibration Notice:** *NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.*
 
 ---

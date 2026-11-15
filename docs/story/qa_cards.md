@@ -40,7 +40,7 @@ Over Mexico City the spatial pattern matches NASA JPL's OPERA product at 10 poin
 Intersecting `GHSL GHS-POP E2025` (`100 m`) with 108-day scaled subsidence `< −5 cm` (`|disp| >= 2σ`, excluding nested `karapinar` to avoid double-counting) places **`1,200,716` residents** on **`511.65 km²`** of sinking ground (`7,475,011` below `−2 cm`) across all 29 atlas regions.
 
 **Q12. How did you use AI, and are any images AI-generated?**  
-AI assistants (Anthropic Claude and Google Gemini) helped draft analysis scripts, tests, and documentation, with every number read directly from repository JSONs and checked by Team Taykut. There are **zero AI-generated images** anywhere on the website, presentation deck, 3D viewer, or simulator.
+AI assistants (Anthropic Claude and Google Gemini) helped draft analysis scripts, tests, and documentation, with every number read directly from repository JSONs and checked by Team Aseltech. There are **zero AI-generated images** anywhere on the website, presentation deck, 3D viewer, or simulator.
 
 ---
 

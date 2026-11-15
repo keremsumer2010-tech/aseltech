@@ -19,4 +19,4 @@ Across 12 atlas basins (`2026-06-17` to `2026-10-21`, `108–120` days), median 
 | `beijing` | `120 d` | `-1.17` | `±0.607` | `3.8` | `0.607` | **true** |
 | `delta` | `120 d` | `-1.08` | `±0.578` | `3.7` | `0.578` | **true** |
 
-Figure 1. Subsidence rate (`cm/100 d` LOS) with formal `2-sigma` Cramér-Rao error bars and minimum detectable rate threshold (`docs/story/media/pc5_detectability.png`). Data: NASA-ISRO NISAR, ASF DAAC. Analysis: Team Taykut.
+Figure 1. Subsidence rate (`cm/100 d` LOS) with formal `2-sigma` Cramér-Rao error bars and minimum detectable rate threshold (`docs/story/media/pc5_detectability.png`). Data: NASA-ISRO NISAR, ASF DAAC. Analysis: Team Aseltech.

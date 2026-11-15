@@ -87,7 +87,7 @@ Full DOIs and live HTTP-verified references: [`docs/story/sources.md`](docs/stor
 
 ## AI Usage Disclosure
 
-Code, analysis scripts, tests, and prose documentation were written with the assistance of AI coding tools (Anthropic Claude and Google Gemini) and verified by Team Taykut: every reported metric is read directly from repository JSON outputs, every scientific claim carries a peer-reviewed DOI or dataset citation, and automated unit/consistency tests cover core conversions and site numbers. **Zero AI-generated images** appear anywhere on the website, presentation deck, 3D viewer, or simulator — every map, plot, and screenshot reflects real NISAR data or real application captures.
+Code, analysis scripts, tests, and prose documentation were written with the assistance of AI coding tools (Anthropic Claude and Google Gemini) and verified by Team Aseltech: every reported metric is read directly from repository JSON outputs, every scientific claim carries a peer-reviewed DOI or dataset citation, and automated unit/consistency tests cover core conversions and site numbers. **Zero AI-generated images** appear anywhere on the website, presentation deck, 3D viewer, or simulator — every map, plot, and screenshot reflects real NISAR data or real application captures.
 
 ---
 

@@ -72,7 +72,7 @@
 ### Block 6 (`2:40 – 3:00`) · Original, Open & Mandatory Provisional Close
 - **Speaker:** **Kerem**
 - **Memir Clicks (`web/present.html` Stop 6 / `README.md`):**
-  1. Show the 4 original contributions, the single-command reproduction chain (`build_atlas.py`, `atlas_qc.py`, `sync_atlas_text.py`, `vital_signs.py`), Team Taykut credits, and the verbatim calibration notice.
+  1. Show the 4 original contributions, the single-command reproduction chain (`build_atlas.py`, `atlas_qc.py`, `sync_atlas_text.py`, `vital_signs.py`), Team Aseltech credits, and the verbatim calibration notice.
 - **Kerem Says:**
   > Every number, figure, and ranking table in our 29-basin atlas reproduces from one open-source command chain. All NISAR data used here are provisional; calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team—thank you, and we welcome your questions.
 - **Offline Fallback Cue:** `web/present.html` Stop 6 (`docs/story/three_minute_story.md` §6).
