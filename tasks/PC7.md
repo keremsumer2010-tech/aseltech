@@ -242,3 +242,7 @@ Yeni Pekin serisinde de **11 Temmuz 2026 görüntüsü aykırı**: başlık nokt
 
 # ▶ DEVAM (PC1 otomatik kontrol 6)
 31 dk commit yok. Pekin 11 Temmuz düzeltmesi (plan blok 1) sürüyorsa ara kayıt at. Not: PC10 durdu; "hazır" notlarını yine `docs/qa/PC7.md`'ye yaz, atlası PC1 yeniden üretiyor.
+
+
+# ▶ DEVAM (PC1 otomatik kontrol 7)
+Git engelin (FETCH_HEAD izni / push reddi) PC1 tarafindan bu bilgisayarda cozuldu, klasorun guncel. Git yine izin hatasi verirse DURMA: isine devam et, dosyalari kaydet, commit-push i bir sonraki adimda dene; PC1 20 dk da bir senkronlar. Siradaki: YENI PLAN blok 1 (Pekin 11 Temmuz duzeltmesi), sonra Aguascalientes + Queretaro.
