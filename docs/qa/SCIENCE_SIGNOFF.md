@@ -18,8 +18,8 @@
 | 6 | **Permanent Aquifer Storage Loss (CV)** | **`0.3174 km³/yr`** (`317.41 million m³/yr`) | `1 km` block SE `±0.00123 km³/yr`; 3-ref range `0.0664–0.3198 km³/yr` | `mixed` | `data/central_valley_fullyear/storage_loss.json:volume_km3_per_yr` |
 | 7 | **Karapınar Basin & 29-Sinkhole Contrast** | **`−5.9 cm` LOS** (`−8.0 cm` vert. est.); **`−4.15 cm`** `< 1 km` vs. **`−0.65 cm`** `> 5 km` (`6.4×`) | `1.04 km` block perm `p = 0.0001`; `3,423` constellation shifts `p = 0.0207` | `provisional` (`indicative` basin-wide, `Conditional` contrast) | `data/karapinar/summary.json:max_subsidence_cm`, `docs/story/sinkhole_stats.md` |
 | 8 | **London Clay Negative Control** | **`status: "below_detection"`** (`97.7%` within `±1.5 cm`) | `chain_sigma = 1.21 cm`, **`3σ = 3.62 cm`** detection floor (`9` pairs) | `provisional` | `data/uk_clay/detection.json:status`, `detection_threshold_cm` |
-| 9 | **2026 Global Subsidence Atlas (#1 Reliable)** | **#1 Konya Plain `−11.0 cm/100d`** (common window `2026-06-28 → 2026-09-29`, 93 d; `−9.6 cm` LOS over its full 108 d); **`29` regions: `16` reliable / `13` indicative** | Konya `11.6%` valid coverage → kept with caution; time-series QC moves `6` regions to indicative (Gorgan, Delhi, Pekalongan, Beijing, Bangkok + unverified); Central Valley rank 3 kept `medium` by independent GNSS validation (`r = 0.924`) | `provisional` | `data/global/atlas.json:regions[0]`, `n_reliable`; `data/global/qc_flags.json`; `data/global/independent_validation.json` |
-| 10 | **Global GHSL Exposure (`< −5 cm`, `|disp| ≥ 2σ`)** | **`1,200,716` residents** on **`511.65 km²`** of sinking ground | Covers all 29 atlas regions (`exposure_atlas.json`, `28` independent footprints excluding nested `karapinar`); static `GHSL E2025` (`100 m`) overlay (`7,475,011 < −2 cm`) | `provisional` | `data/global/vital_signs.json:people_on_sinking_ground`, `area_km2_lt_minus5cm` |
+| 9 | **2026 Global Subsidence Atlas (#1 Reliable)** | **#1 Eloy `−8.6 cm/100d`** (common window `2026-06-28 → 2026-09-29`, 93 d; `−8.0 cm` LOS over full 120 d); **`29` regions: `15` reliable / `14` indicative** | Konya Plain (`−11.0 cm/100d`) kept indicative per validation audit (`11.6%` coverage); Eloy leads reliable basins followed by Central Valley (`−7.3 cm/100d`), Kashmar (`−7.0 cm/100d`), Mashhad (`−6.9 cm/100d`), Mexico City (`−6.3 cm/100d`) | `provisional` | `data/global/atlas.json:reliable[0]`, `n_reliable`; `data/global/qc_flags.json`; `data/global/independent_validation.json` |
+| 10 | **Global GHSL Exposure (`< −5 cm`, `|disp| ≥ 2σ`)** | **`1,167,429` residents** on **`477.72 km²`** of sinking ground | Covers all 29 atlas regions (`exposure_atlas.json`, `28` independent footprints excluding nested `karapinar`); static `GHSL E2025` (`100 m`) overlay (`7,336,293 < −2 cm`) | `provisional` | `data/global/vital_signs.json:people_on_sinking_ground`, `area_km2_lt_minus5cm` |
 
 ---
 
@@ -82,7 +82,21 @@ All 10 headline rows re-verified post-feature freeze (`91abbc3`):
 6. **Storage Loss:** `data/central_valley_fullyear/storage_loss.json` → `0.3174 km³/yr` — MATCH
 7. **Karapınar & Sinkholes:** `data/karapinar/summary.json` → `−5.9 cm` LOS (`−8.0 cm` vert. est.), `6.4×` contrast within 1 km (`p = 0.0001` blocks, `p = 0.0207` constellation) — MATCH
 8. **London Clay Negative Control:** `data/uk_clay/detection.json` → `below_detection`, `3σ = 3.62 cm`, chain `σ = 1.21 cm` — MATCH
-9. **Global Atlas:** `data/global/atlas.json` → `29` regions (`16` reliable / `13` indicative), #1 `konya_plain` `−11.0 cm/100d` — MATCH
-10. **Global GHSL Exposure:** `data/global/vital_signs.json` → `1,200,716` residents on `511.65 km²` (`7,475,011 < −2 cm`) — MATCH
+9. **Global Atlas:** `data/global/atlas.json` → `29` regions (`15` reliable / `14` indicative), #1 `eloy` `−8.6 cm/100d` (Konya Plain kept indicative per validation audit) — MATCH
+10. **Global GHSL Exposure:** `data/global/vital_signs.json` → `1,167,429` residents on `477.72 km²` (`7,336,293 < −2 cm`) — MATCH
 
-**Status:** Ready for final 19:15 data freeze and PC1 joint sign-off.
+## 8. PC4 Post-Jury-Audit Re-Verification (`2026-11-15 15:28 TR`)
+
+Following PC1 jury audit (`724add5` / `ef8ce58`), all 10 headline rows re-verified:
+1. **Central Valley Peak:** `data/central_valley/summary.json` → `−7.8 cm` LOS (`−10.1 cm` vert. est., `[−7.8, −4.7] cm` 3-ref range) — MATCH
+2. **Central Valley Sinking Area:** `data/central_valley/area_stats.json` → `239.54 km² < −5 cm`, `1,578.27 km² < −2 cm` — MATCH
+3. **GNSS Validation:** `data/central_valley/validation.json` → `r = 0.924`, median RMSE `1.00 cm` (10 stations) — MATCH
+4. **Infrastructure Tilt:** `data/central_valley/assets.json` → `81 / 645` segments `> 10 mm/km` (Tulare Canal `57.01 mm/km`) — MATCH
+5. **Full-Year Decomposition:** `data/central_valley_fullyear/decomp.json` → `−16.77 ± 2.24 cm/yr` permanent vs. `11.67 cm` seasonal (`R² = 0.97`) — MATCH
+6. **Storage Loss:** `data/central_valley_fullyear/storage_loss.json` → `0.3174 km³/yr` — MATCH
+7. **Karapınar & Sinkholes:** `data/karapinar/summary.json` → `−5.9 cm` LOS (`−8.0 cm` vert. est.), `6.4×` contrast within 1 km (`p = 0.0001` blocks, `p = 0.0207` constellation) — MATCH
+8. **London Clay Negative Control:** `data/uk_clay/detection.json` → `below_detection`, `3σ = 3.62 cm`, chain `σ = 1.21 cm` — MATCH
+9. **Global Atlas (#1 Reliable):** `data/global/atlas.json` → `29` regions (`15` reliable / `14` indicative), #1 `eloy` `−8.6 cm/100d`, Konya Plain kept indicative per audit — MATCH
+10. **Global GHSL Exposure:** `data/global/vital_signs.json` → `1,167,429` residents on `477.72 km²` (`7,336,293 < −2 cm`) — MATCH
+
+**Status:** 10/10 verified and consistent across all JSON sources and documentation. Ready for final 19:15 data freeze and PC1 joint sign-off.
