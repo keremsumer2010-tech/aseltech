@@ -270,7 +270,7 @@
     "name": "Semarang",
     "country": "Indonesia",
     "max_cm_los": -6.2,
-    "p2_cm": null,
+    "p2_cm": -5.2,
     "rate_cm_per_100d": -6.5,
     "max_cm_vertical_est": -8.1,
     "period": [
@@ -281,7 +281,7 @@
     "n_pairs": 7,
     "quality": "provisional",
     "rate_cm_per_yr_estimate": -23.6,
-    "valid_fraction": null,
+    "valid_fraction": 0.515,
     "ref_range_cm": [
      -9.9,
      -6.2
@@ -405,54 +405,6 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     117.34078,
-     38.87608
-    ]
-   },
-   "properties": {
-    "id": "tianjin",
-    "name": "Tianjin",
-    "country": "",
-    "max_cm_los": -2.9,
-    "p2_cm": -3.5,
-    "rate_cm_per_100d": -2.4,
-    "max_cm_vertical_est": -3.6,
-    "period": [
-     "2026-06-21",
-     "2026-10-19"
-    ],
-    "days": 120,
-    "n_pairs": 8,
-    "quality": "provisional",
-    "rate_cm_per_yr_estimate": -8.7,
-    "valid_fraction": 0.634,
-    "ref_range_cm": [
-     -2.9,
-     -1.3
-    ],
-    "detectable": null,
-    "robustness_spread": null,
-    "people_exposed": null,
-    "opera_check": null,
-    "sigma_cm_median": 0.329,
-    "rate_ci_cm_per_100d": [
-     -3.0,
-     -1.9
-    ],
-    "confidence": "medium",
-    "indicative_only": false,
-    "coverage": "ok",
-    "path": "data/global/tianjin/",
-    "note": "",
-    "rate_cm_per_100d_common": -2.8,
-    "rank": 9
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
      105.86753,
      10.27513
     ]
@@ -493,7 +445,55 @@
     "path": "data/global/can_tho/",
     "note": "",
     "rate_cm_per_100d_common": -3.4,
-    "rank": 7
+    "rank": 9
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     117.34078,
+     38.87608
+    ]
+   },
+   "properties": {
+    "id": "tianjin",
+    "name": "Tianjin",
+    "country": "",
+    "max_cm_los": -2.9,
+    "p2_cm": -3.5,
+    "rate_cm_per_100d": -2.4,
+    "max_cm_vertical_est": -3.6,
+    "period": [
+     "2026-06-21",
+     "2026-10-19"
+    ],
+    "days": 120,
+    "n_pairs": 8,
+    "quality": "provisional",
+    "rate_cm_per_yr_estimate": -8.7,
+    "valid_fraction": 0.634,
+    "ref_range_cm": [
+     -2.9,
+     -1.3
+    ],
+    "detectable": null,
+    "robustness_spread": null,
+    "people_exposed": null,
+    "opera_check": null,
+    "sigma_cm_median": 0.329,
+    "rate_ci_cm_per_100d": [
+     -3.0,
+     -1.9
+    ],
+    "confidence": "medium",
+    "indicative_only": false,
+    "coverage": "ok",
+    "path": "data/global/tianjin/",
+    "note": "",
+    "rate_cm_per_100d_common": -2.8,
+    "rank": 10
    }
   },
   {
@@ -538,11 +538,7 @@
     "path": "data/global/cangzhou/",
     "note": "",
     "rate_cm_per_100d_common": -2.4,
-<<<<<<< HEAD
-    "rank": 10
-=======
-    "rank": 8
->>>>>>> 699dbc5 ([PC10] Can Tho (Mekong Delta) provisional GUNW subset, uncertainty, and 23-region ATLAS v2)
+    "rank": 11
    }
   },
   {
@@ -590,11 +586,7 @@
     "path": "data/delta/",
     "note": "",
     "rate_cm_per_100d_common": -1.4,
-<<<<<<< HEAD
-    "rank": 11
-=======
-    "rank": 9
->>>>>>> 699dbc5 ([PC10] Can Tho (Mekong Delta) provisional GUNW subset, uncertainty, and 23-region ATLAS v2)
+    "rank": 12
    }
   },
   {
@@ -642,8 +634,7 @@
     "path": "data/global/quetta/",
     "note": "",
     "rate_cm_per_100d_common": -0.7,
-<<<<<<< HEAD
-    "rank": 12
+    "rank": 13
    }
   },
   {
@@ -691,10 +682,7 @@
     "qc_flags": [
      "phase_cycle_jump"
     ],
-    "rank": 13
-=======
-    "rank": 10
->>>>>>> 699dbc5 ([PC10] Can Tho (Mekong Delta) provisional GUNW subset, uncertainty, and 23-region ATLAS v2)
+    "rank": 14
    }
   },
   {
@@ -745,11 +733,7 @@
     "qc_flags": [
      "phase_cycle_jump"
     ],
-<<<<<<< HEAD
-    "rank": 14
-=======
-    "rank": 11
->>>>>>> 699dbc5 ([PC10] Can Tho (Mekong Delta) provisional GUNW subset, uncertainty, and 23-region ATLAS v2)
+    "rank": 15
    }
   },
   {
@@ -766,7 +750,7 @@
     "name": "Bangkok",
     "country": "Thailand",
     "max_cm_los": -7.5,
-    "p2_cm": null,
+    "p2_cm": -6.9,
     "rate_cm_per_100d": -6.2,
     "max_cm_vertical_est": -9.0,
     "period": [
@@ -777,7 +761,7 @@
     "n_pairs": 8,
     "quality": "provisional",
     "rate_cm_per_yr_estimate": -22.8,
-    "valid_fraction": null,
+    "valid_fraction": 0.303,
     "ref_range_cm": [
      -7.9,
      -7.5
@@ -801,11 +785,7 @@
      "literature_mismatch",
      "noisy_series"
     ],
-<<<<<<< HEAD
-    "rank": 15
-=======
-    "rank": 12
->>>>>>> 699dbc5 ([PC10] Can Tho (Mekong Delta) provisional GUNW subset, uncertainty, and 23-region ATLAS v2)
+    "rank": 16
    }
   },
   {
@@ -822,7 +802,7 @@
     "name": "Pekalongan",
     "country": "Indonesia",
     "max_cm_los": -22.2,
-    "p2_cm": null,
+    "p2_cm": -20.9,
     "rate_cm_per_100d": -18.5,
     "max_cm_vertical_est": -31.9,
     "period": [
@@ -833,7 +813,7 @@
     "n_pairs": 9,
     "quality": "provisional",
     "rate_cm_per_yr_estimate": -67.7,
-    "valid_fraction": null,
+    "valid_fraction": 0.266,
     "ref_range_cm": [
      -22.2,
      -12.4
@@ -856,11 +836,7 @@
     "qc_flags": [
      "phase_cycle_jump"
     ],
-<<<<<<< HEAD
-    "rank": 16
-=======
-    "rank": 13
->>>>>>> 699dbc5 ([PC10] Can Tho (Mekong Delta) provisional GUNW subset, uncertainty, and 23-region ATLAS v2)
+    "rank": 17
    }
   },
   {
@@ -914,11 +890,7 @@
     "path": "data/central_valley/",
     "note": "",
     "rate_cm_per_100d_common": -7.3,
-<<<<<<< HEAD
-    "rank": 17
-=======
-    "rank": 14
->>>>>>> 699dbc5 ([PC10] Can Tho (Mekong Delta) provisional GUNW subset, uncertainty, and 23-region ATLAS v2)
+    "rank": 18
    }
   },
   {
@@ -966,11 +938,7 @@
     "path": "data/global/tehran/",
     "note": "",
     "rate_cm_per_100d_common": -6.4,
-<<<<<<< HEAD
-    "rank": 18
-=======
-    "rank": 15
->>>>>>> 699dbc5 ([PC10] Can Tho (Mekong Delta) provisional GUNW subset, uncertainty, and 23-region ATLAS v2)
+    "rank": 19
    }
   },
   {
@@ -987,7 +955,7 @@
     "name": "Jakarta",
     "country": "Indonesia",
     "max_cm_los": -6.8,
-    "p2_cm": null,
+    "p2_cm": -10.2,
     "rate_cm_per_100d": -6.3,
     "max_cm_vertical_est": -9.3,
     "period": [
@@ -998,7 +966,7 @@
     "n_pairs": 8,
     "quality": "provisional",
     "rate_cm_per_yr_estimate": -23.2,
-    "valid_fraction": null,
+    "valid_fraction": 0.029,
     "ref_range_cm": null,
     "detectable": true,
     "robustness_spread": null,
@@ -1015,11 +983,7 @@
     "path": "data/global/jakarta/",
     "note": "",
     "rate_cm_per_100d_common": -5.6,
-<<<<<<< HEAD
-    "rank": 19
-=======
-    "rank": 16
->>>>>>> 699dbc5 ([PC10] Can Tho (Mekong Delta) provisional GUNW subset, uncertainty, and 23-region ATLAS v2)
+    "rank": 20
    }
   },
   {
@@ -1064,11 +1028,7 @@
     "path": "data/karapinar/",
     "note": "",
     "rate_cm_per_100d_common": -3.7,
-<<<<<<< HEAD
-    "rank": 20
-=======
-    "rank": 17
->>>>>>> 699dbc5 ([PC10] Can Tho (Mekong Delta) provisional GUNW subset, uncertainty, and 23-region ATLAS v2)
+    "rank": 21
    }
   },
   {
@@ -1085,7 +1045,7 @@
     "name": "Beijing",
     "country": "China",
     "max_cm_los": -1.4,
-    "p2_cm": null,
+    "p2_cm": -1.3,
     "rate_cm_per_100d": -1.2,
     "max_cm_vertical_est": -2.1,
     "period": [
@@ -1096,7 +1056,7 @@
     "n_pairs": 9,
     "quality": "provisional",
     "rate_cm_per_yr_estimate": -4.3,
-    "valid_fraction": null,
+    "valid_fraction": 0.711,
     "ref_range_cm": [
      -7.6,
      -1.4
@@ -1119,11 +1079,7 @@
     "qc_flags": [
      "single_date_outlier"
     ],
-<<<<<<< HEAD
-    "rank": 21
-=======
-    "rank": 18
->>>>>>> 699dbc5 ([PC10] Can Tho (Mekong Delta) provisional GUNW subset, uncertainty, and 23-region ATLAS v2)
+    "rank": 22
    }
   },
   {
@@ -1171,11 +1127,7 @@
     "path": "data/global/isfahan/",
     "note": "",
     "rate_cm_per_100d_common": -2.1,
-<<<<<<< HEAD
-    "rank": 22
-=======
-    "rank": 19
->>>>>>> 699dbc5 ([PC10] Can Tho (Mekong Delta) provisional GUNW subset, uncertainty, and 23-region ATLAS v2)
+    "rank": 23
    }
   },
   {
@@ -1192,7 +1144,7 @@
     "name": "Yunlin",
     "country": "Taiwan",
     "max_cm_los": -2.7,
-    "p2_cm": null,
+    "p2_cm": -3.0,
     "rate_cm_per_100d": -2.5,
     "max_cm_vertical_est": -3.4,
     "period": [
@@ -1203,7 +1155,7 @@
     "n_pairs": 8,
     "quality": "provisional",
     "rate_cm_per_yr_estimate": -9.2,
-    "valid_fraction": null,
+    "valid_fraction": 0.282,
     "ref_range_cm": [
      -3.5,
      -1.1
@@ -1220,11 +1172,7 @@
     "path": "data/global/yunlin/",
     "note": "",
     "rate_cm_per_100d_common": -1.6,
-<<<<<<< HEAD
-    "rank": 23
-=======
-    "rank": 20
->>>>>>> 699dbc5 ([PC10] Can Tho (Mekong Delta) provisional GUNW subset, uncertainty, and 23-region ATLAS v2)
+    "rank": 24
    }
   },
   {
@@ -1269,11 +1217,7 @@
     "path": "data/global/xian/",
     "note": "",
     "rate_cm_per_100d_common": -1.4,
-<<<<<<< HEAD
-    "rank": 24
-=======
-    "rank": 21
->>>>>>> 699dbc5 ([PC10] Can Tho (Mekong Delta) provisional GUNW subset, uncertainty, and 23-region ATLAS v2)
+    "rank": 25
    }
   },
   {
@@ -1290,7 +1234,7 @@
     "name": "Hanoi",
     "country": "Vietnam",
     "max_cm_los": -2.5,
-    "p2_cm": null,
+    "p2_cm": -3.0,
     "rate_cm_per_100d": -2.1,
     "max_cm_vertical_est": -3.6,
     "period": [
@@ -1301,7 +1245,7 @@
     "n_pairs": 9,
     "quality": "provisional",
     "rate_cm_per_yr_estimate": -7.5,
-    "valid_fraction": null,
+    "valid_fraction": 0.257,
     "ref_range_cm": [
      -6.7,
      -2.2
@@ -1321,11 +1265,7 @@
     "path": "data/global/hanoi/",
     "note": "",
     "rate_cm_per_100d_common": -0.9,
-<<<<<<< HEAD
-    "rank": 25
-=======
-    "rank": 22
->>>>>>> 699dbc5 ([PC10] Can Tho (Mekong Delta) provisional GUNW subset, uncertainty, and 23-region ATLAS v2)
+    "rank": 26
    }
   },
   {
@@ -1342,7 +1282,7 @@
     "name": "Ho Chi Minh City",
     "country": "Vietnam",
     "max_cm_los": -4.2,
-    "p2_cm": null,
+    "p2_cm": -1.8,
     "rate_cm_per_100d": -3.5,
     "max_cm_vertical_est": -5.8,
     "period": [
@@ -1353,7 +1293,7 @@
     "n_pairs": 9,
     "quality": "provisional",
     "rate_cm_per_yr_estimate": -12.8,
-    "valid_fraction": null,
+    "valid_fraction": 0.321,
     "ref_range_cm": [
      -9.9,
      -4.2
@@ -1373,11 +1313,7 @@
     "path": "data/global/ho_chi_minh/",
     "note": "",
     "rate_cm_per_100d_common": 4.6,
-<<<<<<< HEAD
-    "rank": 26
-=======
-    "rank": 23
->>>>>>> 699dbc5 ([PC10] Can Tho (Mekong Delta) provisional GUNW subset, uncertainty, and 23-region ATLAS v2)
+    "rank": 27
    }
   }
  ]

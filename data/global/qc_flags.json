@@ -2,6 +2,27 @@
   "method": "Automatic time-series QC for atlas headline points (PC1).\n\nFor every region in data/global/atlas.json, look at the headline point's cumulative series\n(points.json, kind == \"most_subsiding\") and flag two failure modes that a single summary\nnumber hides:\n\n  phase_cycle_jump      one step whose size is within ±CYCLE_TOL of a full L-band phase cycle\n                        (lambda/2 = 12.1 cm LOS). Typical of an unwrapping error.\n  single_date_outlier   two consecutive steps of opposite sign, each larger than SPIKE_CM, that\n                        largely cancel: one acquisition is off (atmosphere, unwrapping), the\n                        surrounding dates agree.",
   "cycle_cm": 12.1,
   "flags": {
+    "gorgan": {
+      "flags": [
+        "phase_cycle_jump"
+      ],
+      "steps_cm": [
+        -3.02,
+        -10.26,
+        1.71,
+        -1.68,
+        -8.85,
+        4.0,
+        -14.32,
+        -2.23
+      ],
+      "detail": "step 2 (2026-07-03→2026-07-15) = -10.26 cm ≈ one phase cycle (12.1 cm)",
+      "headline_point": [
+        54.39541,
+        36.59262
+      ],
+      "headline_without_flagged_steps_cm": -24.39
+    },
     "delhi": {
       "flags": [
         "phase_cycle_jump"
@@ -64,30 +85,6 @@
       ],
       "headline_without_flagged_steps_cm": -0.14
     },
-<<<<<<< HEAD
-    "gorgan": {
-      "flags": [
-        "phase_cycle_jump"
-      ],
-      "steps_cm": [
-        -3.02,
-        -10.26,
-        1.71,
-        -1.68,
-        -8.85,
-        4.0,
-        -14.32,
-        -2.23
-      ],
-      "detail": "step 2 (2026-07-03→2026-07-15) = -10.26 cm ≈ one phase cycle (12.1 cm)",
-      "headline_point": [
-        54.39541,
-        36.59262
-      ],
-      "headline_without_flagged_steps_cm": -24.39
-    },
-=======
->>>>>>> 699dbc5 ([PC10] Can Tho (Mekong Delta) provisional GUNW subset, uncertainty, and 23-region ATLAS v2)
     "bangkok": {
       "flags": [
         "literature_mismatch",

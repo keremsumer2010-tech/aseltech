@@ -63,7 +63,6 @@
       ]
     },
     {
-<<<<<<< HEAD
       "timestamp": "2026-11-14T23:48:35Z",
       "n_regions": 26,
       "added": [
@@ -71,12 +70,17 @@
         "kashmar",
         "kerman",
         "tianjin"
-=======
-      "timestamp": "2026-11-14T23:59:07Z",
-      "n_regions": 23,
+      ],
+      "removed": [],
+      "value_changes": [],
+      "confidence_changes": [],
+      "qc_flag_changes": []
+    },
+    {
+      "timestamp": "2026-11-15T00:00:48Z",
+      "n_regions": 27,
       "added": [
         "can_tho"
->>>>>>> 699dbc5 ([PC10] Can Tho (Mekong Delta) provisional GUNW subset, uncertainty, and 23-region ATLAS v2)
       ],
       "removed": [],
       "value_changes": [],
