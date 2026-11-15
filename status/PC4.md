@@ -1,1 +1,1 @@
-**PC4** (`2026-11-15 12:24 TR`): 5-dk kontrol #5 — yeni PC4 görevi yok; `judge_brief.html` (`1.20 M`, `1,200,716`, OPERA uyarısı) doğrulandı. `test_numbers_consistency` + `test_site_numbers` + `test_atlas_schema` 4/4 PASS, `vital_signs.py --check` OK.
+**PC4** (`2026-11-15 12:29 TR`): 5-dk kontrol #6 — `SUREKLI.md` yayın kalite kapısı (`check_site.py`: 43 sayfa 0 kırık link; `test_site_links.py` PASS) + 4/4 tutarlılık/şema testi PASS + `vital_signs.py --check` OK.
