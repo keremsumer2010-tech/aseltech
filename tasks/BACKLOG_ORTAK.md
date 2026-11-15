@@ -8,9 +8,9 @@ Kullanıcı artık ajanlara prompt girmiyor; **tüm yönetim git üzerinden.** K
 - [~PC11] Cakarta tam kutu yeniden hesap (PC11 6/9'da kaldı; `pipeline/subset/global_jakarta` varsa `--resume`)
 - [~PC11] Bulacan / Manila Körfezi (120.90, 14.85)
 - [x PC4] Tek literatür tablosu: `data/global/literature_rates.json` + `docs/story/literature_atlas.md` (tüm 29 atlas bölgesi, DOI)
-- [~PC4] Oyun ↔ atlas bağlantısı (`tasks/PC6.md` "OYUN ↔ ATLAS" 1–5)
-- [~PC4] Sunum modu `web/present.html` (Lincoln demosu, ok tuşlarıyla bölüm turu)
-- [~PC4] "What changed" kutusu + sıralamada hata çubukları (atlas sayfası)
+- [x PC4] Oyun ↔ atlas bağlantısı (`tasks/PC6.md` "OYUN ↔ ATLAS" 1–5) → game/index.html & web/atlas.html (?basin=)
+- [x PC4] Sunum modu `web/present.html` (Lincoln demosu, ok tuşlarıyla bölüm turu) → web/present.html (6 durak, 9 iş)
+- [x PC4] "What changed" kutusu + sıralamada hata çubukları (atlas sayfası) → web/atlas.html & data/global/atlas_changelog.json
 - [x PC4] Teslim paketi `docs/story/submission_package.md` (Space Apps gerekleri, AI beyanı, NASA veri listesi, tüm linkler 200)
 - [x PC4] Jüri SSS 30 soru (`docs/story/judge_faq.md`) — yeni sıralama, QC, OPERA, ortak pencere
 
@@ -22,7 +22,7 @@ Kullanıcı artık ajanlara prompt girmiyor; **tüm yönetim git üzerinden.** K
 - [x PC6] results_registry boş summary/key_number alanları (PC10'dan devir) → data/results_registry.json (29/29 tam)
 - [x PC6] Ortak ±10 cm ölçekli küçük haritalar `data/global/<id>/thumb.png` (PC10'dan devir) → 29 bölge (400x400 ±10 cm LOS RdBu) + meta.json thumb_scale + docs/story/media/pc10_colorbar.png
 - [x PC6] İkinci sıralama ekseni: ortak pencerede < −5 cm alan km² (PC10'dan devir) → data/global/atlas.json (area_km2_lt_minus5cm_common) + web/atlas.html & web/atlas.js (Fastest Rate / Largest Area sıralama anahtarı + Top 5 + detay + tablolar)
-- [~PC4] `data/global/atlas.schema.json` + `tests/test_atlas_schema.py` (PC10'dan devir)
+- [x PC4] `data/global/atlas.schema.json` + `tests/test_atlas_schema.py` (PC10'dan devir) → 5/5 pytest PASS
 
 - [ ] Pekin: 11 Temmuz 2026 görüntüsünü içeren iki çifti çıkarıp yeniden hesapla (PC7'den devir; kesitler PC7 klasöründe `pipeline/subset/global_beijing/`)
 - [ ] Aguascalientes tamamla (8/9 kesit, PC7 klasörü) — PC7'den devir
@@ -52,7 +52,7 @@ Kullanıcı artık ajanlara prompt girmiyor; **tüm yönetim git üzerinden.** K
 ## C. Site ve sunum (PC6, PC8, PC4)
 - [x PC4] Her sayfanın `<title>`/`<meta description>`/`og:image`'ı güncel 29-bölge atlas sonuçlarıyla (`web/*.html`)
 - [x PC4] Atlas sayfasına "How to read this map" 4 adımlık kısa rehber (`web/atlas.html`)
-- [~PC4] Ana sayfadaki her sayının atlas.json / results_registry ile aynı olduğunu otomatik kontrol eden test (`tests/test_site_numbers.py`)
+- [x PC4] Ana sayfadaki her sayının atlas.json / results_registry ile aynı olduğunu otomatik kontrol eden test (`tests/test_site_numbers.py`) → tests/test_site_numbers.py (PASS)
 - [x PC4] Sunum için 60 sn'lik yedek ekran kaydı senaryosu (gerçek siteden, AI görseli yok) — `docs/story/demo_script_v3.md`
 
 ## D. Kalite (herkes)
@@ -63,6 +63,6 @@ Kullanıcı artık ajanlara prompt girmiyor; **tüm yönetim git üzerinden.** K
 ## PC1 KARAR — Querétaro atlasa GİRMİYOR (Paz)
 `data/global/queretaro/validation_note.json`: −22.9 cm / 120 gün, literatürün (INEGI ~1.5 cm/yıl) çok üstünde, %48.6 piksel tek tarih sapması, referans bağımsız doğrulanmadı → `recommended_confidence: low`, "diagnostic". Dondurmaya 4 saat kala atlas 29 bölge kalır; Querétaro sadece teknik notta "denendi, QC geçmedi" örneği olarak anılabilir. build_atlas onu almıyorsa bu doğru davranış — DEĞİŞTİRME.
 
-- [ ] `tests/test_atlas_schema.py`: atlas.json alan/sıra/sayım testi (PC10 durdu, PC1 12:55)
-- [ ] Delhi `--qc` sonucunu atlas notuna ve `data/global/delhi/validation_note.json`'a işle (PC2 durdu, PC1 13:10)
+- [x PC4] `tests/test_atlas_schema.py`: atlas.json alan/sıra/sayım testi (PC10 durdu, PC1 12:55) → tests/test_atlas_schema.py PASS
+- [x PC4] Delhi `--qc` sonucunu atlas notuna ve `data/global/delhi/validation_note.json`'a işle (PC2 durdu, PC1 13:10) → validation_note.json ve atlas.json (single_date_outlier / phase_cycle_jump)
 - [x PC4] data/global/beijing/summary.json confidence high→low + validation_note QC notu (PC11 durdu, PC1 15:10) → data/global/beijing/{summary,validation_note}.json güncellendi (low / indicative_only / phase_cycle_jump)
