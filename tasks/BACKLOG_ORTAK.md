@@ -7,7 +7,7 @@ Kullanıcı artık ajanlara prompt girmiyor; **tüm yönetim git üzerinden.** K
 ## E. Durmuş ajanlardan devir (otomatik kontrol 2) — önce bunlar
 - [ ] Cakarta tam kutu yeniden hesap (PC11 6/9'da kaldı; `pipeline/subset/global_jakarta` varsa `--resume`)
 - [ ] Bulacan / Manila Körfezi (120.90, 14.85)
-- [~PC4] Tek literatür tablosu: `data/global/literature_rates.json` + `docs/story/literature_atlas.md` (tüm atlas bölgeleri, DOI)
+- [x PC4] Tek literatür tablosu: `data/global/literature_rates.json` + `docs/story/literature_atlas.md` (tüm 29 atlas bölgesi, DOI)
 - [ ] Oyun ↔ atlas bağlantısı (`tasks/PC6.md` "OYUN ↔ ATLAS" 1–5)
 - [ ] Sunum modu `web/present.html` (Lincoln demosu, ok tuşlarıyla bölüm turu)
 - [ ] "What changed" kutusu + sıralamada hata çubukları (atlas sayfası)
