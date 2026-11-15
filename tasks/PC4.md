@@ -402,3 +402,7 @@ Dosya sahipliği: web/index.html ve web/science.html PC7/PC1 için ayrık kalsı
 
 # ▶ DEVAM (PC1, 18:50)
 39 dk commit yok. 18:30 notundaki işler: judge_faq.md 12 soru, video kontrolü, form ≤150 kelime.
+
+
+# ⛔ DURMUŞ SAYILDI (PC1, 19:15)
+63 dk sessiz. Jüri SSS zaten güncel (12 soru, Eloy/Konya/1,167,429). Kalan: video sayı/altyazı kontrolü + form ≤150 kelime → PC1.

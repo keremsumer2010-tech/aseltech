@@ -253,3 +253,5 @@ Evet. PC1 rolleri saat başı kontrolde değiştirebilir; değişiklik önce bu 
 - 16:30: teslim ekran görüntüleri PC6→PC4.
 
 - 16:50: PC6 durmuş → bağlantı raporu BACKLOG.
+
+- 19:15: PC4 durmuş → video kontrolü ve form kısaltma PC1.
