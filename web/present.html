@@ -239,7 +239,7 @@
         <h1 class="slide-headline">A 30-second simulator &amp; an open one-command engine</h1>
         <p class="slide-sub">Test 24 months of pumping choices in the NISAR Vision groundwater simulator, calibrated to NISAR rates, or reproduce any basin from public NASA ASF data with one open command.</p>
         <div class="slide-actions">
-          <a class="btn primary" href="../game/index.html">Launch Simulator →</a>
+          <a class="btn primary" data-rhref="game/" href="game/">Launch Simulator →</a>
           <a class="btn" href="data.html">Get Code &amp; Data</a>
         </div>
         <p class="slide-source"><strong>Source:</strong> Model calibrated to USGS/NGL Terra Bella compaction and NISAR rates (<code>game/model.js</code>, <code>pipeline/nisarvision</code>).</p>
@@ -258,6 +258,8 @@
 
 <script>
 (function(){
+  const ROOT = location.pathname.includes('/web/') ? '../' : './';
+  document.querySelectorAll('[data-rhref]').forEach(el => { el.href = ROOT + el.dataset.rhref; });
   const slides = Array.from(document.querySelectorAll('.slide'));
   const dots = Array.from(document.querySelectorAll('.pres-dot'));
   const counter = document.getElementById('stepCounter');

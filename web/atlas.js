@@ -1,6 +1,7 @@
 // NISAR Vision — Global Subsidence Atlas 2026 (Atlas Final v2 + Takviye)
 const LOCAL = location.pathname.includes('/web/');
 const ROOT = LOCAL ? '../' : './';
+document.querySelectorAll('[data-rhref]').forEach(el => { el.href = ROOT + el.dataset.rhref; });
 const ESRI = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
 // Local NASA Blue Marble base under the Esri tiles: the globe still shows Earth if the tile server is slow or blocked.
 // Resolved from this page (web/ locally, site root on Pages), not from ROOT (PC1 fix: was 404 on the live site).

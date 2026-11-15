@@ -1,6 +1,7 @@
 // NISAR Vision — data explorer. Everything is driven by data/catalog.json (built by analysis/build_catalog.py).
 const LOCAL = location.pathname.includes('/web/');
 const ROOT = LOCAL ? '../' : './';
+document.querySelectorAll('[data-rhref]').forEach(el => { el.href = ROOT + el.dataset.rhref; });
 const ESRI = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
 const STYLE = {version: 8, sources: {sat: {type: 'raster', tiles: [ESRI], tileSize: 256, attribution: 'Imagery © Esri, Maxar, Earthstar Geographics'}},
   layers: [{id: 'sat', type: 'raster', source: 'sat', paint: {'raster-brightness-max': 0.72, 'raster-saturation': -0.25}}]};

@@ -1,6 +1,10 @@
 // 3-minute jury path (PC1): fills the home page from data/global/home_summary.json only.
 (function(){
   const ROOT = location.pathname.includes('/web/') ? '../' : './';
+  if (location.hash === '#play' || location.hash === '#simulator'){
+    location.replace(ROOT + 'game/');
+    return;
+  }
   document.querySelectorAll('[data-rsrc]').forEach(el => { el.src = ROOT + el.dataset.rsrc; });
   document.querySelectorAll('[data-rhref]').forEach(el => { el.href = ROOT + el.dataset.rhref; });
 

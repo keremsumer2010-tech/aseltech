@@ -1,6 +1,7 @@
 // Shared helpers for science / data / faq pages: render team Markdown files and data tables.
 const LOCAL = location.pathname.includes('/web/');
 const ROOT = LOCAL ? '../' : './';
+document.querySelectorAll('[data-rhref]').forEach(el => { el.href = ROOT + el.dataset.rhref; });
 async function md(el, path, strip){
   const box = document.getElementById(el); if (!box) return;
   try{
