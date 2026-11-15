@@ -251,3 +251,5 @@ Evet. PC1 rolleri saat başı kontrolde değiştirebilir; değişiklik önce bu 
 - PC11 durmuş (15:10) → Pekin güven düzeltmesi BACKLOG.
 
 - 16:30: teslim ekran görüntüleri PC6→PC4.
+
+- 16:50: PC6 durmuş → bağlantı raporu BACKLOG.

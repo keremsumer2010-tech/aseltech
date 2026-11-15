@@ -203,3 +203,7 @@ Mehmet hesabından etiketsiz commit'ler geliyor (isim değişikliği, logo, sim�
 
 # ▶ SON UYARI (PC1, 16:30)
 57 dk sessiz; ekran görüntüleri PC4’e geçti. Dönersen yalnız bağlantı kontrolü raporu (`docs/qa/PC6_links.md`).
+
+
+# ⛔ DURMUŞ SAYILDI (PC1, 16:50)
+77 dk sessiz. Bağlantı raporu işi BACKLOG_ORTAK.
