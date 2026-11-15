@@ -7,8 +7,8 @@
 - `python3 -m pytest tests/test_site_links.py -v`: **PASSED** (1/1).
 
 ## 2. JavaScript Syntax & Module Checks (`node --check`)
-All 10 site and simulator JS files pass `node --check` with zero syntax errors:
-- `web/app.js`, `web/nisar3d.js`, `web/js/atlas.js`, `web/js/atlas_sat.js`, `web/js/docs.js`, `web/js/explorer.js`, `web/js/home3.js`
+All 8 site and simulator JS files pass `node --check` with zero syntax errors:
+- `web/js/atlas.js`, `web/js/atlas_sat.js`, `web/js/docs.js`, `web/js/explorer.js`, `web/js/home3.js`
 - `game/game.js`, `game/model.js`, `game/tests.js`
 
 ## 3. Data & Headline Number Consistency

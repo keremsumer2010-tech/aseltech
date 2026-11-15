@@ -8,12 +8,12 @@
 ## 1. Project Title
 *(Portal limit: typically ≤ 60–80 characters)*
 
-- **Short Title (`48 chars` / `7 words`):**
+- **Short Title (`49 chars` / `7 words`):**
 ```text
 NISAR Vision: Tracking Land Subsidence from Space
 ```
 
-- **Full Descriptive Title (`79 chars` / `13 words`):**
+- **Full Descriptive Title (`80 chars` / `13 words`):**
 ```text
 NISAR Vision — Follow the Water: Tracking Silent Land Subsidence with L-Band SAR
 ```
@@ -60,7 +60,7 @@ https://keremsumer2010-tech.github.io/aseltech/docs/story/slides.html
 
 ---
 
-## 5. Detailed Project Description (`6,256 chars` / `888 words` — Source-Tagged)
+## 5. Detailed Project Description (`6,258 chars` / `888 words` — Source-Tagged)
 
 ```text
 WHAT WE BUILT AND WHY IT MATTERS
@@ -96,12 +96,12 @@ Static JSON/PNG outputs drive a MapLibre GL story map (web/), multi-region explo
 
 ---
 
-## 7. Benefits & Impact (`1,243 chars` / `164 words`)
+## 7. Benefits & Impact (`1,233 chars` / `162 words`)
 
 ```text
 - Water & Infrastructure Managers: Our OpenStreetMap differential tilt index evaluates 645 canal, road, and rail corridors in the Central Valley and flags 81 high-risk segments (> 10 mm/km tilt), led by the Tulare Irrigation District Canal (57.01 mm/km) and a 102.8 km reach of the California Aqueduct (49.12 mm/km) [data/central_valley/assets.json]. A +/-25% threshold sensitivity test confirms the top-10 priority ranking is 100% invariant [docs/story/risk_sensitivity.md]. In the Sacramento-San Joaquin Delta, levee-aligned sampling prioritizes embankment segments up to -11.36 cm LOS for inspection [docs/story/delta.md].
 - Agricultural Communities & Planners in Konya-Karapinar: Mapping basin-wide drawdown (-9.6 cm LOS south of Konya; -5.9 cm LOS in Karapinar) alongside 29 verified karst sinkholes highlights highway corridors up to 19.74 mm/km tilt (route 42-42) [data/karapinar/assets.json], without falsely claiming to predict sudden roof-collapse dates.
-- Educators, Students & Citizens: Plain-English cards, physical scale rulers (>= 2.4 cm above noise), a classroom lesson plan [docs/story/lesson_plan.md], and the 24-month Valley Under Pressure simulator turn multi-gigabyte HDF5 radar files into accessible groundwater literacy.
+- Educators, Students & Citizens: Plain-English cards, physical scale rulers (>= 2.4 cm above noise), a classroom lesson plan [docs/story/lesson_plan.md], and the 24-month Groundwater Simulator turn multi-gigabyte HDF5 radar files into accessible groundwater literacy.
 ```
 
 ---
@@ -124,23 +124,23 @@ Static JSON/PNG outputs drive a MapLibre GL story map (web/), multi-region explo
 
 ---
 
-## 9. Other Non-Space-Agency Data Used (`1,091 chars` / `171 words`)
+## 9. Other Non-Space-Agency Data Used (`1,116 chars` / `172 words`)
 
 ```text
 - Nevada Geodetic Laboratory (NGL, University of Nevada, Reno): Daily continuous GPS vertical time series (IGS20/NA reference frame) at 10 stations in the San Joaquin Valley (CAHA, CAFP, HANF, P566, P056, P564, P565, CAD1, QCAP, TLBN).
 - OpenStreetMap (ODbL): Canal, aqueduct, levee, highway, and railway vector geometries in California (645 evaluated segments), the Delta (87 levee points), and Karapinar, Turkiye (77 evaluated segments), plus settlement names.
 - GHSL GHS-POP E2025 R2023A (European Commission JRC, 100 m, CC BY 4.0): population on sinking ground for the global atlas.
-- Copernicus DEM GLO-90 (ESA): 90 m digital elevation model used for topographic phase ramp checks.
+- Copernicus DEM GLO-90 (ESA): 90 m digital elevation model used only for elevation-dependent tropospheric delay correction.
 - WorldPop Open Population Data (100 m gridded population, 2020, CC BY 4.0), USDA NASS Cropland Data Layer (30 m, 2021, Public Domain), and ESA WorldCover 10 m v200 (2021, CC BY 4.0) for population and crop exposure analysis.
 - Published Karapinar sinkhole coordinates (29 verified collapses, Tapur & Bozyigit 2015, 2016; Orhan et al. 2021) and UK Holme Fen peat loss records (Great Fen Project / UKCEH).
 ```
 
 ---
 
-## 10. Tools, Coding Languages, Hardware & Software (`660 chars` / `83 words`)
+## 10. Tools, Coding Languages, Hardware & Software (`688 chars` / `87 words`)
 
 ```text
-- Languages: Python 3.11, JavaScript (ES6+), HTML5, CSS3.
+- Languages: Python 3.11 (68.8%), JavaScript ES6+ (17.1%), HTML5 (8.4%), CSS3 (5.7%).
 - Scientific Python Stack: NumPy, SciPy, h5py, Matplotlib, Pillow, PyProj, Rasterio, Requests, asf_search, pytest (automated unit tests for phase-to-cm conversion, coherence masking, reference subtraction, cross-sensor metrics, and seasonal decomposition).
 - Web & 3D Visualization: MapLibre GL JS (2D interactive displacement maps, multi-region explorer, and GeoJSON overlays), Three.js v0.160.0 (web3d/ interactive 3D displacement mesh and sinkhole depth columns), HTML5 Canvas (charts and 24-month aquifer simulator).
 - Workflow & Hosting: Git, GitHub, GitHub Pages (static zero-backend deployment).
@@ -185,4 +185,60 @@ Three technical challenges shaped our design:
 10. British Geological Survey — Swelling and Shrinking Soils (London Clay): https://www.bgs.ac.uk/geology-projects/shallow-geohazards/clay-shrink-swell/
 11. Haghighi, M. H., & Motagh, M. (2024) (Tehran subsidence, PMC11086625) & Abidin, H. Z. et al. (2015) (Jakarta subsidence, PIAHS 372:115): https://pmc.ncbi.nlm.nih.gov/articles/PMC11086625/ and https://piahs.copernicus.org/articles/372/115/2015/
 12. Nevada Geodetic Laboratory (NGL) GPS Networks, OpenStreetMap Contributors (ODbL), WorldPop (CC BY 4.0, DOI: 10.5258/SOTON/WP00645), USDA NASS Cropland Data Layer (Public Domain), and ESA WorldCover 10 m (CC BY 4.0, DOI: 10.5281/zenodo.7254221).
+```
+
+
+---
+
+## 14. Space Apps 6-Question Portal Copy-Paste (EN — 9-Item Homepage Flow)
+
+### Q1. What does it do?
+```text
+NISAR Vision turns the first months of NASA-ISRO NISAR L-band radar data (24 cm wavelength, Level-2 GUNW unwrapped by NASA-JPL and ISRO) into a self-checking global land-subsidence atlas across 29 basins on the same 93-day window (2026-06-28 to 2026-09-29):
+01 Global Atlas: Measures 29 basins with one open pipeline (16 pass quality control, 13 indicative; led by Konya Plain at -11.0 cm/100d).
+02 Self-Checking QC: Automated time-series checks caught a full 12.1 cm phase-cycle jump in Semarang (-12.1 to -6.2 cm) and off-basin reference bias in Tehran (-3.5 to -7.4 cm LOS) and Beijing.
+03 GPS Validation: Line-of-sight (LOS) is the primary measurement (vertical is an estimate); California vertical estimates match 10 continuous Nevada Geodetic Laboratory GPS stations at r = 0.924 (median RMSE 1.00 cm). Secondary OPERA check matches Mexico City at 10 points (r = 0.912), with winter/summer and geometry caveats (r = 0.40 Central Valley, r = 0.09 Eloy).
+04 People Exposed: Intersecting displacement with GHSL GHS-POP E2025 (100 m) finds 1,200,716 residents (1.20 M) on 511.65 km2 sinking faster than -5 cm per 108 days.
+05 Permanent Water Loss: Separating seasonal bounce from permanent clay compaction yields 0.3174 km3/yr (~0.32 km3/yr) of permanent aquifer storage loss in the Central Valley.
+06 Infrastructure Screening: Differential tilt screening flags 81 of 645 canal, road, and rail corridors (> 10 mm/km) — a preliminary screening index, not a structural safety assessment.
+07 Early-Warning Bulletins: Generates 29 A4-printable monitoring bulletins (tools/bulletin.py -> docs/bulletins/).
+08 Groundwater Simulator: A 24-month interactive Terzaghi compaction simulator (game/) calibrated to Terra Bella rates.
+09 Open Engine: One-command reproduction (python -m pipeline.nisarvision) using Copernicus DEM GLO-90 only for elevation-dependent tropospheric delay correction.
+
+NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.
+```
+
+### Q2. What are the benefits?
+```text
+- Water Boards & Canal Operators: Preliminary tilt screening across 645 OpenStreetMap corridors (81 flagged > 10 mm/km) helps crews prioritize costly field leveling surveys before gravity-flow canals lose capacity. It is a screening indicator, not a structural safety assessment.
+- Municipal Planners & Civil Protection: 29 standardized A4 monitoring bulletins translate multi-gigabyte HDF5 interferograms into plain-language maps, affected population counts (GHSL), and confidence flags.
+- Basin Communities, Students & Educators: Plain-English cards, UK Fens cloud-penetrating radar comparisons, a 3D surface viewer (web3d/), and the 24-month Groundwater Simulator turn complex L-band SAR physics into clear groundwater literacy.
+```
+
+### Q3. What is the intended impact?
+```text
+Land subsidence from groundwater pumping and peat drainage is silent and slow until canals lose gradient, levees settle, or sinkholes open. NISAR Vision shifts monitoring from reactive, one-off post-damage surveys to transparent, repeatable 93-day basin tracking. By making 1.20 M exposed residents and 0.3174 km3/yr of permanent aquifer storage-capacity loss visible in an open, self-checking atlas, local water districts and researchers can compare basins fairly on a common time window and reproduce every number directly from public NASA ASF data.
+```
+
+### Q4. What tools and coding languages did you use?
+```text
+- Languages: Python (68.8%), JavaScript (17.1%), HTML (8.4%), CSS (5.7%).
+- Scientific Python Pipeline: NumPy, SciPy, h5py, Rasterio, PyProj, Matplotlib, Pillow, Requests, asf_search, and pytest for HDF5 subsetting, coherence/component masking, elevation-dependent tropospheric correction (Copernicus DEM GLO-90), phase-jump QC, and automated consistency tests.
+- Web, 3D & Simulator: MapLibre GL JS (2D story map & multi-region explorer), Three.js (3D basin & sinkhole viewer), HTML5 Canvas (charts and 24-month Groundwater Simulator), and GitHub Pages (static zero-backend hosting).
+- AI Disclosure: Code, scripts, and documentation drafts were assisted by Anthropic Claude (Claude Code), Google Gemini (Antigravity / Gemini CLI), and OpenAI Codex, with team review and test verification. Zero AI-generated images are used anywhere on the site; all visuals come strictly from satellite, GNSS, and open geospatial data.
+```
+
+### Q5. What makes your project creative?
+```text
+Instead of treating early provisional radar outputs as flawless, we built a self-checking atlas that audits its own phase unwrapping and reference choices. Automated QC (tools/atlas_qc.py) caught a full 12.1 cm L-band phase-cycle jump in Semarang and off-basin reference bias in Tehran and Beijing, downgrading 13 of 29 basins to indicative-only rather than hiding uncertainty. We paired this open scientific pipeline with a browser 3D viewer, 29 printable A4 bulletins, and a 24-month Terzaghi Groundwater Simulator calibrated to NISAR's Terra Bella rate so anyone can test how pumping choices affect permanent clay collapse.
+```
+
+### Q6. What factors did you consider?
+```text
+1. Product Maturity: We separated pre-calibration beta scenes (pre-17 June 2026) from provisional CRID P05023 summer scenes and kept the 11-month decomposition explicitly labelled as mixed.
+2. Fair 93-Day Window & Geometry: All 29 basins share the same 93-day baseline (2026-06-28 to 2026-09-29); primary measurements stay in line-of-sight (LOS) with vertical labelled as an estimate, checked against dual-orbit tracks where available.
+3. Noise Floor & Detection Limits: GHSL exposure counts only pixels exceeding each basin's 2-sigma noise floor, and London Clay is explicitly reported as below the single-season detection limit (3.62 cm 3-sigma vs 0.5-2.0 cm expected motion).
+4. Atmospheric Correction Scope: Copernicus DEM GLO-90 is used strictly for elevation-dependent tropospheric delay correction.
+5. Secondary Check Caveats: GPS (r = 0.924, 10 stations) is primary validation; NASA JPL OPERA is treated as a secondary check with explicit winter/summer and viewing-geometry caveats.
+6. Engineering & Visual Integrity: Infrastructure tilt flags (81/645) are framed strictly as preliminary screening, not structural safety assessments, and zero AI-generated images appear on the site.
 ```
