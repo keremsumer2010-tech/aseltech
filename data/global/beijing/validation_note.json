@@ -2,27 +2,27 @@
   "id": "beijing",
   "name": "Beijing",
   "data_path": "data/global/beijing/",
-  "atlas_los_cm": -1.4,
+  "atlas_los_cm": -8.4,
   "atlas_vertical_cm_est": -2.1,
   "atlas_period": [
     "2026-06-17",
     "2026-10-15"
   ],
   "n_days": 120,
-  "rate_cm_per_100d_los": -1.17,
-  "rate_cm_per_yr_est_los": -4.3,
-  "valid_fraction": 0.73,
+  "rate_cm_per_100d_los": -7.0,
+  "rate_cm_per_yr_est_los": -25.5,
+  "valid_fraction": 0.538,
   "ref_range_cm": [
-    -7.6,
-    -1.4
+    -8.4,
+    -2.3
   ],
-  "ref_sensitivity_ratio": 4.43,
+  "ref_sensitivity_ratio": 0.73,
   "literature_vertical_cm_per_yr": "-1.0 to -4.5 regional plain; -10 to -15 peak in Chaoyang/Tongzhou funnels",
   "literature_sources": [
     "Chen et al. / Gong et al. Beijing Plain InSAR studies",
     "Zhou et al. / Gao et al. Chaoyang-Tongzhou InSAR"
   ],
-  "agreement_note": "Coherence is high (73.0% valid), but primary reference (116.708E, 39.934N) sits inside the Tongzhou eastern subsidence funnel, pulling headline down to -1.4 cm LOS. Re-referencing to NW foothills (116.311E, 40.101N) yields -7.6 cm LOS (-11.2 cm vert est. over 120 d), sensitivity ratio 4.43.",
+  "agreement_note": "After bridging the 2026-07-11 acquisition, the local full-box result is -8.4 cm LOS over 120 days (-7.0 cm/100d). Two alternate reference windows give -2.3 and -4.5 cm at the same location; the headline remains reference-sensitive. The NW foothill anchor is PC1-supplied; independent geology/GNSS verification was not completed. Treat as indicative pending PC5 review.",
   "recommended_confidence": "low",
   "press_summary_approved": false,
   "press_summary_gate_note": "Exclude -1.4 cm from press summary until PC10 re-runs with NW mountain/bedrock reference.",
@@ -32,5 +32,13 @@
     "atlas_first_claim_note": "Multi-basin standardized atlas phrasing must use qualified (to our knowledge) only after excluding Mexico City from any individual-first claim."
   },
   "quality": "provisional",
-  "quality_note": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team."
+  "quality_note": "NISAR L2 GUNW CRID P05023 provisional products only; calibration and validation are carried out by NASA-JPL/ISRO.",
+  "july_11_qc": {
+    "dropped_acquisition": "2026-07-11",
+    "merged_pairs": [
+      "2026-06-29_2026-07-11",
+      "2026-07-11_2026-07-23"
+    ],
+    "qc_report": "data/global/beijing/qc_report.json"
+  }
 }

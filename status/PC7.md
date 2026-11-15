@@ -1,7 +1,7 @@
 # PC7 durum
 
 - Görev: Fens GCOV ritmi, polarizasyon karşılaştırması, çevrimdışı site QA ve Node oyun testi
-- Durum: Beijing full-box + fresh-cut robustness tamam: 9 çift; −11.1 cm LOS/−9.25 cm per 100d; 18/27 robustness variants, rate spread −7.86…−2.06, rank 1–3; global top-3 inconclusive. §30 PC10 handoff; sıradaki global infrastructure risk.
+- Durum: Final blok 1 Pekin 11 Temmuz köprüsü tamamlandı: 8 etkin çift, −8.4 cm LOS/−7.0 cm per 100d; confidence low/indicative; §31; sıradaki Aguascalientes + Querétaro yerel kesit analizi.
 - ASF araması: platform=NISAR, processingLevel=GCOV, bbox [-0.3, 52.4, 0.4, 52.9], başlangıç 2026-06-17; 49 P05023 GCOV ürünü HH/HV ile eşleşti.
 - Tekrarlı seri: path 52, frame 61, 10 benzersiz tarih: 2026-06-17–2026-10-15. Granül listesi `pipeline/pc7/fens_gcov_catalog.json` içinde.
 - Doğrulama: `pipeline/pc7/search_fens_gcov.py` çalıştırıldı; katalog JSON olarak tekrar açılıp parse edildi.
@@ -34,4 +34,4 @@
 - Tam pytest tekrarlandı: 83 passed, 1 PendingDeprecationWarning; Xi'an indirmesi sürerken.
 - JSON sözleşme taraması: 111 dosyada parse/NaN hatası yok; data/numbers_registry.json quality eksikliği başka sahibin dosyası.
 - AI: Codex → CMR dry-run, kaynak incelemesi ve PC7 QA kaydı.
-- BLOCKED: yok (PC1 senkronladı: fetch/push engeli PC1 tarafından çözüldü; devam et — tasks/PC7.md YENİ PLAN blok 1: Pekin 11 Temmuz düzeltmesi)
+- BLOCKED: yok

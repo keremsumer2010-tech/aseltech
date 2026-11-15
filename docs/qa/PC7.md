@@ -589,3 +589,19 @@ Checks: metadata bbox/dates match the summary; all 12 points have the same 10 da
 Fresh-cut robustness ran on this full-box subset using the new `--subset-dir beijing=...` override; the report uses the city summary rate (`−9.25 cm/100 days`) until PC10 refreshes the atlas. Across the atlas, **17 cities** were evaluated; just **1** has all 27 variants, so the top-three conclusion remains **inconclusive**. Across 18 comparable rankings, Kendall τ mean is **−0.1481** (range −1 to 1). Beijing has **18/27** valid variants, headline span **6.9655 cm**, variant rate range **−7.86283 to −2.05825 cm/100 days**, and variant rank **1–3**. Its base city-summary rate is outside that tested range, underscoring the strong sensitivity to reference/box/coherence choices. The plot was visually inspected and the two output files are `data/global/robustness.json` and `docs/story/media/pc7_atlas_robustness.png`.
 
 **PC10 handoff — ready: beijing.** Current `atlas.json` is still the old record (`−1.4 cm`, `−1.2 cm/100 days`, flagged 2026-07-11, confidence low). It disagrees with this new summary and current QC, which keeps the date because the all-pixel opposite-step fraction is 13.10%, under the 30% cutoff. Please regenerate the Beijing atlas record from this summary and review whether to retain any point-level date flag; robustness spread 6.9655 cm also exceeds half the headline magnitude and supports keeping the atlas entry low/indicative pending PC5. PC7 did not modify `atlas.json`.
+
+
+## 31. Final block 1 — Beijing July 11 bridge correction
+
+Replayed the nine local `pipeline/subset/global_beijing/` provisional cuts offline. The 2026-06-29→2026-07-11 and 2026-07-11→2026-07-23 LOS grids were masked and deramped per pair, then summed into one continuous 2026-06-29→2026-07-23 step before cumulative stacking. The QC report records the forced dropped acquisition; there are 8 effective intervals over 120 days and the July 11 PNG/point date was removed. No downloads or atlas edits were made.
+
+| Result | Corrected run |
+|---|---:|
+| Headline, 1 km block median LOS | −8.4 cm |
+| p2 | −7.52 cm |
+| Rate | −7.0 cm/100 days |
+| Valid fraction | 0.538 |
+| Alternate-reference range | −8.4 to −2.3 cm |
+| Confidence | low / indicative |
+
+The alternate-reference spread remains large and the supplied NW foothill reference lacks independent geology/GNSS verification in this run. Therefore Beijing is **not promoted to reliable**; PC5 review remains required. `validation_note.json`, `summary.json`, `meta.json`, `points.json`, `coverage.json`, `qc_report.json`, and `disp/` are synchronized. Reproduction: `python pipeline/pc7/rerun_beijing_without_july11.py` (offline; plane-only deramp, DEM lookup disabled). The requested `docs/JURI_3DK.md` was absent from this checkout; the final checklist in `tasks/PC7.md` was used.
