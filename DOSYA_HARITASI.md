@@ -57,7 +57,10 @@ web/
 ### 2.1 Türkçe / İngilizce çeviri
 
 - Varsayılan dil İngilizce; İngilizcede sayfaya dokunulmaz, Türkçe sözlük hiç yüklenmez.
-- Başlıktaki `TR`/`EN` düğmesi seçimi `localStorage` `nv-lang` içinde saklar ve sayfayı yeniler. `?lang=tr` / `?lang=en` de çalışır.
+- Başlıktaki `TR`/`EN` düğmesi seçimi `localStorage` `nv-lang` içinde saklar ve dili sayfayı yenilemeden değiştirir
+  (kaydırma konumu, açık atlas bölgesi, simülatör ilerlemesi korunur). `?lang=tr` / `?lang=en` de çalışır.
+- İngilizceye dönüş: çevirinin yaptığı her değişiklik kaydedilir ve sondan başa geri alınır; sayfanın kendi scriptinin
+  sonradan yazdığı metne dokunulmaz. Konsoldan `I18N.setLang('tr' | 'en')`.
 - `web/js/i18n.js` Türkçede `i18n_tr.js`'i yükler, sayfadaki metni çevirir, sonradan eklenen metni de (atlas listesi,
   simülatör olayları, tur kutuları) MutationObserver ile çevirir. Simülatör motoru `game/i18n_load.js` üzerinden yükler.
 - Sözlük anahtarı = İngilizce metin (boşluklar tek); `{0}` `{1}` = metnin içindeki `<b>`/`<a>`/`<span>`; `#` = herhangi bir sayı

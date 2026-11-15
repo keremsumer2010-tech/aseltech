@@ -24,7 +24,7 @@
   const collect = qs.get('i18n') === 'collect';
   const q = qs.get('lang');
   if (q === 'en' || q === 'tr') store.set(q);
-  const lang = collect ? 'tr' : (q === 'en' || q === 'tr' ? q : (store.get() === 'tr' ? 'tr' : 'en'));
+  let lang = collect ? 'tr' : (q === 'en' || q === 'tr' ? q : (store.get() === 'tr' ? 'tr' : 'en'));
 
   const INLINE = new Set(['A', 'ABBR', 'B', 'BR', 'BUTTON', 'CODE', 'EM', 'I', 'IMG', 'INPUT', 'KBD', 'LABEL', 'MARK',
     'Q', 'S', 'SMALL', 'SPAN', 'STRONG', 'SUB', 'SUP', 'SVG', 'TIME', 'U', 'VAR', 'WBR', 'svg']);
@@ -103,17 +103,37 @@
     });
     info.kids.forEach(kid => { if (!used.has(kid)) out.push(kid); }); // never drop a live element
     if (info.trail) out.push(document.createTextNode(' '));
+    const before = [...el.childNodes];
     el.replaceChildren(...out);
+    undo.push({k: 'kids', el, orig: before, made: out});
+  }
+
+  // ---- switching back to English without a reload ----------------------------------------------------
+  // Every change the translation makes is recorded; English is restored newest-first. A change is only
+  // undone if the page still shows what we wrote (when the page's own script has rewritten something since,
+  // that newer English text is left alone).
+  const undo = [];
+  const sameNodes = (list, arr) => list.length === arr.length && arr.every((n, i) => list[i] === n);
+  function revert(r) {
+    if (r.k === 'kids') { if (sameNodes(r.el.childNodes, r.made)) r.el.replaceChildren(...r.orig); }
+    else if (r.k === 'text') { if (r.node.nodeValue === r.made) r.node.nodeValue = r.orig; }
+    else if (r.k === 'attr') { if (r.el.getAttribute(r.a) === r.made) r.el.setAttribute(r.a, r.orig); }
+    else if (r.k === 'value') { if (r.el.value === r.made) r.el.value = r.orig; }
+    else if (r.k === 'title') { if (document.title === r.made) document.title = r.orig; }
   }
 
   function doElement(el) {
     if (el.closest && el.closest('[translate="no"],.notranslate')) return;
     for (const a of ATTRS) {
       const v = el.getAttribute(a);
-      if (v) { const tr = lookup(norm(v)); if (tr != null && !collect) el.setAttribute(a, tr); }
+      if (v) {
+        const tr = lookup(norm(v));
+        if (tr != null && !collect) { el.setAttribute(a, tr); undo.push({k: 'attr', el, a, orig: v, made: tr}); }
+      }
     }
     if (el.tagName === 'INPUT' && /^(button|submit)$/i.test(el.type) && el.value) {
-      const tr = lookup(norm(el.value)); if (tr != null && !collect) el.value = tr;
+      const v = el.value, tr = lookup(norm(v));
+      if (tr != null && !collect) { el.value = tr; undo.push({k: 'value', el, orig: v, made: tr}); }
     }
     const info = keyOf(el);
     if (!info) return;
@@ -121,7 +141,11 @@
       for (const c of el.childNodes) {
         if (c.nodeType === 3 && /\S/.test(c.nodeValue)) {
           const tr = lookup(norm(c.nodeValue));
-          if (tr != null && !collect) c.nodeValue = c.nodeValue.replace(/\S[\s\S]*\S|\S/, tr);
+          if (tr != null && !collect) {
+            const orig = c.nodeValue;
+            c.nodeValue = orig.replace(/\S[\s\S]*\S|\S/, tr);
+            undo.push({k: 'text', node: c, orig, made: c.nodeValue});
+          }
         }
       }
       return;
@@ -158,8 +182,8 @@
   function translateAll() {
     run(() => {
       walk(document.body);
-      const tt = lookup(norm(document.title));
-      if (tt != null && !collect) document.title = tt;
+      const orig = document.title, tt = lookup(norm(orig));
+      if (tt != null && !collect) { document.title = tt; undo.push({k: 'title', orig, made: tt}); }
     });
   }
 
@@ -176,21 +200,37 @@
 @media (max-width:640px){.site-header>.lang-btn{margin-left:8px;padding:5px 8px}}
 html.i18n-wait body{visibility:hidden}`;
 
+  let btn = null;
+  function updateButton() {
+    if (!btn) return;
+    btn.textContent = lang === 'tr' ? 'EN' : 'TR';
+    btn.title = lang === 'tr' ? 'Switch to English' : 'Türkçe';
+    btn.setAttribute('aria-label', btn.title);
+  }
+
+  // Switch in place: the page is not reloaded, so the scroll position, the open atlas region and the
+  // simulator's progress all stay as they are.
+  function setLang(next) {
+    if (next === lang || collect) return;
+    lang = next;
+    store.set(next);
+    updateButton();
+    try { // a ?lang= in the address would override the choice on the next visit
+      const u = new URL(location.href);
+      if (u.searchParams.has('lang')) { u.searchParams.delete('lang'); history.replaceState(history.state, '', u); }
+    } catch (e) { /* ignore */ }
+    if (next === 'tr') loadDict().then(() => { if (lang === 'tr' && !obs) start(); });
+    else stop();
+  }
+
   function addButton() {
     if (document.querySelector('.lang-btn')) return;
-    const b = document.createElement('button');
+    const b = btn = document.createElement('button');
     b.type = 'button';
     b.className = 'lang-btn';
     b.setAttribute('translate', 'no');
-    b.textContent = lang === 'tr' ? 'EN' : 'TR';
-    b.title = lang === 'tr' ? 'Switch to English' : 'Türkçe';
-    b.setAttribute('aria-label', b.title);
-    b.addEventListener('click', () => {
-      store.set(lang === 'tr' ? 'en' : 'tr');
-      const u = new URL(location.href);
-      u.searchParams.delete('lang');
-      location.replace(u.toString());
-    });
+    updateButton();
+    b.addEventListener('click', () => setLang(lang === 'tr' ? 'en' : 'tr'));
     // Site pages: right after the menu (not inside it: on phones the menu scrolls sideways and would hide it).
     const nav = document.querySelector('.site-header > .site-nav');
     const bar = document.querySelector('.topbar-meta');
@@ -217,17 +257,40 @@ html.i18n-wait body{visibility:hidden}`;
     document.documentElement.classList.remove('i18n-wait');
   }
 
+  function stop() {
+    if (obs) { obs.disconnect(); obs = null; }
+    for (let i = undo.length - 1; i >= 0; i--) revert(undo[i]);
+    undo.length = 0;
+    produced.clear();
+    document.documentElement.lang = 'en';
+  }
+
+  let dictPromise = null;
+  function loadDict() {
+    if (!dictPromise) {
+      dictPromise = new Promise(resolve => {
+        const done = () => { dict = window.I18N_TR || {}; patterns = window.I18N_TR_PATTERNS || []; resolve(); };
+        if (window.I18N_TR) return done();
+        const s = document.createElement('script');
+        s.src = base + 'i18n_tr.js' + ver;
+        s.onload = done;
+        s.onerror = () => { dictPromise = null; document.documentElement.classList.remove('i18n-wait'); resolve(); };
+        document.head.appendChild(s);
+      });
+    }
+    return dictPromise;
+  }
+
   ready(addButton);
   if (lang === 'tr') {
     if (collect) ready(start);
-    else {
-      const s = document.createElement('script');
-      s.src = base + 'i18n_tr.js' + ver;
-      s.onload = () => { dict = window.I18N_TR || {}; patterns = window.I18N_TR_PATTERNS || []; ready(start); };
-      s.onerror = () => document.documentElement.classList.remove('i18n-wait');
-      document.head.appendChild(s);
-    }
+    else loadDict().then(() => ready(() => { if (lang === 'tr' && !obs) start(); }));
   }
 
-  window.I18N = {lang, missing: () => [...missing].sort(), t: s => (lang === 'tr' ? t(s) : s)};
+  window.I18N = {
+    get lang() { return lang; },
+    setLang,
+    missing: () => [...missing].sort(),
+    t: s => (lang === 'tr' ? t(s) : s)
+  };
 })();
