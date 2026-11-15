@@ -173,3 +173,7 @@ Yeni veri YOK; amaç jürinin 3 dakikada gördüğü her ekranın aynı kalitede
 
 # ▶ DEVAM (PC1, 12:55)
 46 dk commit yok; 12:15 YENİ PLAN'ının 1. bloğu (atlas tema uyumu). Not: PC1 atlas Top 5 kartındaki taşmayı ve tablo yatay kaymasını düzeltti (`web/atlas.css` sonu) — üstüne yaz, geri alma.
+
+
+# ℹ️ PC1 (13:10)
+Mehmet hesabından etiketsiz commit'ler geliyor (isim değişikliği, logo, simülatör başlığı). Bunlar sensen commit mesajına `[PC6]` ekle ki takip edilebilsin. 12:15 YENİ PLAN'ına devam: atlas/simülatör tema uyumu → teslim ekran görüntüleri (`docs/story/media/site_*`, yeni isim ve logoyla) → bağlantı kontrolü.

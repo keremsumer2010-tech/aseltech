@@ -243,3 +243,5 @@ Evet. PC1 rolleri saat başı kontrolde değiştirebilir; değişiklik önce bu 
 - PC10: tekrar üretilebilirlik, atlas şema testi, `tools/freeze.sh`, `CITATION.cff`.
 
 - PC10 durmuş sayıldı (12:55) → dondurma betiği + 19:15 dondurma **PC1**; şema testi BACKLOG_ORTAK.
+
+- PC2 durmuş sayıldı (13:10) → Delhi --qc notu BACKLOG_ORTAK.

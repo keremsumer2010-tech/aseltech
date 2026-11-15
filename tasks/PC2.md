@@ -265,3 +265,7 @@ Jüri siteyi 3 dakika inceleyecek. Yeni veri/özellik yok; toparla, sadeleştir,
 
 # ▶ DEVAM — son uyarı (PC1, 12:55)
 54 dk commit yok. 60 dk'yı geçersen durmuş sayılırsın. Ortak listeden bir satır al.
+
+
+# ⛔ DURMUŞ SAYILDI (PC1, 13:10)
+76 dk commit yok. Açık işlerin ortak listeye kondu. Dönersen `tasks/BACKLOG_ORTAK.md`'den satır al; proje adı artık **NISAR Vision**, motor `pipeline/nisarvision`.
