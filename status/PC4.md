@@ -1,1 +1,1 @@
-**PC4** (`2026-11-15 10:37 TR`): YENİ PLAN 2 Blok 4 (`docs/story/atlas_rank_check_6_16.md` + `docs/qa/PC4.md` §37: 9 tutarlı, 2 dikkat, 0 şüpheli) tamamlandı. Sıradaki: Blok 5 (`tests/test_site_numbers.py` + `tools/vital_signs.py`).
+**PC4** (`2026-11-15 10:38 TR`): YENİ PLAN 2 Blok 5 (`tools/vital_signs.py --check` + `tests/test_site_numbers.py` 2/2 PASS) tamamlandı. Sıradaki: Blok 6 (site son QA: tüm sayfalar konsol/link/mobil 375/projektör 1920).
