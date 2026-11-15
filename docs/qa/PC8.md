@@ -379,3 +379,5 @@
 - **FINAL 5 (11:20):** `docs/story/submission_package.md` guncellendi; tum yayin baglantilari (ana sayfa, atlas, slides, judge_brief html/pdf, bulletins, game, web3d, present) dogrulandi (HTTP 200). `.github/workflows/pages.yml` icine bulletins rotasi eklendi. `tools/judge_brief.py` ve `tools/sync_submission_form.py` home_summary.json'dan okuyacak bicimde guclendirildi.
 
 - **KAYNAKCA VE ATIFLAR DENETIMI (11:38):** `docs/story/sources.md`, `technical_note.md` ve `technical_note.html` icindeki tum kaynak baglantilari taranarak dogrulandi. USDA CDL kirik baglantisi (SARS1a.php -> Release/) guncellendi (HTTP 200). NASA ASF DAAC NISAR L2 GUNW provisional urun atifi DOI formatinda (doi:10.5067/NISAR/GUNW_PROVISIONAL_V1) ve NASA acik bilim politikasina uygun olarak teyit edildi.
+
+- **SUREKLI KONTROL (11:48):** 29 bolge atlas.json ve exposure_atlas.json senkron. PC4'e bildirim: commit 01c7d03 ile guncellenen `docs/story/slides.html` icinde 0.32 km3/yr (beklenen 0.3174), 5 regions (beklenen 29) ve opera_r 0.91 (beklenen 0.912) degerleri `tests/test_numbers_consistency.py` testini kiriyor.
