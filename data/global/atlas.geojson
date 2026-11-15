@@ -898,6 +898,58 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     116.81929,
+     39.75589
+    ]
+   },
+   "properties": {
+    "id": "beijing",
+    "name": "Beijing",
+    "country": "China",
+    "max_cm_los": -11.1,
+    "p2_cm": -10.24,
+    "rate_cm_per_100d": -9.2,
+    "max_cm_vertical_est": -16.3,
+    "period": [
+     "2026-06-17",
+     "2026-10-15"
+    ],
+    "days": 120,
+    "n_pairs": 9,
+    "quality": "provisional",
+    "rate_cm_per_yr_estimate": -33.8,
+    "valid_fraction": 0.523,
+    "ref_range_cm": [
+     -11.1,
+     -3.2
+    ],
+    "detectable": true,
+    "robustness_spread": 6.9655,
+    "people_exposed": 14769,
+    "opera_check": null,
+    "sigma_cm_median": 0.364,
+    "rate_ci_cm_per_100d": [
+     -7.9,
+     -2.1
+    ],
+    "confidence": "low",
+    "indicative_only": true,
+    "coverage": "ok",
+    "path": "data/global/beijing/",
+    "note": "QC: step 2 (2026-06-29→2026-07-11) = -12.86 cm ≈ one phase cycle (12.1 cm); date 2026-07-11: -12.86 then +9.54 cm (one acquisition off) Without the flagged step(s) the headline point shows -7.79 cm. Under revision.",
+    "rate_cm_per_100d_common": -11.2,
+    "qc_flags": [
+     "phase_cycle_jump",
+     "single_date_outlier"
+    ],
+    "rank": 19
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      51.33183,
      35.64549
     ]
@@ -938,7 +990,7 @@
     "path": "data/global/tehran/",
     "note": "",
     "rate_cm_per_100d_common": -6.4,
-    "rank": 19
+    "rank": 20
    }
   },
   {
@@ -983,7 +1035,7 @@
     "path": "data/global/jakarta/",
     "note": "",
     "rate_cm_per_100d_common": -5.6,
-    "rank": 20
+    "rank": 21
    }
   },
   {
@@ -1028,57 +1080,6 @@
     "path": "data/karapinar/",
     "note": "",
     "rate_cm_per_100d_common": -3.7,
-    "rank": 21
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     116.83974,
-     39.79989
-    ]
-   },
-   "properties": {
-    "id": "beijing",
-    "name": "Beijing",
-    "country": "China",
-    "max_cm_los": -1.4,
-    "p2_cm": null,
-    "rate_cm_per_100d": -1.2,
-    "max_cm_vertical_est": -2.1,
-    "period": [
-     "2026-06-17",
-     "2026-10-15"
-    ],
-    "days": 120,
-    "n_pairs": 9,
-    "quality": "provisional",
-    "rate_cm_per_yr_estimate": -4.3,
-    "valid_fraction": null,
-    "ref_range_cm": [
-     -7.6,
-     -1.4
-    ],
-    "detectable": true,
-    "robustness_spread": 1.754,
-    "people_exposed": 14769,
-    "opera_check": null,
-    "sigma_cm_median": 0.364,
-    "rate_ci_cm_per_100d": [
-     -3.7,
-     -2.2
-    ],
-    "confidence": "low",
-    "indicative_only": true,
-    "coverage": "ok",
-    "path": "data/global/beijing/",
-    "note": "QC: date 2026-07-11: -8.26 then +7.00 cm (one acquisition off) Without the flagged step(s) the headline point shows -0.14 cm. Under revision.",
-    "rate_cm_per_100d_common": -2.6,
-    "qc_flags": [
-     "single_date_outlier"
-    ],
     "rank": 22
    }
   },

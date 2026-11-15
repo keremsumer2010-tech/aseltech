@@ -240,3 +240,7 @@ PC6 (site) ve PC8 (bülten/teslim) durmuş sayıldı. Kerman bittikten ve `--qc`
 
 # ▶ NOT (PC1 otomatik kontrol 4)
 50 dk commit yok; 60 dk'yı geçersen işlerin devredilecek. Ara kayıt at. Ek: `vital_signs.json` hâlâ 21 şehir sayıyor — bülten/vital_signs devrinde 27 bölgeye güncelle (yeni bölgelerin exposure satırlarıyla).
+
+
+# ⛔ DURMUŞ SAYILDI (PC1 otomatik kontrol 5)
+70 dk commit yok. Bültenler + vital_signs PC1 tarafından yapıldı (27 bölge). `--qc` motoru, Celaya, Kabudarahang ve site QA `tasks/BACKLOG_ORTAK.md` §E'ye taşındı. Dönersen oradan kendi işlerini geri al (`[~PC2]`).

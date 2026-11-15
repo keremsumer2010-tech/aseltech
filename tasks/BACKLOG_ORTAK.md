@@ -14,6 +14,11 @@ Kullanıcı artık ajanlara prompt girmiyor; **tüm yönetim git üzerinden.** K
 - [ ] Teslim paketi `docs/story/submission_package.md` (Space Apps gerekleri, AI beyanı, NASA veri listesi, tüm linkler 200)
 - [ ] Jüri SSS 30 soru (`judge_faq.md`) — yeni sıralama, QC, OPERA, ortak pencere
 
+- [ ] NISAR Pulse `--qc` motoru (PC2'den devir; `tasks/PC2.md` "KENDİ KENDİNİ DENETLEYEN MOTOR" madde 1)
+- [ ] Celaya, Meksika (−100.81, 20.52) — PC2'den devir
+- [ ] Hamadan–Kabudarahang, İran (48.72, 35.21) — PC2'den devir
+- [ ] Site son QA: canlı sitede her sayfa konsol 0 hata, kırık link 0 (PC2'den devir)
+
 ## A. Atlas verisi (Earthdata erişimi olanlar: PC2, PC7, PC9, PC10, PC11)
 - [ ] Toluca, Meksika (−99.65, 19.29) — önce kapsama + literatür
 - [ ] San Luis Potosí, Meksika (−100.98, 22.15)

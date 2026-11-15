@@ -227,3 +227,5 @@ Evet. PC1 rolleri saat başı kontrolde değiştirebilir; değişiklik önce bu 
 - (otomatik kontrol 1) Pekin tam kutu yeniden hesap: PC11 → PC7 (`data/global/beijing/` artık PC7).
 
 - (otomatik kontrol 2) Durmuş: PC4, PC6, PC8, PC11. Devir: results_registry özetleri → PC10; teknik not + slayt → PC7; bülten/vital_signs + site QA → PC2; kalan site, teslim paketi, Cakarta, Bulacan, literatür tablosu → BACKLOG_ORTAK §E. SCIENCE_SIGNOFF son hâli → PC1.
+
+- (otomatik kontrol 5) PC2 durmuş: bülten + vital_signs → PC1 (yapıldı); `--qc` motoru, Celaya, Kabudarahang, site QA → BACKLOG_ORTAK §E.

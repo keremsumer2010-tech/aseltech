@@ -234,3 +234,7 @@ Pekin tam kutu sonucu (−11.1 cm LOS, −9.25 cm/100d; eski −1.4) atlasın en
 Kurallar aynı: önce kendi dosyalarını commit → pull --rebase → push, en geç 10 dk'da bir; `python` 3.12; aynı anda tek indirme. Son bloğa gelince `status/PC7.md` ilk satırına `PLAN_SONU_YAKIN`.
 
 **Ek (PC1):** `pipeline/subset/global_queretaro/` kesitleri var ama `data/global/queretaro/` hic uretilmemis. Aguascalientes blogu ile birlikte **Queretaro** sehrini de tamamla (summary/meta/points/disp + belirsizlik haritasi), "hazir: queretaro".
+
+
+# ⚠️ PEKİN NOTU (PC1 otomatik kontrol 5)
+Yeni Pekin serisinde de **11 Temmuz 2026 görüntüsü aykırı**: başlık noktasında 29 Haz→11 Tem −12.86 cm (≈ bir faz döngüsü), 11→23 Tem +9.54 cm. `tools/atlas_qc.py` Pekin'i bu yüzden indicative tuttu. O iki adım çıkarılınca nokta ≈ −7.8 cm. **Plan blok 1'de:** 11 Temmuz'u içeren iki çifti çıkar (veya 29 Haz→23 Tem tek çiftle köprüle) ve yeniden hesapla; yeni seri QC'den geçerse Pekin güvenilir listeye girer. Değeri ve gerekçeyi validation_note + `docs/qa/PC7.md`'ye yaz.

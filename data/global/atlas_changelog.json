@@ -102,6 +102,33 @@
         }
       ],
       "qc_flag_changes": []
+    },
+    {
+      "timestamp": "2026-11-15T00:48:25Z",
+      "n_regions": 27,
+      "added": [],
+      "removed": [],
+      "value_changes": [
+        {
+          "id": "beijing",
+          "old_cm": -1.4,
+          "new_cm": -11.1,
+          "reason": "Summary updated"
+        }
+      ],
+      "confidence_changes": [],
+      "qc_flag_changes": [
+        {
+          "id": "beijing",
+          "old": [
+            "single_date_outlier"
+          ],
+          "new": [
+            "phase_cycle_jump",
+            "single_date_outlier"
+          ]
+        }
+      ]
     }
   ]
 }

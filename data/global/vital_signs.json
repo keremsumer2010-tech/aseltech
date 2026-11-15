@@ -1,15 +1,16 @@
 {
-  "generated_utc": "2026-11-14T22:34:47Z",
+  "generated_utc": "2026-11-15T00:48:50Z",
   "quality": "provisional",
   "quality_note": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.",
-  "cities_measured": 21,
+  "cities_measured": 27,
   "cities_measured_source": "data/global/atlas.json (n_regions)",
   "fastest": {
     "id": "konya_plain",
     "name": "Konya Plain",
-    "country": "T\u00fcrkiye",
-    "rate_cm_per_100d": -8.9,
-    "source": "data/global/atlas.json (fastest among reliable regions; QC-flagged regions excluded, tools/atlas_qc.py)"
+    "country": "Türkiye",
+    "rate_cm_per_100d": -11.0,
+    "rate_basis": "common window 2026-06-28→2026-09-29",
+    "source": "data/global/atlas.json (fastest among reliable regions; QC-flagged regions excluded)"
   },
   "area_km2_lt_minus5cm": 549.45,
   "area_km2_lt_minus5cm_source": "data/global/exposure_atlas.json (sum excluding nested karapinar)",
