@@ -1,1 +1,1 @@
-**PC4** (`2026-11-15 10:36 TR`): YENİ PLAN 2 Blok 3 (`web/atlas.html` + `web/atlas.js`: "What changed" kutusu `atlas_changelog.json`, `rate_ci_cm_per_100d` güven aralığı, "ranked by common 93-day window" başlığı) tamamlandı. Sıradaki: Blok 4 (`docs/story/atlas_rank_check_6_16.md`).
+**PC4** (`2026-11-15 10:37 TR`): YENİ PLAN 2 Blok 4 (`docs/story/atlas_rank_check_6_16.md` + `docs/qa/PC4.md` §37: 9 tutarlı, 2 dikkat, 0 şüpheli) tamamlandı. Sıradaki: Blok 5 (`tests/test_site_numbers.py` + `tools/vital_signs.py`).

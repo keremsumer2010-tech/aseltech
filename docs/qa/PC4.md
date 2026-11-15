@@ -364,3 +364,9 @@ Kapsam: `web/index.html` (`1–163`). Genel İngilizce tonu akıcı ve tutarlı 
 ### 36. Blok 8 — `SCIENCE_SIGNOFF.md` 10-Satır Son Doğrulama (`2026-11-15 10:20 TR`)
 - `docs/qa/SCIENCE_SIGNOFF.md` içindeki 10 başlık satırının tamamı (`#1`–`#10`) doğrudan kaynak JSON dosyalarıyla (`data/central_valley/{summary,area_stats,validation,assets}.json`, `data/central_valley_fullyear/{decomp,storage_loss}.json`, `data/karapinar/summary.json`, `data/uk_clay/detection.json`, `data/global/{atlas,vital_signs}.json`) birebir doğrulandı: **`10/10` eşleşme** (`29` bölge: `16` reliable / `13` indicative; `1,479,844` sakin / `549.45 km²`).
 - `status/PC4.md` ilk satırına `PLAN_SONU_YAKIN` işlendi.
+
+### 37. YENİ PLAN 2 Blok 1–4 — `present.html`, Oyun ↔ Atlas, Changelog & Sıra 6–16 Kontrolü (`2026-11-15 10:36 TR`)
+- **Blok 1 (`d9241bd`):** `web/present.html` (6 duraklı çevrimdışı Lincoln sunum modu, klavye okları + tam ekran) ve `docs/story/presentation_cues.md` bağlantısı eklendi; HTTP `8765` `200 OK`.
+- **Blok 2 (`0830781`):** `game/index.html`, `game/game.js`, `web/atlas.js` arasında `?basin=` çift yönlü bağlantı kuruldu; Karapınar kartına "Karapınar sub-basin, Konya Closed Basin" ve Konya Plain `rank 1` linki, bitiş ekranına `endAtlasLink` eklendi.
+- **Blok 3 (`6a63e6b`):** `web/atlas.html` ve `web/atlas.js` içine `data/global/atlas_changelog.json` "What changed" (son 10) kutusu, sıralama tablosuna `rate_ci_cm_per_100d` aralıkları ve "ranked by common 93-day window" başlığı eklendi.
+- **Blok 4 (`docs/story/atlas_rank_check_6_16.md`):** Güvenilir 6–16. sıralar (`mexico_city` → `quetta`) `literature_rates.json` ve `p01` adım-adım zaman serisiyle doğrulandı: `9/11` **consistent**, `2/11` **caution** (`houston` yaz pik/`46.1%` geçerli piksel; `quetta` uç-epok zamanlaması/`4.15 cm` adım), `0` **suspect**. `data/global/qc_manual.json` için ekleme önerisi gerekmedi (yalnızca Houston ve Quetta dikkat şerhleri yeterli).
