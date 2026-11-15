@@ -18,7 +18,7 @@
 | 6 | **Permanent Aquifer Storage Loss (CV)** | **`0.3174 km³/yr`** (`317.41 million m³/yr`) | `1 km` block SE `±0.00123 km³/yr`; 3-ref range `0.0664–0.3198 km³/yr` | `mixed` | `data/central_valley_fullyear/storage_loss.json:volume_km3_per_yr` |
 | 7 | **Karapınar Basin & 29-Sinkhole Contrast** | **`−5.9 cm` LOS** (`−8.0 cm` vert. est.); **`−4.15 cm`** `< 1 km` vs. **`−0.65 cm`** `> 5 km` (`6.4×`) | `1.04 km` block perm `p = 0.0001`; `3,423` constellation shifts `p = 0.0207` | `provisional` (`indicative` basin-wide, `Conditional` contrast) | `data/karapinar/summary.json:max_subsidence_cm`, `docs/story/sinkhole_stats.md` |
 | 8 | **London Clay Negative Control** | **`status: "below_detection"`** (`97.7%` within `±1.5 cm`) | `chain_sigma = 1.21 cm`, **`3σ = 3.62 cm`** detection floor (`9` pairs) | `provisional` | `data/uk_clay/detection.json:status`, `detection_threshold_cm` |
-| 9 | **2026 Global Subsidence Atlas (#1 Reliable)** | **#1 Konya Plain `−11.0 cm/100d`** (common window `2026-06-28 → 2026-09-29`, 93 d; `−9.6 cm` LOS over its full 108 d); **`27` regions: `14` reliable / `13` indicative** | Konya `11.6%` valid coverage → kept with caution; time-series QC moves `5` regions to indicative (Gorgan, Delhi, Pekalongan, Beijing, Bangkok); Central Valley rank 3 kept `medium` by independent GNSS validation (`r = 0.924`) | `provisional` | `data/global/atlas.json:regions[0]`, `n_reliable`; `data/global/qc_flags.json`; `data/global/independent_validation.json` |
+| 9 | **2026 Global Subsidence Atlas (#1 Reliable)** | **#1 Konya Plain `−11.0 cm/100d`** (common window `2026-06-28 → 2026-09-29`, 93 d; `−9.6 cm` LOS over its full 108 d); **`29` regions: `16` reliable / `13` indicative** | Konya `11.6%` valid coverage → kept with caution; time-series QC moves `6` regions to indicative (Gorgan, Delhi, Pekalongan, Beijing, Bangkok + unverified); Central Valley rank 3 kept `medium` by independent GNSS validation (`r = 0.924`) | `provisional` | `data/global/atlas.json:regions[0]`, `n_reliable`; `data/global/qc_flags.json`; `data/global/independent_validation.json` |
 | 10 | **Global GHSL Exposure (`< −5 cm`, `|disp| ≥ 2σ`)** | **`1,479,844` residents** on **`549.45 km²`** of sinking ground | Covers the regions with an exposure row in `exposure_atlas.json` (newest regions are added by PC2/PC8 as they come); excludes nested `karapinar`; static `GHSL E2025` (`100 m`) overlay | `provisional` | `data/global/vital_signs.json:people_on_sinking_ground`, `area_km2_lt_minus5cm` |
 
 ---
@@ -60,7 +60,7 @@ Every public webpage, slide, bulletin, and story document must carry the verbati
 | 6 | `data/central_valley_fullyear/storage_loss.json` → 0.3174 km³/yr | match |
 | 7 | `data/karapinar/summary.json` → −5.9 cm LOS, −8.0 cm vertical est. | match |
 | 8 | `data/uk_clay/detection.json` → below_detection, 3σ = 3.62 cm, chain σ = 1.21 cm | match |
-| 9 | atlas was 21 regions in the draft → now 27 (14 reliable / 13 indicative) | updated |
+| 9 | atlas was 21 regions in the draft → now 29 (16 reliable / 13 indicative) | updated |
 | 10 | draft 1,508,817 residents / 591.31 km² → current `vital_signs.json` 1,479,844 / 549.45 km² | updated |
 | QC | Semarang's phase-cycle jump was fixed by re-processing (now −6.2 cm, north coast); current flags: Gorgan, Delhi, Pekalongan, Beijing, Bangkok | updated in row 9 |
 

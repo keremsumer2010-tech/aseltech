@@ -12,7 +12,7 @@ Kullanıcı artık ajanlara prompt girmiyor; **tüm yönetim git üzerinden.** K
 - [ ] Sunum modu `web/present.html` (Lincoln demosu, ok tuşlarıyla bölüm turu)
 - [ ] "What changed" kutusu + sıralamada hata çubukları (atlas sayfası)
 - [ ] Teslim paketi `docs/story/submission_package.md` (Space Apps gerekleri, AI beyanı, NASA veri listesi, tüm linkler 200)
-- [ ] Jüri SSS 30 soru (`judge_faq.md`) — yeni sıralama, QC, OPERA, ortak pencere
+- [x PC4] Jüri SSS 30 soru (`docs/story/judge_faq.md`) — yeni sıralama, QC, OPERA, ortak pencere
 
 - [ ] NISAR Pulse `--qc` motoru (PC2'den devir; `tasks/PC2.md` "KENDİ KENDİNİ DENETLEYEN MOTOR" madde 1)
 - [ ] Celaya, Meksika (−100.81, 20.52) — PC2'den devir
