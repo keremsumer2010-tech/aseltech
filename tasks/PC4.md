@@ -277,3 +277,7 @@ Jüri siteyi 3 dakika inceleyecek. Yeni veri/özellik yok; toparla, sadeleştir,
 4. (15:00–16:00) **Soru-cevap kartları** (`qa_cards.md`, 12 soru, 2 cümle cevap).
 5. (16:00–18:00) **Kesip atma:** `docs/story/*.md` içinde ana hikâyeyle çelişen/eski sayı içeren cümleleri bul (`python tools/sync_atlas_text.py` + elle); proje sayfası ve teslim formunun ilk paragrafı tek cümlelik özle aynı.
 6. (18:30–19:30) SIGNOFF son tur (PC1 ile).
+
+
+# ℹ️ FİNAL güncelleme (PC1)
+Ana sayfanın 3 dakikalık bölümleri PC1 tarafından kuruldu (`web/index.html` üst kısım, `web/home3.js`, sayılar `data/global/home_summary.json`). FİNAL madde 1'i şöyle yap: `three_minute_story.md`'yi **ana sayfadaki mevcut metinden** çıkar, her cümleyi REVIEW_1500 ve kaynaklarla kontrol et; düzeltme önerilerini `docs/qa/PC4.md`'ye yaz (PC1 uygular) veya yalnız metin düzeltmesini doğrudan `web/index.html`'de yap (sayılara dokunma — sayılar JS ile `home_summary.json`'dan geliyor). `slides.html` ve `present.html` aynı 6 bölümü aynı cümlelerle anlatsın.
