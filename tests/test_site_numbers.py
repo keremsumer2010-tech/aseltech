@@ -82,5 +82,6 @@ def test_web_pages_match_atlas_counts_and_headline_numbers() -> None:
     assert storage_vol in present_html
 
     index_html = (ROOT / "web" / "index.html").read_text(encoding="utf-8")
-    assert re.search(rf"{cv_peak}\s*cm", index_html), f"Expected Central Valley {cv_peak} cm in web/index.html"
-    assert top["name"] in index_html or "vital_signs.json" in index_html
+    assert n_rel in index_html and n_ind in index_html, "web/index.html must match reliable/indicative counts"
+    assert "home3.js" in index_html
+    assert f"{storage['volume_km3_per_yr']:.2f}" in index_html or str(storage['volume_km3_per_yr']) in index_html
