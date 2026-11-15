@@ -1017,6 +1017,22 @@
       takeaway = `What this means: Summer irrigation temporarily pushed hotspots past historical lows, causing ${worst.inelasticCm.toFixed(1)} cm of permanent clay collapse near ${worst.shortName}. Reducing summer pumping peaks before dry years protects surface corridors and shallow wells.${sinkNote}`;
     }
     $('endMeaning').textContent = takeaway;
+
+    const qdBanner = $('quickDemoBanner');
+    const qdText = $('quickDemoSummaryText');
+    if (qdBanner && qdText) {
+      if (activePreset === 'overpump' || isQuickDemo) {
+        const baselineRef = activeBasinId === 'konya' ? 8.0 : 10.1;
+        const worstSinkAbs = Math.abs(worst.totalCm);
+        const deltaSink = Math.max(0, worstSinkAbs - baselineRef);
+        const permSink = Math.abs(worst.inelasticCm);
+        qdText.textContent = `Pumping 50% more → ${deltaSink.toFixed(1)} cm more sinking, ${permSink.toFixed(1)} cm of it permanent.`;
+        qdBanner.hidden = false;
+      } else {
+        qdBanner.hidden = true;
+      }
+    }
+
     $('endModal').hidden = false;
     renderEndCompareChart();
   }
@@ -1360,7 +1376,77 @@
     syncUI();
   }
 
+  let quickDemoTimer = null;
+  let isQuickDemo = false;
+
+  function stopQuickDemo() {
+    if (quickDemoTimer) {
+      clearInterval(quickDemoTimer);
+      quickDemoTimer = null;
+    }
+    isQuickDemo = false;
+    const pill = $('quickDemoStatusPill');
+    if (pill) pill.style.display = 'none';
+    const qBtn = $('quickDemoTopbarBtn');
+    if (qBtn) qBtn.textContent = 'Quick demo (30 s) ⚡';
+  }
+
+  function startQuickDemo() {
+    stopQuickDemo();
+    isQuickDemo = true;
+    if ($('startModal')) $('startModal').hidden = true;
+    if ($('endModal')) $('endModal').hidden = true;
+    if ($('classroomModal')) $('classroomModal').hidden = true;
+    if ($('paramsModal')) $('paramsModal').hidden = true;
+
+    const qBtn = $('quickDemoTopbarBtn');
+    if (qBtn) qBtn.textContent = 'Stop demo ⏹';
+
+    const pill = $('quickDemoStatusPill');
+    if (pill) {
+      pill.style.display = 'flex';
+      const t = $('qdPillTitle');
+      if (t) t.textContent = '⚡ QUICK DEMO · MONTH 1/24';
+    }
+
+    resetSimulation(true);
+    activePreset = 'overpump';
+    applyAll = true;
+    if ($('applyAllChk')) $('applyAllChk').checked = true;
+    const patch = presetPatch('overpump');
+    if (patch) {
+      ValleyModel.setDistrictControls(simState, 'ALL', patch);
+      syncUI();
+    }
+
+    const urlFast = (new URLSearchParams(window.location.search)).get('fast') === '1';
+    const intervalMs = urlFast ? 80 : 1170; // 24 * 1.17s = 28 seconds total (or fast mode for QA)
+    quickDemoTimer = setInterval(() => {
+      if (!simState || simState.finished) {
+        stopQuickDemo();
+        return;
+      }
+      advanceMonths(1);
+      const t = $('qdPillTitle');
+      if (t && simState) {
+        t.textContent = `⚡ QUICK DEMO · MONTH ${simState.monthStep}/24`;
+      }
+      if (simState && simState.finished) {
+        stopQuickDemo();
+      }
+    }, intervalMs);
+  }
+
   function wireControls() {
+    if ($('quickDemoBtn')) $('quickDemoBtn').addEventListener('click', startQuickDemo);
+    if ($('quickDemoTopbarBtn')) {
+      $('quickDemoTopbarBtn').addEventListener('click', () => {
+        if (isQuickDemo) stopQuickDemo();
+        else startQuickDemo();
+      });
+    }
+    if ($('quickDemoStatusPill')) $('quickDemoStatusPill').addEventListener('click', stopQuickDemo);
+
     $('startBtn').addEventListener('click', () => {
       $('startModal').hidden = true;
       playTone('click');
@@ -1575,6 +1661,10 @@
     };
     syncUI();
     placeSegs();
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('quickdemo') === '1' || urlParams.has('quickdemo') || urlParams.has('demo')) {
+      setTimeout(startQuickDemo, 300);
+    }
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(placeSegs);
     // re-place the sliding bars whenever a control changes size (fonts, layout, modal opening)
     if (window.ResizeObserver) {

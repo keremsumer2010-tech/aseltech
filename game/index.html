@@ -28,6 +28,7 @@
           <button type="button" class="seg-btn preset-btn" data-preset="balance">SGMA Balance</button>
         </div>
         <button id="classroomBtn" class="btn-quiet" type="button" title="Classroom mode: 3 lesson scenarios &amp; discussion questions">Classroom</button>
+        <button id="quickDemoTopbarBtn" class="btn-quiet" type="button" title="Quick demo (30 s): automated 24-month Over-Pump scenario" style="font-weight:600;color:#c8321f">Quick demo (30 s) ⚡</button>
         <button id="paramsBtn" class="icon-btn" type="button" title="Sources and model tests" aria-label="Sources and model tests">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5"/><path d="M8 7.5h8M8 11h6"/></svg>
         </button>
@@ -63,6 +64,10 @@
         <div class="date-stamp" aria-live="polite" aria-atomic="true">
           <span id="stampDate">OCT 2026</span>
           <small id="monthPill">Month 0 of 24 · Autumn</small>
+        </div>
+        <div id="quickDemoStatusPill" class="date-stamp" style="top:14px;bottom:auto;left:50%;transform:translateX(-50%);background:rgba(185,28,28,0.92);color:#fff;cursor:pointer;display:none;z-index:7" title="Click to stop quick demo">
+          <span id="qdPillTitle">⚡ QUICK DEMO · MONTH 1/24</span>
+          <small>Over-Pump · Click to stop</small>
         </div>
       </section>
 
@@ -191,7 +196,10 @@
 
       <div class="start-foot">
         <span>Data: NASA-ISRO NISAR (provisional), ASF DAAC, NGL GNSS, OpenStreetMap. Well depths and crop prices are illustrative.</span>
-        <button id="startBtn" type="button" class="btn-primary btn-lg">Start simulation →</button>
+        <div class="start-foot-btns" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+          <button id="quickDemoBtn" type="button" class="btn-primary btn-lg" style="background:#b91c1c;border-color:#b91c1c;box-shadow:0 2px 8px rgba(185,28,28,0.35);font-weight:700" title="Play an automated 30-second run of the Over-Pump scenario">Quick demo (30 s) ⚡</button>
+          <button id="startBtn" type="button" class="btn-primary btn-lg">Start simulation →</button>
+        </div>
       </div>
     </div>
   </div>
@@ -201,6 +209,13 @@
     <div class="modal-card modal-card-wide" role="dialog" aria-modal="true" aria-labelledby="endTitle">
       <p class="kicker">24 months later</p>
       <h2 id="endTitle">Your valley vs what NISAR measured</h2>
+      <div id="quickDemoBanner" class="end-classroom-box" style="border-left-color:#b91c1c;background:#fff5f5;margin-bottom:14px" hidden>
+        <div class="end-classroom-head">
+          <strong style="color:#b91c1c">Quick demo result (Over-Pump 24 months)</strong>
+          <span class="pill" style="background:#b91c1c;color:#fff">30-second run</span>
+        </div>
+        <p id="quickDemoSummaryText" style="margin:6px 0 0;font-size:1.02rem;font-weight:600;color:#7f1d1d"></p>
+      </div>
       <p id="endMeaning" class="modal-sub"></p>
 
       <div class="end-chart-card">
