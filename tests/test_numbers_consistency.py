@@ -17,12 +17,12 @@ DOCS = [
 
 # Fixed release values (PC1). People = reliable basins only, from data/global/vital_signs.json.
 EXPECTED = {
-    "regions": 29,
-    "reliable": 15,
+    "regions": 20,
+    "reliable": 9,
     "gnss_r": "0.924",
     "opera_r": "0.912",
     "storage_km3_yr": "0.3174",
-    "people": 1_167_429,
+    "people": 369_770,
     "konya_cm_per_100d": "-11.0",
 }
 

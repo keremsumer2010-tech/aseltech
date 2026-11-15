@@ -1,6 +1,6 @@
 {
-  "generated_utc": "2026-11-15T17:06:38Z",
-  "one_liner": "We turned the first months of NASA-ISRO NISAR radar data into a self-checking global subsidence atlas: 29 basins measured with one open pipeline on the same 93 days, every number traceable to its file, and every headline checked against GPS, NASA's OPERA product and the literature.",
+  "generated_utc": "2026-11-15T17:09:26Z",
+  "one_liner": "We turned the first months of NASA-ISRO NISAR radar data into a self-checking global subsidence atlas: 20 basins measured with one open pipeline on the same 93 days, every number traceable to its file, and every headline checked against GPS, NASA's OPERA product and the literature.",
   "common_window": [
     "2026-06-28",
     "2026-09-29"
@@ -9,17 +9,17 @@
     {
       "key": "regions",
       "label": "basins in one atlas",
-      "value": 29,
+      "value": 20,
       "unit": "",
-      "detail": "15 reliable, 14 indicative",
+      "detail": "9 reliable, 11 indicative",
       "source": "data/global/atlas.json"
     },
     {
       "key": "people",
       "label": "people living on ground sinking more than 5 cm",
-      "value": 1167429,
+      "value": 369770,
       "unit": "",
-      "detail": "477.72 km² in the measured basins (GHSL 2025 population)",
+      "detail": "348.96 km² in the measured basins (GHSL 2025 population)",
       "source": "data/global/vital_signs.json"
     },
     {
@@ -71,28 +71,6 @@
       "note": ""
     },
     {
-      "id": "kashmar",
-      "name": "Kashmar",
-      "country": "Iran",
-      "rank": 3,
-      "rate_cm_per_100d_common": -7.0,
-      "max_cm_los": -6.2,
-      "confidence": "very high",
-      "valid_fraction": 0.728,
-      "note": ""
-    },
-    {
-      "id": "mashhad",
-      "name": "Mashhad",
-      "country": "Iran",
-      "rank": 4,
-      "rate_cm_per_100d_common": -6.9,
-      "max_cm_los": -8.6,
-      "confidence": "high",
-      "valid_fraction": 0.705,
-      "note": ""
-    },
-    {
       "id": "mexico_city",
       "name": "Mexico City",
       "country": "Mexico",
@@ -101,6 +79,28 @@
       "max_cm_los": -7.0,
       "confidence": "high",
       "valid_fraction": 0.639,
+      "note": ""
+    },
+    {
+      "id": "semarang",
+      "name": "Semarang",
+      "country": "Indonesia",
+      "rank": 6,
+      "rate_cm_per_100d_common": -5.5,
+      "max_cm_los": -6.2,
+      "confidence": "high",
+      "valid_fraction": null,
+      "note": "valid-pixel fraction not recorded for this region; kept with caution"
+    },
+    {
+      "id": "houston",
+      "name": "Houston",
+      "country": "USA",
+      "rank": 9,
+      "rate_cm_per_100d_common": -4.0,
+      "max_cm_los": -5.2,
+      "confidence": "very high",
+      "valid_fraction": 0.461,
       "note": ""
     }
   ],
@@ -168,7 +168,6 @@
       "bangkok",
       "beijing",
       "delhi",
-      "gorgan",
       "pekalongan"
     ],
     "source": "docs/story/atlas_top5_check.md, data/global/qc_flags.json, data/global/atlas_changelog.json"

@@ -132,111 +132,6 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     58.21629,
-     35.23011
-    ]
-   },
-   "properties": {
-    "id": "kashmar",
-    "name": "Kashmar",
-    "country": "Iran",
-    "max_cm_los": -6.2,
-    "p2_cm": -3.17,
-    "rate_cm_per_100d": -5.2,
-    "max_cm_vertical_est": -7.6,
-    "period": [
-     "2026-06-19",
-     "2026-10-17"
-    ],
-    "days": 120,
-    "n_pairs": 9,
-    "quality": "provisional",
-    "rate_cm_per_yr_estimate": -18.9,
-    "valid_fraction": 0.728,
-    "ref_range_cm": [
-     -7.0,
-     -6.2
-    ],
-    "detectable": null,
-    "robustness_spread": 2.5463,
-    "people_exposed": 19367,
-    "area_km2_lt_minus5cm_common": 4.58,
-    "area_km2_lt_minus2cm_common": 111.47,
-    "opera_check": null,
-    "sigma_cm_median": null,
-    "rate_ci_cm_per_100d": null,
-    "confidence": "very high",
-    "indicative_only": false,
-    "coverage": "ok",
-    "path": "data/global/kashmar/",
-    "note": "",
-    "rate_cm_per_100d_common": -7.0,
-    "rate_range_refs_cm_per_100d": [
-     -6.1,
-     -4.0
-    ],
-    "rank": 3
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     59.66148,
-     36.29575
-    ]
-   },
-   "properties": {
-    "id": "mashhad",
-    "name": "Mashhad",
-    "country": "Iran",
-    "max_cm_los": -8.6,
-    "p2_cm": -6.68,
-    "rate_cm_per_100d": -7.2,
-    "max_cm_vertical_est": -11.3,
-    "period": [
-     "2026-06-19",
-     "2026-10-17"
-    ],
-    "days": 120,
-    "n_pairs": 9,
-    "quality": "provisional",
-    "rate_cm_per_yr_estimate": -26.3,
-    "valid_fraction": 0.705,
-    "ref_range_cm": [
-     -8.6,
-     -6.0
-    ],
-    "detectable": null,
-    "robustness_spread": null,
-    "people_exposed": 2506805,
-    "area_km2_lt_minus5cm_common": 112.65,
-    "area_km2_lt_minus2cm_common": 1008.58,
-    "opera_check": null,
-    "sigma_cm_median": 0.318,
-    "rate_ci_cm_per_100d": [
-     -7.6,
-     -6.2
-    ],
-    "confidence": "high",
-    "indicative_only": false,
-    "coverage": "ok",
-    "path": "data/global/mashhad/",
-    "note": "",
-    "rate_cm_per_100d_common": -6.9,
-    "rate_range_refs_cm_per_100d": [
-     -7.7,
-     -6.6
-    ],
-    "rank": 4
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
      -99.03616,
      19.27485
     ]
@@ -289,7 +184,7 @@
      -6.4,
      -5.2
     ],
-    "rank": 5
+    "rank": 3
    }
   },
   {
@@ -343,115 +238,7 @@
      -7.2,
      -5.8
     ],
-    "rank": 6
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     57.05276,
-     30.16798
-    ]
-   },
-   "properties": {
-    "id": "kerman",
-    "name": "Kerman",
-    "country": "Iran",
-    "max_cm_los": -6.1,
-    "p2_cm": -3.19,
-    "rate_cm_per_100d": -5.1,
-    "max_cm_vertical_est": -7.8,
-    "period": [
-     "2026-06-19",
-     "2026-10-17"
-    ],
-    "days": 120,
-    "n_pairs": 9,
-    "quality": "provisional",
-    "rate_cm_per_yr_estimate": -18.6,
-    "valid_fraction": 0.968,
-    "ref_range_cm": [
-     -6.1,
-     -5.6
-    ],
-    "detectable": null,
-    "robustness_spread": null,
-    "people_exposed": 11052,
-    "area_km2_lt_minus5cm_common": 2.34,
-    "area_km2_lt_minus2cm_common": 225.63,
-    "opera_check": null,
-    "sigma_cm_median": 0.258,
-    "rate_ci_cm_per_100d": [
-     -5.9,
-     -4.7
-    ],
-    "confidence": "very high",
-    "indicative_only": false,
-    "coverage": "ok",
-    "path": "data/global/kerman/",
-    "note": "",
-    "rate_cm_per_100d_common": -5.3,
-    "rate_range_refs_cm_per_100d": [
-     -5.5,
-     -4.7
-    ],
-    "rank": 7
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     55.77383,
-     30.52318
-    ]
-   },
-   "properties": {
-    "id": "rafsanjan",
-    "name": "Rafsanjan",
-    "country": "Iran",
-    "max_cm_los": -5.8,
-    "p2_cm": -4.3,
-    "rate_cm_per_100d": -4.8,
-    "max_cm_vertical_est": -7.4,
-    "period": [
-     "2026-06-23",
-     "2026-10-21"
-    ],
-    "days": 120,
-    "n_pairs": 9,
-    "quality": "provisional",
-    "rate_cm_per_yr_estimate": -10.7,
-    "valid_fraction": 0.847,
-    "ref_range_cm": [
-     -5.8,
-     -3.5
-    ],
-    "detectable": true,
-    "robustness_spread": null,
-    "people_exposed": 2367,
-    "area_km2_lt_minus5cm_common": 0.38,
-    "area_km2_lt_minus2cm_common": 36.83,
-    "opera_check": null,
-    "sigma_cm_median": 0.33,
-    "rate_ci_cm_per_100d": [
-     -4.9,
-     -3.5
-    ],
-    "confidence": "high",
-    "indicative_only": false,
-    "coverage": "ok",
-    "path": "data/global/rafsanjan/",
-    "note": "",
-    "rate_cm_per_100d_common": -4.2,
-    "rate_range_refs_cm_per_100d": [
-     -5.4,
-     -4.3
-    ],
-    "rank": 8
+    "rank": 4
    }
   },
   {
@@ -505,7 +292,7 @@
      -4.9,
      -3.7
     ],
-    "rank": 9
+    "rank": 5
    }
   },
   {
@@ -559,115 +346,7 @@
      -3.6,
      -2.0
     ],
-    "rank": 10
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     117.34078,
-     38.87608
-    ]
-   },
-   "properties": {
-    "id": "tianjin",
-    "name": "Tianjin",
-    "country": "China",
-    "max_cm_los": -2.9,
-    "p2_cm": -3.5,
-    "rate_cm_per_100d": -2.4,
-    "max_cm_vertical_est": -3.6,
-    "period": [
-     "2026-06-21",
-     "2026-10-19"
-    ],
-    "days": 120,
-    "n_pairs": 8,
-    "quality": "provisional",
-    "rate_cm_per_yr_estimate": -8.7,
-    "valid_fraction": 0.634,
-    "ref_range_cm": [
-     -2.9,
-     -1.3
-    ],
-    "detectable": null,
-    "robustness_spread": null,
-    "people_exposed": 127600,
-    "area_km2_lt_minus5cm_common": 7.85,
-    "area_km2_lt_minus2cm_common": 103.44,
-    "opera_check": null,
-    "sigma_cm_median": 0.329,
-    "rate_ci_cm_per_100d": [
-     -3.5,
-     -2.1
-    ],
-    "confidence": "high",
-    "indicative_only": false,
-    "coverage": "ok",
-    "path": "data/global/tianjin/",
-    "note": "",
-    "rate_cm_per_100d_common": -2.8,
-    "rate_range_refs_cm_per_100d": [
-     -3.0,
-     -1.9
-    ],
-    "rank": 11
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     116.66541,
-     38.14143
-    ]
-   },
-   "properties": {
-    "id": "cangzhou",
-    "name": "Cangzhou",
-    "country": "China",
-    "max_cm_los": -2.4,
-    "p2_cm": -3.3,
-    "rate_cm_per_100d": -2.0,
-    "max_cm_vertical_est": -3.2,
-    "period": [
-     "2026-06-21",
-     "2026-10-19"
-    ],
-    "days": 120,
-    "n_pairs": 8,
-    "quality": "provisional",
-    "rate_cm_per_yr_estimate": -7.2,
-    "valid_fraction": 0.432,
-    "ref_range_cm": [
-     -2.4,
-     -1.6
-    ],
-    "detectable": null,
-    "robustness_spread": null,
-    "people_exposed": 16737,
-    "area_km2_lt_minus5cm_common": 0.96,
-    "area_km2_lt_minus2cm_common": 84.7,
-    "opera_check": null,
-    "sigma_cm_median": 0.386,
-    "rate_ci_cm_per_100d": [
-     -3.2,
-     -1.6
-    ],
-    "confidence": "high",
-    "indicative_only": false,
-    "coverage": "ok",
-    "path": "data/global/cangzhou/",
-    "note": "",
-    "rate_cm_per_100d_common": -2.4,
-    "rate_range_refs_cm_per_100d": [
-     -2.6,
-     -1.4
-    ],
-    "rank": 12
+    "rank": 6
    }
   },
   {
@@ -721,7 +400,7 @@
      -2.8,
      -1.6
     ],
-    "rank": 13
+    "rank": 7
    }
   },
   {
@@ -775,7 +454,7 @@
      -1.7,
      -0.5
     ],
-    "rank": 14
+    "rank": 8
    }
   },
   {
@@ -829,64 +508,7 @@
      -3.7,
      -2.7
     ],
-    "rank": 15
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     54.39541,
-     36.59262
-    ]
-   },
-   "properties": {
-    "id": "gorgan",
-    "name": "Gorgan",
-    "country": "Iran",
-    "max_cm_los": -34.6,
-    "p2_cm": -33.1,
-    "rate_cm_per_100d": -28.8,
-    "max_cm_vertical_est": -41.8,
-    "period": [
-     "2026-06-21",
-     "2026-10-19"
-    ],
-    "days": 120,
-    "n_pairs": 9,
-    "quality": "provisional",
-    "rate_cm_per_yr_estimate": -105.2,
-    "valid_fraction": 0.267,
-    "ref_range_cm": [
-     -34.6,
-     -13.8
-    ],
-    "detectable": null,
-    "robustness_spread": null,
-    "people_exposed": 97823,
-    "area_km2_lt_minus5cm_common": 354.64,
-    "area_km2_lt_minus2cm_common": 397.36,
-    "opera_check": null,
-    "sigma_cm_median": 0.36,
-    "rate_ci_cm_per_100d": [
-     -23.5,
-     -21.9
-    ],
-    "confidence": "medium",
-    "indicative_only": true,
-    "coverage": "ok",
-    "path": "data/global/gorgan/",
-    "note": "Reviewed as low confidence: QC FLAGGED (phase_cycle_jump, indicative_only): step 2 (2026-07-03 to 2026-07-15) jumps -10.26 cm (~one 12.1 cm L-band cycle) QC: step 2 (2026-07-03→2026-07-15) = -10.26 cm ≈ one phase cycle (12.1 cm) Without the flagged step(s) the headline point shows -24.39 cm. Under revision.",
-    "rate_cm_per_100d_common": -22.7,
-    "rate_range_refs_cm_per_100d": [
-     -29.4,
-     -28.2
-    ],
-    "qc_flags": [
-     "phase_cycle_jump"
-    ],
-    "rank": 16
+    "rank": 9
    }
   },
   {
@@ -943,7 +565,7 @@
     "qc_flags": [
      "phase_cycle_jump"
     ],
-    "rank": 17
+    "rank": 10
    }
   },
   {
@@ -1000,7 +622,7 @@
     "qc_flags": [
      "phase_cycle_jump"
     ],
-    "rank": 18
+    "rank": 11
    }
   },
   {
@@ -1058,7 +680,7 @@
      "literature_mismatch",
      "noisy_series"
     ],
-    "rank": 19
+    "rank": 12
    }
   },
   {
@@ -1115,7 +737,7 @@
     "qc_flags": [
      "phase_cycle_jump"
     ],
-    "rank": 20
+    "rank": 13
    }
   },
   {
@@ -1169,7 +791,7 @@
      -9.5,
      -8.3
     ],
-    "rank": 21
+    "rank": 14
    }
   },
   {
@@ -1223,7 +845,7 @@
      -6.7,
      -5.6
     ],
-    "rank": 22
+    "rank": 15
    }
   },
   {
@@ -1277,7 +899,7 @@
      -6.1,
      -4.8
     ],
-    "rank": 23
+    "rank": 16
    }
   },
   {
@@ -1328,61 +950,7 @@
      -6.1,
      -4.9
     ],
-    "rank": 24
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     51.71977,
-     32.78679
-    ]
-   },
-   "properties": {
-    "id": "isfahan",
-    "name": "Isfahan",
-    "country": "Iran",
-    "max_cm_los": -2.5,
-    "p2_cm": -2.9,
-    "rate_cm_per_100d": -2.1,
-    "max_cm_vertical_est": -3.4,
-    "period": [
-     "2026-06-18",
-     "2026-10-16"
-    ],
-    "days": 120,
-    "n_pairs": 9,
-    "quality": "provisional",
-    "rate_cm_per_yr_estimate": -7.5,
-    "valid_fraction": 0.325,
-    "ref_range_cm": [
-     -2.6,
-     -0.8
-    ],
-    "detectable": true,
-    "robustness_spread": null,
-    "people_exposed": 23807,
-    "area_km2_lt_minus5cm_common": 2.11,
-    "area_km2_lt_minus2cm_common": 57.5,
-    "opera_check": null,
-    "sigma_cm_median": 0.347,
-    "rate_ci_cm_per_100d": [
-     -2.8,
-     -1.4
-    ],
-    "confidence": "medium",
-    "indicative_only": true,
-    "coverage": "ok",
-    "path": "data/global/isfahan/",
-    "note": "",
-    "rate_cm_per_100d_common": -2.1,
-    "rate_range_refs_cm_per_100d": [
-     -2.7,
-     -1.5
-    ],
-    "rank": 25
+    "rank": 17
    }
   },
   {
@@ -1430,55 +998,7 @@
     "note": "Reviewed as low confidence: Consistent in magnitude (-2.7 cm LOS, -3.4 cm vertical est., -2.5 cm/100d over 108 days), though 28.2% valid pixels over humid subtropical rice farmland and reference spread [-3.5, -1.1] cm limit conf",
     "rate_cm_per_100d_common": -1.6,
     "rate_range_refs_cm_per_100d": null,
-    "rank": 26
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     109.18355,
-     34.18031
-    ]
-   },
-   "properties": {
-    "id": "xian",
-    "name": "Xi'an",
-    "country": "China",
-    "max_cm_los": -1.5,
-    "p2_cm": -1.6,
-    "rate_cm_per_100d": -1.2,
-    "max_cm_vertical_est": -2.0,
-    "period": [
-     "2026-06-19",
-     "2026-10-17"
-    ],
-    "days": 120,
-    "n_pairs": 9,
-    "quality": "provisional",
-    "rate_cm_per_yr_estimate": -4.5,
-    "valid_fraction": 0.362,
-    "ref_range_cm": [
-     -3.9,
-     -1.5
-    ],
-    "detectable": null,
-    "robustness_spread": null,
-    "people_exposed": 8592,
-    "area_km2_lt_minus5cm_common": 0.3,
-    "area_km2_lt_minus2cm_common": 12.15,
-    "opera_check": null,
-    "sigma_cm_median": null,
-    "rate_ci_cm_per_100d": null,
-    "confidence": "medium",
-    "indicative_only": true,
-    "coverage": "ok",
-    "path": "data/global/xian/",
-    "note": "Reviewed as low confidence: Consistent with moderated modern rates: 120-day NISAR peak (-1.5 cm LOS, -2.0 cm vertical est., -1.2 cm/100d) reflects residual localized settling after groundwater regulation. Low valid-pixel fractio",
-    "rate_cm_per_100d_common": -1.4,
-    "rate_range_refs_cm_per_100d": null,
-    "rank": 27
+    "rank": 18
    }
   },
   {
@@ -1532,7 +1052,7 @@
      -2.7,
      -1.5
     ],
-    "rank": 28
+    "rank": 19
    }
   },
   {
@@ -1586,7 +1106,7 @@
      -4.1,
      -2.9
     ],
-    "rank": 29
+    "rank": 20
    }
   }
  ]
