@@ -25,7 +25,7 @@
 > Our simulator turns these radar rates into a twenty-four-month trade-off between pumping, clay collapse, and canal loss.
 >
 > **[00:26.0 – 00:30.0 | Shot 6 — 3D Surface Explorer & Provisional Calibration Notice]**  
-> NISAR Pulse: Follow the Water. Provisional data; calibration by NASA-JPL and ISRO.
+> NISAR Vision: Follow the Water. Provisional data; calibration by NASA-JPL and ISRO.
 
 ---
 
@@ -38,7 +38,7 @@
 | **3** | `00:09.0 – 00:15.0` | `6.0 s` | 15 | "In California's Central Valley, provisional NISAR tracks up to -7.8 cm line-of-sight across 108 days." | `In California's Central Valley, provisional NISAR tracks up to -7.8 cm LOS (-10.1 cm vertical) across 108 days.` | [`data/central_valley/summary.json`](../../data/central_valley/summary.json) (`-7.8 cm` LOS, `-10.1 cm` vert. *est.*) |
 | **4** | `00:15.0 – 00:20.0` | `5.0 s` | 19 | "Tulare Canal slopes hit 57 mm/km, 10 GPS stations agree at 1 cm median error, and Karapinar sinks -5.9 cm near 29 sinkholes." | `Tulare Canal slopes hit 57 mm/km; GNSS agrees at 1.00 cm median RMSE; Karapinar sinks -5.9 cm near 29 obruks.` | [`data/central_valley/assets.json`](../../data/central_valley/assets.json), [`validation.json`](../../data/central_valley/validation.json), [`data/karapinar/summary.json`](../../data/karapinar/summary.json) |
 | **5** | `00:20.0 – 00:26.0` | `6.0 s` | 15 | "Our simulator turns these radar rates into a 24-month trade-off between pumping, clay collapse, and canal loss." | `Valley Under Pressure turns NISAR rates into a 24-month groundwater trade-off of clay collapse and canal loss.` | [`game/index.html`](../../game/index.html), [`game/model.js`](../../game/model.js) |
-| **6** | `00:26.0 – 00:30.0` | `4.0 s` | 11 | "NISAR Pulse: Follow the Water. Provisional data; calibration by NASA-JPL and ISRO." | `NISAR Pulse: Follow the Water. Provisional NISAR L2 GUNW data (NASA-JPL / ISRO calibration).` | [`docs/story/calibration_note.md`](calibration_note.md) |
+| **6** | `00:26.0 – 00:30.0` | `4.0 s` | 11 | "NISAR Vision: Follow the Water. Provisional data; calibration by NASA-JPL and ISRO." | `NISAR Vision: Follow the Water. Provisional NISAR L2 GUNW data (NASA-JPL / ISRO calibration).` | [`docs/story/calibration_note.md`](calibration_note.md) |
 
 ---
 

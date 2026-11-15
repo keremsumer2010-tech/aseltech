@@ -1,4 +1,4 @@
-# NISAR Pulse — Follow the Water: Pitch, Video Script & Slide Deck
+# NISAR Vision — Follow the Water: Pitch, Video Script & Slide Deck
 
 > **Verified Data Policy (`K-2`, `Q30`):** All site measurements below resolve directly from committed repository datasets (`data/central_valley/*.json`, `data/karapinar/*.json`, `data/uk/meta.json`, `data/uk_clay/detection.json`, `docs/story/sources.md`, and `web3d/surfaces.json`). Zero synthetic or unlabelled estimates appear in any metric.
 
@@ -44,7 +44,7 @@
 - **[ON SCREEN — Story Chapter 2 (`#compare`, `#compareRange`)]:** Slide optical cloudy **VIIRS SNPP (`20 Oct 2026`)** view across to reveal the same-day **NISAR L-band GCOV radar preview** underneath, showing The Wash coastline clearly resolved under **98%+ cloud cover**.
 - **[SPEAKER]:**
   "The same crisis is happening silently over every major pumped aquifer on Earth. Optical satellites are blind under cloud and struggle inside vegetated valleys, while raw radar interferometry lives inside multi-gigabyte HDF5 files only specialists can open.
-  Our project, **NISAR Pulse — Follow the Water**, turns NASA–ISRO NISAR L-band interferograms into plain-language maps, a Three.js 3D surface explorer, and a 24-month water-policy simulator (**Valley Under Pressure**) — all running live in any browser."
+  Our project, **NISAR Vision — Follow the Water**, turns NASA–ISRO NISAR L-band interferograms into plain-language maps, a Three.js 3D surface explorer, and a 24-month water-policy simulator (**Valley Under Pressure**) — all running live in any browser."
 
 ### 0:45 – 1:45 · Live Demo: Central Valley & Karapınar
 - **[ON SCREEN — Story Chapter 3 (`[data-step="cv"]`, `#cvPlay`, `#slider`, `#readout`, `#pointChart`)]:** Press `#cvPlay` on the date slider (**`28 Jun – 14 Oct 2026`**, **`7` provisional NISAR GUNW pairs**). Tap `p01` (`6 km N of Terra Bella`, `max_subsidence_location`) and show `#readout` + `#pointChart` + Chapter 4 GPS comparison.
@@ -89,7 +89,7 @@
 | `0:09 – 0:15` | Scene 2 time-lapse across Central Valley (`2026-06-28 → 2026-10-14`) + `p01` Terra Bella click | "Across California's Central Valley, 7 provisional NISAR pairs measure up to −7.8 cm of sinking in 108 summer days." |
 | `0:15 – 0:20` | GNSS validation (`1.00 cm` median RMSE) + Karapınar (`−5.9 cm` LOS) with 29 sinkhole pins | "Checked against 10 GNSS stations, and extended to Karapınar's −5.9 cm basin subsidence and 29 sinkholes." |
 | `0:20 – 0:26` | Valley Under Pressure (`#pumpSlider` / `Over-Pump` across 24 months), clay collapse & canal loss | "Valley Under Pressure turns NISAR rates into a 24-month trade-off of clay collapse and canal loss." |
-| `0:26 – 0:30` | `/web3d/` 3D mesh orbit + End slate (`NISAR provisional data · NASA-JPL/ISRO calibration`) | "NISAR Pulse — Follow the Water. Open science before the ground gives way." |
+| `0:26 – 0:30` | `/web3d/` 3D mesh orbit + End slate (`NISAR provisional data · NASA-JPL/ISRO calibration`) | "NISAR Vision — Follow the Water. Open science before the ground gives way." |
 
 ### English Subtitles (`video_30s.srt`)
 
@@ -116,14 +116,14 @@ Valley Under Pressure turns NISAR rates into a 24-month groundwater trade-off of
 
 6
 00:00:26,000 --> 00:00:30,000
-NISAR Pulse: Follow the Water. Provisional NISAR L2 GUNW data (NASA-JPL / ISRO calibration).
+NISAR Vision: Follow the Water. Provisional NISAR L2 GUNW data (NASA-JPL / ISRO calibration).
 ```
 
 ---
 
 ## 3. Pitch Slide Deck (7 Slides Max)
 
-### Slide 1 · NISAR Pulse: Follow the Water
+### Slide 1 · NISAR Vision: Follow the Water
 - **Subtitle:** Turning L-Band Radar Interferograms into Actionable Groundwater & Infrastructure Intelligence
 - **Core Hook:** Holme Fen Iron Post (UK Fens, `1851` benchmark standing **~4 m** above drained peat at **2.75 m below sea level**).
 - **Problem:** Pumping aquifers lowers pressure inside compressible clay layers — once collapsed, storage capacity never recovers.

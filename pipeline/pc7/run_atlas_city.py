@@ -1,4 +1,4 @@
-"""Run a PC7 global-city NISAR Pulse analysis with an independently sourced ref site.
+"""Run a PC7 global-city NISAR Vision analysis with an independently sourced ref site.
 
 The search is for the requested target bbox. Each downloaded GUNW is clipped to
 an expanded bbox that includes the external reference locality. Processing is

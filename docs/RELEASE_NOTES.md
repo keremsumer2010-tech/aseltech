@@ -1,4 +1,4 @@
-# NISAR Pulse — Release Notes & 20:00 Freeze Checklist (`docs/RELEASE_NOTES.md`)
+# NISAR Vision — Release Notes & 20:00 Freeze Checklist (`docs/RELEASE_NOTES.md`)
 
 > **Calibration Notice:** *NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.*
 

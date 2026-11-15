@@ -20,7 +20,7 @@
 | **Shot 3** | `00:09.0 – 00:15.0` | `6.0 s` | `web/index.html#story` — Story Chapter 3 (`[data-step="cv"]`, `#cvPlay`, `#slider`, `#readout`, `#pointChart`) | Click `#cvPlay` (`▶`) to step `28 Jun–14 Oct 2026`, then tap peak block `p01` (`6 km N of Terra Bella`, `36.011°N, 119.022°W`) so `#readout` and `#pointChart` (`−7.8 cm` LOS, `−10.1 cm` vertical estimate, `Figure 2`) update *(optional B-roll cut: `docs/story/media/cv_subsidence.mp4`)*. | `In California's Central Valley, provisional NISAR tracks up to -7.8 cm LOS (-10.1 cm vertical) across 108 days.` |
 | **Shot 4** | `00:15.0 – 00:20.0` | `5.0 s` | `web/index.html#story` — Story Chapters 4–6 (`[data-step="gnss"]` `#gnssChart`/`#gnssTable` → `[data-step="risk"]` `#riskList` → `[data-step="kp"]` `#ringBox`/`#ringChart`/`#sinkList`) | Highlight Chapter 4 GPS validation (`CAHA`, `1.00 cm` median RMSE, `Figure 3`), Chapter 5 `Tulare Irrigation District Canal` (`57.01 mm/km`, `Figure 4`), and Chapter 6 Karapınar (`−5.9 cm` LOS, `26 Jun–12 Oct 2026`, `#ringChart` `4.2 cm` within `1 km` vs `0.6 cm` beyond `5 km`, `29` documented sinkholes in `#sinkList`, `Figure 5`). | `Tulare Canal slopes hit 57 mm/km; GNSS agrees at 1.00 cm median RMSE; Karapinar sinks -5.9 cm near 29 obruks.` |
 | **Shot 5** | `00:20.0 – 00:26.0` | `6.0 s` | `web/index.html#play` — Simulator (`#play`, `#gameFrame` → `game/index.html`) | Scroll to Simulator (`#play`), select `Terra Bella` in `#gameFrame`, adjust pumping rate, and advance across the **24-month** simulation comparing simulated subsidence directly against NISAR measurements. | `Valley Under Pressure turns NISAR rates into a 24-month groundwater trade-off of clay collapse and canal loss.` |
-| **Shot 6** | `00:26.0 – 00:30.0` | `4.0 s` | `web/index.html#how` + `web/science.html` (`#findings`, `#conv`, `#valid`, `#limits`, `#lit`, `#unc`, `#vreport`, `#dossier`) & `web3d/` (`#view3d`) | Orbit the extruded 3D basin mesh in pre-loaded `web3d/` tab (`quality: provisional · CRID P05023`), then cut cleanly to `#how` / `web/science.html` provisional attribution notice and findings sections (`Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.`). | `NISAR Pulse: Follow the Water. Provisional NISAR L2 GUNW data (NASA-JPL / ISRO calibration).` |
+| **Shot 6** | `00:26.0 – 00:30.0` | `4.0 s` | `web/index.html#how` + `web/science.html` (`#findings`, `#conv`, `#valid`, `#limits`, `#lit`, `#unc`, `#vreport`, `#dossier`) & `web3d/` (`#view3d`) | Orbit the extruded 3D basin mesh in pre-loaded `web3d/` tab (`quality: provisional · CRID P05023`), then cut cleanly to `#how` / `web/science.html` provisional attribution notice and findings sections (`Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.`). | `NISAR Vision: Follow the Water. Provisional NISAR L2 GUNW data (NASA-JPL / ISRO calibration).` |
 
 ---
 
@@ -49,7 +49,7 @@ Valley Under Pressure turns NISAR rates into a 24-month groundwater trade-off of
 
 6
 00:00:26,000 --> 00:00:30,000
-NISAR Pulse: Follow the Water. Provisional NISAR L2 GUNW data (NASA-JPL / ISRO calibration).
+NISAR Vision: Follow the Water. Provisional NISAR L2 GUNW data (NASA-JPL / ISRO calibration).
 ```
 
 ## Compliance Reminders (`submission_rules.md`)

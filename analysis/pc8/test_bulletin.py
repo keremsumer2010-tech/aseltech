@@ -16,7 +16,7 @@ def test_bulletin_renders_all_seeded_atlas_regions(tmp_path: Path) -> None:
         if out is not None:
             generated.append((reg, out))
             txt = out.read_text(encoding="utf-8")
-            assert "NISAR Pulse Bulletin" in txt
+            assert "NISAR Vision Bulletin" in txt
             assert CALIBRATION_NOTICE in txt
             assert "cm/100d" in txt
             assert "CONFIDENCE:" in txt

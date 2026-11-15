@@ -1,4 +1,4 @@
-// NISAR Pulse — main story. Reads files defined in rules/VERI_SOZLESMESI.md.
+// NISAR Vision — main story. Reads files defined in rules/VERI_SOZLESMESI.md.
 // Pages: site root = web/ (data/, game/, web3d/, docs/story/ copied next to it). Local dev (/web/): one level up.
 const LOCAL = location.pathname.includes('/web/');
 const ROOT = LOCAL ? '../' : './';

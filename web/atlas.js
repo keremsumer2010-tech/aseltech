@@ -1,4 +1,4 @@
-// NISAR Pulse — Global Subsidence Atlas 2026 (Atlas Final v2 + Takviye)
+// NISAR Vision — Global Subsidence Atlas 2026 (Atlas Final v2 + Takviye)
 const LOCAL = location.pathname.includes('/web/');
 const ROOT = LOCAL ? '../' : './';
 const ESRI = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';

@@ -1,4 +1,4 @@
-# MASTER PLAN — NISAR Pulse: Follow the Water
+# MASTER PLAN — NISAR Vision: Follow the Water
 Team Taykut · NASA Space Apps 2026 · Challenge: Dancing with the SARs · Local event: Lincoln (UK)
 
 ## 1. Tek cümle

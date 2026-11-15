@@ -13,7 +13,7 @@ Hedef: "güzel bir harita" değil, **bir su yöneticisinin ve bir mühendisin ya
 **Yöntem:** her segment için 1 km örnekleme; β ve kanallarda segment boyunca maks diferansiyel çökme (cm); σ_piksel ile 1000 Monte Carlo → P(β > eşik), P(Δ > 10 cm). Eşikler kaynaklı ve parametre. Kısa doğrulama: California Aqueduct kilometreleri için yayımlanmış çökme/kapasite bilgisiyle niteliksel kıyas.
 **Çıktı:** `risk/probabilistic_risk.py`, `data/central_valley/assets_prob.json` (her segment: beta, p_exceed, ci), `docs/story/engineering_risk.md`, `docs/story/media/pc7_risk_prob.png`. (İndirme yok.)
 
-## O3 — "NISAR Pulse" komut satırı aracı: herhangi bir bölge için tek komut · sahibi PC2
+## O3 — "NISAR Vision" komut satırı aracı: herhangi bir bölge için tek komut · sahibi PC2
 **Soru:** "Başka bir mühendis bunu kendi bölgesi için yarın çalıştırabilir mi?"
 **Neden özgün:** hackathon projelerinin çoğu bir kerelik notebook. Bizim hattımız (arama → indirme → kesme → faz→cm → kümülatif → kalite etiketli veri sözleşmesi → site kataloğu) 7 bölge + 4 şehirde zaten çalıştı. Bunu tek, test edilmiş, belgeli bir araca çevirmek = "operasyonel" ürün.
 **Yöntem:** `python -m nisarpulse run --name <ad> --bbox w,s,e,n --start YYYY-MM-DD --end YYYY-MM-DD [--track N] [--quality provisional]` → `data/<ad>/` sözleşme dosyaları + `data/catalog.json` güncellemesi. Mevcut PC2/PC3 kodlarını sarmalar (değiştirmez). `--dry-run` (sadece arama ve plan), `--resume`. Ağ gerektirmeyen birim testleri + GitHub Actions'ta test çalıştırma.

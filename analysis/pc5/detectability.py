@@ -1,4 +1,4 @@
-"""Signal-to-noise detectability & minimum detectable rate for NISAR Pulse Global Atlas.
+"""Signal-to-noise detectability & minimum detectable rate for NISAR Vision Global Atlas.
 
 Computes per-city rate_cm_per_100d +/- 2*sigma formal phase-noise bounds,
 SNR (|headline| / median_sigma_cm), 2-sigma minimum detectable rate (cm/100 d),

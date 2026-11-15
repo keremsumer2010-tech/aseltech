@@ -17,7 +17,7 @@ ROOT = Path(__file__).resolve().parent.parent.parent
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="python -m pipeline.nisarpulse",
-        description="NISAR Pulse: single-command InSAR subsidence pipeline.",
+        description="NISAR Vision: single-command InSAR subsidence pipeline.",
     )
     sub = parser.add_subparsers(dest="command", required=True)
     run_p = sub.add_parser("run", help="Search, download, subset, process, and register a site.")
@@ -131,7 +131,7 @@ def main(argv: list[str] | None = None) -> int:
         bbox, args.start, args.end, track=args.track, quality_mode=args.quality
     )
     print(
-        f"NISAR Pulse [{args.name}] bbox={bbox} quality={args.quality} | "
+        f"NISAR Vision [{args.name}] bbox={bbox} quality={args.quality} | "
         f"granules={len(rows)} chain_pairs={len(chain)} total_raw={total_mb:.1f} MB gaps={len(gaps)}"
     )
     for g0, g1 in gaps:

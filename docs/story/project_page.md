@@ -6,7 +6,7 @@
 
 ## Project Title
 
-**NISAR Pulse — Follow the Water: Tracking Silent Land Subsidence with NASA–ISRO NISAR**
+**NISAR Vision — Follow the Water: Tracking Silent Land Subsidence with NASA–ISRO NISAR**
 
 ---
 

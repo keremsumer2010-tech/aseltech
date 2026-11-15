@@ -1,4 +1,4 @@
-# NISAR Pulse — 60-Second Backup Screen-Recording Script (`docs/story/demo_script_v3.md`)
+# NISAR Vision — 60-Second Backup Screen-Recording Script (`docs/story/demo_script_v3.md`)
 
 > **Target:** `60.0 s` (`1920×1080`, `30 fps`, real live site capture, **zero AI-generated images**)  
 > **Source URL:** `https://keremsumer2010-tech.github.io/aseltech/` (or local `http://localhost:8000/web/index.html`)  

@@ -1,4 +1,4 @@
-name: NISAR Pulse Tests
+name: NISAR Vision Tests
 
 on:
   push:

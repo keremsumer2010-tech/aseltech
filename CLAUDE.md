@@ -1,6 +1,6 @@
 # aseltech: giriş noktası (tüm ajanlar ve insanlar önce bunu okur)
 
-NASA Space Apps 2026 · Challenge: **Dancing with the SARs** · Ürün: **NISAR Pulse: Follow the Water**
+NASA Space Apps 2026 · Challenge: **Dancing with the SARs** · Ürün: **NISAR Vision: Follow the Water**
 Takım Taykut · Local Event: Lincoln (UK) · Global teslim: **Paz 15 Kas 23:59 UK = Pzt 02:59 TR** (iç hedef Paz 22:00 TR)
 
 ## Proje tek paragrafta

@@ -1,4 +1,4 @@
-"""Operational Bulletin Generator — NISAR Pulse Bulletin (PC8, ATLAS_PLANI.md).
+"""Operational Bulletin Generator — NISAR Vision Bulletin (PC8, ATLAS_PLANI.md).
 
 Generates single-page printable HTML bulletins (`docs/bulletins/<region>.html`) and
 an index (`docs/bulletins/index.html`) for all regions listed in `data/global/atlas.json`
@@ -447,7 +447,7 @@ def render_region_bulletin(region: dict[str, Any], out_dir: Path = OUT_DIR) -> P
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>NISAR Pulse Bulletin — {_esc(title_loc)} — {_esc(last_date)}</title>
+<title>NISAR Vision Bulletin — {_esc(title_loc)} — {_esc(last_date)}</title>
 <style>
   :root {{ --ink:#0f172a; --muted:#475569; --line:#cbd5e1; --bg:#ffffff; --panel:#f8fafc; --accent:#1d4ed8; --warn:#b45309; }}
   * {{ box-sizing:border-box; }}
@@ -501,7 +501,7 @@ def render_region_bulletin(region: dict[str, Any], out_dir: Path = OUT_DIR) -> P
 <div class="sheet">
   <div class="topbar">
     <div>
-      <h1>NISAR Pulse Bulletin &mdash; {_esc(title_loc)} &mdash; {_esc(last_date)}</h1>
+      <h1>NISAR Vision Bulletin &mdash; {_esc(title_loc)} &mdash; {_esc(last_date)}</h1>
       <div class="meta">Atlas Rank #{_esc(region.get('rank', '-'))} &middot; Coverage: {_esc(region.get('coverage', 'ok'))} &middot; {_esc(n_pairs)} pairs</div>
     </div>
     <div class="actions">
@@ -608,7 +608,7 @@ def render_index(regions: list[dict[str, Any]], generated: list[tuple[dict[str, 
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>NISAR Pulse Bulletins — 2026 Operational Index</title>
+<title>NISAR Vision Bulletins — 2026 Operational Index</title>
 <style>
   body {{ margin:0; padding:24px; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; color:#0f172a; background:#f8fafc; }}
   .wrap {{ max-width:1020px; margin:0 auto; background:#fff; border:1px solid #cbd5e1; border-radius:10px; padding:24px 28px; }}
@@ -629,7 +629,7 @@ def render_index(regions: list[dict[str, Any]], generated: list[tuple[dict[str, 
 </head>
 <body>
 <div class="wrap">
-  <h1>NISAR Pulse Operational Bulletins</h1>
+  <h1>NISAR Vision Operational Bulletins</h1>
   <p>Single-page, printable subsidence bulletins automatically generated from <code>data/global/atlas.json</code> and regional contract outputs ({len(generated)} active regions, ranked by period-independent <code>rate_cm_per_100d</code>).</p>
   <table>
     <thead><tr><th>Rank</th><th>Region</th><th>Country</th><th class="num">Rate (cm/100d)</th><th class="num">Max LOS</th><th class="num">Vertical Est.</th><th>Latest Date</th><th>Confidence</th><th>Quality</th></tr></thead>
@@ -646,7 +646,7 @@ def render_index(regions: list[dict[str, Any]], generated: list[tuple[dict[str, 
 
 
 def main() -> None:
-    ap = argparse.ArgumentParser(description="Generate NISAR Pulse HTML bulletins from atlas.json.")
+    ap = argparse.ArgumentParser(description="Generate NISAR Vision HTML bulletins from atlas.json.")
     ap.add_argument("--region", help="Optional single region id (default: all regions in atlas.json)")
     args = ap.parse_args()
 

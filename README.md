@@ -1,16 +1,16 @@
 <p align="center">
   <a href="https://keremsumer2010-tech.github.io/aseltech/">
-    <img src="web/assets/logo_full.png" alt="NISAR Pulse — Team Aseltech" width="320">
+    <img src="web/assets/logo_full.png" alt="NISAR Vision — Team Aseltech" width="320">
   </a>
 </p>
 
-# NISAR Pulse: Follow the Water
+# NISAR Vision: Follow the Water
 
 **Live Site:** https://keremsumer2010-tech.github.io/aseltech/ · **Team Aseltech** · NASA Space Apps Challenge 2026 · Challenge: **Dancing with the SARs** · Local event: Lincoln (UK)
 
 > *NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.*
 
-**We turned the first months of NASA-ISRO NISAR radar data into a self-checking global subsidence atlas: 29 basins measured with one open pipeline on the same 93 days, every number traceable to its file, and every headline checked against GPS, NASA's OPERA product and the literature.** Using provisional 24.2 cm L-band interferograms (`CRID P05023`, June–October 2026), **NISAR Pulse** separates permanent clay compaction from seasonal rebound, quantifies canal and railway tilt, and connects measurements to a 24-month aquifer simulator.
+**We turned the first months of NASA-ISRO NISAR radar data into a self-checking global subsidence atlas: 29 basins measured with one open pipeline on the same 93 days, every number traceable to its file, and every headline checked against GPS, NASA's OPERA product and the literature.** Using provisional 24.2 cm L-band interferograms (`CRID P05023`, June–October 2026), **NISAR Vision** separates permanent clay compaction from seasonal rebound, quantifies canal and railway tilt, and connects measurements to a 24-month aquifer simulator.
 
 - **Live Site:** https://keremsumer2010-tech.github.io/aseltech/
 - **Three-Minute Story Spec:** [docs/story/three_minute_story.md](docs/story/three_minute_story.md)
@@ -31,7 +31,7 @@
 6. **Canals and Railways at Risk:** Longitudinal tilt screening across `645` OpenStreetMap segments (`81 / 645 > 20 mm/km`, Tulare Canal `57.01 mm/km`).
 7. **One-Page Basin Bulletins:** `29` printable NASA-style monitoring bulletins (`docs/bulletins/<region>.html`).
 8. **Simulator Anyone Can Play:** *Valley Under Pressure* 24-month aquifer simulator (`game/index.html`) calibrated to Terra Bella compaction and NISAR rates.
-9. **Open One-Command Engine:** `NISAR Pulse` (`pipeline/nisarpulse`) to download, measure, and self-check any new region from public NASA ASF data.
+9. **Open One-Command Engine:** `NISAR Vision` (`pipeline/nisarpulse`) to download, measure, and self-check any new region from public NASA ASF data.
 
 ---
 
@@ -73,7 +73,7 @@ python3 pipeline/pc10/build_atlas.py && python3 tools/atlas_qc.py && python3 too
 
 ## Data Sources & Licenses
 
-| Dataset | Provider / License | Use in NISAR Pulse |
+| Dataset | Provider / License | Use in NISAR Vision |
 |---|---|---|
 | **NISAR L2 GUNW, GCOV, SME2** (`beta` & `provisional`, `CRID P05023`) | NASA-ISRO / ASF DAAC (NASA Open Data Policy) | Interferometric displacement, backscatter polarization (`HH`/`HV`), soil moisture |
 | **Continuous GNSS (`IGS14`)** | Nevada Geodetic Laboratory, UNR (CC-BY / Open) | 10-station Central Valley & multi-region independent validation (`r = 0.924`) |

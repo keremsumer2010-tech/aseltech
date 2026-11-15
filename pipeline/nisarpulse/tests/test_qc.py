@@ -1,4 +1,4 @@
-"""Offline synthetic-stack unit tests for NISAR Pulse pixel-level QC."""
+"""Offline synthetic-stack unit tests for NISAR Vision pixel-level QC."""
 
 from __future__ import annotations
 

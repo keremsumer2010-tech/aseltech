@@ -1,4 +1,4 @@
-"""Offline source/data/text QA for the NISAR Pulse site."""
+"""Offline source/data/text QA for the NISAR Vision site."""
 from __future__ import annotations
 
 import argparse

@@ -24,7 +24,7 @@ PC1 planı inceledi; 4 zayıflık düzeltildi. Bu bölüm diğer her şeyin ön�
 İlke "sözleşme önce": `data/global/atlas.json` biçimi sabit ve **PC1 tarafından 8 mevcut bölgeyle tohumlandı** (Konya Ovası −9.6, Central Valley −7.8, Cakarta −6.8, Karapınar −5.9, Mexico City −4.4, Tahran −3.5, Pekin −1.4, Delta −1.3 cm LOS). Görsel/metin işleri bu tohum dosyayla HEMEN başlar; yeni şehirler geldikçe dosya büyür, sayfalar kendiliğinden güncellenir.
 | PC | İLK işi (bağımlılık yok, şimdi başla) | Sonra |
 |---|---|---|
-| PC2 | NISAR Pulse aracına §1–§3 kurallarını ekle (`--box-deg 0.25` varsayılan, p2 ve rate_cm_per_100d çıktısı, `--ref-lonlat` ile havza dışı referans) → kendi bölgeleri (A önce) | araç iyileştirme |
+| PC2 | NISAR Vision aracına §1–§3 kurallarını ekle (`--box-deg 0.25` varsayılan, p2 ve rate_cm_per_100d çıktısı, `--ref-lonlat` ile havza dışı referans) → kendi bölgeleri (A önce) | araç iyileştirme |
 | PC10 | **Mexico City'yi kalite standardı §3 ile yeniden çalıştır** → kendi bölgeleri (önce A önceliği olanlar); `build_atlas.py`: §1–§4 alanları (`rate_cm_per_100d`, `p2_cm`, `confidence`, `valid_fraction`, `ref_range_cm`) + iki liste (güvenilir / indicative) | atlas.json'u her şehirde güncelle |
 | PC9 | Earthdata kurulumu (Mehmet) → kendi 5 bölgesi | — |
 | PC3 | çevrimdışı — atlas sayfası PC6'da | — |
@@ -51,11 +51,11 @@ Mevcut: Mexico City, Tahran, Cakarta, Pekin (PC10), Central Valley, Karapınar, 
 
 ## PC2 — bölgeler + araç
 1. Kendi 5 bölgen (PC10 ile aynı bilgisayar: sırayla, aynı anda en fazla 1 indirme).
-2. NISAR Pulse aracını atlas sırasında iyileştir: hata yakalama, `--resume`, kapsama raporu (`coverage.json`); `docs/story/engine.md`'ye "20 bölgede çalıştı" kanıtı.
+2. NISAR Vision aracını atlas sırasında iyileştir: hata yakalama, `--resume`, kapsama raporu (`coverage.json`); `docs/story/engine.md`'ye "20 bölgede çalıştı" kanıtı.
 
 ## PC9 — bölgeler
 0. Bu bilgisayarda Earthdata `~/.netrc` yoksa Mehmet kursun (şifreyi kendisi yazar; biçim RULES E-07). Kurulamazsa status'a yaz ve PC2'den bir bölgeyi devral değil, aşağıdaki 3. maddeye geç.
-1. Kendi 5 bölgen (NISAR Pulse aracı ile).
+1. Kendi 5 bölgen (NISAR Vision aracı ile).
 2. Her bölge için `summary.json` makul mü (literatür büyüklük mertebesi) — PC5'e not.
 3. (Kapsama/indirme yoksa) Karapınar tam yıl kalıcı kayıp (O1 Türkiye) PC8 ile koordineli.
 
@@ -73,7 +73,7 @@ Mevcut: Mexico City, Tahran, Cakarta, Pekin (PC10), Central Valley, Karapınar, 
 
 ## PC8 — erken uyarı bülteni (operasyonel ürün) + O1
 1. O1 Karapınar (tam yıl decomp gelince) bitir.
-2. **`tools/bulletin.py`** → `docs/bulletins/<bölge>.html` (+ yazdırılabilir): başlık "NISAR Pulse Bulletin — <bölge> — <son tarih>", son çiftteki ve toplam çökme, en riskli 5 segment (O2 olasılıkları gelince), GPS uyumu, kalite etiketi, kaynak. Central Valley, Karapınar, Konya Ovası, Delta + atlas şehirleri için tek sayfalık özet bülten.
+2. **`tools/bulletin.py`** → `docs/bulletins/<bölge>.html` (+ yazdırılabilir): başlık "NISAR Vision Bulletin — <bölge> — <son tarih>", son çiftteki ve toplam çökme, en riskli 5 segment (O2 olasılıkları gelince), GPS uyumu, kalite etiketi, kaynak. Central Valley, Karapınar, Konya Ovası, Delta + atlas şehirleri için tek sayfalık özet bülten.
 3. `submission_form.md`'ye atlas ve bülten satırları.
 
 ## PC7 — O2 + atlas kalite kontrolü

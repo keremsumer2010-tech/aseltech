@@ -20,4 +20,4 @@ Valley Under Pressure turns NISAR rates into a 24-month groundwater trade-off of
 
 6
 00:00:26,000 --> 00:00:30,000
-NISAR Pulse: Follow the Water. Provisional NISAR L2 GUNW data (NASA-JPL / ISRO calibration).
+NISAR Vision: Follow the Water. Provisional NISAR L2 GUNW data (NASA-JPL / ISRO calibration).

@@ -132,7 +132,7 @@ def fit_image_canvas(src_img: Image.Image, header_text: str | None = None) -> Im
 
 
 def build_title_card() -> Image.Image:
-    """Render 1920x940 opening card for NISAR Pulse — Team Taykut (zero AI imagery, no agency logos)."""
+    """Render 1920x940 opening card for NISAR Vision — Team Taykut (zero AI imagery, no agency logos)."""
     canvas = Image.new("RGB", (WIDTH, CANVAS_H), BG_HEX)
     draw = ImageDraw.Draw(canvas)
 
@@ -152,7 +152,7 @@ def build_title_card() -> Image.Image:
     font_meta = load_font(24, bold=False, mono=True)
 
     draw.text((220, 235), "PROVISIONAL NASA-ISRO NISAR L-BAND RADAR  ·  2026", font=font_pill, fill=WARN_HEX)
-    draw.text((220, 305), "NISAR Pulse — Team Taykut", font=font_title, fill=TEXT_HEX)
+    draw.text((220, 305), "NISAR Vision — Team Taykut", font=font_title, fill=TEXT_HEX)
     draw.text(
         (220, 415),
         "Track and Visualize Surface Change: Patterns and Rhythms of Subsidence",
@@ -189,7 +189,7 @@ def build_closing_card() -> Image.Image:
     font_note = load_font(25, bold=False)
 
     draw.text((220, 235), "INTERACTIVE STORY MAP, 3D BASIN & SIMULATOR", font=font_pill, fill=WARN_HEX)
-    draw.text((220, 295), "Explore NISAR Pulse Online", font=font_title, fill=TEXT_HEX)
+    draw.text((220, 295), "Explore NISAR Vision Online", font=font_title, fill=TEXT_HEX)
     draw.text((220, 390), "https://keremsumer2010-tech.github.io/aseltech/", font=font_url, fill=ACCENT_HEX)
     draw.text(
         (220, 485),

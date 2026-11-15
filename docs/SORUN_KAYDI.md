@@ -1,4 +1,4 @@
-# NISAR Pulse — Sorun Kaydı (S-01 … S-30)
+# NISAR Vision — Sorun Kaydı (S-01 … S-30)
 
 Kaynak: `NISAR_Pulse_Sorun_Kaydi.docx` (14 Kas 2026, 17:15 TR), Mehmet tarafından paylaşıldı. Bu dosya sadece bugfix ekibi (PC3, PC6, PC8) içindir.
 Görev dağılımı: `tasks/QUEUE.md` → "BUGFIX" bölümü. S-21 (simülatör tasarımı) yapıldı, listede yok.

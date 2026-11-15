@@ -1,4 +1,4 @@
-# NISAR Pulse (`pipeline.nisarpulse`)
+# NISAR Vision (`pipeline.nisarpulse`)
 
 Single-command CLI that turns a bounding box and date range into a quality-tagged NISAR L2 GUNW displacement time series (`data/<site>/` + `data/catalog.json`).
 

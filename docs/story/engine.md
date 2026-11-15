@@ -1,4 +1,4 @@
-# NISAR Pulse — Single-Command Operational Engine
+# NISAR Vision — Single-Command Operational Engine
 
 **What it does:** Turns any bounding box and date window into a quality-tagged NISAR L2 GUNW displacement time series (`data/<site>/meta.json`, `disp/*.png`, `points.json`, `summary.json`) and registers it in `data/catalog.json` with one command.
 

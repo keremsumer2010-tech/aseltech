@@ -1,7 +1,7 @@
 {
  "type": "FeatureCollection",
  "metadata": {
-  "title": "NISAR Pulse global subsidence atlas 2026",
+  "title": "NISAR Vision global subsidence atlas 2026",
   "quality": "provisional",
   "quality_note": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team. Regions are ranked by rate_cm_per_100d_common (LOS) over the intersecting window.",
   "ranking_metric": "rate_cm_per_100d_common"

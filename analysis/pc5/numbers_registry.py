@@ -1,4 +1,4 @@
-"""Canonical Numbers Registry & Cross-Document Audit for NISAR Pulse.
+"""Canonical Numbers Registry & Cross-Document Audit for NISAR Vision.
 
 Scans web/*.html, web/*.js, docs/story/*.md, docs/story/slides.html, and
 docs/story/technical_note.html, maps headline numbers to their authoritative

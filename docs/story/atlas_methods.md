@@ -2,7 +2,7 @@
 
 > **Calibration Notice:** NISAR L2 GUNW (`CRID P05023`) interferograms used in this atlas are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.
 
-This document describes the standardized processing chain, validation criteria, and limitations governing the NISAR Pulse Global Subsidence Atlas 2026.
+This document describes the standardized processing chain, validation criteria, and limitations governing the NISAR Vision Global Subsidence Atlas 2026.
 
 ---
 

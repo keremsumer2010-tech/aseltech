@@ -1,4 +1,4 @@
-# NISAR Pulse Global Land Subsidence Atlas (June–October 2026)
+# NISAR Vision Global Land Subsidence Atlas (June–October 2026)
 
 *Provisional NISAR L2 GUNW (`P05023`, `>= 2026-06-17`) cumulative line-of-sight (LOS) measurements across 27 sinking regions, ranked over a common 93-day window (`2026-06-28` to `2026-09-29`).*
 

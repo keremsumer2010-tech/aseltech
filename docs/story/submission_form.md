@@ -10,12 +10,12 @@
 
 - **Short Title (`48 chars` / `7 words`):**
 ```text
-NISAR Pulse: Tracking Land Subsidence from Space
+NISAR Vision: Tracking Land Subsidence from Space
 ```
 
 - **Full Descriptive Title (`79 chars` / `13 words`):**
 ```text
-NISAR Pulse — Follow the Water: Tracking Silent Land Subsidence with L-Band SAR
+NISAR Vision — Follow the Water: Tracking Silent Land Subsidence with L-Band SAR
 ```
 
 ---
@@ -64,7 +64,7 @@ https://keremsumer2010-tech.github.io/aseltech/docs/story/slides.html
 
 ```text
 WHAT WE BUILT AND WHY IT MATTERS
-When groundwater is pumped faster than rain refills it, or when organic peatlands are drained, deep clay and peat layers compact and the ground sinks by millimeters to centimeters per month. NASA's NISAR Land Subsidence StoryMap (Peacock et al., 2024) illustrated this hazard in California's Central Valley using 2013-2017 airborne UAVSAR radar. Our project, NISAR Pulse - Follow the Water, updates that story from space in 2026 using open NASA-ISRO NISAR L-band Synthetic Aperture Radar (24 cm wavelength) across California, Turkiye, the UK, and a 29-basin global atlas.
+When groundwater is pumped faster than rain refills it, or when organic peatlands are drained, deep clay and peat layers compact and the ground sinks by millimeters to centimeters per month. NASA's NISAR Land Subsidence StoryMap (Peacock et al., 2024) illustrated this hazard in California's Central Valley using 2013-2017 airborne UAVSAR radar. Our project, NISAR Vision - Follow the Water, updates that story from space in 2026 using open NASA-ISRO NISAR L-band Synthetic Aperture Radar (24 cm wavelength) across California, Turkiye, the UK, and a 29-basin global atlas.
 
 KEY QUANTITATIVE FINDINGS (DATES, UNITS & REPO SOURCES)
 1. UK Fens All-Weather & Polarization (28 Jul-20 Oct 2026, preview & provisional): A swipe comparison of cloudy VIIRS SNPP optical imagery (over 98% cloud on 20 Oct 2026) against a same-day NISAR L2 GCOV radar preview resolves The Wash coastline and Fens drainage [data/uk/meta.json], anchored by the Holme Fen iron post (~4 m peat loss since 1851; 1-2 cm/yr modern rate [docs/story/holme_fen.md]). Across 8 provisional GCOV epochs and 4 sample windows, mean temporal range is 4.27 dB in HH, 3.49 dB in HV, and 1.36 dB in HV/HH ratio, showing HV is the clearest vegetation-structure indicator [data/fens/polarizations.json; docs/story/polarization.md].

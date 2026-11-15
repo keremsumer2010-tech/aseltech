@@ -1,4 +1,4 @@
-// NISAR Pulse — data explorer. Everything is driven by data/catalog.json (built by analysis/build_catalog.py).
+// NISAR Vision — data explorer. Everything is driven by data/catalog.json (built by analysis/build_catalog.py).
 const LOCAL = location.pathname.includes('/web/');
 const ROOT = LOCAL ? '../' : './';
 const ESRI = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';

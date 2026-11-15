@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://keremsumer2010-tech.github.io/aseltech/data/global/atlas.schema.json",
-  "title": "NISAR Pulse Global Subsidence Atlas Schema",
+  "title": "NISAR Vision Global Subsidence Atlas Schema",
   "description": "Contract for data/global/atlas.json, aligned with docs/story/atlas_data_dictionary.md.",
   "type": "object",
   "required": [

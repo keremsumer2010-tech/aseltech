@@ -3,7 +3,7 @@
 Lincoln programı tek gün: final sunum + jüri + ödül BUGÜN (saat belirtilmemiş).
 **Hedef: 17:30 TR'de (14:30 UK) çalışan demo GitHub Pages'te.** 17:30'dan sonra sadece cila.
 
-## Demo: "NISAR Pulse — Follow the Water" (tek web sayfası, kaydırmalı hikâye + oyun)
+## Demo: "NISAR Vision — Follow the Water" (tek web sayfası, kaydırmalı hikâye + oyun)
 
 | Sahne | Mesaj | Veri | B planı |
 |---|---|---|---|

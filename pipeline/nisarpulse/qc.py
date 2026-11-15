@@ -1,4 +1,4 @@
-"""Self-checking QC for NISAR Pulse cumulative displacement stacks."""
+"""Self-checking QC for NISAR Vision cumulative displacement stacks."""
 
 from __future__ import annotations
 

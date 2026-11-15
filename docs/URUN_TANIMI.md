@@ -6,7 +6,7 @@ owner: PC1
 evidence: "challenge metni 'Dancing with the SARs' · NISAR Science Users' Handbook §2.4 · docs/MASTER_PLAN.md"
 ---
 
-# Ürün tanımı: NISAR Pulse, Follow the Water
+# Ürün tanımı: NISAR Vision, Follow the Water
 
 Bu not ürünün **ne olması gerektiğini** anlatır. Yeni katılan bir insan veya ajan, kodu hiç açmadan
 "ne kurmaya çalışıyoruz" sorusunu buradan cevaplayabilmeli.

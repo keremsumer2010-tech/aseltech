@@ -1,4 +1,4 @@
-# NISAR Pulse — Printable Jury Q&A Cards & 3-Minute Timed Rehearsal (`docs/story/qa_cards.md`)
+# NISAR Vision — Printable Jury Q&A Cards & 3-Minute Timed Rehearsal (`docs/story/qa_cards.md`)
 
 > **Calibration Notice:** *NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.*
 

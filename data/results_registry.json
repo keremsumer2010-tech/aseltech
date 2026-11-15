@@ -221,8 +221,8 @@
     {
       "id": "engine",
       "group": "Methods",
-      "title": "NISAR Pulse: one-command open engine (O3)",
-      "summary": "NISAR Pulse automates CMR search, 20-MB subsetting, pixel-level cycle-jump and single-date QC (--qc), quality metrics, and coverage reporting from a single --center lon,lat command.",
+      "title": "NISAR Vision: one-command open engine (O3)",
+      "summary": "NISAR Vision automates CMR search, 20-MB subsetting, pixel-level cycle-jump and single-date QC (--qc), quality metrics, and coverage reporting from a single --center lon,lat command.",
       "key_number": "12/12 unit tests (offline QC + CLI)",
       "doc": "docs/story/engine.md",
       "figure": null,

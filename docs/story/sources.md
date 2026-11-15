@@ -199,7 +199,7 @@ Every resource from the NASA Space Apps *"Dancing with the SARs"* Resources tab 
 
 ## 8. Authoritative Data Product Citations (NASA Open Science & Data Principle)
 
-All primary datasets used in the NISAR Pulse processing pipeline and Global Subsidence Atlas are cited below following NASA DAAC, ESA, European Commission, and academic open-access attribution conventions:
+All primary datasets used in the NISAR Vision processing pipeline and Global Subsidence Atlas are cited below following NASA DAAC, ESA, European Commission, and academic open-access attribution conventions:
 
 1. **NASA–ISRO NISAR Level-2 Geocoded Unwrapped Interferograms (GUNW)**  
    - **Citation:** NASA-ISRO. (2026). *NISAR Level-2 Geocoded Unwrapped Interferogram (GUNW) Provisional Science Products (CRID P05023)* [Data set]. NASA Alaska Satellite Facility (ASF) Distributed Active Archive Center (DAAC).  

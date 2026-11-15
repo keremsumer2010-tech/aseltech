@@ -128,7 +128,7 @@ def build(n: dict) -> str:
     )
     return f"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8">
-<title>NISAR Pulse - one-page brief for judges</title>
+<title>NISAR Vision - one-page brief for judges</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 @page {{ size: A4; margin: 0 }}
@@ -158,7 +158,7 @@ section {{ margin-bottom: 4.5mm }}
 </style></head>
 <body><div class="page">
 <div class="kicker">NASA Space Apps 2026 · Dancing with the SARs · Team Taykut</div>
-<h1>NISAR Pulse: Follow the Water</h1>
+<h1>NISAR Vision: Follow the Water</h1>
 <p class="core">{core}</p>
 <div class="nums">
 {card_html}

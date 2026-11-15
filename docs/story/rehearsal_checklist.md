@@ -1,4 +1,4 @@
-# NISAR Pulse — 17:30 Lincoln Rehearsal & Failsafe Checklist (`docs/story/rehearsal_checklist.md`)
+# NISAR Vision — 17:30 Lincoln Rehearsal & Failsafe Checklist (`docs/story/rehearsal_checklist.md`)
 
 > **Target Session:** `17:30 TR` Full Dry-Run (`3:00` live pitch + `2:00` Jury Q&A drill)  
 > **Live Web App:** https://keremsumer2010-tech.github.io/aseltech/ · **Companion Cue Sheet:** [`docs/story/presentation_cues.md`](presentation_cues.md)  
