@@ -51,8 +51,8 @@
   "konya-2": {
     "level": "konya",
     "title": "Sinkholes are a clue",
-    "text": "The mapped ground movement appears stronger near documented sinkholes. That pattern is a clue to investigate, not proof that one caused the other.",
-    "source": "data/global/atlas.json",
+    "text": "The mapped ground movement is stronger near some documented sinkholes. That pattern is a clue, not proof that the sinkholes caused it.",
+    "source": "data/karapinar/assets.json",
     "quality": "provisional"
   },
   "konya-3": {
