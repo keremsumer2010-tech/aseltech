@@ -354,3 +354,13 @@ Kapsam: `web/index.html` (`1–163`). Genel İngilizce tonu akıcı ve tutarlı 
 ### 34. Blok 3 — `web/atlas.html` Okuma Rehberi & Sayfa Meta Başlıkları (`2026-11-15 09:34 TR`)
 - `web/atlas.html`: `atlasStats` altına 4 adımlı **How to read this map** kutusu (LOS vs vertical, renk ölçeği, `high`/`medium` güven rozeti, `indicative only` ayrımı) + `og:image` eklendi (`BACKLOG_ORTAK.md` §C `[x PC4]`).
 - `web/{index,atlas,science,data,explorer,faq}.html`: `<title>` ve `<meta name="description">` etiketleri 29 bölgeli ATLAS v2 ve 30 soruluk SSS ile güncellendi (`[x PC4]`). NISAR 3D dosyalarına dokunulmadı.
+
+### 35. Blok 7 (`FINAL`) — `REVIEW_1500` Son Dil Geçişi (`2026-11-15 10:20 TR`)
+- **Taranan dosyalar:** `docs/story/*.md`, `docs/story/atlas_cities/*.md`, `docs/story/*.html`, `web/*.html`, `web/*.js`, `web/js/*.js`.
+- **Yasaklı kelimeler** (`revolutionary`, `cutting-edge`, `unlock`, `harness`, `delve`, `seamless`, `journey`, `empower`, `ground truth`, `proves`, `proven`): **`0` eşleşme**.
+- **Emoji & düz yazı ünlemleri:** **`0` eşleşme** (yalnızca JS oynat/tam-ekran buton glifleri `▶`, `❚❚`, `⛶` ile LaTeX faktöriyel `8!`, markdown görsel `![` ve HTML yorum `<!--`).
+- **Kalibrasyon dili:** `calibrated` geçen tüm satırlar (`calibration_note.md`, `judge_faq.md`, `sources.md`, `demo_script_v3.md`, `game_sensitivity.md`) yalnızca NISAR olgunluk tanımı veya simülatör parametreleri bağlamında ve zorunlu provisional uyarısıyla tutarlıdır.
+
+### 36. Blok 8 — `SCIENCE_SIGNOFF.md` 10-Satır Son Doğrulama (`2026-11-15 10:20 TR`)
+- `docs/qa/SCIENCE_SIGNOFF.md` içindeki 10 başlık satırının tamamı (`#1`–`#10`) doğrudan kaynak JSON dosyalarıyla (`data/central_valley/{summary,area_stats,validation,assets}.json`, `data/central_valley_fullyear/{decomp,storage_loss}.json`, `data/karapinar/summary.json`, `data/uk_clay/detection.json`, `data/global/{atlas,vital_signs}.json`) birebir doğrulandı: **`10/10` eşleşme** (`29` bölge: `16` reliable / `13` indicative; `1,479,844` sakin / `549.45 km²`).
+- `status/PC4.md` ilk satırına `PLAN_SONU_YAKIN` işlendi.

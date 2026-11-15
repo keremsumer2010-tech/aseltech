@@ -65,3 +65,7 @@ Every public webpage, slide, bulletin, and story document must carry the verbati
 | QC | Semarang's phase-cycle jump was fixed by re-processing (now −6.2 cm, north coast); current flags: Gorgan, Delhi, Pekalongan, Beijing, Bangkok | updated in row 9 |
 
 Rows 4 and 5 were not re-derived in this review (sources: `data/central_valley/assets.json`, `data/central_valley_fullyear/decomp.json`); their values are carried over from the draft.
+
+## 6. PC4 Final 10-Row Verification (`2026-11-15 10:20 TR`)
+
+All 10 headline rows above (`#1`–`#10`) were verified directly against their JSON sources (`data/central_valley/{summary,area_stats,validation,assets}.json`, `data/central_valley_fullyear/{decomp,storage_loss}.json`, `data/karapinar/summary.json`, `data/uk_clay/detection.json`, `data/global/{atlas,vital_signs}.json`, and `docs/story/risk_sensitivity.md`): **10/10 match** (`assets.json` max gradient `57.01 mm/km`, `81/645` segments `> 20 mm/km`; `decomp.json` `p01` `−16.77 ± 2.24 cm/yr`, seasonal `11.67 cm`, `R² = 0.972`; `atlas.json` `29` regions `16` reliable / `13` indicative, `#1 konya_plain −11.0 cm/100d`; `vital_signs.json` `1,479,844` residents / `549.45 km²`).
