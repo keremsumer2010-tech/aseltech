@@ -1,5 +1,5 @@
 :root{
-  --bg:#ffffff; --bg2:#f3f5f8; --panel:#ffffff; --line:#d8dde6; --text:#1a1f29; --mut:#3f4a5a; --dim:#667385;
+  --bg:#ffffff; --bg2:#f3f5f8; --panel:#ffffff; --line:#d8dde6; --text:#1a1f29; --mut:#3f4a5a; --dim:#566273;
   --acc:#0b3d91; --hot:#c8321f; --ok:#1f7a35; --warn:#a86b00;
   --font:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; --mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
   --hdr:56px;
@@ -7,6 +7,7 @@
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text);font:16px/1.65 var(--font);-webkit-font-smoothing:antialiased}
 a{color:var(--acc);text-decoration:none}a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
 h1,h2,h3{font-weight:700;letter-spacing:-.015em;line-height:1.1;margin:0 0 .5em}
 h1{font-size:clamp(2.4rem,6vw,4.6rem)} h2{font-size:clamp(1.6rem,3vw,2.3rem)} h3{font-size:1.05rem;font-weight:700}
 .mono{font-family:var(--mono)}

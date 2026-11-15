@@ -1,1 +1,1 @@
-**PC4** (`2026-11-15 10:55 TR`): YENİ PLAN 3 Blok 3–4 (`exposure_atlas.json` 8 eksik bölge yöntemi `PC4.md` §39; `results_registry.json` 5 yeni satır `presentation_mode`, `simulator`, `rank_check_6_16`, `literature_atlas`, `submission_package`) tamamlandı. Sıradaki: Blok 5 (erişilebilirlik denetimi).
+**PC4** (`2026-11-15 10:56 TR`): YENİ PLAN 3 Blok 5 (erişilebilirlik: `--dim` WCAG AA kontrast, `:focus-visible`, `atlas.js` tablo klavye `Enter`/`Space`, `0` eksik `alt`) tamamlandı. Sıradaki: Blok 6 (`docs/story/qa_cards.md` + 3 dk zamanlı prova notları).

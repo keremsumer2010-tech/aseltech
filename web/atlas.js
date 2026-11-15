@@ -561,13 +561,19 @@ function renderTables(regions){
       const rateVal = r.rate_cm_per_100d_common ?? r.rate_cm_per_100d;
       const ci = Array.isArray(r.rate_ci_cm_per_100d) && r.rate_ci_cm_per_100d.length === 2 ? r.rate_ci_cm_per_100d : null;
       const ciHtml = ci ? `<div class="small" style="font-size:.74rem;color:var(--dim)">[${esc(fmtNum(ci[0]))}, ${esc(fmtNum(ci[1]))}]</div>` : '';
-      return `<tr data-id="${esc(r.id)}"><td>${i + 1}</td><td><b>${esc(r.name)}</b>${r.country ? ' · ' + esc(r.country) : ''}</td><td class="mono">${esc(fmtNum(rateVal))}${ciHtml}</td><td class="mono">${esc(fmtNum(r.max_cm_los))} cm</td><td>${esc(pTxt)}</td><td>${confBadge(r)}</td></tr>`;
+      return `<tr data-id="${esc(r.id)}" tabindex="0" role="button" aria-label="Select ${esc(r.name)}">${'<td>'}${i + 1}</td><td><b>${esc(r.name)}</b>${r.country ? ' · ' + esc(r.country) : ''}</td><td class="mono">${esc(fmtNum(rateVal))}${ciHtml}</td><td class="mono">${esc(fmtNum(r.max_cm_los))} cm</td><td>${esc(pTxt)}</td><td>${confBadge(r)}</td></tr>`;
     }).join('') : '<tr><td colspan="6" class="small">None in this class.</td></tr>';
-    tb.querySelectorAll('tr[data-id]').forEach(tr => tr.addEventListener('click', () => {
+    const activateRow = tr => {
       stopTour();
       selectRegion(tr.dataset.id, true, true);
       window.scrollTo({top: 0, behavior: 'smooth'});
-    }));
+    };
+    tb.querySelectorAll('tr[data-id]').forEach(tr => {
+      tr.addEventListener('click', () => activateRow(tr));
+      tr.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activateRow(tr); }
+      });
+    });
   };
   fill('tblReliable', rel);
   fill('tblIndicative', ind);

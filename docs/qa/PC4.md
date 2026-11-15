@@ -386,3 +386,8 @@ Kapsam: `web/index.html` (`1–163`). Genel İngilizce tonu akıcı ve tutarlı 
 
 ### 40. YENİ PLAN 3 Blok 4 — `results_registry.json` Yeni Satırlar & `science.html` Testi (`2026-11-15 10:54 TR`)
 - `data/results_registry.json` içine `rank_check_6_16`, `literature_atlas`, `simulator`, `presentation_mode`, `submission_package` satırları eklendi; `technical_note` ve `global_atlas` satırları `29` bölge (`16` reliable / `13` indicative) ile güncellendi. `web/science.html` bu dosyayı doğrudan `fetch(ROOT + 'data/results_registry.json')` ile okuduğundan tüm yeni kartlar `Atlas` ve `Engagement` gruplarında otomatik listelenir.
+
+### 41. YENİ PLAN 3 Blok 5 — Erişilebilirlik Denetimi (`atlas`, `present`, `index`, `science`) (`2026-11-15 10:56 TR`)
+- **Alt metinler (`<img>`):** `atlas.html` (0), `present.html` (1), `index.html` (4), `science.html` (1) üzerindeki tüm görsellerde `alt` özniteliği mevcut (`0` eksik).
+- **Kontrast düzeltmesi (`web/style.css`):** İkincil gri `--dim` rengi `#667385` (`--bg2` `#f3f5f8` üzerinde `4.36:1`) → **`#566273`** (`> 5.3:1` WCAG AA) olarak koyulaştırıldı.
+- **Klavye ile gezinme (`web/style.css`, `web/atlas.js`):** Küresel `:focus-visible` odak çerçevesi eklendi; `atlas.js` sıralama tablosu satırlarına `tabindex="0"`, `role="button"`, `aria-label` ve `Enter`/`Space` klavye desteği eklendi. `present.html` ok tuşları / `Space` / `Home` / `End` / `F` ile tam klavye gezinimi doğrulandı.
