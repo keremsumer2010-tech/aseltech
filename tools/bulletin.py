@@ -482,6 +482,13 @@ def render_region_bulletin(region: dict[str, Any], out_dir: Path = OUT_DIR) -> P
   .notice {{ margin-top:14px; padding:10px 12px; background:#fffbeb; border-left:4px solid var(--warn); font-size:.82rem; }}
   ul {{ margin:6px 0 0 18px; padding:0; font-size:.86rem; }}
   @media (max-width:760px) {{ .grid {{ grid-template-columns:repeat(2,1fr); }} .two {{ grid-template-columns:1fr; }} }}
+  @media (max-width:600px) {{
+    body {{ padding:8px; overflow-x:hidden; }}
+    .sheet {{ padding:12px; }}
+    .topbar {{ flex-direction:column; gap:8px; }}
+    .pkg-bar {{ grid-template-columns:repeat(2,1fr); }}
+    table {{ display:block; overflow-x:auto; width:100%; max-width:100%; }}
+  }}
   .pkg-bar {{ display:grid; grid-template-columns:repeat(4,1fr); gap:6px 12px; background:#0f172a; color:#f8fafc; border-radius:6px; padding:8px 12px; margin-bottom:12px; font-size:.76rem; }}
   .pkg-bar div span {{ display:block; color:#94a3b8; font-size:.66rem; text-transform:uppercase; letter-spacing:.04em; }}
   .pkg-bar div strong {{ font-weight:600; }}

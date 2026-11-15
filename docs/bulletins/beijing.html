@@ -38,6 +38,13 @@
   .notice { margin-top:14px; padding:10px 12px; background:#fffbeb; border-left:4px solid var(--warn); font-size:.82rem; }
   ul { margin:6px 0 0 18px; padding:0; font-size:.86rem; }
   @media (max-width:760px) { .grid { grid-template-columns:repeat(2,1fr); } .two { grid-template-columns:1fr; } }
+  @media (max-width:600px) {
+    body { padding:8px; overflow-x:hidden; }
+    .sheet { padding:12px; }
+    .topbar { flex-direction:column; gap:8px; }
+    .pkg-bar { grid-template-columns:repeat(2,1fr); }
+    table { display:block; overflow-x:auto; width:100%; max-width:100%; }
+  }
   .pkg-bar { display:grid; grid-template-columns:repeat(4,1fr); gap:6px 12px; background:#0f172a; color:#f8fafc; border-radius:6px; padding:8px 12px; margin-bottom:12px; font-size:.76rem; }
   .pkg-bar div span { display:block; color:#94a3b8; font-size:.66rem; text-transform:uppercase; letter-spacing:.04em; }
   .pkg-bar div strong { font-weight:600; }
@@ -58,7 +65,7 @@
   <div class="topbar">
     <div>
       <h1>NISAR Vision Bulletin &mdash; Beijing (China) &mdash; 2026-10-15</h1>
-      <div class="meta">Atlas Rank #21 &middot; Coverage: ok &middot; 8 pairs</div>
+      <div class="meta">Atlas Rank #21 &middot; Coverage: ok &middot; 9 pairs</div>
     </div>
     <div class="actions">
       <span class="badge conf-low">CONFIDENCE: LOW (indicative only)</span>
@@ -70,7 +77,7 @@
 
   <div class="pkg-bar">
     <div><span>Product ID</span><strong>NP-BEIJING-2026-001</strong></div>
-    <div><span>Issue Time (UTC)</span><strong>2026-11-15 09:05 UTC</strong></div>
+    <div><span>Issue Time (UTC)</span><strong>2026-11-15 10:54 UTC</strong></div>
     <div><span>Data Window</span><strong>2026-06-17 to 2026-10-15</strong></div>
     <div><span>Sensor</span><strong>NISAR L-band GUNW, provisional</strong></div>
     <div><span>Quality Class</span><strong>PROVISIONAL</strong></div>
@@ -81,17 +88,17 @@
   
 
   <div class="grid">
-    <div class="kpi"><div class="lbl">Peak Cumulative (LOS)</div><div class="val">-8.4 cm</div></div>
-    <div class="kpi"><div class="lbl">Vertical Est. (47.0&deg;)</div><div class="val">-12.3 cm</div></div>
-    <div class="kpi"><div class="lbl">3-Ref Sensitivity</div><div class="val" style="font-size:0.98rem;">[-8.4, -2.3] cm LOS</div></div>
-    <div class="kpi"><div class="lbl">Rate (cm / 100 days)</div><div class="val">-7.0 cm/100d</div><div class="subval">Annualized est.: -25.5 cm/yr</div></div>
+    <div class="kpi"><div class="lbl">Peak Cumulative (LOS)</div><div class="val">-15.0 cm</div></div>
+    <div class="kpi"><div class="lbl">Vertical Est. (47.0&deg;)</div><div class="val">-22.0 cm</div></div>
+    <div class="kpi"><div class="lbl">3-Ref Sensitivity</div><div class="val" style="font-size:0.98rem;">[-8.1, -5.5] cm LOS</div></div>
+    <div class="kpi"><div class="lbl">Rate (cm / 100 days)</div><div class="val">-7.0 cm/100d</div><div class="subval">Annualized est.: -16.7 cm/yr</div></div>
   </div>
 
   <div class="two">
     <div>
       <h2>Latest Pair &amp; Cumulative Summary</h2>
       <ul>
-        <li><strong>Latest Consecutive Pair Step:</strong> <strong>-1.93 cm LOS</strong> (2026-10-03 to 2026-10-15 at p01: 39.744N 116.803E; cumulative at point: -8.37 cm)</li>
+        <li><strong>Latest Consecutive Pair Step:</strong> <strong>-2.57 cm LOS</strong> (2026-10-03 to 2026-10-15 at p01: 39.737N 116.805E; cumulative at point: -15.00 cm)</li>
         
         <li><strong>Affected Population (GHSL GHS-POP E2025, 108d eq., &ge; 0.73 cm 2&sigma;):</strong> 9,496,168 residents (&lt; -2 cm), 1,544,335 residents across 400.44 km&sup2; (&lt; -5 cm).</li>
       </ul>
@@ -107,16 +114,16 @@
     </div>
     <div>
       <h2>Cumulative Displacement Map</h2>
-      <figure class='map'><img src='../../data/global/beijing/disp/2026-10-15.png' alt='Cumulative LOS displacement map for Beijing (China) ending 2026-10-15'><figcaption>Cumulative LOS displacement (2026-06-17 to 2026-10-15, 8 NISAR L2 GUNW pairs).</figcaption></figure>
+      <figure class='map'><img src='../../data/global/beijing/disp/2026-10-15.png' alt='Cumulative LOS displacement map for Beijing (China) ending 2026-10-15'><figcaption>Cumulative LOS displacement (2026-06-17 to 2026-10-15, 9 NISAR L2 GUNW pairs).</figcaption></figure>
       <div class="wtm">
         <h2>What This Means</h2>
-        <ul><li>Peak measured ground motion in Beijing (China) reached -8.4 cm LOS (-7.0 cm/100d) from 2026-06-17 to 2026-10-15, but low coverage or wide reference spread makes this an indicative estimate.</li><li>About 9,496,168 residents live on ground sinking faster than 2 cm per 108 days (and 1,544,335 residents across 400.44 km2 faster than 5 cm per 108 days, above the 0.73 cm 2-sigma noise floor).</li><li>No local GNSS or canal-tilt overlay is bundled for this subset; field inspection and local piezometer records are needed to confirm infrastructure impacts.</li></ul>
+        <ul><li>Peak measured ground motion in Beijing (China) reached -15.0 cm LOS (-7.0 cm/100d) from 2026-06-17 to 2026-10-15, but low coverage or wide reference spread makes this an indicative estimate.</li><li>About 9,496,168 residents live on ground sinking faster than 2 cm per 108 days (and 1,544,335 residents across 400.44 km2 faster than 5 cm per 108 days, above the 0.73 cm 2-sigma noise floor).</li><li>No local GNSS or canal-tilt overlay is bundled for this subset; field inspection and local piezometer records are needed to confirm infrastructure impacts.</li></ul>
       </div>
     </div>
   </div>
 
   <div class="notice">
-    <strong>Calibration &amp; Quality Notice (PROVISIONAL):</strong> NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team. NISAR L2 GUNW CRID P05023 provisional products only; calibration and validation are carried out by NASA-JPL/ISRO.<br>
+    <strong>Calibration &amp; Quality Notice (PROVISIONAL):</strong> NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.<br>
     <strong>Sources:</strong> NASA-ISRO NISAR L2 GUNW (CRID P05023 via ASF DAAC); GHSL GHS-POP E2025 R2023A (JRC, CC BY 4.0); Nevada Geodetic Laboratory GNSS; OpenStreetMap (ODbL).
   </div>
 </div>

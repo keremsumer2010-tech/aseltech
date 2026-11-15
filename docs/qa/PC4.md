@@ -423,3 +423,12 @@ Kapsam: `web/index.html` (`1–163`). Genel İngilizce tonu akıcı ve tutarlı 
 | `delta` | `10 provisional pairs` | `data/delta/summary.json`: `n_pairs = 9` | `9 provisional pairs` olarak düzeltildi |
 | `simulator` | `Valley Under Pressure` | `Groundwater Simulator` (`c0f0daa`) | Başlık güncellendi |
 | `presentation_mode` | `Lincoln` / eski 6 durak | `web/present.html` 9 iş, 6 durak | Başlık ve özet güncellendi |
+
+
+---
+
+## 29 Bülten Son Okuması & Mobil Güvence (`2026-11-15 13:54 TR`)
+
+- **İsim ve Kalibrasyon Denetimi:** 29 bültenin tamamında (`docs/bulletins/*.html`) "NISAR Vision" adı ve zorunlu kalibrasyon cümlesi (*"NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team."*) eksiksiz doğrulandı. 0 eski "NISAR Pulse" veya "Team Taykut" kalıntısı.
+- **Güven & QC Durumu:** `data/global/atlas.json` içindeki 13 gösterge (indicative only) havzanın tamamı bültenlerde `LOW (indicative only)` etiketiyle birebir uyumlu; 16 güvenilir havza ile tam eşleşme sağlandı.
+- **Mobil (375 px) Yatay Kayma Güvencesi:** `tools/bulletin.py` içine mobil medya sorgusu (`@media (max-width:600px)`: `body { overflow-x: hidden; padding: 8px; }`, `.pkg-bar { grid-template-columns: repeat(2, 1fr); }`, `table { display: block; overflow-x: auto; max-width: 100%; }`) eklendi ve 29 bülten yeniden üretildi. 3 rastgele bülten (`central_valley.html`, `konya_plain.html`, `semarang.html`) mobil kurallara tam uyumlu.
