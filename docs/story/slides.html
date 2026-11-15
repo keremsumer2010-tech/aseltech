@@ -228,80 +228,40 @@
 <body>
   <main class="deck" id="deck">
 
-    <!-- SLIDE 1: Hero (0:00-0:20) -->
-    <section class="slide active" data-title="Hero">
+    <!-- SLIDE 1: Intro & 01 Atlas (0:00-0:30) -->
+    <section class="slide active" data-title="Intro & 01 Atlas">
       <div>
-        <div class="eyebrow">Slide 1 / 6 · Hero (0:00–0:20) · Team Aseltech · NASA Space Apps Challenge 2026</div>
-        <h1>Where the ground is sinking: 29 basins</h1>
+        <div class="eyebrow">Slide 1 / 6 · Intro &amp; 01 Atlas (0:00–0:30) · Team Aseltech · NASA Space Apps Challenge 2026</div>
+        <h1>Where is the ground sinking? 29 basins on one 93-day ruler</h1>
         <p class="lead">We turned the first months of NASA-ISRO NISAR radar data into a self-checking global subsidence atlas: 29 basins measured with one open pipeline on the same 93 days, every number traceable to its file, and every headline checked against GPS, NASA's OPERA product and the literature.</p>
       </div>
-      <div class="kpi-row">
-        <div class="kpi">
-          <div class="num acc">29 basins</div>
-          <div class="lbl">16 reliable, 13 indicative on the same 93-day window (28 Jun–29 Sep 2026; <code>atlas.json</code>).</div>
-        </div>
-        <div class="kpi">
-          <div class="num neg">1.20 M</div>
-          <div class="lbl">1,200,716 people living on 511.65 km² sinking &gt; 5 cm (GHSL 2025, <code>vital_signs.json</code>).</div>
-        </div>
-        <div class="kpi">
-          <div class="num acc">r = 0.92</div>
-          <div class="lbl">Agreement with 10 continuous GPS stations in Central Valley (<code>r = 0.924</code>, <code>RMSE 1.37 cm</code>).</div>
-        </div>
-      </div>
       <div class="two-col">
         <div class="card">
-          <h3>Mandatory Calibration Notice &amp; Scope</h3>
+          <h3>Top 5 Reliable Basins (28 Jun–29 Sep 2026)</h3>
           <ul>
-            <li><em>NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.</em></li>
-            <li>Permanent aquifer storage loss: <strong>0.3174 km³/yr</strong> (Central Valley, mixed 11-month chain).</li>
-            <li><strong>5 flagged areas</strong> isolated by automated quality control as indicative only.</li>
+            <li><strong>#1 Konya Plain (Türkiye):</strong> <strong>−11.0 cm/100d</strong> (<code>−9.6 cm</code> / 108 d; <em>medium</em> confidence, caution)</li>
+            <li><strong>#2 Eloy (USA):</strong> <strong>−8.6 cm/100d</strong> (<code>−8.0 cm</code>; <em>high</em>, 69.6% valid)</li>
+            <li><strong>#3 Central Valley (USA):</strong> <strong>−7.3 cm/100d</strong> (<code>−7.8 cm</code>; <em>medium</em>, GNSS <code>r = 0.924</code>)</li>
+            <li><strong>#4 Kashmar (Iran):</strong> <strong>−7.0 cm/100d</strong> (<code>−6.2 cm</code>; <em>high</em>, 72.8% valid)</li>
+            <li><strong>#5 Mashhad (Iran):</strong> <strong>−6.9 cm/100d</strong> (<code>−8.6 cm</code>; <em>medium</em>, 70.5% valid)</li>
+            <li><em>Calibration:</em> NISAR data are provisional. Calibration and validation are carried out by NASA-JPL and ISRO, not our team.</li>
           </ul>
         </div>
         <figure style="margin:0;">
-          <img src="media/pc1_atlas_world.png" alt="World map of 29 measured basins: filled circles reliable, rings indicative" style="width:100%;max-height:190px;object-fit:cover;border-radius:6px;border:1px solid var(--border);" />
-          <figcaption>Figure 1. Global map of 29 measured basins (filled = reliable, ring = indicative). Data: NASA-ISRO NISAR, ASF DAAC. Analysis: Team Aseltech.</figcaption>
-        </figure>
-      </div>
-      <div class="foot">
-        <span>Data: NASA-ISRO NISAR (provisional), ASF DAAC, NGL GPS, GHSL, OSM. Analysis: Team Aseltech.</span>
-        <span>Slide 1 / 6</span>
-      </div>
-    </section>
-
-    <!-- SLIDE 2: The Atlas (0:20-1:00) -->
-    <section class="slide" data-title="The Atlas">
-      <div>
-        <div class="eyebrow">Slide 2 / 6 · 1 · The Atlas (0:20–1:00) · Common 93-Day Window</div>
-        <h2>A global subsidence atlas on one ruler</h2>
-        <p class="lead">Same radar, same code, same 93 days (28 Jun–29 Sep 2026) for 29 basins; values show motion toward or away from the satellite.</p>
-      </div>
-      <div class="two-col">
-        <div class="card">
-          <h3>Top 5 Reliable Basins (93-Day Common Rate)</h3>
-          <ul>
-            <li><strong>#1 Konya Plain (Türkiye):</strong> <strong>−11.0 cm/100d</strong> (<code>−9.6 cm</code> / 108 d; <em>medium</em> confidence, valid-pixel fraction unrecorded, kept with caution)</li>
-            <li><strong>#2 Eloy (USA):</strong> <strong>−8.6 cm/100d</strong> (<code>−8.0 cm</code> / 120 d; <em>high</em> confidence, 69.6% valid)</li>
-            <li><strong>#3 Central Valley (USA):</strong> <strong>−7.3 cm/100d</strong> (<code>−7.8 cm</code> / 108 d; <em>medium</em> confidence, 62.9% valid, GNSS <code>r = 0.924</code>)</li>
-            <li><strong>#4 Kashmar (Iran):</strong> <strong>−7.0 cm/100d</strong> (<code>−6.2 cm</code>; <em>high</em> confidence, 72.8% valid)</li>
-            <li><strong>#5 Mashhad (Iran):</strong> <strong>−6.9 cm/100d</strong> (<code>−8.6 cm</code>; <em>medium</em> confidence, 70.5% valid)</li>
-          </ul>
-        </div>
-        <figure style="margin:0;">
-          <img src="media/pc2_konya_plain.png" alt="Konya Closed Basin ground motion map, 26 Jun to 12 Oct 2026" style="width:100%;max-height:220px;object-fit:cover;border-radius:6px;border:1px solid var(--border);" />
-          <figcaption>Figure 2. Konya Closed Basin, Türkiye (26 Jun–12 Oct 2026): red areas sank up to −9.6 cm LOS. Data: NASA-ISRO NISAR, ASF DAAC.</figcaption>
+          <img src="media/pc1_atlas_world.png" alt="World map of 29 measured basins: filled circles reliable, rings indicative" style="width:100%;max-height:220px;object-fit:cover;border-radius:6px;border:1px solid var(--border);" />
+          <figcaption>Figure 1. 29 measured basins (16 reliable, 13 indicative) on one 93-day window. Data: NASA-ISRO NISAR, ASF DAAC.</figcaption>
         </figure>
       </div>
       <div class="foot">
         <span>Source: <code>data/global/atlas.json</code>, <code>data/global/home_summary.json</code> (provisional).</span>
-        <span>Slide 2 / 6</span>
+        <span>Slide 1 / 6</span>
       </div>
     </section>
 
-    <!-- SLIDE 3: Self-Check (1:00-1:30) -->
-    <section class="slide" data-title="Self-Check">
+    <!-- SLIDE 2: 02 Self-Checking QC (0:30-1:00) -->
+    <section class="slide" data-title="02 Self-Check">
       <div>
-        <div class="eyebrow">Slide 3 / 6 · 2 · Our Own Error, Caught (1:00–1:30) · Time-Series QC</div>
+        <div class="eyebrow">Slide 2 / 6 · 02 Self-Checking QC (0:30–1:00) · Time-Series Quality Control</div>
         <h2>A check that catches our own errors</h2>
         <p class="lead">Automated time-series checks flagged 12.1 cm full L-band phase-cycle jumps; Semarang dropped from −12.1 to −6.2 cm, and 5 flagged areas stay indicative.</p>
       </div>
@@ -329,16 +289,16 @@
       </div>
       <div class="foot">
         <span>Source: <code>tools/atlas_qc.py</code>, <code>data/global/qc_flags.json</code>, <code>docs/story/atlas_top5_check.md</code>.</span>
-        <span>Slide 3 / 6</span>
+        <span>Slide 2 / 6</span>
       </div>
     </section>
 
-    <!-- SLIDE 4: Why You Can Trust It (1:30-2:05) -->
-    <section class="slide" data-title="Validation">
+    <!-- SLIDE 3: 03 GPS & Validation (1:00-1:30) -->
+    <section class="slide" data-title="03 GPS & Validation">
       <div>
-        <div class="eyebrow">Slide 4 / 6 · 3 · Why You Can Trust It (1:30–2:05) · Ground Truth &amp; Uncertainty</div>
+        <div class="eyebrow">Slide 3 / 6 · 03 Proof on the Ground (1:00–1:30) · GPS, Noise Floor &amp; OPERA</div>
         <h2>Proof on the ground and uncertainty</h2>
-        <p class="lead">Provisional NISAR motion tracks 10 Central Valley GPS stations (r = 0.924), beats 0.3 cm noise, and includes a Mexico City pattern check.</p>
+        <p class="lead">Provisional NISAR motion tracks 10 Central Valley GPS stations (r = 0.924), beats 0.3 cm formal phase noise, and includes a Mexico City pattern check.</p>
       </div>
       <div class="two-col">
         <div class="card">
@@ -351,62 +311,88 @@
         </div>
         <figure style="margin:0;">
           <img src="media/validation_scatter.png" alt="NISAR vs GPS at 10 Central Valley stations" style="width:100%;max-height:220px;object-fit:contain;background:#0b1220;border-radius:6px;border:1px solid var(--border);" />
-          <figcaption>Figure 3. NISAR vs 10 continuous GPS stations, Central Valley (28 Jun–14 Oct 2026, r = 0.924). Data: NISAR &amp; NGL GNSS.</figcaption>
+          <figcaption>Figure 2. NISAR vs 10 continuous GPS stations, Central Valley (28 Jun–14 Oct 2026, r = 0.924). Data: NISAR &amp; NGL GNSS.</figcaption>
         </figure>
       </div>
       <div class="foot">
         <span>Source: <code>data/central_valley/validation.json</code>, <code>data/global/opera_check.json</code>, <code>data/uk_clay/detection.json</code>.</span>
+        <span>Slide 3 / 6</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 4: 04 People + 05 Water Lost (1:30-2:00) -->
+    <section class="slide" data-title="04 People & 05 Water">
+      <div>
+        <div class="eyebrow">Slide 4 / 6 · 04 People &amp; 05 Water Lost (1:30–2:00) · GHSL Exposure &amp; Storage Loss</div>
+        <h2>1.20 M people on sinking ground &amp; 0.3174 km³/yr water lost</h2>
+        <p class="lead">Overlaying GHSL 2025 population counts 1,200,716 residents on 511.65 km² sinking &gt; 5 cm, while 11 months of NISAR data isolate 0.3174 km³/yr of permanent Central Valley aquifer storage lost.</p>
+      </div>
+      <div class="two-col">
+        <div class="card">
+          <h3>Exposure &amp; Irreversible Compaction</h3>
+          <ul>
+            <li><strong>Global GHSL exposure:</strong> <strong>1,200,716</strong> residents on <strong>511.65 km²</strong> sinking &gt; 5 cm (<code>|disp| ≥ 2σ</code>, 29 basins excluding nested Karapınar).</li>
+            <li><strong>Permanent storage lost:</strong> <strong>0.3174 km³/yr</strong> in Central Valley (<code>mixed</code> 11-month chain; <code>317.41 million m³/yr</code>).</li>
+            <li><strong>Earlimart decomposition:</strong> <strong>−16.8 ± 2.2 cm/yr</strong> permanent trend vs <code>11.7 cm</code> seasonal rebound (<code>R² = 0.97</code>).</li>
+          </ul>
+        </div>
+        <figure style="margin:0;">
+          <img src="media/pc9_fullyear_point.png" alt="Earlimart 11-month permanent trend vs seasonal cycle" style="width:100%;max-height:220px;object-fit:contain;background:#0b1220;border-radius:6px;border:1px solid var(--border);" />
+          <figcaption>Figure 3. Earlimart 11-month decomposition (mixed beta + provisional data). Data: NASA-ISRO NISAR.</figcaption>
+        </figure>
+      </div>
+      <div class="foot">
+        <span>Source: <code>data/global/vital_signs.json</code>, <code>data/central_valley_fullyear/storage_loss.json</code>.</span>
         <span>Slide 4 / 6</span>
       </div>
     </section>
 
-    <!-- SLIDE 5: What It Is For (2:05-2:40) -->
-    <section class="slide" data-title="Decision Impact">
+    <!-- SLIDE 5: 06 Infrastructure + 07 Bulletins (2:00-2:30) -->
+    <section class="slide" data-title="06 Tilt & 07 Bulletins">
       <div>
-        <div class="eyebrow">Slide 5 / 6 · 4 · What It Is For (2:05–2:40) · People, Water, Infrastructure, Simulator</div>
-        <h2>From a radar measurement to a decision</h2>
-        <p class="lead">We turn sinking into 1.20 M exposed people, 0.3174 km³/yr lost storage, 81/645 tilting corridors, 29 bulletins, and a 30-second simulator.</p>
+        <div class="eyebrow">Slide 5 / 6 · 06 Infrastructure &amp; 07 Bulletins (2:00–2:30) · Tilt Screening &amp; Basin Products</div>
+        <h2>81 / 645 tilting corridors &amp; 29 one-page bulletins</h2>
+        <p class="lead">Every canal, road and railway in the Central Valley is screened for uneven sinking with uncertainty bounds, and every atlas basin gets a printable one-page NASA-style monitoring bulletin.</p>
       </div>
-      <div class="img-pair">
-        <figure>
-          <img src="media/pc9_fullyear_point.png" alt="Earlimart 11-month permanent trend vs seasonal cycle" />
-          <figcaption>Figure 4a. Earlimart 11-month decomposition (<code>−16.8 ± 2.2 cm/yr</code> permanent vs <code>11.7 cm</code> seasonal; <code>0.3174 km³/yr</code> CV storage lost, <em>mixed</em>).</figcaption>
+      <div class="two-col">
+        <div class="card">
+          <h3>Engineering Risk &amp; Monitoring Bulletins</h3>
+          <ul>
+            <li><strong>Corridor differential tilt:</strong> <strong>81 / 645</strong> segments exceed <code>20 mm/km</code> (Tulare Canal <strong>57.01 mm/km</strong>; <code>±25%</code> top-10 <code>100%</code> rank-invariant).</li>
+            <li><strong>29 one-page bulletins:</strong> Printable A4 NASA-style monitoring bulletins (<code>docs/bulletins/&lt;region&gt;.html</code>) with rate, affected people, confidence, and revision log.</li>
+            <li><strong>Karapınar sinkholes:</strong> Land within 1 km of 29 mapped sinkholes sinks <strong>6.4× faster</strong> (<code>−4.15</code> vs <code>−0.65 cm</code>, <code>p = 0.0001</code>).</li>
+          </ul>
+        </div>
+        <figure style="margin:0;">
+          <img src="media/pc7_risk_prob.png" alt="Canal and railway differential tilt probability" style="width:100%;max-height:220px;object-fit:contain;background:#0b1220;border-radius:6px;border:1px solid var(--border);" />
+          <figcaption>Figure 4. Infrastructure tilt screening per corridor (provisional). Data: NISAR &amp; OpenStreetMap.</figcaption>
         </figure>
-        <figure>
-          <img src="media/pc7_risk_prob.png" alt="Canal and railway differential tilt probability" />
-          <figcaption>Figure 4b. Infrastructure tilt screening: <code>81 / 645</code> segments &gt; 20 mm/km (Tulare Canal <code>57.01 mm/km</code>; <code>provisional</code>).</figcaption>
-        </figure>
-      </div>
-      <div class="card">
-        <p style="margin:0;"><strong>Exposure &amp; Tools:</strong> <strong>1,200,716</strong> residents on <strong>511.65 km²</strong> sinking &gt; 5 cm (GHSL 2025, 29 basins) · <strong>29</strong> one-page NASA-style basin bulletins · <strong>Valley Under Pressure</strong> 24-month simulator (<code>web/game/</code>).</p>
       </div>
       <div class="foot">
-        <span>Source: <code>data/global/exposure_atlas.json</code>, <code>data/central_valley_fullyear/storage_loss.json</code>, <code>data/central_valley/assets.json</code>.</span>
+        <span>Source: <code>data/central_valley/assets.json</code>, <code>tools/bulletin.py</code>, <code>data/karapinar/sinkhole_test.json</code>.</span>
         <span>Slide 5 / 6</span>
       </div>
     </section>
 
-    <!-- SLIDE 6: What Is New & Open (2:40-3:00) -->
-    <section class="slide" data-title="Open Engine">
+    <!-- SLIDE 6: 08 Simulator + 09 Open Engine (2:30-3:00) -->
+    <section class="slide" data-title="08 Simulator & 09 Engine">
       <div>
-        <div class="eyebrow">Slide 6 / 6 · 5 · What Is New &amp; Open (2:40–3:00) · Reproducibility &amp; Transparency</div>
-        <h2>Open engine and four original contributions</h2>
-        <p class="lead">We built a comparable 29-basin atlas, self-checking QC ranking, decision-ready storage and tilt metrics, and an open one-command pipeline on public NASA data.</p>
+        <div class="eyebrow">Slide 6 / 6 · 08 Simulator &amp; 09 Open Engine (2:30–3:00) · Interactive &amp; Reproducible</div>
+        <h2>A 30-second simulator &amp; an open one-command engine</h2>
+        <p class="lead">Test 24 months of pumping choices in Valley Under Pressure calibrated to NISAR rates, or reproduce any basin from public NASA ASF data with one open command.</p>
       </div>
       <div class="two-col">
         <div class="card">
-          <h3>Four Original Contributions &amp; Open Code</h3>
+          <h3>Simulator, Open Engine &amp; Transparency</h3>
           <ul>
-            <li><strong>1. Comparable 29-basin atlas:</strong> One pipeline, one 93-day window, off-basin references.</li>
-            <li><strong>2. Self-checking QC:</strong> Automated 12.1 cm phase-cycle &amp; spike flagging.</li>
-            <li><strong>3. Decision metrics:</strong> GHSL exposure, <code>0.3174 km³/yr</code> aquifer loss, corridor tilt, 29 bulletins, simulator.</li>
-            <li><strong>4. One-command reproduction:</strong> <code>python -m pipeline.nisarpulse run ...</code> &amp; <code>python pipeline/pc10/build_atlas.py</code>.</li>
+            <li><strong>08 · Valley Under Pressure:</strong> 24-month interactive aquifer simulator (<code>game/index.html</code>) calibrated to USGS Terra Bella compaction and NISAR rates.</li>
+            <li><strong>09 · One-command engine:</strong> <code>python -m pipeline.nisarpulse run ...</code> &amp; <code>python pipeline/pc10/build_atlas.py</code>.</li>
             <li><strong>AI &amp; Imagery Disclosure:</strong> Zero AI-generated images anywhere; Claude/Gemini assisted code &amp; QA. Live site: <a href="https://keremsumer2010-tech.github.io/aseltech/" target="_blank" rel="noopener">keremsumer2010-tech.github.io/aseltech/</a>.</li>
           </ul>
         </div>
         <figure style="margin:0;">
           <img src="../../assets/simulator.jpg" alt="Valley Under Pressure 24-month groundwater subsidence simulator" style="width:100%;max-height:220px;object-fit:cover;border-radius:6px;border:1px solid var(--border);" />
-          <figcaption>Figure 5. Valley Under Pressure 24-month simulator (<code>web/game/</code>), calibrated to USGS Terra Bella compaction and NISAR rates.</figcaption>
+          <figcaption>Figure 5. Valley Under Pressure 24-month simulator (<code>game/index.html</code>).</figcaption>
         </figure>
       </div>
       <div class="foot">
