@@ -7,6 +7,7 @@
 **We turned the first months of NASA-ISRO NISAR radar data into a self-checking global subsidence atlas: 29 basins measured with one open pipeline on the same 93 days, every number traceable to its file, and every headline checked against GPS, NASA's OPERA product and the literature.** Using provisional 24.2 cm L-band interferograms (`CRID P05023`, June–October 2026), **NISAR Pulse** separates permanent clay compaction from seasonal rebound, quantifies canal and railway tilt, and connects measurements to a 24-month aquifer simulator.
 
 - **Live Site:** https://keremsumer2010-tech.github.io/aseltech/
+- **Three-Minute Story Spec:** [docs/story/three_minute_story.md](docs/story/three_minute_story.md)
 - **Global Subsidence Atlas (29 Regions):** [web/atlas.html](web/atlas.html) (`https://keremsumer2010-tech.github.io/aseltech/atlas.html`)
 - **6-Stop Lincoln Presentation Mode (Offline-Ready):** [web/present.html](web/present.html)
 - **Valley Under Pressure Simulator:** [game/index.html](game/index.html) (`https://keremsumer2010-tech.github.io/aseltech/game/`)
@@ -28,8 +29,10 @@ All figures below match [`docs/qa/SCIENCE_SIGNOFF.md`](docs/qa/SCIENCE_SIGNOFF.m
 | 6 | **Permanent Aquifer Storage Loss (CV)** | **`0.3174 km³/yr`** (`317.41 million m³/yr`) | `1 km` block SE `±0.00123 km³/yr`; 3-ref `0.0664–0.3198 km³/yr` | `mixed` |
 | 7 | **Karapınar Basin & 29-Sinkhole Contrast** | **`−5.9 cm` LOS** (`−8.0 cm` vert. est.); **`6.4×`** `< 1 km` | `−4.15 cm` `< 1 km` vs. `−0.65 cm` `> 5 km` (`p = 0.0001` block perm) | `provisional` |
 | 8 | **London Clay Negative Control** | **`below_detection`** (`97.7%` within `±1.5 cm`) | `chain_sigma = 1.21 cm`, **`3σ = 3.62 cm`** floor (`9` pairs) | `provisional` |
-| 9 | **2026 Global Subsidence Atlas (#1 Reliable)** | **#1 Konya Plain `−11.0 cm/100d`** (`93 d` common) | **`29` regions (`16` reliable / `13` indicative)**; Konya `11.6%` cov. caution | `provisional` |
+| 9 | **2026 Global Subsidence Atlas (#1 Reliable)** | **#1 Konya Plain `−11.0 cm/100d`** (`93 d` common) | **`29` regions (`16` reliable / `13` indicative)**; Konya valid-pixel fraction unrecorded (caution) | `provisional` |
 | 10 | **Global GHSL Exposure (`< −5 cm`, `|disp| ≥ 2σ`)** | **`1,200,716` residents** on **`511.65 km²`** | `GHSL E2025` (`100 m`), all `29` regions excluding nested `karapinar` | `provisional` |
+
+*Secondary OPERA cross-check:* Over Mexico City the spatial pattern matches NASA JPL's OPERA product at 10 points (`r = 0.91`), although OPERA covers winter (`2025-12-25` to `2026-03-25`) and NISAR summer (`2026-06-22` to `2026-10-20`); in the Central Valley and at Eloy the agreement is weak (`r = 0.40` and `0.09`) because seasons and viewing geometry differ. Main validation is GPS (`r = 0.924`).
 
 ---
 
@@ -42,7 +45,7 @@ python3 pipeline/pc10/build_atlas.py && python3 tools/atlas_qc.py && python3 too
 ```
 
 - `pipeline/pc10/build_atlas.py`: aggregates all regional `summary.json`, `validation_note.json`, and common-window (`2026-06-28 → 2026-09-29`) rates into `data/global/atlas.json`.
-- `tools/atlas_qc.py`: scans `p01` time series for `12.1 cm` half-cycle unwrapping jumps and `> 5 cm` cancelling single-date spikes (`data/global/qc_flags.json`).
+- `tools/atlas_qc.py`: scans `p01` time series for `12.1 cm` full L-band phase-cycle unwrapping jumps and `> 5 cm` cancelling single-date spikes (`data/global/qc_flags.json`).
 - `tools/sync_atlas_text.py`: updates region counts and tables in `docs/story/technical_note.md` and `technical_note.html` from `atlas.json`.
 - `tools/vital_signs.py --check`: verifies `data/global/vital_signs.json` against `atlas.json` and `exposure_atlas.json`.
 

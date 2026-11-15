@@ -1,2 +1,2 @@
 PLAN_SONU_YAKIN
-**PC4** (`2026-11-15 11:44 TR`): Blok 1 tamamlandı (`docs/story/three_minute_story.md` güncel `web/index.html` + `home_summary.json` ile hizalandı, OPERA düzeltmesi uygulandı). Sıradaki: `README.md` kontrolü ve senkronu.
+**PC4** (`2026-11-15 11:45 TR`): Blok 2 tamamlandı (`README.md`: three_minute_story bağlantısı, Konya caution notu, OPERA mevsimsel uyarı metni, 12.1 cm tam faz döngüsü düzeltmesi). Sıradaki: slayt/konuşma/sunum modu hizalama (`slides.html`, `presentation_cues.md`, `present.html`).
