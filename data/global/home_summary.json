@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-11-15T08:17:49Z",
+  "generated_utc": "2026-11-15T08:20:56Z",
   "one_liner": "We turned the first months of NASA-ISRO NISAR radar data into a self-checking global subsidence atlas: 29 basins measured with one open pipeline on the same 93 days, every number traceable to its file, and every headline checked against GPS, NASA's OPERA product and the literature.",
   "common_window": [
     "2026-06-28",
@@ -17,9 +17,9 @@
     {
       "key": "people",
       "label": "people living on ground sinking more than 5 cm",
-      "value": 1479844,
+      "value": 1200716,
       "unit": "",
-      "detail": "549.45 km² in the measured basins (GHSL 2025 population)",
+      "detail": "511.65 km² in the measured basins (GHSL 2025 population)",
       "source": "data/global/vital_signs.json"
     },
     {
