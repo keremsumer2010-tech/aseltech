@@ -1,6 +1,12 @@
+<p align="center">
+  <a href="https://keremsumer2010-tech.github.io/aseltech/">
+    <img src="web/assets/logo_full.png" alt="NISAR Pulse — Team Aseltech" width="320">
+  </a>
+</p>
+
 # NISAR Pulse: Follow the Water
 
-**Team Taykut** · NASA Space Apps Challenge 2026 · Challenge: **Dancing with the SARs** · Local event: Lincoln (UK)
+**Live Site:** https://keremsumer2010-tech.github.io/aseltech/ · **Team Aseltech** · NASA Space Apps Challenge 2026 · Challenge: **Dancing with the SARs** · Local event: Lincoln (UK)
 
 > *NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.*
 

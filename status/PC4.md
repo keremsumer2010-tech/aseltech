@@ -1,1 +1,1 @@
-**PC4** (`2026-11-15 12:29 TR`): 5-dk kontrol #6 — `SUREKLI.md` yayın kalite kapısı (`check_site.py`: 43 sayfa 0 kırık link; `test_site_links.py` PASS) + 4/4 tutarlılık/şema testi PASS + `vital_signs.py --check` OK.
+**PC4** (`2026-11-15 12:34 TR`): `YENİ PLAN (12:30–20:00)` Blok 1 (`web/present.html` 6 durak ana sayfanın 9 iş sırasına hizalandı) ve Blok 4 (`README.md` üstte `logo_full.png` + canlı site linki) tamamlandı. `check_site.py` (43 sayfa 0 kırık), 5/5 test PASS. Sıradaki: `docs/story/slides.html` aynı 9-iş/6-durak sırasına hizalama + `docs/qa/FINAL_QA.md`.
