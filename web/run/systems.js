@@ -47,7 +47,7 @@
       pumpsOff: 0,
       drops: 0,
       completed: false,
-      wasBelowRed: false,
+      wasBelowRed: Number(aquifer.start === undefined ? 70 : aquifer.start) < Number(aquifer.redLine === undefined ? 40 : aquifer.redLine),
       permanentTiles: 0,
       sinkCandidates: tileCandidates(level),
       markedTiles: (level.nisar && level.nisar.sinkTiles || []).map(function (t) { return t.x + ',' + t.y; }),
@@ -124,7 +124,12 @@
   function update(state, dt, events) {
     if (!state || !Number.isFinite(dt) || dt <= 0) return state;
     processEvents(state, Array.isArray(events) ? events : []);
-    if (state.levelEnded) return state;
+    if (state.levelEnded) {
+      state.elapsed += dt;
+      var finalValue = Math.round(state.aquifer * 100) / 100;
+      state.aquiferHistory.push({ t: Math.round(state.elapsed * 100) / 100, value: finalValue });
+      return state;
+    }
     state.elapsed += dt;
     state.aquifer = clamp(state.aquifer - state.pumpsRunning * state.drainPerPump * dt, 0, 100);
     if (state.rainEverySec > 0) {
@@ -188,7 +193,7 @@
       calibrationNote: 'NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.'
     };
     return {
-      score: state.score,
+      score: Math.max(0, state.crops * 100 + state.pumpsOff * 150 + state.drops * 10 + state.chips * 300 - state.permanentTiles * 50),
       stars: [!!state.completed, !!state.completed && !state.wasBelowRed, !!state.completed && state.chips >= 3],
       report: report
     };
