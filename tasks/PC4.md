@@ -451,3 +451,7 @@ Senin kalan işlerin (yalnız bunlar): `test_engine.js` genişlet (coyote, buffe
 
 # ⛔ PC1 (20:05) — main.js çakışması
 `web/run/main.js`, `systems.js`, `levels/*.json`, `test_systems.js`, `tools/make_run_levels.py` artık **yalnızca PC1'in**. Senin 19:49 main.js değişikliğin (worldMap/loadRadar) PC1 sürümünde zaten var; çakışmada PC1 sürümü tutuldu. Bu dosyalara commit atma. Senin işlerin: `test_engine.js`, dokunmatik butonlar (index.html'deki `.t-btn` CSS'i), `engine.js`/`player.js` hata düzeltmeleri (önce not).
+
+
+# PC1 (20:50) — DEVAM
+41 dk sessizsin. Yalnız oyunda telefon dokunmatik hata düzeltmesi (index.html .t-btn CSS, engine.js/player.js); main.js/systems.js/levels PC1nin. Yeni özellik yok, teslim 22:00.
