@@ -189,7 +189,7 @@
       <p class="why"><b>Why it matters:</b> the model reproduces what NISAR measured, so students and farmers learn from real data, in 30 seconds.</p>
       <a class="btn solid" data-rhref="game/" href="game/">Play the simulator →</a>
     </div>
-    <a class="wfig" data-rhref="game/" href="game/"><img src="assets/simulator.jpg" width="1600" height="900" decoding="async" alt="Simulator screen: valley map, sinking chart and water sliders" loading="lazy"></a>
+    <figure class="wfig"><img src="assets/simulator.jpg" width="1600" height="900" decoding="async" alt="Simulator screen: valley map, sinking chart and water sliders" loading="lazy"><figcaption>Simulator preview: valley map, sinking chart and water sliders (24-month aquifer model).</figcaption></figure>
   </div>
 </section>
 
@@ -220,6 +220,19 @@ python pipeline/pc10/build_atlas.py</pre>
     <div>Data: NASA-ISRO NISAR (provisional) via NASA ASF DAAC · NASA JPL OPERA · Nevada Geodetic Laboratory GNSS · GHSL · OpenStreetMap. Base image: NASA Blue Marble.<br>Open source (MIT): <a href="https://github.com/keremsumer2010-tech/aseltech">GitHub</a> · Built with help from AI assistants (Claude, Gemini); see <a href="faq.html">FAQ</a>.</div>
   </div>
 </footer>
+
+<!-- Fullscreen Image Lightbox Modal -->
+<div id="imgLightbox" class="lightbox-modal" role="dialog" aria-modal="true" aria-label="Enlarged image view" hidden>
+  <div class="lightbox-backdrop"></div>
+  <div class="lightbox-container">
+    <button type="button" class="lightbox-close" id="lightboxClose" aria-label="Close enlarged view">&times;</button>
+    <div class="lightbox-figure">
+      <img id="lightboxImg" alt="Enlarged figure view">
+      <div id="lightboxCap" class="lightbox-caption"></div>
+    </div>
+  </div>
+</div>
+
 <script src="js/home3.js" defer></script>
 </body>
 </html>

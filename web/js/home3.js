@@ -92,4 +92,68 @@
     };
     addEventListener('scroll', update, {passive: true}); addEventListener('resize', update); update();
   }
+
+  // Fullscreen image lightbox for homepage cards (PC6)
+  const lbModal = document.getElementById('imgLightbox');
+  const lbImg = document.getElementById('lightboxImg');
+  const lbCap = document.getElementById('lightboxCap');
+  const lbClose = document.getElementById('lightboxClose');
+  const lbBackdrop = lbModal ? lbModal.querySelector('.lightbox-backdrop') : null;
+
+  function openLightbox(src, alt, captionText, linkHref, linkLabel) {
+    if (!lbModal || !lbImg) return;
+    lbImg.src = src;
+    lbImg.alt = alt || 'Enlarged figure';
+    let html = captionText ? `<span>${captionText}</span>` : '';
+    if (linkHref) {
+      html += ` <a href="${linkHref}" class="lb-link">${linkLabel || 'Open →'}</a>`;
+    }
+    if (lbCap) lbCap.innerHTML = html;
+    lbModal.removeAttribute('hidden');
+    document.body.classList.add('lightbox-open');
+    if (lbClose) lbClose.focus();
+  }
+
+  function closeLightbox() {
+    if (!lbModal) return;
+    lbModal.setAttribute('hidden', '');
+    document.body.classList.remove('lightbox-open');
+    if (lbImg) lbImg.src = '';
+  }
+
+  if (lbModal) {
+    if (lbClose) lbClose.addEventListener('click', closeLightbox);
+    if (lbBackdrop) lbBackdrop.addEventListener('click', closeLightbox);
+    if (lbImg) lbImg.addEventListener('click', closeLightbox);
+    window.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && !lbModal.hasAttribute('hidden')) {
+        closeLightbox();
+      }
+    });
+
+    document.querySelectorAll('.work .wfig').forEach(fig => {
+      const img = fig.querySelector('img');
+      if (!img) return;
+
+      img.title = 'Click to enlarge full screen';
+
+      // Add visual hint badge
+      const hint = document.createElement('span');
+      hint.className = 'zoom-hint';
+      hint.setAttribute('aria-hidden', 'true');
+      hint.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg> Click to enlarge';
+      fig.appendChild(hint);
+
+      img.addEventListener('click', e => {
+        e.preventDefault();
+        e.stopPropagation();
+        const figcap = fig.querySelector('figcaption');
+        const caption = figcap ? figcap.textContent.trim() : (img.alt || '');
+        const isSim = (img.src && img.src.includes('simulator')) || !!fig.closest('#w8');
+        const linkHref = isSim ? (ROOT + 'game/') : null;
+        const linkLabel = isSim ? 'Launch Simulator →' : null;
+        openLightbox(img.currentSrc || img.src, img.alt, caption, linkHref, linkLabel);
+      });
+    });
+  }
 })();

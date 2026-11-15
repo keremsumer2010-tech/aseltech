@@ -130,3 +130,157 @@
 .code .c{color:#7d8fb3}
 @media (max-width:1000px){.wgrid{grid-template-columns:1fr;gap:24px}.wgrid.rev .wtext{order:0}}
 @media (max-width:520px){.work{padding:40px 16px}.wnum{width:48px;height:48px;font-size:1.5rem}.wbig span{font-size:1.5rem}}
+
+/* Zoomable figures & Lightbox Modal */
+.work .wfig { position: relative; }
+.work .wfig img {
+  cursor: zoom-in;
+  transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+}
+.work .wfig:hover img {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(11,61,145,.14);
+}
+.zoom-hint {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(11, 18, 32, 0.85);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: .02em;
+  padding: 5px 9px;
+  border-radius: 6px;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity .2s ease, transform .2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  z-index: 2;
+}
+.work .wfig:hover .zoom-hint {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+body.lightbox-open { overflow: hidden; }
+.lightbox-modal[hidden] { display: none !important; }
+.lightbox-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: lbFadeIn .2s ease-out;
+}
+@keyframes lbFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.lightbox-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(6, 10, 20, 0.94);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.lightbox-container {
+  position: relative;
+  z-index: 2;
+  max-width: 95vw;
+  max-height: 94vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+}
+.lightbox-close {
+  position: fixed;
+  top: 20px;
+  right: 24px;
+  z-index: 10;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-size: 30px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background .15s ease, transform .15s ease, border-color .15s ease;
+  backdrop-filter: blur(6px);
+}
+.lightbox-close:hover, .lightbox-close:focus-visible {
+  background: rgba(200, 50, 31, 0.9);
+  border-color: rgba(200, 50, 31, 1);
+  transform: scale(1.08);
+  outline: none;
+}
+.lightbox-figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+}
+.lightbox-figure img {
+  display: block;
+  max-width: 92vw;
+  max-height: calc(84vh - 70px);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: #0b1220;
+  cursor: zoom-out;
+  animation: lbZoomIn .22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes lbZoomIn {
+  from { transform: scale(0.96); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+.lightbox-caption {
+  margin-top: 14px;
+  color: #e2eaf6;
+  font-size: 0.94rem;
+  line-height: 1.5;
+  text-align: center;
+  max-width: 900px;
+  padding: 6px 14px;
+  background: rgba(11, 18, 32, 0.75);
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.lightbox-caption .lb-link {
+  display: inline-block;
+  margin-left: 10px;
+  color: #8fb4ff;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.lightbox-caption .lb-link:hover {
+  color: #fff;
+}
+@media (max-width: 600px) {
+  .lightbox-modal { padding: 12px; }
+  .lightbox-close { top: 12px; right: 12px; width: 38px; height: 38px; font-size: 24px; }
+  .lightbox-figure img { max-width: 95vw; max-height: calc(80vh - 90px); }
+  .lightbox-caption { font-size: 0.82rem; padding: 6px 10px; }
+  .zoom-hint { display: none; }
+}

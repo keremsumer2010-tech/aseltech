@@ -1,7 +1,7 @@
 ﻿# PC6 durum
 
-- Görev: çalışıyor: ana sayfa 9 kart görselleri için tam ekran büyütme (lightbox modal)
-- Durum: Ana sayfa kartlarındaki görsellerin (InSAR haritası, GPS scatter, su kaybı zaman serisi, altyapı riski grafiği ve simülatör önizlemesi) tıklandığında tam ekran yüksek çözünürlüklü modal/lightbox ile açılması uygulanıyor.
+- Görev: bitti: ana sayfa 9 kart görselleri için tam ekran büyütme (lightbox modal)
+- Durum: Ana sayfa kartlarındaki tüm bilimsel görseller (Konya InSAR çökme haritası, GPS doğrulama saçılım grafiği, su kaybı zaman serisi ayrıştırması, altyapı riski çubuk grafiği ve simülatör önizlemesi) tıklandığında tam ekran yüksek çözünürlüklü modal (lightbox) ile açılacak şekilde uygulandı. ESC tuşu, kapat butonu ve arka plan tıklamasıyla kapanma, mobil responsive tasarım ve 0 konsol hatası doğrulandı.
   - Adım 1 (`analysis/pc6/make_animation.py`): `docs/story/media/cv_subsidence.{mp4,gif}` (`3.07 MB` / `4.23 MB`, 8 epok, 1080p) ve `docs/story/media/kp_subsidence.{mp4,gif}` (`0.88 MB` / `1.36 MB`, 9 epok, 1080p) pushlandı (`7369686`).
   - Adım 2 (`analysis/pc6/make_validation_plots.py`): `docs/story/validation_report.md`, `validation_scatter.png` (`r=0.924`, `RMSE=1.37 cm`) ve 10 `gnss_<station>.png` grafiği pushlandı (`823cb74`).
   - Adım 3 (`analysis/pc6/make_risk_profiles.py`): `docs/story/risk_dossier.md` ve `risk_1..10.png` profilleri (California Aqueduct #4, Tulare ID Canal #1, Alta East Branch Canal #5, Friant-Kern Canal #7/#9 vurgulu + `game_model.md` kaynaklı 2 cümlelik özet) pushlandı (`5248279`).

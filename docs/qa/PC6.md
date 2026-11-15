@@ -411,3 +411,16 @@ Komut: `python analysis/pc6/test_20_strategies.py --self-test`
     3. `web/atlas.js`, `web/docs.js`, `web/explorer.js`, `web/present.html` betiklerine `data-rhref` çözümleyicisi eklendi (yerel `/web/` altında `../game/`, canlı sitede `./game/`).
     4. `web/home3.js` içine geriye dönük uyumluluk köprüsü eklendi: eğer herhangi bir yer imi veya eski bağlantı `index.html#play` ile gelirse anında `location.replace(ROOT + 'game/')` ile simülatöre yönlendirilir.
   - **Doğrulama:** Headless Chrome CDP (`1920×1080`) testi ile ana sayfadan ilk tıkla `game/` açıldığı, `atlas.html`'den ilk tıkla `game/` açıldığı ve `index.html#play` doğrudan simülatöre yönlendirdiği doğrulandı (`tools/check_site.py` 43 sayfa 0 kırık link; `pytest tests/test_site_links.py` PASS).
+- **GÖRSEL İYİLEŞTİRME (Ana sayfa 9 kart görselleri için tam ekran büyütme / Lightbox Modal):**
+  - **İstek:** Ana sayfadaki 9 kartta yer alan bilimsel görseller (InSAR çökme haritası, GPS doğrulama scatter grafiği, su kaybı zaman serisi ayrıştırması, altyapı riski çubuk grafiği ve simülatör önizlemesi) yüksek çözünürlüklü ve detaylı olduğundan kart kolonunda küçük kalabiliyordu; üzerine tıklandığında tam ekran büyütülmesi (lightbox modal) sağlandı.
+  - **Uygulama:**
+    1. `web/index.html`: Sayfa sonuna erişilebilir, klavye uyumlu `#imgLightbox` modal iskeleti eklendi (`.lightbox-backdrop`, `#lightboxClose`, `#lightboxImg`, `#lightboxCap`). Bölüm 08 simülatör kartı diğer görsel kartlarıyla uyumlu hale getirilerek `<figure class="wfig">` yapısına dönüştürüldü.
+    2. `web/css/home3.css`: Kart görsellerine `cursor: zoom-in`, yumuşak hover yükselmesi ve sağ üst köşede şık `Click to enlarge` bilgi rozeti (`.zoom-hint`) eklendi. Tam ekran modal için koyu buzlu cam arka plan (`backdrop-filter: blur(8px)`), ortalanmış yüksek çözünürlüklü görsel alanı (`cursor: zoom-out`), yuvarlak kapatma butonu (`&times;`), altyazı kutusu ve responsive mobil kuralları (`@media (max-width: 600px)`) yazıldı.
+    3. `web/js/home3.js`: Görsellere tıklandığında modalı açan, görsel kaynağını ve `<figcaption>` / `alt` metnini aktaran; simülatör görselinde modal içine doğrudan "Launch Simulator →" köprüsü ekleyen; kapatma butonuna tıklandığında, arka plana tıklandığında, görselin kendisine tıklandığında veya `Escape` tuşuna basıldığında modalı pürüzsüzce kapatan ve arka plan kaydırmasını kilitleyen (`body.lightbox-open`) reaktif etkileşim eklendi.
+  - **Doğrulama:**
+    - Headless Chrome CDP (`1920×1080`) test scripti (`verify_lightbox.py`) çalıştırıldı:
+      - 5 görsel kartında zoom ipucu rozetinin oluşturulduğu doğrulandı.
+      - `#w1` (Konya InSAR haritası), `#w3` (GPS scatter), `#w8` (Simülatör) tıklandığında modalın açıldığı, doğru görsel ve başlık yüklendiği; `Escape`, kapat butonu ve backdrop tıklamasıyla sorunsuz kapandığı doğrulandı.
+    - `python tools/check_site.py`: 43 sayfa tarandı, 0 kırık link.
+    - `pytest tests/`: 11 test PASS (100%).
+    - Konsolda 0 hata.
