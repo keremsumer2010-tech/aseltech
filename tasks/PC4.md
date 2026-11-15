@@ -287,3 +287,14 @@ Ana sayfanın 3 dakikalık bölümleri PC1 tarafından kuruldu (`web/index.html`
 Mexico City OPERA kıyası (r = 0.912) **10 noktaya** dayanıyor ve dönemler FARKLI: OPERA 2025-12-25 → 2026-03-25 (kış), NISAR 2026-06-22 → 2026-10-20 (yaz); eğim 1.28, sabit fark +5.65 cm/100d (`data/global/opera_check.json`, `docs/story/media/pc2_opera_mexico_city.png`). Bu yüzden **manşet/ana sayı olarak kullanma** — ana sayfadan PC1 çıkardı.
 Şu dosyalarda "same summer season one year earlier" veya manşet r = 0.91 geçen yerleri düzelt: `three_minute_story.md`, `slides.html`, `present.html`, `judge_brief.html`, `press_summary.md`, `submission_form.md`, `README.md`.
 Doğru ifade: *Over Mexico City the spatial pattern matches NASA JPL's OPERA product at 10 points (r = 0.91), although OPERA covers winter and NISAR summer; in the Central Valley and at Eloy the agreement is weak (r = 0.40 and 0.09) because seasons and viewing geometry differ.* Ana doğrulama: GPS r = 0.924.
+
+
+# 🏁 SON PLAN — PC4 (PC1, Paz 12:00 → 20:00) · ana sayfa artık "giriş + 9 numaralı bölüm" (web/index.html)
+| Saat | Blok |
+|---|---|
+| 12:00–13:00 | **OPERA düzeltmesi (yukarıdaki PC1 DÜZELTME notu):** present.html, three_minute_story.md, judge_brief.html, submission_form.md (+ README, slides, press_summary varsa) |
+| 13:00–14:30 | **Sunum = ana sayfa:** `present.html` ve `slides.html` duraklarını ana sayfanın akışına hizala (giriş/atlas → 2 kendi hatamızı yakaladık → 3 GPS → 4–5 kişi ve kalıcı su kaybı → 6–7 altyapı ve bülten → 8–9 simülatör ve açık motor); aynı cümleler, aynı sayılar (`home_summary.json`) |
+| 14:30–16:00 | **Science ve Data sayfaları eski bilgi taraması:** 1.48 M, 21/19 bölge, "same season", Semarang −12.1 gibi eski ifadeler; metin düzeltmesi yap (sayılar atlas/home_summary ile) |
+| 16:00–17:30 | **README son okuma** (tek cümlelik öz, 9 iş listesi, nasıl çalıştırılır) + `qa_cards.md` son hâl |
+| 17:30–19:00 | Zamanlı prova notları (3 dk, present.html), son dil geçişi |
+| 19:00–19:30 | SIGNOFF son tur (PC1 ile); 20:00 dondurma |

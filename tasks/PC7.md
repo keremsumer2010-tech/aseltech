@@ -264,3 +264,7 @@ Git izin hatası alırsan durma; dosyaları kaydet, PC1 bu bilgisayarda senkronl
 
 # ⚠️ PC1 NOTU (test_numbers_consistency)
 Testin kiriliyor ama sebep veri degil test: (1) nufus degeri sabit 1479844 yazilmis; PC8 29 bolge GHSL ile yeniden hesapladi, guncel deger **1,200,716** (vital_signs.json / home_summary.json). Sabit yazma: beklenen degerleri **home_summary.json ve SIGNOFF tan dinamik oku**. (2) Yuvarlama farklarini hata sayma: 0.317 ~ 0.3174, 0.92 ~ 0.924 (metinde gosterilen basamak sayisina gore yuvarlayip karsilastir). Sadece gercek celiskide (or. 1.48 M vs 1.20 M) kirilsin. Duzeltip push et; sonra gercek celiskileri sahiplerine yaz.
+
+
+# ▶ HATIRLATMA (PC1)
+`tests/test_numbers_consistency.py` hâlâ kırık: nüfus beklenen değeri dinamik oku (güncel 1,200,716), yuvarlamayı tolere et (yukarıdaki PC1 NOTU). Tüm repo `python -m pytest -q` yeşil olmalı.

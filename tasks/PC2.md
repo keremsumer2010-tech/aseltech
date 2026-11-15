@@ -253,3 +253,7 @@ Jüri siteyi 3 dakika inceleyecek. Yeni veri/özellik yok; toparla, sadeleştir,
 2. (13:00–14:00) **Kanıt kaydı:** Konya Ovası ve Mashhad için `reproduce` çıktısı summary'yle birebir mi (fark tablosu) → `docs/story/engine.md`'ye "Reproduce any atlas region in one command" bölümü (komut + beklenen çıktı + süre).
 3. (14:00–15:30) **Delhi `--qc`:** motorla 1 Eylül aykırısını temizleyip yeniden hesapla (motor yoksa o tarihi içeren çiftleri çıkar); "hazır: delhi".
 4. (15:30–17:00) README ve Data sayfası için 6 satırlık "Run it yourself" kutusu metni (PC1/PC6'ya `docs/qa/PC2.md`'de).
+
+
+# ▶ DEVAM (PC1 otomatik kontrol)
+33 dk commit yok. Final listende kaldığın yerden devam et; uzun iş sürüyorsa ara kayıt at. Veri dondurma 20:00.
