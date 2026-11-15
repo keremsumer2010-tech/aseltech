@@ -438,7 +438,7 @@ async function initAtlas(){
   }
   sortedRegions = atlasData.regions
     .slice()
-    .sort((a, b) => (a.rate_cm_per_100d ?? 999) - (b.rate_cm_per_100d ?? 999));
+    .sort((a, b) => (a.rate_cm_per_100d_common ?? a.rate_cm_per_100d ?? 999) - (b.rate_cm_per_100d_common ?? b.rate_cm_per_100d ?? 999));
 
   document.getElementById('stTotal').textContent = atlasData.n_regions ?? sortedRegions.length;
   document.getElementById('stRel').textContent = atlasData.n_reliable ?? sortedRegions.filter(r => !isIndicative(r)).length;
@@ -558,7 +558,10 @@ function renderTables(regions){
     if (!tb) return;
     tb.innerHTML = rows.length ? rows.map((r, i) => {
       const pTxt = Array.isArray(r.period) && r.period.length === 2 ? `${fmtShort(r.period[0])} – ${fmtShort(r.period[1])}` : '—';
-      return `<tr data-id="${esc(r.id)}"><td>${i + 1}</td><td><b>${esc(r.name)}</b>${r.country ? ' · ' + esc(r.country) : ''}</td><td class="mono">${esc(fmtNum(r.rate_cm_per_100d))}</td><td class="mono">${esc(fmtNum(r.max_cm_los))} cm</td><td>${esc(pTxt)}</td><td>${confBadge(r)}</td></tr>`;
+      const rateVal = r.rate_cm_per_100d_common ?? r.rate_cm_per_100d;
+      const ci = Array.isArray(r.rate_ci_cm_per_100d) && r.rate_ci_cm_per_100d.length === 2 ? r.rate_ci_cm_per_100d : null;
+      const ciHtml = ci ? `<div class="small" style="font-size:.74rem;color:var(--dim)">[${esc(fmtNum(ci[0]))}, ${esc(fmtNum(ci[1]))}]</div>` : '';
+      return `<tr data-id="${esc(r.id)}"><td>${i + 1}</td><td><b>${esc(r.name)}</b>${r.country ? ' · ' + esc(r.country) : ''}</td><td class="mono">${esc(fmtNum(rateVal))}${ciHtml}</td><td class="mono">${esc(fmtNum(r.max_cm_los))} cm</td><td>${esc(pTxt)}</td><td>${confBadge(r)}</td></tr>`;
     }).join('') : '<tr><td colspan="6" class="small">None in this class.</td></tr>';
     tb.querySelectorAll('tr[data-id]').forEach(tr => tr.addEventListener('click', () => {
       stopTour();
@@ -575,6 +578,24 @@ function renderTables(regions){
       qcLine.innerHTML = `Quality control: <b>${nFlagged}</b> regions flagged (time-series check) &mdash; <a href="${ROOT}docs/story/atlas_top5_check.md" target="_blank" rel="noopener">see method</a>`;
       qcLine.hidden = false;
     }
+  }
+  const chList = document.getElementById('atlasChangelogList');
+  if (chList && !chList.dataset.loaded){
+    chList.dataset.loaded = '1';
+    fetch(ROOT + 'data/global/atlas_changelog.json').then(r => r.ok ? r.json() : null).then(ch => {
+      const entries = Array.isArray(ch?.entries) ? ch.entries.slice(0, 10) : [];
+      if (!entries.length){ chList.innerHTML = '<li>No changelog entries available.</li>'; return; }
+      chList.innerHTML = entries.map(e => {
+        const ts = esc((e.timestamp || '').replace('T', ' ').replace('Z', ' UTC'));
+        const parts = [];
+        if (e.n_regions) parts.push(`${e.n_regions} regions`);
+        if (Array.isArray(e.added) && e.added.length) parts.push(`added: ${esc(e.added.join(', '))}`);
+        if (Array.isArray(e.removed) && e.removed.length) parts.push(`removed: ${esc(e.removed.join(', '))}`);
+        if (Array.isArray(e.value_changes) && e.value_changes.length) parts.push(e.value_changes.map(v => `${esc(v.id)} ${v.old_cm}→${v.new_cm} cm`).join('; '));
+        if (e.note) parts.push(esc(e.note));
+        return `<li><b>${ts}</b> — ${parts.join(' · ') || 'updated'}</li>`;
+      }).join('');
+    }).catch(() => { chList.innerHTML = '<li>Could not load atlas_changelog.json.</li>'; });
   }
 }
 

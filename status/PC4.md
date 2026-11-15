@@ -1,1 +1,1 @@
-**PC4** (`2026-11-15 10:34 TR`): YENİ PLAN 2 Blok 2 (`game/` ↔ `web/atlas.html` `?basin=` bağlantısı, Karapınar sub-basin etiketi + Konya Plain rank 1 linki, bitiş ekranı atlas linki) tamamlandı. Sıradaki: Blok 3 (`atlas` "What changed" kutusu + hata çubukları).
+**PC4** (`2026-11-15 10:36 TR`): YENİ PLAN 2 Blok 3 (`web/atlas.html` + `web/atlas.js`: "What changed" kutusu `atlas_changelog.json`, `rate_ci_cm_per_100d` güven aralığı, "ranked by common 93-day window" başlığı) tamamlandı. Sıradaki: Blok 4 (`docs/story/atlas_rank_check_6_16.md`).
