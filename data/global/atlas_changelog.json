@@ -140,6 +140,17 @@
       "value_changes": [],
       "confidence_changes": [],
       "qc_flag_changes": []
+    },
+    {
+      "timestamp": "2026-11-15T02:08:42Z",
+      "n_regions": 29,
+      "added": [
+        "lagos"
+      ],
+      "removed": [],
+      "value_changes": [],
+      "confidence_changes": [],
+      "qc_flag_changes": []
     }
   ]
 }

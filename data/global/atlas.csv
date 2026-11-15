@@ -12,18 +12,19 @@ rank,id,name,country,lon,lat,rate_cm_per_100d,max_cm_los,max_cm_vertical_est,p2_
 11,can_tho,Can Tho,Vietnam,105.86753,10.27513,-2.8,-3.4,-4.4,,120,9,medium,False,provisional,,data/global/can_tho/,,2026-06-17,2026-10-15
 12,tianjin,Tianjin,,117.34078,38.87608,-2.4,-2.9,-3.6,-3.5,120,8,medium,False,provisional,0.634,data/global/tianjin/,,2026-06-21,2026-10-19
 13,cangzhou,Cangzhou,China,116.66541,38.14143,-2.0,-2.4,-3.2,-3.3,120,8,medium,False,provisional,0.432,data/global/cangzhou/,,2026-06-21,2026-10-19
-14,delta,Sacramento–San Joaquin Delta,USA,-121.64446,38.00936,-1.1,-1.3,-1.6,,120,9,medium,False,provisional,,data/delta/,,2026-06-17,2026-10-15
-15,quetta,Quetta,Pakistan,66.81891,30.01274,-3.2,-3.8,-5.5,-2.5,120,9,medium,False,provisional,0.713,data/global/quetta/,,2026-06-17,2026-10-15
-16,gorgan,Gorgan,,54.39541,36.59262,-28.8,-34.6,-41.8,-33.1,120,9,low,True,provisional,0.267,data/global/gorgan/,QC: step 2 (2026-07-03→2026-07-15) = -10.26 cm ≈ one phase cycle (12.1 cm) Without the flagged step(s) the headline point shows -24.39 cm. Under revision.,2026-06-21,2026-10-19
-17,delhi,Delhi,India,77.27224,28.74887,-18.6,-22.3,-28.1,-6.77,120,8,low,True,provisional,0.283,data/global/delhi/,QC: step 4 (2026-07-27→2026-09-13) = -10.53 cm ≈ one phase cycle (12.1 cm) Without the flagged step(s) the headline point shows -11.77 cm. Under revision.,2026-06-21,2026-10-19
-18,bangkok,Bangkok,Thailand,100.73741,13.81368,-6.2,-7.5,-9.0,,120,8,low,True,provisional,,data/global/bangkok/,"QC: Headline -7.5 cm LOS in 108 days implies roughly 10x the published recent rates (about 0.9 cm/yr on average, locally above 2 cm/yr, Sentinel-1 PS-InSAR 2016-2019; 1-3 cm/yr in 2005-2010 InSAR); the headline series has +/-4-5 cm steps in both directions, typical of tropical decorrelation. Under revision.",2026-06-21,2026-10-19
-19,pekalongan,Pekalongan,Indonesia,109.48137,-6.86996,-18.5,-22.2,-31.9,,120,9,low,True,provisional,,data/global/pekalongan/,QC: step 1 (2026-06-20→2026-07-02) = -13.03 cm ≈ one phase cycle (12.1 cm) Without the flagged step(s) the headline point shows -9.2 cm. Under revision.,2026-06-20,2026-10-18
-20,beijing,Beijing,China,116.81929,39.75589,-9.2,-11.1,-16.3,-10.24,120,9,low,True,provisional,0.523,data/global/beijing/,QC: step 2 (2026-06-29→2026-07-11) = -12.86 cm ≈ one phase cycle (12.1 cm); date 2026-07-11: -12.86 then +9.54 cm (one acquisition off) Without the flagged step(s) the headline point shows -7.79 cm. Under revision.,2026-06-17,2026-10-15
-21,tehran,Tehran,Iran,51.33183,35.64549,-6.2,-7.4,-9.8,-5.72,120,9,low,True,provisional,0.381,data/global/tehran/,,2026-06-18,2026-10-16
-22,jakarta,Jakarta,Indonesia,107.01151,-6.14056,-6.3,-6.8,-9.3,,108,8,low,True,provisional,,data/global/jakarta/,,2026-06-27,2026-10-13
-23,karapinar,"Karapınar, Konya",Türkiye,33.53056,37.71818,-5.5,-5.9,-8.0,-4.2,108,8,low,True,provisional,0.142,data/karapinar/,,2026-06-26,2026-10-12
-24,isfahan,Isfahan,Iran,51.71977,32.78679,-2.1,-2.5,-3.4,-2.9,120,9,low,True,provisional,0.325,data/global/isfahan/,,2026-06-18,2026-10-16
-25,yunlin,Yunlin,Taiwan,120.56021,23.62433,-2.5,-2.7,-3.4,,108,8,low,True,provisional,,data/global/yunlin/,,2026-06-28,2026-10-14
-26,xian,Xi'an,China,109.18355,34.18031,-1.2,-1.5,-2.0,-1.6,120,9,low,True,provisional,0.362,data/global/xian/,,2026-06-19,2026-10-17
-27,hanoi,Hanoi,Vietnam,105.71463,20.98307,-2.1,-2.5,-3.6,,120,9,low,True,provisional,,data/global/hanoi/,,2026-06-19,2026-10-17
-28,ho_chi_minh,Ho Chi Minh City,Vietnam,106.91207,10.9967,-3.5,-4.2,-5.8,,120,9,low,True,provisional,,data/global/ho_chi_minh/,,2026-06-17,2026-10-15
+14,lagos,Lagos,,3.54948,6.45017,-2.2,-2.4,-3.3,-2.9,108,8,medium,False,provisional,0.328,data/global/lagos/,,2026-06-24,2026-10-10
+15,delta,Sacramento–San Joaquin Delta,USA,-121.64446,38.00936,-1.1,-1.3,-1.6,,120,9,medium,False,provisional,,data/delta/,,2026-06-17,2026-10-15
+16,quetta,Quetta,Pakistan,66.81891,30.01274,-3.2,-3.8,-5.5,-2.5,120,9,medium,False,provisional,0.713,data/global/quetta/,,2026-06-17,2026-10-15
+17,gorgan,Gorgan,,54.39541,36.59262,-28.8,-34.6,-41.8,-33.1,120,9,low,True,provisional,0.267,data/global/gorgan/,QC: step 2 (2026-07-03→2026-07-15) = -10.26 cm ≈ one phase cycle (12.1 cm) Without the flagged step(s) the headline point shows -24.39 cm. Under revision.,2026-06-21,2026-10-19
+18,delhi,Delhi,India,77.27224,28.74887,-18.6,-22.3,-28.1,-6.77,120,8,low,True,provisional,0.283,data/global/delhi/,QC: step 4 (2026-07-27→2026-09-13) = -10.53 cm ≈ one phase cycle (12.1 cm) Without the flagged step(s) the headline point shows -11.77 cm. Under revision.,2026-06-21,2026-10-19
+19,bangkok,Bangkok,Thailand,100.73741,13.81368,-6.2,-7.5,-9.0,,120,8,low,True,provisional,,data/global/bangkok/,"QC: Headline -7.5 cm LOS in 108 days implies roughly 10x the published recent rates (about 0.9 cm/yr on average, locally above 2 cm/yr, Sentinel-1 PS-InSAR 2016-2019; 1-3 cm/yr in 2005-2010 InSAR); the headline series has +/-4-5 cm steps in both directions, typical of tropical decorrelation. Under revision.",2026-06-21,2026-10-19
+20,pekalongan,Pekalongan,Indonesia,109.48137,-6.86996,-18.5,-22.2,-31.9,,120,9,low,True,provisional,,data/global/pekalongan/,QC: step 1 (2026-06-20→2026-07-02) = -13.03 cm ≈ one phase cycle (12.1 cm) Without the flagged step(s) the headline point shows -9.2 cm. Under revision.,2026-06-20,2026-10-18
+21,beijing,Beijing,China,116.81929,39.75589,-9.2,-11.1,-16.3,-10.24,120,9,low,True,provisional,0.523,data/global/beijing/,QC: step 2 (2026-06-29→2026-07-11) = -12.86 cm ≈ one phase cycle (12.1 cm); date 2026-07-11: -12.86 then +9.54 cm (one acquisition off) Without the flagged step(s) the headline point shows -7.79 cm. Under revision.,2026-06-17,2026-10-15
+22,tehran,Tehran,Iran,51.33183,35.64549,-6.2,-7.4,-9.8,-5.72,120,9,low,True,provisional,0.381,data/global/tehran/,,2026-06-18,2026-10-16
+23,jakarta,Jakarta,Indonesia,107.01151,-6.14056,-6.3,-6.8,-9.3,,108,8,low,True,provisional,,data/global/jakarta/,,2026-06-27,2026-10-13
+24,karapinar,"Karapınar, Konya",Türkiye,33.53056,37.71818,-5.5,-5.9,-8.0,-4.2,108,8,low,True,provisional,0.142,data/karapinar/,,2026-06-26,2026-10-12
+25,isfahan,Isfahan,Iran,51.71977,32.78679,-2.1,-2.5,-3.4,-2.9,120,9,low,True,provisional,0.325,data/global/isfahan/,,2026-06-18,2026-10-16
+26,yunlin,Yunlin,Taiwan,120.56021,23.62433,-2.5,-2.7,-3.4,,108,8,low,True,provisional,,data/global/yunlin/,,2026-06-28,2026-10-14
+27,xian,Xi'an,China,109.18355,34.18031,-1.2,-1.5,-2.0,-1.6,120,9,low,True,provisional,0.362,data/global/xian/,,2026-06-19,2026-10-17
+28,hanoi,Hanoi,Vietnam,105.71463,20.98307,-2.1,-2.5,-3.6,,120,9,low,True,provisional,,data/global/hanoi/,,2026-06-19,2026-10-17
+29,ho_chi_minh,Ho Chi Minh City,Vietnam,106.91207,10.9967,-3.5,-4.2,-5.8,,120,9,low,True,provisional,,data/global/ho_chi_minh/,,2026-06-17,2026-10-15

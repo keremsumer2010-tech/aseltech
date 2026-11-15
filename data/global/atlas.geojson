@@ -95,8 +95,11 @@
      "slope": 0.102,
      "n": 581
     },
-    "sigma_cm_median": null,
-    "rate_ci_cm_per_100d": null,
+    "sigma_cm_median": 0.388,
+    "rate_ci_cm_per_100d": [
+     -7.3,
+     -6.0
+    ],
     "confidence": "high",
     "indicative_only": false,
     "coverage": "ok",
@@ -488,8 +491,11 @@
     "robustness_spread": null,
     "people_exposed": null,
     "opera_check": null,
-    "sigma_cm_median": null,
-    "rate_ci_cm_per_100d": null,
+    "sigma_cm_median": 0.356,
+    "rate_ci_cm_per_100d": [
+     -4.9,
+     -3.7
+    ],
     "confidence": "medium",
     "indicative_only": false,
     "coverage": "ok",
@@ -629,8 +635,11 @@
     "robustness_spread": null,
     "people_exposed": 16737,
     "opera_check": null,
-    "sigma_cm_median": null,
-    "rate_ci_cm_per_100d": null,
+    "sigma_cm_median": 0.386,
+    "rate_ci_cm_per_100d": [
+     -2.6,
+     -1.4
+    ],
     "confidence": "medium",
     "indicative_only": false,
     "coverage": "ok",
@@ -638,6 +647,54 @@
     "note": "",
     "rate_cm_per_100d_common": -2.4,
     "rank": 13
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     3.54948,
+     6.45017
+    ]
+   },
+   "properties": {
+    "id": "lagos",
+    "name": "Lagos",
+    "country": "",
+    "max_cm_los": -2.4,
+    "p2_cm": -2.9,
+    "rate_cm_per_100d": -2.2,
+    "max_cm_vertical_est": -3.3,
+    "period": [
+     "2026-06-24",
+     "2026-10-10"
+    ],
+    "days": 108,
+    "n_pairs": 8,
+    "quality": "provisional",
+    "rate_cm_per_yr_estimate": -8.2,
+    "valid_fraction": 0.328,
+    "ref_range_cm": [
+     -2.4,
+     -2.4
+    ],
+    "detectable": null,
+    "robustness_spread": null,
+    "people_exposed": null,
+    "opera_check": null,
+    "sigma_cm_median": 0.309,
+    "rate_ci_cm_per_100d": [
+     -2.8,
+     -1.6
+    ],
+    "confidence": "medium",
+    "indicative_only": false,
+    "coverage": "ok",
+    "path": "data/global/lagos/",
+    "note": "",
+    "rate_cm_per_100d_common": -2.1,
+    "rank": 14
    }
   },
   {
@@ -685,7 +742,7 @@
     "path": "data/delta/",
     "note": "",
     "rate_cm_per_100d_common": -1.4,
-    "rank": 14
+    "rank": 15
    }
   },
   {
@@ -733,7 +790,7 @@
     "path": "data/global/quetta/",
     "note": "",
     "rate_cm_per_100d_common": -0.7,
-    "rank": 15
+    "rank": 16
    }
   },
   {
@@ -770,8 +827,11 @@
     "robustness_spread": null,
     "people_exposed": null,
     "opera_check": null,
-    "sigma_cm_median": null,
-    "rate_ci_cm_per_100d": null,
+    "sigma_cm_median": 0.36,
+    "rate_ci_cm_per_100d": [
+     -29.4,
+     -28.2
+    ],
     "confidence": "low",
     "indicative_only": true,
     "coverage": "ok",
@@ -781,7 +841,7 @@
     "qc_flags": [
      "phase_cycle_jump"
     ],
-    "rank": 16
+    "rank": 17
    }
   },
   {
@@ -832,7 +892,7 @@
     "qc_flags": [
      "phase_cycle_jump"
     ],
-    "rank": 17
+    "rank": 18
    }
   },
   {
@@ -884,7 +944,7 @@
      "literature_mismatch",
      "noisy_series"
     ],
-    "rank": 18
+    "rank": 19
    }
   },
   {
@@ -935,7 +995,7 @@
     "qc_flags": [
      "phase_cycle_jump"
     ],
-    "rank": 19
+    "rank": 20
    }
   },
   {
@@ -987,7 +1047,7 @@
      "phase_cycle_jump",
      "single_date_outlier"
     ],
-    "rank": 20
+    "rank": 21
    }
   },
   {
@@ -1035,7 +1095,7 @@
     "path": "data/global/tehran/",
     "note": "",
     "rate_cm_per_100d_common": -6.4,
-    "rank": 21
+    "rank": 22
    }
   },
   {
@@ -1080,7 +1140,7 @@
     "path": "data/global/jakarta/",
     "note": "",
     "rate_cm_per_100d_common": -5.6,
-    "rank": 22
+    "rank": 23
    }
   },
   {
@@ -1125,7 +1185,7 @@
     "path": "data/karapinar/",
     "note": "",
     "rate_cm_per_100d_common": -3.7,
-    "rank": 23
+    "rank": 24
    }
   },
   {
@@ -1173,7 +1233,7 @@
     "path": "data/global/isfahan/",
     "note": "",
     "rate_cm_per_100d_common": -2.1,
-    "rank": 24
+    "rank": 25
    }
   },
   {
@@ -1218,7 +1278,7 @@
     "path": "data/global/yunlin/",
     "note": "",
     "rate_cm_per_100d_common": -1.6,
-    "rank": 25
+    "rank": 26
    }
   },
   {
@@ -1263,7 +1323,7 @@
     "path": "data/global/xian/",
     "note": "",
     "rate_cm_per_100d_common": -1.4,
-    "rank": 26
+    "rank": 27
    }
   },
   {
@@ -1311,7 +1371,7 @@
     "path": "data/global/hanoi/",
     "note": "",
     "rate_cm_per_100d_common": -0.9,
-    "rank": 27
+    "rank": 28
    }
   },
   {
@@ -1359,7 +1419,7 @@
     "path": "data/global/ho_chi_minh/",
     "note": "",
     "rate_cm_per_100d_common": 4.6,
-    "rank": 28
+    "rank": 29
    }
   }
  ]
