@@ -11,7 +11,7 @@ from dataclasses import dataclass
 from datetime import date
 import json
 import math
-from pathlib import Path
+from pathlib import Path, PureWindowsPath
 import sys
 import argparse
 from typing import Any
@@ -122,7 +122,10 @@ def parse_subset_overrides(items: list[str]) -> dict[str, Path]:
         city, separator, path = item.partition("=")
         if not separator or not city.strip() or not path.strip():
             raise ValueError(f"invalid subset override {item!r}; expected CITY=PATH")
-        result[city.strip()] = Path(path.strip())
+        cleaned_path = path.strip()
+        if "\\" in cleaned_path:
+            cleaned_path = PureWindowsPath(cleaned_path).as_posix()
+        result[city.strip()] = Path(cleaned_path)
     return result
 
 

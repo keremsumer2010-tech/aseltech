@@ -513,5 +513,15 @@ PC1'in 16:50 duyurusuyla `BACKLOG_ORTAK.md`'den devralınan bağlantı denetimi 
   - 0 kırık bağlantı.
 - Testler: `check_site.py` 43 sayfa / 0 kırık link, pytest 11/11 PASS, `vital_signs.py` OK, `numbers_registry.py` 0 uyumsuzluk.
 
+---
+
+## 49. Depo Çapı Test Denetimi & Çapraz Platform Yol Hatası Düzeltmesi (`2026-11-15 16:58 TR`)
+
+Tüm repoyu kapsayan tam pytest denetimi (`python3 -m pytest -q`) yapıldı:
+- **Çapraz Platform Yol Hatası Yakalandı & Giderildi:** `pipeline/pc7/tests/test_atlas_robustness.py` içerisinde `test_subset_override_parses_city_path_without_network` testi Linux/POSIX ortamında Windows ters eğik çizgi (`\`) karakterini dizin ayracı olarak değil dosya adı karakteri olarak aldığı için `AssertionError` veriyordu. `pipeline/pc7/atlas_robustness.py` içindeki `parse_subset_overrides` fonksiyonuna `PureWindowsPath` normalizasyonu eklenerek ayrıştırma hem Windows hem POSIX sistemlerde taşınabilir ve standart hale getirildi.
+- **Test Sonucu:** Tüm repoda 109 testin tamamı firesiz geçti (**109/109 PASS, 0 FAILED**).
+- Çekirdek testler: `tools/check_site.py` (43 sayfa / 0 kırık link), `pytest tests/ -v` (11/11 PASS), `vital_signs.py --check` (OK), `numbers_registry.py` (45 metrik / 0 uyumsuzluk).
+
+
 
 
