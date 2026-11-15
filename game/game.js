@@ -1587,7 +1587,7 @@
     $('copySummaryBtn').addEventListener('click', async () => {
       const ui = BASIN_UI[activeBasinId] || BASIN_UI.tulare;
       const worst = [...simState.districts].sort((a, b) => a.totalCm - b.totalCm)[0];
-      const text = `Valley Under Pressure (${ui.shortLabel}, 24-Mo NISAR Sim) — Peak: ${worst.totalCm.toFixed(1)} cm (${worst.inelasticCm.toFixed(1)} cm permanent) near ${worst.shortName}.`;
+      const text = `NISAR Vision Groundwater Simulator (${ui.shortLabel}, 24-Mo NISAR Sim) — Peak: ${worst.totalCm.toFixed(1)} cm (${worst.inelasticCm.toFixed(1)} cm permanent) near ${worst.shortName}.`;
       try {
         if (navigator.clipboard) await navigator.clipboard.writeText(text);
         $('copySummaryBtn').textContent = 'Copied ✓';

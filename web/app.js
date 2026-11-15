@@ -352,7 +352,7 @@ function extras(){
   // the game loads only on request: the page stays fast and the poster explains what it is
   document.getElementById('gamePlay')?.addEventListener('click', () => {
     const box = document.getElementById('gameBox'), f = document.createElement('iframe');
-    f.title = 'Valley Under Pressure simulator'; f.src = g; f.allow = 'fullscreen';
+    f.title = 'NISAR Vision groundwater simulator'; f.src = g; f.allow = 'fullscreen';
     box.replaceChildren(f);
   });
   document.addEventListener('visibilitychange', () => {
