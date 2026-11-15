@@ -378,3 +378,11 @@ Kapsam: `web/index.html` (`1–163`). Genel İngilizce tonu akıcı ve tutarlı 
   - `web/science.html` ve `web/faq.html` altbilgilerine eksik zorunlu kalibrasyon uyarısı eklendi (artık `7/7` sayfada mevcut).
   - `web/index.html` içindeki `docs/story/media/pc9_fullyear_point.png` yolu GitHub Pages kök dağıtımında (`web/` içeriği köke kopyalandığında) çözüldüğü ve yerel depoda `docs/story/media/pc9_fullyear_point.png` (`465,356 B`) olarak mevcut olduğu doğrulandı.
 - **Blok 7 (`SIGNOFF` Son Tur):** `python3 tools/sync_atlas_text.py` (`atlas 29/16/13; updated: nothing`), `python3 tools/vital_signs.py --check` (`OK`), `python3 -m pytest tests/test_site_numbers.py -v` (`2/2 passed`) doğrulandı ve `status/PC4.md` ilk satırına `PLAN_SONU_YAKIN` işlendi.
+
+### 39. YENİ PLAN 3 Blok 3 — `exposure_atlas.json` Eksik 8 Bölge (GHSL GHS-POP Yöntem & Liste Kaydı) (`2026-11-15 10:54 TR`)
+- **Durum:** Yerel depoda `GHSL GHS-POP E2025 R2023A 3ss (~100 m)` GeoTIFF karoları ve PC8'in indirme betiği bulunmadığından (`raw/` altında yerel GHSL dosyası yok) indirme/örnekleme yapılmadı; PC1 yönergesi gereği yöntem ve liste kayıt altına alınarak geçildi.
+- **Eksik 8 Bölge (`data/global/exposure_atlas.json` 6. sütun `✗`):** `kashmar`, `kerman`, `houston`, `can_tho`, `tianjin`, `lagos`, `gorgan`, `pekalongan`.
+- **Uygulanacak Standart Yöntem (PC8):** Her bölgenin kümülatif LOS yer değiştirme rasterını `108` güne ölçekle, `data/global/detectability.json` içindeki bölgeye özgü `|disp| >= 2 * sigma` eşiğinin altındaki pikselleri maskele, `GHSL GHS-POP E2025 R2023A 3-arcsecond` (`~100 m`, WGS84) nüfus karosu ile kesiştir ve `< -2 cm` ile `< -5 cm` (`area_km2_lt_minus5cm`, `people_lt_minus5cm`, `people_lt_minus2cm`) toplamlarını üret.
+
+### 40. YENİ PLAN 3 Blok 4 — `results_registry.json` Yeni Satırlar & `science.html` Testi (`2026-11-15 10:54 TR`)
+- `data/results_registry.json` içine `rank_check_6_16`, `literature_atlas`, `simulator`, `presentation_mode`, `submission_package` satırları eklendi; `technical_note` ve `global_atlas` satırları `29` bölge (`16` reliable / `13` indicative) ile güncellendi. `web/science.html` bu dosyayı doğrudan `fetch(ROOT + 'data/results_registry.json')` ile okuduğundan tüm yeni kartlar `Atlas` ve `Engagement` gruplarında otomatik listelenir.

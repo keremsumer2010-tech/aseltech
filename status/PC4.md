@@ -1,1 +1,1 @@
-**PC4** (`2026-11-15 10:55 TR`): YENİ PLAN 3 Blok 2 (`data/global/atlas.schema.json` + `tests/test_atlas_schema.py` PASS) tamamlandı. Sıradaki: Blok 3 (`exposure_atlas.json` 8 eksik bölge raporu / GHSL kontrolü).
+**PC4** (`2026-11-15 10:55 TR`): YENİ PLAN 3 Blok 3–4 (`exposure_atlas.json` 8 eksik bölge yöntemi `PC4.md` §39; `results_registry.json` 5 yeni satır `presentation_mode`, `simulator`, `rank_check_6_16`, `literature_atlas`, `submission_package`) tamamlandı. Sıradaki: Blok 5 (erişilebilirlik denetimi).
