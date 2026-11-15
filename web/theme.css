@@ -154,3 +154,5 @@ html{scroll-behavior:smooth}
 }
 h1,h2{text-wrap:balance}
 .work .what,.work .why{text-wrap:pretty}
+.logo-full{display:block;height:40px;width:auto}
+@media (max-width:620px){.logo-full{height:32px}}

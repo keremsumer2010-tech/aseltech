@@ -27,6 +27,12 @@ jobs:
         with:
           node-version: 20
 
+      - name: Quality gate (numbers consistent, no broken links)
+        run: |
+          python3 -m pip install --quiet pytest numpy pillow
+          python3 tools/check_site.py
+          python3 -m pytest -q tests/test_numbers_consistency.py tests/test_site_links.py
+
       - name: Assemble site
         run: |
           set -e
@@ -43,6 +49,7 @@ jobs:
           if [ -d web3d ]; then cp -r web3d _site/web3d; fi
           if [ -d docs/story ]; then mkdir -p _site/docs && cp -r docs/story _site/docs/story; fi
           if [ -d docs/bulletins ]; then mkdir -p _site/docs && cp -r docs/bulletins _site/docs/bulletins && cp -r docs/bulletins _site/bulletins; fi
+          if [ -d risk ]; then mkdir -p _site/risk && cp risk/*.geojson _site/risk/ 2>/dev/null || true; fi
           if [ -f validation/gnss_stations.csv ]; then mkdir -p _site/validation && cp validation/gnss_stations.csv _site/validation/gnss_stations.csv; fi
           rm -f _site/.gitkeep _site/data/.gitkeep _site/game/.gitkeep
           touch _site/.nojekyll

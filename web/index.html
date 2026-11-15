@@ -4,19 +4,23 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>NISAR Pulse — Where the Ground Is Sinking, Measured from Space</title>
-<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+<link rel="icon" href="assets/logo_mark_64.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/logo_mark_192.png">
 <meta name="description" content="Team Aseltech used the first NASA-ISRO NISAR radar data to measure ground sinking in 29 basins worldwide with one open, self-checking method, checked against GPS and NASA's OPERA product.">
 <meta property="og:title" content="NISAR Pulse — Where the ground is sinking, measured from space">
+<meta property="og:image" content="https://keremsumer2010-tech.github.io/aseltech/assets/atlas_world.jpg">
+<meta name="twitter:card" content="summary_large_image">
 <meta property="og:description" content="29 basins, one open method, the same 93 days for all. Checked against GPS and NASA's OPERA product.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Public+Sans:ital,wght@0,400..800;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/atlas_world.webp" type="image/webp">
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="home3.css">
 <link rel="stylesheet" href="theme.css">
 </head>
 <body>
 <header class="site-header">
-  <a class="logo" href="index.html" aria-label="NISAR Pulse home"><img class="logo-img" src="assets/logo.svg" alt="" width="32" height="32"><span class="logo-text"><b>NISAR</b>&nbsp;Pulse</span></a>
+  <a class="logo" href="index.html" aria-label="NISAR Pulse home"><img class="logo-full" src="assets/logo_full.png" alt="NISAR Pulse" width="143" height="40"></a>
   <nav class="site-nav">
     <a href="index.html" class="active">Home</a><a href="atlas.html">Atlas</a><a data-rhref="game/" href="atlas.html">Simulator</a><a href="science.html">Science</a><a href="data.html">Data</a><a href="present.html">Present</a>
   </nav>
@@ -31,7 +35,7 @@
     <p class="ha-lede">Using the first data from NASA and ISRO's new <b>NISAR</b> radar satellite, we built one open method that turns radar echoes into centimetres of ground sinking, ran it on <span data-kpi="regions">29</span> basins over the same <span data-hs="days">93</span> days, and checked every number.</p>
   </div>
   <a class="ha-map" href="atlas.html" aria-label="Open the interactive atlas">
-    <img data-rsrc="docs/story/media/pc1_atlas_world.png" alt="World map of the measured basins: filled circles are reliable measurements, rings are indicative; the five fastest are labelled">
+    <picture><source srcset="assets/atlas_world.webp" type="image/webp"><img src="assets/atlas_world.jpg" alt="World map of the measured basins: filled circles are reliable measurements, rings are indicative; the five fastest are labelled" width="1800" height="650" fetchpriority="high" decoding="async"></picture>
   </a>
   <div class="ha-bottom">
     <ol class="ha-top5" id="top5" aria-label="Fastest-sinking reliable basins"></ol>
@@ -78,7 +82,7 @@
       <div class="wbig"><span>−11.0 cm</span> per 100 days at the Konya Plain, the fastest reliable basin</div>
       <a class="btn solid" href="atlas.html">Open the atlas →</a>
     </div>
-    <figure class="wfig"><img data-rsrc="docs/story/media/pc2_konya_plain.png" alt="Konya Closed Basin ground motion map with Konya and Karapınar marked: red areas sank up to 9.6 cm between June and October 2026" loading="lazy"><figcaption>One of the 29 maps: Konya Closed Basin, Türkiye, 26 Jun – 12 Oct 2026. Red = sinking; star = fastest 1 km block (−9.6 cm).</figcaption></figure>
+    <figure class="wfig"><img width="1890" height="1044" decoding="async" data-rsrc="docs/story/media/pc2_konya_plain.png" alt="Konya Closed Basin ground motion map with Konya and Karapınar marked: red areas sank up to 9.6 cm between June and October 2026" loading="lazy"><figcaption>One of the 29 maps: Konya Closed Basin, Türkiye, 26 Jun – 12 Oct 2026. Red = sinking; star = fastest 1 km block (−9.6 cm).</figcaption></figure>
   </div>
 </section>
 
@@ -108,7 +112,7 @@
       <div class="wbig"><span data-kpi="gnss">r = 0.92</span> agreement with GPS, typical difference 1.4 cm</div>
       <p class="small2">We also compared with NASA JPL's OPERA product: over Mexico City the pattern matches at 10 points (r = 0.91), although OPERA covers winter and NISAR summer.</p>
     </div>
-    <figure class="wfig"><img data-rsrc="docs/story/media/validation_scatter.png" alt="NISAR versus GPS at 10 stations: the points follow the one-to-one line" loading="lazy"><figcaption>NISAR vs GPS, Central Valley, 28 Jun – 14 Oct 2026.</figcaption></figure>
+    <figure class="wfig"><img width="1520" height="1216" decoding="async" data-rsrc="docs/story/media/validation_scatter.png" alt="NISAR versus GPS at 10 stations: the points follow the one-to-one line" loading="lazy"><figcaption>NISAR vs GPS, Central Valley, 28 Jun – 14 Oct 2026.</figcaption></figure>
   </div>
 </section>
 
@@ -136,7 +140,7 @@
       <p class="why"><b>Why it matters:</b> water managers count it in cubic kilometres, so we did too.</p>
       <div class="wbig"><span data-kpi="storage">0.32 km³/yr</span> lost permanently in the Central Valley</div>
     </div>
-    <figure class="wfig"><img data-rsrc="docs/story/media/pc9_fullyear_point.png" alt="Eleven months of ground motion west of Earlimart: a small winter rise, then a steep summer drop, split into a permanent trend and a seasonal cycle" loading="lazy"><figcaption>Earlimart, Central Valley: permanent trend vs seasonal cycle (mixed beta + provisional data).</figcaption></figure>
+    <figure class="wfig"><img width="2300" height="1520" decoding="async" data-rsrc="docs/story/media/pc9_fullyear_point.png" alt="Eleven months of ground motion west of Earlimart: a small winter rise, then a steep summer drop, split into a permanent trend and a seasonal cycle" loading="lazy"><figcaption>Earlimart, Central Valley: permanent trend vs seasonal cycle (mixed beta + provisional data).</figcaption></figure>
   </div>
 </section>
 
@@ -150,7 +154,7 @@
       <p class="why"><b>Why it matters:</b> uneven sinking cracks canals and tilts tracks; engineers can see which section to inspect first.</p>
       <div class="wbig"><span>81 / 645</span> sections on ground tilting more than 20 mm per km</div>
     </div>
-    <figure class="wfig"><img data-rsrc="docs/story/media/pc7_risk_prob.png" alt="Bar chart: probability that sinking differs by more than 10 cm along each line, highest for the Exeter and Goshen rail subdivisions and the Friant-Kern Canal" loading="lazy"><figcaption>Chance of more than 10 cm uneven sinking per line (screening, not a safety rating).</figcaption></figure>
+    <figure class="wfig"><img width="1980" height="1296" decoding="async" data-rsrc="docs/story/media/pc7_risk_prob.png" alt="Bar chart: probability that sinking differs by more than 10 cm along each line, highest for the Exeter and Goshen rail subdivisions and the Friant-Kern Canal" loading="lazy"><figcaption>Chance of more than 10 cm uneven sinking per line (screening, not a safety rating).</figcaption></figure>
   </div>
 </section>
 
@@ -185,7 +189,7 @@
       <p class="why"><b>Why it matters:</b> the model reproduces what NISAR measured, so students and farmers learn from real data, in 30 seconds.</p>
       <a class="btn solid" data-rhref="game/" href="atlas.html">Play the simulator →</a>
     </div>
-    <a class="wfig" data-rhref="game/" href="atlas.html"><img src="assets/simulator.jpg" alt="Simulator screen: valley map, sinking chart and water sliders" loading="lazy"></a>
+    <a class="wfig" data-rhref="game/" href="atlas.html"><img src="assets/simulator.jpg" width="1600" height="900" decoding="async" alt="Simulator screen: valley map, sinking chart and water sliders" loading="lazy"></a>
   </div>
 </section>
 
@@ -212,10 +216,10 @@ python pipeline/pc10/build_atlas.py</pre>
 
 <footer class="site-footer">
   <div class="wrap foot">
-    <div><img class="foot-logo" src="assets/logo.svg" alt="" width="40" height="40"><b>Team Aseltech</b> · ASELSAN Vocational and Technical Anatolian High School, Ankara, Türkiye<br>NASA Space Apps Challenge 2026 · Local event: Lincoln, UK</div>
+    <div><img class="foot-logo" src="assets/logo_mark_64.png" alt="" width="44" height="44"><b>Team Aseltech</b> · ASELSAN Vocational and Technical Anatolian High School, Ankara, Türkiye<br>NASA Space Apps Challenge 2026 · Local event: Lincoln, UK</div>
     <div>Data: NASA-ISRO NISAR (provisional) via NASA ASF DAAC · NASA JPL OPERA · Nevada Geodetic Laboratory GNSS · GHSL · OpenStreetMap. Base image: NASA Blue Marble.<br>Open source (MIT): <a href="https://github.com/keremsumer2010-tech/aseltech">GitHub</a> · Built with help from AI assistants (Claude, Gemini); see <a href="faq.html">FAQ</a>.</div>
   </div>
 </footer>
-<script src="home3.js"></script>
+<script src="home3.js" defer></script>
 </body>
 </html>
