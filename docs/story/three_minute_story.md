@@ -15,8 +15,8 @@ Extracted from the live 3-minute jury path in [`web/index.html`](../../web/index
 - **Heading (7 words):** `Where the ground is sinking: 29 basins`
 - **Sentence (23 words):** `One open pipeline turns first NASA-ISRO NISAR radar data into centimetres of sinking across 29 basins over 93 days, checked against GPS.`
 - **Big numbers:**
-  - **`29` basins** (`16 reliable, 13 indicative`) · `provisional` · `data/global/home_summary.json:kpis[0]` / `data/global/atlas.json`
-  - **`1.20 M` people** (`1,200,716` on `> 5 cm` sinking ground, `511.65 km²`) · `provisional` · `data/global/home_summary.json:kpis[1]` / `data/global/vital_signs.json`
+  - **`29` basins** (`15 reliable, 14 indicative`) · `provisional` · `data/global/home_summary.json:kpis[0]` / `data/global/atlas.json`
+  - **`1.17 M` people** (`1,167,429` on `> 5 cm` sinking ground, `477.72 km²`) · `provisional` · `data/global/home_summary.json:kpis[1]` / `data/global/vital_signs.json`
   - **`r = 0.92` GPS** (`0.924`, 10 Central Valley stations) · `provisional` · `data/global/home_summary.json:kpis[2]` / `docs/story/validation_report.md`
   - **`0.32 km³/yr`** (`0.3174 km³/yr` permanent storage lost, Central Valley) · `mixed` · `data/global/home_summary.json:kpis[4]` / `data/central_valley_fullyear/storage_loss.json`
   - **`5` flagged basins** (shown as indicative) · `provisional` · `data/global/home_summary.json:qc_story.flagged`
@@ -30,8 +30,8 @@ Extracted from the live 3-minute jury path in [`web/index.html`](../../web/index
 - **Heading (7 words):** `A global subsidence atlas on one ruler`
 - **Sentence (24 words):** `Same radar, same code, same 93 days (28 Jun–29 Sep 2026) for 29 basins; values show motion toward or away from the satellite.`
 - **Big numbers:**
-  - **`#1` Konya Plain: `−11.0 cm/100d`** (common 93-day LOS rate; `medium` confidence, valid-pixel fraction not recorded, kept with caution) · `provisional` · `data/global/home_summary.json:top5[0].rate_cm_per_100d_common`
-  - **`#2` Eloy: `−8.6 cm/100d`** (`high` confidence) · **`#3` Central Valley: `−7.3 cm/100d`** (`medium` confidence) · `provisional` · `data/global/home_summary.json:top5[1..2]`
+  - **`#1` Eloy: `−8.6 cm/100d`** (`high` confidence) · **`#2` Central Valley: `−7.3 cm/100d`** (`medium` confidence) · **`#3` Kashmar: `−7.0 cm/100d`** · `provisional` · `data/global/home_summary.json:top5`
+  - *(Konya Plain measured `−11.0 cm/100d` raw, but our own validation audit downgraded it to indicative due to 11.6% valid coverage)*
 - **Visual:** `docs/story/media/pc2_konya_plain.png` (Konya Closed Basin map, 26 Jun–12 Oct 2026, −9.6 cm peak) + `docs/story/media/pc1_atlas_world.png`.
 - **Link:** `Open the atlas →` (`atlas.html`)
 
@@ -65,9 +65,9 @@ Extracted from the live 3-minute jury path in [`web/index.html`](../../web/index
 ## Section 5 — 4 · What It Is For (`2:05–2:40`)
 
 - **Heading (7 words):** `From a radar measurement to a decision`
-- **Sentence (22 words):** `We turn sinking into 1.20 M exposed people, 0.32 km³/yr lost storage, 81/645 tilting corridors, 29 bulletins, and a 30-second simulator.`
+- **Sentence (22 words):** `We turn sinking into 1.17 M exposed people, 0.32 km³/yr lost storage, 81/645 tilting corridors, 29 bulletins, and a 30-second simulator.`
 - **Big numbers:**
-  - **`1.20 M` people** (`1,200,716` on `> 5 cm` sinking ground, `511.65 km²`) · `provisional` · `data/global/exposure_atlas.json` / `data/global/vital_signs.json`
+  - **`1.17 M` people** (`1,167,429` on `> 5 cm` sinking ground, `477.72 km²`) · `provisional` · `data/global/exposure_atlas.json` / `data/global/vital_signs.json`
   - **`0.32 km³/yr`** (`0.3174 km³/yr` permanent Central Valley storage lost) · `mixed` · `data/central_valley_fullyear/storage_loss.json`
   - **`81 / 645` sections `> 20 mm/km`** (corridors with tilt/damage probability) · `provisional` · `data/central_valley/assets.json`
 - **Visual:** `web/assets/simulator.jpg` (simulator capture) + `docs/story/media/pc9_fullyear_point.png` + `docs/story/media/pc7_risk_prob.png`.
@@ -91,9 +91,9 @@ Extracted from the live 3-minute jury path in [`web/index.html`](../../web/index
 
 | Time | `present.html` Stop | Homepage Section | Exact Headline (`present.html`) | Key Number |
 |---|---|---|---|---|
-| `0:00–0:30` | **Stop 1 · Intro & 01 Atlas** | Hero + `#w1` | `Where is the ground sinking? 29 basins on one 93-day ruler.` | `29` basins (`16` reliable), `#1 Konya Plain −11.0 cm/100d` |
+| `0:00–0:30` | **Stop 1 · Intro & 01 Atlas** | Hero + `#w1` | `Where is the ground sinking? 29 basins on one 93-day ruler.` | `29` basins (`15` reliable, `14` indicative), `#1 Eloy −8.6 cm/100d` (Konya indicative) |
 | `0:30–1:00` | **Stop 2 · 02 Self-Checking QC** | `#w2` | `A check that catches our own errors` | `12.1 cm` cycle; Semarang `−12.1 → −6.2 cm`, `5` indicative |
 | `1:00–1:30` | **Stop 3 · 03 GPS & Validation** | `#w3` | `Proof on the ground and uncertainty` | `r = 0.924` GPS, `≈ 0.3 cm` noise, OPERA `r = 0.912` (winter vs summer) |
-| `1:30–2:00` | **Stop 4 · 04 People & 05 Water** | `#w4` + `#w5` | `1.20 M people on sinking ground & 0.3174 km³/yr water lost` | `1,200,716` people (`511.65 km²`), `0.3174 km³/yr` lost |
+| `1:30–2:00` | **Stop 4 · 04 People & 05 Water** | `#w4` + `#w5` | `1.17 M people on sinking ground & 0.3174 km³/yr water lost` | `1,167,429` people (`477.72 km²`), `0.3174 km³/yr` lost |
 | `2:00–2:30` | **Stop 5 · 06 Tilt & 07 Bulletins** | `#w6` + `#w7` | `81 / 645 tilting corridors & 29 one-page bulletins` | `81 / 645 > 20 mm/km`, `29` printable A4 bulletins |
 | `2:30–3:00` | **Stop 6 · 08 Simulator & 09 Engine** | `#w8` + `#w9` | `A 30-second simulator & an open one-command engine` | `24-mo` simulator (`game/`), `1` command (`pipeline.nisarvision`) |

@@ -23,10 +23,10 @@
 
 ## What We Built (Nine Things, One by One)
 
-1. **Global Subsidence Atlas:** `29` basins (`16` reliable, `13` indicative) on three continents, ranked over the same `93` days (`28 Jun–29 Sep 2026`; `#1` Konya Plain `−11.0 cm/100d`, caution).
-2. **Self-Checking Quality Control:** Automated time-series scan for `12.1 cm` full L-band phase-cycle jumps and single-date spikes (`Semarang` fixed `−12.1 → −6.2 cm`; `5` flagged basins kept indicative).
+1. **Global Subsidence Atlas:** `29` basins (`15` reliable, `14` indicative) on three continents, ranked over the same `93` days (`28 Jun–29 Sep 2026`; `#1` Eloy `−8.6 cm/100d`; Konya Plain `−11.0 cm/100d` kept indicative per low-coverage audit).
+2. **Self-Checking Quality Control:** Automated time-series scan for `12.1 cm` full L-band phase-cycle jumps and single-date spikes (`Semarang` fixed `−12.1 → −6.2 cm`; `6` flagged basins kept indicative).
 3. **Proof on the Ground:** `r = 0.924` agreement with `10` continuous GPS stations in Central Valley (`1.00 cm` median RMSE), plus `≈ 0.3 cm` formal noise and London Clay negative control (`3σ = 3.62 cm`, `below_detection`).
-4. **Who Lives on Sinking Ground:** `GHSL 2025` overlay counting **`1,200,716` residents** (`1.20 M`) on **`511.65 km²`** sinking `> 5 cm` (`|disp| ≥ 2σ`).
+4. **Who Lives on Sinking Ground:** `GHSL 2025` overlay counting **`1,167,429` residents** (`1.17 M`) on **`477.72 km²`** sinking `> 5 cm` (`|disp| ≥ 2σ`).
 5. **Water Storage Lost for Good:** 11-month harmonic decomposition in Central Valley separating permanent clay compaction (**`0.3174 km³/yr`** lost storage) from seasonal rebound.
 6. **Canals and Railways at Risk:** Longitudinal tilt screening across `645` OpenStreetMap segments (`81 / 645 > 20 mm/km`, Tulare Canal `57.01 mm/km`).
 7. **One-Page Basin Bulletins:** `29` printable NASA-style monitoring bulletins (`docs/bulletins/<region>.html`).
@@ -49,8 +49,8 @@ All figures below match [`docs/qa/SCIENCE_SIGNOFF.md`](docs/qa/SCIENCE_SIGNOFF.m
 | 6 | **Permanent Aquifer Storage Loss (CV)** | **`0.3174 km³/yr`** (`317.41 million m³/yr`) | `1 km` block SE `±0.00123 km³/yr`; 3-ref `0.0664–0.3198 km³/yr` | `mixed` |
 | 7 | **Karapınar Basin & 29-Sinkhole Contrast** | **`−5.9 cm` LOS** (`−8.0 cm` vert. est.); **`6.4×`** `< 1 km` | `−4.15 cm` `< 1 km` vs. `−0.65 cm` `> 5 km` (`p = 0.0001` block perm) | `provisional` |
 | 8 | **London Clay Negative Control** | **`below_detection`** (`97.7%` within `±1.5 cm`) | `chain_sigma = 1.21 cm`, **`3σ = 3.62 cm`** floor (`9` pairs) | `provisional` |
-| 9 | **2026 Global Subsidence Atlas (#1 Reliable)** | **#1 Konya Plain `−11.0 cm/100d`** (`93 d` common) | **`29` regions (`16` reliable / `13` indicative)**; Konya valid-pixel fraction unrecorded (caution) | `provisional` |
-| 10 | **Global GHSL Exposure (`< −5 cm`, `|disp| ≥ 2σ`)** | **`1,200,716` residents** on **`511.65 km²`** | `GHSL E2025` (`100 m`), all `29` regions excluding nested `karapinar` | `provisional` |
+| 9 | **2026 Global Subsidence Atlas (#1 Reliable)** | **#1 Eloy `−8.6 cm/100d`** (`93 d` common) | **`29` regions (`15` reliable / `14` indicative)**; Konya Plain kept indicative per validation audit | `provisional` |
+| 10 | **Global GHSL Exposure (`< −5 cm`, `|disp| ≥ 2σ`)** | **`1,167,429` residents** on **`477.72 km²`** | `GHSL E2025` (`100 m`), all `29` regions excluding nested `karapinar` | `provisional` |
 
 *Secondary OPERA cross-check:* Over Mexico City the spatial pattern matches NASA JPL's OPERA product at 10 points (`r = 0.91`), although OPERA covers winter (`2025-12-25` to `2026-03-25`) and NISAR summer (`2026-06-22` to `2026-10-20`); in the Central Valley and at Eloy the agreement is weak (`r = 0.40` and `0.09`) because seasons and viewing geometry differ. Main validation is GPS (`r = 0.924`).
 

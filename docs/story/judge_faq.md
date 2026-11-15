@@ -16,16 +16,16 @@ Across `10` continuous Nevada Geodetic Laboratory (`IGS20/NA`) GPS stations in C
 Over Mexico City, our NISAR spatial pattern matches NASA JPL's `OPERA_L3_DISP-S1_V1` product at `10` points (`r = 0.912`), although OPERA covers winter and NISAR covers summer (`0` days of temporal overlap). In the Central Valley and at Eloy, agreement is weak (`r = 0.40` and `r = 0.09`) because observation seasons, agricultural C-band masking (`80.6%` masked in Eloy), and viewing geometry differ.
 
 ### 6. How does your self-checking QC catch unwrapping and reference errors?
-`tools/atlas_qc.py` scans every basin's step-by-step time series for `12.1 cm` full L-band phase-cycle jumps, opposite-sign single-date spikes, and off-basin reference bias. It caught a `12.1 cm` unwrapping jump in Semarang (`−12.1` → `−6.2 cm` coastal peak after fixing) and a `−10.1 cm` phase jump in Beijing, downgrading `13` of `29` basins (`beijing`, `gorgan`, `pekalongan`, `delhi`, `bangkok`, `jakarta`, `tehran`, etc.) to `indicative only`.
+`tools/atlas_qc.py` scans every basin's step-by-step time series for `12.1 cm` full L-band phase-cycle jumps, opposite-sign single-date spikes, and off-basin reference bias. It caught a `12.1 cm` unwrapping jump in Semarang (`−12.1` → `−6.2 cm` coastal peak after fixing) and a `−10.1 cm` phase jump in Beijing, keeping `14` of `29` basins (`beijing`, `gorgan`, `pekalongan`, `delhi`, `bangkok`, `jakarta`, `tehran`, `konya_plain`, etc.) as `indicative only`.
 
-### 7. Why does #1 Konya Plain (`−11.0 cm/100d`) carry an `11.6%` coverage caution?
-Across the Konya Closed Basin (`108` days, `−9.6 cm` LOS peak), agricultural harvest and surface scatter leave only `11.6%` coherent valid pixels across the wide `1.5° × 0.7°` box (`0.46` reference spread). We therefore highlight #1 Konya Plain with an explicit low-coverage caution alongside `6.4×` faster subsidence within `1 km` of `29` verified Karapınar sinkholes.
+### 7. Why is Eloy #1 among reliable basins, and why is Konya Plain kept indicative?
+While Konya Plain measured `−11.0 cm/100d` raw LOS, our own automated validation audit downgraded it to indicative due to low valid pixel coverage (`11.6%`, `0.46` reference spread, `recommended_confidence: low`). This leaves Eloy, Arizona (`−8.6 cm/100d`, `high` confidence) as the #1 reliable basin, followed by Central Valley (`−7.3 cm/100d`), turning Konya into a showcase of our team's scientific honesty.
 
 ### 8. Why is Querétaro excluded from the 29-basin global atlas?
 In our diagnostic test (`data/global/queretaro/validation_note.json`), Querétaro showed `−22.9 cm / 120 d`—over an order of magnitude above INEGI's `~1.5 cm/yr` literature rate—with `48.6%` of pixels driven by a single-date spike and no independently verified off-basin reference. Following our QC gate, `build_atlas.py` excludes Querétaro from the `29`-basin atlas rather than publishing an unverified outlier.
 
-### 9. How did you calculate `1,200,716` (`1.20 M`) people living on sinking ground?
-We intersected `GHSL GHS-POP E2025` (`100 m`) population grids with pixels sinking faster than `−5 cm` per `108` days *and* exceeding each basin's `2-sigma` formal noise floor (`511.65 km²` total; `8.25 M` below `−2 cm`). Nested `karapinar` is excluded from the sum to avoid double-counting inside `konya_plain`.
+### 9. How did you calculate `1,167,429` (`1.17 M`) people living on sinking ground?
+We intersected `GHSL GHS-POP E2025` (`100 m`) population grids with pixels sinking faster than `−5 cm` per `108` days *and* exceeding each basin's `2-sigma` formal noise floor (`477.72 km²` total; `7.34 M` below `−2 cm`). Nested `karapinar` is excluded from the sum to avoid double-counting inside `konya_plain`.
 
 ### 10. How was `0.3174 km³/yr` permanent aquifer storage loss separated from seasonal bounce?
 Near Earlimart (`data/central_valley_fullyear/decomp.json`), an `11`-month `mixed` chain (`18` beta-precal + `7` provisional pairs) decomposes (`R² = 0.97`) `−16.8 ± 2.2 cm/yr` LOS permanent clay compaction from `11.7 cm` peak-to-peak elastic seasonal rebound. Integrating permanent vertical compaction across `4,508.3 km²` (`> 1 cm/yr`) yields an estimated **`0.3174 km³/yr`** (`0.066–0.320 km³/yr` 3-ref range) permanent aquifer storage-capacity loss.

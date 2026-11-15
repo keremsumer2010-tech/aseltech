@@ -32,7 +32,7 @@
 ### Block 1 (`0:00 – 0:20`) · Hero: A Self-Checking Global Subsidence Atlas
 - **Speaker:** **Kerem**
 - **Memir Clicks (`web/present.html` Stop 1 or `web/index.html` Hero):**
-  1. Show the single-sentence core and 3 headline numbers (**`29` basins · `1.20 M` residents · `r = 0.92` GPS**), then click **`Explore the atlas →`**.
+  1. Show the single-sentence core and 3 headline numbers (**`29` basins · `1.17 M` residents · `r = 0.92` GPS**), then click **`Explore the atlas →`**.
 - **Kerem Says:**
   > We turned the first months of NASA-ISRO NISAR radar data into a self-checking global subsidence atlas: 29 basins measured with one open pipeline on the same 93 days, every number traceable to its file, and every headline checked against GPS, NASA's OPERA product and the literature.
 - **Offline Fallback Cue:** `web/present.html` Stop 1 (`docs/story/three_minute_story.md` §1).
@@ -40,9 +40,9 @@
 ### Block 2 (`0:20 – 1:00`) · Atlas: Twenty-Nine Basins Ranked on 93 Days
 - **Speaker:** **Kerem**
 - **Memir Clicks (`web/present.html` Stop 2 or `web/atlas.html#konya_plain`):**
-  1. Show the 3D globe preview and Top-5 common-window table (`28 Jun – 29 Sep 2026`), highlighting **#1 Konya Plain (`−11.0 cm/100d`, `11.6%` valid-coverage caution)**, `#2 Eloy (−8.6)`, `#3 Central Valley (−7.3)`.
+  1. Show the 3D globe preview and Top-5 common-window table (`28 Jun – 29 Sep 2026`), highlighting **#1 Eloy (`−8.6 cm/100d`, `high` confidence)**, `#2 Central Valley (−7.3)`, `#3 Kashmar (−7.0)`, noting Konya Plain (`−11.0`) is kept indicative following our own validation audit.
 - **Kerem Says:**
-  > One open pipeline measures every basin over the shared 28 June to 29 September 2026 window—using a ±0.25-degree box and off-basin rock reference—placing Konya Plain first at minus 11.0 centimetres per 100 days with an explicit coverage caution.
+  > One open pipeline measures every basin over the shared 28 June to 29 September 2026 window—using a ±0.25-degree box and off-basin rock reference—led by Eloy, Arizona at minus 8.6 centimetres per 100 days; our home basin of Konya Plain measured minus 11.0, but our own automated audit downgraded it to indicative due to low valid coverage.
 - **Offline Fallback Cue:** `web/present.html` Stop 2 (`docs/story/three_minute_story.md` §2).
 
 ### Block 3 (`1:00 – 1:30`) · We Caught Our Own Error (Self-Checking QC)
@@ -64,9 +64,9 @@
 ### Block 5 (`2:05 – 2:40`) · What It Is Useful For (Exposure, Storage, Tilt, Simulator)
 - **Speaker:** **Kerem**
 - **Memir Clicks (`web/present.html` Stop 5 → `game/index.html?basin=konya`):**
-  1. Flash **1.20 million residents** (`511.65 km² < −5 cm`), **`0.3174 km³/yr` permanent Central Valley storage loss**, **`81 / 645` canal/rail segments `> 20 mm/km`** (Tulare Canal `57.01 mm/km`), and launch the 24-month simulator (`Valley Under Pressure`).
+  1. Flash **1.17 million residents** (`477.72 km² < −5 cm`), **`0.3174 km³/yr` permanent Central Valley storage loss**, **`81 / 645` canal/rail segments `> 20 mm/km`** (Tulare Canal `57.01 mm/km`), and launch the 24-month simulator (`Valley Under Pressure`).
 - **Kerem Says:**
-  > We turn radar centimetres into decisions: 1.20 million people living on sinking ground, 0.32 cubic kilometres per year of permanent Central Valley aquifer loss, 81 high-tilt canal and rail segments, one-page city bulletins, and a 24-month simulator anyone can play.
+  > We turn radar centimetres into decisions: 1.17 million people living on sinking ground, 0.32 cubic kilometres per year of permanent Central Valley aquifer loss, 81 high-tilt canal and rail segments, one-page city bulletins, and a 24-month simulator anyone can play.
 - **Offline Fallback Cue:** `web/present.html` Stop 5 (`docs/story/three_minute_story.md` §5).
 
 ### Block 6 (`2:40 – 3:00`) · Original, Open & Mandatory Provisional Close

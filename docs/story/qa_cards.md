@@ -12,8 +12,8 @@ No — all core interferograms carry `provisional` status (`CRID P05023`, `>= 20
 **Q2. How do you know the −7.8 cm Central Valley signal is not atmospheric noise?**  
 Across 10 continuous Nevada Geodetic Laboratory GNSS stations projected into radar LOS, our provisional NISAR chain achieves `r = 0.924` with `1.00 cm` median RMSE (`0.76 cm` on active sites `> 2 cm`). Furthermore, our 9-pair London Clay negative control establishes a `3σ = 3.62 cm` seasonal noise floor, placing the `−7.8 cm` Central Valley peak more than twice above the `3σ` floor.
 
-**Q3. Why does Konya Plain rank #1 (`−11.0 cm/100d`) with a coverage caution?**  
-All 29 atlas regions are ranked on the shared 93-day summer window (`2026-06-28 → 2026-09-29`) using 1 km block medians (`p2` filtered) so differing observation spans do not bias the leaderboard. Because Konya Plain's valid-pixel fraction was not recorded in the summary (`valid_fraction: null`), we retain it with `medium` confidence and an explicit caution rather than hiding sparse agricultural coherence, and independent Path 172 confirms the `−9.6 cm` 108-day bowl.
+**Q3. Why does Eloy rank #1 (`−8.6 cm/100d`) among reliable basins, and why is Konya Plain kept indicative?**  
+All 29 atlas regions are ranked on the shared 93-day summer window (`2026-06-28 → 2026-09-29`) using 1 km block medians (`p2` filtered) so differing observation spans do not bias the leaderboard. Among reliable basins with confirmed quality control, Eloy, Arizona leads at `−8.6 cm/100d` (`−8.0 cm` LOS). While Konya Plain recorded `−11.0 cm/100d` raw LOS rate, our own automated validation audit (11.6% valid coverage, 4–5× historical literature) kept it as indicative only — serving as a prime example of scientific honesty and self-checking QC.
 
 **Q4. Tell us about a mistake you caught in your own pipeline.**  
 Automated time-series QC (`tools/atlas_qc.py`) flagged a single-step `11.2 cm` jump (matching a `12.1 cm` full L-band phase cycle) in Semarang at epoch `10–11` (`2026-09-29 → 2026-10-11`). After re-processing without the jump, Semarang's peak moved to the northern coast at `−6.2 cm` LOS (`#7` reliable), Tehran was fixed (`−3.5 → −7.4 cm`), and `5` flagged basins (`Bangkok, Beijing, Delhi, Gorgan, Pekalongan`) remain segregated as `indicative only`.
@@ -37,7 +37,7 @@ No — regional L-band interferometry cannot predict exact collapse dates or loc
 Over Mexico City the spatial pattern matches NASA JPL's OPERA product at 10 points (`r = 0.91`), although OPERA covers winter (`2025-12-25` to `2026-03-25`) and NISAR summer (`2026-06-22` to `2026-10-20`). In the Central Valley (`r = 0.40`) and at Eloy (`r = 0.09`) the agreement is weak because seasons and viewing geometry differ, and public `OPERA_L3_DISP-S1_V1` ends `2026-04-26` while NISAR L-band retains `80.4%` summer coherence in Tulare farmland.
 
 **Q11. How many people live on sinking ground in your global atlas?**  
-Intersecting `GHSL GHS-POP E2025` (`100 m`) with 108-day scaled subsidence `< −5 cm` (`|disp| >= 2σ`, excluding nested `karapinar` to avoid double-counting) places **`1,200,716` residents** on **`511.65 km²`** of sinking ground (`7,475,011` below `−2 cm`) across all 29 atlas regions.
+Intersecting `GHSL GHS-POP E2025` (`100 m`) with 108-day scaled subsidence `< −5 cm` (`|disp| >= 2σ`, excluding nested `karapinar` to avoid double-counting) places **`1,167,429` residents** on **`477.72 km²`** of sinking ground (`7,475,011` below `−2 cm`) across all 29 atlas regions.
 
 **Q12. How did you use AI, and are any images AI-generated?**  
 AI assistants (Anthropic Claude and Google Gemini) helped draft analysis scripts, tests, and documentation, with every number read directly from repository JSONs and checked by Team Aseltech. There are **zero AI-generated images** anywhere on the website, presentation deck, 3D viewer, or simulator.
@@ -48,9 +48,9 @@ AI assistants (Anthropic Claude and Google Gemini) helped draft analysis scripts
 
 | Time | Stop (`present.html`) | Speaker / Action | Target Key Cue |
 |---|---|---|---|
-| `0:00–0:20` | **Stop 1: Hero** | Kerem opens; `ArrowRight` → Stop 1 | `29` basins, `1.20 M` people, `r = 0.92` GPS, `0.32 km³/yr` storage |
-| `0:20–1:00` | **Stop 2: 29-Region Atlas** | Kerem; `ArrowRight` → Stop 2 | Same 93-day window, `#1 Konya Plain −11.0 cm/100d` (caution) |
+| `0:00–0:20` | **Stop 1: Hero** | Kerem opens; `ArrowRight` → Stop 1 | `29` basins, `1.17 M` people, `r = 0.92` GPS, `0.32 km³/yr` storage |
+| `0:20–1:00` | **Stop 2: 29-Region Atlas** | Kerem; `ArrowRight` → Stop 2 | Same 93-day window, `#1 Eloy −8.6 cm/100d` (Konya indicative) |
 | `1:00–1:30` | **Stop 3: Self-Checking QC** | Kerem; `ArrowRight` → Stop 3 | Semarang `12.1 cm` phase-cycle jump caught (`−12.1 → −6.2 cm`), `5` indicative |
 | `1:30–2:05` | **Stop 4: Why You Can Trust It** | Kerem; `ArrowRight` → Stop 4 | `10` GNSS `r = 0.924` (`1.00 cm` RMSE), `≈ 0.3 cm` noise, OPERA caveat, London `3.62 cm` floor |
-| `2:05–2:40` | **Stop 5: What It Is For** | Kerem; `ArrowRight` → Stop 5 | `1.20 M` people (`511.65 km²`), `0.3174 km³/yr`, `81/645` tilt, `29` bulletins |
+| `2:05–2:40` | **Stop 5: What It Is For** | Kerem; `ArrowRight` → Stop 5 | `1.17 M` people (`477.72 km²`), `0.3174 km³/yr`, `81/645` tilt, `29` bulletins |
 | `2:40–3:00` | **Stop 6: What Is New & Close** | Mehmet cues `2:40`; `ArrowRight` → Stop 6 | 4 contributions, one-command engine, `Groundwater Simulator` |
