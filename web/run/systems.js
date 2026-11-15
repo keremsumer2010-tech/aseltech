@@ -59,13 +59,13 @@
       var left = state.pumpsTotal - state.pumpsOff;
       say(state, left > 0 ? 'Pump off! ' + left + ' still draining the ground.' : 'All pumps off! The water underground can recover.', 'good');
     } else if (ev.type === 'action' && ev.target === 'crop') {
-      if (state.tank >= 2) {
-        state.tank -= 2; state.cropsWatered++; state.score += 100;
+      if (state.tank >= 1) {
+        state.tank -= 1; state.cropsWatered++; state.score += 100;
         state.aquifer = Math.min(100, state.aquifer + state.cropRefill);
-        say(state, 'Crops saved with rainwater, so this farm pumps less!', 'good');
+        say(state, 'Crop saved with rainwater, so this farm pumps less!', 'good');
       } else {
         if (ev.entity) ev.entity.watered = false;   // veto: not enough water
-        say(state, 'You need 2 water to help this crop. Catch raindrops first!', 'warn');
+        say(state, 'Your tank is empty! Catch a raindrop first, then water the crop.', 'warn');
       }
     } else if (ev.type === 'action' && ev.target === 'dust') {
       if (state.tank >= 1) { state.tank -= 1; state.score += 50; say(state, 'A splash of water calmed the dust devil.', 'good'); }

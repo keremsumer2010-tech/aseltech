@@ -3,12 +3,13 @@
  "name": "Eloy, Arizona",
  "biome": "eloy",
  "width": 127,
- "height": 12,
+ "height": 14,
  "groundRow": 9,
  "spawn": {
   "x": 2,
   "y": 7
  },
+ "intro": "New here: jump over earth fissures; splash dust devils with E.",
  "tiles": [
   "...............................................................................................................................",
   "...............................................................................................................................",
@@ -20,6 +21,8 @@
   "....................................NNN................................====..........................NN........................",
   "...c......b....................b..NNNNNNN....c......b......f......c......b......f......c...........NNNNNN.................f....",
   "NNNNNNNNNNNNNNFFNNNNNNNNNNFFFNNNNNNNNNNNNNNNNTSTSTSNNNNFFNNNNNNFFFNNNNNNNNNNNNNNTSTSTSTSNNNNFFNNNNNNNNNNNNNNNNFFFNNNNNNNNNNNNNN",
+  "NNNNNNNNNNNNNNFFNNNNNNNNNNFFFNNNNNNNNNNNNNNNNNNNNNNNNNNFFNNNNNNFFFNNNNNNNNNNNNNNNNNNNNNNNNNNFFNNNNNNNNNNNNNNNNFFFNNNNNNNNNNNNNN",
+  "NNNNNNNNNNNNNNFFNNNNNNNNNNFFFNNNNNNNNNNNNNNNNNNNNNNNNNNFFNNNNNNFFFNNNNNNNNNNNNNNNNNNNNNNNNNNFFNNNNNNNNNNNNNNNNFFFNNNNNNNNNNNNNN",
   "NNNNNNNNNNNNNNFFNNNNNNNNNNFFFNNNNNNNNNNNNNNNNNNNNNNNNNNFFNNNNNNFFFNNNNNNNNNNNNNNNNNNNNNNNNNNFFNNNNNNNNNNNNNNNNFFFNNNNNNNNNNNNNN",
   "CCCCCCCCCCCCCCFFCCCCCCCCCCFFFCCCCCCCCCCCCCCCCCCCCCCCCCCFFCCCCCCFFFCCCCCCCCCCCCCCCCCCCCCCCCCCFFCCCCCCCCCCCCCCCCFFFCCCCCCCCCCCCCC"
  ],

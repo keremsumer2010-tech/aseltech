@@ -3,12 +3,13 @@
  "name": "Tulare Basin, California",
  "biome": "tulare",
  "width": 132,
- "height": 12,
+ "height": 14,
  "groundRow": 9,
  "spawn": {
   "x": 2,
   "y": 7
  },
+ "intro": "First valley: the tips will show you everything, step by step.",
  "tiles": [
   "....................................................................................................................................",
   "....................................................................................................................................",
@@ -20,6 +21,8 @@
   "....................................................tGG................................===..........................................",
   "...o.s....X....................o......b............GGDDGGG.o......b......f.............o......b..........GGG........................",
   "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGTSTSTSGGGGGGG..GGGGDDDDDDDGGGGGGGGGTSTSTSTSGGG...GGGGGGGGGGGGGGGGGGTSTSTSDDD..GGGGGGGGGGGGGGGGGGGGGG",
+  "DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD..DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD...DDDDDDDDDDDDDDDDDDDDDDDDDDD..DDDDDDDDDDDDDDDDDDDDDD",
+  "DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD..DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD...DDDDDDDDDDDDDDDDDDDDDDDDDDD..DDDDDDDDDDDDDDDDDDDDDD",
   "DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD..DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD...DDDDDDDDDDDDDDDDDDDDDDDDDDD..DDDDDDDDDDDDDDDDDDDDDD",
   "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC..CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC...CCCCCCCCCCCCCCCCCCCCCCCCCCC..CCCCCCCCCCCCCCCCCCCCCC"
  ],
@@ -207,7 +210,7 @@
   },
   {
    "x": 23,
-   "text": "Thirsty crop! Press E to water it (uses 2 water)",
+   "text": "Thirsty crop! Press E to give it 1 water from your tank",
    "until": "crop",
    "keys": [
     "E"

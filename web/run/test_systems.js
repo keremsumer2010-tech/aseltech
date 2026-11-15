@@ -11,9 +11,9 @@ const lvl = { id: 't', aquifer: { start: 50, redLine: 40, drainPerPump: 1, recha
 let s = Sys.createLevelState(lvl);
 Sys.update(s, 1, []); ok(Math.abs(s.aquifer - 48) < 1e-6, 'two running pumps drain 2 per second');
 Sys.update(s, 1, [{ type: 'action', target: 'pump' }]); ok(s.pumpsOff === 1 && Math.abs(s.aquifer - 47) < 1e-6, 'pump off reduces drain');
-const crop = { watered: true }; s.tank = 1; Sys.update(s, 0, [{ type: 'action', target: 'crop', entity: crop }]);
-ok(crop.watered === false && s.cropsWatered === 0, 'crop needs 2 water (veto)');
-s.tank = 4; Sys.update(s, 0, [{ type: 'action', target: 'crop', entity: { watered: true } }]); ok(s.tank === 2 && s.cropsWatered === 1, 'crop watering costs 2');
+const crop = { watered: true }; s.tank = 0; Sys.update(s, 0, [{ type: 'action', target: 'crop', entity: crop }]);
+ok(crop.watered === false && s.cropsWatered === 0, 'crop needs water in the tank (veto)');
+s.tank = 4; Sys.update(s, 0, [{ type: 'action', target: 'crop', entity: { watered: true } }]); ok(s.tank === 3 && s.cropsWatered === 1, 'crop watering costs 1');
 Sys.update(s, 0, [{ type: 'pickup', target: 'chip', fact: 'qc' }]); ok(s.qcFound && s.chips === 0, 'qc chip is the bad-data trap, not a real chip');
 Sys.update(s, 0, [{ type: 'pickup', target: 'chip', fact: 'a' }]); ok(s.chips === 1 && s.chipsTotal === 1, 'real chips counted');
 s.aquifer = 30; s.playerTx = 0; for (let i = 0; i < 30; i++) Sys.update(s, 0.2, []);

@@ -116,10 +116,51 @@
     }
   });
 
-  function startLevel(idx) {
-    fetchLevel(LEVELS[idx].id).then(function (json) { scenes.go('level', { idx: idx, json: json }); })
+  function startLevel(idx, skipBrief) {
+    fetchLevel(LEVELS[idx].id).then(function (json) { scenes.go(skipBrief ? 'level' : 'howto', { idx: idx, json: json }); })
       .catch(function () { scenes.go('map'); });
   }
+
+  // ---------- HOW TO PLAY (shown before every valley; 4 picture cards + this valley's goal) ----------
+  var brief = null, briefT = 0;
+  var CARDS = [
+    { icon: 'drop', title: 'Raindrop', lines: ['Run into it:', '+1 water in your tank', '(blue boxes, top left).'] },
+    { icon: 'pump_on', title: 'Pump (a well)', lines: ['It pulls water OUT', 'of the ground. Stand at it', 'and press E to switch it OFF.'] },
+    { icon: 'crop_dry', title: 'Thirsty crop', lines: ['Press E to give it', '1 water from your tank.', 'Saved farms pump less.'] },
+    { icon: 'bar', title: 'Water underground', lines: ['Keep the blue ABOVE', 'the yellow line, or the', 'ground sinks for good.'] }
+  ];
+  scenes.register('howto', {
+    enter: function (p) { brief = p; briefT = 0; },
+    update: function (dt, inp) { briefT += dt; if (briefT > 0.6 && (inp.jumpPressed || inp.actionPressed || takeTap())) { beep(600, 0.12, 'triangle'); scenes.go('level', brief); } },
+    draw: function (c) {
+      var j = brief.json, ent = j.entities || [];
+      Art.drawBackground(c, j.biome, briefT * 25, W, H, briefT);
+      c.fillStyle = 'rgba(10,14,28,.62)'; c.fillRect(0, 0, W, H);
+      Art.text(c, (brief.idx + 1) + '. ' + j.name, W / 2, 18, { size: 34, align: 'center', color: '#fff', outline: 7 });
+      Art.text(c, 'How to play', W / 2, 64, { size: 18, align: 'center', color: '#ffd23f', shadow: false });
+      var cw = 206, gap = 14, x0 = (W - (cw * 4 + gap * 3)) / 2;
+      CARDS.forEach(function (cd, i) {
+        var x = x0 + i * (cw + gap), y = 100, pop = Math.min(1, Math.max(0, (briefT - i * 0.12) * 4));
+        c.globalAlpha = pop;
+        Art.card(c, x, y + (1 - pop) * 20, cw, 236, { bg: '#fff7e8', r: 18 });
+        Art.text(c, String(i + 1), x + 16, y + 10, { size: 22, color: '#2f8fe6', shadow: false });
+        if (cd.icon === 'bar') {
+          c.fillStyle = '#5a3a22'; c.fillRect(x + 38, y + 38, cw - 76, 64);
+          c.fillStyle = '#2f8fe6'; c.fillRect(x + 38, y + 38 + 64 * 0.35, cw - 76, 64 * 0.65);
+          c.strokeStyle = '#ffd23f'; c.lineWidth = 4; c.setLineDash([10, 6]); c.beginPath(); c.moveTo(x + 32, y + 38 + 64 * 0.6); c.lineTo(x + cw - 32, y + 38 + 64 * 0.6); c.stroke(); c.setLineDash([]);
+        } else { c.save(); c.translate(x + cw / 2 - 36, y + 30); c.scale(1.5, 1.5); Art.drawSprite(c, cd.icon, Math.floor(briefT * 4), 0, 0, false); c.restore(); }
+        Art.text(c, cd.title, x + cw / 2, y + 112, { size: 20, align: 'center', color: '#1c2233', shadow: false });
+        cd.lines.forEach(function (ln, k) { Art.text(c, ln, x + cw / 2, y + 144 + k * 24, { size: 15, align: 'center', color: '#3a4458', shadow: false }); });
+        c.globalAlpha = 1;
+      });
+      var pumps = ent.filter(function (e) { return e.type === 'pump'; }).length, crops = ent.filter(function (e) { return e.type === 'crop'; }).length;
+      Art.card(c, x0, 356, cw * 4 + gap * 3, 108, { bg: 'rgba(20,26,44,.9)', r: 18 });
+      Art.text(c, 'Your goal in this valley', W / 2, 366, { size: 16, align: 'center', color: '#9fd0ff', shadow: false });
+      Art.text(c, 'Switch off ' + pumps + ' pumps  ·  save ' + crops + ' crops  ·  reach the flag', W / 2, 390, { size: 22, align: 'center', color: '#fff', shadow: false });
+      if (j.intro) Art.text(c, j.intro, W / 2, 426, { size: 15, align: 'center', color: '#ffd23f', shadow: false });
+      if (Math.floor(briefT * 2) % 2) Art.text(c, isTouch ? 'Tap to start' : 'Press SPACE to start', W / 2, 486, { size: 22, align: 'center', color: '#fff', outline: 6 });
+    }
+  });
 
   // ---------- LEVEL ----------
   var levelSceneObj = {
@@ -136,7 +177,7 @@
         }),
         player: Player.createPlayer(sp.x * T, sp.y * T - 16), camera: Engine.createCamera(W, H),
         time: 0, scanTimer: Math.min(12, (json.nisar && json.nisar.scanEverySec) || 22), scanActive: 0, scans: 0,
-        toasts: [], fx: [], tips: (json.tips || []).map(function (t) { return Object.assign({ done: false, shownT: 0 }, t); }),
+        toasts: [], fx: [], floats: [], tips: (json.tips || []).map(function (t) { return Object.assign({ done: false, shownT: 0 }, t); }),
         jumpedOnce: false, spawnX: sp.x * T, legend: idx0(payload.idx)
       };
       L.player.checkpointX = L.player.x; L.player.checkpointY = L.player.y;
@@ -162,7 +203,7 @@
 
       if (P.y > L.tileMap.pixelHeight + 60) {               // fell into a pit
         P.hearts -= 1; beep(160, 0.25, 'sawtooth'); events.push({ type: 'fall' });
-        if (P.hearts <= 0) { toast('Out of hearts! Try again: catch rain and switch pumps off sooner.', 'warn', 4); startLevel(L.idx); return; }
+        if (P.hearts <= 0) { toast('Out of hearts! Try again: catch rain and switch pumps off sooner.', 'warn', 4); startLevel(L.idx, true); return; }
         P.x = P.checkpointX; P.y = P.checkpointY; P.vx = 0; P.vy = 0; P.invulnTimer = 1.2; L.camera.triggerShake(5, 0.25);
       }
 
@@ -179,17 +220,18 @@
           e.active = false; beep(e.type === 'chip' ? 880 : 660, 0.1, 'triangle');
           events.push({ type: 'pickup', target: e.type, fact: e.fact });
           addFx('sparkle', e.x + T / 2, e.y + T / 2);
+          if (e.type === 'drop') flt('+1 water', P.x + P.w / 2, P.y - 10, '#2f8fe6');
         } else if (e.type === 'checkpoint') {
           P.checkpointX = e.x; P.checkpointY = e.y - P.h + T; e.active = false; beep(580, 0.1, 'sine'); toast('Checkpoint saved', 'info', 1.6);
         } else if (e.type === 'dust' && !e.calmed) {
           if (inp.actionPressed) { e.calmed = true; e.calmT = 4; beep(500, 0.12, 'triangle'); events.push({ type: 'action', target: 'dust', entity: e }); addFx('splash', e.x + T / 2, e.y + T / 2); }
-          else if (P.invulnTimer <= 0) { P.invulnTimer = 1.0; L.camera.triggerShake(4, 0.2); beep(200, 0.15, 'sawtooth'); events.push({ type: 'dustHit' }); addFx('dust', e.x + T / 2, e.y + T); }
+          else if (P.invulnTimer <= 0) { P.invulnTimer = 1.0; L.camera.triggerShake(4, 0.2); beep(200, 0.15, 'sawtooth'); events.push({ type: 'dustHit' }); addFx('dust', e.x + T / 2, e.y + T); flt('-3 water', P.x + P.w / 2, P.y - 10, '#c8321f'); }
         } else if (e.type === 'flag') {
           events.push({ type: 'reachFlag' }); Sys.update(S, dt, events);
           var res = Sys.score(S), n = res.stars.filter(Boolean).length; saveStars(L.json.id, n);
           jingle([523, 659, 784, 1047]); scenes.go('report', { levelIdx: L.idx, json: L.json, result: res }); return;
         } else if (inp.actionPressed) {
-          if (e.type === 'pump' && !e.off) { e.off = true; beep(320, 0.12, 'square'); events.push({ type: 'action', target: 'pump', entity: e }); L.camera.triggerShake(2, 0.12); }
+          if (e.type === 'pump' && !e.off) { e.off = true; beep(320, 0.12, 'square'); events.push({ type: 'action', target: 'pump', entity: e }); L.camera.triggerShake(2, 0.12); flt('Pump OFF!  +4 water underground', e.x + T / 2, e.y - 20, '#1f9a50'); }
           else if (e.type === 'crop' && !e.watered) { e.watered = true; beep(640, 0.12, 'sine'); events.push({ type: 'action', target: 'crop', entity: e }); addFx('splash', e.x + T / 2, e.y + T / 2); }
           else if (e.type === 'farmer' && e.line) { toast('Farmer: “' + e.line + '”', 'info', 4); }
         }
@@ -197,13 +239,15 @@
       }
 
       S.playerTx = Math.floor((P.x + P.w / 2) / T);
+      var cropsBefore = S.cropsWatered;
       Sys.update(S, dt, events);
+      if (S.cropsWatered > cropsBefore) events.forEach(function (ev) { if (ev.target === 'crop' && ev.entity && ev.entity.watered) flt('Crop saved!  -1 water', ev.entity.x + T / 2, ev.entity.y - 20, '#1f9a50'); });
       Sys.popMessages(S).forEach(function (m) { toast(m.text, m.kind, m.kind === 'science' || m.kind === 'danger' ? 4.5 : 2.6); });
       Sys.sinkTilesToDrop(S).forEach(function (st) {
         if (L.tileMap.getTile(st.x, st.y)) {
           L.tileMap.setTile(st.x, st.y, null);
           L.tileMap.setTile(st.x, st.y + 1, 'sink3');
-          addFx('dust', st.x * T + T / 2, st.y * T + T); addFx('crack', st.x * T + T / 2, (st.y + 1) * T);
+          addFx('dust', st.x * T + T / 2, st.y * T + T); addFx('crack', st.x * T + T / 2, (st.y + 1) * T); flt('-2 cm  ground sank for good', st.x * T + T / 2, st.y * T - 10, '#c8321f');
           if (!settings.reducedMotion) L.camera.triggerShake(4, 0.22);
           beep(110, 0.25, 'sawtooth', 0.06);
         }
@@ -211,6 +255,7 @@
       updateTips(dt);
       L.toasts.forEach(function (t) { t.t -= dt; }); L.toasts = L.toasts.filter(function (t) { return t.t > 0; });
       L.fx.forEach(function (f) { f.t += dt; }); L.fx = L.fx.filter(function (f) { return f.t < 0.9; });
+      L.floats.forEach(function (f) { f.t += dt; f.y -= 34 * dt; }); L.floats = L.floats.filter(function (f) { return f.t < 1.6; });
       L.camera.update(P, L.tileMap, dt, settings.reducedMotion);
     },
     draw: function (c) {
@@ -227,6 +272,7 @@
         Art.drawTile(c, tn, x * T - cx, y * T - cy);
         if (L.scanActive > 0 && tn.indexOf('sink') === 0) { c.fillStyle = 'rgba(232,72,60,' + (0.25 + 0.2 * Math.sin(L.time * 10)) + ')'; c.fillRect(x * T - cx, y * T - cy, T, T); }
       }
+      drawAquiferLayer(c, cy, groundRow);
       for (var i = 0; i < L.entities.length; i++) {
         var e = L.entities[i]; if (!e.active || e.type === 'checkpoint') { if (e.type === 'checkpoint' && e.active) drawCheckpoint(c, e.x - cx, e.y - cy); continue; }
         var ex = Math.round(e.x - cx), ey = Math.round(e.y - cy); if (ex < -T * 2 || ex > W + T) continue;
@@ -241,9 +287,11 @@
           var P = L.player, near = Math.abs((P.x + P.w / 2) - (e.x + T / 2)) < T * 1.4 && Math.abs(P.y + P.h - (e.y + T)) < T;
           if (near) Art.keycap(c, keyName('E'), ex + 4, ey - 44);
         }
+        drawLabel(c, e, ex, ey, cy, groundRow);
       }
       Player.drawPlayer(c, L.player, cx, cy);
       L.fx.forEach(function (f) { Art.fx(c, f.type, f.x - cx, f.y - cy, f.t); });
+      L.floats.forEach(function (f) { c.globalAlpha = Math.min(1, (1.6 - f.t) * 2); Art.text(c, f.text, f.x - cx, f.y - cy, { size: 17, align: 'center', color: f.col, outline: 5, outlineColor: '#ffffff', shadow: false }); c.globalAlpha = 1; });
       if (L.scanActive > 0 && Art.radarSweep) {
         var p = 1 - L.scanActive / 3.5;
         if (!settings.reducedMotion) Art.radarSweep(c, W, H, p, L.json.biome);
@@ -267,7 +315,48 @@
     L.toasts.push({ text: text, kind: kind || 'info', t: dur || 2.6 }); if (L.toasts.length > 3) L.toasts.shift();
   }
   function addFx(type, x, y) { if (L) L.fx.push({ type: type, x: x, y: y, t: 0 }); }
+  function flt(text, x, y, col) { if (L) L.floats.push({ text: text, x: x, y: y, col: col, t: 0 }); }
 
+
+  // Underground water drawn inside the ground (cross-section), linked to the HUD bar.
+  function drawAquiferLayer(c, cy, groundRow) {
+    var top = (groundRow + 1) * T - cy, bottom = H, depth = bottom - top; if (depth <= 8) return;
+    var info = Sys.aquiferInfo(L.sys), lvl = Math.max(0, Math.min(100, info.value)) / 100, wy = bottom - depth * lvl;
+    var safeY = bottom - depth * info.redLine / 100;
+    c.save(); c.globalAlpha = 0.55;
+    c.fillStyle = info.belowRed ? '#2a6fb8' : '#2f8fe6';
+    c.beginPath(); c.moveTo(0, bottom);
+    for (var x = 0; x <= W; x += 16) c.lineTo(x, wy + Math.sin(x / 40 + L.time * 2) * 3);
+    c.lineTo(W, bottom); c.closePath(); c.fill();
+    c.globalAlpha = 1; c.strokeStyle = '#ffd23f'; c.lineWidth = 3; c.setLineDash([12, 8]);
+    c.beginPath(); c.moveTo(0, safeY); c.lineTo(W, safeY); c.stroke(); c.setLineDash([]);
+    Art.text(c, 'WATER UNDERGROUND', 12, Math.min(bottom - 22, wy + 4), { size: 13, color: '#ffffff', outline: 4, outlineColor: '#1b3d6e', shadow: false });
+    Art.text(c, 'safe line', W - 12, safeY - 18, { size: 12, align: 'right', color: '#ffd23f', outline: 4, outlineColor: '#3a2a10', shadow: false });
+    c.restore();
+  }
+  // Small tags above objects near the player, so every object explains itself.
+  function drawLabel(c, e, ex, ey, cy, groundRow) {
+    var P = L.player, d = Math.abs((P.x + P.w / 2) - (e.x + T / 2)) / T;
+    if (e.type === 'pump' && !e.off) {   // water flowing UP the pipe, out of the ground
+      var px = ex + 10, y0 = (groundRow + 1) * T - cy + 40, y1 = ey + T - 6;
+      c.strokeStyle = 'rgba(70,80,100,.85)'; c.lineWidth = 6; c.beginPath(); c.moveTo(px, y0); c.lineTo(px, y1); c.stroke();
+      for (var k = 0; k < 4; k++) { var f = ((L.time * 1.4 + k / 4) % 1), yy = y0 + (y1 - y0) * f; c.fillStyle = '#6fc0ff'; c.beginPath(); c.arc(px, yy, 4, 0, Math.PI * 2); c.fill(); }
+    }
+    if (d > 6) return;
+    var txt = null, col = '#1c2233';
+    if (e.type === 'pump') { txt = e.off ? 'OFF ✔' : 'PUMP: pulls water out'; col = e.off ? '#1f7a35' : '#a33a2c'; }
+    else if (e.type === 'crop' && !e.watered) txt = 'Thirsty: needs 1 water';
+    else if (e.type === 'drop') txt = '+1 water';
+    else if (e.type === 'chip') txt = e.fact === 'qc' ? 'data chip?' : 'NISAR data chip';
+    else if (e.type === 'dust' && !e.calmed) { txt = 'Dust devil: steals water'; col = '#8a5a12'; }
+    else if (e.type === 'flag') txt = 'GOAL';
+    if (!txt) return;
+    c.font = '800 13px "Baloo 2", sans-serif'; var w = c.measureText(txt).width + 16, lx = ex + T / 2 - w / 2, ly = ey - (e.type === 'farmer' ? 0 : 26) - (e.type === 'drop' || e.type === 'chip' ? 10 : 0);
+    c.globalAlpha = Math.max(0, Math.min(1, (6 - d) / 2));
+    c.fillStyle = 'rgba(255,255,255,.92)'; c.beginPath(); c.roundRect ? c.roundRect(lx, ly, w, 20, 10) : c.rect(lx, ly, w, 20); c.fill();
+    Art.text(c, txt, ex + T / 2, ly + 2, { size: 13, align: 'center', color: col, shadow: false });
+    c.globalAlpha = 1;
+  }
   function drawCheckpoint(c, x, y) {
     c.fillStyle = '#2e3650'; c.fillRect(x + 20, y + 4, 6, T - 4);
     c.fillStyle = '#ffd23f'; c.beginPath(); c.moveTo(x + 26, y + 6); c.lineTo(x + 44, y + 13); c.lineTo(x + 26, y + 20); c.fill();
@@ -342,7 +431,7 @@
         if (pauseOpt === 0) scenes.go('level', { resume: true });
         else if (pauseOpt === 1) { settings.sound = !settings.sound; saveSettings(); }
         else if (pauseOpt === 2) { settings.reducedMotion = !settings.reducedMotion; saveSettings(); }
-        else if (pauseOpt === 3) startLevel(L.idx);
+        else if (pauseOpt === 3) startLevel(L.idx, true);
         else scenes.go('map');
       }
     },

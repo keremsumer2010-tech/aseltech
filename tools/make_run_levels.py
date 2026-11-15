@@ -9,7 +9,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "web" / "run" / "levels"
-H = 12            # rows
+H = 14            # rows (extra underground rows so the water layer is visible)
 BASE = 9          # default ground surface row
 atlas = {r["id"]: r for r in json.loads((ROOT / "data/global/atlas.json").read_text(encoding="utf-8"))["regions"]}
 
@@ -27,6 +27,14 @@ BIOME = {
 CH = {"grass": "G", "dirt": "D", "clay": "C", "sand": "N", "road": "R", "brick": "B", "sink1": "S", "sink2": "T",
       "fissure": "F", "crate": "X", "bridge": "=", "orchard": "o", "bush": "b", "fence": "f", "tree": "t",
       "cotton": "c", "wheat": "w", "lamp": "l", "sign": "s", "rock": "#"}
+
+
+INTRO = {
+    "tulare": "First valley: the tips will show you everything, step by step.",
+    "eloy": "New here: jump over earth fissures; splash dust devils with E.",
+    "konya": "New here: in Konya, sinking ground can open sinkholes (obruk).",
+    "mexico": "New here: a whole city built on an old lake bed.",
+}
 
 
 class Level:
@@ -102,7 +110,7 @@ class Level:
         used = {c for row in grid for c in row} - {"."}
         return {
             "id": self.id, "name": self.name, "biome": self.biome, "width": W, "height": H, "groundRow": BASE,
-            "spawn": {"x": 2, "y": self.surf(2) - 2},
+            "spawn": {"x": 2, "y": self.surf(2) - 2}, "intro": INTRO[self.id],
             "tiles": ["".join(r) for r in grid],
             "legend": {c: legend[c] for c in sorted(used)},
             "entities": self.ents, "tips": self.tips, "aquifer": aquifer, "nisar": nisar,
@@ -119,7 +127,7 @@ def tulare():
     L.tip("Catch raindrops: they fill your water tank", "tank3", back=5)
     L.flat(5).ent("pump", 1).tip("This pump drains the water underground. Stand at it and press", "pump", ["E"], back=3)
     L.flat(6).ent("crop", 4).ent("farmer", 2, line="Thanks! With rain in my tank I don't have to pump.")
-    L.tip("Thirsty crop! Press E to water it (uses 2 water)", "crop", ["E"], back=5)
+    L.tip("Thirsty crop! Press E to give it 1 water from your tank", "crop", ["E"], back=5)
     L.flat(3).tip("This bar is the water underground. Below the yellow line, the ground sinks for good", "time5", hud=True, back=1)
     L.sink(6).tip("Cracked ground drops if the water underground gets too low", "pass", back=6)
     L.flat(4).ent("checkpoint", 1)

@@ -3,12 +3,13 @@
  "name": "Mexico City",
  "biome": "mexico",
  "width": 126,
- "height": 12,
+ "height": 14,
  "groundRow": 9,
  "spawn": {
   "x": 2,
   "y": 7
  },
+ "intro": "New here: a whole city built on an old lake bed.",
  "tiles": [
   "..............................................................................................................................",
   "..............................................................................................................................",
@@ -20,6 +21,8 @@
   "...............RRf......................===................RR..........................RRR....................................",
   "...l.........RRBBRR............t......f..................RRBBRR.................f....RRBBBRR.........f.............t..........",
   "RRRRRRRRRRRRRBBBBBBRRRR..RRRRRTSTSTSRRRRRRRRRRRRRR...RRRRBBBBBBTSTSTSTSRRRR..RRRRRRRRBBBBBBBRRRRTSTSTS...RRRRRRRRTSTSTRRRRRRRR",
+  "BBBBBBBBBBBBBBBBBBBBBBB..BBBBBBBBBBBBBBBBBBBBBBBBB...BBBBBBBBBBBBBBBBBBBBBB..BBBBBBBBBBBBBBBBBBBBBBBBB...BBBBBBBBBBBBBBBBBBBBB",
+  "BBBBBBBBBBBBBBBBBBBBBBB..BBBBBBBBBBBBBBBBBBBBBBBBB...BBBBBBBBBBBBBBBBBBBBBB..BBBBBBBBBBBBBBBBBBBBBBBBB...BBBBBBBBBBBBBBBBBBBBB",
   "BBBBBBBBBBBBBBBBBBBBBBB..BBBBBBBBBBBBBBBBBBBBBBBBB...BBBBBBBBBBBBBBBBBBBBBB..BBBBBBBBBBBBBBBBBBBBBBBBB...BBBBBBBBBBBBBBBBBBBBB",
   "BBBBBBBBBBBBBBBBBBBBBBB..BBBBBBBBBBBBBBBBBBBBBBBBB...BBBBBBBBBBBBBBBBBBBBBB..BBBBBBBBBBBBBBBBBBBBBBBBB...BBBBBBBBBBBBBBBBBBBBB"
  ],

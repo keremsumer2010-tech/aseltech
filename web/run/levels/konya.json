@@ -3,12 +3,13 @@
  "name": "Karapınar, Konya",
  "biome": "konya",
  "width": 125,
- "height": 12,
+ "height": 14,
  "groundRow": 9,
  "spawn": {
   "x": 2,
   "y": 7
  },
+ "intro": "New here: in Konya, sinking ground can open sinkholes (obruk).",
  "tiles": [
   ".............................................................................................................................",
   ".............................................................................................................................",
@@ -20,6 +21,8 @@
   ".....................................GGG.......................===....................GG.....................................",
   "...w......w.............f......w...GGDDDGG..........f......w.............b......f...GGDDGG....w......b......f......w.........",
   "GGGGGGGGTSTGGGGGGGG..GGGGGTSTSTGGGGDDDDDDDGGGGGTSTSTSTS...GGGGGGGGGGTSTSTSGGG..GGGGGDDDDDDTSTSTSTSGGGGG...GGGGGTSTSTSGGGGGGGG",
+  "DDDDDDDDDDDDDDDDDDD..DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD...DDDDDDDDDDDDDDDDDDD..DDDDDDDDDDDDDDDDDDDDDDDD...DDDDDDDDDDDDDDDDDDD",
+  "DDDDDDDDDDDDDDDDDDD..DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD...DDDDDDDDDDDDDDDDDDD..DDDDDDDDDDDDDDDDDDDDDDDD...DDDDDDDDDDDDDDDDDDD",
   "DDDDDDDDDDDDDDDDDDD..DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD...DDDDDDDDDDDDDDDDDDD..DDDDDDDDDDDDDDDDDDDDDDDD...DDDDDDDDDDDDDDDDDDD",
   "CCCCCCCCCCCCCCCCCCC..CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC...CCCCCCCCCCCCCCCCCCC..CCCCCCCCCCCCCCCCCCCCCCCC...CCCCCCCCCCCCCCCCCCC"
  ],
