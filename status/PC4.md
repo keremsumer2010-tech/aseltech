@@ -1,1 +1,1 @@
-**PC4** (`2026-11-15 09:21 TR`): `data/global/literature_rates.json` + `docs/story/literature_atlas.md` (`29` bölge, tam DOI/kaynak kıyası, `missing_src=0`) tamamlandı (`BACKLOG_ORTAK.md` §E `[x PC4]`). Sıradaki: `SUREKLI` izleme (cron `task-1150` aktif).
+**PC4** (`2026-11-15 09:25 TR`): Ortak `93` günlük pencere vs. tam pencere sıralama kıyası (`docs/qa/PC4.md` §32, `BACKLOG_ORTAK.md` §B `[x PC4]`) tamamlandı. Sıradaki: `SUREKLI` izleme (cron `task-1150` aktif).

@@ -320,3 +320,16 @@ Kapsam: `web/index.html` (`1–163`). Genel İngilizce tonu akıcı ve tutarlı 
 ### 31. Teslim Paketi & Canlı URL Denetimi (`2026-11-15 09:17 TR`)
 - `docs/story/submission_package.md` oluşturuldu (`BACKLOG_ORTAK.md` §E `[x PC4]`).
 - Canlı URL kontrolünde `https://keremsumer2010-tech.github.io/aseltech/web/index.html` adresinin `HTTP 404` döndürdüğü tespit edildi (Pages `web/.` içeriğini kökte yayınlıyor); `docs/story/submission_form.md:43` doğrulanmış **`https://keremsumer2010-tech.github.io/aseltech/`** (`HTTP 200`) ile düzeltildi.
+
+### 32. Ortak 93 Günlük Pencere vs. Tam Pencere Sıralama Kıyası (`2026-11-15 09:24 TR`)
+`data/global/atlas.json` içindeki `rate_cm_per_100d_common` (`2026-06-28 → 2026-09-29`, `93` gün) sıralaması ile tam dönem (`96–120` gün, `rate_cm_per_100d`) sıralaması karşılaştırıldı (`BACKLOG_ORTAK.md` §B `[x PC4]`):
+- **Güvenilir (`reliable`, 16 bölge) öne çıkan yer değiştirmeler:**
+  - `konya_plain`: `#1 → #1` (`0` fark; `−8.9 → −11.0 cm/100d`, pik yaz sulaması ortak pencerede yoğunlaşıyor).
+  - `eloy`: `#4 → #2` (`+2`; `−6.7 → −8.6 cm/100d`) ve `kashmar`: `#7 → #4` (`+3`; `−5.2 → −7.0 cm/100d`) — Ekim başındaki yavaşlama kesilince yaz ortası çökme hızı yükseliyor.
+  - `central_valley`: `#2 → #3` (`−1`; `−7.2 → −7.3 cm/100d`), `mashhad`: `#3 → #5` (`−2`; `−7.2 → −6.9 cm/100d`), `semarang`: `#5 → #7` (`−2`; `−6.5 → −5.5 cm/100d`).
+  - `quetta`: `#11 → #16` (`−5`; `−3.2 → −0.7 cm/100d` — çekimin büyük bölümü ortak pencere dışındaki Haziran/Ekim uçlarında gerçekleşmiş).
+  - `cangzhou` (`+2`, `#15 → #13`), `can_tho` (`+1`), `tianjin` (`+1`), `delta` (`+1`).
+- **Indicative (`13` bölge) öne çıkan yer değiştirmeler:**
+  - `ho_chi_minh`: `#9 → #13` (`−4`; `−3.5 → +4.6 cm/100d`, muson dönemi kabarma/salınım etkisi).
+  - `bangkok`: `#6 → #3` (`+3`; `−6.2 → −12.5 cm/100d`, muson gürültü salınımı).
+  - `gorgan` (`#1 → #1`), `delhi` (`#2 → #2`) sabit; `jakarta` (`−2`), `isfahan` (`+2`), `xian` (`+2`).
