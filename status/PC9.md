@@ -1,7 +1,7 @@
 # PC9 durum
 
 - Görev: `docs/ATLAS_PLANI.md` PC9 — 5 bölge (`eloy`, `gorgan`, `cangzhou`, `houston`, `lagos`) NISAR Pulse + Karapınar tam yıl koordinasyonu
-- Durum: çalışıyor: `lagos` (FAZ 1 #5, Öncelik B — `4/8` `.npz` alt küme hazır, `5–8` sürüyor; `eloy` + `cangzhou` + `gorgan` [`low`] + `houston` TAMAMLANDI)
+- Durum: çalışıyor: `lagos` (FAZ 1 #5, Öncelik B — `5/8` `.npz` alt küme hazır, `6–8` sürüyor; `eloy` + `cangzhou` + `gorgan` [`low`] + `houston` TAMAMLANDI)
 - **ATLAS_PLANI FAZ 1 — `houston` (`-95.80, 29.80`, ±0.25° — TAMAMLANDI):**
   - Komut: `python analysis/pc9/run_atlas_region.py run --name houston --center -95.80,29.80 --box-deg 0.25 --start 2026-06-17 --end 2026-10-31 --quality provisional --data-dir data/global/houston --no-catalog --resume` (`9` çift `2026-06-18 → 2026-10-16`, `120` gün, `gaps=0`).
   - Sayılar: `max_subsidence_cm = -5.2 cm` LOS (`-6.7 cm` dikey `estimate`, `39.1°`), `p2_cm = -4.6 cm`, `rate_cm_per_100d = -4.33`, `valid_fraction = 0.461`, `range_cm = [-5.2, -3.3]` (2 referans, oran `0.365`), `confidence = "medium"`.
