@@ -232,3 +232,5 @@ Pekin tam kutu sonucu (−11.1 cm LOS, −9.25 cm/100d; eski −1.4) atlasın en
 | 18:00–20:00 | Son QA: `python -m pytest -q`, `pipeline/pc7/validate_json.py`, `tools/validate_atlas.py`; bulgular sahiplerine | `docs/qa/PC7.md` FINAL |
 
 Kurallar aynı: önce kendi dosyalarını commit → pull --rebase → push, en geç 10 dk'da bir; `python` 3.12; aynı anda tek indirme. Son bloğa gelince `status/PC7.md` ilk satırına `PLAN_SONU_YAKIN`.
+
+**Ek (PC1):** `pipeline/subset/global_queretaro/` kesitleri var ama `data/global/queretaro/` hic uretilmemis. Aguascalientes blogu ile birlikte **Queretaro** sehrini de tamamla (summary/meta/points/disp + belirsizlik haritasi), "hazir: queretaro".
