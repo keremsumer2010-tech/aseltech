@@ -93,3 +93,64 @@ h1,h2,h3{font-family:var(--disp);font-weight:800;letter-spacing:-.022em}
   .site-nav{gap:16px}
 }
 @media (prefers-reduced-motion:no-preference){.wfig img{transition:transform .4s}.wfig:hover img{transform:translateY(-2px)}}
+
+/* ---------- v2 (PC1): logo, one-look panel, section dots ---------- */
+html{scroll-behavior:smooth}
+.work,#built{scroll-margin-top:calc(var(--hdr) + 8px)}
+.logo{gap:10px}
+.logo-img{width:32px;height:32px;display:block;flex:none}
+.logo-text{font:400 1rem var(--disp);font-stretch:118%;letter-spacing:.06em;text-transform:uppercase;color:var(--ink)}
+.logo-text b{font-weight:900;color:var(--acc)}
+.logo-mark{display:none}
+.foot-logo{display:block;margin-bottom:10px}
+
+.built-intro{padding:60px 6vw 64px}
+.bi-head{max-width:1180px;margin:0 auto 26px}
+.glance{list-style:none;margin:0 auto;padding:0;max-width:1180px;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.12)}
+.glance li{background:var(--ink)}
+.glance a{display:grid;grid-template-columns:auto 1fr;grid-template-areas:"n t" "n s";column-gap:16px;row-gap:2px;align-items:center;padding:20px 22px;color:#fff;text-decoration:none;height:100%;position:relative;transition:background .2s}
+.glance a::after{content:"→";position:absolute;right:18px;top:18px;color:#5f7090;font-family:var(--disp);transition:transform .2s,color .2s}
+.glance a:hover{background:#15213a}
+.glance a:hover::after{color:#ff8a65;transform:translateX(3px)}
+.glance i{grid-area:n;font:300 2.6rem/1 var(--disp);font-stretch:125%;font-style:normal;color:transparent;-webkit-text-stroke:1.2px #8fb0ff}
+.glance b{grid-area:t;font:800 1.08rem/1.2 var(--disp);font-stretch:105%}
+.glance span{grid-area:s;font-size:.88rem;color:#a6b3c9;line-height:1.35}
+.glance em{font:600 .9em var(--mono);font-style:normal;color:#ff9b7a}
+
+.dotnav{position:fixed;right:14px;top:50%;transform:translateY(-50%);z-index:40;display:none;flex-direction:column;gap:4px;opacity:0;pointer-events:none;transition:opacity .3s}
+.dotnav.on{opacity:1;pointer-events:auto}
+.dotnav a{position:relative;display:block;font:600 .7rem/1 var(--mono);color:#7a8596;padding:6px 7px;border:1px solid #d5dbe4;background:#fff;text-align:center;text-decoration:none}
+.dotnav a:hover{color:var(--acc);border-color:var(--acc)}
+.dotnav a.cur{background:var(--acc);border-color:var(--acc);color:#fff}
+.dotnav a::before{content:attr(data-t);position:absolute;right:calc(100% + 8px);top:50%;transform:translateY(-50%);white-space:nowrap;font:700 .66rem var(--disp);font-stretch:118%;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);background:#fff;padding:5px 8px;border:1px solid #d5dbe4;opacity:0;transition:opacity .15s;pointer-events:none}
+.dotnav a:hover::before,.dotnav a.cur::before{opacity:1}
+.dotnav a.cur::before{color:var(--acc)}
+@media (min-width:1300px){.dotnav{display:flex}}
+@media (max-width:1000px){.glance{grid-template-columns:1fr 1fr}}
+@media (max-width:620px){.glance{grid-template-columns:1fr}.glance a{padding:16px}.logo-text{font-size:.9rem}}
+
+/* hero: two columns on wide screens so headline, top 5 and map all sit above the fold */
+@media (min-width:1200px){
+  .hero-atlas{display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);grid-template-rows:auto 1fr auto;column-gap:44px;padding:calc(var(--hdr) + 34px) 4vw 26px;min-height:100vh;align-content:center}
+  .ha-text{grid-column:1;grid-row:1;margin:0}
+  .hero-atlas h1{font-size:clamp(2.3rem,3.3vw,3.4rem)}
+  .ha-lede{font-size:1.04rem}
+  .ha-map{grid-column:2;grid-row:1/3;align-self:center;margin:0;max-width:none}
+  .ha-bottom{grid-column:1;grid-row:2;margin:18px 0 0;grid-template-columns:1fr;align-self:start}
+  .ha-top5{grid-template-columns:1fr;gap:0;border-top:1px solid rgba(255,255,255,.14)}
+  .ha-top5 li{grid-template-columns:28px 1fr auto;grid-template-areas:"rk nm rt" "bar bar bar";background:none;border:0;border-bottom:1px solid rgba(255,255,255,.14);border-radius:0;padding:8px 2px}
+  .ha-top5 .nm b{display:inline;font-size:.98rem}
+  .ha-top5 .nm span{display:inline;margin-left:8px}
+  .ha-top5 .rt{align-self:center;font-size:1.05rem}
+  .ha-top5 .bar{height:3px;margin-top:5px}
+  .ha-cta{margin-top:16px}
+  .ha-note{grid-column:1/3;grid-row:3;max-width:none;margin:18px 0 0}
+}
+@media (min-width:1200px){
+  .hero-atlas{grid-template-columns:minmax(340px,.62fr) minmax(0,1.38fr);column-gap:36px;padding-left:3.2vw;padding-right:3.2vw}
+  .hero-atlas h1{font-size:clamp(2.1rem,2.9vw,3.1rem)}
+  .ha-cta{flex-wrap:nowrap}
+  .ha-cta .btn{padding:13px 14px;font-size:.72rem}
+}
+h1,h2{text-wrap:balance}
+.work .what,.work .why{text-wrap:pretty}

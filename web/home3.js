@@ -74,4 +74,18 @@
       svg.innerHTML = g;
     }
   }).catch(() => {});
+
+  // section dots: show after the overview, mark the section in view
+  const dn = document.querySelector('.dotnav');
+  if (dn){
+    const items = [...dn.querySelectorAll('a')].map(a => [a, document.getElementById(a.getAttribute('href').slice(1))]).filter(x => x[1]);
+    const built = document.getElementById('built');
+    const update = () => {
+      dn.classList.toggle('on', !!built && built.getBoundingClientRect().bottom < innerHeight * 0.5);
+      let cur = null;
+      items.forEach(([a, el]) => { if (el.getBoundingClientRect().top < innerHeight * 0.45) cur = a; });
+      items.forEach(([a]) => a.classList.toggle('cur', a === cur));
+    };
+    addEventListener('scroll', update, {passive: true}); addEventListener('resize', update); update();
+  }
 })();
