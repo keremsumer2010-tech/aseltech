@@ -83,3 +83,22 @@ Komut: `python -m pytest analysis/pc9 analysis/decomp analysis/test_insar.py ana
 
 - **`konya_plain_fullyear` → `insufficient_data` (`data/konya_plain_fullyear/summary.json`):**
   - ASF CMR sorgusu (`NISAR_L2_GUNW_BETA_V1`, `bbox=[32.4, 37.4, 33.9, 38.1]`): 54 granülün tamamı (`P007, P079, P100, P108, P172`) en geç `2026-01-16` (`cycle 009`) tarihinde bitiyor; `provisional` ise `2026-06-21` (`P108`) / `2026-06-26` (`P007`) tarihinde başlıyor (`156–168` günlük Şubat–Haziran boşluğu). Kesintisiz tam yıl zinciri kurulamadığı için `tasks/PC9.md` kuralı gereği `"status": "insufficient_data"` yazıldı ve Mexico City tam yıl zincirine (`26` çift, `gaps=0`) geçildi.
+
+---
+
+## 7. ATLAS_PLANI FAZ 3 — Central Valley Tam Yıl (`2025-11-24` → `2026-10-14`) ↔ 11 Aylık GNSS & Kalıcı Çökme Alanı
+
+- **GNSS karşılaştırması (`validation/compare.py` → `data/central_valley_fullyear/validation.json`, `10` istasyondan `8`'i geçerli InSAR ayak izi içinde):**
+  | İstasyon | `r` (Korelasyon) | `RMSE` (cm) | InSAR Son (cm) | GNSS Son (cm) |
+  |---|---:|---:|---:|---:|
+  | `CAHA` | `0.9206` | `1.840` | `-8.486` | `-7.447` |
+  | `CAFP` | `0.9072` | `2.113` | `-9.485` | `-7.453` |
+  | `P564` | `0.9017` | `5.781` | `-9.089` | `-1.674` |
+  | `QCAP` | `0.8784` | `1.669` | `-7.435` | `-7.730` |
+  | `HANF` | `0.7929` | `2.333` | `-6.851` | `-6.712` |
+  | `CAD1` | `0.6335` | `2.724` | `-3.989` | `-1.147` |
+  | `P565` | `0.6138` | `1.916` | `-2.358` | `-1.011` |
+  | `P566` | `-0.2771` | `2.963` | `+1.446` | `-0.908` |
+- **Kalıcı çökme alanı (`analysis/decomp/decompose.py`, `160 m × 160 m` = `0.0256 km²/px`, toplam geçerli alan `6,242.5 km²` = `%46.0`):**
+  - Kalıcı çökme **`> 5 cm/yr`** (`v_cm_per_yr < -5.0`): **`2,274.7 km²`** (geçerli alanın `%36.4`'ü)
+  - Kalıcı çökme **`> 10 cm/yr`** (`v_cm_per_yr < -10.0`): **`397.6 km²`** (geçerli alanın `%6.4`'ü)
