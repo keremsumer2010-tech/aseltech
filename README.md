@@ -4,7 +4,7 @@
 
 > *NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.*
 
-Using provisional 24.2 cm L-band interferograms from the NASA-ISRO **NISAR** mission (`CRID P05023`, June–October 2026), **NISAR Pulse** measures centimeter-scale groundwater-driven land subsidence across **29 agricultural and urban basins** worldwide (`16` reliable, `13` indicative), separates permanent clay compaction from seasonal elastic rebound in California's Central Valley, tests subsidence gradients along canals and railways, and connects those measurements to an interactive 24-month aquifer simulator.
+**We turned the first months of NASA-ISRO NISAR radar data into a self-checking global subsidence atlas: 29 basins measured with one open pipeline on the same 93 days, every number traceable to its file, and every headline checked against GPS, NASA's OPERA product and the literature.** Using provisional 24.2 cm L-band interferograms (`CRID P05023`, June–October 2026), **NISAR Pulse** separates permanent clay compaction from seasonal rebound, quantifies canal and railway tilt, and connects measurements to a 24-month aquifer simulator.
 
 - **Live Site:** https://keremsumer2010-tech.github.io/aseltech/
 - **Global Subsidence Atlas (29 Regions):** [web/atlas.html](web/atlas.html) (`https://keremsumer2010-tech.github.io/aseltech/atlas.html`)
