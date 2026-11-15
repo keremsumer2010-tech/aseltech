@@ -130,5 +130,5 @@ password YOUR_PASSWORD
 Running the core test suite:
 
 ```bash
-python3 -m pytest tests/test_site_numbers.py -v
+python3 -m pytest tests/ -v
 ```
