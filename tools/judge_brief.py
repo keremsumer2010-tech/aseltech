@@ -105,7 +105,7 @@ def build(n: dict) -> str:
     contribs = [
         ("One window, one method, 29 basins", f"A comparable global ranking from the first provisional NISAR data: one {n['window_days']}-day window, one open pipeline."),
         ("An atlas that checks itself", "Time-series quality control caught a full phase-cycle error in Semarang (-12.1 to -6.2 cm) and flagged other basins as indicative."),
-        ("Independent evidence", "GPS agreement in the Central Valley and NASA OPERA agreement in Mexico City (r = 0.91)."),
+        ("Independent evidence", "GPS agreement in the Central Valley (r = 0.92, 10 stations); in Mexico City spatial pattern matches NASA JPL OPERA at 10 points (r = 0.91) across seasons."),
         ("From measurement to decision", "People and aquifer loss, canal tilt risk, one-page bulletins, a 24-month simulator, one command to reproduce."),
     ]
     contrib_html = "\n".join(
@@ -168,7 +168,7 @@ section {{ margin-bottom: 4.5mm }}
 <li><strong>Hero.</strong> One sentence and three numbers: basins, people, GPS agreement.</li>
 <li><strong>Atlas.</strong> All {n['basins']} basins ranked on the same {n['window_days']} days ({n['window'][0]} to {n['window'][1]}).</li>
 <li><strong>We caught our own error.</strong> Semarang before and after quality control.</li>
-<li><strong>Why you can trust it.</strong> GPS, OPERA, formal uncertainty, and the calibration notice.</li>
+<li><strong>Why you can trust it.</strong> GPS agreement across 10 stations (r = 0.92), formal uncertainty, and the calibration notice.</li>
 <li><strong>What it is for.</strong> People, water, canals, bulletins, simulator.</li>
 <li><strong>Original and open.</strong> Four contributions and one reproduction command.</li>
 </ul></section>

@@ -96,7 +96,7 @@ def patch(md: str, f: dict) -> str:
         f"(-12.1 to -6.2 cm after correction) and moved Tehran from -3.5 to -7.4 cm LOS with an off-basin reference [data/global/atlas_changelog.json]; "
         f"indicative-only basins include {ind_names}. Intersecting GHSL GHS-POP E2025 (100 m) with displacement above each city's 2-sigma noise floor shows "
         f"{f['area']:.2f} km2 sinking faster than -5 cm per 108 days, with {f['people']:,} residents ({f['people2']:,} below -2 cm), excluding nested Karapinar "
-        f"[data/global/exposure_atlas.json; data/global/vital_signs.json]. Checks: GPS r = {f['r']:.2f} (10 stations) and NASA OPERA DISP-S1 r = 0.91 (Mexico City) [data/global/opera_check.json]."
+        f"[data/global/exposure_atlas.json; data/global/vital_signs.json]. Checks: NASA JPL OPERA DISP-S1 r = 0.912 in Mexico City (10 points, different seasons) [data/global/opera_check.json]; 10-station GPS agreement in California (r = 0.924, 1.00 cm median RMSE) [data/central_valley/validation.json]."
     )
     # replace the ultra-short and standard code blocks
     md = re.sub(

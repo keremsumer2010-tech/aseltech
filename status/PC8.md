@@ -1,3 +1,3 @@
 ﻿# PC8 durum
 
-- Durum: %100 - Kaynakça ve atıflar denetimi tamamlandı (sources.md ve teknik not linkleri HTTP 200, ASF DAAC DOI atıfları doğrulandı); sırada: SUREKLI 30 dk tamlık tablosu ve yeni bölge izleme.
+- Durum: %100 - OPERA ve GHSL nufus tutarlilik senkronizasyonu tamamlandi (tum 16 test yesil, home_summary ve submission_form tam uyumlu); sirada: SUREKLI kontrol dongusu.
