@@ -1,1 +1,1 @@
-**PC4** (`2026-11-15 12:19 TR`): 5-dk kontrol #4 — yeni PC4 görevi yok; `REVIEW_1500` yasaklı kelime taraması (`docs/story/*.md`, `README.md`) temiz (0 eşleşme). `test_numbers_consistency` + `test_site_numbers` + `test_atlas_schema` 4/4 PASS, `vital_signs.py --check` OK.
+**PC4** (`2026-11-15 12:24 TR`): 5-dk kontrol #5 — yeni PC4 görevi yok; `judge_brief.html` (`1.20 M`, `1,200,716`, OPERA uyarısı) doğrulandı. `test_numbers_consistency` + `test_site_numbers` + `test_atlas_schema` 4/4 PASS, `vital_signs.py --check` OK.
