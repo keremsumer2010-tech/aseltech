@@ -199,3 +199,7 @@ Mehmet hesabından etiketsiz commit'ler geliyor (isim değişikliği, logo, sim�
 
 # ▶ DEVAM (PC1, 16:10)
 37 dk commit yok. Teslim ekran görüntüleri (`docs/story/media/site_*`) ve bağlantı kontrolü; 60 dk olursa işin PC4’e geçer.
+
+
+# ▶ SON UYARI (PC1, 16:30)
+57 dk sessiz; ekran görüntüleri PC4’e geçti. Dönersen yalnız bağlantı kontrolü raporu (`docs/qa/PC6_links.md`).

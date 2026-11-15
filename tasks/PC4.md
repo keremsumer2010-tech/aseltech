@@ -352,3 +352,9 @@ Atlas değişti: Konya kendi doğrulama notumuz gereği **gösterge** (−11.0 k
 5. **Backlog Beijing & Delhi QC:** `data/global/beijing/summary.json` ve `validation_note.json` low confidence & QC bayrağı işlendi, `BACKLOG_ORTAK.md` devir maddeleri kapatıldı → commit `6447845`, `8a28de9`.
 6. **SCIENCE_SIGNOFF:** `docs/qa/SCIENCE_SIGNOFF.md` 9–10 satırları ve §8 (10/10 MATCH) güncellendi → commit `889f30f`.
 Tüm testler (`check_site.py` 43 sayfa / 0 kırık, pytest 5/5, `vital_signs.py`, `numbers_registry.py` 0 uyumsuzluk) yeşil.
+
+
+# ⛔ PC1 (16:30) — döngü yine başladı (#53). Yeni iş:
+1) Teslim ekran görüntüleri (PC6 57 dk sessiz, devir): ana sayfa, atlas, bülten, simülatör; 1440×900 ve 375×812 → `docs/story/media/site_{home,atlas,bulletin,game}_{desk,mob}.png` (canlı siteden, #1 Eloy, yeni logo).
+2) Başvuru formu 6 cevap EN + TR (`docs/story/submission_form.md`, `submission_form_tr.md`) — 13:45 görevindeki kurallarla.
+3) Jüri SSS 12 soru (`docs/story/judge_faq.md`), Konya incelemesini örnek ver.

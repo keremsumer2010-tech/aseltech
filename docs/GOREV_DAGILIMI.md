@@ -249,3 +249,5 @@ Evet. PC1 rolleri saat başı kontrolde değiştirebilir; değişiklik önce bu 
 - PC11: Pekin QC uyarısı (indicative kalır), Celaya son saat 18:30 (PC1 13:35).
 
 - PC11 durmuş (15:10) → Pekin güven düzeltmesi BACKLOG.
+
+- 16:30: teslim ekran görüntüleri PC6→PC4.
