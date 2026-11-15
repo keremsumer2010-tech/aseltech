@@ -790,6 +790,7 @@
   }
 
   function syncUI() {
+    try { renderMission(); } catch (e) { console.warn('mission', e); }
     if (!simState) return;
     const d = simState.districts.find((x) => x.id === selectedDistrictId) || simState.districts[0];
     const wySpec = ValleyModel.getWaterYearSpec(simState.currentWaterYear);
@@ -1060,6 +1061,14 @@
       }
     }
 
+    if (missionRef && window.ValleyMission) {
+      const ev = ValleyMission.evaluate(simState, missionRef);
+      $('endGrade').textContent = ev.grade;
+      $('endGrade').dataset.grade = ev.grade;
+      const verdict = { A: 'Excellent water management.', B: 'Good: you beat doing nothing.', C: 'Mixed: one goal slipped.', D: 'Close to doing nothing.', F: 'The valley paid the price.' }[ev.grade] || '';
+      $('endScore').innerHTML = `<b>${ev.score}/100</b> · ${verdict}`;
+      $('endMissionList').innerHTML = missionRows(ev);
+    }
     $('endModal').hidden = false;
     renderEndCompareChart();
   }
@@ -1275,7 +1284,35 @@
     if ($('endClassroomScenarioTag')) {
       $('endClassroomScenarioTag').textContent = `${ui.shortLabel} · ${spec.label}`;
     }
+    buildMissionRef();
     advanceMonths(24);
+  }
+
+
+  /* ---------- mission & score (game/mission.js) ---------- */
+  let missionRef = null;
+  function buildMissionRef() {
+    if (!window.ValleyMission || !simState) { missionRef = null; return; }
+    const hydrated = ValleyModel.hydrateFromRepoData(pointsData, summaryData, activeBasinId);
+    missionRef = ValleyMission.buildReference(ValleyModel, {
+      basinId: activeBasinId, districts: hydrated.districts, summaryData: hydrated.summaryData,
+      year1WaterYear: simState.year1WaterYear, year2WaterYear: simState.year2WaterYear,
+    }, (st) => ({ pumpingPct: 100, surfaceAllocPct: Math.min(60, ValleyModel.getWaterYearSpec(st.currentWaterYear).maxSurfacePct), fallowPct: 0 }));
+  }
+  function missionRows(ev) {
+    return ev.objectives.map((o) => `<li class="${ev.score !== null ? (o.ok ? 'ok' : 'bad') : ''}">
+      <span class="m-dot" aria-hidden="true"></span><div><b>${o.label}</b><span>${o.now}</span><small>Goal: ${o.goal}</small></div></li>`).join('');
+  }
+  function renderMission() {
+    if (!missionRef || !window.ValleyMission || !$('missionList')) return;
+    const ev = ValleyMission.evaluate(simState, missionRef);
+    $('missionList').innerHTML = missionRows(ev);
+    const g = $('missionGrade');
+    g.textContent = ev.grade;
+    g.dataset.grade = ev.grade;
+    g.title = ev.score === null ? 'Your grade appears after month 12' : `Score so far: ${ev.score}/100`;
+    if ($('missionSub')) $('missionSub').textContent = ev.score === null ? `Beat "doing nothing" (the 2026 settings). Grade appears after the first full year, month 12 (now ${simState.monthStep}/24).` : `Score ${ev.score}/100 against "doing nothing" (the 2026 settings).`;
+    return ev;
   }
 
   function resetSimulation(keepModalHidden) {
@@ -1294,6 +1331,7 @@
     document.querySelectorAll('.classroom-scen-btn').forEach((b) => b.classList.remove('active'));
     if ($('endClassroomBox')) $('endClassroomBox').hidden = true;
     ValleyModel.setDistrictControls(simState, 'ALL', presetPatch('baseline'));
+    buildMissionRef();
     if (keepModalHidden) $('endModal').hidden = true;
     $('eventList').innerHTML = `<div class="event-item">
       <div class="event-title">Simulation ready — ${ui.shortLabel}, October 2026</div>

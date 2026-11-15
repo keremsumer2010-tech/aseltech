@@ -299,3 +299,24 @@ button { font-family: inherit; }
   .seg-map .seg-btn { padding: 8px 10px; font-size: 11px; white-space: nowrap; }
 }
 @media (max-width: 640px) { .date-stamp { bottom: 80px; } }
+
+/* mission & grade (PC1) */
+.mission .card-head { display: flex; align-items: center; justify-content: space-between; }
+.mission-sub { margin: 2px 0 8px; font-size: 12px; color: #566273; }
+.mission-grade { min-width: 34px; height: 34px; display: inline-grid; place-items: center; border-radius: 8px; font: 800 18px/1 system-ui, sans-serif; background: #eef1f5; color: #566273; }
+.mission-grade[data-grade="A"], .end-grade-badge[data-grade="A"] { background: #1f7a35; color: #fff; }
+.mission-grade[data-grade="B"], .end-grade-badge[data-grade="B"] { background: #4d8f2a; color: #fff; }
+.mission-grade[data-grade="C"], .end-grade-badge[data-grade="C"] { background: #c98a12; color: #fff; }
+.mission-grade[data-grade="D"], .end-grade-badge[data-grade="D"] { background: #d0611f; color: #fff; }
+.mission-grade[data-grade="F"], .end-grade-badge[data-grade="F"] { background: #b3261e; color: #fff; }
+.mission-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.mission-list li { display: grid; grid-template-columns: 12px 1fr; gap: 8px; align-items: start; font-size: 12.5px; line-height: 1.35; }
+.mission-list li b { display: block; font-size: 12.5px; }
+.mission-list li span { display: block; font-family: ui-monospace, Consolas, monospace; font-size: 12px; color: #0b1a33; }
+.mission-list li small { display: block; color: #6b7686; font-size: 11px; }
+.m-dot { width: 10px; height: 10px; border-radius: 50%; background: #c8ced8; margin-top: 3px; }
+.mission-list li.ok .m-dot { background: #1f7a35; }
+.mission-list li.bad .m-dot { background: #d0611f; }
+.end-grade { display: grid; grid-template-columns: 76px 1fr; gap: 16px; align-items: center; margin: 6px 0 12px; padding: 12px; border: 1px solid #e3e7ee; border-radius: 10px; background: #fafbfc; }
+.end-grade-badge { width: 76px; height: 76px; display: grid; place-items: center; border-radius: 14px; font: 800 40px/1 system-ui, sans-serif; background: #eef1f5; color: #566273; }
+.end-grade-score { font-size: 15px; margin-bottom: 6px; }

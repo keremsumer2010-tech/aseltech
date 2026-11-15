@@ -11,6 +11,10 @@
   <link rel="stylesheet" href="./style.css">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;800&display=swap" rel="stylesheet">
   <script src="./i18n_load.js"></script>
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#0b3d91">
+  <link rel="apple-touch-icon" href="assets/logo_mark_192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
 </head>
 <body>
   <div class="app-shell">
@@ -98,6 +102,14 @@
 
       <!-- Right panel -->
       <aside class="control-panel" aria-label="Water controls">
+        <section class="panel-card mission" id="missionCard" aria-label="Your mission">
+          <div class="card-head">
+            <h2 class="card-title">Your mission</h2>
+            <span class="mission-grade" id="missionGrade" title="Score so far">–</span>
+          </div>
+          <p class="mission-sub" id="missionSub">Beat "doing nothing" (the 2026 settings) on all three.</p>
+          <ul class="mission-list" id="missionList"></ul>
+        </section>
         <section class="panel-card levers">
           <div class="card-head">
             <h2 class="card-title">Monthly water use</h2>
@@ -167,7 +179,7 @@
       <ol class="start-steps">
         <li><span>1</span><b>Pick a valley</b>Both were measured from space by NISAR in 2026.</li>
         <li><span>2</span><b>Set the water</b>Groundwater, canal water and how much land rests.</li>
-        <li><span>3</span><b>Move month by month</b>Watch wells, canals and the ground respond.</li>
+        <li><span>3</span><b>Beat "doing nothing"</b>Keep 85% of farm income while cutting permanent sinking in half. Graded A–F after the first year.</li>
       </ol>
 
       <div class="basin-cards" role="radiogroup" aria-label="Choose a valley">
@@ -217,6 +229,10 @@
           <span class="pill" style="background:#b91c1c;color:#fff">30-second run</span>
         </div>
         <p id="quickDemoSummaryText" style="margin:6px 0 0;font-size:1.02rem;font-weight:600;color:#7f1d1d"></p>
+      </div>
+      <div class="end-grade" id="endGradeBox">
+        <div class="end-grade-badge" id="endGrade">–</div>
+        <div><div class="end-grade-score" id="endScore"></div><ul class="mission-list" id="endMissionList"></ul></div>
       </div>
       <p id="endMeaning" class="modal-sub"></p>
 
@@ -332,6 +348,7 @@
   <script src="https://cdn.jsdelivr.net/npm/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
   <script src="./model.js"></script>
+  <script src="./mission.js"></script>
   <script src="./tests.js"></script>
   <script src="./game.js"></script>
   <script src="./tour_steps.js"></script>

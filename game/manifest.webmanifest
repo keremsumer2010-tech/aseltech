@@ -1,0 +1,15 @@
+{
+  "name": "Valley Under Pressure — NISAR Vision",
+  "short_name": "Valley",
+  "description": "Run a farming valley for 24 months. Calibrated to NASA-ISRO NISAR measurements.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#f4f6f9",
+  "theme_color": "#0b3d91",
+  "icons": [
+    { "src": "assets/logo_mark_192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "assets/logo_mark_512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
