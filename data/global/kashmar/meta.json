@@ -39,7 +39,7 @@
   "reference_point": {
     "lon": 58.225041,
     "lat": 35.518544,
-    "source": "Sorkhkuh/Band-e Ghoraa field locality at 35\u00b030\u2032N,58\u00b012\u2032E, 1800 m (Allium field record); surrounding Kashmar Valley region treated as stable by Motagh et al. 2008"
+    "source": "Sorkhkuh/Band-e Ghoraa field locality at 35°30′N,58°12′E, 1800 m (Allium field record); surrounding Kashmar Valley region treated as stable by Motagh et al. 2008"
   },
   "quality": "provisional",
   "quality_note": "NISAR L2 GUNW CRID P05023 provisional products only; calibration and validation are carried out by NASA-JPL/ISRO.",
@@ -49,5 +49,10 @@
     "mean_coherence": 0.9513,
     "window": "7x7 common-valid pixels; nearest high-coherence window within 3 km of source locality"
   },
-  "reference_outside_basin": true
+  "reference_outside_basin": true,
+  "thumb": "thumb.png",
+  "thumb_scale": [
+    -10.0,
+    10.0
+  ]
 }

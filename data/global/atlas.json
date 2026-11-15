@@ -170,7 +170,7 @@
       ],
       "detectable": null,
       "robustness_spread": 2.5463,
-      "people_exposed": null,
+      "people_exposed": 19367,
       "opera_check": null,
       "sigma_cm_median": null,
       "rate_ci_cm_per_100d": [
@@ -336,7 +336,7 @@
       ],
       "detectable": null,
       "robustness_spread": null,
-      "people_exposed": null,
+      "people_exposed": 11052,
       "opera_check": null,
       "sigma_cm_median": 0.258,
       "rate_ci_cm_per_100d": [
@@ -416,7 +416,7 @@
       ],
       "detectable": null,
       "robustness_spread": null,
-      "people_exposed": null,
+      "people_exposed": 430616,
       "opera_check": null,
       "sigma_cm_median": 0.356,
       "rate_ci_cm_per_100d": [
@@ -456,7 +456,7 @@
       ],
       "detectable": null,
       "robustness_spread": null,
-      "people_exposed": null,
+      "people_exposed": 76709,
       "opera_check": null,
       "sigma_cm_median": 0.492,
       "rate_ci_cm_per_100d": [
@@ -496,7 +496,7 @@
       ],
       "detectable": null,
       "robustness_spread": null,
-      "people_exposed": null,
+      "people_exposed": 127600,
       "opera_check": null,
       "sigma_cm_median": 0.329,
       "rate_ci_cm_per_100d": [
@@ -576,7 +576,7 @@
       ],
       "detectable": null,
       "robustness_spread": null,
-      "people_exposed": null,
+      "people_exposed": 253137,
       "opera_check": null,
       "sigma_cm_median": 0.309,
       "rate_ci_cm_per_100d": [
@@ -696,7 +696,7 @@
       ],
       "detectable": null,
       "robustness_spread": null,
-      "people_exposed": null,
+      "people_exposed": 97823,
       "opera_check": null,
       "sigma_cm_median": 0.36,
       "rate_ci_cm_per_100d": [
@@ -826,7 +826,7 @@
       ],
       "detectable": null,
       "robustness_spread": null,
-      "people_exposed": null,
+      "people_exposed": 1142831,
       "opera_check": null,
       "sigma_cm_median": 0.394,
       "rate_ci_cm_per_100d": [
@@ -869,7 +869,7 @@
       ],
       "detectable": true,
       "robustness_spread": 6.9655,
-      "people_exposed": 14769,
+      "people_exposed": 9496168,
       "opera_check": null,
       "sigma_cm_median": 0.364,
       "rate_ci_cm_per_100d": [
@@ -1358,7 +1358,7 @@
       ],
       "detectable": null,
       "robustness_spread": 2.5463,
-      "people_exposed": null,
+      "people_exposed": 19367,
       "opera_check": null,
       "sigma_cm_median": null,
       "rate_ci_cm_per_100d": [
@@ -1528,7 +1528,7 @@
       ],
       "detectable": null,
       "robustness_spread": null,
-      "people_exposed": null,
+      "people_exposed": 11052,
       "opera_check": null,
       "sigma_cm_median": 0.258,
       "rate_ci_cm_per_100d": [
@@ -1610,7 +1610,7 @@
       ],
       "detectable": null,
       "robustness_spread": null,
-      "people_exposed": null,
+      "people_exposed": 430616,
       "opera_check": null,
       "sigma_cm_median": 0.356,
       "rate_ci_cm_per_100d": [
@@ -1651,7 +1651,7 @@
       ],
       "detectable": null,
       "robustness_spread": null,
-      "people_exposed": null,
+      "people_exposed": 76709,
       "opera_check": null,
       "sigma_cm_median": 0.492,
       "rate_ci_cm_per_100d": [
@@ -1692,7 +1692,7 @@
       ],
       "detectable": null,
       "robustness_spread": null,
-      "people_exposed": null,
+      "people_exposed": 127600,
       "opera_check": null,
       "sigma_cm_median": 0.329,
       "rate_ci_cm_per_100d": [
@@ -1774,7 +1774,7 @@
       ],
       "detectable": null,
       "robustness_spread": null,
-      "people_exposed": null,
+      "people_exposed": 253137,
       "opera_check": null,
       "sigma_cm_median": 0.309,
       "rate_ci_cm_per_100d": [
@@ -1899,7 +1899,7 @@
       ],
       "detectable": null,
       "robustness_spread": null,
-      "people_exposed": null,
+      "people_exposed": 97823,
       "opera_check": null,
       "sigma_cm_median": 0.36,
       "rate_ci_cm_per_100d": [
@@ -2032,7 +2032,7 @@
       ],
       "detectable": null,
       "robustness_spread": null,
-      "people_exposed": null,
+      "people_exposed": 1142831,
       "opera_check": null,
       "sigma_cm_median": 0.394,
       "rate_ci_cm_per_100d": [
@@ -2076,7 +2076,7 @@
       ],
       "detectable": true,
       "robustness_spread": 6.9655,
-      "people_exposed": 14769,
+      "people_exposed": 9496168,
       "opera_check": null,
       "sigma_cm_median": 0.364,
       "rate_ci_cm_per_100d": [

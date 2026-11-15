@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-11-15T08:21:39Z",
+  "generated_utc": "2026-11-15T08:28:21Z",
   "one_liner": "We turned the first months of NASA-ISRO NISAR radar data into a self-checking global subsidence atlas: 29 basins measured with one open pipeline on the same 93 days, every number traceable to its file, and every headline checked against GPS, NASA's OPERA product and the literature.",
   "common_window": [
     "2026-06-28",
@@ -35,7 +35,7 @@
       "label": "agreement with NASA JPL OPERA (Mexico City)",
       "value": 0.912,
       "unit": "r",
-      "detail": "OPERA 2025-12-25 to 2026-03-25 vs NISAR 2026-06-22 to 2026-10-20; different seasons, so a shape check, not a same-day match",
+      "detail": "same summer season, OPERA one year earlier (2025 vs 2026)",
       "source": "data/global/opera_check.json"
     },
     {
@@ -57,7 +57,7 @@
       "max_cm_los": -9.6,
       "confidence": "medium",
       "valid_fraction": null,
-      "note": "valid-pixel fraction not recorded for this region; kept with caution"
+      "note": "low valid coverage (11.6 %); kept with caution"
     },
     {
       "id": "eloy",
@@ -109,7 +109,7 @@
     "semarang": {
       "before_cm": -12.1,
       "after_cm": -6.2,
-      "why": "the whole -12.1 cm came from one step of 11.2 cm, one full L-band phase cycle (12.1 cm): an unwrapping error; re-processed, the peak moved to the subsiding north coast"
+      "why": "the whole −12.1 cm came from one step of 11.2 cm, one full L-band phase cycle (12.1 cm): an unwrapping error; re-processed, the peak moved to the subsiding north coast"
     },
     "series_before": {
       "dates": [
