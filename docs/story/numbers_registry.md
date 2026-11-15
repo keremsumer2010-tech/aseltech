@@ -12,14 +12,14 @@ Every headline number in the web portal and story documents is traced to its aut
 | `cv_area_gt5cm_km2` | `239.54` | km2 | `provisional` | **approved** | `data/central_valley/area_stats.json` (`area_km2_lt_5cm[-1]`) | 4 |
 | `cv_area_gt2cm_km2` | `1578.27` | km2 | `provisional` | **approved** | `data/central_valley/area_stats.json` (`area_km2_lt_2cm[-1]`) | 3 |
 | `cv_sigma_median_cm` | `0.294` | cm | `provisional` | **approved** | `data/central_valley/uncertainty/meta.json` (`median_sigma_cm`) | 18 |
-| `cv_gps_median_rmse_cm` | `1.004` | cm | `provisional` | **approved** | `data/central_valley/validation.json` (`median(rmse_cm)`) | 59 |
+| `cv_gps_median_rmse_cm` | `1.004` | cm | `provisional` | **approved** | `data/central_valley/validation.json` (`median(rmse_cm)`) | 60 |
 | `cv_high_risk_segments` | `81` | segments | `provisional` | **approved** | `data/central_valley/assets.json` (`summary.high_risk_count`) | 32 |
 | `cv_pop_gt2cm` | `71701` | people | `provisional` | **approved** | `data/central_valley/exposure.json` (`population.population_subsidence_gt_2cm_los_estimate`) | 11 |
 | `cv_crop_share_gt2cm` | `79.2` | % | `provisional` | **approved** | `data/central_valley/exposure.json` (`land_cover_and_crops.cultivated_cropland_gt_2cm_share_percent`) | 15 |
 | `cv_fy_max_los_cm` | `-20.3` | cm | `mixed` | **approved** | `data/central_valley_fullyear/summary.json` (`max_subsidence_cm`) | 9 |
 | `cv_fy_perm_rate_p01` | `-16.77` | cm/yr | `mixed` | **approved** | `data/central_valley_fullyear/decomp.json` (`point_decompositions[p01].permanent_cm_per_yr`) | 14 |
 | `cv_fy_seasonal_p2p_p01` | `11.67` | cm | `mixed` | **approved** | `data/central_valley_fullyear/decomp.json` (`point_decompositions[p01].seasonal_peak_to_peak_cm`) | 24 |
-| `cv_fy_storage_loss_km3` | `0.3174` | km3/yr | `mixed` | **approved** | `data/central_valley_fullyear/storage_loss.json` (`volume_km3_per_yr`) | 30 |
+| `cv_fy_storage_loss_km3` | `0.3174` | km3/yr | `mixed` | **approved** | `data/central_valley_fullyear/storage_loss.json` (`volume_km3_per_yr`) | 31 |
 | `kp_max_los_cm` | `-5.9` | cm | `provisional` | **approved** | `data/karapinar/summary.json` (`max_subsidence_cm`) | 31 |
 | `kp_rate_yr_est` | `-20.0` | cm/yr | `provisional` | **preliminary** | `data/karapinar/summary.json` (`rate_cm_per_yr_estimate`) | 8 |
 | `kp_sigma_median_cm` | `0.326` | cm | `provisional` | **approved** | `data/karapinar/uncertainty/meta.json` (`median_sigma_cm`) | 10 |
