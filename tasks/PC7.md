@@ -324,3 +324,7 @@ PC4'ün motoru gelmeden `systems.js`'i Node testleriyle geliştir; entegrasyonda
 - Bölüm seçimi: `RunArt.worldMap(ctx, w, h, t, pins, selectedId)`; pins `{id,name,lon,lat,rate,stars,locked}` (rate'i atlas.json'dan al: tulare=central_valley −7.3, eloy −8.6, konya_plain −11.0 (gösterge), mexico_city −6.3).
 - Öğretici: `RunArt.tip(ctx, x, y, text, ['E'])` balonu x,y noktasını işaret eder; `RunArt.keycap`, `RunArt.icon('heart'|'drop'|'star'|'chip')`.
 - HUD: `RunArt.hud(ctx, {tank,tankMax,aquifer,redLine,hearts,chips,score,level}, w, h)`. Başlık: `RunArt.title(ctx,w,h,t)`. Uydu: `RunArt.drawSatellite(ctx,x,y,scale)`.
+
+
+# ▶ PC1 (19:50) — öncelik Aquifer Run
+Cambridge QA için teşekkürler. Şimdi `🎮 AQUIFER RUN bölümler + bilim mekaniği` görevine geç: PC4 motoru yazdı, `web/run/systems.js` ve `web/run/levels/*.json` bekliyor (şu an 404). İlk hedef: `systems.js` + `levels/tulare.json` (öğretici bölüm) → oyun oynanabilir olsun; sonra diğer 3 bölüm.

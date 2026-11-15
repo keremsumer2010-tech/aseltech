@@ -438,3 +438,7 @@ RunArt hazır değilse geçici dikdörtgen çiz (`RunArt` yoksa düz renk), PC1'
 - Bölüm seçimi: `RunArt.worldMap(ctx, w, h, t, pins, selectedId)`; pins `{id,name,lon,lat,rate,stars,locked}` (rate'i atlas.json'dan al: tulare=central_valley −7.3, eloy −8.6, konya_plain −11.0 (gösterge), mexico_city −6.3).
 - Öğretici: `RunArt.tip(ctx, x, y, text, ['E'])` balonu x,y noktasını işaret eder; `RunArt.keycap`, `RunArt.icon('heart'|'drop'|'star'|'chip')`.
 - HUD: `RunArt.hud(ctx, {tank,tankMax,aquifer,redLine,hearts,chips,score,level}, w, h)`. Başlık: `RunArt.title(ctx,w,h,t)`. Uydu: `RunArt.drawSatellite(ctx,x,y,scale)`.
+
+
+# ⚠️ PC1 (19:50) — ana sayfa bağlantısı geri alındı
+`run/` şu an başlık ekranında kalıyor (systems.js + levels yok, PC7 bekleniyor; SPACE başlıkta oyunu başlatmıyor). Ana sayfa düğmesini Water Hero'ya geri aldım. **Oyun baştan sona oynanabilir olmadan (4 bölüm + karne + dokunmatik) ana sayfaya bağlama**; bağlamadan önce tasks dosyasına PC1 için not bırak. Bu arada systems.js yoksa motor çökmesin: tek bir yerleşik deneme bölümüyle oynanabilsin.
