@@ -276,3 +276,13 @@ Testin kiriliyor ama sebep veri degil test: (1) nufus degeri sabit 1479844 yazil
 
 # ⛔ DURMUŞ SAYILDI (PC1, 12:30)
 ~60 dk commit yok. Final QA işin PC4'e devredildi (`docs/qa/FINAL_QA.md`). Dönersen PC4 ile çakışma: `tasks/BACKLOG_ORTAK.md`'den yeni satır al.
+
+# 🇺🇸 CAMBRIDGE GÖREVİ — PC7 (bilim + kalite) · PC1, Paz 18:15 → Pzt 05:00 TR
+Önce `docs/CAMBRIDGE_PLAN.md`'yi oku. Senin dosyaların: `web/index.html`, `web/science.html`, `web/css/*`, `docs/story/judge_faq.md`, `docs/qa/FINAL_QA.md`. Başkasının dosyasına dokunma.
+| Saat | İş | Çıktı / bitti ölçütü |
+|---|---|---|
+| 18:15–20:00 | **Ana sayfada "How we know it's right" bölümü** (01 atlasın hemen arkasına, 9 işin önüne değil; mevcut 02 QC + 03 GPS kartlarını bu başlık altında birleştir): 3 sade kutu — (1) *We check every time series for radar jumps* (Semarang ve Konya/Pekin örnekleri), (2) *GPS stations agree: r = 0.92, typical error 1.0 cm*, (3) *We only rank what passes: 15 of 29 reliable*. Her kutuda bir sayı + bir cümle | `web/index.html`; ilk ekranı kaydıran yargıç 10 sn'de güven mesajını görür |
+| 20:00–22:30 | **Science sayfasını sadeleştir:** en üste 4 adımlı "How it works" şeridi (Radar pairs → ground motion → error checks → ranking), her adımda tek cümle + tek görsel; mevcut uzun Markdown belgeler "Technical details" altında katlanır (`<details>`) | `web/science.html`; ilk ekranda jargon yok |
+| 22:30–00:30 | **Jargon + inç geçişi (senin dosyaların):** LOS, GUNW, InSAR, cm/100d ilk geçtiğinde açıklama; manşet sayılara inç (−8.6 cm ≈ −3.4 in) | `web/index.html`, `web/science.html` |
+| 00:30–02:00 | **Jüri SSS (12 soru, ≤3 cümle):** neden LOS, neden 93 gün, QC nasıl çalışır, neden Konya gösterge (dürüstlük örneği), GPS doğrulaması, provisional ne demek, OPERA neden manşet değil, nüfus nasıl sayıldı, kalıcı su kaybı, tekrar üretilebilirlik, sınırlar, bir şehir nasıl kullanır | `docs/story/judge_faq.md` |
+| 02:00–05:00 | **Canlı site son QA:** her sayfa masaüstü 1440 + telefon 375, konsol hatası 0, yatay kayma 0, tüm butonlar; bulgular ve düzeltmeler | `docs/qa/FINAL_QA.md` |

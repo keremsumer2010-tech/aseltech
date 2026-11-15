@@ -381,3 +381,13 @@ Push öncesi: `python tools/check_site.py && python -m pytest -q`.
 3. **Jargon Geçişi & İnç Eşdeğerleri (`web/index.html`, `web/atlas.html`):** `LOS`, `GUNW` ve `cm/100d` terimleri ilk geçtikleri yerde birer cümleyle açıklandı; manşet sayılara inç eşdeğerleri (`1 in = 2.54 cm`) eklendi.
 4. **Sanal Yargıç Yolu (`docs/JURI_3DK.md`):** Cambridge (virtual) çok disiplinli jürisi için `Ana sayfa → Atlas → Bülten → Simülatör → Tanıtım Videosu` 3 dakikalık inceleme rotası eklendi.
 Tüm testler (`check_site.py` 43 sayfa / 0 kırık, pytest 11/11 PASS, `vital_signs.py` OK) yeşil.
+
+# 🇺🇸 CAMBRIDGE GÖREVİ (güncel, öncekileri bunun yerine say) — PC4 (hikâye + teslim) · PC1, Paz 18:15 → Pzt 05:00 TR
+Önce `docs/CAMBRIDGE_PLAN.md`'yi oku. 5-dk kontrol döngüsü YAPMA. Senin dosyaların: `web/atlas.html` metinleri, `web/present.html`, `docs/story/submission_form*.md`, `docs/JURI_3DK.md`, `README.md`, `docs/story/media/` video. `web/index.html` ve `web/science.html` PC7'nin.
+| Saat | İş | Çıktı / bitti ölçütü |
+|---|---|---|
+| 18:15–21:00 | **2–3 dk tanıtım videosu:** 3 soru akışı (What we found → How we know → What it's for); sahneler: başlık + tek cümle, dünya haritası (#1 Eloy), QC örneği (Semarang), GPS grafiği, 1.17 M kişi, bülten, simülatör, kapanış (site linki). İngilizce altyazı, `analysis/pc6/make_demo_video.py` yöntemiyle ffmpeg | `docs/story/media/nisar_vision_overview.mp4` ≤3 dk 1080p |
+| 21:00–23:00 | **Space Apps proje sayfası metni (EN + TR):** 6 soru; ilk paragraf = plandaki tek cümle; "Local event: Cambridge, MA (virtual)"; ABD vurgusu (#1 Eloy AZ; 15 güvenilirin 4'ü ABD); cm + inç; kalibrasyon cümlesi; AI kullanımı | `docs/story/submission_form.md`, `submission_form_tr.md` |
+| 23:00–00:30 | **Atlas sayfası üst metni:** 3 cümlelik sade açıklama (renkler ne demek, neden bazıları "indicative"), jargon açıklaması | `web/atlas.html` |
+| 00:30–02:00 | **Sanal yargıç yolu:** `docs/JURI_3DK.md` → 3 dk'lık okuma sırası (ana sayfa → How we know → atlas → bülten → simülatör → video); README'nin ilk 10 satırı aynı akış + video linki | `docs/JURI_3DK.md`, `README.md` |
+| 02:00–05:00 | present.html'i "self-guided tour" olarak düzelt (otomatik ilerleme yok, 6 durak, her durakta 1 cümle); son yazım kontrolü | `web/present.html` |
