@@ -29,7 +29,7 @@
 - **Provisional & Mixed Products:** Core NISAR `GUNW`/`GCOV` products (`CRID P05023`, `>= 2026-06-17`) are provisional; full-year chains (`central_valley_fullyear`, `karapinar_fullyear`) mix pre-calibration `beta` granules (`< 2026-06-17`).
 - **LOS Geometry:** Single-orbit vertical conversions (`LOS / cos θ`) are estimates assuming negligible horizontal motion.
 - **Summer Window & Archive Gaps:** 93–120 day June–October windows capture peak pumping and overstate net annual compaction where winter rebound occurs; `konya_plain_fullyear` has a `156–168` day Feb–Jun 2026 archive gap.
-- **Automated QC & Exposure:** `tools/atlas_qc.py` flags `12.1 cm` half-cycle jumps and `> 5 cm` cancelling single-date spikes (isolating `5` QC-flagged basins as indicative), while `exposure_atlas.json` covers all `29` regions (`1,200,716` residents on `511.65 km²` `< −5 cm`, excluding nested `karapinar`).
+- **Automated QC & Exposure:** `tools/atlas_qc.py` flags `12.1 cm` half-cycle jumps and `> 5 cm` cancelling single-date spikes (isolating `6` QC-flagged basins as indicative), while `exposure_atlas.json` covers all `29` regions (`1,167,429` residents on `477.72 km²` `< −5 cm`, excluding nested `karapinar`).
 
 ---
 
@@ -39,7 +39,7 @@
 - **Semarang:** `2026-09-29 → 2026-10-11` `12.1 cm` half-cycle unwrapping jump removed; coastal peak recovered (`−6.2 cm` LOS, `#7` reliable).
 - **Beijing:** Re-run with full box (`−11.1 cm` peak; `11 Jul` single-date spike remains flagged as `indicative only`).
 - **Central Valley:** Retained `medium` confidence under `data/global/independent_validation.json` (`r >= 0.80` GNSS rule, `r = 0.924`).
-- **Atlas Expansion:** Grown from `11` → `21` → `29` regions (`16` reliable / `13` indicative), ranked on the common 93-day window.
+- **Atlas Expansion:** Grown from `11` → `21` → `29` regions (`15` reliable / `14` indicative), ranked on the common 93-day window (#1 Eloy `−8.6 cm/100d`; Konya Plain kept indicative per validation audit).
 
 ---
 
