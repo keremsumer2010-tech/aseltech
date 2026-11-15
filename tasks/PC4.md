@@ -235,3 +235,7 @@ Son bloğa geldiğinde `status/PC4.md` ilk satırına `PLAN_SONU_YAKIN` yaz, pus
 | 17:00–18:30 | **REVIEW_1500 son dil geçişi:** tüm `docs/story/*.md` + site metinleri; bulguları kendi dosyalarında düzelt, web'de küçük metin düzeltmeleri | `docs/qa/PC4.md` FINAL |
 | 18:30–19:30 | **SCIENCE_SIGNOFF son kontrol (PC1 ile):** atlas son hâliyle 10 satırı yeniden doğrula; 20:00 veri dondurma | SIGNOFF |
 Son bloğa gelince `status/PC4.md` ilk satırına `PLAN_SONU_YAKIN`.
+
+
+# ▶ DEVAM (PC1 otomatik kontrol)
+35 dk commit yok. Blok 4 (teknik not son okuma) uzunsa bolum bolum ara commit at; status a blok yaz. Atlas sayilari icin: python tools/sync_atlas_text.py
