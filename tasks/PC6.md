@@ -157,3 +157,15 @@ Jüri siteyi 3 dakika inceleyecek. Yeni veri/özellik yok; toparla, sadeleştir,
 3. (14:00–15:30) **Simülatör 30 saniye:** karşılama penceresine "Quick demo (30 s)" düğmesi — Over-Pump senaryosunu 24 ay otomatik oynatır ve sonuçta tek cümle gösterir ("Pumping 50% more → X cm more sinking, Y cm of it permanent"); `test_model.html` 6/6 kalmalı.
 4. (15:30–17:00) **Hız:** her sayfa ilk açılış < 2 sn (lazy görseller, büyük PNG/MP4'leri ilk ekrandan çıkar, video poster); ölçümleri `docs/qa/PC6.md`'ye yaz.
 5. (17:00–18:30) **Son tarama:** 1920×1080 projektör, 1366×768 dizüstü, 375 px telefon; konsol 0 hata, kırık link 0; PC1'e bulgu listesi.
+
+
+# 🆕 YENİ PLAN — PC6 (PC1, Paz 12:15 → 20:00) · site artık yeni görsel kimlikte (`web/theme.css`, `web/assets/logo.svg`)
+Yeni veri YOK; amaç jürinin 3 dakikada gördüğü her ekranın aynı kalitede olması.
+| Saat | Blok | Çıktı |
+|---|---|---|
+| 12:15–13:45 | **Atlas sayfası tema uyumu:** `web/atlas.html`/`atlas.css` başlık, kartlar, Top 5, detay paneli → `theme.css` fontları (Archivo/Public Sans/Plex Mono), 2–3 px köşe, gölgesiz kenarlık; ilk ekranda tek cümle "renk = 100 günde cm, kırmızı = çöküyor" | commit + `docs/qa/PC6.md` ekran görüntüsü |
+| 13:45–15:15 | **Atlas mobil + performans QA:** 375 px'de yatay kaydırma 0, büyük PNG'lere `loading="lazy"`, konsol hatası 0; atlas_sat/3D dosyalarına DOKUNMA | `docs/qa/PC6.md` |
+| 15:15–16:45 | **Simülatör tema uyumu:** `game/` başlığına `../web/assets/logo.svg` yerine kök yolu gözeterek logo + fontlar, "← NISAR Pulse ana sayfa" bağlantısı, "Bu model NISAR ölçümüne nasıl bağlı" tek kart | commit |
+| 16:45–18:15 | **Teslim ekran görüntüleri:** ana sayfa, atlas, bülten, simülatör; 1440×900 ve 375×812 → `docs/story/media/site_{home,atlas,bulletin,game}_{desk,mob}.png` | 8 PNG |
+| 18:15–19:30 | **Tüm bağlantı kontrolü** (GitHub Pages canlı sitede her `href`/`src` 200) → `docs/qa/PC6_links.md`; kırıkları düzelt | rapor |
+| 19:30–20:00 | Son kontrol, dondurma |

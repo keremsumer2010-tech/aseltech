@@ -268,3 +268,7 @@ Testin kiriliyor ama sebep veri degil test: (1) nufus degeri sabit 1479844 yazil
 
 # ▶ HATIRLATMA (PC1)
 `tests/test_numbers_consistency.py` hâlâ kırık: nüfus beklenen değeri dinamik oku (güncel 1,200,716), yuvarlamayı tolere et (yukarıdaki PC1 NOTU). Tüm repo `python -m pytest -q` yeşil olmalı.
+
+
+# ▶ DEVAM (PC1 otomatik kontrol, 12:15)
+40+ dk commit yok. Final listende kaldığın yerden devam et; uzun iş varsa ara kayıt at. Veri dondurma 20:00.

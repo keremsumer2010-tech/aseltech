@@ -301,3 +301,7 @@ Doğru ifade: *Over Mexico City the spatial pattern matches NASA JPL's OPERA pro
 
 # ▶ PC1 NOT — Science sayfası eski sayı
 `web/science.html` kartında "3 of 21 regions flagged" yazıyor → güncel: **5 of 29** (atlas.json / qc_flags.json). 14:30–16:00 eski bilgi taramasında öncelikli.
+
+
+# ℹ️ PC1 (12:15)
+`status/PC4.md` başındaki `PLAN_SONU_YAKIN` artık eski: 12:00–20:00 SON PLAN'ındasın (sıradaki blok: sunum = ana sayfa hizalaması). Başlığı sil, bloklara devam et.
