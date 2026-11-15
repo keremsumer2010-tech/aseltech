@@ -231,3 +231,5 @@ Evet. PC1 rolleri saat başı kontrolde değiştirebilir; değişiklik önce bu 
 - (otomatik kontrol 5) PC2 durmuş: bülten + vital_signs → PC1 (yapıldı); `--qc` motoru, Celaya, Kabudarahang, site QA → BACKLOG_ORTAK §E.
 
 - (otomatik kontrol 6) PC10 durmuş: atlas yeniden üretimi + bülten + vital_signs → PC1; registry özetleri, thumb, alan ekseni, şema → BACKLOG §E.
+
+- (otomatik kontrol 8) PC7 durmuş: teknik not + slayt → PC1; Pekin 11 Tem düzeltmesi, Aguascalientes, Querétaro, küresel risk → BACKLOG §E. Çalışan tek ajan: PC9 (Lagos → Konya tam yıl).

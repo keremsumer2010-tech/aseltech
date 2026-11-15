@@ -24,6 +24,11 @@ Kullanıcı artık ajanlara prompt girmiyor; **tüm yönetim git üzerinden.** K
 - [ ] İkinci sıralama ekseni: ortak pencerede < −5 cm alan km² (PC10'dan devir)
 - [ ] `data/global/atlas.schema.json` + `tests/test_atlas_schema.py` (PC10'dan devir)
 
+- [ ] Pekin: 11 Temmuz 2026 görüntüsünü içeren iki çifti çıkarıp yeniden hesapla (PC7'den devir; kesitler PC7 klasöründe `pipeline/subset/global_beijing/`)
+- [ ] Aguascalientes tamamla (8/9 kesit, PC7 klasörü) — PC7'den devir
+- [ ] Querétaro tamamla (kesitler PC7 klasörü) — PC7'den devir
+- [ ] Küresel altyapı riski Mexico City + Pekin + `global_risk.md` — PC7'den devir
+
 ## A. Atlas verisi (Earthdata erişimi olanlar: PC2, PC7, PC9, PC10, PC11)
 - [ ] Toluca, Meksika (−99.65, 19.29) — önce kapsama + literatür
 - [ ] San Luis Potosí, Meksika (−100.98, 22.15)
@@ -33,7 +38,7 @@ Kullanıcı artık ajanlara prompt girmiyor; **tüm yönetim git üzerinden.** K
 - [ ] Ankara–Konya arası diğer Türkiye havzası adayı: literatürde InSAR çökmesi yayımlanmış bir havza bul (kaynakla), sonra işle
 - [ ] Atlas bölgelerinden QC işaretlilerin (`data/global/qc_flags.json`) `--qc` ile yeniden işlenmesi (sahibine haber vererek)
 
-- [~PC7] Pekin tam kutu yeniden hesap (PC11'den devir, otomatik kontrol 1)
+- [x PC7] Pekin tam kutu yeniden hesap → `data/global/beijing/` (11 Temmuz aykırısı kaldı)
 
 ## B. Bilim ve doğrulama (PC4, PC5, PC11, boşta kalan herkes)
 - [ ] Her güvenilir bölge için 1 paragraf "neden çöküyor" (yeraltı suyu / kil / tarım), kaynaklı → şehir kartlarına ek (PC4 ile koordineli)

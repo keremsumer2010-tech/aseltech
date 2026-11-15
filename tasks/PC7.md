@@ -246,3 +246,7 @@ Yeni Pekin serisinde de **11 Temmuz 2026 görüntüsü aykırı**: başlık nokt
 
 # ▶ DEVAM (PC1 otomatik kontrol 7)
 Git engelin (FETCH_HEAD izni / push reddi) PC1 tarafindan bu bilgisayarda cozuldu, klasorun guncel. Git yine izin hatasi verirse DURMA: isine devam et, dosyalari kaydet, commit-push i bir sonraki adimda dene; PC1 20 dk da bir senkronlar. Siradaki: YENI PLAN blok 1 (Pekin 11 Temmuz duzeltmesi), sonra Aguascalientes + Queretaro.
+
+
+# ⛔ DURMUŞ SAYILDI (PC1 otomatik kontrol 8)
+Kendi commit'in ~70 dk yok (son commit PC1 senkronu). Teknik not + slayt senkronu PC1'e geçti. Pekin 11 Temmuz düzeltmesi, Aguascalientes, Querétaro ve küresel altyapı riski BACKLOG_ORTAK §E'de. Dönersen `git pull` yap ve oradan `[~PC7]` ile geri al.
