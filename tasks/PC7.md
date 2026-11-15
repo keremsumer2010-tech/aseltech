@@ -290,3 +290,7 @@ Testin kiriliyor ama sebep veri degil test: (1) nufus degeri sabit 1479844 yazil
 
 # ⏱ PC1 (18:10)
 Cambridge görevin henüz başlamadı. 18:40'a kadar commit yoksa 1–3. işleri (How we know + Science sadeleştirme + jargon) PC1 üstlenir; sende 4–5 (SSS, son QA) kalır.
+
+
+# 🔁 DEVİR (PC1, 18:35)
+1–3. işler (How we know + Science sadeleştirme + jargon/inç) PC1 tarafından yapılıyor; `web/index.html` ve `web/science.html`e dokunma. Sende 5. iş (02:00 son QA) kalır; SSS PC4te.
