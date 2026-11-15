@@ -94,6 +94,7 @@
     if (state.aquifer < state.redLine) {
       if (!state.belowRedEver) say(state, 'Below the safe line! The clay squeezes and the ground starts to sink.', 'danger');
       state.belowRedEver = true;
+      state.timeBelowRed = (state.timeBelowRed || 0) + dt;
       state.sinkTimer += dt;
       var every = SINK_EVERY * (0.5 + state.aquifer / state.redLine * 0.5);  // deeper = faster
       if (state.sinkTimer >= every) { state.sinkTimer = 0; collapseOne(state); }
@@ -134,6 +135,7 @@
         aquiferCurve: state.history.slice(), redLine: state.redLine, cmSunk: cm, minAquifer: Math.round(state.minAquifer),
         pumpsOff: state.pumpsOff, pumpsTotal: state.pumpsTotal, cropsWatered: state.cropsWatered, cropsTotal: state.cropsTotal,
         chips: state.chips, chipsTotal: state.chipsTotal, qcFound: state.qcFound, time: Math.round(state.time),
+        drops: state.drops, dustHits: state.dustHits, falls: state.falls, secondsBelowSafe: Math.round(state.timeBelowRed || 0),
         realFactCm: n.realFactCm, realFactText: n.realFactText || '', oneLine: oneLine,
         calibration: 'NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.',
       },

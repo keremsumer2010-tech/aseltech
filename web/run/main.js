@@ -10,7 +10,9 @@
     { id: 'konya', name: 'Karapınar', place: 'Konya, Türkiye', biome: 'konya', lon: 33.5, lat: 37.7 },
     { id: 'mexico', name: 'Mexico City', place: 'Mexico', biome: 'mexico', lon: -99.1, lat: 19.4 }
   ];
-  var STORAGE_KEY = 'aquifer_run_progress_v2', SETTINGS_KEY = 'aquifer_run_settings_v1';
+  var ATLAS_ID = { tulare: 'central_valley', eloy: 'eloy', konya: 'konya_plain', mexico: 'mexico_city' };
+  var STORAGE_KEY = 'aquifer_run_progress_v2', SETTINGS_KEY = 'aquifer_run_settings_v1', STORY_KEY = 'aquifer_run_story_seen';
+  function openPage(url) { try { window.open(url, '_blank', 'noopener'); } catch (e) { location.href = url; } }
 
   var canvas = document.getElementById('gameCanvas'), ctx = canvas.getContext('2d');
   ctx.imageSmoothingEnabled = true;
@@ -71,15 +73,120 @@
 
   var scenes = Engine.createSceneManager(), L = null;
 
+  // ---------- button rows for menus (← → to choose, SPACE/E to press, or click/tap) ----------
+  function makeMenu() { return { sel: 0, rects: [], pl: true, pr: true }; }
+  function menuUpdate(mn, items, inp, tap) {
+    if (inp.left && !mn.pl) { mn.sel = (mn.sel + items.length - 1) % items.length; beep(380, 0.05); }
+    if (inp.right && !mn.pr) { mn.sel = (mn.sel + 1) % items.length; beep(420, 0.05); }
+    mn.pl = inp.left; mn.pr = inp.right;
+    if (tap) { for (var i = 0; i < mn.rects.length; i++) { var r = mn.rects[i]; if (tap.x >= r.x && tap.x <= r.x + r.w && tap.y >= r.y && tap.y <= r.y + r.h) { mn.sel = i; return items[i]; } } return null; }
+    if (inp.jumpPressed || inp.actionPressed) return items[mn.sel];
+    return null;
+  }
+  function menuDraw(c, mn, items, y, t, dark, noHint) {
+    c.font = '800 19px "Baloo 2", sans-serif';
+    var gap = 14, ws = items.map(function (it) { return Math.max(150, c.measureText(it.label).width + 44); });
+    var total = ws.reduce(function (a, b) { return a + b; }, 0) + gap * (items.length - 1), x = W / 2 - total / 2;
+    mn.rects = [];
+    items.forEach(function (it, i) {
+      var on = i === mn.sel, w = ws[i], lift = on ? Math.sin(t * 6) * 2 : 0;
+      Art.card(c, x, y - lift, w, 46, { bg: on ? '#ffd23f' : (dark ? 'rgba(20,26,44,.82)' : '#ffffff'), r: 23, flat: !on, border: '#1c2233' });
+      Art.text(c, it.label, x + w / 2, y + 10 - lift, { size: 19, align: 'center', color: on ? '#1c2233' : (dark ? '#ffffff' : '#1c2233'), shadow: false });
+      mn.rects.push({ x: x, y: y, w: w, h: 46 }); x += w + gap;
+    });
+    if (noHint) return;
+    var hint = isTouch ? 'Tap a button' : '← → choose   ·   SPACE press';
+    Art.text(c, hint, W / 2, y + 54, { size: 13, align: 'center', color: dark ? '#ffffff' : '#6b7286', outline: dark ? 3 : 0, outlineColor: '#1c2233', shadow: false });
+  }
+
   // ---------- TITLE ----------
-  var titleT = 0;
+  var titleT = 0, titleMenu = makeMenu();
+  function storySeen() { try { return localStorage.getItem(STORY_KEY) === '1'; } catch (e) { return false; } }
+  var TITLE_ITEMS = [
+    { label: '▶  PLAY', go: function () { scenes.go(storySeen() ? 'map' : 'story', { next: 'map' }); } },
+    { label: 'Why does ground sink?', go: function () { scenes.go('story', { next: 'title' }); } },
+    { label: 'Real NISAR map ↗', go: function () { openPage('../atlas.html'); } }
+  ];
   scenes.register('title', {
-    enter: function () { titleT = 0; },
-    update: function (dt, inp) { titleT += dt; if ((inp.jumpPressed || inp.actionPressed || takeTap()) && titleT > 0.3) { beep(520, 0.1, 'triangle'); scenes.go('map'); } },
+    enter: function () { titleT = 0; titleMenu.sel = 0; titleMenu.pl = titleMenu.pr = true; },
+    update: function (dt, inp) {
+      titleT += dt; var tap = takeTap(); if (titleT < 0.3) return;
+      var it = menuUpdate(titleMenu, TITLE_ITEMS, inp, tap);
+      if (it) { beep(560, 0.1, 'triangle'); it.go(); }
+    },
     draw: function (c) {
-      Art.title(c, W, H, titleT);
-      if (isTouch) return;
-      Art.text(c, '← → move   ·   SPACE jump   ·   E action', W / 2, H - 28, { size: 15, align: 'center', color: '#e8eefc', shadow: false });
+      Art.title(c, W, H, titleT, { menu: true, subtitle: 'A NASA satellite sees valleys sinking. Help stop it!' });
+      Art.card(c, 14, 12, 170, 30, { bg: 'rgba(20,26,44,.75)', r: 15, flat: true });
+      Art.text(c, 'NISAR Vision game', 99, 17, { size: 14, align: 'center', color: '#ffffff', shadow: false });
+      menuDraw(c, titleMenu, TITLE_ITEMS, 352, titleT, true);
+      Art.text(c, 'Real places, real numbers: NASA-ISRO NISAR radar data, 2026  ·  Team Aseltech  ·  NASA Space Apps 2026', W / 2, H - 24, { size: 12, align: 'center', color: '#fff6e0', outline: 3, outlineColor: '#4a2e18', shadow: false });
+    }
+  });
+
+  // ---------- STORY: why the ground sinks, in three pictures ----------
+  var story = null, storyT = 0, storyMenu = makeMenu();
+  var STORY_PANELS = [
+    { title: '1. Seen from space', lines: ['NISAR is a radar satellite', 'from NASA and ISRO. Every', '12 days it measures the', 'ground to the centimetre.'] },
+    { title: '2. Too much pumping', lines: ['Wells pull water out from', 'under the ground faster than', 'rain refills it. The clay is', 'squeezed: the ground sinks.'] },
+    { title: '3. Your job', lines: ['Switch pumps OFF, water', 'crops with rain, grab NISAR', 'data chips, and keep the', 'water above the safe line.'] }
+  ];
+  function drawStoryArt(c, i, x, y, w, h, t) {
+    c.save(); c.beginPath(); c.rect(x, y, w, h); c.clip();
+    if (i === 0) {
+      var g = c.createLinearGradient(0, y, 0, y + h); g.addColorStop(0, '#0e1a3a'); g.addColorStop(1, '#2c4f86'); c.fillStyle = g; c.fillRect(x, y, w, h);
+      for (var k = 0; k < 18; k++) { c.fillStyle = 'rgba(255,255,255,' + (0.3 + 0.5 * ((k * 37) % 7) / 7) + ')'; c.fillRect(x + (k * 53) % w, y + (k * 29) % (h - 40), 2, 2); }
+      c.fillStyle = '#6aa84f'; c.fillRect(x, y + h - 26, w, 26); c.fillStyle = '#8a5a34'; c.fillRect(x, y + h - 10, w, 10);
+      var sx = x + w / 2 + Math.sin(t) * 40, sy = y + 34;
+      c.globalAlpha = 0.25 + 0.15 * Math.sin(t * 5); c.fillStyle = '#fff3a0'; c.beginPath(); c.moveTo(sx - 6, sy + 10); c.lineTo(sx - 60, y + h - 26); c.lineTo(sx + 60, y + h - 26); c.lineTo(sx + 6, sy + 10); c.fill(); c.globalAlpha = 1;
+      Art.drawSatellite(c, sx, sy, 0.6);
+      for (var d = 0; d < 5; d++) { c.fillStyle = d === 2 ? '#e8483c' : '#f0a23a'; c.beginPath(); c.arc(sx - 40 + d * 20, y + h - 22, 4, 0, 7); c.fill(); }
+    } else if (i === 1) {
+      var lvl = 0.75 - 0.45 * ((t * 0.25) % 1), sink = 14 * ((t * 0.25) % 1);
+      c.fillStyle = '#bfe3ff'; c.fillRect(x, y, w, h);
+      c.fillStyle = '#7a4e2c'; c.fillRect(x, y + 50 + sink, w, h);
+      c.fillStyle = '#6aa84f'; c.fillRect(x, y + 44 + sink, w, 8);
+      var ay = y + 70 + sink, ah = h - 74 - sink;
+      c.fillStyle = '#2f8fe6'; c.fillRect(x + 10, ay + ah * (1 - lvl), w - 20, ah * lvl);
+      c.strokeStyle = '#ffd23f'; c.lineWidth = 3; c.setLineDash([8, 6]); c.beginPath(); c.moveTo(x + 6, ay + ah * 0.55); c.lineTo(x + w - 6, ay + ah * 0.55); c.stroke(); c.setLineDash([]);
+      c.strokeStyle = '#3a4458'; c.lineWidth = 5; c.beginPath(); c.moveTo(x + 60, y + 50 + sink); c.lineTo(x + 60, ay + ah - 6); c.stroke();
+      Art.drawSprite(c, 'pump_on', Math.floor(t * 3), x + 36, y + 6 + sink, false);
+      c.strokeStyle = '#e8483c'; c.lineWidth = 4; c.beginPath(); c.moveTo(x + w - 40, y + 14); c.lineTo(x + w - 40, y + 42); c.stroke();
+      c.fillStyle = '#e8483c'; c.beginPath(); c.moveTo(x + w - 50, y + 38); c.lineTo(x + w - 30, y + 38); c.lineTo(x + w - 40, y + 50); c.fill();
+      Art.text(c, 'sinks', x + w - 40, y + 52 + sink, { size: 12, align: 'center', color: '#ffffff', outline: 3, outlineColor: '#7a1f16', shadow: false });
+    } else {
+      c.fillStyle = '#cfeeff'; c.fillRect(x, y, w, h); c.fillStyle = '#6aa84f'; c.fillRect(x, y + h - 30, w, 30); c.fillStyle = '#8a5a34'; c.fillRect(x, y + h - 12, w, 12);
+      Art.drawSprite(c, 'pump_off', 0, x + 14, y + h - 78, false);
+      Art.drawSprite(c, 'nisa_action', Math.floor(t * 3), x + 66, y + h - 114, false);
+      Art.drawSprite(c, 'crop_green', 0, x + 128, y + h - 78, false);
+      Art.drawSprite(c, 'chip', Math.floor(t * 6), x + w - 60, y + h - 110 + Math.sin(t * 4) * 4, false);
+      Art.drawSprite(c, 'drop', Math.floor(t * 6), x + w - 108, y + h - 120 + Math.sin(t * 4 + 1) * 4, false);
+    }
+    c.restore();
+  }
+  scenes.register('story', {
+    enter: function (p) { story = p || { next: 'map' }; storyT = 0; storyMenu.sel = 0; storyMenu.pl = storyMenu.pr = true; },
+    update: function (dt, inp) {
+      storyT += dt; var tap = takeTap(); if (storyT < 0.8) return;
+      var items = [{ label: story.next === 'map' ? "Let's go!  ▶" : 'Back' }];
+      if (menuUpdate(storyMenu, items, inp, tap)) { try { localStorage.setItem(STORY_KEY, '1'); } catch (e) {} beep(600, 0.12, 'triangle'); scenes.go(story.next); }
+    },
+    draw: function (c) {
+      Art.drawBackground(c, 'tulare', storyT * 20, W, H, storyT);
+      c.fillStyle = 'rgba(10,14,28,.62)'; c.fillRect(0, 0, W, H);
+      Art.text(c, 'Why is the ground sinking?', W / 2, 18, { size: 34, align: 'center', color: '#fff', outline: 7 });
+      var cw = 284, gap = 18, x0 = (W - (cw * 3 + gap * 2)) / 2;
+      STORY_PANELS.forEach(function (p, i) {
+        var pop = Math.min(1, Math.max(0, (storyT - i * 0.35) * 3)); if (pop <= 0) return;
+        var x = x0 + i * (cw + gap), y = 78 + (1 - pop) * 24; c.globalAlpha = pop;
+        Art.card(c, x, y, cw, 330, { bg: '#fff7e8', r: 18 });
+        drawStoryArt(c, i, x + 12, y + 12, cw - 24, 160, storyT);
+        Art.text(c, p.title, x + cw / 2, y + 184, { size: 21, align: 'center', color: '#1c2233', shadow: false });
+        p.lines.forEach(function (ln, k) { Art.text(c, ln, x + cw / 2, y + 216 + k * 24, { size: 16, align: 'center', color: '#3a4458', shadow: false }); });
+        c.globalAlpha = 1;
+      });
+      for (var a = 0; a < 2 && storyT > 0.8; a++) Art.text(c, '→', x0 + (a + 1) * cw + a * gap + gap / 2, 228, { size: 30, align: 'center', color: '#ffd23f', outline: 5 });
+      Art.text(c, 'These valleys are real. How fast each one sinks comes from our NISAR Vision atlas.', W / 2, 420, { size: 15, align: 'center', color: '#ffd23f', shadow: false });
+      if (storyT > 0.8) menuDraw(c, storyMenu, [{ label: story.next === 'map' ? "Let's go!  ▶" : 'Back' }], 448, storyT, true);
     }
   });
 
@@ -112,7 +219,7 @@
     },
     draw: function (c) {
       Art.worldMap(c, W, H, mapT, pins(), LEVELS[mapIdx].id);
-      Art.text(c, isTouch ? 'Tap a valley, tap again to play' : '← → choose   ·   SPACE play', W / 2, H - 24, { size: 14, align: 'center', color: '#cfe0ff', shadow: false });
+      window.RunTouch = isTouch;
     }
   });
 
@@ -301,6 +408,11 @@
       Art.hud(c, { tank: L.sys.tank, tankMax: L.sys.tankMax, aquifer: info.value, redLine: info.redLine, hearts: L.player.hearts,
         chips: L.sys.chips, score: L.sys.score, level: L.json.name }, W, H);
       drawGoals(c);
+      if (info.belowRed) {
+        var pulse = 0.8 + 0.2 * Math.sin(L.time * 8), bw = 440;
+        c.globalAlpha = pulse; Art.card(c, W / 2 - bw / 2, 84, bw, 40, { bg: '#c8321f', r: 20, flat: true }); c.globalAlpha = 1;
+        Art.text(c, 'Water too low: ground is sinking! Turn pumps OFF', W / 2, 93, { size: 17, align: 'center', color: '#ffffff', shadow: false });
+      }
       drawTip(c, cx, cy);
       drawToasts(c);
       if (L.idx === 0 && !isTouch) Art.text(c, '← → move  ·  SPACE jump  ·  E action  ·  P pause', 18, H - 26, { size: 13, color: '#ffffff', outline: 4, shadow: false });
@@ -370,7 +482,7 @@
     Art.text(c, 'Ground sunk  ' + cm + ' cm', 28, y + 44, { size: 14, color: cm > 0 ? '#ff9d8f' : '#ffffff', shadow: false });
   }
   function drawToasts(c) {
-    var y = 84;
+    var y = Sys.aquiferInfo(L.sys).belowRed ? 134 : 84;
     L.toasts.forEach(function (t) {
       c.font = '800 17px "Baloo 2", "Trebuchet MS", sans-serif';
       var w = Math.min(560, c.measureText(t.text).width + 40), x = W - 14 - w;
@@ -446,50 +558,121 @@
     }
   });
 
-  // ---------- REPORT CARD ----------
-  var rep = null, repT = 0;
+  // ---------- REPORT CARD: what you did -> what happened -> what NISAR really measured ----------
+  var rep = null, repT = 0, repMenu = makeMenu();
+  function repItems() {
+    var idx = rep.levelIdx, last = idx === LEVELS.length - 1, items = [];
+    if (last) items.push({ label: 'Finish  ★', go: function () { scenes.go('finale'); } });
+    else if (isUnlocked(idx + 1)) items.push({ label: 'Next valley  ▶', go: function () { mapIdx = idx + 1; startLevel(idx + 1); } });
+    items.push({ label: '↻  Try again', go: function () { startLevel(idx, true); } });
+    items.push({ label: 'Valley map', go: function () { scenes.go('map'); } });
+    items.push({ label: 'Real NISAR map ↗', go: function () { openPage('../atlas.html#' + (ATLAS_ID[rep.json.id] || '')); } });
+    return items;
+  }
   scenes.register('report', {
-    enter: function (p) { rep = p; repT = 0; },
+    enter: function (p) { rep = p; repT = 0; repMenu.sel = 0; repMenu.pl = repMenu.pr = true; },
     update: function (dt, inp) {
-      repT += dt; var tap = takeTap();
-      if (repT > 0.8 && (inp.jumpPressed || inp.actionPressed || tap)) {
-        var next = rep.levelIdx + 1;
-        if (next < LEVELS.length && isUnlocked(next) && !(tap && tap.x < W / 2)) { mapIdx = next; startLevel(next); } else scenes.go('map');
-      }
+      repT += dt; var tap = takeTap(); if (repT < 0.9) return;
+      var it = menuUpdate(repMenu, repItems(), inp, tap);
+      if (it) { beep(600, 0.12, 'triangle'); it.go(); }
     },
     draw: function (c) { drawReport(c); }
   });
+  function reportRows(R) {
+    var rows = [];
+    rows.push({ icon: R.pumpsOff ? 'pump_off' : 'pump_on', ok: R.pumpsOff === R.pumpsTotal,
+      a: 'Switched off ' + R.pumpsOff + ' of ' + R.pumpsTotal + ' pumps',
+      b: R.pumpsOff === R.pumpsTotal ? '→ no more water pulled out, so it could refill' : '→ ' + (R.pumpsTotal - R.pumpsOff) + ' kept draining the water underground' });
+    rows.push({ icon: R.cropsWatered ? 'crop_green' : 'crop_dry', ok: R.cropsWatered === R.cropsTotal,
+      a: 'Saved ' + R.cropsWatered + ' of ' + R.cropsTotal + ' crops with rainwater',
+      b: '→ farms that get rain need to pump less' });
+    rows.push({ icon: 'drop', ok: R.drops > 0, a: 'Caught ' + (R.drops || 0) + ' raindrops',
+      b: R.dustHits ? '→ dust devils stole water ' + R.dustHits + ' time' + (R.dustHits > 1 ? 's' : '') : '→ rain is the water you can use without pumping' });
+    rows.push({ icon: 'chip', ok: R.chips === R.chipsTotal, a: 'Collected ' + R.chips + ' of ' + R.chipsTotal + ' NISAR data chips',
+      b: R.qcFound ? '→ and you spotted the bad reading, like our quality check' : '→ each chip is a real NISAR measurement' });
+    return rows;
+  }
   function drawReport(c) {
-    var r = rep.result, R = r.report, nStars = r.stars.filter(Boolean).length;
+    var r = rep.result, R = r.report, rows = reportRows(R);
     Art.drawBackground(c, rep.json.biome, repT * 20, W, H, repT);
     c.fillStyle = 'rgba(10,14,28,.55)'; c.fillRect(0, 0, W, H);
-    Art.card(c, 40, 24, W - 80, H - 48, { bg: '#fff7e8', r: 24 });
-    Art.text(c, rep.json.name + ': valley report', W / 2, 40, { size: 30, align: 'center', color: '#1c2233', shadow: false });
-    for (var s = 0; s < 3; s++) { var pop = Math.min(1, Math.max(0, (repT - 0.3 - s * 0.25) * 4)); if (pop > 0) Art.icon(c, 'star', W / 2 - 96 + s * 64, 82, 56 * pop, r.stars[s]); }
-    var labels = ['Reached the end', 'Water never below the safe line', 'All NISAR data chips'];
-    labels.forEach(function (lb, i) { Art.text(c, (r.stars[i] ? '✔ ' : '✘ ') + lb, 80, 160 + i * 24, { size: 16, color: r.stars[i] ? '#1f7a35' : '#a33a2c', shadow: false }); });
-    Art.text(c, 'Score ' + r.score, W - 80, 160, { size: 30, align: 'right', color: '#1c2233', shadow: false });
-    Art.text(c, 'Pumps off ' + R.pumpsOff + '/' + R.pumpsTotal + '   ·   Crops saved ' + R.cropsWatered + '/' + R.cropsTotal + '   ·   Chips ' + R.chips + '/' + R.chipsTotal + (R.qcFound ? '   ·   bad reading spotted ✔' : ''), W - 80, 200, { size: 14, align: 'right', color: '#4a5468', shadow: false });
-    // aquifer curve
-    var gx = 80, gy = 250, gw = 400, gh = 120, cur = R.aquiferCurve || [];
+    Art.card(c, 24, 12, W - 48, H - 24, { bg: '#fff7e8', r: 24 });
+    Art.text(c, rep.json.name + ': what happened?', W / 2, 22, { size: 28, align: 'center', color: '#1c2233', shadow: false });
+    for (var s = 0; s < 3; s++) { var pop = Math.min(1, Math.max(0, (repT - 0.3 - s * 0.25) * 4)); if (pop > 0) Art.icon(c, 'star', W / 2 - 84 + s * 56, 62, 48 * pop, r.stars[s]); }
+    var labels = ['Reached the flag', 'Water stayed above the safe line', 'All NISAR data chips'];
+    labels.forEach(function (lb, i) { Art.text(c, (r.stars[i] ? '★ ' : '☆ ') + lb, 60 + i * 290, 116, { size: 14, color: r.stars[i] ? '#1f7a35' : '#a33a2c', shadow: false }); });
+    Art.text(c, 'Score ' + r.score, W - 52, 26, { size: 22, align: 'right', color: '#1c2233', shadow: false });
+
+    // left: what you did -> what it caused
+    Art.text(c, 'What you did', 56, 146, { size: 16, color: '#2f6fb8', shadow: false });
+    rows.forEach(function (row, i) {
+      var y = 170 + i * 52;
+      c.save(); c.translate(56, y); c.scale(0.85, 0.85); Art.drawSprite(c, row.icon, 0, 0, 0, false); c.restore();
+      Art.text(c, row.a, 106, y + 2, { size: 16, color: '#1c2233', shadow: false });
+      Art.text(c, row.b, 106, y + 22, { size: 13, color: row.ok ? '#1f7a35' : '#8a5a1c', shadow: false });
+    });
+
+    // right: the water curve + the ground result
+    var gx = 520, gy = 168, gw = 384, gh = 80, cur = R.aquiferCurve || [];
+    Art.text(c, 'Water underground during your run', gx, 146, { size: 16, color: '#2f6fb8', shadow: false });
     c.fillStyle = '#eaf2fb'; c.fillRect(gx, gy, gw, gh);
-    var ry = gy + gh - gh * R.redLine / 100; c.strokeStyle = '#e8b33a'; c.setLineDash([8, 6]); c.lineWidth = 2; c.beginPath(); c.moveTo(gx, ry); c.lineTo(gx + gw, ry); c.stroke(); c.setLineDash([]);
+    var ry = gy + gh - gh * R.redLine / 100;
+    c.fillStyle = 'rgba(200,50,31,.10)'; c.fillRect(gx, ry, gw, gy + gh - ry);
+    c.strokeStyle = '#e8b33a'; c.setLineDash([8, 6]); c.lineWidth = 2; c.beginPath(); c.moveTo(gx, ry); c.lineTo(gx + gw, ry); c.stroke(); c.setLineDash([]);
     if (cur.length > 1) { c.strokeStyle = '#2f8fe6'; c.lineWidth = 3; c.beginPath(); cur.forEach(function (v, i) { var x = gx + gw * i / (cur.length - 1), y = gy + gh - gh * v / 100; if (i) c.lineTo(x, y); else c.moveTo(x, y); }); c.stroke(); }
-    Art.text(c, 'Water underground during your run', gx, gy - 22, { size: 14, color: '#1c2233', shadow: false });
-    Art.text(c, 'safe line', gx + gw - 4, ry - 18, { size: 12, align: 'right', color: '#b98516', shadow: false });
-    // you vs NISAR
-    Art.card(c, 510, 240, 370, 140, { bg: '#ffffff', r: 16, flat: true });
-    Art.text(c, 'Your valley sank', 530, 252, { size: 15, color: '#4a5468', shadow: false });
-    Art.text(c, R.cmSunk + ' cm', 530, 272, { size: 34, color: R.cmSunk > 0 ? '#c8321f' : '#1f7a35', shadow: false });
-    Art.text(c, 'Real NISAR measurement', 700, 252, { size: 15, color: '#4a5468', shadow: false });
-    Art.text(c, (R.realFactCm != null ? R.realFactCm : '?') + ' cm', 700, 272, { size: 34, color: '#1b5fae', shadow: false });
-    Art.text(c, 'per 100 days', 700, 312, { size: 13, color: '#4a5468', shadow: false });
-    wrapBlock(c, R.realFactText, 530, 334, 340, 13, '#1c2233');
-    wrapBlock(c, R.oneLine, 80, 392, W - 160, 16, '#1c2233');
-    Art.text(c, R.calibration, W / 2, 452, { size: 11, align: 'center', color: '#6b7286', shadow: false });
-    var next = rep.levelIdx + 1 < LEVELS.length && isUnlocked(rep.levelIdx + 1);
-    if (repT > 0.8 && Math.floor(repT * 2) % 2) Art.text(c, next ? (isTouch ? 'Tap for next valley' : 'SPACE: next valley') : (isTouch ? 'Tap for the map' : 'SPACE: valley map'), W / 2, 474, { size: 18, align: 'center', color: '#1c2233', shadow: false });
+    Art.text(c, 'safe line', gx + gw - 4, ry - 16, { size: 11, align: 'right', color: '#b98516', shadow: false });
+    Art.text(c, R.secondsBelowSafe ? 'Below the safe line for ' + R.secondsBelowSafe + ' s' : 'Never below the safe line', gx, gy + gh + 4, { size: 12, color: R.secondsBelowSafe ? '#a33a2c' : '#1f7a35', shadow: false });
+
+    Art.card(c, gx, 274, gw, 104, { bg: '#ffffff', r: 14, flat: true });
+    Art.text(c, 'Your valley sank', gx + 16, 282, { size: 13, color: '#4a5468', shadow: false });
+    Art.text(c, R.cmSunk + ' cm', gx + 16, 298, { size: 32, color: R.cmSunk > 0 ? '#c8321f' : '#1f7a35', shadow: false });
+    Art.text(c, 'in this game', gx + 16, 338, { size: 12, color: '#4a5468', shadow: false });
+    Art.text(c, 'The real valley (NISAR)', gx + 200, 282, { size: 13, color: '#4a5468', shadow: false });
+    Art.text(c, (R.realFactCm != null ? Number(R.realFactCm).toFixed(1) : '?') + ' cm', gx + 200, 298, { size: 32, color: '#1b5fae', shadow: false });
+    Art.text(c, 'in 100 days, measured in 2026', gx + 200, 338, { size: 12, color: '#4a5468', shadow: false });
+    Art.text(c, 'Sunk ground does not come back up.', gx + 16, 356, { size: 12, color: '#1c2233', shadow: false });
+
+    // the one-line lesson
+    Art.card(c, 56, 388, W - 112, 50, { bg: R.cmSunk > 0 ? '#ffe1d9' : '#dff3e2', r: 14, flat: true });
+    wrapBlock(c, R.oneLine, 72, 394, W - 144, 14, '#1c2233');
+    if (repT > 0.9) menuDraw(c, repMenu, repItems(), 450, repT, false, true);
+    Art.text(c, R.calibration, W / 2, H - 30, { size: 10, align: 'center', color: '#8a90a0', shadow: false });
   }
+
+  // ---------- FINALE: all four valleys, tie back to the real project ----------
+  var finT = 0, finMenu = makeMenu();
+  var FIN_ITEMS = [
+    { label: 'Explore the real NISAR map ↗', go: function () { openPage('../atlas.html'); } },
+    { label: 'NISAR Vision home ↗', go: function () { openPage('../index.html'); } },
+    { label: 'Play again', go: function () { scenes.go('map'); } }
+  ];
+  scenes.register('finale', {
+    enter: function () { finT = 0; finMenu.sel = 0; finMenu.pl = finMenu.pr = true; jingle([523, 659, 784, 1047, 1319]); },
+    update: function (dt, inp) {
+      finT += dt; var tap = takeTap(); if (finT < 1) return;
+      var it = menuUpdate(finMenu, FIN_ITEMS, inp, tap); if (it) { beep(600, 0.12, 'triangle'); it.go(); }
+    },
+    draw: function (c) {
+      Art.drawBackground(c, 'mexico', finT * 20, W, H, finT);
+      c.fillStyle = 'rgba(10,14,28,.6)'; c.fillRect(0, 0, W, H);
+      Art.text(c, 'You visited 4 sinking valleys!', W / 2, 18, { size: 34, align: 'center', color: '#fff', outline: 7 });
+      var prog = loadProgress(), total = 0;
+      Art.card(c, 120, 74, W - 240, 234, { bg: '#fff7e8', r: 18 });
+      Art.text(c, 'Valley', 150, 86, { size: 14, color: '#6b7286', shadow: false });
+      Art.text(c, 'Your stars', 470, 86, { size: 14, align: 'center', color: '#6b7286', shadow: false });
+      Art.text(c, 'Real sinking (NISAR)', W - 150, 86, { size: 14, align: 'right', color: '#6b7286', shadow: false });
+      LEVELS.forEach(function (lv, i) {
+        var y = 116 + i * 42, st = prog[lv.id] || 0, d = levelData[lv.id]; total += st;
+        Art.text(c, lv.name + ', ' + lv.place, 150, y, { size: 18, color: '#1c2233', shadow: false });
+        for (var k = 0; k < 3; k++) Art.icon(c, 'star', 426 + k * 30, y - 2, 26, k < st);
+        Art.text(c, (d && d.nisar ? Number(d.nisar.realFactCm).toFixed(1) : '?') + ' cm / 100 days', W - 150, y, { size: 18, align: 'right', color: '#1b5fae', shadow: false });
+      });
+      Art.text(c, 'Total: ' + total + ' / 12 stars', W / 2, 278, { size: 15, align: 'center', color: '#1c2233', shadow: false });
+      var msg = ['Everything you saw is real. NISAR, a NASA-ISRO radar satellite, measured these', 'valleys sinking in 2026. Pumping too much groundwater is the main cause,', 'and using less of it is how people slow it down.'];
+      msg.forEach(function (ln, k) { Art.text(c, ln, W / 2, 322 + k * 24, { size: 17, align: 'center', color: '#ffffff', shadow: false }); });
+      if (finT > 1) menuDraw(c, finMenu, FIN_ITEMS, 408, finT, true);
+    }
+  });
   function wrapBlock(c, s, x, y, maxW, size, col) {
     if (!s) return; c.font = '800 ' + size + 'px "Baloo 2", sans-serif';
     var words = String(s).split(' '), line = '', yy = y;
@@ -497,6 +680,7 @@
     if (line) Art.text(c, line, x, yy, { size: size, color: col, shadow: false });
   }
 
+  if (/[?&]debug/.test(location.search)) window.AquiferDebug = { scenes: scenes, getL: function () { return L; } };
   function boot() {
     scenes.go('title');
     LEVELS.forEach(function (lv) { fetchLevel(lv.id).catch(function () { return null; }); });

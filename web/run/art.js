@@ -316,7 +316,7 @@
       text(ctx, `${i + 1}. ${pn.name}`, cx + 14, cy + 10, { size: 17, color: P.ink, shadow: false });
       text(ctx, pn.locked ? 'Finish the previous valley' : (pn.rate != null ? `NISAR: ${pn.rate} cm per 100 days` : ''), cx + 14, cy + 36, { size: 13, color: pn.locked ? '#6b7286' : P.redD, shadow: false });
       for (let k = 0; k < 3; k++) icon(ctx, 'star', cx + 14 + k * 28, cy + 62, 22, k < (pn.stars || 0));
-      if (sel && !pn.locked && Math.floor(t * 2) % 2) text(ctx, 'SPACE to play', cx + cw - 14, cy + 66, { size: 13, align: 'right', color: P.ink, shadow: false });
+      if (sel && !pn.locked && Math.floor(t * 2) % 2) text(ctx, (root.RunTouch ? 'Tap to play' : 'SPACE to play'), cx + cw - 14, cy + 66, { size: 13, align: 'right', color: P.ink, shadow: false });
     });
   }
 
@@ -382,19 +382,22 @@
     ctx.beginPath(); ctx.ellipse(0, 34, 34, 11, 0, 0, Math.PI * 2); ctx.fillStyle = '#eef1f6'; ctx.fill(); ctx.stroke(); ctx.beginPath(); ctx.moveTo(0, 16); ctx.lineTo(0, 26); ctx.stroke();
     ctx.restore();
   }
-  function title(ctx, w, h, t) {
+  function title(ctx, w, h, t, o = {}) {
     drawBackground(ctx, 'tulare', t * 30, w, h, t);
     for (let x = -(t * 120 % TS); x < w; x += TS) { drawTile(ctx, 'grass', x, h - TS * 2); drawTile(ctx, 'dirt', x, h - TS); }
     const sx = ((t * 80) % (w + 300)) - 150, sy = 92 + Math.sin(t * 1.3) * 6;
     ctx.save(); ctx.globalAlpha = 0.22; ctx.fillStyle = lin(ctx, 0, sy, 0, h - TS * 2, ['#fff7c2', 'rgba(255,247,194,0)']); ctx.beginPath(); ctx.moveTo(sx - 10, sy + 40); ctx.lineTo(sx - 120, h - TS * 2); ctx.lineTo(sx + 120, h - TS * 2); ctx.lineTo(sx + 10, sy + 40); ctx.fill(); ctx.restore();
     drawSatellite(ctx, sx, sy, 0.9);
-    const ly = h * 0.22 + Math.sin(t * 2) * 4;
-    text(ctx, 'AQUIFER', w / 2, ly, { size: 96, align: 'center', color: '#7fd7ff', outline: 12, shadowColor: 'rgba(0,0,0,.35)' });
-    text(ctx, 'RUN', w / 2, ly + 92, { size: 96, align: 'center', color: P.yellow, outline: 12, shadowColor: 'rgba(0,0,0,.35)' });
-    card(ctx, w / 2 - 260, ly + 206, 520, 44, { bg: 'rgba(20,26,44,.8)', r: 22 });
-    text(ctx, 'Save four real valleys from sinking ground', w / 2, ly + 214, { size: 20, align: 'center', color: P.white, shadow: false });
-    drawSprite(ctx, 'nisa_run', Math.floor(t * 12), w / 2 - 24, h - TS * 2 - 84 + 2);
-    if (Math.floor(t * 2) % 2) text(ctx, 'Press SPACE or tap to start', w / 2, h - 62, { size: 22, align: 'center', color: P.white, outline: 6 });
+    const ly = (o.menu ? h * 0.13 : h * 0.22) + Math.sin(t * 2) * 4, big = o.menu ? 84 : 96;
+    text(ctx, 'AQUIFER', w / 2, ly, { size: big, align: 'center', color: '#7fd7ff', outline: 12, shadowColor: 'rgba(0,0,0,.35)' });
+    text(ctx, 'RUN', w / 2, ly + big * 0.95, { size: big, align: 'center', color: P.yellow, outline: 12, shadowColor: 'rgba(0,0,0,.35)' });
+    const sub = o.subtitle || 'Save four real valleys from sinking ground';
+    ctx.font = `800 20px ${FONT}`; const sw = Math.min(w - 60, ctx.measureText(sub).width + 48);
+    card(ctx, w / 2 - sw / 2, ly + big * 2.05, sw, 44, { bg: 'rgba(20,26,44,.8)', r: 22 });
+    text(ctx, sub, w / 2, ly + big * 2.05 + 8, { size: 20, align: 'center', color: P.white, shadow: false });
+    const nx = o.menu ? ((t * 90) % (w + 120)) - 60 : w / 2 - 24;
+    drawSprite(ctx, 'nisa_run', Math.floor(t * 12), nx, h - TS * 2 - 84 + 2);
+    if (!o.menu && Math.floor(t * 2) % 2) text(ctx, 'Press SPACE or tap to start', w / 2, h - 62, { size: 22, align: 'center', color: P.white, outline: 6 });
   }
   function fx(ctx, type, x, y, t) {
     if (type === 'splash') { for (let i = 0; i < 10; i++) { const a = -Math.PI * (i / 9), d = 8 + t * 46; circle(ctx, x + Math.cos(a) * d, y + Math.sin(a) * d * 0.8 + t * t * 30, 5 * (1 - t) + 1, P.waterL); } }
