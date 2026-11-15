@@ -26,6 +26,8 @@
       });
       setAll(`[data-kpi-det="${key}"]`, k[key].detail);
     });
+    const areaM = /([\d.,]+)\s*km²/.exec(k.people.detail || '');
+    if (areaM) setAll('[data-kpi-det-num="area"]', Math.round(parseFloat(areaM[1].replace(/,/g, ''))) + ' km²');
     const [w0, w1] = h.common_window;
     const days = Math.round((new Date(w1) - new Date(w0)) / 864e5);
     setAll('[data-hs="days"]', String(days));

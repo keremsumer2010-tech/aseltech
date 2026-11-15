@@ -38,71 +38,156 @@
   <p class="ha-note" id="top5note">cm per 100 days, toward or away from the satellite. <span data-hs="calib">NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.</span></p>
 </section>
 
-<!-- 1 · WHAT WE DID -->
-<section class="jband" id="what">
-  <div class="wrap">
-    <p class="chapter">1 · What we did</p>
-    <h2>Three steps, from radar echoes to a checked map</h2>
-    <div class="steps3">
-      <div class="st"><span class="stn">1</span><h3>Took NISAR's first radar data</h3><p>NISAR's L-band radar sees the ground day and night, through clouds, and repeats each track every 12 days. We used its first provisional products (June–October 2026) from NASA's archive.</p></div>
-      <div class="st"><span class="stn">2</span><h3>Turned it into centimetres, the same way everywhere</h3><p>One open pipeline converts the change in radar echoes between visits into ground motion. Every basin gets the same window (<span data-hs="window">28 Jun – 29 Sep 2026</span>), the same box size and a stable reference point outside the sinking area, so the ranking is fair.</p></div>
-      <div class="st"><span class="stn">3</span><h3>Checked every number</h3><p>Against permanent GPS stations, against NASA JPL's own OPERA ground-motion product, against published studies, and with an automatic test that caught one of our own mistakes.</p></div>
+<!-- IN NUMBERS -->
+<section class="kpis" id="kpis" aria-label="Key numbers">
+  <div class="kpi"><div class="kpi-num" data-kpi="regions">29</div><div class="kpi-lbl">basins measured with one method</div><div class="kpi-det" data-kpi-det="regions">16 reliable, 13 indicative</div></div>
+  <div class="kpi"><div class="kpi-num" data-kpi="people">1.20 M</div><div class="kpi-lbl">people on ground sinking more than 5 cm</div><div class="kpi-det">in one summer, measured basins</div></div>
+  <div class="kpi"><div class="kpi-num" data-kpi="gnss">r = 0.92</div><div class="kpi-lbl">agreement with 10 GPS stations</div><div class="kpi-det">Central Valley, California</div></div>
+  <div class="kpi"><div class="kpi-num" data-kpi="storage">0.32 <small>km³/yr</small></div><div class="kpi-lbl">underground water storage lost for good</div><div class="kpi-det">Central Valley, California</div></div>
+  <div class="kpi"><div class="kpi-num" data-hs="nflag">5</div><div class="kpi-lbl">basins our own error check flagged</div><div class="kpi-det">shown as indicative until re-processed</div></div>
+</section>
+
+<div class="built-intro"><div class="wrap"><p class="chapter">What we built</p><h2>Nine things we made, one by one</h2></div></div>
+
+<!-- 1 ATLAS -->
+<section class="work" id="w1">
+  <div class="wrap wgrid">
+    <div class="wtext">
+      <div class="wnum">1</div>
+      <h2>A global subsidence atlas</h2>
+      <p class="what"><b>What it is:</b> ground motion maps for <span data-kpi="regions">29</span> basins on three continents, all made the same way from NISAR's first radar data and ranked on the same <span data-hs="days">93</span> days.</p>
+      <p class="why"><b>Why it matters:</b> for the first time you can compare sinking in Türkiye, Iran, Mexico, California and Asia side by side, with the same ruler.</p>
+      <div class="wbig"><span>−11.0 cm</span> per 100 days at the Konya Plain, the fastest reliable basin</div>
+      <a class="btn solid" href="atlas.html">Open the atlas →</a>
     </div>
-    <div class="kpis" id="kpis" aria-label="Key numbers">
-      <div class="kpi"><div class="kpi-num" data-kpi="regions">29</div><div class="kpi-lbl">basins measured with one method</div><div class="kpi-det" data-kpi-det="regions">16 reliable, 13 indicative</div></div>
-      <div class="kpi"><div class="kpi-num" data-kpi="gnss">r = 0.92</div><div class="kpi-lbl">agreement with 10 GPS stations</div><div class="kpi-det">Central Valley, California</div></div>
-      <div class="kpi"><div class="kpi-num" data-kpi="opera">r = 0.91</div><div class="kpi-lbl">agreement with NASA JPL OPERA</div><div class="kpi-det">Mexico City, same season one year earlier</div></div>
-      <div class="kpi"><div class="kpi-num" data-kpi="people">1.20 M</div><div class="kpi-lbl">people on ground sinking more than 5 cm</div><div class="kpi-det">in one summer, measured basins</div></div>
-      <div class="kpi"><div class="kpi-num" data-kpi="storage">0.32 <small>km³/yr</small></div><div class="kpi-lbl">underground water storage lost for good</div><div class="kpi-det">Central Valley, California</div></div>
+    <figure class="wfig"><img data-rsrc="docs/story/media/pc2_konya_plain.png" alt="Konya Closed Basin ground motion map with Konya and Karapınar marked: red areas sank up to 9.6 cm between June and October 2026" loading="lazy"><figcaption>One of the 29 maps: Konya Closed Basin, Türkiye, 26 Jun – 12 Oct 2026. Red = sinking; star = fastest 1 km block (−9.6 cm).</figcaption></figure>
+  </div>
+</section>
+
+<!-- 2 SELF-CHECK -->
+<section class="work alt" id="w2">
+  <div class="wrap wgrid rev">
+    <div class="wtext">
+      <div class="wnum">2</div>
+      <h2>A check that catches our own errors</h2>
+      <p class="what"><b>What it is:</b> an automatic test on every basin's time series. It looks for jumps of exactly one radar phase cycle (12.1 cm) and for single bad dates.</p>
+      <p class="why"><b>Why it matters:</b> it caught our first number one. Semarang's −12.1 cm was one processing jump; re-processed, the real peak on the coast is −6.2 cm.</p>
+      <div class="wbig"><span data-hs="nflag">5</span> basins flagged and shown as indicative</div>
+    </div>
+    <figure class="wfig chartbox"><svg id="qcChart" viewBox="0 0 520 300" role="img" aria-label="Semarang headline value before and after re-processing"></svg>
+      <figcaption>Semarang. Grey: old headline point inland, one 11.2 cm jump at the last date. Blue: new headline point on the subsiding north coast.</figcaption></figure>
+  </div>
+</section>
+
+<!-- 3 GROUND TRUTH -->
+<section class="work" id="w3">
+  <div class="wrap wgrid">
+    <div class="wtext">
+      <div class="wnum">3</div>
+      <h2>Proof on the ground</h2>
+      <p class="what"><b>What it is:</b> a comparison with 10 permanent GPS stations in California's Central Valley, where the ground moved up to 7.8 cm away from the satellite in 108 days.</p>
+      <p class="why"><b>Why it matters:</b> GPS stations are the reference that engineers trust. NISAR and GPS tell the same story, station by station.</p>
+      <div class="wbig"><span data-kpi="gnss">r = 0.92</span> agreement with GPS, typical difference 1.4 cm</div>
+      <p class="small2">We also compared with NASA JPL's OPERA product: over Mexico City the pattern matches at 10 points (r = 0.91), although OPERA covers winter and NISAR summer.</p>
+    </div>
+    <figure class="wfig"><img data-rsrc="docs/story/media/validation_scatter.png" alt="NISAR versus GPS at 10 stations: the points follow the one-to-one line" loading="lazy"><figcaption>NISAR vs GPS, Central Valley, 28 Jun – 14 Oct 2026.</figcaption></figure>
+  </div>
+</section>
+
+<!-- 4 PEOPLE -->
+<section class="work alt" id="w4">
+  <div class="wrap wgrid rev">
+    <div class="wtext">
+      <div class="wnum">4</div>
+      <h2>Who lives on sinking ground</h2>
+      <p class="what"><b>What it is:</b> each atlas map overlaid with a population map (GHSL 2025), counting only sinking larger than twice the measurement noise.</p>
+      <p class="why"><b>Why it matters:</b> it turns centimetres into people, the number a city or ministry needs.</p>
+      <div class="wbig"><span data-kpi="people">1.20 M</span> people on ground that sank more than 5 cm in one summer</div>
+    </div>
+    <div class="wfig statpanel"><div class="sp"><b data-kpi="people">1.20 M</b><span>people, more than 5 cm</span></div><div class="sp"><b data-kpi-det-num="area">512 km²</b><span>of land, more than 5 cm</span></div><div class="sp"><b data-kpi="regions">29</b><span>basins counted</span></div></div>
+  </div>
+</section>
+
+<!-- 5 WATER LOST -->
+<section class="work" id="w5">
+  <div class="wrap wgrid">
+    <div class="wtext">
+      <div class="wnum">5</div>
+      <h2>Water storage lost for good</h2>
+      <p class="what"><b>What it is:</b> eleven months of NISAR data split into ground that bounces back each winter and ground that does not. The part that does not come back is squeezed clay: aquifer space lost forever.</p>
+      <p class="why"><b>Why it matters:</b> water managers count it in cubic kilometres, so we did too.</p>
+      <div class="wbig"><span data-kpi="storage">0.32 km³/yr</span> lost permanently in the Central Valley</div>
+    </div>
+    <figure class="wfig"><img data-rsrc="docs/story/media/pc9_fullyear_point.png" alt="Eleven months of ground motion west of Earlimart: a small winter rise, then a steep summer drop, split into a permanent trend and a seasonal cycle" loading="lazy"><figcaption>Earlimart, Central Valley: permanent trend vs seasonal cycle (mixed beta + provisional data).</figcaption></figure>
+  </div>
+</section>
+
+<!-- 6 INFRASTRUCTURE -->
+<section class="work alt" id="w6">
+  <div class="wrap wgrid rev">
+    <div class="wtext">
+      <div class="wnum">6</div>
+      <h2>Canals and railways at risk</h2>
+      <p class="what"><b>What it is:</b> every canal, road and railway line in the Central Valley checked for uneven sinking, with a probability that includes our measurement error.</p>
+      <p class="why"><b>Why it matters:</b> uneven sinking cracks canals and tilts tracks; engineers can see which section to inspect first.</p>
+      <div class="wbig"><span>81 / 645</span> sections on ground tilting more than 20 mm per km</div>
+    </div>
+    <figure class="wfig"><img data-rsrc="docs/story/media/pc7_risk_prob.png" alt="Bar chart: probability that sinking differs by more than 10 cm along each line, highest for the Exeter and Goshen rail subdivisions and the Friant-Kern Canal" loading="lazy"><figcaption>Chance of more than 10 cm uneven sinking per line (screening, not a safety rating).</figcaption></figure>
+  </div>
+</section>
+
+<!-- 7 BULLETINS -->
+<section class="work" id="w7">
+  <div class="wrap wgrid">
+    <div class="wtext">
+      <div class="wnum">7</div>
+      <h2>A one-page bulletin for every basin</h2>
+      <p class="what"><b>What it is:</b> <span data-kpi="regions">29</span> printable bulletins in the style of NASA disaster products: rate, worst areas, people affected, confidence, revision history.</p>
+      <p class="why"><b>Why it matters:</b> a water manager does not read papers; one page with the number and its reliability is what they use.</p>
+      <a class="btn solid" data-rhref="docs/bulletins/konya_plain.html" href="atlas.html">Open the Konya Plain bulletin →</a>
+    </div>
+    <div class="wfig bulletin">
+      <div class="bl-head"><b>NISAR Pulse Bulletin</b><span>NP-KONYA_PLAIN-2026-001 · provisional</span></div>
+      <div class="bl-row"><span>Basin</span><b>Konya Plain, Türkiye</b></div>
+      <div class="bl-row"><span>Sinking rate</span><b class="hot">−11.0 cm / 100 days</b></div>
+      <div class="bl-row"><span>Data window</span><b>28 Jun – 29 Sep 2026</b></div>
+      <div class="bl-row"><span>Confidence</span><b>medium · low coverage, caution</b></div>
+      <div class="bl-foot">NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.</div>
     </div>
   </div>
 </section>
 
-<!-- 2 · WHAT IT GIVES -->
-<section class="jband alt" id="gives">
-  <div class="wrap">
-    <p class="chapter">2 · What it gives</p>
-    <h2>Numbers that people can act on</h2>
-    <div class="impact">
-      <div class="icard"><div class="ihead">For cities</div><div class="inum" data-kpi="people">1.20 M</div><p>people live where the ground sank more than 5 cm in one summer. Each basin has a one-page bulletin.</p><a data-rhref="docs/bulletins/index.html" href="atlas.html">29 bulletins →</a></div>
-      <div class="icard"><div class="ihead">For water managers</div><div class="inum" data-kpi="storage">0.32 km³/yr</div><p>of aquifer storage lost permanently in the Central Valley: compacted clay does not refill.</p><a href="science.html">method →</a></div>
-      <div class="icard"><div class="ihead">For engineers</div><div class="inum">81 / 645</div><p>canal, road and rail sections in the Central Valley sit on ground tilting more than 20 mm per km; each corridor gets a damage probability.</p><a href="science.html">risk screen →</a></div>
-      <div class="icard"><div class="ihead">For scientists</div><div class="inum">open</div><p>every value traces to a data file; the atlas, its checks and its change log can be downloaded and re-run.</p><a href="data.html">data and code →</a></div>
-      <div class="icard hl"><div class="ihead">For everyone</div><div class="inum">30 s</div><p>run a farming valley yourself: pump more, earn more, and watch part of the sinking become permanent.</p><a data-rhref="game/" href="atlas.html">play →</a></div>
+<!-- 8 SIMULATOR -->
+<section class="work alt" id="w8">
+  <div class="wrap wgrid rev">
+    <div class="wtext">
+      <div class="wnum">8</div>
+      <h2>A simulator anyone can play</h2>
+      <p class="what"><b>What it is:</b> run a farming valley for 24 months. Pump more and earn more, but watch the ground sink and part of it never come back.</p>
+      <p class="why"><b>Why it matters:</b> the model reproduces what NISAR measured, so students and farmers learn from real data, in 30 seconds.</p>
+      <a class="btn solid" data-rhref="game/" href="atlas.html">Play the simulator →</a>
     </div>
+    <a class="wfig" data-rhref="game/" href="atlas.html"><img src="assets/simulator.jpg" alt="Simulator screen: valley map, sinking chart and water sliders" loading="lazy"></a>
   </div>
 </section>
 
-<!-- 3 · WHY TRUST IT -->
-<section class="jband" id="trust">
-  <div class="wrap jgrid">
-    <div>
-      <p class="chapter">3 · Why you can trust it</p>
-      <h2>It checks itself, and it was checked from outside</h2>
-      <ul class="proof">
-        <li><b>It caught our own mistake.</b> Semarang first ranked number one at −12.1 cm. The whole drop came from a single 11.2 cm jump, almost exactly one radar phase cycle (12.1 cm): a processing error. Re-processed, the peak moved to the coast known to subside: −6.2 cm.</li>
-        <li><b>The same test runs on every basin.</b> <span data-hs="nflag">5</span> basins stay <i>indicative only</i> until re-processed: <span data-hs="flagged">Bangkok, Beijing, Delhi, Gorgan, Pekalongan</span>.</li>
-        <li><b>Ground truth:</b> in the Central Valley, where the ground moved up to 7.8 cm away from the satellite in 108 days, NISAR agrees with 10 GPS stations at <span data-kpi="gnss">r = 0.92</span>; <span data-kpi="opera">r = 0.91</span> with NASA's OPERA product over Mexico City.</li>
-        <li><b>Honest uncertainty:</b> about 0.3 cm formal noise per pixel, uncertainty maps for 26 of 29 basins, and a literature check for each.</li>
-      </ul>
+<!-- 9 OPEN ENGINE -->
+<section class="work" id="w9">
+  <div class="wrap wgrid">
+    <div class="wtext">
+      <div class="wnum">9</div>
+      <h2>An open engine anyone can re-run</h2>
+      <p class="what"><b>What it is:</b> NISAR Pulse, the pipeline behind every number here. One command searches NASA's archive, downloads, measures and checks a new region.</p>
+      <p class="why"><b>Why it matters:</b> any agency or student can repeat our atlas for their own city, and check our work.</p>
+      <a class="btn solid" href="data.html">Get the code and data →</a>
     </div>
-    <figure class="jchart"><svg id="qcChart" viewBox="0 0 520 300" role="img" aria-label="Semarang headline value before and after re-processing"></svg>
-      <figcaption>Semarang. Grey: the old headline point inland, where the whole drop is one 11.2 cm jump at the last date. Blue: the new headline point on the subsiding north coast after re-processing.</figcaption></figure>
-  </div>
-</section>
+    <pre class="code"><span class="c"># measure a new region from public NASA data</span>
+python -m pipeline.nisarpulse run \
+  --name konya --bbox 32.4,37.4,33.9,38.1 \
+  --start 2026-06-17 --end 2026-10-31
 
-<!-- 4 · WHAT IS NEW -->
-<section class="jband alt" id="new">
-  <div class="wrap">
-    <p class="chapter">4 · What is new</p>
-    <h2>What we built that did not exist before</h2>
-    <div class="orig">
-      <div><b>A fair NISAR atlas</b><p><span data-kpi="regions">29</span> basins from NISAR's first provisional data, one method and one 93-day window for all.</p></div>
-      <div><b>A ranking that checks itself</b><p>Automatic tests for radar phase errors and bad dates, priority for independent sensors, and a public log of every change.</p></div>
-      <div><b>Decision numbers</b><p>Permanent water loss in km³ per year, damage probability per canal section, people on sinking ground.</p></div>
-      <div><b>Open and repeatable</b><p>The same open engine runs on any region with one command, from public NASA data.</p></div>
-    </div>
-    <div class="links-row"><a class="btn solid" href="atlas.html">Explore the atlas</a><a class="btn line" href="science.html">Read the science</a><a class="btn line" href="data.html">Get the data</a><a class="btn line" href="present.html">3-minute presentation</a></div>
+<span class="c"># rebuild and self-check the atlas</span>
+python pipeline/pc10/build_atlas.py</pre>
   </div>
 </section>
 </main>
