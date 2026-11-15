@@ -1,6 +1,6 @@
 ﻿# PC6 durum
 
-- Görev: Ortak ±10 cm ölçekli küçük haritalar data/global/<id>/thumb.png (PC10'dan devir) tamamlandı (29/29 bölge 400x400 ±10 cm LOS thumb.png + meta.json thumb_scale + pc10_colorbar.png); sıradaki: BACKLOG_ORTAK'tan yeni iş alma.
+- Görev: İkinci sıralama ekseni: ortak pencerede < −5 cm alan km² (PC10'dan devir) — çalışıyor: atlas.json alan alanları entegrasyonu + atlas sayfasında "Fastest Rate / Largest Area" sıralama anahtarı.
 - Durum: Oyun cilası (7/7), 3 adımlı "How to play" rehberi, `demo_30s.mp4` (`29.62 s`, 1080p, Challenge başlıklarıyla), Konya Kapalı Havzası + obruk göstergesi (`6/6 tests passed`), **Classroom Mode (3 hazır senaryo + 3 tartışma sorusu)**, **Sources & Parameters sekmesinde NASA Land Subsidence StoryMap + 6 White Paper**, **`docs/story/risk_dossier.md` içinde California Aqueduct vs NASA UAVSAR (2013–2017) kıyası**, **`docs/story/media/cv_fullyear.mp4` (`14.25 s`, 26 epok tam yıl animasyonu)** ve **`analysis/pc6/test_20_strategies.py` (`40/40 PASS`)** tamamlandı.
   - Adım 1 (`analysis/pc6/make_animation.py`): `docs/story/media/cv_subsidence.{mp4,gif}` (`3.07 MB` / `4.23 MB`, 8 epok, 1080p) ve `docs/story/media/kp_subsidence.{mp4,gif}` (`0.88 MB` / `1.36 MB`, 9 epok, 1080p) pushlandı (`7369686`).
   - Adım 2 (`analysis/pc6/make_validation_plots.py`): `docs/story/validation_report.md`, `validation_scatter.png` (`r=0.924`, `RMSE=1.37 cm`) ve 10 `gnss_<station>.png` grafiği pushlandı (`823cb74`).
