@@ -48,10 +48,23 @@ web/
                       atlas_sat.js (NISAR uydu yörüngesi; data/nisar_tle.json + satellite.js),
                       docs.js (science/data/faq ortak yardımcılar), explorer.js (data/catalog.json okur),
                       tour.js (rehberli tur motoru: ekran kararır, tek bölüm aydınlanır, yanında açıklama kutusu;
-                      atlas ve simülatör ortak kullanır), tour_atlas.js (atlas turunun adımları, "? How to use" düğmesi)
+                      atlas ve simülatör ortak kullanır), tour_atlas.js (atlas turunun adımları, "? How to use" düğmesi),
+                      i18n.js (TR/EN dil düğmesi ve çeviri motoru; 7 sayfanın <head>'inde), i18n_tr.js (Türkçe sözlük, bkz. §2.1)
   assets/             logo_mark_*.png, atlas_world.{jpg,webp}, simulator.jpg, bluemarble_2k.jpg (atlas.js)
   vendor/             maplibre-gl (atlas haritası), satellite.min.js (atlas uydu yörüngesi)
 ```
+
+### 2.1 Türkçe / İngilizce çeviri
+
+- Varsayılan dil İngilizce; İngilizcede sayfaya dokunulmaz, Türkçe sözlük hiç yüklenmez.
+- Başlıktaki `TR`/`EN` düğmesi seçimi `localStorage` `nv-lang` içinde saklar ve sayfayı yeniler. `?lang=tr` / `?lang=en` de çalışır.
+- `web/js/i18n.js` Türkçede `i18n_tr.js`'i yükler, sayfadaki metni çevirir, sonradan eklenen metni de (atlas listesi,
+  simülatör olayları, tur kutuları) MutationObserver ile çevirir. Simülatör motoru `game/i18n_load.js` üzerinden yükler.
+- Sözlük anahtarı = İngilizce metin (boşluklar tek); `{0}` `{1}` = metnin içindeki `<b>`/`<a>`/`<span>`; `#` = herhangi bir sayı
+  (sırayla yerleşir), `#3` = İngilizcedeki 3. sayı (Türkçe cümle sırası sayıları yer değiştirdiğinde kullanılır).
+- Eksik çeviriyi bulmak: sayfayı `?i18n=collect` ile aç, konsolda `I18N.missing()`. Eksik metin İngilizce kalır, hata vermez.
+- Çevrilmeyenler: bilim sayfasındaki 7 katlanmış teknik rapor (`translate="no"`, başlıkta "İngilizce rapor" notu),
+  harita/görsel içindeki yazılar ve grafik (canvas) etiketleri, yer adları, dosya yolları ve komutlar, `docs/bulletins/`, `web3d/`.
 
 ## 3. `game/`: yeraltı suyu simülatörü (canlıda `/game/`)
 
@@ -63,6 +76,7 @@ web/
 | `tests.js` | Model için tarayıcı içi testler |
 | `test_model.html` | Sadece `model.js` testlerini çalıştıran geliştirici sayfası |
 | `tour_steps.js` | Rehberli turun adımları; motoru `../js/tour.js` (canlı) ya da `../web/js/tour.js` (yerel) yükler. İlk "Start simulation"da kendiliğinden açılır, "? Guide" düğmesi tekrar oynatır |
+| `i18n_load.js` | Sitenin çeviri motorunu yükler (`../js/i18n.js` canlı, `../web/js/i18n.js` yerel); dil düğmesi üst çubukta |
 | `assets/` | Oyun logosu |
 
 Rehberli tur (atlas + simülatör): ilk ziyarette bir kez açılır (localStorage `gt-done-atlas-v1` / `gt-done-sim-v1`).
