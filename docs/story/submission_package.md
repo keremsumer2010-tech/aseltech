@@ -1,18 +1,26 @@
 # NASA Space Apps 2026 — Submission Package (`docs/story/submission_package.md`)
 
-**Team:** Team Aseltech (ASELSAN Vocational and Technical Anatolian High School, Ankara) · **Challenge:** *Dancing with the SARs*  
+**Team:** Team Taykut / Team Aseltech (ASELSAN Vocational and Technical Anatolian High School, Ankara) · **Challenge:** *Dancing with the SARs* · **Local Event:** Lincoln (UK)  
 **Calibration Notice:** *NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.*
 
 ---
 
 ## 1. Live Public Links (Verified HTTP 200)
 
+All links below have been verified accessible with public HTTP 200 responses (no authentication, no paywall, no token required):
+
 | Item | URL | Status (`2026-11-15`) | Notes |
 |---|---|---:|---|
-| **Live Web App (Final Project)** | `https://keremsumer2010-tech.github.io/aseltech/` | `HTTP 200` | Public, no login required (`web/` deployed at Pages root) |
-| **GitHub Repository** | `https://github.com/keremsumer2010-tech/aseltech` | `HTTP 200` | Open-source code, data JSONs, QA logs, and docs |
+| **Live Web App (Final Project)** | `https://keremsumer2010-tech.github.io/aseltech/` | `HTTP 200` | Public landing page (`web/` deployed at Pages root) |
+| **GitHub Repository** | `https://github.com/keremsumer2010-tech/aseltech` | `HTTP 200` | Open-source code, data JSONs, pipeline scripts, QA logs |
 | **Primary Demo (7-Slide Deck)** | `https://keremsumer2010-tech.github.io/aseltech/docs/story/slides.html` | `HTTP 200` | `≤ 7` English slides (also printable to PDF) |
-| **3D Orbit & Subsidence Explorer** | `https://keremsumer2010-tech.github.io/aseltech/web3d/` | `HTTP 200` | Three.js 3D terrain + CelesTrak SGP4 NISAR orbit |
+| **Judge Brief (A4 One-Pager HTML)** | `https://keremsumer2010-tech.github.io/aseltech/docs/story/judge_brief.html` | `HTTP 200` | 3-minute executive summary: 5 KPIs, 4 contributions, links |
+| **Judge Brief (A4 One-Pager PDF)** | `https://github.com/keremsumer2010-tech/aseltech/blob/main/docs/story/judge_brief.pdf` | `HTTP 200` | Clean single-page printable PDF generated from data |
+| **Global Subsidence Atlas (29 Basins)** | `https://keremsumer2010-tech.github.io/aseltech/atlas.html` | `HTTP 200` | Interactive 29-region ranking, 93-day common window, QC filters |
+| **Valley Under Pressure Simulator** | `https://keremsumer2010-tech.github.io/aseltech/game/` | `HTTP 200` | 24-month Terzaghi aquifer compaction educational game |
+| **3D Orbit & Subsidence Explorer** | `https://keremsumer2010-tech.github.io/aseltech/web3d/` | `HTTP 200` | Three.js 3D terrain + CelesTrak SGP4 NISAR orbit visualization |
+| **29 Regional Early-Warning Bulletins** | `https://keremsumer2010-tech.github.io/aseltech/docs/bulletins/` | `HTTP 200` | NASA Disasters map-package style printable city reports |
+| **6-Stop Presentation Mode** | `https://keremsumer2010-tech.github.io/aseltech/present.html` | `HTTP 200` | Fast offline-ready 3-minute jury presentation flow |
 
 *(Note: `https://keremsumer2010-tech.github.io/aseltech/web/index.html` returns `404` because `.github/workflows/pages.yml` deploys `web/.` at the Pages root; always use `https://keremsumer2010-tech.github.io/aseltech/`.)*
 

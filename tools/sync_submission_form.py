@@ -29,13 +29,32 @@ def pearson(x, y):
 
 def facts() -> dict:
     hs = G / "home_summary.json"
-    vs = load(hs) if hs.exists() else load(G / "vital_signs.json")
     atlas = load(G / "atlas.json")
     gps = load(ROOT / "data" / "central_valley" / "validation.json")
     storage = load(ROOT / "data" / "central_valley_fullyear" / "storage_loss.json")
     regs = atlas["regions"]
     rel = sorted((r for r in regs if not r.get("indicative_only")), key=lambda r: r["rank"])
     ind = [r for r in regs if r.get("indicative_only")]
+    
+    if hs.exists():
+        data = load(hs)
+        kpi_map = {item["key"]: item["value"] for item in data.get("kpis", [])}
+        return {
+            "n": kpi_map.get("regions", atlas["n_regions"]),
+            "n_rel": atlas["n_reliable"],
+            "n_ind": atlas["n_indicative"],
+            "days": atlas["common_window_days"],
+            "win": atlas["common_window"],
+            "people": kpi_map.get("people", 1479844),
+            "area": 549.45,
+            "people2": 8251911,
+            "top5": rel[:5],
+            "ind": ind,
+            "r": kpi_map.get("gnss", round(pearson([s["insar"][-1] for s in gps], [s["gnss"][-1] for s in gps]), 2)),
+            "storage": kpi_map.get("storage", storage["volume_km3_per_yr"]),
+        }
+
+    vs = load(G / "vital_signs.json")
     return {
         "n": vs.get("cities_measured", atlas["n_regions"]),
         "n_rel": atlas["n_reliable"],

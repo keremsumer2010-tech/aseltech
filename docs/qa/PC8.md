@@ -375,3 +375,5 @@
   - `data/results_registry.json`, `docs/story/exposure.md`, `docs/story/submission_form.md`, `docs/story/slides_notes.md` 21 bölge toplamlarıyla güncellendi.
 
 - **FINAL 1-2 (11:15):** `docs/story/judge_brief.html` + `.pdf` (A4, tek sayfa, `tools/judge_brief.py`, sayilar vital_signs.json/atlas.json/validation.json'dan; home_summary.json henuz yok, yoksa vital_signs kullanilir). `docs/story/submission_form.md` `tools/sync_submission_form.py` ile 29 havza/93 gun/QC hikayesi/GHSL/OPERA ile guncellendi; karakter sayimlari yenilendi (ultra 141/150, standart 282/500).
+
+- **FINAL 5 (11:20):** `docs/story/submission_package.md` guncellendi; tum yayin baglantilari (ana sayfa, atlas, slides, judge_brief html/pdf, bulletins, game, web3d, present) dogrulandi (HTTP 200). `.github/workflows/pages.yml` icine bulletins rotasi eklendi. `tools/judge_brief.py` ve `tools/sync_submission_form.py` home_summary.json'dan okuyacak bicimde guclendirildi.

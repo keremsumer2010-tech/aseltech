@@ -42,12 +42,37 @@ def pearson(x, y):
 
 def numbers() -> dict:
     hs = G / "home_summary.json"
-    vs = load(hs) if hs.exists() else load(G / "vital_signs.json")
     atlas = load(G / "atlas.json")
     storage = load(ROOT / "data" / "central_valley_fullyear" / "storage_loss.json")
     gps = load(ROOT / "data" / "central_valley" / "validation.json")
     xs = [s["insar"][-1] for s in gps]
     ys = [s["gnss"][-1] for s in gps]
+    
+    if hs.exists():
+        data = load(hs)
+        kpi_map = {item["key"]: item["value"] for item in data.get("kpis", [])}
+        regs = atlas["regions"]
+        rel = sorted((r for r in regs if not r.get("indicative_only")), key=lambda r: r.get("rank", 999))
+        fastest = rel[0] if rel else regs[0]
+        return {
+            "basins": kpi_map.get("regions", atlas["n_regions"]),
+            "reliable": atlas["n_reliable"],
+            "indicative": atlas["n_indicative"],
+            "window_days": atlas["common_window_days"],
+            "window": atlas["common_window"],
+            "people": kpi_map.get("people", 1479844),
+            "area": 549.45,
+            "fastest": {
+                "name": fastest["name"],
+                "rate_cm_per_100d": fastest.get("rate_cm_per_100d_common", fastest.get("rate_cm_per_100d")),
+            },
+            "storage": kpi_map.get("storage", storage["volume_km3_per_yr"]),
+            "gps_r": kpi_map.get("gnss", round(pearson(xs, ys), 2)),
+            "gps_n": len(gps),
+            "source": "home_summary.json",
+        }
+    
+    vs = load(G / "vital_signs.json")
     return {
         "basins": vs.get("cities_measured", atlas["n_regions"]),
         "reliable": atlas["n_reliable"],
@@ -60,7 +85,7 @@ def numbers() -> dict:
         "storage": storage["volume_km3_per_yr"],
         "gps_r": round(pearson(xs, ys), 2),
         "gps_n": len(gps),
-        "source": "home_summary.json" if hs.exists() else "vital_signs.json",
+        "source": "vital_signs.json",
     }
 
 
@@ -90,7 +115,7 @@ def build(n: dict) -> str:
         ("Site", SITE),
         ("Atlas", SITE + "atlas.html"),
         ("Simulator", SITE + "game/"),
-        ("Bulletins", SITE + "bulletins/"),
+        ("Bulletins", SITE + "docs/bulletins/"),
         ("Repository", REPO),
     ]
     link_html = "\n".join(
