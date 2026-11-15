@@ -17,7 +17,6 @@
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/home3.css">
 <link rel="stylesheet" href="css/theme.css">
-<link rel="stylesheet" href="css/cambridge.css">
 <script src="js/i18n.js"></script>
 </head>
 <body>
@@ -55,6 +54,24 @@
   <div class="kpi"><div class="kpi-num" data-hs="nflag">5</div><div class="kpi-lbl">basins our own error check flagged</div><div class="kpi-det">shown as indicative until re-processed</div></div>
 </section>
 
+<!-- HOW WE KNOW IT'S RIGHT (PC1, Cambridge) -->
+<section class="trust" id="trust" aria-labelledby="h-trust">
+  <div class="trust-head"><p class="chapter">How we know it's right</p>
+    <h2 id="h-trust">A satellite number is only useful if you can trust it. We tested ours three ways.</h2></div>
+  <div class="trust-grid">
+    <a class="tcard" href="#w3"><span class="tnum" data-kpi="gnss">r = 0.92</span>
+      <b>Checked against the ground</b>
+      <p>Ten permanent GPS stations in California measured the same sinking as the satellite. Typical difference: about 1 cm (0.4 in).</p></a>
+    <a class="tcard" href="#w2"><span class="tnum"><span data-hs="nflag">5</span> caught</span>
+      <b>We hunt for our own mistakes</b>
+      <p>Radar can jump by exactly one wave cycle (12.1 cm). An automatic test checks every basin for these jumps and bad dates; flagged basins are not ranked.</p></a>
+    <a class="tcard" href="atlas.html"><span class="tnum"><span data-hs="nrel">15</span> of <span data-kpi="regions">29</span></span>
+      <b>We only rank what passes</b>
+      <p>Basins with thin coverage or failed checks stay "indicative". Even Konya, our strongest signal, stays indicative after our own review.</p></a>
+  </div>
+  <p class="trust-note">NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team. <a href="science.html">How it works, step by step →</a></p>
+</section>
+
 <section class="built-intro" id="built" aria-labelledby="h-built">
   <div class="bi-head"><p class="chapter">What we built · in one look</p><h2 id="h-built">Nine things we made. Each one is a section below.</h2></div>
   <ol class="glance">
@@ -88,28 +105,33 @@
   </div>
 </section>
 
-<!-- 02–03 · HOW WE KNOW -->
-<section class="proof-band" aria-labelledby="proof-title">
-  <div class="proof-inner">
-    <p class="chapter">Checks behind the map</p>
-    <h2 id="proof-title">How we know it’s right</h2>
-    <div class="proof-cards">
-      <article class="proof-card" id="w2">
-        <p class="proof-number">−12.1 → −6.2 cm<br><span>(−4.8 → −2.4 in)</span></p>
-        <h3>We check every time series for radar jumps</h3>
-        <p>Review corrected Semarang; Konya and Beijing remain marked indicative while their signals are checked.</p>
-      </article>
-      <article class="proof-card" id="w3">
-        <p class="proof-number">r = 0.92</p>
-        <h3>GPS stations agree</h3>
-        <p>Across 10 California stations, the root mean square difference is 1.4 cm (0.6 in).</p>
-      </article>
-      <article class="proof-card" id="proof-reliable">
-        <p class="proof-number">15 / 29</p>
-        <h3>We only rank what passes</h3>
-        <p>Only basins that pass the checks enter the reliable ranking.</p>
-      </article>
+<!-- 2 SELF-CHECK -->
+<section class="work alt" id="w2">
+  <div class="wrap wgrid rev">
+    <div class="wtext">
+      <div class="wnum">02</div>
+      <h2>A check that catches our own errors</h2>
+      <p class="what"><b>What it is:</b> an automatic test on every basin's time series. It looks for jumps of exactly one radar phase cycle (12.1 cm / 4.8 in) and for single bad dates.</p>
+      <p class="why"><b>Why it matters:</b> it caught our first number one. Semarang's −12.1 cm (−4.8 in) was one processing jump; re-processed, the real peak on the coast is −6.2 cm (−2.4 in).</p>
+      <div class="wbig"><span data-hs="nflag">5</span> basins flagged and shown as indicative</div>
     </div>
+    <figure class="wfig chartbox"><svg id="qcChart" viewBox="0 0 520 300" role="img" aria-label="Semarang headline value before and after re-processing"></svg>
+      <figcaption>Semarang. Grey: old headline point inland, one 11.2 cm jump at the last date. Blue: new headline point on the subsiding north coast.</figcaption></figure>
+  </div>
+</section>
+
+<!-- 3 GROUND TRUTH -->
+<section class="work" id="w3">
+  <div class="wrap wgrid">
+    <div class="wtext">
+      <div class="wnum">03</div>
+      <h2>Proof on the ground</h2>
+      <p class="what"><b>What it is:</b> a comparison with 10 permanent GPS stations in California's Central Valley, where the ground moved up to 7.8 cm (3.1 in) away from the satellite in 108 days.</p>
+      <p class="why"><b>Why it matters:</b> GPS stations are the reference that engineers trust. NISAR and GPS tell the same story, station by station.</p>
+      <div class="wbig"><span data-kpi="gnss">r = 0.92</span> agreement with GPS, typical difference 1.4 cm</div>
+      <p class="small2">We also compared with NASA JPL's OPERA product: over Mexico City the pattern matches at 10 points (r = 0.91), although OPERA covers winter and NISAR summer.</p>
+    </div>
+    <figure class="wfig"><img width="1520" height="1216" decoding="async" data-rsrc="docs/story/media/validation_scatter.png" alt="NISAR versus GPS at 10 stations: the points follow the one-to-one line" loading="lazy"><figcaption>NISAR vs GPS, Central Valley, 28 Jun – 14 Oct 2026.</figcaption></figure>
   </div>
 </section>
 
