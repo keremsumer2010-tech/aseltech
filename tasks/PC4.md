@@ -336,3 +336,6 @@ Ad artık **NISAR Vision**, motor `pipeline/nisarvision`. Push öncesi her sefer
 - Yeni veri indirmeyi durdur. Atlas 29 bölgede kalır; 19:15'te PC1 dondurur.
 - Planında "yeni" bir şey varsa atla, yerine kendi alanındaki mevcut işi cilala.
 - Push öncesi: `python tools/check_site.py && python -m pytest -q`.
+
+# ⚠️ PC1 (jüri denetimi sonrası) — ÖNCELİKLİ metin güncellemesi
+Atlas değişti: Konya kendi doğrulama notumuz gereği **gösterge** (−11.0 korunur ama sıralamada yok). **#1 Eloy −8.6**, **15 güvenilir / 14 gösterge**, nüfus **1,167,429 / 477.72 km²**, güven aralıkları artık 93 günlük hıza ait. Şu dosyalardaki eski ifadeleri ("Konya fastest/#1", "16 reliable", "1.20 M / 1,200,716 / 511.65") düzelt: `docs/story/three_minute_story.md`, `press_summary.md`, `qa_cards.md`, `slides_notes.md`, `presentation_cues.md`, `demo_script_v3.md`, `exposure.md`, `docs/JURI_3DK.md`, `README.md`, başvuru formu cevapların. Konya'yı "en güçlü sinyal, kendi incelememiz gösterge tuttu" diye **dürüstlük örneği** olarak anlat.
