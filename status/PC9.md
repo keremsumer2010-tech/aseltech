@@ -1,7 +1,11 @@
 # PC9 durum
 
 - Görev: `docs/ATLAS_PLANI.md` PC9 — 5 bölge (`eloy`, `gorgan`, `cangzhou`, `houston`, `lagos`) NISAR Pulse + Karapınar tam yıl koordinasyonu
-- Durum: çalışıyor: `lagos` (FAZ 1 #5, Öncelik B — `7/8` `.npz` alt küme hazır, `8/8` sürüyor; `eloy` + `cangzhou` + `gorgan` [`low`] + `houston` TAMAMLANDI)
+- Durum: çalışıyor: FAZ 2 başlıyor (`konya_plain_fullyear` + `mexico_city_fullyear`); FAZ 1 5/5 bölge (`eloy`, `cangzhou`, `gorgan` [`low`], `houston`, `lagos`) TAMAMLANDI
+- **ATLAS_PLANI FAZ 1 — `lagos` (`3.39, 6.45`, ±0.25° — TAMAMLANDI):**
+  - Komut: `python analysis/pc9/run_atlas_region.py run --name lagos --center 3.39,6.45 --box-deg 0.25 --start 2026-06-17 --end 2026-10-31 --quality provisional --data-dir data/global/lagos --no-catalog --resume` (`8` çift `2026-06-24 → 2026-10-10`, `108` gün, `gaps=0`).
+  - Sayılar: `max_subsidence_cm = -2.4 cm` LOS (`-3.3 cm` dikey `estimate`, `42.4°`), `p2_cm = -2.9 cm`, `rate_cm_per_100d = -2.22`, `valid_fraction = 0.328` (okyanus/lagün), `range_cm = [-2.4, -2.4]` (2 referans, oran `0.0`), `confidence = "medium"`.
+  - Doğrulama: `data/global/lagos/disp/2026-10-10.png` görsel kontrol + `summary.json` doğrulandı (`docs/qa/PC9.md`: `hazır: lagos`).
 - **ATLAS_PLANI FAZ 1 — `houston` (`-95.80, 29.80`, ±0.25° — TAMAMLANDI):**
   - Komut: `python analysis/pc9/run_atlas_region.py run --name houston --center -95.80,29.80 --box-deg 0.25 --start 2026-06-17 --end 2026-10-31 --quality provisional --data-dir data/global/houston --no-catalog --resume` (`9` çift `2026-06-18 → 2026-10-16`, `120` gün, `gaps=0`).
   - Sayılar: `max_subsidence_cm = -5.2 cm` LOS (`-6.7 cm` dikey `estimate`, `39.1°`), `p2_cm = -4.6 cm`, `rate_cm_per_100d = -4.33`, `valid_fraction = 0.461`, `range_cm = [-5.2, -3.3]` (2 referans, oran `0.365`), `confidence = "medium"`.
