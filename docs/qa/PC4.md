@@ -460,3 +460,25 @@ PC1 ve Kerem jüri denetimi sonrasında Konya Plain'in valid-pixel düşüklüğ
   - `pytest tests/test_site_links.py tests/test_numbers_consistency.py tests/test_site_numbers.py tests/test_atlas_schema.py -v` → `5 passed in 0.10s`.
   - `python3 tools/vital_signs.py --check` → `OK: vital_signs.json matches (29 regions, fastest=eloy -8.6 cm/100d)`.
   - `node --check web/js/*.js game/*.js` → `OK (syntax clean)`.
+
+---
+
+## 46. Literatür Atlası & Science Kart Denetimi Senkronu (`2026-11-15 16:18 TR`)
+
+- **Literatür Atlası Senkronu:** `docs/story/literature_atlas.md` ve `data/global/literature_rates.json` dosyaları, resmi `data/global/atlas.json` sıralamasıyla tam senkronize edildi:
+  - **#1 Eloy** (`reliable`, `high`, `−8.6 cm/100d` ortak pencere, `−8.0 cm` tepe LOS)
+  - **#2 Central Valley** (`reliable`, `medium`, `−7.3 cm/100d`, `−7.8 cm` LOS)
+  - **#3 Kashmar** (`reliable`, `high`, `−7.0 cm/100d`, `−6.2 cm` LOS)
+  - **#4 Mashhad** (`reliable`, `medium`, `−6.9 cm/100d`, `−8.6 cm` LOS)
+  - **#5 Mexico City** (`reliable`, `medium`, `−6.3 cm/100d`, `−7.0 cm` LOS)
+  - Ranks 1–15: 15 güvenilir havza; Ranks 16–29: 14 gösterge havza (**Konya Plain #21**, `indicative`, `low`, `−11.0 cm/100d`).
+  - Gelecekteki atlas güncellemelerinde tutarlılığı güvenceye almak için `tools/sync_literature_atlas.py` eklendi.
+- **Science Sayfası (`web/science.html`) & Sonuç Kartları Denetimi:**
+  - `web/science.html` dinamik kart gövdesi `data/results_registry.json` içindeki 29 öğe ile denetlendi.
+  - Kartlardaki tüm sayılar (`15 reliable, 14 indicative`, `#1 Eloy −8.6 cm/100d`, `1,167,429 kişi / 477.72 km²`, `10 GPS r = 0.924 / 1.0 cm median RMSE`, `0.317 km³/yr kalıcı su kaybı`, `Konya −9.6 cm LOS`) `data/global/atlas.json`, `data/global/home_summary.json` ve `data/global/vital_signs.json` ile %100 uyumlu.
+- **Test ve Doğrulama Durumu:**
+  - `python3 tools/check_site.py`: 43 sayfa tarandı, 0 kırık link.
+  - `python3 -m pytest tests/ -v`: 11/11 test PASS.
+  - `python3 tools/vital_signs.py --check`: OK (29 bölge, en hızlı Eloy −8.6 cm/100d).
+  - `python3 analysis/pc5/numbers_registry.py`: 45 kanonik metrik, 30 onaylı, 15 öncül, 0 uyumsuzluk.
+
