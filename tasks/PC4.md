@@ -253,3 +253,16 @@ Durmuş PC6'nın (site) ve havuzun indirme gerektirmeyen işleri. Sırayla; her 
 | 17:00–18:15 | **Site son QA:** tüm sayfalar (index, atlas, science, data, faq, game, present) konsol 0 hata, kırık link 0, mobil 375 px, projektör 1920; bulgular + düzeltmeler `docs/qa/PC4.md` FINAL | QA |
 | 18:30–19:30 | **SIGNOFF son tur (PC1 ile):** atlas son hâliyle yeniden doğrula; `python tools/sync_atlas_text.py`; 20:00 veri dondurma — sonrasında yalnız hata düzeltme | SIGNOFF |
 Son bloğa gelince `status/PC4.md` ilk satırına yine `PLAN_SONU_YAKIN`.
+
+# 🚀 YENİ PLAN 3 — PC4 (PC1, Paz 10:50 TR) · Plan 2 de bitti ve PC1 test etti: present.html 6 durak, konsol 0 hata; pytest 97/97 — teşekkürler
+| Saat (TR) | Blok | Çıktı |
+|---|---|---|
+| 10:50–12:00 | **Jüri için depo README'si:** kök `README.md` — tek paragraf özet, ana sonuçlar (SIGNOFF'taki 10 sayı), siteye/atlasa/sunum moduna bağlantılar, "atlası tek komutla yeniden üret" (`python pipeline/pc10/build_atlas.py`, `python tools/atlas_qc.py`, `python tools/sync_atlas_text.py`), veri kaynakları ve lisanslar, AI kullanım beyanı, klasör haritası | README.md |
+| 12:00–13:00 | **Atlas veri sözleşmesi:** `data/global/atlas.schema.json` (JSON Schema; her alan, birim, zorunlu/opsiyonel) + `tests/test_atlas_schema.py` (pytest); `atlas_data_dictionary.md` ile tutarlı | şema + test |
+| 13:00–14:30 | **Nüfus etkisi eksikleri (8 bölge):** `docs/qa/ATLAS_COMPLETENESS.md`'de 6. sütun ✗ olan bölgeler için GHSL GHS-POP (JRC açık veri, giriş gerekmez) ile `exposure_atlas.json` satırı — mevcut satırların yöntemiyle (σ'nın 2 katından küçük çökme sayılmaz). İndirme mümkün değilse yöntemi ve listeyi `docs/qa/PC4.md`'ye yaz, geç | exposure_atlas.json |
+| 14:30–15:30 | **Sonuç kaydı yeni satırlar:** `results_registry.json`'a `presentation_mode`, `simulator`, `rank_check_6_16`, `literature_atlas`, `submission_package` (özet + anahtar sayı); science sayfasında göründüğünü test et | registry |
+| 15:30–16:30 | **Erişilebilirlik:** atlas, present, index, science — alt metin, klavye ile gezinme, kontrast; bulgu + düzeltme | web, `docs/qa/PC4.md` |
+| 16:30–17:30 | **Soru-cevap kartları + zamanlı prova:** `docs/story/qa_cards.md` (yazdırılabilir tek sayfa, en olası 12 jüri sorusu ve 2 cümlelik cevaplar); `present.html` ile 3 dk zamanlı prova notları | qa_cards.md |
+| 17:30–18:30 | **Sürüm notları ve dondurma listesi:** `docs/RELEASE_NOTES.md` (neler var, bilinen sınırlamalar, değişiklik günlüğü özeti) + 20:00 dondurma kontrol listesi | RELEASE_NOTES.md |
+| 18:30–19:30 | **SIGNOFF son tur (PC1 ile)**; `python tools/sync_atlas_text.py`; 20:00'dan sonra yalnız hata düzeltme | SIGNOFF |
+Son bloğa gelince `status/PC4.md` ilk satırına `PLAN_SONU_YAKIN`.

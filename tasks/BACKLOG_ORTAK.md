@@ -5,8 +5,8 @@ Kullanıcı artık ajanlara prompt girmiyor; **tüm yönetim git üzerinden.** K
 - Yeni iş fikrin varsa (kaynaklı, atlasa hizmet eden) en alta `- [ ]` olarak ekle.
 
 ## E. Durmuş ajanlardan devir (otomatik kontrol 2) — önce bunlar
-- [ ] Cakarta tam kutu yeniden hesap (PC11 6/9'da kaldı; `pipeline/subset/global_jakarta` varsa `--resume`)
-- [ ] Bulacan / Manila Körfezi (120.90, 14.85)
+- [~PC11] Cakarta tam kutu yeniden hesap (PC11 6/9'da kaldı; `pipeline/subset/global_jakarta` varsa `--resume`)
+- [~PC11] Bulacan / Manila Körfezi (120.90, 14.85)
 - [x PC4] Tek literatür tablosu: `data/global/literature_rates.json` + `docs/story/literature_atlas.md` (tüm 29 atlas bölgesi, DOI)
 - [~PC4] Oyun ↔ atlas bağlantısı (`tasks/PC6.md` "OYUN ↔ ATLAS" 1–5)
 - [~PC4] Sunum modu `web/present.html` (Lincoln demosu, ok tuşlarıyla bölüm turu)
@@ -15,14 +15,14 @@ Kullanıcı artık ajanlara prompt girmiyor; **tüm yönetim git üzerinden.** K
 - [x PC4] Jüri SSS 30 soru (`docs/story/judge_faq.md`) — yeni sıralama, QC, OPERA, ortak pencere
 
 - [ ] NISAR Pulse `--qc` motoru (PC2'den devir; `tasks/PC2.md` "KENDİ KENDİNİ DENETLEYEN MOTOR" madde 1)
-- [ ] Celaya, Meksika (−100.81, 20.52) — PC2'den devir
+- [~PC11] Celaya, Meksika (−100.81, 20.52) — PC2'den devir
 - [ ] Hamadan–Kabudarahang, İran (48.72, 35.21) — PC2'den devir
 - [ ] Site son QA: canlı sitede her sayfa konsol 0 hata, kırık link 0 (PC2'den devir)
 
 - [ ] results_registry boş summary/key_number alanları (PC10'dan devir)
 - [ ] Ortak ±10 cm ölçekli küçük haritalar `data/global/<id>/thumb.png` (PC10'dan devir)
 - [ ] İkinci sıralama ekseni: ortak pencerede < −5 cm alan km² (PC10'dan devir)
-- [ ] `data/global/atlas.schema.json` + `tests/test_atlas_schema.py` (PC10'dan devir)
+- [~PC4] `data/global/atlas.schema.json` + `tests/test_atlas_schema.py` (PC10'dan devir)
 
 - [ ] Pekin: 11 Temmuz 2026 görüntüsünü içeren iki çifti çıkarıp yeniden hesapla (PC7'den devir; kesitler PC7 klasöründe `pipeline/subset/global_beijing/`)
 - [ ] Aguascalientes tamamla (8/9 kesit, PC7 klasörü) — PC7'den devir
@@ -36,7 +36,7 @@ Kullanıcı artık ajanlara prompt girmiyor; **tüm yönetim git üzerinden.** K
 - [ ] Toluca, Meksika (−99.65, 19.29) — önce kapsama + literatür
 - [ ] San Luis Potosí, Meksika (−100.98, 22.15)
 - [ ] Neyshabur, İran (58.80, 36.21)
-- [ ] Ho Chi Minh City tam kutu yeniden hesap (eski seri ±8 cm salınımlı) + QC
+- [~PC11] Ho Chi Minh City tam kutu yeniden hesap (eski seri ±8 cm salınımlı) + QC
 - [ ] Kolkata, Hindistan (88.36, 22.57) — tropik, QC dikkat
 - [ ] Ankara–Konya arası diğer Türkiye havzası adayı: literatürde InSAR çökmesi yayımlanmış bir havza bul (kaynakla), sonra işle
 - [ ] Atlas bölgelerinden QC işaretlilerin (`data/global/qc_flags.json`) `--qc` ile yeniden işlenmesi (sahibine haber vererek)
