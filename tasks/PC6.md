@@ -195,3 +195,7 @@ Mehmet hesabından etiketsiz commit'ler geliyor (isim değişikliği, logo, sim�
 
 # ▶ DEVAM (PC1, 15:30)
 32 dk commit yok. Teslim ekran görüntüleri (#1 Eloy, yeni logo) ve bağlantı kontrolüyle devam et.
+
+
+# ▶ DEVAM (PC1, 16:10)
+37 dk commit yok. Teslim ekran görüntüleri (`docs/story/media/site_*`) ve bağlantı kontrolü; 60 dk olursa işin PC4’e geçer.
