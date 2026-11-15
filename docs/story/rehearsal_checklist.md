@@ -1,4 +1,4 @@
-# NISAR Vision — 17:30 Lincoln Rehearsal & Failsafe Checklist (`docs/story/rehearsal_checklist.md`)
+# NISAR Vision — Rehearsal & Failsafe Checklist (`docs/story/rehearsal_checklist.md`)
 
 > **Target Session:** `17:30 TR` Full Dry-Run (`3:00` live pitch + `2:00` Jury Q&A drill)  
 > **Live Web App:** https://keremsumer2010-tech.github.io/aseltech/ · **Companion Cue Sheet:** [`docs/story/presentation_cues.md`](presentation_cues.md)  
@@ -79,7 +79,7 @@ Because basemaps (`Esri World Imagery`) and `maplibre-gl` / `Chart.js` CDN bundl
 
 ---
 
-## 6. Pre-17:30 Lincoln Dry-Run Gate (3 Structured Runs)
+## 6. Dry-Run Gate (3 Structured Runs)
 
 1. **`17:05–17:15` · Tech & Asset Gate:** Start `python3 -m http.server 8000`, open `Tabs 1–6` + paused `demo_30s.mp4`, confirm zero missing images (`data/uk/`, `docs/story/media/pc9_fullyear_point.png`), zero JS console errors, and exact tab order.
 2. **`17:15–17:25` · Synchronized Walkthrough + Full Timed Run (`3:00` + `2:00` Q&A):** Memir rehearses clicks one cue ahead of Kerem; target `2:40–2:50` finish; Mehmet & İbrahim drill all `5` flash FAQ answers (`presentation_cues.md §3`) at `<= 15 s` each.

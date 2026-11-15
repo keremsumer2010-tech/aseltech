@@ -1,6 +1,6 @@
 # Technical Note: Tracking Agricultural Ground Subsidence, Infrastructure Tilt, and Karst Stress with Provisional NASA–ISRO NISAR L-Band Interferometry
 
-**Document ID:** `NP-TN-2026-01` · **Date:** `14 November 2026` · **Authors:** Team Aseltech (ASELSAN Vocational and Technical Anatolian High School, Ankara, Türkiye · NASA Space Apps Challenge 2026, Lincoln, UK)  
+**Document ID:** `NP-TN-2026-01` · **Date:** `14 November 2026` · **Authors:** Team Aseltech (ASELSAN Vocational and Technical Anatolian High School, Ankara, Türkiye · NASA Space Apps Challenge 2026, Cambridge, MA (virtual))  
 **Repository:** https://github.com/keremsumer2010-tech/aseltech · **Live Application:** https://keremsumer2010-tech.github.io/aseltech/  
 **Mandatory Calibration Notice:** *NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.*
 

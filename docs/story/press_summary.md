@@ -4,7 +4,7 @@
 
 ![Same NISAR L-band engine applied across four sinking regions](media/pc10_global.png)
 
-**Ankara / Lincoln — 14 November 2026.** Using open **provisional** L-band radar interferograms from the newly operational NASA–ISRO **NISAR** satellite (`CRID P05023`, `>= 17 June 2026`), high school student team **Team Aseltech** (ASELSAN Vocational and Technical Anatolian High School, Ankara) has built an open-source, single-command processing and risk platform—**NISAR Vision**—that maps groundwater-driven land subsidence, infrastructure tilt, and human exposure across agricultural basins worldwide.
+**Ankara / Cambridge, MA — 15 November 2026.** Using open **provisional** L-band radar interferograms from the newly operational NASA–ISRO **NISAR** satellite (`CRID P05023`, `>= 17 June 2026`), high school student team **Team Aseltech** (ASELSAN Vocational and Technical Anatolian High School, Ankara) has built an open-source, single-command processing and risk platform—**NISAR Vision**—that maps groundwater-driven land subsidence, infrastructure tilt, and human exposure across agricultural basins worldwide.
 
 Over California's **Central Valley** (`2026-06-28 → 2026-10-14`, `108` days, `7` provisional pairs), NISAR L-band interferograms track up to **`−7.8 cm` line-of-sight (LOS) subsidence (`−7.22 cm / 100 days`)** near Terra Bella (`−10.1 cm` vertical *estimate*) and match `10` continuous Nevada Geodetic Laboratory GPS stations at **`r = 0.924` (`1.00 cm` median RMSE)**. Along `645` mapped canal and road corridors, `81` segments exceed `20 mm/km` tilt, led by the **Tulare Irrigation District Canal (`57.01 mm/km`)** and **California Aqueduct (`49.12 mm/km`)**. Applying the identical workflow to Türkiye's **Karapınar basin** (`2026-06-26 → 2026-10-12`, `108` days, `8` pairs) measures **`−5.9 cm` LOS peak subsidence (`−5.46 cm / 100 days`)** and shows that farmland within `1 km` of `29` verified karst sinkholes sank **`6.4×` faster (`−4.15 cm`)** than terrain beyond `5 km` (`−0.65 cm`, `p = 0.0001` permutation test), while flagging Highway `42-42` at `19.74 mm/km` only `597 m` from **Köken Obruğu-II**.
 
@@ -18,4 +18,4 @@ To turn multi-gigabyte satellite files into actionable local decisions, **NISAR 
 ### Project Links & Contact
 - **Live Interactive Web Application:** https://keremsumer2010-tech.github.io/aseltech/
 - **Open-Source Repository & Data:** https://github.com/keremsumer2010-tech/aseltech
-- **Team:** Team Aseltech — ASELSAN Vocational and Technical Anatolian High School, Ankara, Türkiye (NASA Space Apps Challenge 2026, Lincoln, UK)
+- **Team:** Team Aseltech — ASELSAN Vocational and Technical Anatolian High School, Ankara, Türkiye (NASA Space Apps Challenge 2026, Cambridge, MA (virtual))

@@ -76,8 +76,8 @@ Object.assign(window.I18N_TR, {
     "NISAR verileri geçicidir. Kalibrasyon ve doğrulama bizim ekibimiz tarafından değil, NISAR projesi (NASA-JPL ve ISRO) tarafından yapılmaktadır.",
   "{0}NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.{1}":
     "{0}NISAR verileri geçicidir. Kalibrasyon ve doğrulama bizim ekibimiz tarafından değil, NISAR projesi (NASA-JPL ve ISRO) tarafından yapılmaktadır.{1}",
-  "{0}{1} · ASELSAN Vocational and Technical Anatolian High School, Ankara, Türkiye{2}NASA Space Apps Challenge # · Local event: Lincoln, UK":
-    "{0}{1} · ASELSAN Mesleki ve Teknik Anadolu Lisesi, Ankara, Türkiye{2}NASA Space Apps Challenge # · Yerel etkinlik: Lincoln, Birleşik Krallık",
+  "{0}{1} · ASELSAN Vocational and Technical Anatolian High School, Ankara, Türkiye{2}NASA Space Apps Challenge # · Local event: Cambridge, MA (virtual)":
+    "{0}{1} · ASELSAN Mesleki ve Teknik Anadolu Lisesi, Ankara, Türkiye{2}NASA Space Apps Challenge # · Yerel etkinlik: Cambridge, MA (sanal)",
   "Data: NASA-ISRO NISAR (provisional) via NASA ASF DAAC · NASA JPL OPERA · Nevada Geodetic Laboratory GNSS · GHSL · OpenStreetMap. Base image: NASA Blue Marble.{0}Open source (MIT): {1} · Built with help from AI assistants (Claude, Gemini); see {2}.":
     "Veri: NASA-ISRO NISAR (geçici), NASA ASF DAAC üzerinden · NASA JPL OPERA · Nevada Jeodezi Laboratuvarı GNSS · GHSL · OpenStreetMap. Arka plan görüntüsü: NASA Blue Marble.{0}Açık kaynak (MIT): {1} · Yapay zekâ asistanlarının (Claude, Gemini) yardımıyla yapıldı; bkz. {2}.",
   "GitHub": "GitHub"
@@ -1205,7 +1205,7 @@ Object.assign(window.I18N_TR, {
 
 // ---- present.html -------------------------------------------------------------------------------------------
 Object.assign(window.I18N_TR, {
-  "NISAR Vision — Lincoln Presentation Mode (# Stops)": "NISAR Vision — Lincoln Sunum Modu (# Durak)",
+  "NISAR Vision — Presentation Mode (# Stops)": "NISAR Vision — Sunum Modu (# Durak)",
   "NISAR Vision · Presentation Mode": "NISAR Vision · Sunum Modu",
   "Presentation stops": "Sunum durakları",
   "Previous stop": "Önceki durak",

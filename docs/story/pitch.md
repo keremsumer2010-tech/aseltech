@@ -28,7 +28,7 @@
 
 ---
 
-## 1. Live Presentation Script (3 Minutes — Lincoln Local Pitch)
+## 1. Live Presentation Script (3 Minutes — Cambridge virtual submission)
 
 **Roles (`MASTER_PLAN.md §7`):**
 - **Speaker:** Kerem (walks through the narrative and live site)
@@ -72,7 +72,7 @@
   "Looking forward—from extending NASA's 2013–2017 airborne Central Valley StoryMap into our 2026 11-month Earlimart decomposition (`−16.8 cm/yr` permanent compaction vs. `11.7 cm` seasonal swing)—continuous 12-day L-band NISAR passes turn radar phase into actionable insights for scientists, canal managers, educators, decision-makers, and local communities alike. Thank you — and we welcome your questions."
 
 ### Prepared Jury Q&A Notes
-- See [`docs/story/presentation_cues.md`](presentation_cues.md) (`6 × 30 s` Lincoln blocks + 5 single-sentence Q&As), [`docs/story/rehearsal_checklist.md`](rehearsal_checklist.md) (offline failsafes), and full **15-question card** in [`docs/story/judge_faq.md`](judge_faq.md), plus [`docs/story/audiences.md`](audiences.md), [`docs/story/future_applications.md`](future_applications.md), [`docs/story/team_story.md`](team_story.md), [`docs/story/lesson_plan.md`](lesson_plan.md), [`docs/story/cross_sensor.md`](cross_sensor.md), [`docs/story/exposure.md`](exposure.md), [`docs/story/polarization.md`](polarization.md), [`docs/story/uk_findings.md`](uk_findings.md), and [`data/global/mexico_city/summary.json`](../../data/global/mexico_city/summary.json).
+- See [`docs/story/presentation_cues.md`](presentation_cues.md) (`6 × 30 s` blocks + 5 single-sentence Q&As), [`docs/story/rehearsal_checklist.md`](rehearsal_checklist.md) (offline failsafes), and full **15-question card** in [`docs/story/judge_faq.md`](judge_faq.md), plus [`docs/story/audiences.md`](audiences.md), [`docs/story/future_applications.md`](future_applications.md), [`docs/story/team_story.md`](team_story.md), [`docs/story/lesson_plan.md`](lesson_plan.md), [`docs/story/cross_sensor.md`](cross_sensor.md), [`docs/story/exposure.md`](exposure.md), [`docs/story/polarization.md`](polarization.md), [`docs/story/uk_findings.md`](uk_findings.md), and [`data/global/mexico_city/summary.json`](../../data/global/mexico_city/summary.json).
 
 ---
 

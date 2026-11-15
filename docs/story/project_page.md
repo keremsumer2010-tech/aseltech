@@ -115,7 +115,7 @@ In line with open scientific transparency and competition integrity rules:
 
 ## Companion Submission Package (`docs/story/`)
 
-- [`docs/story/presentation_cues.md`](presentation_cues.md) & [`docs/story/rehearsal_checklist.md`](rehearsal_checklist.md) — 3-minute Lincoln live presentation cue sheet (`6 × 30 s` blocks aligned to live site sections + top 5 Q&As) and offline/rehearsal backup checklist (`python3 -m http.server 8000`, tab order, MP4/slides fallbacks).
+- [`docs/story/presentation_cues.md`](presentation_cues.md) & [`docs/story/rehearsal_checklist.md`](rehearsal_checklist.md) — 3-minute presentation cue sheet (`6 × 30 s` blocks aligned to live site sections + top 5 Q&As) and offline/rehearsal backup checklist (`python3 -m http.server 8000`, tab order, MP4/slides fallbacks).
 - [`docs/story/audiences.md`](audiences.md), [`docs/story/future_applications.md`](future_applications.md), [`docs/story/team_story.md`](team_story.md), & [`docs/story/lesson_plan.md`](lesson_plan.md) — Actionable insights across five user groups (scientists, water/canal managers, educators, decision-makers, public), 7 operational NISAR future applications, regional Konya–Karapınar context (`TASLAK`), and a 40-minute high-school SAR/simulator lesson plan with 5 questions and answer key.
 - [`docs/story/slides.html`](slides.html) — Interactive `7`-slide browser deck using real NISAR/VIIRS maps and inline data charts (`38b774f` zero-AI policy).
 - [`docs/story/video_shotlist.md`](video_shotlist.md) & [`docs/story/media/demo_30s.mp4`](media/demo_30s.mp4) — `30.0`-second capture shotlist (`Shot 1–6`), line-verified `video_30s.srt` subtitles, and rendered `29.62 s` 1080p MP4 demo video (`analysis/pc6/make_demo_video.py`).

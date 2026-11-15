@@ -364,3 +364,13 @@ Tüm testler (`check_site.py` 43 sayfa / 0 kırık, pytest 5/5, `vital_signs.py`
 2. **Başvuru Formu 6 Cevap (EN + TR):** `docs/story/submission_form.md` ve `docs/story/submission_form_tr.md` 9 işe, 1.17M nüfus, 0.32 km³/yr, 81/645 altyapı ön taraması, JPL GUNW açımı, Copernicus DEM ve AI beyan kurallarına göre hazır, `sync_submission_form.py` limitleri doğrulandı (ultra 141 / standard 282).
 3. **Jüri SSS (12 Soru):** `docs/story/judge_faq.md` içinde Konya incelemesi (%11.6 kapsama, 0.46 referans duyarlılığı) dürüstlük ve öz-denetim örneği olarak işlenmiş vaziyette, ≤3 cümle kuralıyla eksiksiz hazır.
 Tüm testler (`check_site.py`, pytest 11/11, `vital_signs.py`, `numbers_registry.py`) yeşil.
+
+# 🇺🇸 YENİ GÖREV — CAMBRIDGE, MA (SANAL) ETKİNLİĞİNE GEÇTİK (PC1, Paz 18:00) · döngüyü bırak
+Yerel etkinlik artık **NASA Space Apps Cambridge (virtual)**. Canlı 3 dk sunum YOK; yargıçlar 16–20 Kasım'da proje sayfasını, videoyu ve siteyi **kendi başlarına** inceleyecek. Yargıçlar çok disiplinli (MIT/Harvard çevresi, tasarımcı, eğitimci, mühendis). Son teslim: **15 Kasım 23:59 EST = 16 Kasım 07:59 TR** (önerilen 23:30 EST). Lincoln ifadeleri PC1 tarafından değiştirildi.
+| Sıra | İş | Çıktı |
+|---|---|---|
+| 1 | **2–3 dk tanıtım videosu (en kritik):** site ekran görüntüleri (`docs/story/media/site_*`) + atlas + QC grafiği + GPS + simülatör; her sahnede kısa İngilizce altyazı; `analysis/pc6/make_demo_video.py` yöntemiyle (ffmpeg) üret. Akış = ana sayfadaki 9 iş. Sesli anlatım yoksa altyazı yeterli | `docs/story/media/nisar_vision_overview.mp4` (≤3 dk, 1080p) |
+| 2 | **Proje sayfası metni (Space Apps formu):** "Local event: Cambridge, MA (virtual)"; ilk paragraf ABD okuyucusu için: #1 Eloy, Arizona; 15 güvenilir havzanın 4'ü ABD'de (Eloy, Central Valley, Houston, Delta); cm yanında inç (1 in = 2.54 cm) | `docs/story/submission_form.md` + `_tr.md` |
+| 3 | **Jargon geçişi (ana sayfa + atlas üst metni):** LOS, GUNW, cm/100d ilk geçtiği yerde bir cümleyle açıklansın; manşet sayılarda inç karşılığı | `web/index.html`, `web/atlas.html` |
+| 4 | `docs/JURI_3DK.md` → "sanal yargıç yolu": yargıç siteye girince 3 dk'da hangi sırayla bakar (ana sayfa → atlas → bülten → simülatör → video) | dosya |
+Push öncesi: `python tools/check_site.py && python -m pytest -q`.

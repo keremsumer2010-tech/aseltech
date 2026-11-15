@@ -6,7 +6,7 @@
 
 # NISAR Vision: Follow the Water
 
-**Live Site:** https://keremsumer2010-tech.github.io/aseltech/ · **Team Aseltech** · NASA Space Apps Challenge 2026 · Challenge: **Dancing with the SARs** · Local event: Lincoln (UK)
+**Live Site:** https://keremsumer2010-tech.github.io/aseltech/ · **Team Aseltech** · NASA Space Apps Challenge 2026 · Challenge: **Dancing with the SARs** · Local event: Cambridge, MA (virtual)
 
 > *NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.*
 
@@ -15,7 +15,7 @@
 - **Live Site:** https://keremsumer2010-tech.github.io/aseltech/
 - **Three-Minute Story Spec:** [docs/story/three_minute_story.md](docs/story/three_minute_story.md)
 - **Global Subsidence Atlas (29 Regions):** [web/atlas.html](web/atlas.html) (`https://keremsumer2010-tech.github.io/aseltech/atlas.html`)
-- **6-Stop Lincoln Presentation Mode (Offline-Ready):** [web/present.html](web/present.html)
+- **6-Stop Presentation Mode (Offline-Ready):** [web/present.html](web/present.html)
 - **Groundwater Simulator:** [game/index.html](game/index.html) (`https://keremsumer2010-tech.github.io/aseltech/game/`)
 - **Science Sign-Off & Submission Package:** [docs/qa/SCIENCE_SIGNOFF.md](docs/qa/SCIENCE_SIGNOFF.md) · [docs/story/submission_package.md](docs/story/submission_package.md)
 

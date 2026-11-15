@@ -1,4 +1,4 @@
-# NISAR Vision — 3-Minute Lincoln Presentation Cue Sheet (`docs/story/presentation_cues.md`)
+# NISAR Vision — 3-Minute Presentation Cue Sheet (`docs/story/presentation_cues.md`)
 
 > **Core Message (15 words):** *With NISAR's 24 cm L-band radar, we measure centimeter-scale ground sinking across aquifers and agricultural lands.*  
 > **Target Rehearsal:** `17:30 TR` · **Duration:** `3:00` (`6 × 30 s` blocks) · **Live App:** https://keremsumer2010-tech.github.io/aseltech/ · **Offline Presentation Mode (6 stops):** [web/present.html](../../web/present.html)  
