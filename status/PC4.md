@@ -1,2 +1,1 @@
-PLAN_SONU_YAKIN
-**PC4** (`2026-11-15 12:09 TR`): 5-dk kontrol #2 — PC1'in `web/science.html` notu ("3 of 21 regions flagged") üzerine `data/results_registry.json` düzeltildi (`5 of 29 regions flagged · provisional` + GHSL maruziyet satırı `29` bölge / `511.65 km²` / `1,200,716` olarak güncellendi). 4/4 test PASS, `vital_signs.py --check` OK.
+**PC4** (`2026-11-15 12:15 TR`): `PLAN_SONU_YAKIN` kaldırıldı. 12:00–20:00 SON PLAN blokları (OPERA düzeltmesi, `present.html` + `slides.html` ana sayfa akışına hizalama, `results_registry.json` 5/29 ve GHSL 1,200,716 düzeltmesi, `README.md` 9 iş özeti, `qa_cards.md`) tamamlandı; sıradaki: 17:30–19:00 zamanlı prova notları ve sürekli QA/test döngüsü. 4/4 test PASS, `vital_signs.py --check` OK.
