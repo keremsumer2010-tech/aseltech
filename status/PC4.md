@@ -1,1 +1,1 @@
-**PC4** (`2026-11-15 12:58 TR`): 5-dk kontrol #12 — `1ea46c5` (`NISAR Pulse -> NISAR Vision` yeniden adlandırması) sonrası doğrulama yapıldı: `web/`, `docs/story/`, `README.md` temiz, `check_site.py` (43 sayfa, 0 kırık), 5/5 test PASS, `vital_signs.py --check` OK. Yeni PC4 görevi yok.
+**PC4** (`2026-11-15 13:03 TR`): 5-dk kontrol #13 — `docs/story/judge_brief.html` içindeki eski `Team Taykut` -> `Team Aseltech` olarak düzeltildi (`c328b6c` taraması). `check_site.py` (43 sayfa, 0 kırık), 5/5 test PASS, `vital_signs.py --check` OK. Yeni PC4 görevi yok.
