@@ -58,7 +58,7 @@ class HomeSummaryTest(unittest.TestCase):
         for t, r in zip(self.h["top5"], rel):
             self.assertEqual(t["rate_cm_per_100d_common"], r["rate_cm_per_100d_common"])
             self.assertEqual(t["max_cm_los"], r["max_cm_los"])
-            self.assertIn(r["confidence"], ("high", "medium"))
+            self.assertIn(r["confidence"], ("very high", "high", "medium"))
         rates = [t["rate_cm_per_100d_common"] for t in self.h["top5"]]
         self.assertEqual(rates, sorted(rates))
 

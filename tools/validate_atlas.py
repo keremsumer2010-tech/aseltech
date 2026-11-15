@@ -109,7 +109,7 @@ def _confidence_checks(city: str, obj: dict[str, Any], label: str) -> list[str]:
     findings = []
     confidence = obj.get("confidence")
     valid_fraction = obj.get("valid_fraction")
-    if not isinstance(confidence, str) or confidence not in {"high", "medium", "low"}:
+    if not isinstance(confidence, str) or confidence not in {"very high", "high", "medium", "low", "very low"}:
         findings.append(f"{city}: {label}.confidence missing/invalid")
     if not _finite_number(valid_fraction) or not 0.0 <= float(valid_fraction) <= 1.0:
         findings.append(f"{city}: {label}.valid_fraction missing or outside [0,1]")

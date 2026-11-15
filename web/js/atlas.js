@@ -60,19 +60,21 @@ function rateColor(rate){
 
 function confColor(r){
   const c = (r.confidence || 'low').toLowerCase();
-  if (c === 'high') return '#137333';
+  if (c === 'very high' || c === 'high') return '#137333';
   if (c === 'medium' && !r.indicative_only) return '#0b3d91';
   return '#d97706';
 }
 
 function isIndicative(r){
-  return Boolean(r.indicative_only || (r.confidence || '').toLowerCase() === 'low');
+  const c = (r.confidence || '').toLowerCase();
+  return Boolean(r.indicative_only || c === 'low' || c === 'very low');
 }
 
 function confBadge(r){
   const c = (r.confidence || 'low').toLowerCase();
+  const slug = c.replace(/\s+/g, '-');
   const lbl = isIndicative(r) ? `${c} · indicative only` : c;
-  return `<span class="cbadge ${esc(c)}">${esc(lbl)}</span>`;
+  return `<span class="cbadge ${esc(slug)}">${esc(lbl)}</span>`;
 }
 
 function bboxToCoords(bbox){

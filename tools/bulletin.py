@@ -91,7 +91,7 @@ def _compute_rate_100d_and_confidence(
         rate_val = None
 
     explicit_conf = region.get("confidence") or summary.get("confidence")
-    if isinstance(explicit_conf, str) and explicit_conf.lower() in {"high", "medium", "low"}:
+    if isinstance(explicit_conf, str) and explicit_conf.lower() in {"very high", "high", "medium", "low", "very low"}:
         conf = explicit_conf.lower()
     else:
         conf = "high"
@@ -118,7 +118,7 @@ def _compute_rate_100d_and_confidence(
             if abs(float(max_los)) > 0 and spread > 0.5 * abs(float(max_los)):
                 conf = "medium"
 
-    label = "LOW (indicative only)" if conf == "low" else conf.upper()
+    label = conf.upper()
     return rate_val, conf, label
 
 
@@ -457,9 +457,11 @@ def render_region_bulletin(region: dict[str, Any], out_dir: Path = OUT_DIR) -> P
   h1 {{ font-size:1.35rem; margin:0 0 4px 0; }}
   .meta {{ font-size:.86rem; color:var(--muted); }}
   .badge {{ display:inline-block; padding:3px 9px; border-radius:999px; font-size:.75rem; font-weight:700; letter-spacing:.04em; background:#fef3c7; color:#92400e; border:1px solid #f59e0b; }}
+  .conf-very-high {{ background:#bbf7d0; color:#14532d; border-color:#16a34a; }}
   .conf-high {{ background:#dcfce7; color:#166534; border-color:#22c55e; }}
   .conf-medium {{ background:#fef3c7; color:#92400e; border-color:#f59e0b; }}
   .conf-low {{ background:#fee2e2; color:#991b1b; border-color:#ef4444; }}
+  .conf-very-low {{ background:#fecaca; color:#7f1d1d; border-color:#dc2626; }}
   .kpi .subval {{ font-size:.76rem; color:var(--muted); margin-top:2px; font-weight:400; }}
   .actions {{ display:flex; gap:8px; align-items:center; flex-wrap:wrap; max-width:100%; }}
   .btn {{ font-size:.82rem; padding:6px 12px; border-radius:6px; border:1px solid var(--line); background:var(--panel); color:var(--ink); text-decoration:none; cursor:pointer; }}
@@ -512,7 +514,7 @@ def render_region_bulletin(region: dict[str, Any], out_dir: Path = OUT_DIR) -> P
       <div class="meta">Atlas Rank #{_esc(region.get('rank', '-'))} &middot; Coverage: {_esc(region.get('coverage', 'ok'))} &middot; {_esc(n_pairs)} pairs</div>
     </div>
     <div class="actions">
-      <span class="badge conf-{_esc(conf_level)}">CONFIDENCE: {_esc(conf_label)}</span>
+      <span class="badge conf-{_esc(conf_level.replace(' ', '-'))}">CONFIDENCE: {_esc(conf_label)}</span>
       <span class="badge">{_esc(quality)}</span>
       <a class="btn" href="index.html">All Bulletins</a>
       <button class="btn btn-primary" onclick="window.print()">Print / PDF</button>
@@ -606,7 +608,7 @@ def render_index(regions: list[dict[str, Any]], generated: list[tuple[dict[str, 
             f"<td class='num'>{_esc(reg.get('max_cm_los', ''))} cm</td>"
             f"<td class='num'>{_esc(reg.get('max_cm_vertical_est', ''))} cm</td>"
             f"<td>{_esc(end_d)}</td>"
-            f"<td><span class='pill conf-{_esc(conf_level)}'>{_esc(conf_label)}</span></td>"
+            f"<td><span class='pill conf-{_esc(conf_level.replace(' ', '-'))}'>{_esc(conf_label)}</span></td>"
             f"<td>{_esc(reg.get('quality', 'provisional'))}</td></tr>"
         )
 
@@ -626,9 +628,11 @@ def render_index(regions: list[dict[str, Any]], generated: list[tuple[dict[str, 
   th {{ background:#f1f5f9; }}
   .num {{ text-align:right; font-variant-numeric:tabular-nums; }}
   .pill {{ display:inline-block; padding:2px 8px; border-radius:999px; font-size:.74rem; font-weight:700; border:1px solid #cbd5e1; }}
+  .conf-very-high {{ background:#bbf7d0; color:#14532d; border-color:#16a34a; }}
   .conf-high {{ background:#dcfce7; color:#166534; border-color:#22c55e; }}
   .conf-medium {{ background:#fef3c7; color:#92400e; border-color:#f59e0b; }}
   .conf-low {{ background:#fee2e2; color:#991b1b; border-color:#ef4444; }}
+  .conf-very-low {{ background:#fecaca; color:#7f1d1d; border-color:#dc2626; }}
   a {{ color:#1d4ed8; text-decoration:none; }}
   a:hover {{ text-decoration:underline; }}
   .notice {{ margin-top:18px; padding:10px 12px; background:#fffbeb; border-left:4px solid #b45309; font-size:.82rem; }}

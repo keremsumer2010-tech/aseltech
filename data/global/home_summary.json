@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-11-15T15:07:41Z",
+  "generated_utc": "2026-11-15T17:06:38Z",
   "one_liner": "We turned the first months of NASA-ISRO NISAR radar data into a self-checking global subsidence atlas: 29 basins measured with one open pipeline on the same 93 days, every number traceable to its file, and every headline checked against GPS, NASA's OPERA product and the literature.",
   "common_window": [
     "2026-06-28",
@@ -55,7 +55,7 @@
       "rank": 1,
       "rate_cm_per_100d_common": -8.6,
       "max_cm_los": -8.0,
-      "confidence": "high",
+      "confidence": "very high",
       "valid_fraction": 0.696,
       "note": ""
     },
@@ -66,18 +66,18 @@
       "rank": 2,
       "rate_cm_per_100d_common": -7.3,
       "max_cm_los": -7.8,
-      "confidence": "medium",
+      "confidence": "very high",
       "valid_fraction": 0.629,
       "note": ""
     },
     {
       "id": "kashmar",
       "name": "Kashmar",
-      "country": "",
+      "country": "Iran",
       "rank": 3,
       "rate_cm_per_100d_common": -7.0,
       "max_cm_los": -6.2,
-      "confidence": "high",
+      "confidence": "very high",
       "valid_fraction": 0.728,
       "note": ""
     },
@@ -88,7 +88,7 @@
       "rank": 4,
       "rate_cm_per_100d_common": -6.9,
       "max_cm_los": -8.6,
-      "confidence": "medium",
+      "confidence": "high",
       "valid_fraction": 0.705,
       "note": ""
     },
@@ -99,7 +99,7 @@
       "rank": 5,
       "rate_cm_per_100d_common": -6.3,
       "max_cm_los": -7.0,
-      "confidence": "medium",
+      "confidence": "high",
       "valid_fraction": 0.639,
       "note": ""
     }

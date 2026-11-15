@@ -53,7 +53,7 @@
         -9.4,
         -7.8
       ],
-      "confidence": "high",
+      "confidence": "very high",
       "indicative_only": false,
       "coverage": "ok",
       "path": "data/global/eloy/",
@@ -105,7 +105,7 @@
         -7.9,
         -6.7
       ],
-      "confidence": "medium",
+      "confidence": "very high",
       "indicative_only": false,
       "coverage": "ok",
       "path": "data/central_valley/",
@@ -120,7 +120,7 @@
     {
       "id": "kashmar",
       "name": "Kashmar",
-      "country": "",
+      "country": "Iran",
       "lon": 58.21629,
       "lat": 35.23011,
       "max_cm_los": -6.2,
@@ -148,7 +148,7 @@
       "opera_check": null,
       "sigma_cm_median": null,
       "rate_ci_cm_per_100d": null,
-      "confidence": "high",
+      "confidence": "very high",
       "indicative_only": false,
       "coverage": "ok",
       "path": "data/global/kashmar/",
@@ -194,7 +194,7 @@
         -7.6,
         -6.2
       ],
-      "confidence": "medium",
+      "confidence": "high",
       "indicative_only": false,
       "coverage": "ok",
       "path": "data/global/mashhad/",
@@ -246,7 +246,7 @@
         -7.0,
         -5.6
       ],
-      "confidence": "medium",
+      "confidence": "high",
       "indicative_only": false,
       "coverage": "ok",
       "path": "data/global/mexico_city/",
@@ -292,7 +292,7 @@
         -6.3,
         -4.7
       ],
-      "confidence": "medium",
+      "confidence": "high",
       "indicative_only": false,
       "coverage": "ok",
       "path": "data/global/semarang/",
@@ -307,7 +307,7 @@
     {
       "id": "kerman",
       "name": "Kerman",
-      "country": "",
+      "country": "Iran",
       "lon": 57.05276,
       "lat": 30.16798,
       "max_cm_los": -6.1,
@@ -338,7 +338,7 @@
         -5.9,
         -4.7
       ],
-      "confidence": "high",
+      "confidence": "very high",
       "indicative_only": false,
       "coverage": "ok",
       "path": "data/global/kerman/",
@@ -384,7 +384,7 @@
         -4.9,
         -3.5
       ],
-      "confidence": "medium",
+      "confidence": "high",
       "indicative_only": false,
       "coverage": "ok",
       "path": "data/global/rafsanjan/",
@@ -399,7 +399,7 @@
     {
       "id": "houston",
       "name": "Houston",
-      "country": "",
+      "country": "USA",
       "lon": -95.95788,
       "lat": 29.55889,
       "max_cm_los": -5.2,
@@ -430,7 +430,7 @@
         -4.8,
         -3.2
       ],
-      "confidence": "medium",
+      "confidence": "very high",
       "indicative_only": false,
       "coverage": "ok",
       "path": "data/global/houston/",
@@ -476,7 +476,7 @@
         -4.5,
         -2.3
       ],
-      "confidence": "medium",
+      "confidence": "low",
       "indicative_only": false,
       "coverage": "ok",
       "path": "data/global/can_tho/",
@@ -491,7 +491,7 @@
     {
       "id": "tianjin",
       "name": "Tianjin",
-      "country": "",
+      "country": "China",
       "lon": 117.34078,
       "lat": 38.87608,
       "max_cm_los": -2.9,
@@ -522,7 +522,7 @@
         -3.5,
         -2.1
       ],
-      "confidence": "medium",
+      "confidence": "high",
       "indicative_only": false,
       "coverage": "ok",
       "path": "data/global/tianjin/",
@@ -568,7 +568,7 @@
         -3.2,
         -1.6
       ],
-      "confidence": "medium",
+      "confidence": "high",
       "indicative_only": false,
       "coverage": "ok",
       "path": "data/global/cangzhou/",
@@ -583,7 +583,7 @@
     {
       "id": "lagos",
       "name": "Lagos",
-      "country": "",
+      "country": "Nigeria",
       "lon": 3.54948,
       "lat": 6.45017,
       "max_cm_los": -2.4,
@@ -614,7 +614,7 @@
         -2.8,
         -1.4
       ],
-      "confidence": "medium",
+      "confidence": "high",
       "indicative_only": false,
       "coverage": "ok",
       "path": "data/global/lagos/",
@@ -660,7 +660,7 @@
         -2.1,
         -0.7
       ],
-      "confidence": "medium",
+      "confidence": "very high",
       "indicative_only": false,
       "coverage": "ok",
       "path": "data/delta/",
@@ -706,7 +706,7 @@
         -1.4,
         -0.0
       ],
-      "confidence": "medium",
+      "confidence": "high",
       "indicative_only": false,
       "coverage": "ok",
       "path": "data/global/quetta/",
@@ -721,7 +721,7 @@
     {
       "id": "gorgan",
       "name": "Gorgan",
-      "country": "",
+      "country": "Iran",
       "lon": 54.39541,
       "lat": 36.59262,
       "max_cm_los": -34.6,
@@ -752,7 +752,7 @@
         -23.5,
         -21.9
       ],
-      "confidence": "low",
+      "confidence": "medium",
       "indicative_only": true,
       "coverage": "ok",
       "path": "data/global/gorgan/",
@@ -801,7 +801,7 @@
         -16.4,
         -14.8
       ],
-      "confidence": "low",
+      "confidence": "medium",
       "indicative_only": true,
       "coverage": "ok",
       "path": "data/global/delhi/",
@@ -850,7 +850,7 @@
         -15.0,
         -13.4
       ],
-      "confidence": "low",
+      "confidence": "medium",
       "indicative_only": true,
       "coverage": "ok",
       "path": "data/global/beijing/",
@@ -899,7 +899,7 @@
         -13.2,
         -11.8
       ],
-      "confidence": "low",
+      "confidence": "medium",
       "indicative_only": true,
       "coverage": "ok",
       "path": "data/global/bangkok/",
@@ -949,7 +949,7 @@
         -12.7,
         -11.1
       ],
-      "confidence": "low",
+      "confidence": "medium",
       "indicative_only": true,
       "coverage": "ok",
       "path": "data/global/pekalongan/",
@@ -998,7 +998,7 @@
         -11.7,
         -10.3
       ],
-      "confidence": "low",
+      "confidence": "very high",
       "indicative_only": true,
       "coverage": "ok",
       "path": "data/konya_plain/",
@@ -1044,7 +1044,7 @@
         -7.1,
         -5.7
       ],
-      "confidence": "low",
+      "confidence": "medium",
       "indicative_only": true,
       "coverage": "ok",
       "path": "data/global/tehran/",
@@ -1090,7 +1090,7 @@
         -5.5,
         -4.1
       ],
-      "confidence": "low",
+      "confidence": "medium",
       "indicative_only": true,
       "coverage": "ok",
       "path": "data/global/jakarta/",
@@ -1133,7 +1133,7 @@
         -4.4,
         -3.0
       ],
-      "confidence": "low",
+      "confidence": "very high",
       "indicative_only": true,
       "coverage": "ok",
       "path": "data/karapinar/",
@@ -1179,7 +1179,7 @@
         -2.8,
         -1.4
       ],
-      "confidence": "low",
+      "confidence": "medium",
       "indicative_only": true,
       "coverage": "ok",
       "path": "data/global/isfahan/",
@@ -1222,7 +1222,7 @@
       "opera_check": null,
       "sigma_cm_median": null,
       "rate_ci_cm_per_100d": null,
-      "confidence": "low",
+      "confidence": "medium",
       "indicative_only": true,
       "coverage": "ok",
       "path": "data/global/yunlin/",
@@ -1262,7 +1262,7 @@
       "opera_check": null,
       "sigma_cm_median": null,
       "rate_ci_cm_per_100d": null,
-      "confidence": "low",
+      "confidence": "medium",
       "indicative_only": true,
       "coverage": "ok",
       "path": "data/global/xian/",
@@ -1305,7 +1305,7 @@
         -1.7,
         -0.1
       ],
-      "confidence": "low",
+      "confidence": "medium",
       "indicative_only": true,
       "coverage": "ok",
       "path": "data/global/hanoi/",
@@ -1351,7 +1351,7 @@
         3.8,
         5.4
       ],
-      "confidence": "low",
+      "confidence": "medium",
       "indicative_only": true,
       "coverage": "ok",
       "path": "data/global/ho_chi_minh/",
@@ -1405,7 +1405,7 @@
         -9.4,
         -7.8
       ],
-      "confidence": "high",
+      "confidence": "very high",
       "indicative_only": false,
       "coverage": "ok",
       "path": "data/global/eloy/",
@@ -1458,7 +1458,7 @@
         -7.9,
         -6.7
       ],
-      "confidence": "medium",
+      "confidence": "very high",
       "indicative_only": false,
       "coverage": "ok",
       "path": "data/central_valley/",
@@ -1474,7 +1474,7 @@
     {
       "id": "kashmar",
       "name": "Kashmar",
-      "country": "",
+      "country": "Iran",
       "lon": 58.21629,
       "lat": 35.23011,
       "max_cm_los": -6.2,
@@ -1502,7 +1502,7 @@
       "opera_check": null,
       "sigma_cm_median": null,
       "rate_ci_cm_per_100d": null,
-      "confidence": "high",
+      "confidence": "very high",
       "indicative_only": false,
       "coverage": "ok",
       "path": "data/global/kashmar/",
@@ -1549,7 +1549,7 @@
         -7.6,
         -6.2
       ],
-      "confidence": "medium",
+      "confidence": "high",
       "indicative_only": false,
       "coverage": "ok",
       "path": "data/global/mashhad/",
@@ -1602,7 +1602,7 @@
         -7.0,
         -5.6
       ],
-      "confidence": "medium",
+      "confidence": "high",
       "indicative_only": false,
       "coverage": "ok",
       "path": "data/global/mexico_city/",
@@ -1649,7 +1649,7 @@
         -6.3,
         -4.7
       ],
-      "confidence": "medium",
+      "confidence": "high",
       "indicative_only": false,
       "coverage": "ok",
       "path": "data/global/semarang/",
@@ -1665,7 +1665,7 @@
     {
       "id": "kerman",
       "name": "Kerman",
-      "country": "",
+      "country": "Iran",
       "lon": 57.05276,
       "lat": 30.16798,
       "max_cm_los": -6.1,
@@ -1696,7 +1696,7 @@
         -5.9,
         -4.7
       ],
-      "confidence": "high",
+      "confidence": "very high",
       "indicative_only": false,
       "coverage": "ok",
       "path": "data/global/kerman/",
@@ -1743,7 +1743,7 @@
         -4.9,
         -3.5
       ],
-      "confidence": "medium",
+      "confidence": "high",
       "indicative_only": false,
       "coverage": "ok",
       "path": "data/global/rafsanjan/",
@@ -1759,7 +1759,7 @@
     {
       "id": "houston",
       "name": "Houston",
-      "country": "",
+      "country": "USA",
       "lon": -95.95788,
       "lat": 29.55889,
       "max_cm_los": -5.2,
@@ -1790,7 +1790,7 @@
         -4.8,
         -3.2
       ],
-      "confidence": "medium",
+      "confidence": "very high",
       "indicative_only": false,
       "coverage": "ok",
       "path": "data/global/houston/",
@@ -1837,7 +1837,7 @@
         -4.5,
         -2.3
       ],
-      "confidence": "medium",
+      "confidence": "low",
       "indicative_only": false,
       "coverage": "ok",
       "path": "data/global/can_tho/",
@@ -1853,7 +1853,7 @@
     {
       "id": "tianjin",
       "name": "Tianjin",
-      "country": "",
+      "country": "China",
       "lon": 117.34078,
       "lat": 38.87608,
       "max_cm_los": -2.9,
@@ -1884,7 +1884,7 @@
         -3.5,
         -2.1
       ],
-      "confidence": "medium",
+      "confidence": "high",
       "indicative_only": false,
       "coverage": "ok",
       "path": "data/global/tianjin/",
@@ -1931,7 +1931,7 @@
         -3.2,
         -1.6
       ],
-      "confidence": "medium",
+      "confidence": "high",
       "indicative_only": false,
       "coverage": "ok",
       "path": "data/global/cangzhou/",
@@ -1947,7 +1947,7 @@
     {
       "id": "lagos",
       "name": "Lagos",
-      "country": "",
+      "country": "Nigeria",
       "lon": 3.54948,
       "lat": 6.45017,
       "max_cm_los": -2.4,
@@ -1978,7 +1978,7 @@
         -2.8,
         -1.4
       ],
-      "confidence": "medium",
+      "confidence": "high",
       "indicative_only": false,
       "coverage": "ok",
       "path": "data/global/lagos/",
@@ -2025,7 +2025,7 @@
         -2.1,
         -0.7
       ],
-      "confidence": "medium",
+      "confidence": "very high",
       "indicative_only": false,
       "coverage": "ok",
       "path": "data/delta/",
@@ -2072,7 +2072,7 @@
         -1.4,
         -0.0
       ],
-      "confidence": "medium",
+      "confidence": "high",
       "indicative_only": false,
       "coverage": "ok",
       "path": "data/global/quetta/",
@@ -2090,7 +2090,7 @@
     {
       "id": "gorgan",
       "name": "Gorgan",
-      "country": "",
+      "country": "Iran",
       "lon": 54.39541,
       "lat": 36.59262,
       "max_cm_los": -34.6,
@@ -2121,7 +2121,7 @@
         -23.5,
         -21.9
       ],
-      "confidence": "low",
+      "confidence": "medium",
       "indicative_only": true,
       "coverage": "ok",
       "path": "data/global/gorgan/",
@@ -2171,7 +2171,7 @@
         -16.4,
         -14.8
       ],
-      "confidence": "low",
+      "confidence": "medium",
       "indicative_only": true,
       "coverage": "ok",
       "path": "data/global/delhi/",
@@ -2221,7 +2221,7 @@
         -15.0,
         -13.4
       ],
-      "confidence": "low",
+      "confidence": "medium",
       "indicative_only": true,
       "coverage": "ok",
       "path": "data/global/beijing/",
@@ -2271,7 +2271,7 @@
         -13.2,
         -11.8
       ],
-      "confidence": "low",
+      "confidence": "medium",
       "indicative_only": true,
       "coverage": "ok",
       "path": "data/global/bangkok/",
@@ -2322,7 +2322,7 @@
         -12.7,
         -11.1
       ],
-      "confidence": "low",
+      "confidence": "medium",
       "indicative_only": true,
       "coverage": "ok",
       "path": "data/global/pekalongan/",
@@ -2372,7 +2372,7 @@
         -11.7,
         -10.3
       ],
-      "confidence": "low",
+      "confidence": "very high",
       "indicative_only": true,
       "coverage": "ok",
       "path": "data/konya_plain/",
@@ -2419,7 +2419,7 @@
         -7.1,
         -5.7
       ],
-      "confidence": "low",
+      "confidence": "medium",
       "indicative_only": true,
       "coverage": "ok",
       "path": "data/global/tehran/",
@@ -2466,7 +2466,7 @@
         -5.5,
         -4.1
       ],
-      "confidence": "low",
+      "confidence": "medium",
       "indicative_only": true,
       "coverage": "ok",
       "path": "data/global/jakarta/",
@@ -2510,7 +2510,7 @@
         -4.4,
         -3.0
       ],
-      "confidence": "low",
+      "confidence": "very high",
       "indicative_only": true,
       "coverage": "ok",
       "path": "data/karapinar/",
@@ -2557,7 +2557,7 @@
         -2.8,
         -1.4
       ],
-      "confidence": "low",
+      "confidence": "medium",
       "indicative_only": true,
       "coverage": "ok",
       "path": "data/global/isfahan/",
@@ -2601,7 +2601,7 @@
       "opera_check": null,
       "sigma_cm_median": null,
       "rate_ci_cm_per_100d": null,
-      "confidence": "low",
+      "confidence": "medium",
       "indicative_only": true,
       "coverage": "ok",
       "path": "data/global/yunlin/",
@@ -2642,7 +2642,7 @@
       "opera_check": null,
       "sigma_cm_median": null,
       "rate_ci_cm_per_100d": null,
-      "confidence": "low",
+      "confidence": "medium",
       "indicative_only": true,
       "coverage": "ok",
       "path": "data/global/xian/",
@@ -2686,7 +2686,7 @@
         -1.7,
         -0.1
       ],
-      "confidence": "low",
+      "confidence": "medium",
       "indicative_only": true,
       "coverage": "ok",
       "path": "data/global/hanoi/",
@@ -2733,7 +2733,7 @@
         3.8,
         5.4
       ],
-      "confidence": "low",
+      "confidence": "medium",
       "indicative_only": true,
       "coverage": "ok",
       "path": "data/global/ho_chi_minh/",
