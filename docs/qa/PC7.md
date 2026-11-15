@@ -553,3 +553,5 @@ As a separate date-level check of the stored 12-point series, only **1 of 12** p
 During the transfer, `python pipeline/pc7/validate_json.py` scanned **195 JSON files**: 0 parse/non-standard-constant errors and 0 non-finite values. Four missing `quality` fields were all shared/other-owner registry or QC files (`atlas_changelog.json`, `qc_flags.json`, `qc_manual.json`, `results_registry.json`); those files were not edited. Thirty-two `points.json` files inherit `quality` from sibling metadata, including Beijing.
 
 After a concurrent PC10 atlas refresh, the read-only atlas validator was rerun: **27 atlas regions / 27 city folders, 225 findings (200 errors, 25 warnings)**. This is 37 fewer total findings than the pre-refresh snapshot; the atlas remains PC10-owned and was not edited by PC7.
+
+Regression checks during the rerun: `python -m pytest -q pipeline/nisarpulse/tests/test_qc.py pipeline/pc7/tests/test_atlas_robustness.py` → **8 passed**.
