@@ -1,6 +1,6 @@
 # NASA Space Apps 2026 — Başvuru Formu Türkçe Kopyası (`docs/story/submission_form_tr.md`)
 
-**Sahibi:** PC4 · **Kaynak:** [`docs/story/submission_form.md`](submission_form.md) · **Amaç:** Kerem formu doldururken birebir Türkçe referans.
+**Sahibi:** PC4 · **Yerel Etkinlik:** Cambridge, MA (virtual) · **Son Teslim:** 15 Kasım 2026, 23:59 EST (16 Kasım 07:59 TR) · **Kaynak:** [`docs/story/submission_form.md`](submission_form.md) · **Amaç:** Kerem formu doldururken birebir Türkçe referans.
 
 ---
 
@@ -15,11 +15,11 @@
 ## 6 Temel Space Apps Sorusu (Ana Sayfadaki 9 İşe Göre)
 
 ### 1. Ne yapar? (What does it do?)
-NISAR Vision, NASA-ISRO NISAR L-bant radar verisinin (24 cm dalga boyu; NASA-JPL ve ISRO tarafından fazı açılmış Level-2 GUNW ürünleri) ilk aylarını aynı 93 günlük ortak pencerede (`2026-06-28` – `2026-09-29`) 29 havzayı kapsayan kendi kendini denetleyen küresel bir yer çökmesi atlasına dönüştürür:
-- **01 Küresel Atlas:** 29 havzayı tek açık işlem hattıyla ölçer (15 havza güvenilir, 14 havza yalnızca gösterge niteliğindedir; en hızlı güvenilir havza Eloy `-8.6 cm/100 gün`; Konya Ovası `-11.0 cm/100 gün` kendi denetimimiz sonucu düşük kapsama nedeniyle gösterge tutulmuştur).
-- **02 Kendi Hatamızı Yakalayan QC:** Otomatik zaman serisi kontrolleri Semarang'daki `12.1 cm`'lik tam L-bant faz döngüsü sıçramasını (`-12.1` → `-6.2 cm`) ve Tahran (`-3.5` → `-7.4 cm` LOS) ile Pekin'deki havza dışı referans sapmasını yakaladı.
+Local event: Cambridge, MA (virtual). NISAR Vision, NASA-ISRO NISAR L-bant radar verisinin (24 cm / 9.4 in dalga boyu; NASA-JPL ve ISRO tarafından fazı açılmış Level-2 GUNW ürünleri) ilk aylarını aynı 93 günlük ortak pencerede (`2026-06-28` – `2026-09-29`) 29 havzayı kapsayan kendi kendini denetleyen küresel bir yer çökmesi atlasına dönüştürür. 15 güvenilir havzanın 4'ü ABD'dedir (Eloy/Arizona, Central Valley/Kaliforniya, Houston/Teksas, Sacramento-San Joaquin Deltası/Kaliforniya):
+- **01 Küresel Atlas:** 29 havzayı tek açık işlem hattıyla ölçer (15 havza güvenilir, 14 havza yalnızca gösterge niteliğindedir; en hızlı güvenilir havza #1 Eloy, Arizona `-8.6 cm/100 gün` / `-3.4 in/100 gün`; Konya Ovası `-11.0 cm/100 gün` / `-4.3 in/100 gün` kendi denetimimiz sonucu düşük kapsama nedeniyle gösterge tutulmuştur).
+- **02 Kendi Hatamızı Yakalayan QC:** Otomatik zaman serisi kontrolleri Semarang'daki `12.1 cm` (`4.8 in`) tam L-bant faz döngüsü sıçramasını (`-12.1` → `-6.2 cm`) ve Tahran (`-3.5` → `-7.4 cm` LOS) ile Pekin'deki havza dışı referans sapmasını yakaladı.
 - **03 GPS Doğrulaması:** Ana ölçüm uydu görüş hattıdır (LOS); dikey değer tahmindir. Kaliforniya dikey tahminleri 10 sürekli Nevada Geodetic Laboratory GPS istasyonuyla `r = 0.924` (medyan RMSE `1.00 cm`) uyum gösterir. İkincil OPERA kontrolü Mexico City'de 10 noktada `r = 0.912` verir, ancak OPERA kış / NISAR yaz dönemini kapsar (Central Valley `r = 0.40`, Eloy `r = 0.09`).
-- **04 Etkilenen İnsan:** Yer değiştirmeyi GHSL GHS-POP E2025 (`100 m`) ile kesiştirerek 108 günde `-5 cm`'den hızlı çöken `477.72 km²` alanda `1.167.429` (`1.17 M`) kişinin yaşadığını hesaplar.
+- **04 Etkilenen İnsan:** Yer değiştirmeyi GHSL GHS-POP E2025 (`100 m`) ile kesiştirerek 108 günde `-5 cm`'den (`2.0 in`) hızlı çöken `477.72 km²` alanda `1.167.429` (`1.17 M`) kişinin yaşadığını hesaplar.
 - **05 Kalıcı Su Kaybı:** Mevsimsel esnemeyi kalıcı kil sıkışmasından ayırarak Central Valley'de yılda `0.3174 km³/yıl` (`~0.32 km³/yıl`) kalıcı akifer depolama kaybını hesaplar.
 - **06 Altyapı Ön Taraması:** Diferansiyel eğim taraması 645 kanal, yol ve demiryolu koridorunun 81'ini (`> 10 mm/km`) işaretler — bu bir ön tarama indeksidir, yapısal güvenlik değerlendirmesi DEĞİLDİR.
 - **07 Erken Uyarı Bültenleri:** `tools/bulletin.py` ile A4 baskıya hazır 29 bölgesel izleme bülteni (`docs/bulletins/`) üretir.

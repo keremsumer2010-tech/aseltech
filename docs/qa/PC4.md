@@ -522,6 +522,18 @@ Tüm repoyu kapsayan tam pytest denetimi (`python3 -m pytest -q`) yapıldı:
 - **Test Sonucu:** Tüm repoda 109 testin tamamı firesiz geçti (**109/109 PASS, 0 FAILED**).
 - Çekirdek testler: `tools/check_site.py` (43 sayfa / 0 kırık link), `pytest tests/ -v` (11/11 PASS), `vital_signs.py --check` (OK), `numbers_registry.py` (45 metrik / 0 uyumsuzluk).
 
+---
+
+## 50. Cambridge, MA (Virtual) Geçiş Paketi (`2026-11-15 18:03 TR`)
+
+PC1'in 18:00 duyurusuyla geçilen **NASA Space Apps Cambridge (virtual)** formatı kapsamında 4 yeni iş kalemi eksiksiz tamamlandı:
+1. **1080p Tanıtım Videosu (`docs/story/media/nisar_vision_overview.mp4`):** `tools/make_overview_video.py` ile 115 saniyelik (10 sahne, 9 iş + giriş/kapanış), İngilizce altyazılı, inç/cm eşdeğerli ve zorunlu kalibrasyon bildirimli 1080p MP4 videosu üretildi.
+2. **Space Apps Proje Sayfası Metni (`docs/story/submission_form.md`, `submission_form_tr.md`):** `Local event: Cambridge, MA (virtual)` başlığı eklendi; ilk paragraf ABD okuyucusu için `#1 Eloy, Arizona (−8.6 cm/100d / −3.4 in/100d)` ve 15 güvenilir havzanın 4'ünün ABD'de (`Eloy, Central Valley, Houston, Delta`) olması vurgusuyla güncellendi, temel sayılara inç karşılıkları eklendi (`sync_submission_form.py` ile doğrulandı).
+3. **Jargon Geçişi & İnç Eşdeğerleri (`web/index.html`, `web/atlas.html`):** `LOS`, `GUNW` ve `cm/100d` terimleri ilk geçtikleri yerde tek sade cümleyle açıklandı; manşet sayılara inç karşılıkları (`1 in = 2.54 cm`) eklendi.
+4. **Sanal Yargıç Yolu (`docs/JURI_3DK.md`):** Çok disiplinli sanal jürinin kendi başına 3 dakikada izleyeceği `Ana sayfa → Atlas → Bülten → Simülatör → Tanıtım Videosu` rotası işlendi.
+- Çekirdek testler: `check_site.py` (43 sayfa / 0 kırık), `pytest tests/ -v` (11/11 PASS), `vital_signs.py --check` (OK), `sync_submission_form.py` (141/282 limit altı) yeşil.
+
+
 
 
 

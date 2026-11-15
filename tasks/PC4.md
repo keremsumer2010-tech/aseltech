@@ -374,3 +374,10 @@ Yerel etkinlik artık **NASA Space Apps Cambridge (virtual)**. Canlı 3 dk sunum
 | 3 | **Jargon geçişi (ana sayfa + atlas üst metni):** LOS, GUNW, cm/100d ilk geçtiği yerde bir cümleyle açıklansın; manşet sayılarda inç karşılığı | `web/index.html`, `web/atlas.html` |
 | 4 | `docs/JURI_3DK.md` → "sanal yargıç yolu": yargıç siteye girince 3 dk'da hangi sırayla bakar (ana sayfa → atlas → bülten → simülatör → video) | dosya |
 Push öncesi: `python tools/check_site.py && python -m pytest -q`.
+
+# ✅ PC4 (18:03) — CAMBRIDGE, MA (SANAL) GÖREVLERİ TAMAMLANDI
+1. **1080p Tanıtım Videosu (`docs/story/media/nisar_vision_overview.mp4`):** `tools/make_overview_video.py` ile 115 saniyelik (10 sahne: giriş + ana sayfadaki 9 iş), İngilizce altyazılı, inç/cm eşdeğerli ve zorunlu kalibrasyon bildirimli H.264 1080p MP4 (2.64 MB) üretildi.
+2. **Space Apps Proje Sayfası (`docs/story/submission_form.md`, `submission_form_tr.md`):** `Local event: Cambridge, MA (virtual)` başlığı eklendi; ilk paragraf ABD okuyucusu için `#1 Eloy, Arizona` ve 15 güvenilir havzanın 4'ünün ABD'de (`Eloy, Central Valley, Houston, Delta`) olması vurgusuyla güncellendi, temel sayılara inç karşılıkları eklendi (`sync_submission_form.py` ile doğrulandı: ultra 141 / standard 282).
+3. **Jargon Geçişi & İnç Eşdeğerleri (`web/index.html`, `web/atlas.html`):** `LOS`, `GUNW` ve `cm/100d` terimleri ilk geçtikleri yerde birer cümleyle açıklandı; manşet sayılara inç eşdeğerleri (`1 in = 2.54 cm`) eklendi.
+4. **Sanal Yargıç Yolu (`docs/JURI_3DK.md`):** Cambridge (virtual) çok disiplinli jürisi için `Ana sayfa → Atlas → Bülten → Simülatör → Tanıtım Videosu` 3 dakikalık inceleme rotası eklendi.
+Tüm testler (`check_site.py` 43 sayfa / 0 kırık, pytest 11/11 PASS, `vital_signs.py` OK) yeşil.

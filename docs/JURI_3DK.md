@@ -1,6 +1,15 @@
-# JÜRİ 3 DAKİKA — final kurgu (PC1, Paz 11:15 TR)
-Jüri siteyi **3 dakika** inceleyecek. Bu süre içinde şunu net görmeli: **sorun ne, ne yaptık, neden özgün, neden güvenilir, kime yarar.** Sitede yazan her cümlenin bir işi olacak; her sayının kaynağı olacak; gerisi "Deep dive" altına.
+# JÜRİ 3 DAKİKA — final kurgu (PC1, Paz 11:15 TR · Cambridge, MA Virtual güncelleme 18:00 TR)
+Yerel etkinlik **NASA Space Apps Cambridge (virtual)**. Canlı 3 dk sunum YOK; çok disiplinli yargıçlar (MIT/Harvard çevresi, tasarımcı, eğitimci, mühendis) 16–20 Kasım'da proje sayfasını, videoyu ve siteyi **kendi başlarına** 3 dakikada inceleyecek. Bu süre içinde şunu net görmeli: **sorun ne, ne yaptık, neden özgün, neden güvenilir, kime yarar.** Sitede yazan her cümlenin bir işi olacak; her sayının kaynağı olacak; gerisi "Deep dive" altına.
 Yeni veri/özellik yok: **toplama, birleştirme, sadeleştirme.** Veri dondurma 20:00, teslim 22:00.
+
+## Sanal Yargıç Yolu (Cambridge, MA Virtual — 3 Dakikada Kendi Başına İnceleme Rotası)
+| Sıra | Süre | Durak | Yargıcın Gördüğü |
+|---|---|---|---|
+| 1 | `0:00–0:45` | **Ana Sayfa (`web/index.html`)** | Tek cümlelik öz, 5 büyük sayı (`29` havza · `1.17 M` kişi >5 cm / 2 in · `r = 0.92` GPS · `0.32 km³/yr` · `5` QC bayraklı), `#1 Eloy, Arizona (−8.6 cm / −3.4 in)` ve 9 iş özeti. Jargonlar (`LOS`, `GUNW`, `cm/100d`) ilk geçtiği yerde tek cümlede açıklanmış. |
+| 2 | `0:45–1:30` | **Küresel Atlas (`web/atlas.html`)** | 3B küre üzerinde 29 havza (`15` güvenilir / `14` gösterge), ortak 93 günlük pencere, `#1 Eloy, AZ`, 4 ABD havzası (`Eloy`, `Central Valley`, `Houston`, `Delta`) ve Konya Ovası dürüstlük/öz-denetim örneği. |
+| 3 | `1:30–2:00` | **Tek Sayfa Bülten (`docs/bulletins/eloy.html` / `konya_plain.html`)** | Su yöneticisinin doğrudan kullanacağı A4 bülten: hız, etkilenen nüfus (GHSL), kritik altyapı eğim ön taraması (`81/645`), güven rozeti ve zorunlu kalibrasyon dipnotu. |
+| 4 | `2:00–2:30` | **Yeraltı Suyu Simülatörü (`game/`)** | Terra Bella hızına kalibre edilmiş 24 aylık etkileşimli Terzaghi sıkışma modeli — pompalamayı artırıp kalıcı kil çökmesini 30 saniyede deneyimleme. |
+| 5 | `2:30–3:00` | **Tanıtım Videosu (`docs/story/media/nisar_vision_overview.mp4`)** | 9 işin tamamını İngilizce altyazılı, gerçek uydu/site görüntüleriyle özetleyen ≤3 dk (1080p) başvuru videosu. |
 
 ## Tek cümlelik özümüz (her yerde aynı)
 > **We turned the first months of NASA-ISRO NISAR radar data into a self-checking global subsidence atlas: 29 basins measured with one open pipeline on the same 93 days, every number traceable to its file, and every headline checked against GPS, NASA's OPERA product and the literature.**
