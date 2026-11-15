@@ -482,3 +482,22 @@ PC1 ve Kerem jüri denetimi sonrasında Konya Plain'in valid-pixel düşüklüğ
   - `python3 tools/vital_signs.py --check`: OK (29 bölge, en hızlı Eloy −8.6 cm/100d).
   - `python3 analysis/pc5/numbers_registry.py`: 45 kanonik metrik, 30 onaylı, 15 öncül, 0 uyumsuzluk.
 
+---
+
+## 47. Teslim Ekran Görüntüleri (PC6 Devri) & Canlı Site Doğrulaması (`2026-11-15 16:38 TR`)
+
+PC1'in 16:30 duyurusu doğrultusunda (PC6 57 dk sessiz):
+- Canlı siteden (`https://keremsumer2010-tech.github.io/aseltech/`), **#1 Eloy** ve yeni logoyla 8 adet teslim ekran görüntüsü üretildi (`tools/capture_site_screens.js`):
+  1. `docs/story/media/site_home_desk.png` (`1440×900`)
+  2. `docs/story/media/site_home_mob.png` (`375×812`)
+  3. `docs/story/media/site_atlas_desk.png` (`1440×900`)
+  4. `docs/story/media/site_atlas_mob.png` (`375×812`)
+  5. `docs/story/media/site_bulletin_desk.png` (`1440×900`)
+  6. `docs/story/media/site_bulletin_mob.png` (`375×812`)
+  7. `docs/story/media/site_game_desk.png` (`1440×900`)
+  8. `docs/story/media/site_game_mob.png` (`375×812`)
+- Tüm ekran görüntüleri 2× retina yakalama ardından Lanczos yeniden örnekleme ile tam 1440×900 ve 375×812 boyutlarına optimize edildi (toplam paket boyutu ~2.8 MB).
+- Başvuru formu EN+TR ve Jüri SSS 12 soru kontrol edildi, `tasks/PC4.md` içinde PC1'e raporlandı.
+- Testler: `check_site.py` 43 sayfa / 0 kırık, pytest 11/11 PASS, `vital_signs.py` OK, `numbers_registry.py` 0 uyumsuzluk.
+
+

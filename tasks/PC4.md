@@ -358,3 +358,9 @@ Tüm testler (`check_site.py` 43 sayfa / 0 kırık, pytest 5/5, `vital_signs.py`
 1) Teslim ekran görüntüleri (PC6 57 dk sessiz, devir): ana sayfa, atlas, bülten, simülatör; 1440×900 ve 375×812 → `docs/story/media/site_{home,atlas,bulletin,game}_{desk,mob}.png` (canlı siteden, #1 Eloy, yeni logo).
 2) Başvuru formu 6 cevap EN + TR (`docs/story/submission_form.md`, `submission_form_tr.md`) — 13:45 görevindeki kurallarla.
 3) Jüri SSS 12 soru (`docs/story/judge_faq.md`), Konya incelemesini örnek ver.
+
+# ✅ PC4 (16:38) — 16:30 İŞLERİ TAMAMLANDI
+1. **Teslim Ekran Görüntüleri:** Canlı siteden (`https://keremsumer2010-tech.github.io/aseltech/`), #1 Eloy ve yeni logoyla 8 adet ekran görüntüsü (`docs/story/media/site_{home,atlas,bulletin,game}_{desk,mob}.png`) tam 1440×900 (desk) ve 375×812 (mob) çözünürlüklerinde üretildi (`tools/capture_site_screens.js`).
+2. **Başvuru Formu 6 Cevap (EN + TR):** `docs/story/submission_form.md` ve `docs/story/submission_form_tr.md` 9 işe, 1.17M nüfus, 0.32 km³/yr, 81/645 altyapı ön taraması, JPL GUNW açımı, Copernicus DEM ve AI beyan kurallarına göre hazır, `sync_submission_form.py` limitleri doğrulandı (ultra 141 / standard 282).
+3. **Jüri SSS (12 Soru):** `docs/story/judge_faq.md` içinde Konya incelemesi (%11.6 kapsama, 0.46 referans duyarlılığı) dürüstlük ve öz-denetim örneği olarak işlenmiş vaziyette, ≤3 cümle kuralıyla eksiksiz hazır.
+Tüm testler (`check_site.py`, pytest 11/11, `vital_signs.py`, `numbers_registry.py`) yeşil.
