@@ -31,7 +31,7 @@ HTML sayfaları kökte kalır (canlı URL'ler, QR kodlar ve sunum linkleri bunla
 | Sayfa | Ne | Yüklediği CSS | Yüklediği JS |
 |---|---|---|---|
 | `index.html` | Ana sayfa | `css/style.css`, `css/home3.css`, `css/theme.css` | `js/home3.js` |
-| `atlas.html` | Küresel çökme atlası (harita + NISAR uydu katmanı) | `css/style.css`, `css/atlas.css`, `css/atlas_sat.css`, `css/theme.css`, `vendor/maplibre-gl.css` | `vendor/maplibre-gl.js`, `vendor/satellite.min.js`, `js/atlas.js`, `js/atlas_sat.js` |
+| `atlas.html` | Küresel çökme atlası (harita + NISAR uydu katmanı) | `css/style.css`, `css/atlas.css`, `css/atlas_sat.css`, `css/theme.css`, `vendor/maplibre-gl.css` | `vendor/maplibre-gl.js`, `vendor/satellite.min.js`, `js/atlas.js`, `js/atlas_sat.js`, `js/tour.js`, `js/tour_atlas.js` |
 | `science.html` | Bilim / yöntem sayfası | `css/style.css`, `css/theme.css` | `js/docs.js` + sayfa içi script |
 | `data.html` | Veri indirme / katalog | `css/style.css`, `css/theme.css` | `js/docs.js` + sayfa içi script |
 | `faq.html` | SSS | `css/style.css`, `css/theme.css` | `js/docs.js` |
@@ -46,7 +46,9 @@ web/
                       home3.css (ana sayfa), atlas.css, atlas_sat.css (atlas)
   js/                 home3.js (ana sayfa), atlas.js (atlas haritası; data/global/atlas.json okur),
                       atlas_sat.js (NISAR uydu yörüngesi; data/nisar_tle.json + satellite.js),
-                      docs.js (science/data/faq ortak yardımcılar), explorer.js (data/catalog.json okur)
+                      docs.js (science/data/faq ortak yardımcılar), explorer.js (data/catalog.json okur),
+                      tour.js (rehberli tur motoru: ekran kararır, tek bölüm aydınlanır, yanında açıklama kutusu;
+                      atlas ve simülatör ortak kullanır), tour_atlas.js (atlas turunun adımları, "? How to use" düğmesi)
   assets/             logo_mark_*.png, atlas_world.{jpg,webp}, simulator.jpg, bluemarble_2k.jpg (atlas.js)
   vendor/             maplibre-gl (atlas haritası), satellite.min.js (atlas uydu yörüngesi)
 ```
@@ -55,12 +57,17 @@ web/
 
 | Dosya | Ne |
 |---|---|
-| `index.html` | Oyun sayfası; `style.css`, `model.js`, `game.js`, `tests.js` yükler |
+| `index.html` | Oyun sayfası; `style.css`, `model.js`, `game.js`, `tests.js`, `tour_steps.js` yükler |
 | `model.js` | Fizik/akifer modeli (oyunun hesap çekirdeği) |
 | `game.js` | Arayüz, harita, etkileşim |
 | `tests.js` | Model için tarayıcı içi testler |
 | `test_model.html` | Sadece `model.js` testlerini çalıştıran geliştirici sayfası |
+| `tour_steps.js` | Rehberli turun adımları; motoru `../js/tour.js` (canlı) ya da `../web/js/tour.js` (yerel) yükler. İlk "Start simulation"da kendiliğinden açılır, "? Guide" düğmesi tekrar oynatır |
 | `assets/` | Oyun logosu |
+
+Rehberli tur (atlas + simülatör): ilk ziyarette bir kez açılır (localStorage `gt-done-atlas-v1` / `gt-done-sim-v1`).
+Adım eklemek için `web/js/tour_atlas.js` ya da `game/tour_steps.js` içindeki `steps` listesine `{el: '#id', title, text}` ekle;
+görünmeyen öğenin adımı kendiliğinden atlanır.
 
 ## 4. `web3d/`: 3B çökme yüzeyi (canlıda `/web3d/`)
 
