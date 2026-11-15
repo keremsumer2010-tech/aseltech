@@ -71,12 +71,12 @@
   </header>
 
   <main class="pres-stage">
-    <!-- Stop 1: Home Summary -->
+    <!-- Stop 1: Hero -->
     <section class="slide active" data-slide="0">
       <div>
-        <p class="slide-kicker">Stop 1 of 6 · Home Summary (2026 NISAR L-Band)</p>
-        <h1 class="slide-headline">Central Valley sank up to −7.8 cm (LOS) in 108 days, losing 0.3174 km³/yr of permanent aquifer storage.</h1>
-        <p class="slide-sub">Using provisional NASA-ISRO NISAR L-band interferograms (24.2 cm wavelength), our open-source pipeline tracks pumping-driven land subsidence across agricultural basins, canals, and karst sinkhole corridors.</p>
+        <p class="slide-kicker">Stop 1 of 6 · Hero (0:00–0:20)</p>
+        <h1 class="slide-headline">A self-checking global subsidence atlas</h1>
+        <p class="slide-sub">Using provisional NASA-ISRO NISAR radar, we measure centimeter-scale ground sinking along the satellite's line of sight across 29 basins on the same 93 days.</p>
         <div class="slide-actions">
           <a class="btn primary" href="index.html">Open Home Page →</a>
           <a class="btn" href="science.html">Science &amp; Methods</a>
@@ -103,12 +103,12 @@
       </div>
     </section>
 
-    <!-- Stop 2: Atlas Ranking -->
+    <!-- Stop 2: Atlas -->
     <section class="slide" data-slide="1">
       <div>
-        <p class="slide-kicker">Stop 2 of 6 · Global Subsidence Atlas (Common 93-Day Window)</p>
-        <h1 class="slide-headline">Across 29 regions (16 reliable, 13 indicative), Konya Plain ranks #1 at −11.0 cm/100d over the shared summer window.</h1>
-        <p class="slide-sub">All basins are processed with one open-source pipeline and ranked on a common 93-day window (28 Jun – 29 Sep 2026) so differences in acquisition start and end dates do not bias the leaderboard.</p>
+        <p class="slide-kicker">Stop 2 of 6 · Atlas (0:20–1:00)</p>
+        <h1 class="slide-headline">Twenty-nine basins ranked on 93 days</h1>
+        <p class="slide-sub">One open pipeline measures every basin over the shared 28 June–29 September 2026 window, placing Konya Plain first with an explicit coverage caution.</p>
         <div class="slide-actions">
           <a class="btn primary" href="atlas.html">Open Global Atlas →</a>
           <a class="btn" href="data.html">Download Atlas JSON</a>
@@ -131,12 +131,12 @@
       </div>
     </section>
 
-    <!-- Stop 3: Konya Panel -->
+    <!-- Stop 3: We Caught Our Own Error -->
     <section class="slide" data-slide="2">
       <div>
-        <p class="slide-kicker">Stop 3 of 6 · Konya Plain &amp; Karapınar Sinkholes</p>
-        <h1 class="slide-headline">Konya Plain subsides −11.0 cm/100d (−9.6 cm over 108 d), while Karapınar sinks 6.4× faster within 1 km of sinkholes.</h1>
-        <p class="slide-sub">We flag Konya Plain with an explicit 11.6% valid-coverage caution rather than hiding sparse pixels. In nested Karapınar, two independent spatial permutation tests confirm sinkhole-proximity subsidence above background.</p>
+        <p class="slide-kicker">Stop 3 of 6 · Self-Caught QC (1:00–1:30)</p>
+        <h1 class="slide-headline">Self-checking quality control caught our error</h1>
+        <p class="slide-sub">Automated time-series checks flagged a 12.1 cm radar phase jump in Semarang; re-processing corrected it to −6.2 cm and isolated flagged basins.</p>
         <div class="slide-actions">
           <a class="btn primary" href="atlas.html#konya_plain">Open Konya Panel →</a>
           <a class="btn" href="../game/?basin=konya">Simulate Konya Basin</a>
@@ -163,12 +163,12 @@
       </div>
     </section>
 
-    <!-- Stop 4: Self-Caught QC -->
+    <!-- Stop 4: Why You Can Trust It -->
     <section class="slide" data-slide="3">
       <div>
-        <p class="slide-kicker">Stop 4 of 6 · Self-Caught Time-Series QC</p>
-        <h1 class="slide-headline">We caught our own error: automated QC flagged a 12.1 cm phase jump in Semarang, and re-processing recovered −6.2 cm LOS.</h1>
-        <p class="slide-sub">Instead of publishing raw peak numbers, <code>tools/atlas_qc.py</code> scans every headline time series for half-cycle unwrapping jumps (12.1 cm) and cancelling single-date spikes (&gt; 5 cm), segregating 6 flagged basins as indicative.</p>
+        <p class="slide-kicker">Stop 4 of 6 · Why Trustworthy (1:30–2:05)</p>
+        <h1 class="slide-headline">Checked against GPS, OPERA, and noise</h1>
+        <p class="slide-sub">Provisional NISAR motion (toward or away from the satellite) tracks 10 GPS stations, matches NASA's OPERA product in Mexico City, and beats noise.</p>
         <div class="slide-actions">
           <a class="btn primary" href="science.html">Inspect QC Rules →</a>
           <a class="btn" href="atlas.html">View Indicative Filter</a>
@@ -195,12 +195,12 @@
       </div>
     </section>
 
-    <!-- Stop 5: Results Cards -->
+    <!-- Stop 5: What It Is Useful For -->
     <section class="slide" data-slide="4">
       <div>
-        <p class="slide-kicker">Stop 5 of 6 · Results &amp; Independent Checks</p>
-        <h1 class="slide-headline">NISAR matches 10 GNSS stations at r = 0.924, flags 81/645 canal and rail segments, and stays below detection in London clay.</h1>
-        <p class="slide-sub">Independent GNSS cross-checks, longitudinal infrastructure tilt, and a zero-subsidence negative control establish both sensitivity and noise floor before any policy interpretation.</p>
+        <p class="slide-kicker">Stop 5 of 6 · What It Is For (2:05–2:40)</p>
+        <h1 class="slide-headline">From ground motion to water and infrastructure</h1>
+        <p class="slide-sub">We convert sinking into exposed residents, permanent aquifer storage lost each year, canal tilt risk, one-page city bulletins, and a 24-month simulator.</p>
         <div class="slide-actions">
           <a class="btn primary" href="data.html">Open Results &amp; Downloads →</a>
           <a class="btn" href="explorer.html">Open Time-Series Explorer</a>
@@ -227,12 +227,12 @@
       </div>
     </section>
 
-    <!-- Stop 6: Simulator -->
+    <!-- Stop 6: Original & Open -->
     <section class="slide" data-slide="5">
       <div>
-        <p class="slide-kicker">Stop 6 of 6 · Valley Under Pressure Simulator</p>
-        <h1 class="slide-headline">Test 24-month groundwater pumping and recharge decisions against calibrated 1970–2026 Terra Bella compaction.</h1>
-        <p class="slide-sub">Users manage seasonal pumping across Central Valley, Konya Plain, and Karapınar to see how crossing the preconsolidation head triggers irreversible clay compaction.</p>
+        <p class="slide-kicker">Stop 6 of 6 · Original &amp; Open (2:40–3:00)</p>
+        <h1 class="slide-headline">Four original contributions, one open command</h1>
+        <p class="slide-sub">Every number, figure, and ranking table in our 29-basin atlas reproduces from one open-source command chain using provisional NASA-ISRO NISAR products.</p>
         <div class="slide-actions">
           <a class="btn primary" href="../game/index.html">Launch Simulator →</a>
           <a class="btn" href="../docs/story/presentation_cues.md">Speaker Cues</a>

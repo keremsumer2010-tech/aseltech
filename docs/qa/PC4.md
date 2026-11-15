@@ -391,3 +391,10 @@ Kapsam: `web/index.html` (`1–163`). Genel İngilizce tonu akıcı ve tutarlı 
 - **Alt metinler (`<img>`):** `atlas.html` (0), `present.html` (1), `index.html` (4), `science.html` (1) üzerindeki tüm görsellerde `alt` özniteliği mevcut (`0` eksik).
 - **Kontrast düzeltmesi (`web/style.css`):** İkincil gri `--dim` rengi `#667385` (`--bg2` `#f3f5f8` üzerinde `4.36:1`) → **`#566273`** (`> 5.3:1` WCAG AA) olarak koyulaştırıldı.
 - **Klavye ile gezinme (`web/style.css`, `web/atlas.js`):** Küresel `:focus-visible` odak çerçevesi eklendi; `atlas.js` sıralama tablosu satırlarına `tabindex="0"`, `role="button"`, `aria-label` ve `Enter`/`Space` klavye desteği eklendi. `present.html` ok tuşları / `Space` / `Home` / `End` / `F` ile tam klavye gezinimi doğrulandı.
+
+### 42. FİNAL — Toplama ve Birleştirme (`JURI_3DK.md` 1–5) (`2026-11-15 11:12 TR`)
+- **1 (`1ea6be2`):** `docs/story/three_minute_story.md` oluşturuldu (`Hero`, `Atlas`, `Self-Caught QC`, `Why Trustworthy`, `What It Is For`, `Original & Open` — her biri `<= 8` kelime başlık, `<= 25` kelime düz İngilizce cümle, kaynak `file:key` + kalite etiketi + görsel + bağlantı).
+- **2 (`1ea6be2`):** `README.md` girişi `JURI_3DK.md` tek cümlelik özüyle başlatıldı.
+- **3:** `web/present.html` 6 durağı ve `docs/story/presentation_cues.md` (`0:00–0:20`, `0:20–1:00`, `1:00–1:30`, `1:30–2:05`, `2:05–2:40`, `2:40–3:00`) birebir `three_minute_story.md` başlık ve cümleleriyle hizalandı.
+- **4:** `docs/story/qa_cards.md` (12 soru, 2 cümle yanıt + 3 dk zamanlı prova) hazır.
+- **5 (Kesip atma):** `docs/story/*.md` eski sayı taramasında `exposure.md:126` (`21 regions` → `29` toplam / `21` `exposure_atlas.json` satırı) ve `slides_notes.md:68` (`21 regions` → `29 regions`, `#1 Konya Plain −11.0 cm/100d` ortak pencere) güncellendi; `project_page.md` ve `submission_form.md` ilk paragrafına tek cümlelik öz işlendi. `python3 tools/sync_atlas_text.py` → `atlas 29/16/13; updated: nothing`.

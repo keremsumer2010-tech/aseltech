@@ -28,9 +28,9 @@ NISAR Pulse — Follow the Water: Tracking Silent Land Subsidence with L-Band SA
 Open web platform using provisional NASA-ISRO NISAR L-band radar to map centimeter-scale land subsidence, canal tilt, and groundwater risk in 2026.
 ```
 
-- **Standard Portal Summary (`492 chars` / `73 words` — fits 500-char limit):**
+- **Standard Portal Summary (`267 chars` / `48 words` — fits 500-char limit, verbatim One-Sentence Core):**
 ```text
-NASA's NISAR Land Subsidence StoryMap showed California's sinking valley with 2013-2017 airborne radar. We measured the same valley, aqueduct, and Delta from space in 2026 with provisional NASA-ISRO NISAR L-band radar, compared against 10 GPS stations (1.00 cm median RMSE), ranked 645 corridors by tilt, tested the same engine across Turkiye, Mexico City, Tehran, Jakarta, and the UK, quantified population and crop exposure, and built an open 24-month groundwater simulator and 3D explorer.
+We turned the first months of NASA-ISRO NISAR radar data into a self-checking global subsidence atlas: 29 basins measured with one open pipeline on the same 93 days, every number traceable to its file, and every headline checked against GPS, NASA's OPERA product and the literature.
 ```
 
 ---

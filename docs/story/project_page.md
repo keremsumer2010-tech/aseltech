@@ -12,6 +12,8 @@
 
 ## High-Level Project Summary
 
+**We turned the first months of NASA-ISRO NISAR radar data into a self-checking global subsidence atlas: 29 basins measured with one open pipeline on the same 93 days, every number traceable to its file, and every headline checked against GPS, NASA's OPERA product and the literature.**
+
 Over-pumped aquifers, draining lowland peats, shrinking clays, and dissolving karst bedrock cause the ground to sink quietly beneath cities, aqueducts, levees, and farms—often under persistent cloud cover that blinds optical satellites. [NASA's NISAR StoryMap](https://storymaps.arcgis.com/stories/109e602e748346f3be8dc89124619828) showed the Central Valley subsidence bowl with airborne radar (2013–2017). We measured the same valley — and the same aqueduct — from space with NISAR in 2026, checked it against GPS, and ranked the canal and road segments at risk.
 
 Our open-source **interactive application** (`web/`, `web3d/`, `game/`) uses NASA–ISRO **NISAR L-band Synthetic Aperture Radar (24 cm wavelength)** imagery and Level-2 **GUNW** interferograms to **track and visualize surface change**, seasonal **patterns and rhythms**, and subsurface **physical drivers** across three flagship regions—the **UK Fens & London clay**, **California's Central Valley & Sacramento–San Joaquin Delta**, and **Türkiye's Konya Closed Basin & Karapınar**—plus four fast-sinking cities run through the same unchanged code (**Mexico City, Tehran, Jakarta, Beijing**), delivering verified **actionable insights** for scientists, water & canal managers, educators, decision-makers, and the public alongside documented **future applications** powered by NISAR's 12-day global archive.

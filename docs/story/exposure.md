@@ -123,7 +123,7 @@ Combining our 108-day provisional NISAR line-of-sight (`LOS`) displacement maps 
 
 ## 6. Global Atlas (`data/global/exposure_atlas.json`, `data/global/vital_signs.json`)
 
-To measure exposed population across all 21 regions in the 2026 global subsidence atlas (`data/global/atlas.json`) on a single open dataset, we intersect the **European Commission JRC GHSL GHS-POP E2025 R2023A** gridded population layer (`3 arc-second`, ~100 m, `EPSG:4326`, no login required) with each region's common-valid cumulative LOS displacement map (`pipeline/subset/*` and `analysis/out/*_cum.npz`, `provisional`).
+To measure exposed population across the regions in the 2026 global subsidence atlas (`data/global/atlas.json`, `29` total regions; `21` tabulated in `exposure_atlas.json`, `8` newest awaiting GHSL tiles) on a single open dataset, we intersect the **European Commission JRC GHSL GHS-POP E2025 R2023A** gridded population layer (`3 arc-second`, ~100 m, `EPSG:4326`, no login required) with each region's common-valid cumulative LOS displacement map (`pipeline/subset/*` and `analysis/out/*_cum.npz`, `provisional`).
 
 ### Method & Noise-Floor Rule (`2 * sigma`)
 

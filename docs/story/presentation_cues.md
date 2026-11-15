@@ -29,60 +29,53 @@
 
 ## 1. Six 30-Second Speaking & Demo Blocks (`0:00 – 3:00`)
 
-### Block 1 (`0:00 – 0:30`) · Hook, Headline Numbers & 108 Days in Seconds
+### Block 1 (`0:00 – 0:20`) · Hero: A Self-Checking Global Subsidence Atlas
 - **Speaker:** **Kerem**
-- **Memir Clicks (`Tab 1: web/index.html`):**
-  1. Start at Hero (`"The ground beneath our food is sinking."`, `#heroMap`), holding `4 s` on the four `.stats` headline cards (**`−7.8 cm`**, **`240 km²`**, **`1.0 cm`**, **`81 / 645`**).
-  2. Scroll into `#watch` (*"108 days in seconds"* → `#cvVideo` Figure 0 muted loop) and click **`Story`** (`#story`) into Chapter 1 (`[data-step="intro"]`).
+- **Memir Clicks (`web/present.html` Stop 1 or `web/index.html` Hero):**
+  1. Show the single-sentence core and 3 headline numbers (**`29` basins · `1.48 M` residents · `r = 0.92` GPS**), then click **`Explore the atlas →`**.
 - **Kerem Says:**
-  > Beneath the farms that feed us, heavy groundwater pumping is causing the land itself to sink quietly by centimetres in a single summer. Using open L-band radar from NASA–ISRO's NISAR satellite across 108 summer days in 2026, we measured up to minus 7.8 centimetres of sinking in California's Central Valley across 240 square kilometres, checked it within a 1.0-centimetre median difference against 10 GPS stations, and flagged 81 tilting canal and road sections out of 645.
-- **Offline Fallback Cue (`Tab 5`):** `Slide 1` (`docs/story/slides.html`) or `demo_30s.mp4`.
+  > We turned the first months of NASA-ISRO NISAR radar data into a self-checking global subsidence atlas: 29 basins measured with one open pipeline on the same 93 days, every number traceable to its file, and every headline checked against GPS, NASA's OPERA product and the literature.
+- **Offline Fallback Cue:** `web/present.html` Stop 1 (`docs/story/three_minute_story.md` §1).
 
-### Block 2 (`0:30 – 1:00`) · Why 24 cm L-Band Sees Through Clouds, Crop Canopies & Honest Limits
+### Block 2 (`0:20 – 1:00`) · Atlas: Twenty-Nine Basins Ranked on 93 Days
 - **Speaker:** **Kerem**
-- **Memir Clicks (`Tab 1: web/index.html` `[data-step="uk"]`):**
-  1. Drag `#compareRange` left-to-right across `#compare` (`20 Oct 2026`: ~98% cloud VIIRS optical vs. NISAR `GCOV` radar preview) while showing `#holmeText` (**nearly `4 m`** since `1851`, `2.75 m` below sea level).
-  2. Hover `#polBox` / `#polChart` (`4` Fens crop areas, `22 Jun – 8 Oct 2026`, `HH` ~`7 dB` brighter than `HV`, `data/fens/crops.json`) and `#ukClay` (London clay `±3.6 cm` noise floor, honest `"below_detection"`).
+- **Memir Clicks (`web/present.html` Stop 2 or `web/atlas.html#konya_plain`):**
+  1. Show the 3D globe preview and Top-5 common-window table (`28 Jun – 29 Sep 2026`), highlighting **#1 Konya Plain (`−11.0 cm/100d`, `11.6%` valid-coverage caution)**, `#2 Eloy (−8.6)`, `#3 Central Valley (−7.3)`.
 - **Kerem Says:**
-  > In England's Fens, draining peat since 1851 has lowered Holme Fen nearly 4 metres to 2.75 metres below sea level, yet clouds hide farmland all year—on 20 October 2026, NISAR's 24-centimetre radar sees straight through 98 percent cloud while separate HH and HV polarizations track crop structure and soil moisture across 4 fields. Unlike short-wavelength C-band radar, L-band keeps 80.4 percent valid summer coherence over dense crops, and in London's clay belt our 9-pair test honestly reports seasonal soil shrink–swell as not detected below the 3.6-centimetre summer noise limit.
-- **Offline Fallback Cue (`Tab 5`):** `Slide 2` (`docs/story/slides.html`).
+  > One open pipeline measures every basin over the shared 28 June to 29 September 2026 window—using a ±0.25-degree box and off-basin rock reference—placing Konya Plain first at minus 11.0 centimetres per 100 days with an explicit 11.6 percent coverage caution.
+- **Offline Fallback Cue:** `web/present.html` Stop 2 (`docs/story/three_minute_story.md` §2).
 
-### Block 3 (`1:00 – 1:30`) · Central Valley Subsidence, Full-Year Rhythm, GPS Check & Canal Tilt
+### Block 3 (`1:00 – 1:30`) · We Caught Our Own Error (Self-Checking QC)
 - **Speaker:** **Kerem**
-- **Memir Clicks (`Tab 1` `[data-step="cv"]`, `[data-step="gnss"]`, `[data-step="risk"]` + optional 3 s flash to `Tab 2: explorer.html#central_valley_fullyear`):**
-  1. Press `#cvPlay` (`#slider` `28 Jun – 14 Oct 2026`, `7` pairs), tap `p01` (`6 km N of Terra Bella`) for `#readout` + `#pointChart`, pause on `#fyBox` (*"A whole year: what comes back and what does not"* — Earlimart **`20.3 cm` lower**, **`16.8 cm/yr` permanent**, **`11.7 cm` seasonal**, `explorer.html#central_valley_fullyear`) and `aside.note.storymap` (*"From the air to space"* — `2013–2017 UAVSAR → 2026 NISAR`).
-  2. Scroll to `[data-step="gnss"]` (click **`CAHA`** in `#gnssTable`, `#gnssChart`) and `[data-step="risk"]` (highlight **`Tulare Irrigation District Canal — 57 mm/km`** in `#riskList` / `.riskbars`).
+- **Memir Clicks (`web/present.html` Stop 3 or `web/atlas.html` QC badge):**
+  1. Show **Semarang before/after (`−12.1 cm → −6.2 cm`)** and the `5` QC-flagged basins (`Gorgan`, `Delhi`, `Pekalongan`, `Beijing`, `Bangkok`) separated as `indicative only`, plus Tehran (`−3.5 → −7.4 cm` off-basin ref fix).
 - **Kerem Says:**
-  > NASA's NISAR StoryMap tracked the Central Valley bowl from aircraft in 2013 to 2017; from space across 108 summer days in 2026, NISAR measures minus 7.8 centimetres line of sight—about 10.1 centimetres vertical estimate—near Terra Bella, across farmland housing over 71,000 residents and 79 percent high-value crops like citrus and pistachios. Extending the chain across 11 mixed months near Earlimart separates an 11.7-centimetre seasonal bounce from 16.8 centimetres per year of permanent compaction, matches 10 GPS stations at 0.924 cross-station correlation, and flags steep canal tilts led by the Tulare Canal at 57 millimetres per kilometre.
-- **Offline Fallback Cue (`Tab 5`):** `Slides 3 & 4` or `web/assets/cv_fullyear.mp4`.
+  > Before ranking any city, our automated time-series quality control caught our own pipeline errors—flagging a 12.1-centimetre half-cycle phase jump in Semarang, correcting it to minus 6.2 centimetres (#7 reliable), fixing Tehran and Beijing references, and isolating five flagged basins as indicative only.
+- **Offline Fallback Cue:** `web/present.html` Stop 3 (`docs/story/three_minute_story.md` §3).
 
-### Block 4 (`1:30 – 2:00`) · Konya–Karapınar Sinkholes, Mexico City Scaling & Compaction Physics
+### Block 4 (`1:30 – 2:05`) · Why You Can Trust It (GPS, OPERA, Noise Floor)
 - **Speaker:** **Kerem**
-- **Memir Clicks (`Tab 1` `[data-step="kp"]` + `#why`):**
-  1. Scroll to **Chapter 6 · Türkiye — our home** (`[data-step="kp"]`), point to `#ringBox` / `#ringChart` (**`4.2 cm`** `< 1 km` vs. **`0.6 cm`** `> 5 km`, `10` of `29` coherent sinkholes), and click one item in `#sinkList` (`29` cited sinkholes).
-  2. Scroll past `#why` (`Figure 6` clay/aquifer cross-section showing elastic rebound vs. permanent clay collapse).
+- **Memir Clicks (`web/present.html` Stop 4 or `web/science.html`):**
+  1. Show **10-station Central Valley GPS (`r = 0.924`, `1.00 cm` median RMSE)**, **Mexico City OPERA (`r = 0.912`)**, formal uncertainty (`σ ≈ 0.3 cm`), and London Clay negative control (`3σ = 3.62 cm`, `below_detection`).
 - **Kerem Says:**
-  > In our home basin of Karapınar, Türkiye, 8 provisional NISAR pairs record minus 5.9 centimetres line-of-sight sinking where 29 documented sinkholes sit in irrigated karst, with terrain within 1 kilometre sinking 4.2 centimetres on average versus 0.6 centimetres beyond 5 kilometres. Radar cannot predict a sudden roof collapse date, so we present that honestly—just as we verified pipeline transferability across Mexico City at minus 7.0 centimetres line of sight—mapping where deep clay and pore water lose irreversible capacity.
-- **Offline Fallback Cue (`Tab 5`):** `Slide 5` (`docs/story/slides.html`) or `web/assets/kp_subsidence.mp4`.
+  > Provisional NISAR motion—along the satellite's line of sight—tracks 10 continuous GPS stations at r equals 0.92, matches NASA's OPERA product in Mexico City at r equals 0.91, and stays cleanly above our 0.3-centimetre formal uncertainty and 3.6-centimetre London clay noise floor.
+- **Offline Fallback Cue:** `web/present.html` Stop 4 (`docs/story/three_minute_story.md` §4).
 
-### Block 5 (`2:00 – 2:30`) · Actionable Simulator (`Valley Under Pressure`) & 3D Surface Viewer
+### Block 5 (`2:05 – 2:40`) · What It Is Useful For (Exposure, Storage, Tilt, Simulator)
 - **Speaker:** **Kerem**
-- **Memir Clicks (`Tab 1` `#play` -> `Tab 3: game/index.html` + `Tab 4: web3d/index.html`):**
-  1. In `#play`, click **`#gamePlay` (`"▶ Play the simulator"`)** or switch to pre-loaded **`Tab 3` (`game/index.html`)** via **`#gameOpen` (`"Open full screen ↗"`)**.
-  2. Click preset **`2. Multi-Year Drought`** in **Classroom Mode**, step forward across the 24-month horizon against the 2026 NISAR dashed benchmark, then switch for `5–8 s` to **`Tab 4` (`web3d/index.html`)** via **`#view3d` (`"3D view of the sinking ground ↗"`)** and toggle Karapınar `29` sinkholes + breathing loop.
-  3. In `Tab 4` (or the atlas 3D view), toggle **`NISAR 3D Orbit`** showing real CelesTrak TLE orbit propagation via SGP4, left-looking `33°–47°` swath geometry, and live next-pass calculation.
+- **Memir Clicks (`web/present.html` Stop 5 → `game/index.html?basin=konya`):**
+  1. Flash **1.48 million residents** (`549.45 km² < −5 cm`), **`0.3174 km³/yr` permanent Central Valley storage loss**, **`81 / 645` canal/rail segments `> 20 mm/km`** (Tulare Canal `57.01 mm/km`), and launch the 24-month simulator (`Valley Under Pressure`).
 - **Kerem Says:**
-  > Maps diagnose past pumping; our Valley Under Pressure simulator matches NISAR's 2026 Terra Bella summer rate so growers, students, and water boards can test two-year pumping decisions live. Pulling water levels below the historical preconsolidation low permanently crushes clay in the 24-month chart and Three.js 3D bowl, showing storage capacity that never returns even when wet winters come back. Furthermore, our 3D orbit viewer pairs real CelesTrak TLE propagation with NISAR's left-looking 33-to-47-degree radar swath, computing the exact countdown to the next 12-day pass over every monitored city.
-- **Offline Fallback Cue (`Tab 5`):** `Slide 6` (`docs/story/slides.html`).
+  > We turn radar centimetres into decisions: 1.48 million people living on sinking ground, 0.32 cubic kilometres per year of permanent Central Valley aquifer loss, 81 high-tilt canal and rail segments, one-page city bulletins, and a 24-month simulator anyone can play.
+- **Offline Fallback Cue:** `web/present.html` Stop 5 (`docs/story/three_minute_story.md` §5).
 
-### Block 6 (`2:30 – 3:00`) · Five User Groups, Future NISAR Applications & Mandatory Attribution Close
+### Block 6 (`2:40 – 3:00`) · Original, Open & Mandatory Provisional Close
 - **Speaker:** **Kerem**
-- **Memir Clicks (`Tab 1` `#who` -> `#next` -> `#how`):**
-  1. Scroll smoothly through **`#who`** (*"One measurement, five kinds of users"*: Scientists, Water & canal managers, Educators, Decision-makers, Everyone) and **`#next`** (*"Looking ahead — What NISAR can do next"*).
-  2. Stop cleanly on **`#how`** (*"Method & honesty — How we know"*) showing `.qlegend` (`PROVISIONAL` / `PRE-CALIBRATION BETA` / `PREVIEW`) and `.disclaimer`, hovering **`Science`** (`science.html`) and **`Data`** (`data.html`).
+- **Memir Clicks (`web/present.html` Stop 6 / `README.md`):**
+  1. Show the 4 original contributions, the single-command reproduction chain (`build_atlas.py`, `atlas_qc.py`, `sync_atlas_text.py`, `vital_signs.py`), Team Taykut credits, and the verbatim calibration notice.
 - **Kerem Says:**
-  > Across 29 global regions on a common 93-day summer window, our automated time-series quality control caught our own pipeline errors before ranking any city—isolating a 12.1-centimetre phase-cycle jump in Semarang (then reprocessing it to minus 6.2 centimetres on the coast) and flagging phase jumps or noisy dates in Gorgan, Pekalongan, Delhi, Beijing, and Bangkok as indicative only, leaving 16 reliable basins led by Konya Plain (flagged with a low-coverage caution), Eloy, Central Valley, Kashmar, and Mashhad. Every dataset, GPS check, 40-minute classroom lesson, and test lives openly under an MIT licence for scientists, canal managers, educators, policymakers, and farming communities—ready to scale into 12-day global NISAR canal warnings and aquifer accounting. All NISAR science products used here are provisional, with calibration and validation performed by NASA–JPL and ISRO, not by our team—thank you, and we welcome your questions.
-- **Offline Fallback Cue (`Tab 5`):** `Slide 7` (`docs/story/slides.html`).
+  > Every number, figure, and ranking table in our 29-basin atlas reproduces from one open-source command chain. All NISAR data used here are provisional; calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team—thank you, and we welcome your questions.
+- **Offline Fallback Cue:** `web/present.html` Stop 6 (`docs/story/three_minute_story.md` §6).
 
 ---
 
