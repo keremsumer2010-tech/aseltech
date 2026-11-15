@@ -253,8 +253,20 @@
   /**
    * Initialize MapLibre 4.7.1 with Esri World Imagery + NISAR Raster + Real OSM Canals/Roads + District Markers.
    */
+  function showStaticMap(ui) {
+    const el = document.getElementById('map');
+    if (!el) return;
+    el.innerHTML = `<div class="map-static"><img src="${ui.rasterUrl}" alt="NISAR ground motion map of the selected basin">
+      <p>Static map: the interactive map needs WebGL (graphics hardware acceleration), which is off in this browser. The simulation, sliders and charts still work.</p></div>`;
+  }
+
   function initMap() {
     const ui = BASIN_UI[activeBasinId] || BASIN_UI.tulare;
+    // Without WebGL or the MapLibre script the simulator used to stop here (black screen).
+    // Now the map shows the NISAR image as a static picture and the simulation keeps working (PC1).
+    const webgl = (() => { try { const c = document.createElement('canvas'); return !!(c.getContext('webgl2') || c.getContext('webgl')); } catch (e) { return false; } })();
+    if (typeof maplibregl === 'undefined' || !webgl) { showStaticMap(ui); return; }
+    try {
     map = new maplibregl.Map({
       container: 'map',
       center: ui.center,
@@ -300,6 +312,7 @@
         ],
       },
     });
+    } catch (err) { map = null; console.warn('Simulator map disabled:', err); showStaticMap(ui); return; }
 
     map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
 
@@ -635,6 +648,7 @@
     const nisarVertRef = Number(ValleyModel.losToVertical(d.nisarLosCm, simState.incidenceDeg).toFixed(2));
     const nisarRefLine = labels.map((_, idx) => (idx <= 1 ? null : nisarVertRef));
 
+    if (typeof Chart === 'undefined') return;
     if (!timelineChart) {
       timelineChart = new Chart(canvas.getContext('2d'), {
         type: 'line',
@@ -1052,6 +1066,7 @@
       endCompareChart = null;
     }
 
+    if (typeof Chart === 'undefined') return;
     endCompareChart = new Chart(canvas.getContext('2d'), {
       type: 'bar',
       data: {

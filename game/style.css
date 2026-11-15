@@ -280,3 +280,7 @@ button { font-family: inherit; }
   .maplibregl-ctrl-attrib-button { min-width: 44px !important; min-height: 44px !important; }
 }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+/* static map fallback without WebGL (PC1) */
+.map-static{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:12px;background:#0b1220}
+.map-static img{max-width:100%;max-height:82%;object-fit:contain}
+.map-static p{margin:0;color:#c3cee0;font-size:.8rem;text-align:center;max-width:56ch}

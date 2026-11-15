@@ -2,7 +2,9 @@
 const LOCAL = location.pathname.includes('/web/');
 const ROOT = LOCAL ? '../' : './';
 const ESRI = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
-const BLUEMARBLE = ROOT + 'web/assets/bluemarble_2k.jpg';
+// Local NASA Blue Marble base under the Esri tiles: the globe still shows Earth if the tile server is slow or blocked.
+// Resolved from this page (web/ locally, site root on Pages), not from ROOT (PC1 fix: was 404 on the live site).
+const BLUEMARBLE = new URL('assets/bluemarble_2k.jpg', location.href).href;
 const STYLE = {
   version: 8,
   sources: {
@@ -529,8 +531,11 @@ async function initAtlas(){
   });
   document.getElementById('tourBtn').addEventListener('click', startTour);
 
-  if (typeof maplibregl !== 'undefined'){
-    map = new maplibregl.Map({
+  // Without WebGL (hardware acceleration off, remote desktop, old drivers) MapLibre throws and the rest
+  // of the page never rendered. Now the map falls back to a static image and everything else still works.
+  const webgl = (() => { try{ const c = document.createElement('canvas'); return !!(c.getContext('webgl2') || c.getContext('webgl')); }catch(e){ return false; } })();
+  if (typeof maplibregl !== 'undefined' && webgl){
+    try{ map = new maplibregl.Map({
       container: 'atlasMap',
       style: STYLE,
       center: [25, 22],
@@ -538,7 +543,10 @@ async function initAtlas(){
       attributionControl: {compact: true},
       cooperativeGestures: true,
       fadeDuration: 0
-    });
+    }); }catch(err){ map = null; console.warn('Atlas map disabled:', err); }
+  }
+  if (!map) showStaticMap();
+  if (map){
     map.addControl(new maplibregl.NavigationControl({showCompass: false}), 'top-left');
 
     map.on('style.load', () => {
@@ -593,6 +601,14 @@ async function initAtlas(){
   if (initial) selectRegion(initial.id, Boolean(hashId || isJury), false);
   renderTop5Card(sortedRegions);
   renderTables(sortedRegions);
+}
+
+function showStaticMap(){
+  const el = document.getElementById('atlasMap');
+  if (!el || el.dataset.static) return;
+  el.dataset.static = '1';
+  el.innerHTML = `<div class="atlas-static"><img src="assets/atlas_world.jpg" alt="World map of the 29 measured basins; filled circles are reliable, rings are indicative">
+    <p><b>Static map.</b> The interactive globe needs WebGL (graphics hardware acceleration), which this browser has turned off. The ranking, region details and all tables below still work.</p></div>`;
 }
 
 function renderTop5Card(regions){
