@@ -1,0 +1,86 @@
+{
+  "tulare-1": {
+    "level": "tulare",
+    "title": "A measured valley",
+    "text": "The Central Valley (Tulare Basin) LOS signal reached −7.8 cm across 108 days in the atlas. That is movement toward or away from the satellite, not a direct water-level reading.",
+    "source": "data/global/atlas.json",
+    "quality": "provisional"
+  },
+  "tulare-2": {
+    "level": "tulare",
+    "title": "A learning model",
+    "text": "Pumping can lower groundwater faster than rain replaces it. This level is a simple learning model, not a forecast.",
+    "source": "data/global/atlas.json",
+    "quality": "provisional"
+  },
+  "tulare-3": {
+    "level": "tulare",
+    "title": "Check the signal",
+    "text": "The atlas compares basins over one shared summer window. A short window cannot tell us the long-term trend.",
+    "source": "data/global/home_summary.json",
+    "quality": "provisional"
+  },
+  "eloy-1": {
+    "level": "eloy",
+    "title": "A reliable basin",
+    "text": "Eloy is the fastest reliable basin in the atlas at −8.6 cm per 100 days. The measurement is a provisional radar view along the satellite line of sight.",
+    "source": "data/global/home_summary.json",
+    "quality": "provisional"
+  },
+  "eloy-2": {
+    "level": "eloy",
+    "title": "Pumping and compaction",
+    "text": "When groundwater is removed, some clay layers can compact and stay compressed. This game simplifies that process so you can explore the idea.",
+    "source": "data/global/atlas.json",
+    "quality": "provisional"
+  },
+  "eloy-3": {
+    "level": "eloy",
+    "title": "Not a forecast",
+    "text": "The atlas describes a measured summer period, not what will happen next year. Local monitoring is needed to understand a particular well or farm.",
+    "source": "data/global/home_summary.json",
+    "quality": "provisional"
+  },
+  "konya-1": {
+    "level": "konya",
+    "title": "An indicative signal",
+    "text": "Karapınar, Konya is marked indicative in the atlas, so its result needs more checking. We show it openly and leave it out of the reliable group.",
+    "source": "data/global/atlas.json",
+    "quality": "provisional"
+  },
+  "konya-2": {
+    "level": "konya",
+    "title": "Sinkholes are a clue",
+    "text": "The mapped ground movement appears stronger near documented sinkholes. That pattern is a clue to investigate, not proof that one caused the other.",
+    "source": "data/global/atlas.json",
+    "quality": "provisional"
+  },
+  "konya-3": {
+    "level": "konya",
+    "title": "Radar has limits",
+    "text": "Radar sees motion along its viewing direction. A vertical estimate needs an assumption about sideways motion.",
+    "source": "data/global/atlas.json",
+    "quality": "provisional"
+  },
+  "mexico-1": {
+    "level": "mexico",
+    "title": "A city in the atlas",
+    "text": "Mexico City has a provisional atlas rate of −6.3 cm per 100 days. The ranking uses the shared summer window so basins can be compared fairly.",
+    "source": "data/global/home_summary.json",
+    "quality": "provisional"
+  },
+  "mexico-2": {
+    "level": "mexico",
+    "title": "A second satellite check",
+    "text": "The atlas shape check with NASA JPL OPERA has r = 0.912. The products cover different seasons, so this is not a same-day validation.",
+    "source": "data/global/home_summary.json",
+    "quality": "provisional"
+  },
+  "mexico-3": {
+    "level": "mexico",
+    "title": "Use it as a screen",
+    "text": "A city can use the atlas to choose places for closer local checks. It is not a building or transit safety rating.",
+    "source": "data/global/atlas.json",
+    "quality": "provisional"
+  }
+}
