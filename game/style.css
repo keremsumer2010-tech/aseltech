@@ -9,7 +9,7 @@
   --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
   --r: 10px; --shadow: 0 1px 2px rgba(16, 24, 40, .05), 0 4px 16px rgba(16, 24, 40, .06);
   --ease: cubic-bezier(.22, .9, .3, 1);
-  --top: 56px; --panel-w: 340px; --dock-h: 150px;
+  --top: 56px; --panel-w: 340px; --dock-h: 190px;
 }
 * { box-sizing: border-box; }
 html, body { margin: 0; height: 100%; }
@@ -44,8 +44,11 @@ button { font-family: inherit; }
 .app-shell { height: 100vh; display: flex; flex-direction: column; }
 .topbar { height: var(--top); flex: none; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 0 22px; background: #fff; border-bottom: 1px solid var(--line); z-index: 10; }
 .brand-group { display: flex; align-items: center; gap: 10px; min-width: 0; }
-.brand-logo { display: block; line-height: 0; }
-.brand-logo img { display: block; height: 32px; width: auto; }
+.brand-logo { display: inline-flex; align-items: center; gap: 8px; line-height: 1; text-decoration: none; }
+.brand-logo img { display: block; height: 34px; width: 34px; }
+.brand-logo .logo-word { font: 300 1.08rem/1 Montserrat, system-ui, sans-serif; color: #001429; letter-spacing: -.01em; white-space: nowrap; }
+.brand-logo .logo-word b { font-weight: 800; }
+.brand-logo:hover .logo-word { color: #0b3d91; }
 .brand-title { margin: 0 6px 0 0; font-size: 16px; font-weight: 800; letter-spacing: -.02em; white-space: nowrap; }
 .topbar-meta { display: flex; align-items: center; gap: 10px; }
 .icon-btn { width: 34px; height: 34px; display: grid; place-items: center; border: 1px solid var(--line); background: #fff; border-radius: 9px; cursor: pointer; color: var(--acc); transition: background .2s, border-color .2s; flex: none; }
@@ -285,3 +288,14 @@ button { font-family: inherit; }
 .map-static{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:12px;background:#0b1220}
 .map-static img{max-width:100%;max-height:82%;object-fit:contain}
 .map-static p{margin:0;color:#c3cee0;font-size:.8rem;text-align:center;max-width:56ch}
+
+/* first-time hint: the main button pulses until the player presses it once (PC1) */
+@keyframes nvPulse { 0%,100% { box-shadow: 0 0 0 0 rgba(11,61,145,.45); } 50% { box-shadow: 0 0 0 8px rgba(11,61,145,0); } }
+#nextMonthBtn.hint { animation: nvPulse 1.6s ease-in-out infinite; }
+
+@media (max-width: 640px) {
+  /* basin switch sat on top of the map attribution and was cut off (PC1) */
+  .seg-map { bottom: 34px; left: 50%; transform: translateX(-50%); width: max-content; max-width: calc(100% - 20px); }
+  .seg-map .seg-btn { padding: 8px 10px; font-size: 11px; white-space: nowrap; }
+}
+@media (max-width: 640px) { .date-stamp { bottom: 80px; } }

@@ -235,6 +235,19 @@
         .addTo(map);
       districtMarkers[d.id] = { marker: mk, el };
     });
+    // Labels of districts that sit close together (e.g. S. Lemoore / Corcoran) overlapped on screen.
+    // Measure the drawn labels and push each overlapping one just below the other (PC1).
+    requestAnimationFrame(() => {
+      const list = Object.values(districtMarkers);
+      list.forEach((m) => m.marker.setOffset([0, 0]));
+      const boxes = [];
+      list.forEach((m) => {
+        let r = m.el.getBoundingClientRect();
+        const hit = boxes.find((b) => r.left < b.right && b.left < r.right && r.top < b.bottom && b.top < r.bottom);
+        if (hit) { const dy = hit.bottom - r.top + 4; m.marker.setOffset([0, dy]); r = { left: r.left, right: r.right, top: r.top + dy, bottom: r.bottom + dy }; }
+        boxes.push(r);
+      });
+    });
 
     // Stable reference marker from points.json
     if (Array.isArray(pointsData)) {
@@ -270,8 +283,8 @@
     map = new maplibregl.Map({
       container: 'map',
       center: ui.center,
-      zoom: ui.zoom,
-      minZoom: 7.0,
+      zoom: ui.zoom - (window.innerWidth < 640 ? 0.9 : 0),  // phones: show the whole valley, not two districts (PC1)
+      minZoom: 6.5,
       maxZoom: 14,
       attributionControl: { compact: true },
       style: {
@@ -1576,7 +1589,8 @@
       });
     });
 
-    $('nextMonthBtn').addEventListener('click', () => advanceMonths(1));
+    $('nextMonthBtn').classList.add('hint');
+    $('nextMonthBtn').addEventListener('click', () => { $('nextMonthBtn').classList.remove('hint'); advanceMonths(1); });
     $('fastForwardBtn').addEventListener('click', () => advanceMonths(6));
     $('resetBtn').addEventListener('click', () => resetSimulation(true));
     $('playAgainBtn').addEventListener('click', () => resetSimulation(true));
