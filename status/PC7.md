@@ -35,3 +35,5 @@
 - JSON sözleşme taraması: 111 dosyada parse/NaN hatası yok; data/numbers_registry.json quality eksikliği başka sahibin dosyası.
 - AI: Codex → CMR dry-run, kaynak incelemesi ve PC7 QA kaydı.
 - BLOCKED: yok
+- RESOLVED: prior autostash conflict was recovered; no changes were discarded.
+- RESOLVED: PC4/PC7 test_engine.js changes were combined; tests passed and PC7 commits 2b93b20/db049eb were pushed.
