@@ -39,7 +39,7 @@
     <ol>
       <li><b>What was measured.</b> 29 sinking basins on three continents, all with the same open method and the same 93-day window (28 Jun – 29 Sep 2026), from provisional NISAR radar data.</li>
       <li><b>The main result.</b> 15 basins pass every check; the fastest is Eloy, Arizona at −8.6 cm (−3.4 in) per 100 days. About 1.17 million people live on ground that sank more than 5 cm (2 in) in one summer.</li>
-      <li><b>How we checked it.</b> Against <span data-k="gnss.n">10</span> GPS stations (typical difference about <span data-k="gnss.med">1</span> cm where the ground sinks) and against a second, independent satellite pass from the opposite direction.</li>
+      <li><b>How we checked it.</b> Against 10 GPS stations: r = 0.924 and RMSE 1.37 cm (0.54 in) at the final date, plus a second satellite view from the opposite direction.</li>
       <li><b>What it means.</b> Uneven sinking tilts canals and roads; in Karapınar the ground sank faster close to documented sinkholes. Over London no movement above the noise was found.</li>
       <li><b>What it cannot tell.</b> One summer only, so yearly rates are estimates; the satellite sees the ground at a slant; NISAR data are still provisional.</li>
     </ol>
@@ -51,13 +51,14 @@
 
   <h2 id="data">1 · Data</h2>
   <table class="data"><thead><tr><th>Product</th><th>What it is</th><th>Use here</th></tr></thead><tbody>
-    <tr><td><b>GUNW</b> (L2)</td><td>Geocoded unwrapped interferogram, 80 m UTM grid, HH polarisation, with coherence, connected components and ionosphere phase screen</td><td>Ground motion: Central Valley (track 34, 7 pairs; check with track 114, 8 pairs), Karapınar (track 7, 8 pairs), London (track 101, 9 pairs)</td></tr>
+    <tr><td><b>GUNW</b> (L2)</td><td>Geocoded unwrapped interferogram: a pair of radar images processed to show ground movement</td><td>Ground motion: Central Valley, Karapınar and London</td></tr>
     <tr><td><b>GCOV</b> (L2)</td><td>Radiometrically terrain-corrected backscatter (γ⁰)</td><td>Radar view of the Fens (quick-look)</td></tr>
     <tr><td><b>SME2</b> (L3)</td><td>Soil moisture</td><td>Irrigation timing vs sinking (<code>data/central_valley/drivers.json</code>)</td></tr>
   </tbody></table>
   <p>All products come from NASA's Alaska Satellite Facility DAAC (search: <code>platform=NISAR</code>). Measurements on the main page use only <b>PROVISIONAL</b> products (composite release P05023) whose two dates are on or after 17 June 2026.</p>
 
   <h2 id="conv">2 · Phase → centimetres</h2>
+  <p>Interferometric synthetic aperture radar (InSAR) compares radar echoes from separate satellite passes. It measures movement along the satellite's line of sight (LOS), toward or away from the satellite; a rate in cm/100d means centimetres per 100 days.</p>
   <div class="eq">λ = c / f<sub>center</sub> &nbsp;&nbsp;(read from each file; 1239 MHz → 0.24196 m for track 34)<br>d<sub>LOS</sub> = −λ / (4π) · (φ<sub>unw</sub> − φ<sub>iono</sub>)<br>negative d<sub>LOS</sub> = motion away from the satellite (subsidence)</div>
   <p>The sign convention follows ISCE3 (interferogram = reference × conj(secondary)) and MintPy's NISAR reader. Pixels with coherence &lt; 0.3 or connected component 0 are masked, as are small isolated patches and pixels that jump by half a phase cycle from their 720 m neighbourhood (unwrapping errors). From each pair a plane plus a linear elevation term (Copernicus DEM) is removed to reduce long-wavelength and height-dependent atmospheric delay. Every pair is referenced to the same stable, highly coherent area. Vertical estimates assume no horizontal motion: d<sub>vert</sub> ≈ d<sub>LOS</sub> / cos θ<sub>inc</sub>.</p>
 
