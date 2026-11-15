@@ -63,8 +63,11 @@
         </select>
       </div>
       <div class="atlas-mode-row">
+        <button type="button" class="atlas-mode-btn" id="sortAxisToggle" aria-pressed="false" title="Switch ranking between fastest rate and largest sinking area">Sort: Fastest Rate</button>
         <button type="button" class="atlas-mode-btn" id="unitToggle" aria-pressed="false">Values: LOS</button>
-        <button type="button" class="atlas-mode-btn" id="compareBtn" aria-expanded="false">Compare two cities</button>
+      </div>
+      <div class="atlas-mode-row" style="margin-top:2px;">
+        <button type="button" class="atlas-mode-btn" id="compareBtn" aria-expanded="false" style="grid-column: 1 / -1;">Compare two cities</button>
       </div>
     </div>
 
@@ -126,11 +129,11 @@
   <div class="atlas-tgrid">
     <div class="atlas-tbox">
       <h3>Reliable measurements</h3>
-      <div class="atlas-tscroll"><table class="atlas-tbl" id="tblReliable"><thead><tr><th>#</th><th>Region</th><th>Common rate (cm/100d)</th><th>Max LOS</th><th>Period</th><th>Confidence</th></tr></thead><tbody></tbody></table></div>
+      <div class="atlas-tscroll"><table class="atlas-tbl" id="tblReliable"><thead><tr><th>#</th><th>Region</th><th>Common rate (cm/100d)</th><th>Area (&lt; &minus;5 cm)</th><th>Max LOS</th><th>Period</th><th>Confidence</th></tr></thead><tbody></tbody></table></div>
     </div>
     <div class="atlas-tbox">
       <h3>Indicative only (low confidence)</h3>
-      <div class="atlas-tscroll"><table class="atlas-tbl" id="tblIndicative"><thead><tr><th>#</th><th>Region</th><th>Common rate (cm/100d)</th><th>Max LOS</th><th>Period</th><th>Confidence</th></tr></thead><tbody></tbody></table></div>
+      <div class="atlas-tscroll"><table class="atlas-tbl" id="tblIndicative"><thead><tr><th>#</th><th>Region</th><th>Common rate (cm/100d)</th><th>Area (&lt; &minus;5 cm)</th><th>Max LOS</th><th>Period</th><th>Confidence</th></tr></thead><tbody></tbody></table></div>
     </div>
   </div>
   <p class="atlas-qc-line" id="atlasQcSummary" hidden></p>

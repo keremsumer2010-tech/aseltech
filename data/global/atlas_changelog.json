@@ -151,6 +151,44 @@
       "value_changes": [],
       "confidence_changes": [],
       "qc_flag_changes": []
+    },
+    {
+      "timestamp": "2026-11-15T08:53:37Z",
+      "n_regions": 30,
+      "added": [
+        "queretaro"
+      ],
+      "removed": [],
+      "value_changes": [
+        {
+          "id": "beijing",
+          "old_cm": -11.1,
+          "new_cm": -8.4,
+          "reason": "Summary updated"
+        }
+      ],
+      "confidence_changes": [],
+      "qc_flag_changes": [
+        {
+          "id": "beijing",
+          "old": [
+            "phase_cycle_jump",
+            "single_date_outlier"
+          ],
+          "new": null
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-11-15T08:59:30Z",
+      "n_regions": 29,
+      "added": [],
+      "removed": [
+        "queretaro"
+      ],
+      "value_changes": [],
+      "confidence_changes": [],
+      "qc_flag_changes": []
     }
   ]
 }

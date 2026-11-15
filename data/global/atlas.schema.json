@@ -118,6 +118,8 @@
         },
         "robustness_spread": { "type": ["number", "null"], "minimum": 0, "description": "Reference sensitivity spread (cm)." },
         "people_exposed": { "type": ["integer", "null"], "minimum": 0, "description": "GHSL residents on < -5 cm ground." },
+        "area_km2_lt_minus5cm_common": { "type": ["number", "null"], "minimum": 0, "description": "Area subsiding < -5 cm LOS during common window (km²)." },
+        "area_km2_lt_minus2cm_common": { "type": ["number", "null"], "minimum": 0, "description": "Area subsiding < -2 cm LOS during common window (km²)." },
         "quality": { "type": "string", "enum": ["provisional", "mixed", "beta"] },
         "confidence": { "type": "string", "enum": ["high", "medium", "low"] },
         "indicative_only": { "type": "boolean", "description": "True if low-confidence or QC-flagged." },

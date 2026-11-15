@@ -40,6 +40,8 @@
     "detectable": true,
     "robustness_spread": null,
     "people_exposed": 138718,
+    "area_km2_lt_minus5cm_common": 33.93,
+    "area_km2_lt_minus2cm_common": 255.24,
     "opera_check": null,
     "sigma_cm_median": 0.332,
     "rate_ci_cm_per_100d": [
@@ -88,6 +90,8 @@
     "detectable": null,
     "robustness_spread": null,
     "people_exposed": 11282,
+    "area_km2_lt_minus5cm_common": 11.57,
+    "area_km2_lt_minus2cm_common": 479.49,
     "opera_check": {
      "r": 0.091,
      "rmse_cm": 1.03,
@@ -142,6 +146,8 @@
     "detectable": true,
     "robustness_spread": 5.3362,
     "people_exposed": 92134,
+    "area_km2_lt_minus5cm_common": 239.84,
+    "area_km2_lt_minus2cm_common": 1579.2,
     "opera_check": {
      "r": 0.399,
      "rmse_cm": 2.95,
@@ -196,6 +202,8 @@
     "detectable": null,
     "robustness_spread": 2.5463,
     "people_exposed": 19367,
+    "area_km2_lt_minus5cm_common": 4.58,
+    "area_km2_lt_minus2cm_common": 111.47,
     "opera_check": null,
     "sigma_cm_median": null,
     "rate_ci_cm_per_100d": [
@@ -244,6 +252,8 @@
     "detectable": null,
     "robustness_spread": null,
     "people_exposed": 2506805,
+    "area_km2_lt_minus5cm_common": 112.65,
+    "area_km2_lt_minus2cm_common": 1008.58,
     "opera_check": null,
     "sigma_cm_median": 0.318,
     "rate_ci_cm_per_100d": [
@@ -292,6 +302,8 @@
     "detectable": true,
     "robustness_spread": null,
     "people_exposed": 3007595,
+    "area_km2_lt_minus5cm_common": 21.53,
+    "area_km2_lt_minus2cm_common": 195.23,
     "opera_check": {
      "r": 0.912,
      "rmse_cm": 5.09,
@@ -327,7 +339,7 @@
     "name": "Semarang",
     "country": "Indonesia",
     "max_cm_los": -6.2,
-    "p2_cm": -5.2,
+    "p2_cm": null,
     "rate_cm_per_100d": -6.5,
     "max_cm_vertical_est": -8.1,
     "period": [
@@ -338,7 +350,7 @@
     "n_pairs": 7,
     "quality": "provisional",
     "rate_cm_per_yr_estimate": -23.6,
-    "valid_fraction": 0.515,
+    "valid_fraction": null,
     "ref_range_cm": [
      -9.9,
      -6.2
@@ -346,6 +358,8 @@
     "detectable": null,
     "robustness_spread": null,
     "people_exposed": 780050,
+    "area_km2_lt_minus5cm_common": 58.05,
+    "area_km2_lt_minus2cm_common": 364.13,
     "opera_check": null,
     "sigma_cm_median": 0.354,
     "rate_ci_cm_per_100d": [
@@ -394,6 +408,8 @@
     "detectable": null,
     "robustness_spread": null,
     "people_exposed": 11052,
+    "area_km2_lt_minus5cm_common": 2.34,
+    "area_km2_lt_minus2cm_common": 225.63,
     "opera_check": null,
     "sigma_cm_median": 0.258,
     "rate_ci_cm_per_100d": [
@@ -442,6 +458,8 @@
     "detectable": true,
     "robustness_spread": null,
     "people_exposed": 2367,
+    "area_km2_lt_minus5cm_common": 0.38,
+    "area_km2_lt_minus2cm_common": 36.83,
     "opera_check": null,
     "sigma_cm_median": 0.33,
     "rate_ci_cm_per_100d": [
@@ -490,6 +508,8 @@
     "detectable": null,
     "robustness_spread": null,
     "people_exposed": 430616,
+    "area_km2_lt_minus5cm_common": 8.14,
+    "area_km2_lt_minus2cm_common": 293.37,
     "opera_check": null,
     "sigma_cm_median": 0.356,
     "rate_ci_cm_per_100d": [
@@ -519,7 +539,7 @@
     "name": "Can Tho",
     "country": "Vietnam",
     "max_cm_los": -3.4,
-    "p2_cm": -3.7,
+    "p2_cm": null,
     "rate_cm_per_100d": -2.8,
     "max_cm_vertical_est": -4.4,
     "period": [
@@ -530,7 +550,7 @@
     "n_pairs": 9,
     "quality": "provisional",
     "rate_cm_per_yr_estimate": -10.3,
-    "valid_fraction": 0.156,
+    "valid_fraction": null,
     "ref_range_cm": [
      -3.4,
      -3.1
@@ -538,6 +558,8 @@
     "detectable": null,
     "robustness_spread": null,
     "people_exposed": 76709,
+    "area_km2_lt_minus5cm_common": 0.96,
+    "area_km2_lt_minus2cm_common": 37.24,
     "opera_check": null,
     "sigma_cm_median": 0.492,
     "rate_ci_cm_per_100d": [
@@ -586,6 +608,8 @@
     "detectable": null,
     "robustness_spread": null,
     "people_exposed": 127600,
+    "area_km2_lt_minus5cm_common": 7.85,
+    "area_km2_lt_minus2cm_common": 103.44,
     "opera_check": null,
     "sigma_cm_median": 0.329,
     "rate_ci_cm_per_100d": [
@@ -634,6 +658,8 @@
     "detectable": null,
     "robustness_spread": null,
     "people_exposed": 16737,
+    "area_km2_lt_minus5cm_common": 0.96,
+    "area_km2_lt_minus2cm_common": 84.7,
     "opera_check": null,
     "sigma_cm_median": 0.386,
     "rate_ci_cm_per_100d": [
@@ -682,6 +708,8 @@
     "detectable": null,
     "robustness_spread": null,
     "people_exposed": 253137,
+    "area_km2_lt_minus5cm_common": 2.5,
+    "area_km2_lt_minus2cm_common": 60.65,
     "opera_check": null,
     "sigma_cm_median": 0.309,
     "rate_ci_cm_per_100d": [
@@ -730,6 +758,8 @@
     "detectable": true,
     "robustness_spread": null,
     "people_exposed": 632,
+    "area_km2_lt_minus5cm_common": 6.13,
+    "area_km2_lt_minus2cm_common": 22.89,
     "opera_check": null,
     "sigma_cm_median": 0.347,
     "rate_ci_cm_per_100d": [
@@ -778,6 +808,8 @@
     "detectable": null,
     "robustness_spread": null,
     "people_exposed": 210,
+    "area_km2_lt_minus5cm_common": 0.24,
+    "area_km2_lt_minus2cm_common": 56.25,
     "opera_check": null,
     "sigma_cm_median": 0.305,
     "rate_ci_cm_per_100d": [
@@ -826,6 +858,8 @@
     "detectable": null,
     "robustness_spread": null,
     "people_exposed": 97823,
+    "area_km2_lt_minus5cm_common": 354.64,
+    "area_km2_lt_minus2cm_common": 397.36,
     "opera_check": null,
     "sigma_cm_median": 0.36,
     "rate_ci_cm_per_100d": [
@@ -877,6 +911,8 @@
     "detectable": null,
     "robustness_spread": null,
     "people_exposed": 230452,
+    "area_km2_lt_minus5cm_common": 0.49,
+    "area_km2_lt_minus2cm_common": 20.81,
     "opera_check": null,
     "sigma_cm_median": 0.37,
     "rate_ci_cm_per_100d": [
@@ -909,7 +945,7 @@
     "name": "Bangkok",
     "country": "Thailand",
     "max_cm_los": -7.5,
-    "p2_cm": -6.9,
+    "p2_cm": null,
     "rate_cm_per_100d": -6.2,
     "max_cm_vertical_est": -9.0,
     "period": [
@@ -920,7 +956,7 @@
     "n_pairs": 8,
     "quality": "provisional",
     "rate_cm_per_yr_estimate": -22.8,
-    "valid_fraction": 0.303,
+    "valid_fraction": null,
     "ref_range_cm": [
      -7.9,
      -7.5
@@ -928,6 +964,8 @@
     "detectable": true,
     "robustness_spread": null,
     "people_exposed": 1119303,
+    "area_km2_lt_minus5cm_common": 48.85,
+    "area_km2_lt_minus2cm_common": 186.92,
     "opera_check": null,
     "sigma_cm_median": 0.327,
     "rate_ci_cm_per_100d": [
@@ -961,7 +999,7 @@
     "name": "Pekalongan",
     "country": "Indonesia",
     "max_cm_los": -22.2,
-    "p2_cm": -20.9,
+    "p2_cm": null,
     "rate_cm_per_100d": -18.5,
     "max_cm_vertical_est": -31.9,
     "period": [
@@ -972,7 +1010,7 @@
     "n_pairs": 9,
     "quality": "provisional",
     "rate_cm_per_yr_estimate": -67.7,
-    "valid_fraction": 0.266,
+    "valid_fraction": null,
     "ref_range_cm": [
      -22.2,
      -12.4
@@ -980,6 +1018,8 @@
     "detectable": null,
     "robustness_spread": null,
     "people_exposed": 1142831,
+    "area_km2_lt_minus5cm_common": 551.99,
+    "area_km2_lt_minus2cm_common": 666.16,
     "opera_check": null,
     "sigma_cm_median": 0.394,
     "rate_ci_cm_per_100d": [
@@ -1003,34 +1043,36 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     116.81929,
-     39.75589
+     116.80345,
+     39.74361
     ]
    },
    "properties": {
     "id": "beijing",
     "name": "Beijing",
     "country": "China",
-    "max_cm_los": -11.1,
-    "p2_cm": -10.24,
-    "rate_cm_per_100d": -9.2,
-    "max_cm_vertical_est": -16.3,
+    "max_cm_los": -8.4,
+    "p2_cm": -7.52,
+    "rate_cm_per_100d": -7.0,
+    "max_cm_vertical_est": -12.3,
     "period": [
      "2026-06-17",
      "2026-10-15"
     ],
     "days": 120,
-    "n_pairs": 9,
+    "n_pairs": 8,
     "quality": "provisional",
-    "rate_cm_per_yr_estimate": -33.8,
-    "valid_fraction": 0.523,
+    "rate_cm_per_yr_estimate": -25.5,
+    "valid_fraction": 0.538,
     "ref_range_cm": [
-     -11.1,
-     -3.2
+     -8.4,
+     -2.3
     ],
     "detectable": true,
     "robustness_spread": 6.9655,
     "people_exposed": 9496168,
+    "area_km2_lt_minus5cm_common": 400.44,
+    "area_km2_lt_minus2cm_common": 1304.57,
     "opera_check": null,
     "sigma_cm_median": 0.364,
     "rate_ci_cm_per_100d": [
@@ -1041,12 +1083,8 @@
     "indicative_only": true,
     "coverage": "ok",
     "path": "data/global/beijing/",
-    "note": "QC: step 2 (2026-06-29→2026-07-11) = -12.86 cm ≈ one phase cycle (12.1 cm); date 2026-07-11: -12.86 then +9.54 cm (one acquisition off) Without the flagged step(s) the headline point shows -7.79 cm. Under revision.",
-    "rate_cm_per_100d_common": -11.2,
-    "qc_flags": [
-     "phase_cycle_jump",
-     "single_date_outlier"
-    ],
+    "note": "",
+    "rate_cm_per_100d_common": -8.8,
     "rank": 21
    }
   },
@@ -1083,6 +1121,8 @@
     "detectable": true,
     "robustness_spread": null,
     "people_exposed": 14681,
+    "area_km2_lt_minus5cm_common": 0.55,
+    "area_km2_lt_minus2cm_common": 4.75,
     "opera_check": null,
     "sigma_cm_median": 0.346,
     "rate_ci_cm_per_100d": [
@@ -1112,7 +1152,7 @@
     "name": "Jakarta",
     "country": "Indonesia",
     "max_cm_los": -6.8,
-    "p2_cm": -10.2,
+    "p2_cm": null,
     "rate_cm_per_100d": -6.3,
     "max_cm_vertical_est": -9.3,
     "period": [
@@ -1123,11 +1163,13 @@
     "n_pairs": 8,
     "quality": "provisional",
     "rate_cm_per_yr_estimate": -23.2,
-    "valid_fraction": 0.029,
+    "valid_fraction": null,
     "ref_range_cm": null,
     "detectable": true,
     "robustness_spread": null,
     "people_exposed": 87328,
+    "area_km2_lt_minus5cm_common": 6.67,
+    "area_km2_lt_minus2cm_common": 20.88,
     "opera_check": null,
     "sigma_cm_median": 0.332,
     "rate_ci_cm_per_100d": [
@@ -1173,6 +1215,8 @@
     "detectable": true,
     "robustness_spread": null,
     "people_exposed": 23424,
+    "area_km2_lt_minus5cm_common": 3.1,
+    "area_km2_lt_minus2cm_common": 28.69,
     "opera_check": null,
     "sigma_cm_median": 0.326,
     "rate_ci_cm_per_100d": [
@@ -1221,6 +1265,8 @@
     "detectable": true,
     "robustness_spread": null,
     "people_exposed": 23807,
+    "area_km2_lt_minus5cm_common": 2.11,
+    "area_km2_lt_minus2cm_common": 57.5,
     "opera_check": null,
     "sigma_cm_median": 0.347,
     "rate_ci_cm_per_100d": [
@@ -1250,7 +1296,7 @@
     "name": "Yunlin",
     "country": "Taiwan",
     "max_cm_los": -2.7,
-    "p2_cm": -3.0,
+    "p2_cm": null,
     "rate_cm_per_100d": -2.5,
     "max_cm_vertical_est": -3.4,
     "period": [
@@ -1261,7 +1307,7 @@
     "n_pairs": 8,
     "quality": "provisional",
     "rate_cm_per_yr_estimate": -9.2,
-    "valid_fraction": 0.282,
+    "valid_fraction": null,
     "ref_range_cm": [
      -3.5,
      -1.1
@@ -1269,6 +1315,8 @@
     "detectable": null,
     "robustness_spread": null,
     "people_exposed": 27204,
+    "area_km2_lt_minus5cm_common": 2.39,
+    "area_km2_lt_minus2cm_common": 55.31,
     "opera_check": null,
     "sigma_cm_median": null,
     "rate_ci_cm_per_100d": null,
@@ -1314,6 +1362,8 @@
     "detectable": null,
     "robustness_spread": null,
     "people_exposed": 8592,
+    "area_km2_lt_minus5cm_common": 0.3,
+    "area_km2_lt_minus2cm_common": 12.15,
     "opera_check": null,
     "sigma_cm_median": null,
     "rate_ci_cm_per_100d": null,
@@ -1340,7 +1390,7 @@
     "name": "Hanoi",
     "country": "Vietnam",
     "max_cm_los": -2.5,
-    "p2_cm": -3.0,
+    "p2_cm": null,
     "rate_cm_per_100d": -2.1,
     "max_cm_vertical_est": -3.6,
     "period": [
@@ -1351,7 +1401,7 @@
     "n_pairs": 9,
     "quality": "provisional",
     "rate_cm_per_yr_estimate": -7.5,
-    "valid_fraction": 0.257,
+    "valid_fraction": null,
     "ref_range_cm": [
      -6.7,
      -2.2
@@ -1359,6 +1409,8 @@
     "detectable": null,
     "robustness_spread": null,
     "people_exposed": 85952,
+    "area_km2_lt_minus5cm_common": 1.61,
+    "area_km2_lt_minus2cm_common": 39.67,
     "opera_check": null,
     "sigma_cm_median": 0.356,
     "rate_ci_cm_per_100d": [
@@ -1388,7 +1440,7 @@
     "name": "Ho Chi Minh City",
     "country": "Vietnam",
     "max_cm_los": -4.2,
-    "p2_cm": -1.8,
+    "p2_cm": null,
     "rate_cm_per_100d": -3.5,
     "max_cm_vertical_est": -5.8,
     "period": [
@@ -1399,7 +1451,7 @@
     "n_pairs": 9,
     "quality": "provisional",
     "rate_cm_per_yr_estimate": -12.8,
-    "valid_fraction": 0.321,
+    "valid_fraction": null,
     "ref_range_cm": [
      -9.9,
      -4.2
@@ -1407,6 +1459,8 @@
     "detectable": true,
     "robustness_spread": null,
     "people_exposed": 83293,
+    "area_km2_lt_minus5cm_common": 0.85,
+    "area_km2_lt_minus2cm_common": 11.58,
     "opera_check": null,
     "sigma_cm_median": 0.364,
     "rate_ci_cm_per_100d": [

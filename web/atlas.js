@@ -82,8 +82,31 @@ function bboxToCoords(bbox){
 let map, mapReady = false, atlasData = null, sortedRegions = [], filteredRegions = [], activeId = null;
 let activeLayer = 'disp';
 let unitMode = 'los'; // 'los' | 'vert'
+let sortAxis = 'rate'; // 'rate' | 'area'
 let animTimer = null, animDates = [], animIdx = 0, activeBase = '', activeBboxCoords = null, activeSigmaUrl = null;
 let tourTimer = null, tourIdx = 0;
+
+function applySorting(){
+  if (sortAxis === 'area'){
+    sortedRegions = atlasData.regions.slice().sort((a, b) => {
+      const aInd = isIndicative(a) ? 1 : 0;
+      const bInd = isIndicative(b) ? 1 : 0;
+      if (aInd !== bInd) return aInd - bInd;
+      const aVal = typeof a.area_km2_lt_minus5cm_common === 'number' ? a.area_km2_lt_minus5cm_common : 0;
+      const bVal = typeof b.area_km2_lt_minus5cm_common === 'number' ? b.area_km2_lt_minus5cm_common : 0;
+      return bVal - aVal;
+    });
+  } else {
+    sortedRegions = atlasData.regions.slice().sort((a, b) => {
+      const aInd = isIndicative(a) ? 1 : 0;
+      const bInd = isIndicative(b) ? 1 : 0;
+      if (aInd !== bInd) return aInd - bInd;
+      const aRate = a.rate_cm_per_100d_common ?? a.rate_cm_per_100d ?? 999;
+      const bRate = b.rate_cm_per_100d_common ?? b.rate_cm_per_100d ?? 999;
+      return aRate - bRate;
+    });
+  }
+}
 
 function stopAnim(){
   if (animTimer){ clearInterval(animTimer); animTimer = null; }
@@ -328,16 +351,24 @@ function renderListAndMap(){
   });
 
   const listEl = document.getElementById('atlasList');
-  listEl.innerHTML = filteredRegions.length ? filteredRegions.map(r => {
-    const val = unitMode === 'vert' ? r.max_cm_vertical_est : r.rate_cm_per_100d;
-    const unit = unitMode === 'vert' ? 'cm vert (est.)' : 'cm/100d';
-    const rateTxt = (typeof val === 'number' && Number.isFinite(val)) ? `${fmtNum(val)} ${unit}` : 'no data';
+  listEl.innerHTML = filteredRegions.length ? filteredRegions.map((r, idx) => {
+    let rateTxt;
+    if (sortAxis === 'area'){
+      const aVal = r.area_km2_lt_minus5cm_common;
+      rateTxt = (typeof aVal === 'number' && Number.isFinite(aVal)) ? `${fmtNum(aVal)} km²` : 'no area';
+    } else {
+      const val = unitMode === 'vert' ? r.max_cm_vertical_est : r.rate_cm_per_100d;
+      const unit = unitMode === 'vert' ? 'cm vert (est.)' : 'cm/100d';
+      rateTxt = (typeof val === 'number' && Number.isFinite(val)) ? `${fmtNum(val)} ${unit}` : 'no data';
+    }
     const indCls = isIndicative(r) ? ' is-indicative' : '';
     const actCls = r.id === activeId ? ' is-active' : '';
     const updBadge = /recomputed/i.test(r.note || '') ? ' <span class="cbadge updated">Updated</span>' : '';
+    const rankNum = sortAxis === 'area' ? `#${idx + 1}` : (r.rank ? `#${r.rank}` : '');
+    const areaSubNote = sortAxis === 'area' ? ' <span style="font-size:0.72rem;color:var(--mut)">&lt;&minus;5cm</span>' : '';
     return `<button type="button" class="atlas-item${indCls}${actCls}" data-id="${esc(r.id)}">
-      <span class="ai-left"><span class="ai-name">${r.rank ? '#' + r.rank + ' · ' : ''}${esc(r.name)}</span><span class="ai-sub">${r.country ? esc(r.country) + ' · ' : ''}${confBadge(r)}${updBadge}</span></span>
-      <span class="ai-right"><span class="ai-rate" style="color:${rateColor(r.rate_cm_per_100d)}">${esc(rateTxt)}</span></span>
+      <span class="ai-left"><span class="ai-name">${rankNum ? rankNum + ' · ' : ''}${esc(r.name)}</span><span class="ai-sub">${r.country ? esc(r.country) + ' · ' : ''}${confBadge(r)}${updBadge}</span></span>
+      <span class="ai-right"><span class="ai-rate" style="color:${sortAxis === 'area' ? 'var(--acc)' : rateColor(r.rate_cm_per_100d)}">${esc(rateTxt)}${areaSubNote}</span></span>
     </button>`;
   }).join('') : '<p class="small">No regions match this filter.</p>';
 
@@ -436,9 +467,8 @@ async function initAtlas(){
     document.getElementById('atlasList').innerHTML = '<p class="small">Could not load data/global/atlas.json.</p>';
     return;
   }
-  sortedRegions = atlasData.regions
-    .slice()
-    .sort((a, b) => (a.rate_cm_per_100d_common ?? a.rate_cm_per_100d ?? 999) - (b.rate_cm_per_100d_common ?? b.rate_cm_per_100d ?? 999));
+  sortAxis = 'rate';
+  applySorting();
 
   document.getElementById('stTotal').textContent = atlasData.n_regions ?? sortedRegions.length;
   document.getElementById('stRel').textContent = atlasData.n_reliable ?? sortedRegions.filter(r => !isIndicative(r)).length;
@@ -462,6 +492,16 @@ async function initAtlas(){
   document.getElementById('atlasSearch')?.addEventListener('input', renderListAndMap);
   document.getElementById('atlasConfFilter')?.addEventListener('change', renderListAndMap);
   document.getElementById('atlasCountryFilter')?.addEventListener('change', renderListAndMap);
+  document.getElementById('sortAxisToggle')?.addEventListener('click', e => {
+    sortAxis = sortAxis === 'rate' ? 'area' : 'rate';
+    e.currentTarget.setAttribute('aria-pressed', String(sortAxis === 'area'));
+    e.currentTarget.textContent = sortAxis === 'area' ? 'Sort: Largest Area' : 'Sort: Fastest Rate';
+    applySorting();
+    renderListAndMap();
+    renderTop5Card(sortedRegions);
+    renderTables(sortedRegions);
+    if (activeId) selectRegion(activeId, false, false);
+  });
   document.getElementById('unitToggle')?.addEventListener('click', e => {
     unitMode = unitMode === 'los' ? 'vert' : 'los';
     e.currentTarget.setAttribute('aria-pressed', String(unitMode === 'vert'));
@@ -558,14 +598,31 @@ async function initAtlas(){
 function renderTop5Card(regions){
   const tb = document.getElementById('top5CardRows');
   if (!tb || !Array.isArray(regions)) return;
+  const cardHdr = document.querySelector('.top5-card-hdr b');
+  if (cardHdr){
+    cardHdr.innerHTML = sortAxis === 'area' ? 'Top 5 Basins <small>(largest area &lt; −5 cm)</small>' : 'Top 5 Basins <small>(93-d window)</small>';
+  }
+  const ths = document.querySelectorAll('.atlas-top5-table th');
+  if (ths && ths[2]){
+    ths[2].textContent = sortAxis === 'area' ? 'Area' : 'Rate';
+  }
   const top5 = regions.filter(r => !isIndicative(r)).slice(0, 5);
   tb.innerHTML = top5.map((r, i) => {
-    const rateVal = r.rate_cm_per_100d_common ?? r.rate_cm_per_100d;
+    let valStr, valColor;
+    if (sortAxis === 'area'){
+      const aVal = r.area_km2_lt_minus5cm_common;
+      valStr = (typeof aVal === 'number' && Number.isFinite(aVal)) ? `${fmtNum(aVal)} km²` : '—';
+      valColor = 'var(--acc)';
+    } else {
+      const rateVal = r.rate_cm_per_100d_common ?? r.rate_cm_per_100d;
+      valStr = `${fmtNum(rateVal)} cm`;
+      valColor = 'var(--hot)';
+    }
     const isAct = r.id === activeId ? ' class="is-active"' : '';
     return `<tr data-id="${esc(r.id)}"${isAct} tabindex="0" role="button" aria-label="Select #${i + 1} ${esc(r.name)}">
       <td><b>#${i + 1}</b></td>
       <td><b>${esc(r.name)}</b></td>
-      <td class="mono" style="color:var(--hot);font-weight:700">${esc(fmtNum(rateVal))} cm</td>
+      <td class="mono" style="color:${valColor};font-weight:700">${esc(valStr)}</td>
       <td>${confBadge(r)}</td>
     </tr>`;
   }).join('');
@@ -592,8 +649,10 @@ function renderTables(regions){
       const rateVal = r.rate_cm_per_100d_common ?? r.rate_cm_per_100d;
       const ci = Array.isArray(r.rate_ci_cm_per_100d) && r.rate_ci_cm_per_100d.length === 2 ? r.rate_ci_cm_per_100d : null;
       const ciHtml = ci ? `<div class="small" style="font-size:.74rem;color:var(--dim)">[${esc(fmtNum(ci[0]))}, ${esc(fmtNum(ci[1]))}]</div>` : '';
-      return `<tr data-id="${esc(r.id)}" tabindex="0" role="button" aria-label="Select ${esc(r.name)}">${'<td>'}${i + 1}</td><td><b>${esc(r.name)}</b>${r.country ? ' · ' + esc(r.country) : ''}</td><td class="mono">${esc(fmtNum(rateVal))}${ciHtml}</td><td class="mono">${esc(fmtNum(r.max_cm_los))} cm</td><td>${esc(pTxt)}</td><td>${confBadge(r)}</td></tr>`;
-    }).join('') : '<tr><td colspan="6" class="small">None in this class.</td></tr>';
+      const aVal = r.area_km2_lt_minus5cm_common;
+      const aTxt = (typeof aVal === 'number' && Number.isFinite(aVal)) ? `${fmtNum(aVal)} km²` : '—';
+      return `<tr data-id="${esc(r.id)}" tabindex="0" role="button" aria-label="Select ${esc(r.name)}">${'<td>'}${i + 1}</td><td><b>${esc(r.name)}</b>${r.country ? ' · ' + esc(r.country) : ''}</td><td class="mono">${esc(fmtNum(rateVal))}${ciHtml}</td><td class="mono" style="color:var(--acc);font-weight:600">${esc(aTxt)}</td><td class="mono">${esc(fmtNum(r.max_cm_los))} cm</td><td>${esc(pTxt)}</td><td>${confBadge(r)}</td></tr>`;
+    }).join('') : '<tr><td colspan="7" class="small">None in this class.</td></tr>';
     const activateRow = tr => {
       stopTour();
       selectRegion(tr.dataset.id, true, true);
@@ -738,6 +797,7 @@ async function selectRegion(id, fly, updateHash){
       <div><dt>Pairs / Valid px</dt><dd>${r.n_pairs ?? '—'} pairs · ${esc(validTxt)}</dd></div>
       <div><dt>2nd percentile (p2)</dt><dd>${esc(fmtUnit(r.p2_cm, 'cm'))}</dd></div>
       <div><dt>Ref. spread</dt><dd style="font-size:.78rem">${esc(refTxt)}</dd></div>
+      ${typeof r.area_km2_lt_minus5cm_common === 'number' ? `<div><dt>Area &lt; &minus;5 cm</dt><dd style="color:var(--acc);font-weight:700">${esc(fmtNum(r.area_km2_lt_minus5cm_common))} km²</dd></div>` : ''}
       ${extraCards.join('')}
     </dl>
     ${r.note ? `<p class="small">${esc(r.note)}</p>` : ''}

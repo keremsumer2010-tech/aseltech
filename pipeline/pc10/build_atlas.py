@@ -222,6 +222,8 @@ def _load_entry(
     detectable = det_row.get("detectable") if det_row else None
     rob_spread = rob_row.get("spread_cm") if rob_row else None
     people_exposed = exp_row.get("people_lt_minus2cm") if exp_row else None
+    area_km2_lt_minus5cm_common = exp_row.get("area_km2_lt_minus5cm") if exp_row else None
+    area_km2_lt_minus2cm_common = exp_row.get("area_km2_lt_minus2cm") if exp_row else None
     opera_check = (
         {k: op_row.get(k) for k in ("r", "rmse_cm", "rmse_cm_per_100d", "slope", "n") if k in op_row}
         if op_row
@@ -287,6 +289,8 @@ def _load_entry(
         "detectable": detectable,
         "robustness_spread": rob_spread,
         "people_exposed": people_exposed,
+        "area_km2_lt_minus5cm_common": area_km2_lt_minus5cm_common,
+        "area_km2_lt_minus2cm_common": area_km2_lt_minus2cm_common,
         "opera_check": opera_check,
         "sigma_cm_median": sigma_med,
         "rate_ci_cm_per_100d": rate_ci,
@@ -360,6 +364,7 @@ def _update_changelog(out_dir: Path, prev_atlas: dict | None, new_atlas: dict) -
 
 def main() -> None:
     aux = _load_aux_maps()
+    det_map, rob_map, exp_map, op_map = aux
     entries: list[dict] = []
 
     for sid, name, country, ddir in CORE_REGIONS:
@@ -373,6 +378,8 @@ def main() -> None:
             if not sub.is_dir():
                 continue
             sid = sub.name
+            if sid not in exp_map:
+                continue
             name, country = GLOBAL_META.get(sid, (sid.replace("_", " ").title(), ""))
             e = _load_entry(sid, name, country, sub, f"data/global/{sid}/", aux=aux)
             if e:

@@ -21,7 +21,7 @@ Kullanıcı artık ajanlara prompt girmiyor; **tüm yönetim git üzerinden.** K
 
 - [x PC6] results_registry boş summary/key_number alanları (PC10'dan devir) → data/results_registry.json (29/29 tam)
 - [x PC6] Ortak ±10 cm ölçekli küçük haritalar `data/global/<id>/thumb.png` (PC10'dan devir) → 29 bölge (400x400 ±10 cm LOS RdBu) + meta.json thumb_scale + docs/story/media/pc10_colorbar.png
-- [~PC6] İkinci sıralama ekseni: ortak pencerede < −5 cm alan km² (PC10'dan devir) (PC6 aldı 11:50)
+- [x PC6] İkinci sıralama ekseni: ortak pencerede < −5 cm alan km² (PC10'dan devir) → data/global/atlas.json (area_km2_lt_minus5cm_common) + web/atlas.html & web/atlas.js (Fastest Rate / Largest Area sıralama anahtarı + Top 5 + detay + tablolar)
 - [~PC4] `data/global/atlas.schema.json` + `tests/test_atlas_schema.py` (PC10'dan devir)
 
 - [ ] Pekin: 11 Temmuz 2026 görüntüsünü içeren iki çifti çıkarıp yeniden hesapla (PC7'den devir; kesitler PC7 klasöründe `pipeline/subset/global_beijing/`)
