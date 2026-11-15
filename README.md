@@ -15,6 +15,20 @@
 
 ---
 
+## What We Built (Nine Things, One by One)
+
+1. **Global Subsidence Atlas:** `29` basins (`16` reliable, `13` indicative) on three continents, ranked over the same `93` days (`28 Jun–29 Sep 2026`; `#1` Konya Plain `−11.0 cm/100d`, caution).
+2. **Self-Checking Quality Control:** Automated time-series scan for `12.1 cm` full L-band phase-cycle jumps and single-date spikes (`Semarang` fixed `−12.1 → −6.2 cm`; `5` flagged basins kept indicative).
+3. **Proof on the Ground:** `r = 0.924` agreement with `10` continuous GPS stations in Central Valley (`1.00 cm` median RMSE), plus `≈ 0.3 cm` formal noise and London Clay negative control (`3σ = 3.62 cm`, `below_detection`).
+4. **Who Lives on Sinking Ground:** `GHSL 2025` overlay counting **`1,479,844` residents** (`1.48 M`) on **`549.45 km²`** sinking `> 5 cm` (`|disp| ≥ 2σ`).
+5. **Water Storage Lost for Good:** 11-month harmonic decomposition in Central Valley separating permanent clay compaction (**`0.3174 km³/yr`** lost storage) from seasonal rebound.
+6. **Canals and Railways at Risk:** Longitudinal tilt screening across `645` OpenStreetMap segments (`81 / 645 > 20 mm/km`, Tulare Canal `57.01 mm/km`).
+7. **One-Page Basin Bulletins:** `29` printable NASA-style monitoring bulletins (`docs/bulletins/<region>.html`).
+8. **Simulator Anyone Can Play:** *Valley Under Pressure* 24-month aquifer simulator (`game/index.html`) calibrated to Terra Bella compaction and NISAR rates.
+9. **Open One-Command Engine:** `NISAR Pulse` (`pipeline/nisarpulse`) to download, measure, and self-check any new region from public NASA ASF data.
+
+---
+
 ## Key Results (Ten Verified Headline Numbers)
 
 All figures below match [`docs/qa/SCIENCE_SIGNOFF.md`](docs/qa/SCIENCE_SIGNOFF.md) and the repository JSON files:

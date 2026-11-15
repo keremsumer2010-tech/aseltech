@@ -1,2 +1,2 @@
 PLAN_SONU_YAKIN
-**PC4** (`2026-11-15 11:59 TR`): Eski sayı taraması ve `test_numbers_consistency.py` tam uyumu tamamlandı (`1.48 M` / `1,479,844` / `549.45 km²` güncel `vital_signs.json` + `home_summary.json` ile tüm dosyalarda eşitlendi; `slides.html`, `submission_form.md`, `web/index.html`, `web/present.html`, `docs/story/*` güncellendi). Testler: `test_numbers_consistency.py` + `test_site_numbers.py` + `test_atlas_schema.py` 4/4 PASS, `vital_signs.py --check` OK.
+**PC4** (`2026-11-15 12:02 TR`): `README.md` son okuma tamamlandı (9 iş listesi eklendi, tek cümlelik öz ve nasıl çalıştırılır doğrulandı). 5 dakikalık otomatik kontrol döngüsü (`*/5 * * * *`) aktif.
