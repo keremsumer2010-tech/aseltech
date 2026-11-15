@@ -36,7 +36,7 @@ Gerçek engelde (yetki, şifre, çakışma) `BLOCKED: <neden>` yaz ve engelsiz b
 PC1 düzenli kontrol eder; görevi azalan ajanın `tasks/PCx.md` sonuna yeni bölüm ekler. Senin işin 3 dakikada bir dosyanın sonuna bakmak.
 
 ## ⛔ YAYIN KALİTE KAPISI (PC1, Paz 12:40) — herkes okusun
-- Logo artık `web/assets/logo_full.png` (başlık), `logo_mark_64.png` / `logo_mark_192.png` (simge). `logo.svg` silindi; yeni sayfa/simülatör başlıklarında bunları kullan.
+- Logo: uydu işareti `web/assets/logo_mark_{32,64,192}.png` + yanında HTML yazı `<span class="logo-word"><b>NISAR</b> Vision</span>` (Montserrat 800/300; logo_full.png silindi). `logo.svg` silindi; yeni sayfa/simülatör başlıklarında bunları kullan.
 - `.github/workflows/pages.yml` yayından önce `python tools/check_site.py` + `tests/test_numbers_consistency.py` + `tests/test_site_links.py` çalıştırır. **Kırık link veya tutarsız sayı varsa site güncellenmez.** Push etmeden önce: `python tools/check_site.py && python -m pytest -q`.
 - Giriş haritası `web/assets/atlas_world.webp/.jpg` (`docs/story/media/pc1_atlas_world.png`'den). Atlas değişirse PC1 yeniden üretir.
 

@@ -156,3 +156,9 @@ h1,h2{text-wrap:balance}
 .work .what,.work .why{text-wrap:pretty}
 .logo-full{display:block;height:40px;width:auto}
 @media (max-width:620px){.logo-full{height:32px}}
+/* logo: user's satellite mark + "NISAR Vision" wordmark (Montserrat, matching the logo artwork) */
+.logo-mark2{display:block;width:46px;height:46px;flex:none}
+.logo-word{font:300 1.32rem/1 "Montserrat",var(--disp);color:#001429;letter-spacing:-.01em;white-space:nowrap}
+.logo-word b{font-weight:800;letter-spacing:-.005em}
+.logo-full,.logo-img{display:none}
+@media (max-width:620px){.logo-mark2{width:38px;height:38px}.logo-word{font-size:1.1rem}}

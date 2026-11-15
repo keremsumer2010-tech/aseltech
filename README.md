@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://keremsumer2010-tech.github.io/aseltech/">
-    <img src="web/assets/logo_full.png" alt="NISAR Vision — Team Aseltech" width="320">
+    <img src="web/assets/logo_mark_192.png" alt="NISAR Vision logo: satellite, radar waves and sinking ground layers" width="120">
   </a>
 </p>
 
