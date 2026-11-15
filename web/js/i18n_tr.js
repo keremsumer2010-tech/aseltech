@@ -1403,3 +1403,12 @@ Object.assign(window.I18N_TR, {
   "Rank": "Sıra",
   "# Jun – # Sept": "# Haz – # Eyl"
 });
+
+// ---- headings after the 15 Nov uncertainty.md cleanup (Q27 and copy markers removed) ----
+Object.assign(window.I18N_TR, {
+  "# Statistical Interpretation of GNSS Validation ({0})": "# GNSS Doğrulamasının İstatistiksel Yorumu ({0})",
+  "Statistical Interpretation of GNSS Validation ({0})": "GNSS Doğrulamasının İstatistiksel Yorumu ({0})",
+  "# Summary: How We Know the Signal Is Real": "# Özet: Sinyalin Gerçek Olduğunu Nasıl Biliyoruz",
+  "Summary: How We Know the Signal Is Real": "Özet: Sinyalin Gerçek Olduğunu Nasıl Biliyoruz",
+  "InSAR Uncertainty Budget & GNSS Validation Synthesis": "InSAR Belirsizlik Bütçesi ve GNSS Doğrulama Sentezi"
+});
