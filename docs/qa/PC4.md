@@ -500,4 +500,18 @@ PC1'in 16:30 duyurusu doğrultusunda (PC6 57 dk sessiz):
 - Başvuru formu EN+TR ve Jüri SSS 12 soru kontrol edildi, `tasks/PC4.md` içinde PC1'e raporlandı.
 - Testler: `check_site.py` 43 sayfa / 0 kırık, pytest 11/11 PASS, `vital_signs.py` OK, `numbers_registry.py` 0 uyumsuzluk.
 
+---
+
+## 48. Canlı Site Bağlantı Raporu (`PC6_links.md`) & Kök Taşma Düzeltmesi (`2026-11-15 16:53 TR`)
+
+PC1'in 16:50 duyurusuyla `BACKLOG_ORTAK.md`'den devralınan bağlantı denetimi kapsamında:
+- **Kök Taşma Hatası Tespit Edildi & Düzeltildi:** Canlı sitede `atlas.html` içindeki 4 bağlantı (`../data/global/atlas.json`, `../docs/story/sources.md`, vb.) ve `present.html` içindeki 1 bağlantı (`../docs/bulletins/konya_plain.html`) kök seviyeden `../` yaparak GitHub Pages alan adı dışına (404 Not Found) çıkıyordu. Tüm linkler kök göreceli (`data/...`, `docs/...`) yapılarak düzeltildi.
+- **Kök Taşma Koruması Eklendi:** `tools/check_site.py` içerisine kök seviyeden yukarı çıkmaya çalışan göreceli linkleri (`../`) otomatik yakalayan `__ROOT_ESCAPE__` denetimi eklendi.
+- **Canlı Site Denetim Raporu Üretildi:** `tools/check_live_site_links.py` çalıştırılarak canlı GitHub Pages üzerindeki tüm sayfalar sorgulandı ve [`docs/qa/PC6_links.md`](PC6_links.md) oluşturuldu:
+  - 43 HTML sayfasının tamamı **HTTP 200 OK**.
+  - 109 benzersiz iç bağlantı ve varlığın tamamı **%100.0 HTTP 200 OK**.
+  - 0 kırık bağlantı.
+- Testler: `check_site.py` 43 sayfa / 0 kırık link, pytest 11/11 PASS, `vital_signs.py` OK, `numbers_registry.py` 0 uyumsuzluk.
+
+
 

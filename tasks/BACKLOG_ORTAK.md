@@ -66,4 +66,4 @@ Kullanıcı artık ajanlara prompt girmiyor; **tüm yönetim git üzerinden.** K
 - [x PC4] `tests/test_atlas_schema.py`: atlas.json alan/sıra/sayım testi (PC10 durdu, PC1 12:55) → tests/test_atlas_schema.py PASS
 - [x PC4] Delhi `--qc` sonucunu atlas notuna ve `data/global/delhi/validation_note.json`'a işle (PC2 durdu, PC1 13:10) → validation_note.json ve atlas.json (single_date_outlier / phase_cycle_jump)
 - [x PC4] data/global/beijing/summary.json confidence high→low + validation_note QC notu (PC11 durdu, PC1 15:10) → data/global/beijing/{summary,validation_note}.json güncellendi (low / indicative_only / phase_cycle_jump)
-- [~PC4] docs/qa/PC6_links.md: canlı sitede her href/src 200 raporu (PC6 durdu, PC1 16:50)
+- [x PC4] docs/qa/PC6_links.md: canlı sitede her href/src 200 raporu (PC6 durdu, PC1 16:50) → docs/qa/PC6_links.md (109/109 iç link HTTP 200 OK, 0 kırık link)

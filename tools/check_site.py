@@ -73,6 +73,8 @@ def resolve(page_site: str, value: str, root_rel: bool) -> str | None:
         if p == "..":
             if out:
                 out.pop()
+            else:
+                return "__ROOT_ESCAPE__"
             continue
         out.append(p)
     target = "/".join(out)
