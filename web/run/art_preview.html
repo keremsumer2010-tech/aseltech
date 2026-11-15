@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aquifer Run — art preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: #1b1f2e; color: #fffaf0; font: 14px/1.4 system-ui, sans-serif; }
+  header { padding: 14px 18px; } h1 { margin: 0; font: 16px "Press Start 2P", monospace; } p { margin: 6px 0 0; color: #b9c0d4; }
+  canvas { display: block; margin: 0 auto 16px; image-rendering: pixelated; max-width: 100%; border-radius: 8px; }
+  .row { display: flex; gap: 10px; flex-wrap: wrap; padding: 0 18px 10px; } button { font: 11px "Press Start 2P", monospace; padding: 8px 10px; background: #2c3247; color: #fff; border: 2px solid #4fc3f7; border-radius: 6px; cursor: pointer; }
+</style>
+</head>
+<body>
+<header><h1>AQUIFER RUN · ART PREVIEW (PC1)</h1><p>Everything below is drawn in code by <code>web/run/art.js</code>. Engine (PC4) and levels (PC7) use these through <code>window.RunArt</code>.</p></header>
+<div class="row" id="biomes"></div>
+<canvas id="scene" width="960" height="540"></canvas>
+<canvas id="sheet" width="960" height="420"></canvas>
+<script src="art.js"></script>
+<script>
+(async () => {
+  await RunArt.ready;
+  const A = RunArt, S = A.TILE * A.SCALE;
+  let biome = 'tulare';
+  const bar = document.getElementById('biomes');
+  Object.keys(A.BIOMES).forEach((b) => { const k = document.createElement('button'); k.textContent = A.BIOMES[b].name; k.onclick = () => (biome = b); bar.appendChild(k); });
+  const tb = document.createElement('button'); tb.textContent = 'Title screen'; tb.onclick = () => (biome = 'title'); bar.appendChild(tb);
+
+  const sc = document.getElementById('scene').getContext('2d'); sc.imageSmoothingEnabled = false;
+  const sh = document.getElementById('sheet').getContext('2d'); sh.imageSmoothingEnabled = false;
+  // a little demo strip of ground
+  const groundRow = 'GGGGGGGSSSSGGGGGGGGGGCCCCGGGGGGGGGGG';
+  function frame(ts) {
+    const t = ts / 1000, W = 960, H = 540;
+    if (biome === 'title') { A.title(sc, W, H, t); }
+    else {
+      const cam = t * 60;
+      A.drawBackground(sc, biome, cam, W, H, t);
+      const floorY = H - S * 3;
+      for (let i = -1; i < W / S + 2; i++) {
+        const x = i * S - (cam % S);
+        const name = biome === 'eloy' ? 'sand' : biome === 'mexico' ? 'road' : (i % 9 === 5 ? 'sink2' : 'grass');
+        A.drawTile(sc, name, x, floorY); A.drawTile(sc, biome === 'mexico' ? 'brick' : 'dirt', x, floorY + S); A.drawTile(sc, 'clay', x, floorY + S * 2);
+      }
+      const deco = { tulare: 'orchard', eloy: 'cotton', konya: 'wheat', mexico: 'lamp' }[biome];
+      for (let i = 0; i < 4; i++) A.drawTile(sc, deco, 120 + i * 220 - (cam % 220), floorY - S);
+      A.drawSprite(sc, 'pump_on', Math.floor(t * 4), 300, floorY - S);
+      A.drawSprite(sc, 'crop_dry', 0, 420, floorY - S); A.drawSprite(sc, 'crop_green', 0, 470, floorY - S);
+      A.drawSprite(sc, 'dust_devil', Math.floor(t * 10), 640 + Math.sin(t) * 60, floorY - S);
+      A.drawSprite(sc, 'drop', Math.floor(t * 6), 560, floorY - S * 3);
+      A.drawSprite(sc, 'nisa_run', Math.floor(t * 10), 180, floorY - 78);
+      A.drawSprite(sc, 'farmer', Math.floor(t * 2), 520, floorY - 78, true);
+      A.drawSprite(sc, 'flag', Math.floor(t * 3), 860, floorY - S);
+      const p = (t % 6) / 3; if (p < 1) A.radarSweep(sc, W, H, p);
+      A.hud(sc, { tank: 7, tankMax: 10, aquifer: 35 + 25 * Math.sin(t / 2), redLine: 40, hearts: 2, chips: 2, score: 4250, level: A.BIOMES[biome].name.toUpperCase() }, W, H);
+    }
+    // sprite sheet
+    sh.fillStyle = '#2c3247'; sh.fillRect(0, 0, 960, 420);
+    A.TILE_NAMES.forEach((n, i) => { const x = 10 + (i % 16) * 58, y = 10 + Math.floor(i / 16) * 58; A.drawTile(sh, n, x, y); });
+    let x = 10; const y2 = 140;
+    for (const n of A.sprites()) { const fr = A.frames(n); A.drawSprite(sh, n, Math.floor(t * 6), x, y2); sh.fillStyle = '#b9c0d4'; sh.font = '9px monospace'; sh.fillText(`${n} (${fr})`, x, y2 + 92); x += 74; if (x > 900) break; }
+    A.card(sh, 20, 260, 420, 130); A.text(sh, 'REPORT CARD', 230, 280, { size: 16, align: 'center', color: '#1b1f2e', shadow: false });
+    A.text(sh, 'PIXEL PANEL STYLE', 230, 320, { size: 10, align: 'center', color: '#2c3247', shadow: false });
+    A.fx(sh, 'splash', 560, 330, (t % 1)); A.fx(sh, 'dust', 680, 330, (t % 1)); A.fx(sh, 'crack', 780, 290, 0); A.fx(sh, 'sparkle', 880, 320, t);
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

@@ -422,3 +422,10 @@ Dosya sahipliği: web/index.html ve web/science.html PC7/PC1 için ayrık kalsı
 | 8 | **test_engine.js** (Node): çarpışma (yere oturma, duvar), zıplama yüksekliği aralığı, coyote time | `node web/run/test_engine.js` yeşil |
 | 9 | Siteye bağla: ana sayfadaki "For kids: Water Hero" düğmesi → `run/` ("Play Aquifer Run"); `tools/check_site.py` 0 kırık | push öncesi `python tools/check_site.py && python -m pytest -q` |
 RunArt hazır değilse geçici dikdörtgen çiz (`RunArt` yoksa düz renk), PC1'in atlası gelince otomatik kullanılsın.
+
+
+## 🎨 PC1 NOTU (20:10) — Aquifer Run grafik + kapsam güncellemesi (Kerem kararı)
+- Grafik tarzı **piksel DEĞİL**: modern, yumuşak, çizimsel (degrade, gölge, yuvarlak hatlar). PC1 `web/run/art.js`'i bu tarza çeviriyor; **API aynı kalıyor** (DESIGN.md §10), sen sözleşmeye göre yaz.
+- `RunArt.ready` Promise'ini bekle. Karo 48 px, Nisa sprite ~48×84 px.
+- Herkes nasıl oynanacağını bilsin: **1. bölüm adım adım öğretici** (DESIGN.md §13). Ekranda kontrol ipuçları her zaman görünür.
+- Proje bağlamı (DESIGN.md §14): bölüm seçimi gerçek dünya atlası, NISAR taraması gerçek radar haritasını gösterir, karnedeki sayılar `data/global/atlas.json`'dan.

@@ -308,3 +308,10 @@ Cambridge görevin henüz başlamadı. 18:40'a kadar commit yoksa 1–3. işleri
 | 6 | **test_systems.js** (Node): akifer matematiği, yıldız kuralları, **her bölüm JSON'u geçerli** (genişlik/yükseklik tutarlı, legend tam, bayrak var), **erişilebilirlik**: basit BFS ile başlangıçtan bayrağa zıplama menziliyle (yatay 4, dikey 3 karo) yol var | `node web/run/test_systems.js` yeşil |
 | 7 | `tests/test_run_game.py`: yukarıdaki iki Node testini pytest'ten çalıştır (node yoksa skip) | repo `python -m pytest -q` yeşil |
 PC4'ün motoru gelmeden `systems.js`'i Node testleriyle geliştir; entegrasyonda olay isimleri DESIGN.md'deki gibi olsun.
+
+
+## 🎨 PC1 NOTU (20:10) — Aquifer Run grafik + kapsam güncellemesi (Kerem kararı)
+- Grafik tarzı **piksel DEĞİL**: modern, yumuşak, çizimsel (degrade, gölge, yuvarlak hatlar). PC1 `web/run/art.js`'i bu tarza çeviriyor; **API aynı kalıyor** (DESIGN.md §10), sen sözleşmeye göre yaz.
+- `RunArt.ready` Promise'ini bekle. Karo 48 px, Nisa sprite ~48×84 px.
+- Herkes nasıl oynanacağını bilsin: **1. bölüm adım adım öğretici** (DESIGN.md §13). Ekranda kontrol ipuçları her zaman görünür.
+- Proje bağlamı (DESIGN.md §14): bölüm seçimi gerçek dünya atlası, NISAR taraması gerçek radar haritasını gösterir, karnedeki sayılar `data/global/atlas.json`'dan.
