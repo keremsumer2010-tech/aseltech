@@ -373,3 +373,5 @@
   - `cangzhou` (`16,737` `< -2 cm`, `434` `< -5 cm`, `0.96 km²`, GHSL `R6_C30`) eklendi; `build_exposure_atlas.py` QC tarih atlamalarını (Delhi `2026-07-27 -> 2026-09-13`) kesintisiz `.npz` zinciriyle köprüleyecek biçimde güncellendi.
   - Toplam (**21 bölge**, `karapinar` hariç): `549.45 km²`, `1,479,844` kişi (`< -5 cm`), `8,251,911` kişi (`< -2 cm`). **21 bülten + `index.html`** (`cangzhou.html` dahil) ve `ATLAS_COMPLETENESS.md` (`PC8: 0 eksik`) güncellendi (`pytest` → `6 passed`).
   - `data/results_registry.json`, `docs/story/exposure.md`, `docs/story/submission_form.md`, `docs/story/slides_notes.md` 21 bölge toplamlarıyla güncellendi.
+
+- **FINAL 1-2 (11:15):** `docs/story/judge_brief.html` + `.pdf` (A4, tek sayfa, `tools/judge_brief.py`, sayilar vital_signs.json/atlas.json/validation.json'dan; home_summary.json henuz yok, yoksa vital_signs kullanilir). `docs/story/submission_form.md` `tools/sync_submission_form.py` ile 29 havza/93 gun/QC hikayesi/GHSL/OPERA ile guncellendi; karakter sayimlari yenilendi (ultra 141/150, standart 282/500).

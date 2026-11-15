@@ -23,12 +23,12 @@ NISAR Pulse — Follow the Water: Tracking Silent Land Subsidence with L-Band SA
 ## 2. High-Level Project Summary (Short Description)
 *(Portal limit: 150-character ultra-short version and 500-character standard summary box)*
 
-- **Ultra-Short Version (`147 chars` / `21 words` — fits 150-char limit):**
+- **Ultra-Short Version (`141 chars` / `23 words` — fits 150-char limit):**
 ```text
-Open web platform using provisional NASA-ISRO NISAR L-band radar to map centimeter-scale land subsidence, canal tilt, and groundwater risk in 2026.
+A self-checking global subsidence atlas from NISAR radar: 29 basins, one open pipeline, the same 93 days, every number traceable to its file.
 ```
 
-- **Standard Portal Summary (`267 chars` / `48 words` — fits 500-char limit, verbatim One-Sentence Core):**
+- **Standard Portal Summary (`282 chars` / `46 words` — fits 500-char limit, verbatim One-Sentence Core):**
 ```text
 We turned the first months of NASA-ISRO NISAR radar data into a self-checking global subsidence atlas: 29 basins measured with one open pipeline on the same 93 days, every number traceable to its file, and every headline checked against GPS, NASA's OPERA product and the literature.
 ```
@@ -60,17 +60,17 @@ https://keremsumer2010-tech.github.io/aseltech/docs/story/slides.html
 
 ---
 
-## 5. Detailed Project Description (`5,239 chars` / `746 words` — Source-Tagged)
+## 5. Detailed Project Description (`5,936 chars` / `840 words` — Source-Tagged)
 
 ```text
 WHAT WE BUILT AND WHY IT MATTERS
-When groundwater is pumped faster than rain refills it, or when organic peatlands are drained, deep clay and peat layers compact and the ground sinks by millimeters to centimeters per month. NASA's NISAR Land Subsidence StoryMap (Peacock et al., 2024) illustrated this hazard in California's Central Valley using 2013-2017 airborne UAVSAR radar. Our project, NISAR Pulse - Follow the Water, updates that story from space in 2026 using open NASA-ISRO NISAR L-band Synthetic Aperture Radar (24 cm wavelength) across California, Turkiye, the UK, Mexico City, Tehran, and Jakarta.
+When groundwater is pumped faster than rain refills it, or when organic peatlands are drained, deep clay and peat layers compact and the ground sinks by millimeters to centimeters per month. NASA's NISAR Land Subsidence StoryMap (Peacock et al., 2024) illustrated this hazard in California's Central Valley using 2013-2017 airborne UAVSAR radar. Our project, NISAR Pulse - Follow the Water, updates that story from space in 2026 using open NASA-ISRO NISAR L-band Synthetic Aperture Radar (24 cm wavelength) across California, Turkiye, the UK, and a 29-basin global atlas.
 
 KEY QUANTITATIVE FINDINGS (DATES, UNITS & REPO SOURCES)
 1. UK Fens All-Weather & Polarization (28 Jul-20 Oct 2026, preview & provisional): A swipe comparison of cloudy VIIRS SNPP optical imagery (over 98% cloud on 20 Oct 2026) against a same-day NISAR L2 GCOV radar preview resolves The Wash coastline and Fens drainage [data/uk/meta.json], anchored by the Holme Fen iron post (~4 m peat loss since 1851; 1-2 cm/yr modern rate [docs/story/holme_fen.md]). Across 8 provisional GCOV epochs and 4 sample windows, mean temporal range is 4.27 dB in HH, 3.49 dB in HV, and 1.36 dB in HV/HH ratio, showing HV is the clearest vegetation-structure indicator [data/fens/polarizations.json; docs/story/polarization.md].
 2. California Central Valley & Delta (28 Jun-14 Oct 2026, 7 provisional pairs, 108 days): Peak 1-km block-median subsidence reaches -7.8 cm LOS (3-reference spread -7.8 to -4.7 cm; -10.1 cm vertical estimate at 39.1 deg, 6 km N of Terra Bella) [data/central_valley/summary.json], with 1,578.27 km2 sinking > 2 cm LOS and 239.54 km2 > 5 cm LOS [data/central_valley/area_stats.json]. An experimental 11-month mixed chain (24 Nov 2025-14 Oct 2026, 18 beta-precal + 7 provisional pairs) separates -16.77 +/- 2.24 cm/yr LOS permanent compaction from an 11.67 cm peak-to-peak seasonal rebound near Earlimart [data/central_valley_fullyear/decomp.json]. Integrating permanent vertical compaction across 4,508.3 km2 (> 1 cm/yr) yields an estimated 0.317 km3/yr permanent aquifer storage-capacity loss (0.066-0.320 km3/yr 3-ref range; ~0.49x Millerton Lake) [data/central_valley_fullyear/storage_loss.json]. In the Sacramento-San Joaquin Delta (17 Jun-15 Oct 2026, 9 pairs), basin peak is -1.3 cm LOS (-1.6 cm vertical est.), while levee alignments reach -3.48 cm at the 10th percentile and -11.36 cm locally [data/delta/summary.json; docs/story/delta.md].
 3. Konya Closed Basin & Karapinar, Turkiye (26 Jun-12 Oct 2026, 8 provisional pairs, 108 days): Across the full Konya Plain, subsidence peaks at -9.6 cm LOS (-14.0 to -9.6 cm across 3 references; -12.1 cm vertical estimate at 37.6 deg) south of Konya city [data/konya_plain/summary.json]. In Karapinar, Track 7 peaks at -5.9 cm LOS (-8.0 cm vertical est.) [data/karapinar/summary.json], cross-checked by ascending Track 172 (-4.73 cm LOS at p01; 12-point r = 0.767, RMSE = 1.12 cm LOS) [analysis/pc8/kp_p7_vs_p172.json]. Valid pixels within 1 km of 29 verified sinkholes sink 6.4x faster (-4.15 cm LOS) than background plateau (> 5 km: -0.65 cm LOS) [data/karapinar/assets.json].
-4. 2026 Global Subsidence Atlas & Population Exposure (96-120 days, provisional): Using our one-command NISAR Pulse engine (pipeline/nisarpulse), our global atlas (data/global/atlas.json) ranks 29 provisional regions (16 reliable, 13 indicative) over a common 93-day window (28 Jun-29 Sep 2026), led among reliable basins by 1 Konya Plain (-11.0 cm/100d common, -9.6 cm LOS, low-coverage caution), 2 Eloy (-8.6 cm/100d), 3 Central Valley (-7.3 cm/100d, retained via 10-GPS r = 0.924), 4 Kashmar (-7.0 cm/100d), and 5 Mashhad (-6.9 cm/100d), while Semarang was reprocessed after QC to -6.2 cm LOS (#7) and Tehran reads -7.4 cm LOS with an off-basin reference. Automated time-series QC flagged phase-cycle jumps or noisy steps in Gorgan, Pekalongan, Delhi, Beijing, and Bangkok as indicative only ("Under revision"), keeping rank 1 on reliable basins. Intersecting GHSL GHS-POP E2025 (100 m) with 108-day standardized displacement above each city's 2-sigma noise floor (data/global/detectability.json) shows 549.45 km2 sinking faster than -5 cm/108d, affecting 1,479,844 residents (8,251,911 below -2 cm/108d, excluding nested Karapinar) [data/global/exposure_atlas.json; data/global/vital_signs.json].
+4. 2026 Global Subsidence Atlas & Population Exposure (2026-06-28 to 2026-09-29, 93-day common window, provisional): One open pipeline (pipeline/nisarpulse) measures 29 basins on the same 93 days; 16 pass quality control and 13 are indicative only. Reliable ranking: 1 Konya Plain (-11.0 cm/100d), 2 Eloy (-8.6 cm/100d), 3 Central Valley (Tulare Basin) (-7.3 cm/100d), 4 Kashmar (-7.0 cm/100d), 5 Mashhad (-6.9 cm/100d) [data/global/atlas.json]. Automated time-series checks (tools/atlas_qc.py) caught a full 12.1 cm phase-cycle jump in Semarang (-12.1 to -6.2 cm after correction) and moved Tehran from -3.5 to -7.4 cm LOS with an off-basin reference [data/global/atlas_changelog.json]; indicative-only basins include Gorgan, Delhi, Bangkok, Pekalongan, Beijing, Tehran, Jakarta, Isfahan, Yunlin, Xi'an, Hanoi, Ho Chi Minh City. Intersecting GHSL GHS-POP E2025 (100 m) with displacement above each city's 2-sigma noise floor shows 549.45 km2 sinking faster than -5 cm per 108 days, with 1,479,844 residents (8,251,911 below -2 cm), excluding nested Karapinar [data/global/exposure_atlas.json; data/global/vital_signs.json]. Checks: GPS r = 0.92 (10 stations) and NASA OPERA DISP-S1 r = 0.91 (Mexico City) [data/global/opera_check.json].
 5. UK London Clay Detection Limit (21 Jun-19 Oct 2026, 9 provisional pairs, 120 days): Single-season 1-km block noise (1.21 cm 1-sigma, 3.62 cm 3-sigma) exceeds expected 0.5-2.0 cm seasonal clay motion, placing London below single-season detection limit [data/uk_clay/detection.json; docs/story/uk_findings.md].
 6. Human & Crop Exposure: Using WorldPop 100 m (2020), an estimated 71,701 Central Valley residents and 69,854 Konya Closed Basin residents (including 11,572 in Karapinar) live on pixels subsiding > 2 cm LOS (3,407 and 16,822 on > 5 cm LOS) [data/*/exposure.json]. USDA CDL 30 m shows 79.2% (1,251.4 km2) of California's > 2 cm LOS zone is cultivated cropland, led by citrus (355.6 km2) and pistachios (230.9 km2); ESA WorldCover 10 m maps Konya Closed Basin's exposed grassland (284.9 km2), cropland (173.1 km2 coherent; 1,167.7 km2 interpolated), and built-up fabric (40.7 km2) [docs/story/exposure.md].
 7. Operational Early-Warning Bulletins (v2.0): `tools/bulletin.py` generates A4-printable NASA Disasters-style HTML monitoring packages (`docs/bulletins/<region>.html` and `docs/bulletins/index.html`) directly from `data/global/atlas.json` and `data/global/exposure_atlas.json`, reporting Product ID, UTC issue time, `cm/100d` rate, top 3 subsiding areas, GHSL affected population, infrastructure tilt risk, GNSS comparison, 3 "What This Means" bullets, and mandatory calibration notices.
@@ -106,7 +106,7 @@ Static JSON/PNG outputs drive a MapLibre GL story map (web/), multi-region explo
 
 ---
 
-## 8. Space Agency Data Used (`1,402 chars` / `198 words`)
+## 8. Space Agency Data Used (`1,559 chars` / `216 words`)
 
 ```text
 1. NASA-ISRO NISAR Level-2 Geocoded Unwrapped Interferogram (GUNW, Provisional CRID P05023, NASA Earthdata / ASF DAAC):
@@ -114,21 +114,22 @@ Static JSON/PNG outputs drive a MapLibre GL story map (web/), multi-region explo
 - Sacramento-San Joaquin Delta: 9 provisional pairs Track 42 Desc (2026-06-17 to 2026-10-15).
 - Konya Basin & Karapinar, Turkiye: 8 provisional pairs Track 7 Desc and 8 provisional pairs Track 172 Asc (2026-06-26 to 2026-10-12).
 - Greater London, UK: 9 provisional pairs Track 101 Asc (2026-06-21 to 2026-10-19).
-- Global Cities: Mexico City (8 pairs Track 113 Desc, 2026-06-22 to 2026-10-20), Tehran (9 pairs Track 56 Asc, 2026-06-18 to 2026-10-16), and Jakarta (8 pairs Track 18 Desc, 2026-06-27 to 2026-10-13).
+- Global atlas (29 basins, common window 2026-06-28 to 2026-09-29): provisional GUNW pairs per basin are listed in data/global/<id>/meta.json and data/global/atlas.json; examples include Mexico City (Track 113 Desc), Tehran (Track 56 Asc) and Jakarta (Track 18 Desc).
 
 2. NASA-ISRO NISAR Level-2 Geocoded Polarimetric Covariance (GCOV, Provisional CRID P05023, ASF DAAC):
 - Eastern England / UK Fens: 2026-10-20 radar preview (data/uk/) and 8-epoch HH/HV agricultural time series (2026-07-28 to 2026-10-20, data/fens/polarizations.json).
 
-3. NASA GIBS / Worldview Snapshots API (VIIRS SNPP True Color, 2026-10-20 UK Fens), NASA NISAR L3 Soil Moisture (SME2, Central Valley & Karapinar drivers), and NASA CMR OPERA_L3_DISP-S1_V1 archive coverage audit.
+3. NASA GIBS / Worldview Snapshots API (VIIRS SNPP True Color, 2026-10-20 UK Fens), NASA NISAR L3 Soil Moisture (SME2, Central Valley & Karapinar drivers), and NASA JPL OPERA DISP-S1 (OPERA_L3_DISP-S1_V1) Sentinel-1 displacement used as an independent cross-check in Mexico City and the Central Valley.
 ```
 
 ---
 
-## 9. Other Non-Space-Agency Data Used (`967 chars` / `150 words`)
+## 9. Other Non-Space-Agency Data Used (`1,091 chars` / `171 words`)
 
 ```text
 - Nevada Geodetic Laboratory (NGL, University of Nevada, Reno): Daily continuous GPS vertical time series (IGS20/NA reference frame) at 10 stations in the San Joaquin Valley (CAHA, CAFP, HANF, P566, P056, P564, P565, CAD1, QCAP, TLBN).
 - OpenStreetMap (ODbL): Canal, aqueduct, levee, highway, and railway vector geometries in California (645 evaluated segments), the Delta (87 levee points), and Karapinar, Turkiye (77 evaluated segments), plus settlement names.
+- GHSL GHS-POP E2025 R2023A (European Commission JRC, 100 m, CC BY 4.0): population on sinking ground for the global atlas.
 - Copernicus DEM GLO-90 (ESA): 90 m digital elevation model used for topographic phase ramp checks.
 - WorldPop Open Population Data (100 m gridded population, 2020, CC BY 4.0), USDA NASS Cropland Data Layer (30 m, 2021, Public Domain), and ESA WorldCover 10 m v200 (2021, CC BY 4.0) for population and crop exposure analysis.
 - Published Karapinar sinkhole coordinates (29 verified collapses, Tapur & Bozyigit 2015, 2016; Orhan et al. 2021) and UK Holme Fen peat loss records (Great Fen Project / UKCEH).
