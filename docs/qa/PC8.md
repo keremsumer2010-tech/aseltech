@@ -385,6 +385,12 @@
   - `docs/story/submission_form.md` senkronizasyonu teyit edildi; ultra-kisa 141/150 karakter, standart 282/500 karakter.
   - PC4 `slides.html` senkronizasyonunu tamamladi (commit `aeb9a55`). `pytest tests/` calistirildi: **10/10 test basariyla gecti** (tum sayisal tutarlilik ve sema testleri `100% PASS`).
 
+- **SUREKLI PROTOKOLU (12:07):**
+  - `origin/main`'den son guncellemeler cekildi (`24b067d`). PC1'in sabit sayi geri alma uyarisi uygulandi: `tools/build_exposure_atlas.py` dinamik hesaplamaya donduruldu, `tools/sync_submission_form.py` ve `tools/build_exposure_atlas.py` en hizli bolge karsilastirmasini `rate_cm_per_100d_common` ile yapacak sekilde esitlendi.
+  - `python tools/vital_signs.py`, `python tools/judge_brief.py`, `python tools/sync_submission_form.py` ve `python tools/bulletin.py` (29 bulten) basariyla calistirildi.
+  - `pytest tests/` (10/10 PASS) ve `pytest tests analysis/pc8/test_bulletin.py tools/test_atlas_qc.py` (16/16 PASS) tumuyle dogrulandi.
+
+
 
 
 - **SUREKLI KONTROL (11:48):** 29 bolge atlas.json ve exposure_atlas.json senkron. PC4'e bildirim: commit 01c7d03 ile guncellenen `docs/story/slides.html` icinde 0.32 km3/yr (beklenen 0.3174), 5 regions (beklenen 29) ve opera_r 0.91 (beklenen 0.912) degerleri `tests/test_numbers_consistency.py` testini kiriyor.

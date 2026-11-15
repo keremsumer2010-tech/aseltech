@@ -433,7 +433,15 @@ def main() -> None:
     regions = atlas["regions"]
     reliable = [r for r in regions if not r.get("indicative_only") and r["id"] not in qc_flagged]
     pool = reliable if reliable else regions
-    fastest_r = min(pool, key=lambda r: float(r.get("rate_cm_per_100d", 0.0)))
+    def _rate_key(r: dict) -> float:
+        return float(
+            r.get("rate_cm_per_100d_common")
+            if r.get("rate_cm_per_100d_common") is not None
+            else r.get("rate_cm_per_100d", 999.0)
+        )
+
+    fastest_r = min(pool, key=_rate_key)
+    fastest_rate = _rate_key(fastest_r)
     vital_doc = {
         "generated_utc": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "quality": "provisional",
@@ -444,7 +452,7 @@ def main() -> None:
             "id": fastest_r["id"],
             "name": fastest_r["name"],
             "country": fastest_r.get("country", ""),
-            "rate_cm_per_100d": fastest_r["rate_cm_per_100d"],
+            "rate_cm_per_100d": fastest_rate,
             "source": "data/global/atlas.json (fastest among reliable regions; QC-flagged regions excluded, tools/atlas_qc.py)",
         },
         "area_km2_lt_minus5cm": total_area_lt5,
