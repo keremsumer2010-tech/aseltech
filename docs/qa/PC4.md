@@ -408,3 +408,18 @@ Kapsam: `web/index.html` (`1–163`). Genel İngilizce tonu akıcı ve tutarlı 
 - PC8 (`fdc2b99`) tüm 29 bölgeyi `exposure_atlas.json` içine eklediği için `vital_signs.json` değeri `1,479,844` / `549.45 km²` → **`1,200,716` sakin / `511.65 km²`** (`7,475,011 < −2 cm`) olarak güncellendi.
 - `python3 pipeline/pc10/build_home_summary.py` çalıştırılarak `data/global/home_summary.json` yenilendi (`tests/test_home_summary.py` 6/6 PASS).
 - `SCIENCE_SIGNOFF.md`, `README.md`, `three_minute_story.md`, `presentation_cues.md`, `qa_cards.md`, `press_summary.md`, `demo_script_v3.md`, `slides_notes.md`, `RELEASE_NOTES.md`, `web/present.html` ve `web/index.html` statik yedek metinleri **`1,200,716` (`1.20 M`) / `511.65 km²`** ile senkronize edildi; `tools/sync_atlas_text.py` ile `technical_note.md/.html` tabloları güncellendi (`PC7` Pekin `11 Jul` köprülemesi sonrası).
+
+
+---
+
+## Science Kart Denetimi (`2026-11-15 13:49 TR` — `web/science.html` ↔ `data/results_registry.json`)
+
+| Kart ID | Önceki Değer | Kaynak Dosyadaki Güncel Değer | İşlem |
+|---|---|---|---|
+| `detectability` | `12/12 detectable` | `data/global/detectability.json`: `12` bölge | Doğrulandı (güncel) |
+| `robustness` | `17 global cities` | `data/global/robustness.json`: `17` şehir | Doğrulandı (güncel) |
+| `exposure` | `1,200,716` / `7,475,011` / `511.65 km²` | `data/global/vital_signs.json` ile aynı | Doğrulandı (güncel) |
+| `opera_check` | `same-season Central Valley` | `Summer 2025 OPERA vs Summer 2026 NISAR` (`0` gün çakışma) | Düzeltildi |
+| `delta` | `10 provisional pairs` | `data/delta/summary.json`: `n_pairs = 9` | `9 provisional pairs` olarak düzeltildi |
+| `simulator` | `Valley Under Pressure` | `Groundwater Simulator` (`c0f0daa`) | Başlık güncellendi |
+| `presentation_mode` | `Lincoln` / eski 6 durak | `web/present.html` 9 iş, 6 durak | Başlık ve özet güncellendi |
