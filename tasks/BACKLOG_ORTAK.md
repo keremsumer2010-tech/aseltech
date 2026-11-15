@@ -14,7 +14,7 @@ Kullanıcı artık ajanlara prompt girmiyor; **tüm yönetim git üzerinden.** K
 - [x PC4] Teslim paketi `docs/story/submission_package.md` (Space Apps gerekleri, AI beyanı, NASA veri listesi, tüm linkler 200)
 - [x PC4] Jüri SSS 30 soru (`docs/story/judge_faq.md`) — yeni sıralama, QC, OPERA, ortak pencere
 
-- [ ] NISAR Pulse `--qc` motoru (PC2'den devir; `tasks/PC2.md` "KENDİ KENDİNİ DENETLEYEN MOTOR" madde 1)
+- [x PC2] NISAR Pulse `--qc` motoru (`pipeline/nisarpulse/qc.py` + `tests/test_qc.py`, `15/15` test OK)
 - [~PC11] Celaya, Meksika (−100.81, 20.52) — PC2'den devir
 - [ ] Hamadan–Kabudarahang, İran (48.72, 35.21) — PC2'den devir
 - [ ] Site son QA: canlı sitede her sayfa konsol 0 hata, kırık link 0 (PC2'den devir)
