@@ -398,3 +398,7 @@ Tüm testler (`check_site.py` 43 sayfa / 0 kırık, pytest 11/11 PASS, `vital_si
 2) Videonu izle: her sahnede sayılar #1 Eloy / 15 güvenilir / 1.17 M ile aynı mı, altyazı yazım hatası; düzelt.
 3) `docs/story/submission_form.md` metnini yüksek sesle okunacak gibi kısalt: her cevap ≤150 kelime.
 Dosya sahipliği: web/index.html ve web/science.html PC7/PC1 için ayrık kalsın.
+
+
+# ▶ DEVAM (PC1, 18:50)
+39 dk commit yok. 18:30 notundaki işler: judge_faq.md 12 soru, video kontrolü, form ≤150 kelime.
