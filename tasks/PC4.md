@@ -220,3 +220,18 @@ Son bloğa geldiğinde `status/PC4.md` ilk satırına `PLAN_SONU_YAKIN` yaz, pus
 
 # ⛔ DURMUŞ SAYILDI (PC1 otomatik kontrol 2)
 60 dk'dan uzun commit yok; kritik işlerin PC10 (results_registry) ve PC7 (teknik not, slayt) tarafına devredildi. Dönersen `tasks/BACKLOG_ORTAK.md`'de `[ ]` kalan kendi işlerini geri al (`[~PC4]`), başkasının aldığına dokunma.
+
+# 🚀 YENİ PLAN — PC4 (PC1, Paz 09:30 TR) · tekrar hoş geldin; son 15 dk'daki işlerin çok iyi (SSS 30, teslim paketi, literatür tablosu, sıralama kıyası)
+Şu an çalışan tek ajan sensin: teslim belgelerinin son hâli sende. Bloklar sırayla; her blok sonunda commit + push, status satırı. Atlas sayıları için `python tools/sync_atlas_text.py` (teknik not tablosunu ve bölge sayılarını atlas.json'dan günceller) — elle sayı yazma.
+
+| Saat (TR) | Blok | Çıktı |
+|---|---|---|
+| 09:30–11:00 | **Sunum paketi son hâli:** `slides.html` (≤7 slayt; atlas slaytında 29 bölge / 16 güvenilir, QC hikâyesi tek cümle, Konya caution notu), `presentation_cues.md` 3 dk konuşma metni (Kerem anlatır; açılış → atlas → "kendi hatamızı yakaladık" → Central Valley GNSS → etki → kapanış), `rehearsal_checklist.md` güncel | slides, cues, checklist |
+| 11:00–12:00 | **60 sn yedek demo senaryosu:** `docs/story/demo_script_v3.md` — gerçek siteden ekran kaydı adımları (ana sayfa → atlas → Konya paneli → Results → simülatör), her adımın süresi ve altyazısı; AI görseli yok (BACKLOG §C) | demo_script_v3.md |
+| 12:00–13:00 | **Atlas okuma rehberi + sayfa başlıkları:** atlas sayfasına 4 adımlık "How to read this map" kutusu (LOS, renk ölçeği, güven rozeti, indicative) — `web/atlas.html` içinde yalnız bu kutu; tüm sayfaların `<title>`/`<meta name="description">` güncel atlas sonuçlarıyla (BACKLOG §C). NISAR 3D dosyalarına dokunma. | web değişiklikleri, `docs/qa/PC4.md` |
+| 13:00–14:30 | **Teknik not son okuma:** `technical_note.md/.html` — Konya tam yıl arşiv boşluğu (Şub–Haz 2026, `data/konya_plain_fullyear/summary.json`), Pekin tam kutu sonucu ve 11 Temmuz aykırısı, bağımsız doğrulama kuralı (`data/global/independent_validation.json`), sınırlamalar; özet paragrafı tek sayfa | technical_note |
+| 14:30–15:30 | **"Neden çöküyor" paragrafları:** güvenilir 16 bölgenin şehir kartlarına kaynaklı 1 paragraf (yeraltı suyu / kil / tarım), `literature_rates.json` kaynaklarıyla (BACKLOG §B) | atlas_cities/*.md |
+| 15:30–17:00 | **Basın özeti + proje sayfası + teslim formu son okuma:** sayıların `SCIENCE_SIGNOFF.md` ile aynı olduğunu satır satır kontrol et; karakter sınırları; AI kullanım beyanı | press_summary, project_page, submission_form |
+| 17:00–18:30 | **REVIEW_1500 son dil geçişi:** tüm `docs/story/*.md` + site metinleri; bulguları kendi dosyalarında düzelt, web'de küçük metin düzeltmeleri | `docs/qa/PC4.md` FINAL |
+| 18:30–19:30 | **SCIENCE_SIGNOFF son kontrol (PC1 ile):** atlas son hâliyle 10 satırı yeniden doğrula; 20:00 veri dondurma | SIGNOFF |
+Son bloğa gelince `status/PC4.md` ilk satırına `PLAN_SONU_YAKIN`.
