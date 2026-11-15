@@ -1,0 +1,16 @@
+{
+  "name": "Aquifer Run — NISAR Vision",
+  "short_name": "Aquifer Run",
+  "description": "Run through four real sinking valleys measured by the NASA-ISRO NISAR satellite. Switch pumps off, save crops and keep the ground from sinking.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "fullscreen",
+  "orientation": "landscape",
+  "background_color": "#0b0f14",
+  "theme_color": "#0b0f14",
+  "categories": ["games", "education"],
+  "icons": [
+    { "src": "../assets/logo_mark_192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "../assets/logo_mark_512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}

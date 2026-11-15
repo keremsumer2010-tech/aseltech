@@ -6,6 +6,12 @@
 <title>Aquifer Run — NISAR Vision</title>
 <meta name="description" content="Side-scrolling groundwater platformer based on real NASA-ISRO NISAR subsidence measurements across Tulare Basin, Eloy, Karapinar, and Mexico City.">
 <link rel="icon" href="../assets/logo_mark_64.png" type="image/png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#0b0f14">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Aquifer Run">
+<link rel="apple-touch-icon" href="../assets/logo_mark_192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&display=swap" rel="stylesheet">
 <style>
@@ -97,5 +103,6 @@
 <script src="player.js?v=10"></script>
 <script src="systems.js?v=10"></script>
 <script src="main.js?v=10"></script>
+<script>if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js').catch(function () {});</script>
 </body>
 </html>
