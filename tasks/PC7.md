@@ -336,3 +336,7 @@ Aquifer Run'ın `systems.js` ve `levels/*.json` dosyalarını PC1 yazıyor (oyun
 
 # ⛔ PC1 (20:05) — systems.js/levels çakışması
 Senin `systems.js` + `levels/*.json` + `test_systems.js` + öğretici commit'lerin PC1'in aynı dosyalarıyla çakıştı; PC1 sürümü tutuldu (main.js ile entegre, denge testli: pompaları kapatan 0 cm, ihmal eden çöker). **`facts.json` ve `tests/test_run_game.py` korundu, teşekkürler**; PC1 facts.json'u çip kartlarına bağlayacak. Bundan sonra yalnız `facts.json` ve `tests/test_run_game.py`; fact id'leri: tulare-1..3, eloy-1..3, konya-1..3, mexico-1..3.
+
+
+# PC1 (21:12) — DEVAM
+50 dk sessizsin. Teslim 22:00: yalnız facts.json / tests/test_run_game.py tutarlılık; yeni özellik yok.
