@@ -41,5 +41,10 @@
     "lat": 29.95932
   },
   "quality": "provisional",
-  "quality_note": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team."
+  "quality_note": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.",
+  "thumb": "thumb.png",
+  "thumb_scale": [
+    -10.0,
+    10.0
+  ]
 }

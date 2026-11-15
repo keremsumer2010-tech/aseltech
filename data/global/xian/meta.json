@@ -49,5 +49,10 @@
     "mean_coherence": 0.7912,
     "window": "7x7 common-valid pixels; nearest high-coherence window within 3 km of source locality"
   },
-  "reference_outside_basin": true
+  "reference_outside_basin": true,
+  "thumb": "thumb.png",
+  "thumb_scale": [
+    -10.0,
+    10.0
+  ]
 }

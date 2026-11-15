@@ -27,46 +27,63 @@ from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[2]
 
-TARGETS = [
-    {
-        "id": "konya_plain",
-        "disp_png": ROOT / "data" / "konya_plain" / "disp" / "2026-09-30.png",
-        "meta": ROOT / "data" / "konya_plain" / "meta.json",
-        "out_thumb": ROOT / "data" / "konya_plain" / "thumb.png",
-    },
-    {
-        "id": "central_valley",
-        "disp_png": ROOT / "data" / "central_valley" / "disp" / "2026-09-20.png",
-        "meta": ROOT / "data" / "central_valley" / "meta.json",
-        "out_thumb": ROOT / "data" / "central_valley" / "thumb.png",
-    },
-    {
-        "id": "eloy",
-        "disp_png": ROOT / "data" / "global" / "eloy" / "disp" / "2026-09-23.png",
-        "meta": ROOT / "data" / "global" / "eloy" / "meta.json",
-        "out_thumb": ROOT / "data" / "global" / "eloy" / "thumb.png",
-    },
-    {
-        "id": "kashmar",
-        "disp_png": ROOT / "data" / "global" / "kashmar" / "disp" / "2026-09-23.png",
-        "meta": ROOT / "data" / "global" / "kashmar" / "meta.json",
-        "out_thumb": ROOT / "data" / "global" / "kashmar" / "thumb.png",
-    },
-    {
-        "id": "mashhad",
-        "disp_png": ROOT / "data" / "global" / "mashhad" / "disp" / "2026-09-23.png",
-        "meta": ROOT / "data" / "global" / "mashhad" / "meta.json",
-        "out_thumb": ROOT / "data" / "global" / "mashhad" / "thumb.png",
-    },
-    {
-        "id": "semarang",
-        "disp_png": ROOT / "data" / "global" / "semarang" / "disp" / "2026-09-29.png",
-        "meta": ROOT / "data" / "global" / "semarang" / "meta.json",
-        "out_thumb": ROOT / "data" / "global" / "semarang" / "thumb.png",
-    },
-]
-
+# Shared ±10 cm scale bounds
 VMIN, VMAX = -10.0, 10.0
+
+
+def discover_all_targets() -> list[dict]:
+    """Discover all sites with meta.json and disp/*.png in data/global, konya_plain, central_valley, karapinar."""
+    targets = []
+    candidate_dirs = [
+        ROOT / "data" / "konya_plain",
+        ROOT / "data" / "central_valley",
+        ROOT / "data" / "karapinar",
+    ]
+    global_dir = ROOT / "data" / "global"
+    if global_dir.is_dir():
+        candidate_dirs.extend(sorted(global_dir.iterdir()))
+
+    seen = set()
+    for d in candidate_dirs:
+        if not d.is_dir():
+            continue
+        meta_p = d / "meta.json"
+        disp_dir = d / "disp"
+        if not (meta_p.exists() and disp_dir.is_dir()):
+            continue
+        disp_pngs = sorted([p for p in disp_dir.glob("*.png") if not p.name.startswith(".")])
+        if not disp_pngs:
+            continue
+        site_id = d.name
+        if site_id in seen:
+            continue
+        seen.add(site_id)
+        targets.append({
+            "id": site_id,
+            "disp_png": disp_pngs[-1],
+            "meta": meta_p,
+            "out_thumb": d / "thumb.png",
+        })
+    return targets
+
+
+def update_meta_json(meta_path: Path) -> None:
+    """Ensure thumb and thumb_scale fields are present in meta.json."""
+    try:
+        content = meta_path.read_text(encoding="utf-8")
+        data = json.loads(content)
+        changed = False
+        if data.get("thumb") != "thumb.png":
+            data["thumb"] = "thumb.png"
+            changed = True
+        if data.get("thumb_scale") != [VMIN, VMAX]:
+            data["thumb_scale"] = [VMIN, VMAX]
+            changed = True
+        if changed:
+            meta_path.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+            print(f"Updated meta.json for {meta_path.parent.name}")
+    except Exception as e:
+        print(f"Warning: could not update meta {meta_path}: {e}")
 
 
 def make_colorbar(out_path: Path) -> None:
@@ -143,11 +160,15 @@ def rescale_and_crop(disp_png_path: Path, meta_path: Path, out_path: Path, targe
 
 def main() -> None:
     print("Generating shared-scale thumbnails...")
-    for t in TARGETS:
+    targets = discover_all_targets()
+    print(f"Discovered {len(targets)} targets with displacement maps.")
+    for t in targets:
         rescale_and_crop(t["disp_png"], t["meta"], t["out_thumb"], target_size=400)
+        update_meta_json(t["meta"])
 
     colorbar_path = ROOT / "docs" / "story" / "media" / "pc10_colorbar.png"
     make_colorbar(colorbar_path)
+    print(f"Done generating thumbnails for {len(targets)} targets and colorbar.")
     print("Done generating thumbnails and colorbar.")
 
 
