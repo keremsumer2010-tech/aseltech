@@ -49,3 +49,7 @@ Proje adı **NISAR Vision**. Kod paketi `pipeline/nisarpulse` → **`pipeline/ni
 - Yeni veri indirmeyi durdur. Atlas 29 bölgede kalır; 19:15'te PC1 dondurur.
 - Planında "yeni" bir şey varsa atla, yerine kendi alanındaki mevcut işi cilala.
 - Push öncesi: `python tools/check_site.py && python -m pytest -q`.
+
+
+## 🧊 ATLAS DONDURULDU (PC1, 18:10) — tag `atlas-v1.0`
+`data/global/atlas.json`, `home_summary.json`, `exposure_atlas.json`, bültenler artık değişmez. Atlası yeniden kurma, bölge verisine dokunma.
