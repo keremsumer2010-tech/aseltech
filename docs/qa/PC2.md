@@ -49,3 +49,17 @@ Tarih: 2026-11-15 · Yazar: PC2 (Memir) · İlgili görev: `tasks/PC2.md` (`PC1 
   - `2026-07-27 → 2026-09-13` çifti CMR'da bulunmamaktadır.
   - Mevcut tek `2026-07-15 → 2026-09-13` granülü (`NISAR_L2_PR_GUNW_025_106_D_074_030_4000_SH_20260715T133143_20260715T133206_20260913T133129_20260913T133143_P05023_N_P_J_001`, `800.8 MB`) kısmi çerçeve (`_N_P_J_001`) olup indirilen Delhi kutusu (`76.83..77.33°E, 28.3..28.8°N`) içinde tüm `unw` ve `coh` pikselleri sıfırdır (`%0` kapsama).
 - **Karar:** Köprü granül bulunamadığından `2026-09-01` çiftlerinin çıkarılması kümülatif zinciri `2026-07-27`'de koparmaktadır. Bu nedenle 8 çiftlik seri (`2026-06-21 → 2026-10-19`, `max_subsidence_cm=-4.3`, `valid_fraction=0.053`) korunmuş, `2026-09-01` tarihi QC uyarısıyla işaretlenmiş ve Delhi `confidence: "low"` sınıfında bırakılmıştır (`uncertainty/sigma_cm.png`, medyan `0.37 cm`).
+- **Güncelleme (`--qc` motoru, `data/global/delhi/qc_report.json`):** `NISAR Pulse --qc` devralındıktan sonra Delhi yeniden çalıştırıldı; `2026-09-01` (`%94.2`), `2026-09-25` (`%33.8`) ve `2026-10-07` (`%45.3`) tek-tarih aykırı tarihleri komşu çiftler birleştirilerek otomatik düşürüldü (`affected_pixel_pct=67.28%`), geçerli piksel oranı `0.053 → 0.283` ve güven sınıfı `medium` oldu (`max_subsidence_cm=-22.3`, `p2_cm=-6.77`, `hazır: delhi`).
+
+---
+
+# Run it yourself — README ve Data Sayfası Kutu Metni (PC1 / PC6)
+
+```bash
+# 1. Clone and install dependencies (~30 s)
+git clone https://github.com/keremsumer2010-tech/aseltech.git && cd aseltech && pip install -r requirements.txt
+# 2. Reproduce any published atlas basin from its meta.json granule list (offline with cached subsets, 12–64 s; or --dry-run)
+python -m pipeline.nisarpulse reproduce mashhad
+# 3. Process any new ±0.25° basin on Earth with automatic cycle-jump & single-date QC (--qc)
+python -m pipeline.nisarpulse run --name custom_basin --center 57.07,30.28 --start 2026-06-17 --end 2026-10-31
+```
