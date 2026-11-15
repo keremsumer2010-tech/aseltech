@@ -165,7 +165,7 @@ Yeni veri YOK; amaç jürinin 3 dakikada gördüğü her ekranın aynı kalitede
 |---|---|---|
 | 12:15–13:45 | **Atlas sayfası tema uyumu:** `web/atlas.html`/`atlas.css` başlık, kartlar, Top 5, detay paneli → `theme.css` fontları (Archivo/Public Sans/Plex Mono), 2–3 px köşe, gölgesiz kenarlık; ilk ekranda tek cümle "renk = 100 günde cm, kırmızı = çöküyor" | commit + `docs/qa/PC6.md` ekran görüntüsü |
 | 13:45–15:15 | **Atlas mobil + performans QA:** 375 px'de yatay kaydırma 0, büyük PNG'lere `loading="lazy"`, konsol hatası 0; atlas_sat/3D dosyalarına DOKUNMA | `docs/qa/PC6.md` |
-| 15:15–16:45 | **Simülatör tema uyumu:** `game/` başlığına `../web/assets/logo.svg` yerine kök yolu gözeterek logo + fontlar, "← NISAR Pulse ana sayfa" bağlantısı, "Bu model NISAR ölçümüne nasıl bağlı" tek kart | commit |
+| 15:15–16:45 | **Simülatör tema uyumu:** `game/` başlığına `../assets/logo_full.png` ile logo + fontlar, "← NISAR Pulse ana sayfa" bağlantısı, "Bu model NISAR ölçümüne nasıl bağlı" tek kart | commit |
 | 16:45–18:15 | **Teslim ekran görüntüleri:** ana sayfa, atlas, bülten, simülatör; 1440×900 ve 375×812 → `docs/story/media/site_{home,atlas,bulletin,game}_{desk,mob}.png` | 8 PNG |
 | 18:15–19:30 | **Tüm bağlantı kontrolü** (GitHub Pages canlı sitede her `href`/`src` 200) → `docs/qa/PC6_links.md`; kırıkları düzelt | rapor |
 | 19:30–20:00 | Son kontrol, dondurma |
