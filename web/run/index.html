@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<title>Aquifer Run — NISAR Vision</title>
+<meta name="description" content="Side-scrolling groundwater platformer based on real NASA-ISRO NISAR subsidence measurements across Tulare Basin, Eloy, Karapinar, and Mexico City.">
+<link rel="icon" href="../assets/logo_mark_64.png" type="image/png">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  html, body {
+    width: 100%; height: 100%; overflow: hidden;
+    background: #0b0f14; color: #e6edf3;
+    font-family: system-ui, -apple-system, sans-serif;
+    touch-action: none; user-select: none; -webkit-user-select: none;
+  }
+  #wrap {
+    position: relative; width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+  }
+  canvas {
+    display: block;
+    max-width: 100vw; max-height: 100vh;
+    aspect-ratio: 16 / 9;
+    width: min(100vw, calc(100vh * 16 / 9));
+    height: min(100vh, calc(100vw * 9 / 16));
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    background: #101824;
+  }
+  .touch-ui {
+    display: none;
+    position: fixed; inset: 0; pointer-events: none; z-index: 10;
+  }
+  body.has-touch .touch-ui { display: block; }
+  .t-group {
+    position: absolute; bottom: max(16px, env(safe-area-inset-bottom));
+    display: flex; gap: 12px; pointer-events: auto;
+  }
+  .t-left { left: max(16px, env(safe-area-inset-left)); }
+  .t-right { right: max(16px, env(safe-area-inset-right)); }
+  .t-btn {
+    width: 64px; height: 64px; border-radius: 14px;
+    border: 2px solid rgba(255,255,255,0.35);
+    background: rgba(15, 23, 34, 0.65);
+    color: #fff; font-weight: 700; font-size: 14px;
+    display: flex; align-items: center; justify-content: center;
+    backdrop-filter: blur(4px);
+  }
+  .t-btn.active { background: rgba(77, 163, 255, 0.55); border-color: #4da3ff; }
+  .t-btn-wide { width: 82px; }
+</style>
+</head>
+<body>
+<div id="wrap">
+  <canvas id="gameCanvas" width="960" height="540" aria-label="Aquifer Run game canvas"></canvas>
+</div>
+<div class="touch-ui" id="touchUi" aria-hidden="true">
+  <div class="t-group t-left">
+    <button type="button" class="t-btn" data-key="left" aria-label="Move left">◀</button>
+    <button type="button" class="t-btn" data-key="right" aria-label="Move right">▶</button>
+  </div>
+  <div class="t-group t-right">
+    <button type="button" class="t-btn t-btn-wide" data-key="action" aria-label="Action">ACTION</button>
+    <button type="button" class="t-btn t-btn-wide" data-key="jump" aria-label="Jump">JUMP</button>
+  </div>
+</div>
+<script src="art.js"></script>
+<script src="engine.js"></script>
+<script src="player.js"></script>
+<script src="systems.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
