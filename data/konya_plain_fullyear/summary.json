@@ -1,0 +1,11 @@
+{
+  "site": "konya_plain_fullyear",
+  "status": "insufficient_data",
+  "reason": "ASF CMR NISAR_L2_GUNW_BETA_V1 contains 54 granules over bbox [32.4, 37.4, 33.9, 38.1] (tracks 007, 079, 100, 108, 172), all ending on or before 2026-01-16 (cycle 009). Provisional P05023 begins on 2026-06-21 (P108) / 2026-06-26 (P007), leaving a 156-168 day Feb-Jun 2026 gap with zero GUNW coverage. Cannot form a continuous full-year chain for seasonal decomposition.",
+  "bbox": [32.4, 37.4, 33.9, 38.1],
+  "available_beta_end": "2026-01-16",
+  "provisional_start": "2026-06-21",
+  "provisional_period": ["2026-06-26", "2026-10-12"],
+  "provisional_track": "P007 F069 (8 pairs, 108 days)",
+  "quality": "insufficient_data"
+}

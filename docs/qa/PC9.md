@@ -76,3 +76,10 @@ Komut: `python -m pytest analysis/pc9 analysis/decomp analysis/test_insar.py ana
   - **Ölçüm (`2026-06-24` → `2026-10-10`, `108` gün, `8` `provisional` çift, track `152` desc frame `85`, `0` elenen çift):** `max_subsidence_cm = -2.4 cm` LOS (`-3.3 cm` dikey `estimate`, `42.4°`), `p2_cm = -2.9 cm`, `rate_cm_per_100d = -2.22`, `rate_cm_per_yr_estimate = -8.2 cm/yr` (yaz penceresi *estimate*), `valid_fraction = 0.328` (Atlantik Okyanusu ve Lagos Lagünü maskesi nedeniyle `< 0.40`), `range_cm = [-2.4, -2.4]` (2 iç kara referansı `>= 30 km` ayrı ve birebir `-2.4 cm` üzerinde uyuşuyor), `confidence = "medium"`.
   - **Görsel kontrol (`data/global/lagos/disp/2026-10-10.png`):** Güneydeki okyanus ve lagün temiz biçimde maskelenmiş; Victoria Island – Lekki kıyı kuşağında (`3.5495, 6.4502`) tutarlı kırmızı çökme bandı görülüyor.
   - **Literatür:** Ikuemonisan vd. (2020/2021, *Geodesy and Geodynamics*, `doi:10.1016/j.geog.2019.12.006`) Sentinel-1 SBAS ile Lagos kıyı/dolgu zonlarında `-8.7 cm/yr` (`-87 mm/yr`, yerel tepe `-94 mm/yr`) hız bildirmiştir; ayrıca Ohenhen & Shirzaei (2022, *Earth's Future*, `doi:10.1029/2022EF003219`) kıyı çökme riskini doğrulamaktadır. `-8.2 cm/yr` doğrusal *estimate* literatürdeki kıyı zonu hızlarıyla uyumludur.
+
+---
+
+## 6. ATLAS_PLANI FAZ 2 — Tam Yıl Yıllıklaştırma (`konya_plain_fullyear`, `mexico_city_fullyear`, `central_valley_fullyear`)
+
+- **`konya_plain_fullyear` → `insufficient_data` (`data/konya_plain_fullyear/summary.json`):**
+  - ASF CMR sorgusu (`NISAR_L2_GUNW_BETA_V1`, `bbox=[32.4, 37.4, 33.9, 38.1]`): 54 granülün tamamı (`P007, P079, P100, P108, P172`) en geç `2026-01-16` (`cycle 009`) tarihinde bitiyor; `provisional` ise `2026-06-21` (`P108`) / `2026-06-26` (`P007`) tarihinde başlıyor (`156–168` günlük Şubat–Haziran boşluğu). Kesintisiz tam yıl zinciri kurulamadığı için `tasks/PC9.md` kuralı gereği `"status": "insufficient_data"` yazıldı ve Mexico City tam yıl zincirine (`26` çift, `gaps=0`) geçildi.
