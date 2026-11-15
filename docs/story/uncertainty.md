@@ -1,11 +1,11 @@
-# InSAR Uncertainty Budget & GNSS Validation Synthesis (`docs/story/uncertainty.md`)
+# InSAR Uncertainty Budget & GNSS Validation Synthesis
 
-**Owner:** PC5 (`M3hmeT1888`) · **Data Quality Class:** **`provisional`** (`beta-precal` pair `2026-06-16_2026-06-28` strictly excluded)  
+**Data Quality Class:** **`provisional`** (`beta-precal` pair `2026-06-16_2026-06-28` strictly excluded)  
 **Calibration Notice:** *NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.*
 
 ---
 
-## 1. Web "How We Know" Section Copy (Ready to Paste — English)
+## 1. Summary: How We Know the Signal Is Real
 
 Over the 108-day provisional NISAR observation window (`2026-06-28` to `2026-10-14`, 7 consecutive pairs), local high-coherence noise near the stable Woodlake reference region averages **0.66 cm LOS RMS per pair** (`0.50 cm` raw before ramp removal) and propagates under an independent-pair error model ($\sigma_{\text{total}} = \sigma_{\text{pair}}\sqrt{N}$) to **1.7 cm LOS** (`2.2 cm` vertical *estimate*, or up to **2.9 cm LOS** when including scene-wide unmodeled atmospheric scatter across all stable terrain). Against this noise floor, our headline cumulative peak subsidence of **-7.8 cm LOS** (`-10.1 cm` vertical *estimate*, reference sensitivity range **-7.8 to -4.7 cm LOS**) stands **2.7× to 4.5× above cumulative chain uncertainty**, even before multi-year seasonal averaging. Subtracting NISAR's split-spectrum ionospheric phase screen (which exhibits **2.9 to 17.3 cm LOS** scene-wide `p1–p99` dispersion per pair) and per-pair elevation-aware planar ramps reduces long-wavelength bias, leaving residual uncompensated wet troposphere and unwrapping noise as the dominant error sources. Independent comparison against Nevada Geodetic Laboratory GNSS time series inside the active subsidence bowl (`CAHA`, `HANF`, `P056`, `QCAP`, `TLBN`) confirms **0.86 cm mean RMSE** and **r = 0.81 mean correlation**.
 
@@ -24,9 +24,8 @@ Over the 108-day provisional NISAR observation window (`2026-06-28` to `2026-10-
 
 ---
 
-## 2. Q27 — Statistical Interpretation of GNSS Validation (`data/central_valley/validation.json`)
+## 2. Statistical Interpretation of GNSS Validation (`data/central_valley/validation.json`)
 
-**3-Sentence Statistical Summary (English):**  
 Across all 10 Nevada Geodetic Laboratory GNSS stations in Central Valley (`2026-06-28` to `2026-10-14`), InSAR vertical *estimates* ($\text{LOS}/\cos\theta$) achieve a **median RMSE of 1.00 cm** (`0.64–2.79 cm`, overall mean `1.33 cm`), with performance cleanly split between actively subsiding basin stations and near-zero margin sites. At the five actively subsiding basin stations (`CAHA`, `HANF`, `P056`, `QCAP`, `TLBN`, where `r >= 0.60`), InSAR closely tracks GNSS vertical motion with **0.86 cm mean RMSE**, **0.81 mean correlation** (`r = 0.90` at `CAHA` and `HANF`), and a minimal mean trend bias of **-0.51 cm/yr** (within `-0.15 cm` over 108 days; `TLBN` rates agree within `0.35 cm/yr`: `-14.99` vs. `-15.33 cm/yr`). Conversely, four low-motion basin-margin stations (`CAD1`, `CAFP`, `P564`, `P565`, GNSS subsidence `-0.17 to -1.00 cm`) exhibit larger RMSE (`1.57–2.79 cm`), weak or inverted correlations (`r = -0.41 to +0.07`), and positive InSAR-minus-GNSS trend residuals (`+7.3 to +9.3 cm/yr`), consistent with unmodeled atmospheric/orbital edge ramps (`~2.2–3.7 cm` vertical chain noise) masking sub-centimetre ground motion.
 
 ### Per-Station GNSS vs. InSAR Statistics (`validation.json`, 108-Day Span)
