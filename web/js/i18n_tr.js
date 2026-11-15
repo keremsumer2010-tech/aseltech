@@ -1393,3 +1393,13 @@ Object.assign(window.I18N_TR, {
   "Dry": "Kurak",
   "Critical": "Kritik"
 });
+
+// ---- texts changed on 15 Nov after the atlas update (Eloy #1, Konya indicative) ----
+Object.assign(window.I18N_TR, {
+  "low · indicative (#% valid pixels, under review)": "düşük · gösterge (%# geçerli piksel, inceleniyor)",
+  "{0} per # days at Eloy, Arizona, the fastest reliable basin. Konya Plain shows a stronger signal (#) but our own review keeps it indicative.": "{0} / # gün, Arizona'daki Eloy'da, en hızlı çöken güvenilir havza. Konya Ovası daha güçlü bir sinyal (#) gösteriyor ama kendi incelememiz onu gösterge olarak tutuyor.",
+  "We turned the first months of NASA-ISRO NISAR radar data into a self-checking global subsidence atlas: # basins (# reliable, # indicative) measured with one open pipeline on the same # days (# Jun – # Sep #), led by Eloy, Arizona at # cm/#d; Konya Plain (#) stays indicative after our own review.": "NASA-ISRO NISAR radar verisinin ilk aylarını kendini denetleyen küresel bir çökme atlasına dönüştürdük: aynı #4 günde (#5 Haz – #6 Eyl #7) tek açık işlem hattıyla ölçülen #1 havza (#2 güvenilir, #3 gösterge); başta #8 cm/#9g ile Arizona'daki Eloy geliyor; Konya Ovası (#10) kendi incelememizden sonra gösterge olarak kalıyor.",
+  "Mexico City (Mexico)": "Meksiko (Meksika)",
+  "Rank": "Sıra",
+  "# Jun – # Sept": "# Haz – # Eyl"
+});
