@@ -630,3 +630,17 @@ Added `tests/test_numbers_consistency.py`. It compares the requested atlas total
 | `docs/story/submission_form.md:73` | 1,200,716 residents | 1,479,844 |
 
 These are owner-authored delivery files; the test and QA report record them without editing them. Other repeated figures were consistent in the targeted scan.
+
+
+## 34. FINAL QA — 2026-11-15
+
+| Check | Result |
+|---|---|
+| Full `python -m pytest -q` | **107 passed, 1 failed**, 1 `PendingDeprecationWarning`; the failure is the new numbers-consistency test and lists six file/line discrepancies in §33. |
+| `python pipeline/pc7/validate_json.py` | **239 JSON files**, 0 parse/non-standard constant errors, 0 non-finite values; 6 shared files lack `quality` (`atlas.schema.json`, `atlas_changelog.json`, `independent_validation.json`, `qc_flags.json`, `qc_manual.json`, `results_registry.json`); 45 entries inherit quality from sibling metadata. |
+| `python tools/validate_atlas.py` | **29 atlas regions / 30 city folders; 241 findings (215 errors, 26 warnings)**. PC7-relevant: Beijing atlas still has old values versus corrected summary; Querétaro now has a diagnostic summary but is absent from atlas and has `reference_outside_basin=false`. Aguascalientes has only partial target coverage, recorded in `coverage.json`; no summary or ready claim. |
+| Beijing bridge replay | 8 effective intervals, −8.4 cm LOS, −7.52 cm p2, −7.0 cm/100d, low/indicative; July 11 removed and bridged. |
+| Querétaro local replay | Full target bbox covered; 9 source pairs, QC merges two single-date excursions; −22.9 cm LOS, low/diagnostic pending reference and PC5 review; uncertainty output present. |
+| Offline/network constraints | City replays used only checked-in NPZ subsets; no raw/downloaded files were fetched. |
+
+Ownership handoff: PC10/PC1 should refresh Beijing's atlas record from the corrected summary and decide whether/when to add Querétaro; PC1/PC8 should reconcile home-summary GHSL population; PC4/PC8 should align slides and submission form precision/values. The number test intentionally remains red until those source-owned files are synchronized. The absent `docs/JURI_3DK.md` remains an input-document gap.

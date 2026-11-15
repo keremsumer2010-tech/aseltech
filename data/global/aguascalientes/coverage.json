@@ -1,0 +1,28 @@
+{
+  "site": "aguascalientes",
+  "bbox": [
+    -102.54,
+    21.63,
+    -102.04,
+    22.13
+  ],
+  "subset_bbox": [
+    -102.37397727500637,
+    21.606182651711787,
+    -102.01003846016859,
+    22.157849273432184
+  ],
+  "quality": "provisional",
+  "coverage": "partial",
+  "granules": 9,
+  "chain_pairs": 9,
+  "period": [
+    "2026-06-17",
+    "2026-10-15"
+  ],
+  "gaps": [],
+  "raw_files_deleted_after_subsetting": true,
+  "network_used": false,
+  "analysis_status": "not_run",
+  "reason": "Local clipped arrays do not cover the western target bbox or the cited Cerro del Muerto reference anchor; no full-box external-reference result can be produced from these inputs."
+}
