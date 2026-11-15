@@ -1,0 +1,14 @@
+{
+  "id": "pekalongan",
+  "atlas_los_cm": -22.2,
+  "atlas_rate_cm_per_100d": -18.5,
+  "atlas_rate_cm_per_100d_common": -11.9,
+  "period": "2026-06-20 to 2026-10-18 (120 d, 9 pairs)",
+  "published_rate": "10-20 cm/yr (coastal hotspots up to 19-34.5 cm/yr)",
+  "published_source": "Sidiq et al. (2023), IOP Conf. Ser. Earth Environ. Sci. 1276:012014",
+  "doi": "10.1088/1755-1315/1276/1/012014",
+  "agreement_note": "QC FLAGGED (phase_cycle_jump, indicative_only): step 1 (2026-06-20 to 2026-07-02) jumps -13.03 cm (~one 12.1 cm L-band cycle); without the flagged step the point shows -9.2 cm (consistent with 10-20 cm/yr published coastal rates, 2-ref [-22.2, -12.4] cm). Needs QC reprocessing.",
+  "qc_flag": "phase_cycle_jump",
+  "recommended_confidence": "low",
+  "reviewed_by": "pending PC5"
+}

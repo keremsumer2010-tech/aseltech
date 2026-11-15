@@ -1,0 +1,13 @@
+{
+  "id": "houston",
+  "atlas_los_cm": -5.2,
+  "atlas_rate_cm_per_100d": -4.3,
+  "atlas_rate_cm_per_100d_common": -4.0,
+  "period": "2026-06-18 to 2026-10-16 (120 d, 9 pairs)",
+  "published_rate": "1.0-4.9 cm/yr (modern peripheral groundwater & coastal compaction)",
+  "published_source": "Liu et al. (2022), Remote Sensing 14(23):6184; Miller & Shirzaei (2019), RSE",
+  "doi": "10.3390/rs14236184",
+  "agreement_note": "Order-of-magnitude higher summer peak (-5.2 cm LOS in 120 d) than multi-year peripheral averages (~1-4.9 cm/yr), likely reflecting seasonal clay/head drawdown or reference sensitivity [-5.2, -3.3] cm; 46.1% valid pixels.",
+  "recommended_confidence": "medium",
+  "reviewed_by": "pending PC5"
+}

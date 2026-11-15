@@ -1,0 +1,13 @@
+{
+  "id": "lagos",
+  "atlas_los_cm": -2.4,
+  "atlas_rate_cm_per_100d": -2.2,
+  "atlas_rate_cm_per_100d_common": -2.1,
+  "period": "2026-06-24 to 2026-10-10 (108 d, 8 pairs)",
+  "published_rate": "0.2-8.7 cm/yr across coastal fill & urban aquifer zones (SBAS-InSAR/GPS)",
+  "published_source": "Ikuemonisan & Ozebo (2020), Geodesy and Geodynamics",
+  "doi": "10.1016/j.geog.2019.12.006",
+  "agreement_note": "Consistent: 108-day LOS peak (-2.4 cm, -2.2 cm/100d, -8.2 cm/yr annualized) with 32.8% valid pixels and identical 2-reference results [-2.4, -2.4] cm falls squarely within published 0.2-8.7 cm/yr Lagos coastal fill rates.",
+  "recommended_confidence": "medium",
+  "reviewed_by": "pending PC5"
+}

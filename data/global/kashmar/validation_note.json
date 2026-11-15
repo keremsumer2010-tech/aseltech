@@ -1,0 +1,13 @@
+{
+  "id": "kashmar",
+  "atlas_los_cm": -6.2,
+  "atlas_rate_cm_per_100d": -5.2,
+  "atlas_rate_cm_per_100d_common": -7.0,
+  "period": "2026-06-19 to 2026-10-17 (120 d, 9 pairs)",
+  "published_rate": "15-30 cm/yr (valley historical InSAR/leveling peak)",
+  "published_source": "Anderssohn et al. (2008), Geophysical Journal International",
+  "doi": "10.1111/j.1365-246X.2008.03805.x",
+  "agreement_note": "Consistent order of magnitude: provisional 120-day rate (-5.2 cm/100d LOS, -7.0 cm/100d common, -18.9 cm/yr annualized estimate) aligns with documented basement-fault-bounded aquifer compaction in the Kashmar-Bardaskan valley; 72.8% valid pixels, 2-ref range [-7.0, -6.2] cm.",
+  "recommended_confidence": "high",
+  "reviewed_by": "pending PC5"
+}

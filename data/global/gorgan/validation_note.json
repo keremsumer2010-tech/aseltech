@@ -1,0 +1,14 @@
+{
+  "id": "gorgan",
+  "atlas_los_cm": -34.6,
+  "atlas_rate_cm_per_100d": -28.8,
+  "atlas_rate_cm_per_100d_common": -22.7,
+  "period": "2026-06-21 to 2026-10-19 (120 d, 9 pairs)",
+  "published_rate": "~7 cm/yr inelastic mean (up to 13 cm/yr SBAS-InSAR LOS)",
+  "published_source": "Rezaei et al. (2019), J. Hydrology; Ma et al. (2026), ISPRS Annals",
+  "doi": "10.1016/j.jhydrol.2019.124196",
+  "agreement_note": "QC FLAGGED (phase_cycle_jump, indicative_only): step 2 (2026-07-03 to 2026-07-15) jumps -10.26 cm (~one 12.1 cm L-band cycle); without the flagged step the point shows -24.39 cm, and 2-ref range [-34.6, -13.8] cm is wide (26.7% valid). Needs QC reprocessing.",
+  "qc_flag": "phase_cycle_jump",
+  "recommended_confidence": "low",
+  "reviewed_by": "pending PC5"
+}

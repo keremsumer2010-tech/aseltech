@@ -1,0 +1,13 @@
+{
+  "id": "can_tho",
+  "atlas_los_cm": -3.4,
+  "atlas_rate_cm_per_100d": -2.8,
+  "atlas_rate_cm_per_100d_common": -3.4,
+  "period": "2026-06-17 to 2026-10-15 (120 d, 9 pairs)",
+  "published_rate": "1.0-4.0+ cm/yr (PSInSAR urban & Holocene clay compaction)",
+  "published_source": "Minderhoud et al. / Minderhoud-type Mekong InSAR, Remote Sensing 13(2):189 (2021)",
+  "doi": "10.3390/rs13020189",
+  "agreement_note": "Consistent order of magnitude: 120-day LOS peak (-3.4 cm, -3.4 cm/100d common) and tight 2-reference range [-3.4, -3.1] cm align with published 1-4+ cm/yr rates in Can Tho despite tropical delta decorrelation.",
+  "recommended_confidence": "medium",
+  "reviewed_by": "pending PC5"
+}
