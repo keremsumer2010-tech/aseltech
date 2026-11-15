@@ -430,5 +430,33 @@ Kapsam: `web/index.html` (`1–163`). Genel İngilizce tonu akıcı ve tutarlı 
 ## 29 Bülten Son Okuması & Mobil Güvence (`2026-11-15 13:54 TR`)
 
 - **İsim ve Kalibrasyon Denetimi:** 29 bültenin tamamında (`docs/bulletins/*.html`) "NISAR Vision" adı ve zorunlu kalibrasyon cümlesi (*"NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team."*) eksiksiz doğrulandı. 0 eski "NISAR Pulse" veya "Team Taykut" kalıntısı.
-- **Güven & QC Durumu:** `data/global/atlas.json` içindeki 13 gösterge (indicative only) havzanın tamamı bültenlerde `LOW (indicative only)` etiketiyle birebir uyumlu; 16 güvenilir havza ile tam eşleşme sağlandı.
+- **Güven & QC Durumu:** `data/global/atlas.json` içindeki 14 gösterge (indicative only) havzanın tamamı bültenlerde `LOW (indicative only)` etiketiyle birebir uyumlu; 15 güvenilir havza ile tam eşleşme sağlandı.
 - **Mobil (375 px) Yatay Kayma Güvencesi:** `tools/bulletin.py` içine mobil medya sorgusu (`@media (max-width:600px)`: `body { overflow-x: hidden; padding: 8px; }`, `.pkg-bar { grid-template-columns: repeat(2, 1fr); }`, `table { display: block; overflow-x: auto; max-width: 100%; }`) eklendi ve 29 bülten yeniden üretildi. 3 rastgele bülten (`central_valley.html`, `konya_plain.html`, `semarang.html`) mobil kurallara tam uyumlu.
+
+---
+
+## 45. FİNAL Jüri Denetimi & Sayı Tutarlılığı Senkronu (`2026-11-15 15:15 TR`)
+
+PC1 ve Kerem jüri denetimi sonrasında Konya Plain'in valid-pixel düşüklüğü (%11.6) ve referans duyarlılığı nedeniyle kendi doğrulama notumuza (`recommended_confidence: low`) uygun olarak gösterge (indicative) sınıfına alınması ve dürüstlük örneği olarak sunulması kararı doğrultusunda:
+- **Atlas Sıralaması:** 29 havza (15 güvenilir, 14 gösterge). En hızlı güvenilir havza: **#1 Eloy, Arizona (`−8.6 cm/100d`, tepe −8.0 cm LOS)**, **#2 Central Valley (`−7.3 cm/100d`)**, **#3 Kashmar (`−7.0 cm/100d`)**, **#4 Mashhad (`−6.9 cm/100d`)**, **#5 Mexico City (`−6.3 cm/100d`)**. Konya Plain (`−11.0 cm/100d` ham) dürüstlük/öz-denetim örneği olarak gösterge tutuldu.
+- **Küresel Maruziyet:** `vital_signs.json` ve `exposure_atlas.json` (karapinar hariç): **`1,167,429` sakin (`1.17 M`)** ve **`477.72 km²`** (`< −5 cm / 108d`, `|disp| ≥ 2σ`); `7,336,293` sakin (`< −2 cm`).
+- **Senkronize Edilen Belgeler:**
+  1. `docs/story/three_minute_story.md` (6 bölüm metinleri, büyük sayılar, süre tablosu)
+  2. `README.md` (özet 9 iş listesi, satır 26, 29, 52–53)
+  3. `docs/story/press_summary.md` (paragraf 4, satır 11)
+  4. `docs/story/qa_cards.md` (Q3 Eloy/Konya dürüstlük, Q11 nüfus, 6 durak prova tablosu)
+  5. `docs/story/slides_notes.md` (slayt 5 & 6/7)
+  6. `docs/story/presentation_cues.md` (Blok 1, 2, 5 ve konuşma metinleri)
+  7. `docs/story/demo_script_v3.md` (0:10, 0:24, 0:36 süre adımları)
+  8. `docs/story/exposure.md` (bölüm 4 küresel toplamlar)
+  9. `docs/JURI_3DK.md` (1.17 M kişi, 15/14 havza, akış tablosu)
+  10. `docs/story/submission_form_tr.md` (6 temel soru TR metinleri, 1.17 M, 15/14 havza)
+  11. `docs/story/judge_faq.md` (Q6 14 gösterge, Q7 Eloy #1 / Konya dürüstlük, Q9 1.17 M nüfus)
+  12. `docs/story/technical_note.md` (küresel şehirler ve atlas tablosu)
+  13. `data/results_registry.json` (`atlas_feature`, `exposure`, `global_atlas`)
+- **Doğrulama Sonuçları:**
+  - `analysis/pc5/numbers_registry.py` → `total=45 approved=30 preliminary=15 rejected=0 discrepancies=0`.
+  - `python3 tools/check_site.py` → `43 pages checked, 0 broken links`.
+  - `pytest tests/test_site_links.py tests/test_numbers_consistency.py tests/test_site_numbers.py tests/test_atlas_schema.py -v` → `5 passed in 0.10s`.
+  - `python3 tools/vital_signs.py --check` → `OK: vital_signs.json matches (29 regions, fastest=eloy -8.6 cm/100d)`.
+  - `node --check web/js/*.js game/*.js` → `OK (syntax clean)`.
