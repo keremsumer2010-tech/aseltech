@@ -286,3 +286,7 @@ Testin kiriliyor ama sebep veri degil test: (1) nufus degeri sabit 1479844 yazil
 | 22:30–00:30 | **Jargon + inç geçişi (senin dosyaların):** LOS, GUNW, InSAR, cm/100d ilk geçtiğinde açıklama; manşet sayılara inç (−8.6 cm ≈ −3.4 in) | `web/index.html`, `web/science.html` |
 | 00:30–02:00 | **Jüri SSS (12 soru, ≤3 cümle):** neden LOS, neden 93 gün, QC nasıl çalışır, neden Konya gösterge (dürüstlük örneği), GPS doğrulaması, provisional ne demek, OPERA neden manşet değil, nüfus nasıl sayıldı, kalıcı su kaybı, tekrar üretilebilirlik, sınırlar, bir şehir nasıl kullanır | `docs/story/judge_faq.md` |
 | 02:00–05:00 | **Canlı site son QA:** her sayfa masaüstü 1440 + telefon 375, konsol hatası 0, yatay kayma 0, tüm butonlar; bulgular ve düzeltmeler | `docs/qa/FINAL_QA.md` |
+
+
+# ⏱ PC1 (18:10)
+Cambridge görevin henüz başlamadı. 18:40'a kadar commit yoksa 1–3. işleri (How we know + Science sadeleştirme + jargon) PC1 üstlenir; sende 4–5 (SSS, son QA) kalır.
