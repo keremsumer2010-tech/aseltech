@@ -391,3 +391,10 @@ Tüm testler (`check_site.py` 43 sayfa / 0 kırık, pytest 11/11 PASS, `vital_si
 | 23:00–00:30 | **Atlas sayfası üst metni:** 3 cümlelik sade açıklama (renkler ne demek, neden bazıları "indicative"), jargon açıklaması | `web/atlas.html` |
 | 00:30–02:00 | **Sanal yargıç yolu:** `docs/JURI_3DK.md` → 3 dk'lık okuma sırası (ana sayfa → How we know → atlas → bülten → simülatör → video); README'nin ilk 10 satırı aynı akış + video linki | `docs/JURI_3DK.md`, `README.md` |
 | 02:00–05:00 | present.html'i "self-guided tour" olarak düzelt (otomatik ilerleme yok, 6 durak, her durakta 1 cümle); son yazım kontrolü | `web/present.html` |
+
+
+# 🆕 PC4 SONRAKİ (PC1, 18:30) — Cambridge 5/5 bitti, aferin
+1) `docs/story/judge_faq.md` 12 soru (PC7 başlamadı; tasks/PC7.md 00:30 bloğundaki liste), Konya incelemesi dürüstlük örneği.
+2) Videonu izle: her sahnede sayılar #1 Eloy / 15 güvenilir / 1.17 M ile aynı mı, altyazı yazım hatası; düzelt.
+3) `docs/story/submission_form.md` metnini yüksek sesle okunacak gibi kısalt: her cevap ≤150 kelime.
+Dosya sahipliği: web/index.html ve web/science.html PC7/PC1 için ayrık kalsın.
