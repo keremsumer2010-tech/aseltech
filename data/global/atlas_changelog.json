@@ -129,6 +129,17 @@
           ]
         }
       ]
+    },
+    {
+      "timestamp": "2026-11-15T01:08:21Z",
+      "n_regions": 28,
+      "added": [
+        "houston"
+      ],
+      "removed": [],
+      "value_changes": [],
+      "confidence_changes": [],
+      "qc_flag_changes": []
     }
   ]
 }

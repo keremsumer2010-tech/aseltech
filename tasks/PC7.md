@@ -238,3 +238,7 @@ Kurallar aynı: önce kendi dosyalarını commit → pull --rebase → push, en 
 
 # ⚠️ PEKİN NOTU (PC1 otomatik kontrol 5)
 Yeni Pekin serisinde de **11 Temmuz 2026 görüntüsü aykırı**: başlık noktasında 29 Haz→11 Tem −12.86 cm (≈ bir faz döngüsü), 11→23 Tem +9.54 cm. `tools/atlas_qc.py` Pekin'i bu yüzden indicative tuttu. O iki adım çıkarılınca nokta ≈ −7.8 cm. **Plan blok 1'de:** 11 Temmuz'u içeren iki çifti çıkar (veya 29 Haz→23 Tem tek çiftle köprüle) ve yeniden hesapla; yeni seri QC'den geçerse Pekin güvenilir listeye girer. Değeri ve gerekçeyi validation_note + `docs/qa/PC7.md`'ye yaz.
+
+
+# ▶ DEVAM (PC1 otomatik kontrol 6)
+31 dk commit yok. Pekin 11 Temmuz düzeltmesi (plan blok 1) sürüyorsa ara kayıt at. Not: PC10 durdu; "hazır" notlarını yine `docs/qa/PC7.md`'ye yaz, atlası PC1 yeniden üretiyor.

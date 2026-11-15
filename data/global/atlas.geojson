@@ -459,6 +459,51 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -95.95788,
+     29.55889
+    ]
+   },
+   "properties": {
+    "id": "houston",
+    "name": "Houston",
+    "country": "",
+    "max_cm_los": -5.2,
+    "p2_cm": -4.6,
+    "rate_cm_per_100d": -4.3,
+    "max_cm_vertical_est": -6.7,
+    "period": [
+     "2026-06-18",
+     "2026-10-16"
+    ],
+    "days": 120,
+    "n_pairs": 9,
+    "quality": "provisional",
+    "rate_cm_per_yr_estimate": -15.9,
+    "valid_fraction": 0.461,
+    "ref_range_cm": [
+     -5.2,
+     -3.3
+    ],
+    "detectable": null,
+    "robustness_spread": null,
+    "people_exposed": null,
+    "opera_check": null,
+    "sigma_cm_median": null,
+    "rate_ci_cm_per_100d": null,
+    "confidence": "medium",
+    "indicative_only": false,
+    "coverage": "ok",
+    "path": "data/global/houston/",
+    "note": "",
+    "rate_cm_per_100d_common": -4.0,
+    "rank": 10
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      105.86753,
      10.27513
     ]
@@ -499,7 +544,7 @@
     "path": "data/global/can_tho/",
     "note": "",
     "rate_cm_per_100d_common": -3.4,
-    "rank": 10
+    "rank": 11
    }
   },
   {
@@ -547,7 +592,7 @@
     "path": "data/global/tianjin/",
     "note": "",
     "rate_cm_per_100d_common": -2.8,
-    "rank": 11
+    "rank": 12
    }
   },
   {
@@ -592,7 +637,7 @@
     "path": "data/global/cangzhou/",
     "note": "",
     "rate_cm_per_100d_common": -2.4,
-    "rank": 12
+    "rank": 13
    }
   },
   {
@@ -640,7 +685,7 @@
     "path": "data/delta/",
     "note": "",
     "rate_cm_per_100d_common": -1.4,
-    "rank": 13
+    "rank": 14
    }
   },
   {
@@ -688,7 +733,7 @@
     "path": "data/global/quetta/",
     "note": "",
     "rate_cm_per_100d_common": -0.7,
-    "rank": 14
+    "rank": 15
    }
   },
   {
@@ -736,7 +781,7 @@
     "qc_flags": [
      "phase_cycle_jump"
     ],
-    "rank": 15
+    "rank": 16
    }
   },
   {
@@ -787,7 +832,7 @@
     "qc_flags": [
      "phase_cycle_jump"
     ],
-    "rank": 16
+    "rank": 17
    }
   },
   {
@@ -839,7 +884,7 @@
      "literature_mismatch",
      "noisy_series"
     ],
-    "rank": 17
+    "rank": 18
    }
   },
   {
@@ -890,7 +935,7 @@
     "qc_flags": [
      "phase_cycle_jump"
     ],
-    "rank": 18
+    "rank": 19
    }
   },
   {
@@ -942,7 +987,7 @@
      "phase_cycle_jump",
      "single_date_outlier"
     ],
-    "rank": 19
+    "rank": 20
    }
   },
   {
@@ -990,7 +1035,7 @@
     "path": "data/global/tehran/",
     "note": "",
     "rate_cm_per_100d_common": -6.4,
-    "rank": 20
+    "rank": 21
    }
   },
   {
@@ -1035,7 +1080,7 @@
     "path": "data/global/jakarta/",
     "note": "",
     "rate_cm_per_100d_common": -5.6,
-    "rank": 21
+    "rank": 22
    }
   },
   {
@@ -1080,7 +1125,7 @@
     "path": "data/karapinar/",
     "note": "",
     "rate_cm_per_100d_common": -3.7,
-    "rank": 22
+    "rank": 23
    }
   },
   {
@@ -1128,7 +1173,7 @@
     "path": "data/global/isfahan/",
     "note": "",
     "rate_cm_per_100d_common": -2.1,
-    "rank": 23
+    "rank": 24
    }
   },
   {
@@ -1173,7 +1218,7 @@
     "path": "data/global/yunlin/",
     "note": "",
     "rate_cm_per_100d_common": -1.6,
-    "rank": 24
+    "rank": 25
    }
   },
   {
@@ -1218,7 +1263,7 @@
     "path": "data/global/xian/",
     "note": "",
     "rate_cm_per_100d_common": -1.4,
-    "rank": 25
+    "rank": 26
    }
   },
   {
@@ -1266,7 +1311,7 @@
     "path": "data/global/hanoi/",
     "note": "",
     "rate_cm_per_100d_common": -0.9,
-    "rank": 26
+    "rank": 27
    }
   },
   {
@@ -1314,7 +1359,7 @@
     "path": "data/global/ho_chi_minh/",
     "note": "",
     "rate_cm_per_100d_common": 4.6,
-    "rank": 27
+    "rank": 28
    }
   }
  ]

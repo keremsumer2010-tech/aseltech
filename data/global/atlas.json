@@ -9,8 +9,8 @@
     "2026-09-29"
   ],
   "common_window_days": 93,
-  "n_regions": 27,
-  "n_reliable": 14,
+  "n_regions": 28,
+  "n_reliable": 15,
   "n_indicative": 13,
   "regions": [
     {
@@ -389,6 +389,43 @@
       "rank": 9
     },
     {
+      "id": "houston",
+      "name": "Houston",
+      "country": "",
+      "lon": -95.95788,
+      "lat": 29.55889,
+      "max_cm_los": -5.2,
+      "p2_cm": -4.6,
+      "rate_cm_per_100d": -4.3,
+      "max_cm_vertical_est": -6.7,
+      "period": [
+        "2026-06-18",
+        "2026-10-16"
+      ],
+      "days": 120,
+      "n_pairs": 9,
+      "quality": "provisional",
+      "rate_cm_per_yr_estimate": -15.9,
+      "valid_fraction": 0.461,
+      "ref_range_cm": [
+        -5.2,
+        -3.3
+      ],
+      "detectable": null,
+      "robustness_spread": null,
+      "people_exposed": null,
+      "opera_check": null,
+      "sigma_cm_median": null,
+      "rate_ci_cm_per_100d": null,
+      "confidence": "medium",
+      "indicative_only": false,
+      "coverage": "ok",
+      "path": "data/global/houston/",
+      "note": "",
+      "rate_cm_per_100d_common": -4.0,
+      "rank": 10
+    },
+    {
       "id": "can_tho",
       "name": "Can Tho",
       "country": "Vietnam",
@@ -426,7 +463,7 @@
       "path": "data/global/can_tho/",
       "note": "",
       "rate_cm_per_100d_common": -3.4,
-      "rank": 10
+      "rank": 11
     },
     {
       "id": "tianjin",
@@ -466,7 +503,7 @@
       "path": "data/global/tianjin/",
       "note": "",
       "rate_cm_per_100d_common": -2.8,
-      "rank": 11
+      "rank": 12
     },
     {
       "id": "cangzhou",
@@ -503,7 +540,7 @@
       "path": "data/global/cangzhou/",
       "note": "",
       "rate_cm_per_100d_common": -2.4,
-      "rank": 12
+      "rank": 13
     },
     {
       "id": "delta",
@@ -543,7 +580,7 @@
       "path": "data/delta/",
       "note": "",
       "rate_cm_per_100d_common": -1.4,
-      "rank": 13
+      "rank": 14
     },
     {
       "id": "quetta",
@@ -583,7 +620,7 @@
       "path": "data/global/quetta/",
       "note": "",
       "rate_cm_per_100d_common": -0.7,
-      "rank": 14
+      "rank": 15
     },
     {
       "id": "gorgan",
@@ -623,7 +660,7 @@
       "qc_flags": [
         "phase_cycle_jump"
       ],
-      "rank": 15
+      "rank": 16
     },
     {
       "id": "delhi",
@@ -666,7 +703,7 @@
       "qc_flags": [
         "phase_cycle_jump"
       ],
-      "rank": 16
+      "rank": 17
     },
     {
       "id": "bangkok",
@@ -710,7 +747,7 @@
         "literature_mismatch",
         "noisy_series"
       ],
-      "rank": 17
+      "rank": 18
     },
     {
       "id": "pekalongan",
@@ -753,7 +790,7 @@
       "qc_flags": [
         "phase_cycle_jump"
       ],
-      "rank": 18
+      "rank": 19
     },
     {
       "id": "beijing",
@@ -797,7 +834,7 @@
         "phase_cycle_jump",
         "single_date_outlier"
       ],
-      "rank": 19
+      "rank": 20
     },
     {
       "id": "tehran",
@@ -837,7 +874,7 @@
       "path": "data/global/tehran/",
       "note": "",
       "rate_cm_per_100d_common": -6.4,
-      "rank": 20
+      "rank": 21
     },
     {
       "id": "jakarta",
@@ -874,7 +911,7 @@
       "path": "data/global/jakarta/",
       "note": "",
       "rate_cm_per_100d_common": -5.6,
-      "rank": 21
+      "rank": 22
     },
     {
       "id": "karapinar",
@@ -911,7 +948,7 @@
       "path": "data/karapinar/",
       "note": "",
       "rate_cm_per_100d_common": -3.7,
-      "rank": 22
+      "rank": 23
     },
     {
       "id": "isfahan",
@@ -951,7 +988,7 @@
       "path": "data/global/isfahan/",
       "note": "",
       "rate_cm_per_100d_common": -2.1,
-      "rank": 23
+      "rank": 24
     },
     {
       "id": "yunlin",
@@ -988,7 +1025,7 @@
       "path": "data/global/yunlin/",
       "note": "",
       "rate_cm_per_100d_common": -1.6,
-      "rank": 24
+      "rank": 25
     },
     {
       "id": "xian",
@@ -1025,7 +1062,7 @@
       "path": "data/global/xian/",
       "note": "",
       "rate_cm_per_100d_common": -1.4,
-      "rank": 25
+      "rank": 26
     },
     {
       "id": "hanoi",
@@ -1065,7 +1102,7 @@
       "path": "data/global/hanoi/",
       "note": "",
       "rate_cm_per_100d_common": -0.9,
-      "rank": 26
+      "rank": 27
     },
     {
       "id": "ho_chi_minh",
@@ -1105,7 +1142,7 @@
       "path": "data/global/ho_chi_minh/",
       "note": "",
       "rate_cm_per_100d_common": 4.6,
-      "rank": 27
+      "rank": 28
     }
   ],
   "reliable": [
@@ -1494,6 +1531,44 @@
       "rank_reliable": 9
     },
     {
+      "id": "houston",
+      "name": "Houston",
+      "country": "",
+      "lon": -95.95788,
+      "lat": 29.55889,
+      "max_cm_los": -5.2,
+      "p2_cm": -4.6,
+      "rate_cm_per_100d": -4.3,
+      "max_cm_vertical_est": -6.7,
+      "period": [
+        "2026-06-18",
+        "2026-10-16"
+      ],
+      "days": 120,
+      "n_pairs": 9,
+      "quality": "provisional",
+      "rate_cm_per_yr_estimate": -15.9,
+      "valid_fraction": 0.461,
+      "ref_range_cm": [
+        -5.2,
+        -3.3
+      ],
+      "detectable": null,
+      "robustness_spread": null,
+      "people_exposed": null,
+      "opera_check": null,
+      "sigma_cm_median": null,
+      "rate_ci_cm_per_100d": null,
+      "confidence": "medium",
+      "indicative_only": false,
+      "coverage": "ok",
+      "path": "data/global/houston/",
+      "note": "",
+      "rate_cm_per_100d_common": -4.0,
+      "rank": 10,
+      "rank_reliable": 10
+    },
+    {
       "id": "can_tho",
       "name": "Can Tho",
       "country": "Vietnam",
@@ -1531,8 +1606,8 @@
       "path": "data/global/can_tho/",
       "note": "",
       "rate_cm_per_100d_common": -3.4,
-      "rank": 10,
-      "rank_reliable": 10
+      "rank": 11,
+      "rank_reliable": 11
     },
     {
       "id": "tianjin",
@@ -1572,8 +1647,8 @@
       "path": "data/global/tianjin/",
       "note": "",
       "rate_cm_per_100d_common": -2.8,
-      "rank": 11,
-      "rank_reliable": 11
+      "rank": 12,
+      "rank_reliable": 12
     },
     {
       "id": "cangzhou",
@@ -1610,8 +1685,8 @@
       "path": "data/global/cangzhou/",
       "note": "",
       "rate_cm_per_100d_common": -2.4,
-      "rank": 12,
-      "rank_reliable": 12
+      "rank": 13,
+      "rank_reliable": 13
     },
     {
       "id": "delta",
@@ -1651,8 +1726,8 @@
       "path": "data/delta/",
       "note": "",
       "rate_cm_per_100d_common": -1.4,
-      "rank": 13,
-      "rank_reliable": 13
+      "rank": 14,
+      "rank_reliable": 14
     },
     {
       "id": "quetta",
@@ -1692,8 +1767,8 @@
       "path": "data/global/quetta/",
       "note": "",
       "rate_cm_per_100d_common": -0.7,
-      "rank": 14,
-      "rank_reliable": 14
+      "rank": 15,
+      "rank_reliable": 15
     }
   ],
   "indicative": [
@@ -1735,7 +1810,7 @@
       "qc_flags": [
         "phase_cycle_jump"
       ],
-      "rank": 15,
+      "rank": 16,
       "rank_indicative": 1
     },
     {
@@ -1779,7 +1854,7 @@
       "qc_flags": [
         "phase_cycle_jump"
       ],
-      "rank": 16,
+      "rank": 17,
       "rank_indicative": 2
     },
     {
@@ -1824,7 +1899,7 @@
         "literature_mismatch",
         "noisy_series"
       ],
-      "rank": 17,
+      "rank": 18,
       "rank_indicative": 3
     },
     {
@@ -1868,7 +1943,7 @@
       "qc_flags": [
         "phase_cycle_jump"
       ],
-      "rank": 18,
+      "rank": 19,
       "rank_indicative": 4
     },
     {
@@ -1913,7 +1988,7 @@
         "phase_cycle_jump",
         "single_date_outlier"
       ],
-      "rank": 19,
+      "rank": 20,
       "rank_indicative": 5
     },
     {
@@ -1954,7 +2029,7 @@
       "path": "data/global/tehran/",
       "note": "",
       "rate_cm_per_100d_common": -6.4,
-      "rank": 20,
+      "rank": 21,
       "rank_indicative": 6
     },
     {
@@ -1992,7 +2067,7 @@
       "path": "data/global/jakarta/",
       "note": "",
       "rate_cm_per_100d_common": -5.6,
-      "rank": 21,
+      "rank": 22,
       "rank_indicative": 7
     },
     {
@@ -2030,7 +2105,7 @@
       "path": "data/karapinar/",
       "note": "",
       "rate_cm_per_100d_common": -3.7,
-      "rank": 22,
+      "rank": 23,
       "rank_indicative": 8
     },
     {
@@ -2071,7 +2146,7 @@
       "path": "data/global/isfahan/",
       "note": "",
       "rate_cm_per_100d_common": -2.1,
-      "rank": 23,
+      "rank": 24,
       "rank_indicative": 9
     },
     {
@@ -2109,7 +2184,7 @@
       "path": "data/global/yunlin/",
       "note": "",
       "rate_cm_per_100d_common": -1.6,
-      "rank": 24,
+      "rank": 25,
       "rank_indicative": 10
     },
     {
@@ -2147,7 +2222,7 @@
       "path": "data/global/xian/",
       "note": "",
       "rate_cm_per_100d_common": -1.4,
-      "rank": 25,
+      "rank": 26,
       "rank_indicative": 11
     },
     {
@@ -2188,7 +2263,7 @@
       "path": "data/global/hanoi/",
       "note": "",
       "rate_cm_per_100d_common": -0.9,
-      "rank": 26,
+      "rank": 27,
       "rank_indicative": 12
     },
     {
@@ -2229,7 +2304,7 @@
       "path": "data/global/ho_chi_minh/",
       "note": "",
       "rate_cm_per_100d_common": 4.6,
-      "rank": 27,
+      "rank": 28,
       "rank_indicative": 13
     }
   ]

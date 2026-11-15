@@ -1,8 +1,8 @@
 {
-  "generated_utc": "2026-11-15T00:48:50Z",
+  "generated_utc": "2026-11-15T01:09:09Z",
   "quality": "provisional",
   "quality_note": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.",
-  "cities_measured": 27,
+  "cities_measured": 28,
   "cities_measured_source": "data/global/atlas.json (n_regions)",
   "fastest": {
     "id": "konya_plain",
