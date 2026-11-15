@@ -5,65 +5,68 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Aquifer Run — art preview</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&display=swap" rel="stylesheet">
 <style>
-  body { margin: 0; background: #1b1f2e; color: #fffaf0; font: 14px/1.4 system-ui, sans-serif; }
-  header { padding: 14px 18px; } h1 { margin: 0; font: 16px "Press Start 2P", monospace; } p { margin: 6px 0 0; color: #b9c0d4; }
-  canvas { display: block; margin: 0 auto 16px; image-rendering: pixelated; max-width: 100%; border-radius: 8px; }
-  .row { display: flex; gap: 10px; flex-wrap: wrap; padding: 0 18px 10px; } button { font: 11px "Press Start 2P", monospace; padding: 8px 10px; background: #2c3247; color: #fff; border: 2px solid #4fc3f7; border-radius: 6px; cursor: pointer; }
+  body { margin: 0; background: #121828; color: #fff; font: 15px/1.4 "Baloo 2", system-ui, sans-serif; }
+  header { padding: 14px 18px 6px; } h1 { margin: 0; font-size: 22px; } p { margin: 4px 0 0; color: #b9c0d4; }
+  canvas { display: block; margin: 0 auto 16px; max-width: 100%; border-radius: 14px; box-shadow: 0 10px 30px rgba(0,0,0,.4); }
+  .row { display: flex; gap: 8px; flex-wrap: wrap; padding: 8px 18px 12px; }
+  button { font: 800 14px "Baloo 2", sans-serif; padding: 7px 14px; background: #263052; color: #fff; border: 2px solid #56c8f5; border-radius: 999px; cursor: pointer; }
+  button.on { background: #56c8f5; color: #121828; }
 </style>
 </head>
 <body>
-<header><h1>AQUIFER RUN · ART PREVIEW (PC1)</h1><p>Everything below is drawn in code by <code>web/run/art.js</code>. Engine (PC4) and levels (PC7) use these through <code>window.RunArt</code>.</p></header>
-<div class="row" id="biomes"></div>
+<header><h1>AQUIFER RUN · art preview (PC1)</h1><p>Drawn in code by <code>web/run/art.js</code>. The radar scan uses the real NISAR displacement map of each basin.</p></header>
+<div class="row" id="bar"></div>
 <canvas id="scene" width="960" height="540"></canvas>
-<canvas id="sheet" width="960" height="420"></canvas>
+<canvas id="sheet" width="960" height="470"></canvas>
 <script src="art.js"></script>
 <script>
 (async () => {
   await RunArt.ready;
-  const A = RunArt, S = A.TILE * A.SCALE;
-  let biome = 'tulare';
-  const bar = document.getElementById('biomes');
-  Object.keys(A.BIOMES).forEach((b) => { const k = document.createElement('button'); k.textContent = A.BIOMES[b].name; k.onclick = () => (biome = b); bar.appendChild(k); });
-  const tb = document.createElement('button'); tb.textContent = 'Title screen'; tb.onclick = () => (biome = 'title'); bar.appendChild(tb);
-
-  const sc = document.getElementById('scene').getContext('2d'); sc.imageSmoothingEnabled = false;
-  const sh = document.getElementById('sheet').getContext('2d'); sh.imageSmoothingEnabled = false;
-  // a little demo strip of ground
-  const groundRow = 'GGGGGGGSSSSGGGGGGGGGGCCCCGGGGGGGGGGG';
+  const A = RunArt, S = A.TS;
+  const radar = { tulare: '../../data/central_valley/disp/2026-10-14.png', eloy: '../../data/global/eloy/disp/2026-10-17.png', konya: '../../data/karapinar/disp/2026-10-12.png', mexico: '../../data/global/mexico_city/disp/2026-10-20.png' };
+  Object.entries(radar).forEach(([b, u]) => A.loadRadar(b, u));
+  let mode = 'tulare';
+  const bar = document.getElementById('bar');
+  const modes = [...Object.keys(A.BIOMES).map((b) => [b, A.BIOMES[b].name]), ['title', 'Title screen'], ['map', 'World map'], ['tip', 'Tutorial bubble']];
+  modes.forEach(([k, label]) => { const b = document.createElement('button'); b.textContent = label; b.onclick = () => { mode = k; [...bar.children].forEach((x) => x.classList.toggle('on', x === b)); }; bar.appendChild(b); });
+  bar.children[0].classList.add('on');
+  const pins = [{ id: 'tulare', name: 'Tulare Basin', lon: -119.3, lat: 36.1, rate: -7.3, stars: 3 }, { id: 'eloy', name: 'Eloy, Arizona', lon: -111.6, lat: 32.8, rate: -8.6, stars: 1 },
+    { id: 'konya', name: 'Karapınar, Konya', lon: 33.5, lat: 37.7, rate: -11.0, stars: 0 }, { id: 'mexico', name: 'Mexico City', lon: -99.1, lat: 19.4, rate: -6.3, locked: true }];
+  const sc = document.getElementById('scene').getContext('2d'), sh = document.getElementById('sheet').getContext('2d');
+  function scene(t, biome) {
+    const W = 960, H = 540, cam = t * 70; A.drawBackground(sc, biome, cam, W, H, t);
+    const floorY = H - S * 2;
+    const top = { tulare: 'grass', eloy: 'sand', konya: 'grass', mexico: 'road' }[biome], under = biome === 'mexico' ? 'brick' : biome === 'eloy' ? 'sand' : 'dirt';
+    for (let i = -1; i < W / S + 2; i++) { const x = i * S - (cam % S); let tn = top; if (biome !== 'mexico' && biome !== 'eloy' && i % 11 === 6) tn = 'sink2'; if (biome === 'eloy' && i % 13 === 7) tn = 'fissure'; A.drawTile(sc, tn, x, floorY); A.drawTile(sc, under, x, floorY + S); }
+    const deco = { tulare: 'orchard', eloy: 'cotton', konya: 'wheat', mexico: 'lamp' }[biome];
+    for (let i = 0; i < 5; i++) A.drawTile(sc, deco, 40 + i * 230 - (cam % 230), floorY - S);
+    A.drawTile(sc, 'crate', 400, floorY - S); A.drawTile(sc, 'sign', 90, floorY - S);
+    A.drawSprite(sc, 'pump_on', Math.floor(t * 3), 300, floorY - S); A.drawSprite(sc, 'pump_off', 0, 500, floorY - S);
+    A.drawSprite(sc, 'crop_dry', 0, 560, floorY - S); A.drawSprite(sc, 'crop_green', 0, 612, floorY - S);
+    A.drawSprite(sc, 'dust_devil', Math.floor(t * 10), 730 + Math.sin(t) * 50, floorY - S);
+    A.drawSprite(sc, 'drop', Math.floor(t * 6), 470, floorY - S * 3); A.drawSprite(sc, 'chip', Math.floor(t * 5), 640, floorY - S * 3);
+    A.drawSprite(sc, 'nisa_run', Math.floor(t * 12), 180, floorY - 84 + 4);
+    A.drawSprite(sc, 'farmer', Math.floor(t * 1.5), 660, floorY - 84 + 4, true);
+    A.drawSprite(sc, 'flag', Math.floor(t * 3), 880, floorY - S);
+    const p = (t % 7) / 3.5; if (p < 1) A.radarSweep(sc, W, H, p, biome);
+    A.hud(sc, { tank: 7, tankMax: 10, aquifer: 38 + 22 * Math.sin(t / 2), redLine: 40, hearts: 2, chips: 2, score: 4250, level: A.BIOMES[biome].name }, W, H);
+  }
   function frame(ts) {
-    const t = ts / 1000, W = 960, H = 540;
-    if (biome === 'title') { A.title(sc, W, H, t); }
-    else {
-      const cam = t * 60;
-      A.drawBackground(sc, biome, cam, W, H, t);
-      const floorY = H - S * 3;
-      for (let i = -1; i < W / S + 2; i++) {
-        const x = i * S - (cam % S);
-        const name = biome === 'eloy' ? 'sand' : biome === 'mexico' ? 'road' : (i % 9 === 5 ? 'sink2' : 'grass');
-        A.drawTile(sc, name, x, floorY); A.drawTile(sc, biome === 'mexico' ? 'brick' : 'dirt', x, floorY + S); A.drawTile(sc, 'clay', x, floorY + S * 2);
-      }
-      const deco = { tulare: 'orchard', eloy: 'cotton', konya: 'wheat', mexico: 'lamp' }[biome];
-      for (let i = 0; i < 4; i++) A.drawTile(sc, deco, 120 + i * 220 - (cam % 220), floorY - S);
-      A.drawSprite(sc, 'pump_on', Math.floor(t * 4), 300, floorY - S);
-      A.drawSprite(sc, 'crop_dry', 0, 420, floorY - S); A.drawSprite(sc, 'crop_green', 0, 470, floorY - S);
-      A.drawSprite(sc, 'dust_devil', Math.floor(t * 10), 640 + Math.sin(t) * 60, floorY - S);
-      A.drawSprite(sc, 'drop', Math.floor(t * 6), 560, floorY - S * 3);
-      A.drawSprite(sc, 'nisa_run', Math.floor(t * 10), 180, floorY - 78);
-      A.drawSprite(sc, 'farmer', Math.floor(t * 2), 520, floorY - 78, true);
-      A.drawSprite(sc, 'flag', Math.floor(t * 3), 860, floorY - S);
-      const p = (t % 6) / 3; if (p < 1) A.radarSweep(sc, W, H, p);
-      A.hud(sc, { tank: 7, tankMax: 10, aquifer: 35 + 25 * Math.sin(t / 2), redLine: 40, hearts: 2, chips: 2, score: 4250, level: A.BIOMES[biome].name.toUpperCase() }, W, H);
-    }
-    // sprite sheet
-    sh.fillStyle = '#2c3247'; sh.fillRect(0, 0, 960, 420);
-    A.TILE_NAMES.forEach((n, i) => { const x = 10 + (i % 16) * 58, y = 10 + Math.floor(i / 16) * 58; A.drawTile(sh, n, x, y); });
-    let x = 10; const y2 = 140;
-    for (const n of A.sprites()) { const fr = A.frames(n); A.drawSprite(sh, n, Math.floor(t * 6), x, y2); sh.fillStyle = '#b9c0d4'; sh.font = '9px monospace'; sh.fillText(`${n} (${fr})`, x, y2 + 92); x += 74; if (x > 900) break; }
-    A.card(sh, 20, 260, 420, 130); A.text(sh, 'REPORT CARD', 230, 280, { size: 16, align: 'center', color: '#1b1f2e', shadow: false });
-    A.text(sh, 'PIXEL PANEL STYLE', 230, 320, { size: 10, align: 'center', color: '#2c3247', shadow: false });
-    A.fx(sh, 'splash', 560, 330, (t % 1)); A.fx(sh, 'dust', 680, 330, (t % 1)); A.fx(sh, 'crack', 780, 290, 0); A.fx(sh, 'sparkle', 880, 320, t);
+    const t = ts / 1000;
+    if (mode === 'title') A.title(sc, 960, 540, t);
+    else if (mode === 'map') A.worldMap(sc, 960, 540, t, pins, 'eloy');
+    else if (mode === 'tip') { scene(t, 'tulare'); A.tip(sc, 320, 300, 'This pump drains the underground water. Stand next to it and press', ['E']); }
+    else scene(t, mode);
+    sh.fillStyle = '#1c2440'; sh.fillRect(0, 0, 960, 470);
+    A.TILE_NAMES.forEach((n, i) => A.drawTile(sh, n, 10 + (i % 17) * 56, 10 + Math.floor(i / 17) * 56));
+    let x = 10; for (const n of A.sprites()) { A.drawSprite(sh, n, Math.floor(t * 8), x, 130); sh.fillStyle = '#b9c0d4'; sh.font = '11px sans-serif'; sh.fillText(n + ' (' + A.frames(n) + ')', x, 230); x += 70; }
+    A.card(sh, 20, 260, 340, 120); A.text(sh, 'Report card panel', 190, 280, { size: 26, align: 'center', color: '#1c2233', shadow: false });
+    let kx = 40; ['←', '→', 'SPACE', 'E'].forEach((k) => { kx += A.keycap(sh, k, kx, 330) + 10; });
+    ['heart', 'drop', 'star', 'chip'].forEach((n, i) => A.icon(sh, n, 400 + i * 50, 290, 34));
+    A.fx(sh, 'splash', 640, 330, t % 1); A.fx(sh, 'dust', 740, 330, t % 1); A.fx(sh, 'crack', 820, 290, 0); A.fx(sh, 'sparkle', 900, 320, t);
+    A.drawSatellite(sh, 560, 420, 0.6);
     requestAnimationFrame(frame);
   }
   requestAnimationFrame(frame);

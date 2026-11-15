@@ -429,3 +429,12 @@ RunArt hazır değilse geçici dikdörtgen çiz (`RunArt` yoksa düz renk), PC1'
 - `RunArt.ready` Promise'ini bekle. Karo 48 px, Nisa sprite ~48×84 px.
 - Herkes nasıl oynanacağını bilsin: **1. bölüm adım adım öğretici** (DESIGN.md §13). Ekranda kontrol ipuçları her zaman görünür.
 - Proje bağlamı (DESIGN.md §14): bölüm seçimi gerçek dünya atlası, NISAR taraması gerçek radar haritasını gösterir, karnedeki sayılar `data/global/atlas.json`'dan.
+
+
+## 🎨 PC1 (20:45): `web/run/art.js` v2 HAZIR (modern çizimsel stil) — önizleme `web/run/art_preview.html`
+- Font: index.html'e `https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&display=swap` ekle (PC4).
+- `await RunArt.ready` sonra çiz. Karo `RunArt.TS` = 48 px. Nisa/çiftçi 48×84 (ayak tabanı sprite'ın en altı), nesneler 48×48. `nisa_run` artık 6 kare (frame % length otomatik).
+- Gerçek radar: bölüm açılırken `RunArt.loadRadar(biome, url)` çağır; url'ler DESIGN.md §14 (`/run/` sayfasından `../data/...`). Tarama: `RunArt.radarSweep(ctx, w, h, p, biome)`.
+- Bölüm seçimi: `RunArt.worldMap(ctx, w, h, t, pins, selectedId)`; pins `{id,name,lon,lat,rate,stars,locked}` (rate'i atlas.json'dan al: tulare=central_valley −7.3, eloy −8.6, konya_plain −11.0 (gösterge), mexico_city −6.3).
+- Öğretici: `RunArt.tip(ctx, x, y, text, ['E'])` balonu x,y noktasını işaret eder; `RunArt.keycap`, `RunArt.icon('heart'|'drop'|'star'|'chip')`.
+- HUD: `RunArt.hud(ctx, {tank,tankMax,aquifer,redLine,hearts,chips,score,level}, w, h)`. Başlık: `RunArt.title(ctx,w,h,t)`. Uydu: `RunArt.drawSatellite(ctx,x,y,scale)`.

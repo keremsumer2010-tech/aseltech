@@ -62,8 +62,9 @@ Keyboard: ←/→ or A/D move · Space/W/↑ jump (hold = higher) · E/Enter/X A
 Touch (auto on touch devices): left/right pads bottom-left, JUMP + ACTION bottom-right.
 Gamepad: optional.
 
-## 9. Look & feel (PC1 owns)
-- 16×16 px tiles, drawn in code from pixel maps, scaled ×3 (crisp, `imageSmoothingEnabled=false`).
+## 9. Look & feel (PC1 owns) — modern illustrated, NOT pixel art (Kerem, 15 Nov)
+- Smooth vector illustration drawn in code: gradients, soft shadows, rounded shapes, rim light.
+  Tiles are 48×48 px canvases (supersampled 2× then downscaled), sprites ~48×84 px.
 - Palette: warm earth (soil, clay, sand), lush greens, water blues; red only for danger.
 - Each biome: 3–4 parallax layers (sky gradient + sun/moon, far mountains/skyline, mid
   hills/fields, near details). Day-to-dusk tint as the level progresses.
@@ -143,3 +144,43 @@ update/draw dispatch, scene manager, pause, localStorage save of stars per level
 | +4 h | M2: systems: aquifer, pumps, drops, crops, sink tiles work in level 1 |
 | +6 h | M3: all 4 levels, report card, title + map, touch controls |
 | +8 h | M4: polish, tests green, link from site (replaces Water Hero button) |
+
+
+## 13. Tutorial — everybody must know how to play (PC4 runs it, PC7 places the triggers)
+Level 1 starts with an interactive tutorial; each step waits until the player does it:
+| Step | Prompt (bubble + key caps, `RunArt.tip`) | Done when |
+|---|---|---|
+| 1 | "Move with ← →" | player moved 3 tiles |
+| 2 | "Jump with SPACE (hold for higher)" | player jumped onto the first crate |
+| 3 | "Catch raindrops: they fill your water tank" | tank ≥ 2 |
+| 4 | "This pump drains the underground water. Stand next to it and press E" | first pump off |
+| 5 | "Thirsty crop! Press E to water it (uses 2 tank)" | first crop green |
+| 6 | "Watch the UNDERGROUND WATER bar. Below the yellow line the ground sinks for good" | 3 s shown, arrow points at HUD |
+| 7 | "NISAR is passing! Its radar shows where the ground is sinking" | first scan ends |
+On touch devices the key caps show the on-screen buttons instead. A **?** button replays tips.
+The controls legend is always visible (small, bottom-left) during level 1.
+
+## 14. Project context — what makes this OUR game (NISAR Vision differentiator)
+- **Level select = our real atlas**: `RunArt.worldMap()` draws `assets/atlas_world.jpg` (the same
+  map as the home page) with pins for the 4 levels; each pin shows the real NISAR rate.
+- **NISAR scan shows real radar data**: during a scan, `RunArt.radarSweep()` reveals the actual
+  NISAR displacement map of that basin (`data/.../disp/*.png`, loaded with `RunArt.loadRadar`),
+  so players see the same red/blue map our atlas uses, not a fake effect.
+- **Report card = real numbers**: the card compares the player's sinking with the measured NISAR
+  value for that place (from `data/global/atlas.json` / `summary.json`) and says it is provisional.
+- **Self-check idea in gameplay**: one hidden "bad data" chip per level is a trap: picking it up
+  shows "This reading jumped 12.1 cm in one step — our check flags it" (our QC story).
+- Ends with a link "See the real atlas →" to the NISAR Vision site.
+
+### Extra RunArt API (v2)
+```js
+RunArt.loadRadar(biome, url) -> Promise      // real displacement PNG for the scan overlay
+RunArt.radarSweep(ctx, w, h, p, biome)       // uses the real map if loaded, fringes otherwise
+RunArt.worldMap(ctx, w, h, t, pins, selected) // pins: [{id,name,lon,lat,rate,stars,locked}]
+RunArt.tip(ctx, x, y, text, keys)            // speech bubble with key caps, keys: ['←','→'] etc.
+RunArt.keycap(ctx, label, x, y)              // one key cap
+RunArt.icon(ctx, name, x, y, size)           // 'heart' 'drop' 'chip' 'pump' 'crop' 'star'
+```
+Radar images: tulare `data/central_valley/disp/2026-10-14.png`, eloy
+`data/global/eloy/disp/2026-10-17.png`, konya `data/karapinar/disp/2026-10-12.png`, mexico
+`data/global/mexico_city/disp/2026-10-20.png` (paths relative to the site root; from `/run/` use `../`).
