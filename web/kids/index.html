@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Water Hero — a NISAR Vision game</title>
+<meta name="description" content="A two-minute tap game: water the farms, catch the rain, and keep the ground from sinking. Inspired by real NASA-ISRO NISAR measurements.">
+<link rel="icon" href="../assets/logo_mark_64.png" type="image/png">
+<meta name="theme-color" content="#2b7de9">
+<style>
+  :root { --ink:#1d2a3a; --sky:#8fd3ff; --btn:#ff8a1f; }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { margin: 0; height: 100%; background: #1d2a3a; font-family: "Trebuchet MS", "Segoe UI", system-ui, sans-serif; color: var(--ink); overflow: hidden; touch-action: manipulation; }
+  #wrap { position: fixed; inset: 0; display: grid; place-items: center; }
+  canvas { display: block; background: var(--sky); border-radius: 14px; box-shadow: 0 12px 40px rgba(0,0,0,.45); touch-action: none; }
+  .card { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: min(560px, 92vw); max-height: 92vh; overflow: auto; background: #fffdf6; border: 4px solid #1d2a3a; border-radius: 22px; padding: 22px 24px; text-align: center; box-shadow: 0 10px 0 #1d2a3a; }
+  .card[hidden] { display: none; }
+  .card h1 { margin: 0 0 6px; font-size: clamp(30px, 6vw, 44px); letter-spacing: -.5px; color: #2b7de9; text-shadow: 3px 3px 0 #1d2a3a; }
+  .card h2 { margin: 0 0 8px; font-size: clamp(24px, 5vw, 34px); }
+  .card p { margin: 8px 0; font-size: 17px; line-height: 1.4; }
+  .how { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 14px 0; }
+  .how div { background: #eaf6ff; border: 3px solid #1d2a3a; border-radius: 14px; padding: 10px 6px; font-size: 14px; font-weight: 700; }
+  .how b { display: block; font-size: 30px; line-height: 1.1; margin-bottom: 4px; }
+  .btn { display: inline-block; margin: 8px 6px 2px; padding: 12px 26px; font: 800 20px/1 inherit; font-family: inherit; color: #fff; background: var(--btn); border: 4px solid #1d2a3a; border-radius: 16px; box-shadow: 0 5px 0 #1d2a3a; cursor: pointer; text-decoration: none; }
+  .btn:active { transform: translateY(4px); box-shadow: 0 1px 0 #1d2a3a; }
+  .btn.blue { background: #2b7de9; }
+  .stars { font-size: 46px; letter-spacing: 6px; margin: 4px 0; }
+  .fact { background: #fff2d6; border: 3px dashed #c98a12; border-radius: 14px; padding: 10px 12px; font-size: 15px; text-align: left; }
+  .tiny { font-size: 12px; color: #5b6778; }
+  @media (max-width: 520px) { .how { grid-template-columns: 1fr; } .card { padding: 16px; } }
+  .rotate { display: none; position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%); background: #fffdf6; border: 3px solid #1d2a3a; border-radius: 14px; padding: 8px 14px; font-weight: 800; font-size: 15px; white-space: nowrap; }
+  @media (orientation: portrait) and (max-width: 700px) { .rotate { display: block; } }
+  @media (max-height: 460px) {
+    .card { padding: 10px 14px; border-width: 3px; box-shadow: 0 5px 0 #1d2a3a; }
+    .card h1 { font-size: 28px; margin-bottom: 2px; } .card p { font-size: 14px; margin: 4px 0; }
+    .how { margin: 6px 0; gap: 6px; } .how div { padding: 6px 4px; font-size: 12px; } .how b { font-size: 20px; }
+    .tiny { display: none; } .btn { padding: 9px 20px; font-size: 17px; margin-top: 4px; }
+    .stars { font-size: 32px; } .fact { font-size: 12.5px; padding: 6px 8px; }
+  }
+</style>
+</head>
+<body>
+<div id="wrap">
+  <canvas id="c" width="960" height="540" aria-label="Water Hero game"></canvas>
+  <div class="rotate">📱↻ Turn your phone sideways for a bigger game</div>
+
+  <div class="card" id="startCard">
+    <h1>Water Hero</h1>
+    <p>Help the farmers grow food for <b>2 years</b> without letting the ground sink!</p>
+    <div class="how">
+      <div><b>🌱</b>Tap a thirsty field to water it</div>
+      <div><b>☁️</b>Tap clouds to catch rain for the underground water</div>
+      <div><b>⚠️</b>Keep the blue water above the red line</div>
+    </div>
+    <p class="tiny">River water is free. When the river is empty, water is pumped from underground. Pump too much and the clay squeezes flat: the ground sinks and never comes back.</p>
+    <button class="btn" id="playBtn">▶ Play</button>
+  </div>
+
+  <div class="card" id="endCard" hidden>
+    <h2 id="endTitle">Great job!</h2>
+    <div class="stars" id="endStars">★★★</div>
+    <p id="endText"></p>
+    <div class="fact"><b>Real science:</b> in summer 2026 the NASA-ISRO NISAR satellite measured the ground in California's Central Valley sinking about <b>7.8 cm (3 inches)</b> in just 108 days, because farms pumped water from deep underground. Part of that sinking never comes back.</div>
+    <button class="btn" id="againBtn">↻ Play again</button>
+    <a class="btn blue" href="../">NISAR Vision →</a>
+  </div>
+</div>
+
+<script>
+/* Water Hero (PC1, NISAR Vision). Plain canvas, no libraries, original artwork drawn in code. */
+(() => {
+  const cv = document.getElementById('c'), ctx = cv.getContext('2d');
+  const W = 960, H = 540;
+  const GAME_SECONDS = 120;            // 2 years, 60 s each
+  const SAFE_LINE = 40;                // "lowest safe level" of underground water (0..100)
+  const FIELDS_X = [150, 290, 430, 570, 710];
+  const GROUND_Y = 300;                // top of the soil
+  let S = null, last = 0, running = false, pointer = null;
+
+  function fit() {
+    const scale = Math.min(innerWidth / W, innerHeight / H) * 0.98;
+    cv.style.width = Math.floor(W * scale) + 'px';
+    cv.style.height = Math.floor(H * scale) + 'px';
+  }
+  addEventListener('resize', fit); fit();
+
+  // ---------- sound (tiny beeps, optional) ----------
+  let actx = null;
+  function beep(f, d = 0.08, type = 'square', vol = 0.05) {
+    try {
+      actx = actx || new (window.AudioContext || window.webkitAudioContext)();
+      const o = actx.createOscillator(), g = actx.createGain();
+      o.type = type; o.frequency.value = f; g.gain.value = vol;
+      o.connect(g); g.connect(actx.destination); o.start();
+      g.gain.exponentialRampToValueAtTime(0.0001, actx.currentTime + d); o.stop(actx.currentTime + d);
+    } catch (e) {}
+  }
+
+  function newGame() {
+    return {
+      t: 0, coins: 0, harvests: 0, lost: 0,
+      aquifer: 72, river: 60, sinkTotal: 0,
+      fields: FIELDS_X.map((x, i) => ({ x, thirst: 20 + i * 12, growth: 0, sink: 0, pumpFx: 0, splash: 0, dead: 0 })),
+      clouds: [], drops: [], pops: [], houseCrack: 0, shake: 0, nextCloud: 1.5, warned: false,
+    };
+  }
+
+  // ---------- seasons: each 60 s year = winter (rain) -> spring -> summer (dry) -> autumn ----------
+  function season(t) {
+    const y = t % 60;
+    if (y < 18) return 'winter';
+    if (y < 28) return 'spring';
+    if (y < 50) return 'summer';
+    return 'autumn';
+  }
+  const SEASON_LABEL = { winter: '❄️ Winter · rainy', spring: '🌸 Spring', summer: '☀️ Summer · dry!', autumn: '🍂 Autumn' };
+
+  // ---------- update ----------
+  function update(dt) {
+    const s = S; s.t += dt;
+    const se = season(s.t);
+    const hot = se === 'summer' ? 1.6 : se === 'spring' || se === 'autumn' ? 1.0 : 0.5;
+
+    // river: fills in winter, drains in summer
+    s.river += (se === 'winter' ? 6 : se === 'summer' ? -1.5 : -0.4) * dt;
+    s.river = Math.max(0, Math.min(100, s.river));
+    // slow natural recharge in winter
+    if (se === 'winter') s.aquifer = Math.min(100, s.aquifer + 0.6 * dt);
+
+    // fields get thirsty; thirsty too long -> crop dies
+    for (const f of s.fields) {
+      if (f.dead > 0) { f.dead -= dt; if (f.dead <= 0) { f.growth = 0; f.thirst = 10; } continue; }
+      f.thirst += (4.5 + 1.5 * Math.random()) * hot * dt;
+      if (f.thirst >= 100) { f.dead = 3; f.growth = 0; s.lost++; s.pops.push({ x: f.x, y: GROUND_Y - 70 - f.sink, txt: 'crop lost', col: '#b3261e', life: 1.4 }); beep(140, 0.25, 'sawtooth'); }
+      f.pumpFx = Math.max(0, f.pumpFx - dt); f.splash = Math.max(0, f.splash - dt);
+    }
+
+    // below the red line the clay squeezes: everything sinks a little, permanently
+    if (s.aquifer < SAFE_LINE) {
+      const k = (SAFE_LINE - s.aquifer) / SAFE_LINE;
+      for (const f of s.fields) f.sink = Math.min(60, f.sink + 4 * k * dt);
+      if (!s.warned) { s.warned = true; s.pops.push({ x: W / 2, y: 150, txt: 'The ground is sinking!', col: '#b3261e', life: 2.2, big: true }); beep(220, 0.3, 'sawtooth', 0.07); }
+    } else s.warned = false;
+    s.sinkTotal = s.fields.reduce((a, f) => a + f.sink, 0) / s.fields.length;
+    s.houseCrack = Math.min(3, Math.floor(s.sinkTotal / 12));
+
+    // clouds (mostly in winter)
+    s.nextCloud -= dt;
+    if (s.nextCloud <= 0) {
+      const rainy = se === 'winter' ? 1 : se === 'summer' ? 0.12 : 0.45;
+      if (Math.random() < rainy) s.clouds.push({ x: -80, y: 50 + Math.random() * 70, v: 55 + Math.random() * 45, r: 1, raining: 0, used: false });
+      s.nextCloud = 1.0 + Math.random() * 1.4;
+    }
+    for (const c of s.clouds) { c.x += c.v * dt; c.raining = Math.max(0, c.raining - dt); }
+    s.clouds = s.clouds.filter((c) => c.x < W + 100);
+    for (const d of s.drops) { d.y += 420 * dt; }
+    s.drops = s.drops.filter((d) => d.y < GROUND_Y);
+    for (const p of s.pops) { p.life -= dt; p.y -= 30 * dt; }
+    s.pops = s.pops.filter((p) => p.life > 0);
+    s.shake = Math.max(0, s.shake - dt);
+
+    if (s.t >= GAME_SECONDS || s.sinkTotal >= 48) endGame();
+  }
+
+  // ---------- input ----------
+  function toGame(ev) {
+    const r = cv.getBoundingClientRect();
+    return { x: (ev.clientX - r.left) * W / r.width, y: (ev.clientY - r.top) * H / r.height };
+  }
+  cv.addEventListener('pointerdown', (ev) => {
+    if (!running) return;
+    const p = toGame(ev); const s = S;
+    // cloud?
+    for (const c of s.clouds) {
+      if (!c.used && Math.abs(p.x - c.x) < 70 && Math.abs(p.y - c.y) < 40) {
+        c.used = true; c.raining = 1.2;
+        s.aquifer = Math.min(100, s.aquifer + 9); s.river = Math.min(100, s.river + 5);
+        for (let i = 0; i < 14; i++) s.drops.push({ x: c.x - 45 + Math.random() * 90, y: c.y + 20 + Math.random() * 20 });
+        s.pops.push({ x: c.x, y: c.y - 30, txt: '+ water', col: '#1b6fd8', life: 1 });
+        beep(880, 0.06, 'sine', 0.06); beep(1175, 0.08, 'sine', 0.05);
+        return;
+      }
+    }
+    // field?
+    for (const f of s.fields) {
+      const top = GROUND_Y - 90 + f.sink;
+      if (Math.abs(p.x - f.x) < 62 && p.y > top && p.y < GROUND_Y + 30 + f.sink) { waterField(f); return; }
+    }
+  });
+
+  function waterField(f) {
+    const s = S;
+    if (f.dead > 0) return;
+    if (f.thirst < 30) { s.pops.push({ x: f.x, y: GROUND_Y - 100 + f.sink, txt: 'not thirsty', col: '#5b6778', life: 0.8 }); return; }
+    if (s.river >= 8) { s.river -= 8; f.splash = 0.5; beep(660, 0.05, 'triangle'); }
+    else { s.aquifer = Math.max(0, s.aquifer - 6); f.pumpFx = 0.7; s.shake = 0.15; beep(180, 0.09, 'square', 0.04);
+      s.pops.push({ x: f.x, y: GROUND_Y + 60, txt: 'pumped', col: '#1d2a3a', life: 0.8 }); }
+    const grew = f.thirst >= 40;  // crops only grow when they really needed the water; early watering is wasted
+    f.thirst = 0;
+    if (!grew) { s.pops.push({ x: f.x, y: GROUND_Y - 100 + f.sink, txt: 'too early: water wasted', col: '#c98a12', life: 1 }); return; }
+    f.growth++;
+    if (f.growth >= 3) { f.growth = 0; s.coins += 10; s.harvests++; s.pops.push({ x: f.x, y: GROUND_Y - 110 + f.sink, txt: '+10 🪙', col: '#a86b00', life: 1.2, big: true }); beep(988, 0.07, 'square', 0.05); beep(1318, 0.1, 'square', 0.05); }
+  }
+
+  // ---------- drawing ----------
+  function rr(x, y, w, h, r) { ctx.beginPath(); ctx.roundRect ? ctx.roundRect(x, y, w, h, r) : ctx.rect(x, y, w, h); }
+  function draw() {
+    const s = S, se = season(s.t);
+    ctx.save();
+    if (s.shake > 0) ctx.translate((Math.random() - 0.5) * 4, (Math.random() - 0.5) * 4);
+    // sky
+    const sky = ctx.createLinearGradient(0, 0, 0, GROUND_Y);
+    const top = se === 'winter' ? '#9fb8cc' : se === 'summer' ? '#5cc2ff' : '#7fcbff';
+    sky.addColorStop(0, top); sky.addColorStop(1, '#dff3ff');
+    ctx.fillStyle = sky; ctx.fillRect(0, 0, W, GROUND_Y);
+    // sun
+    ctx.fillStyle = se === 'summer' ? '#ffcf2e' : '#ffe58a';
+    ctx.beginPath(); ctx.arc(880, 70, se === 'summer' ? 42 : 30, 0, Math.PI * 2); ctx.fill();
+    // far hills
+    ctx.fillStyle = '#b9dca4';
+    ctx.beginPath(); ctx.moveTo(0, GROUND_Y - 40);
+    for (let x = 0; x <= W; x += 40) ctx.lineTo(x, GROUND_Y - 40 - 18 * Math.sin(x / 90));
+    ctx.lineTo(W, GROUND_Y); ctx.lineTo(0, GROUND_Y); ctx.fill();
+
+    // river / canal (left)
+    ctx.fillStyle = '#7a5a3a'; rr(18, GROUND_Y - 26, 70, 52, 8); ctx.fill();
+    ctx.fillStyle = '#3aa0ff'; const rh = 44 * s.river / 100; rr(22, GROUND_Y + 22 - rh, 62, rh, 6); ctx.fill();
+    ctx.fillStyle = '#1d2a3a'; ctx.font = 'bold 13px Trebuchet MS'; ctx.textAlign = 'center'; ctx.fillText('RIVER', 53, GROUND_Y - 32);
+
+    // underground: soil, aquifer, clay
+    ctx.fillStyle = '#8b5e34'; ctx.fillRect(0, GROUND_Y, W, H - GROUND_Y);
+    const aqTop = GROUND_Y + 70, aqBottom = H - 20;
+    ctx.fillStyle = '#c9a46b'; ctx.fillRect(0, aqTop - 22, W, 22); // clay band
+    ctx.strokeStyle = 'rgba(0,0,0,.18)';
+    for (let x = 0; x < W; x += 22) { ctx.beginPath(); ctx.moveTo(x, aqTop - 22); ctx.lineTo(x + 10, aqTop); ctx.stroke(); }
+    // water level (wavy)
+    const level = aqBottom - (aqBottom - aqTop) * s.aquifer / 100;
+    ctx.fillStyle = '#2b7de9';
+    ctx.beginPath(); ctx.moveTo(0, aqBottom);
+    for (let x = 0; x <= W; x += 20) ctx.lineTo(x, level + 3 * Math.sin(x / 30 + s.t * 3));
+    ctx.lineTo(W, aqBottom); ctx.fill();
+    // red safe line
+    const safeY = aqBottom - (aqBottom - aqTop) * SAFE_LINE / 100;
+    ctx.setLineDash([12, 8]); ctx.strokeStyle = '#e02424'; ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.moveTo(0, safeY); ctx.lineTo(W, safeY); ctx.stroke(); ctx.setLineDash([]);
+    ctx.fillStyle = '#fff'; ctx.font = 'bold 14px Trebuchet MS'; ctx.textAlign = 'left';
+    ctx.fillText('UNDERGROUND WATER', 12, aqBottom - 8);
+    ctx.fillStyle = '#ffd6d6'; ctx.fillText('lowest safe level', W - 150, safeY - 6);
+
+    // fields
+    for (const f of s.fields) drawField(f);
+    // farmhouse (right) with cracks
+    drawHouse(860, GROUND_Y + s.sinkTotal * 0.8);
+
+    // clouds + rain
+    for (const c of s.clouds) drawCloud(c);
+    ctx.fillStyle = '#2b7de9';
+    for (const d of s.drops) { ctx.beginPath(); ctx.ellipse(d.x, d.y, 3, 7, 0, 0, Math.PI * 2); ctx.fill(); }
+
+    // floating texts
+    ctx.textAlign = 'center';
+    for (const p of s.pops) {
+      ctx.globalAlpha = Math.min(1, p.life * 1.5);
+      ctx.font = `bold ${p.big ? 26 : 16}px Trebuchet MS`;
+      ctx.lineWidth = 4; ctx.strokeStyle = '#fff'; ctx.strokeText(p.txt, p.x, p.y);
+      ctx.fillStyle = p.col; ctx.fillText(p.txt, p.x, p.y);
+    }
+    ctx.globalAlpha = 1;
+    drawHud(se);
+    ctx.restore();
+  }
+
+  function drawField(f) {
+    const y = GROUND_Y + f.sink;
+    // soil block (sinks)
+    ctx.fillStyle = f.sink > 2 ? '#6f4a28' : '#7a5230';
+    rr(f.x - 60, y - 12, 120, 26, 6); ctx.fill();
+    if (f.sink > 2) { // gap showing how far it sank
+      ctx.fillStyle = 'rgba(0,0,0,.25)'; ctx.fillRect(f.x - 60, GROUND_Y - 12, 120, Math.min(f.sink, 26));
+      ctx.fillStyle = '#e02424'; ctx.font = 'bold 13px Trebuchet MS'; ctx.textAlign = 'center';
+      ctx.fillText(`−${(f.sink / 6).toFixed(1)} cm`, f.x, GROUND_Y - 18);
+    }
+    // crops
+    const n = 4, sp = 26;
+    for (let i = 0; i < n; i++) {
+      const cx = f.x - (n - 1) * sp / 2 + i * sp;
+      if (f.dead > 0) { ctx.strokeStyle = '#7b6a4a'; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(cx, y - 12); ctx.lineTo(cx + 6, y - 26); ctx.stroke(); continue; }
+      const h = 14 + f.growth * 12;
+      const wilt = f.thirst > 70 ? (f.thirst - 70) / 30 : 0;
+      ctx.strokeStyle = '#2f8f3a'; ctx.lineWidth = 4;
+      ctx.beginPath(); ctx.moveTo(cx, y - 12); ctx.quadraticCurveTo(cx + wilt * 10, y - 12 - h / 2, cx + wilt * 16, y - 12 - h + wilt * 8); ctx.stroke();
+      ctx.fillStyle = f.growth >= 2 ? '#ffb000' : '#45c04f';
+      ctx.beginPath(); ctx.arc(cx + wilt * 16, y - 12 - h + wilt * 8, 6 + f.growth * 2, 0, Math.PI * 2); ctx.fill();
+    }
+    // thirst bubble
+    if (f.dead <= 0 && f.thirst > 45) {
+      const a = Math.min(1, (f.thirst - 45) / 30);
+      ctx.globalAlpha = a; ctx.fillStyle = '#fff'; ctx.strokeStyle = '#1d2a3a'; ctx.lineWidth = 3;
+      rr(f.x - 22, y - 92, 44, 34, 12); ctx.fill(); ctx.stroke();
+      ctx.fillStyle = f.thirst > 80 ? '#e02424' : '#2b7de9'; ctx.font = 'bold 20px Trebuchet MS'; ctx.textAlign = 'center';
+      ctx.fillText('💧', f.x, y - 68); ctx.globalAlpha = 1;
+    }
+    // pump: a well pipe down into the water
+    if (f.pumpFx > 0) {
+      ctx.strokeStyle = '#555'; ctx.lineWidth = 6; ctx.beginPath(); ctx.moveTo(f.x + 48, y - 10); ctx.lineTo(f.x + 48, H - 30); ctx.stroke();
+    }
+    if (f.splash > 0) { ctx.fillStyle = '#3aa0ff'; for (let i = 0; i < 6; i++) { ctx.beginPath(); ctx.arc(f.x - 50 + i * 20, y - 20 - 10 * f.splash, 4, 0, Math.PI * 2); ctx.fill(); } }
+  }
+
+  function drawHouse(x, y) {
+    ctx.fillStyle = '#f4e1c1'; ctx.strokeStyle = '#1d2a3a'; ctx.lineWidth = 3;
+    rr(x - 40, y - 60, 80, 60, 4); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = '#d0491f'; ctx.beginPath(); ctx.moveTo(x - 50, y - 58); ctx.lineTo(x, y - 95); ctx.lineTo(x + 50, y - 58); ctx.closePath(); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = '#7fc7ff'; rr(x - 26, y - 44, 18, 16, 2); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = '#8b5e34'; rr(x + 6, y - 34, 18, 34, 2); ctx.fill(); ctx.stroke();
+    ctx.strokeStyle = '#1d2a3a'; ctx.lineWidth = 2;
+    for (let i = 0; i < S.houseCrack; i++) { const cx = x - 30 + i * 22; ctx.beginPath(); ctx.moveTo(cx, y - 58); ctx.lineTo(cx + 6, y - 44); ctx.lineTo(cx - 2, y - 32); ctx.lineTo(cx + 5, y - 18); ctx.stroke(); }
+  }
+
+  function drawCloud(c) {
+    ctx.fillStyle = c.used ? '#d8e1e8' : '#ffffff'; ctx.strokeStyle = '#1d2a3a'; ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.arc(c.x - 34, c.y + 6, 24, 0, Math.PI * 2); ctx.arc(c.x, c.y - 8, 32, 0, Math.PI * 2); ctx.arc(c.x + 36, c.y + 6, 24, 0, Math.PI * 2);
+    ctx.fill(); ctx.stroke();
+    ctx.fillStyle = c.used ? '#d8e1e8' : '#ffffff'; ctx.fillRect(c.x - 50, c.y + 2, 100, 24);
+    if (!c.used) { ctx.fillStyle = '#1d2a3a'; ctx.font = 'bold 13px Trebuchet MS'; ctx.textAlign = 'center'; ctx.fillText('tap!', c.x, c.y + 18); }
+  }
+
+  function drawHud(se) {
+    const s = S;
+    ctx.fillStyle = 'rgba(255,255,255,.9)'; ctx.strokeStyle = '#1d2a3a'; ctx.lineWidth = 3;
+    rr(12, 10, 300, 38, 12); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = '#1d2a3a'; ctx.font = 'bold 17px Trebuchet MS'; ctx.textAlign = 'left';
+    const year = Math.min(2, Math.floor(s.t / 60) + 1);
+    ctx.fillText(`Year ${year} · ${SEASON_LABEL[se]}`, 22, 35);
+    rr(330, 10, 130, 38, 12); ctx.fillStyle = 'rgba(255,255,255,.9)'; ctx.fill(); ctx.stroke();
+    ctx.fillStyle = '#a86b00'; ctx.fillText(`🪙 ${s.coins}`, 345, 35);
+    // time bar
+    ctx.fillStyle = 'rgba(255,255,255,.9)'; rr(480, 18, 300, 22, 11); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = '#ff8a1f'; rr(483, 21, 294 * Math.min(1, s.t / GAME_SECONDS), 16, 8); ctx.fill();
+    // ground meter
+    ctx.fillStyle = s.sinkTotal > 20 ? '#e02424' : '#1d2a3a'; ctx.font = 'bold 15px Trebuchet MS';
+    ctx.fillText(`Ground sank: ${(s.sinkTotal / 6).toFixed(1)} cm`, 484, 62);
+  }
+
+  // ---------- flow ----------
+  function loop(ts) {
+    if (!running) return;
+    const dt = Math.min(0.05, (ts - last) / 1000 || 0); last = ts;
+    update(dt); if (running) draw();
+    requestAnimationFrame(loop);
+  }
+  function start() {
+    S = newGame(); running = true; last = performance.now();
+    document.getElementById('startCard').hidden = true; document.getElementById('endCard').hidden = true;
+    beep(523, 0.08, 'square'); beep(784, 0.1, 'square');
+    requestAnimationFrame(loop);
+  }
+  function endGame() {
+    running = false; draw();
+    const s = S, cm = s.sinkTotal / 6;
+    let stars = 0;
+    if (s.harvests >= 10) stars++;
+    if (cm < 2) stars++;
+    if (s.lost <= 2 && cm < 4) stars++;
+    const sunk = s.sinkTotal >= 48;
+    document.getElementById('endTitle').textContent = sunk ? 'Oh no, the ground sank!' : stars === 3 ? 'Water Hero!' : stars === 2 ? 'Great job!' : 'Nice try!';
+    document.getElementById('endStars').textContent = '★'.repeat(stars) + '☆'.repeat(3 - stars);
+    document.getElementById('endText').innerHTML = `You harvested <b>${s.harvests}</b> times (🪙 ${s.coins}), lost <b>${s.lost}</b> crops, and the ground sank <b>${cm.toFixed(1)} cm</b>.` +
+      (cm >= 2 ? ' Tip: catch more rain in winter and use river water first, so you pump less in summer.'
+        : s.lost > 3 ? ' Tip: water a field when its 💧 bubble appears, before the crop dries out.'
+        : ' You kept the farms growing and the underground water safe. That is exactly what real water managers try to do!');
+    document.getElementById('endCard').hidden = false;
+    beep(sunk ? 160 : 660, 0.25, sunk ? 'sawtooth' : 'triangle', 0.06);
+  }
+  document.getElementById('playBtn').addEventListener('click', start);
+  document.getElementById('againBtn').addEventListener('click', start);
+
+  // idle background so the start screen is not empty
+  S = newGame(); draw();
+  window.__waterHero = { get state() { return S; }, start, endGame, waterField, update, draw };  // for testing
+})();
+</script>
+</body>
+</html>
