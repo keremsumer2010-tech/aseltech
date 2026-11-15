@@ -16,7 +16,7 @@
 - **Three-Minute Story Spec:** [docs/story/three_minute_story.md](docs/story/three_minute_story.md)
 - **Global Subsidence Atlas (29 Regions):** [web/atlas.html](web/atlas.html) (`https://keremsumer2010-tech.github.io/aseltech/atlas.html`)
 - **6-Stop Lincoln Presentation Mode (Offline-Ready):** [web/present.html](web/present.html)
-- **Valley Under Pressure Simulator:** [game/index.html](game/index.html) (`https://keremsumer2010-tech.github.io/aseltech/game/`)
+- **Groundwater Simulator:** [game/index.html](game/index.html) (`https://keremsumer2010-tech.github.io/aseltech/game/`)
 - **Science Sign-Off & Submission Package:** [docs/qa/SCIENCE_SIGNOFF.md](docs/qa/SCIENCE_SIGNOFF.md) · [docs/story/submission_package.md](docs/story/submission_package.md)
 
 ---
@@ -30,7 +30,7 @@
 5. **Water Storage Lost for Good:** 11-month harmonic decomposition in Central Valley separating permanent clay compaction (**`0.3174 km³/yr`** lost storage) from seasonal rebound.
 6. **Canals and Railways at Risk:** Longitudinal tilt screening across `645` OpenStreetMap segments (`81 / 645 > 20 mm/km`, Tulare Canal `57.01 mm/km`).
 7. **One-Page Basin Bulletins:** `29` printable NASA-style monitoring bulletins (`docs/bulletins/<region>.html`).
-8. **Simulator Anyone Can Play:** *Valley Under Pressure* 24-month aquifer simulator (`game/index.html`) calibrated to Terra Bella compaction and NISAR rates.
+8. **Simulator Anyone Can Play:** 24-month *Groundwater Simulator* (`game/index.html`) calibrated to Terra Bella compaction and NISAR rates.
 9. **Open One-Command Engine:** `NISAR Vision` (`pipeline/nisarvision`) to download, measure, and self-check any new region from public NASA ASF data.
 
 ---
@@ -101,7 +101,7 @@ Code, analysis scripts, tests, and prose documentation were written with the ass
 | `risk/` | Subsidence gradient (`mm/km`) along canals, railways, and highways (OpenStreetMap) |
 | `data/` | Processed JSONs, displacement PNGs, and GeoJSON layers consumed by the website and tests |
 | `web/` | Static NASA-EO-style web application (`index.html`, `atlas.html`, `present.html`, `science.html`, `data.html`, `explorer.html`, `faq.html`) |
-| `game/` | *Valley Under Pressure* 24-month aquifer simulator (`model.js`, `tests.js`, `test_model.html`) |
+| `game/` | 24-month *Groundwater Simulator* (`model.js`, `tests.js`, `test_model.html`) |
 | `web3d/` | Interactive 3D Earth subsidence globe |
 | `tools/` | `sync_atlas_text.py`, `atlas_qc.py`, `atlas_completeness.py`, `vital_signs.py`, `bulletin.py` |
 | `tests/` | `pytest` consistency checks (`tests/test_site_numbers.py`, `analysis/`, `pipeline/`) |

@@ -53,4 +53,4 @@ AI assistants (Anthropic Claude and Google Gemini) helped draft analysis scripts
 | `1:00–1:30` | **Stop 3: Self-Checking QC** | Kerem; `ArrowRight` → Stop 3 | Semarang `12.1 cm` phase-cycle jump caught (`−12.1 → −6.2 cm`), `5` indicative |
 | `1:30–2:05` | **Stop 4: Why You Can Trust It** | Kerem; `ArrowRight` → Stop 4 | `10` GNSS `r = 0.924` (`1.00 cm` RMSE), `≈ 0.3 cm` noise, OPERA caveat, London `3.62 cm` floor |
 | `2:05–2:40` | **Stop 5: What It Is For** | Kerem; `ArrowRight` → Stop 5 | `1.20 M` people (`511.65 km²`), `0.3174 km³/yr`, `81/645` tilt, `29` bulletins |
-| `2:40–3:00` | **Stop 6: What Is New & Close** | Mehmet cues `2:40`; `ArrowRight` → Stop 6 | 4 contributions, one-command engine, `Valley Under Pressure` simulator |
+| `2:40–3:00` | **Stop 6: What Is New & Close** | Mehmet cues `2:40`; `ArrowRight` → Stop 6 | 4 contributions, one-command engine, `Groundwater Simulator` |
