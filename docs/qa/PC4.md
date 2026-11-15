@@ -333,3 +333,20 @@ Kapsam: `web/index.html` (`1–163`). Genel İngilizce tonu akıcı ve tutarlı 
   - `ho_chi_minh`: `#9 → #13` (`−4`; `−3.5 → +4.6 cm/100d`, muson dönemi kabarma/salınım etkisi).
   - `bangkok`: `#6 → #3` (`+3`; `−6.2 → −12.5 cm/100d`, muson gürültü salınımı).
   - `gorgan` (`#1 → #1`), `delhi` (`#2 → #2`) sabit; `jakarta` (`−2`), `isfahan` (`+2`), `xian` (`+2`).
+
+### 33. `atlas_top5_check.md` Yönteminin 6–15. Sıralara Uygulanması (`2026-11-15 09:29 TR`)
+`docs/story/atlas_top5_check.md` yöntemi (`p01` adım-adım zaman serisi `|Δ|` kontrolü + hakemli literatür kıyası) `data/global/atlas.json` **6–15. sıralarına** uygulandı (`BACKLOG_ORTAK.md` §B `[x PC4]`):
+- **Sonuç:** 10 bölgenin tamamında tek adımda `12.1 cm` faz döngüsü sıçraması veya birbirini götüren `> 5 cm` tek tarih aykırısı **yok** (`0` QC bayrağı; tüm adımlar `< 6.05 cm` yarı-döngü sınırının altında).
+
+| Sıra | Bölge (`id`) | Ortak Hız (`cm/100d`) | Tepe LOS (`cm`) | Maks `|Δ|` Adım (`cm`) | Güven | Literatür Hızı & Uyum |
+|---:|---|---:|---:|---:|---|---|
+| 6 | `mexico_city` | `−6.3` | `−7.0` | `3.55` | `medium` | `30–40 cm/yr` (doğu/kuzey göl yatağı; kenar/kayaç ref. ile uyumlu) |
+| 7 | `semarang` | `−5.5` | `−6.2` | `5.14` | `medium` | `6–19 cm/yr` (kıyı; `10-11` faz sıçraması temizlendi, uyumlu) |
+| 8 | `kerman` | `−5.3` | `−6.1` | `1.60` | `high` | `>35 cm/yr` il geneli (`10.1126/sciadv.adp0896`; uyumlu) |
+| 9 | `rafsanjan` | `−4.2` | `−5.8` | `1.19` | `medium` | `15–30+ cm/yr` (Rafsanjan Ovası; uyumlu) |
+| 10 | `houston` | `−4.0` | `−5.2` | `1.70` | `medium` | `1.0–4.9 cm/yr` (`10.3390/rs14236184`; yaz pik/ref duyarlılığı notlu) |
+| 11 | `can_tho` | `−3.4` | `−3.4` | `1.76` | `medium` | `1.0–4.0+ cm/yr` (`10.3390/rs13020189`; uyumlu) |
+| 12 | `tianjin` | `−2.8` | `−2.9` | `1.37` | `medium` | `5–17 cm/yr` (`10.3390/s26041203`; uyumlu) |
+| 13 | `cangzhou` | `−2.4` | `−2.4` | `1.07` | `medium` | `~2–4 cm/yr` (`10.1007/s12665-013-2532-7`; uyumlu) |
+| 14 | `lagos` | `−2.1` | `−2.4` | `1.49` | `medium` | `0.2–8.7 cm/yr` (`10.1016/j.geog.2019.12.006`; uyumlu) |
+| 15 | `delta` | `−1.4` | `−1.3` | `1.58` | `medium` | `1.2–2.2 cm/yr` (turba oksidasyonu; uyumlu) |

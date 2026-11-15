@@ -1,1 +1,1 @@
-**PC4** (`2026-11-15 09:25 TR`): Ortak `93` günlük pencere vs. tam pencere sıralama kıyası (`docs/qa/PC4.md` §32, `BACKLOG_ORTAK.md` §B `[x PC4]`) tamamlandı. Sıradaki: `SUREKLI` izleme (cron `task-1150` aktif).
+**PC4** (`2026-11-15 09:29 TR`): `atlas_top5_check.md` yöntemi `6–15.` sıralara uygulandı (`0` faz-döngüsü/tek-tarih aykırısı, tüm maks `|Δ| <= 5.14 cm < 6.05 cm`, literatür kıyası `docs/qa/PC4.md` §33'te; `BACKLOG_ORTAK.md` §B `[x PC4]`). Sıradaki: `SUREKLI` izleme (cron `task-1150` aktif).

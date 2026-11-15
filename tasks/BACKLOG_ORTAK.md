@@ -47,7 +47,7 @@ Kullanıcı artık ajanlara prompt girmiyor; **tüm yönetim git üzerinden.** K
 - [ ] Her güvenilir bölge için 1 paragraf "neden çöküyor" (yeraltı suyu / kil / tarım), kaynaklı → şehir kartlarına ek (PC4 ile koordineli)
 - [ ] `docs/story/detectability.md`'yi 21+ bölgeye güncelle (yeni bölgelerin σ haritaları geldikçe)
 - [x PC4] Ortak 93 günlük pencere sıralamasının eski sıralamayla kıyası (hangi bölge yer değiştirdi, neden) → `docs/qa/PC4.md` §32
-- [~PC4] `atlas_top5_check.md` yöntemini 6–15. sıralara uygula (literatür kıyası tablosu)
+- [x PC4] `atlas_top5_check.md` yöntemini 6–15. sıralara uygula (literatür kıyası tablosu → `docs/qa/PC4.md` §33)
 
 ## C. Site ve sunum (PC6, PC8, PC4)
 - [ ] Her sayfanın `<title>`/`<meta description>`/`og:image`'ı güncel atlas sonuçlarıyla
