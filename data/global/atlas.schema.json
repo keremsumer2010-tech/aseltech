@@ -1,0 +1,139 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://keremsumer2010-tech.github.io/aseltech/data/global/atlas.schema.json",
+  "title": "NISAR Pulse Global Subsidence Atlas Schema",
+  "description": "Contract for data/global/atlas.json, aligned with docs/story/atlas_data_dictionary.md.",
+  "type": "object",
+  "required": [
+    "title",
+    "status",
+    "quality",
+    "quality_note",
+    "ranking_metric",
+    "common_window",
+    "common_window_days",
+    "n_regions",
+    "n_reliable",
+    "n_indicative",
+    "regions",
+    "reliable",
+    "indicative"
+  ],
+  "properties": {
+    "title": { "type": "string", "description": "Atlas display title." },
+    "status": { "type": "string", "description": "Atlas build provenance/status string." },
+    "quality": { "type": "string", "enum": ["provisional", "mixed", "beta"] },
+    "quality_note": { "type": "string", "minLength": 20, "description": "Mandatory NISAR provisional calibration notice." },
+    "ranking_metric": { "type": "string", "description": "Primary ranking key (rate_cm_per_100d_common)." },
+    "common_window": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+      "minItems": 2,
+      "maxItems": 2,
+      "description": "Shared [start, end] ISO dates for cross-basin ranking."
+    },
+    "common_window_days": { "type": "integer", "minimum": 1, "description": "Duration of common_window in days (93)." },
+    "n_regions": { "type": "integer", "minimum": 1, "description": "Total regions in atlas." },
+    "n_reliable": { "type": "integer", "minimum": 0, "description": "Count of reliable (non-indicative) regions." },
+    "n_indicative": { "type": "integer", "minimum": 0, "description": "Count of indicative-only regions." },
+    "regions": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/definitions/region" }
+    },
+    "reliable": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/region" },
+      "description": "Ordered list of reliable region objects."
+    },
+    "indicative": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/region" },
+      "description": "Ordered list of indicative-only region objects."
+    }
+  },
+  "definitions": {
+    "region": {
+      "type": "object",
+      "required": [
+        "rank",
+        "id",
+        "name",
+        "country",
+        "lon",
+        "lat",
+        "max_cm_los",
+        "max_cm_vertical_est",
+        "rate_cm_per_100d",
+        "rate_cm_per_100d_common",
+        "rate_cm_per_yr_estimate",
+        "days",
+        "n_pairs",
+        "period",
+        "quality",
+        "confidence",
+        "indicative_only",
+        "coverage",
+        "path",
+        "note"
+      ],
+      "properties": {
+        "rank": { "type": "integer", "minimum": 1, "description": "1-based rank in atlas." },
+        "id": { "type": "string", "pattern": "^[a-z0-9_]+$", "description": "Unique region slug." },
+        "name": { "type": "string", "minLength": 1, "description": "Human-readable basin/city name." },
+        "country": { "type": "string", "description": "Country name (may be empty if unpopulated)." },
+        "lon": { "type": "number", "minimum": -180, "maximum": 180, "description": "Peak point longitude (deg E)." },
+        "lat": { "type": "number", "minimum": -90, "maximum": 90, "description": "Peak point latitude (deg N)." },
+        "max_cm_los": { "type": "number", "description": "Peak cumulative LOS displacement (cm, negative = subsidence)." },
+        "max_cm_vertical_est": { "type": "number", "description": "Single-orbit vertical estimate LOS / cos(theta) (cm)." },
+        "rate_cm_per_100d": { "type": "number", "description": "Full-window LOS rate (cm per 100 days)." },
+        "rate_cm_per_100d_common": { "type": "number", "description": "Common 93-day window LOS rate (cm per 100 days)." },
+        "rate_cm_per_yr_estimate": { "type": "number", "description": "Linearly annualized LOS rate (cm/yr, illustrative)." },
+        "rate_ci_cm_per_100d": {
+          "type": ["array", "null"],
+          "items": { "type": "number" },
+          "minItems": 2,
+          "maxItems": 2,
+          "description": "95% confidence interval [low, high] in cm/100d."
+        },
+        "days": { "type": "integer", "minimum": 1, "description": "Observation span in days." },
+        "n_pairs": { "type": "integer", "minimum": 1, "description": "Number of interferometric pairs." },
+        "period": {
+          "type": "array",
+          "items": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+          "minItems": 2,
+          "maxItems": 2,
+          "description": "Observation [start, end] ISO dates."
+        },
+        "p2_cm": { "type": ["number", "null"], "description": "2nd percentile block displacement (cm)." },
+        "valid_fraction": { "type": ["number", "null"], "minimum": 0, "maximum": 1, "description": "Fraction of valid 1 km blocks." },
+        "sigma_cm_median": { "type": ["number", "null"], "minimum": 0, "description": "Median formal chain uncertainty (cm)." },
+        "detectable": { "type": ["boolean", "null"], "description": "True if |max_cm_los| >= 2 * sigma." },
+        "ref_range_cm": {
+          "type": ["array", "null"],
+          "items": { "type": "number" },
+          "minItems": 2,
+          "maxItems": 2,
+          "description": "Multi-reference [min, max] spread (cm)."
+        },
+        "robustness_spread": { "type": ["number", "null"], "minimum": 0, "description": "Reference sensitivity spread (cm)." },
+        "people_exposed": { "type": ["integer", "null"], "minimum": 0, "description": "GHSL residents on < -5 cm ground." },
+        "quality": { "type": "string", "enum": ["provisional", "mixed", "beta"] },
+        "confidence": { "type": "string", "enum": ["high", "medium", "low"] },
+        "indicative_only": { "type": "boolean", "description": "True if low-confidence or QC-flagged." },
+        "coverage": { "type": "string", "description": "Spatial coverage label (e.g. full, partial)." },
+        "path": { "type": "string", "description": "Relative path to region data directory." },
+        "note": { "type": "string", "description": "Summary note or QC caution." },
+        "qc_flags": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Optional automated/manual QC flags."
+        },
+        "opera_check": {
+          "type": ["object", "null"],
+          "description": "Optional OPERA DISP-S1 cross-sensor diagnostic summary."
+        }
+      }
+    }
+  }
+}

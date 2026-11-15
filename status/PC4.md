@@ -1,1 +1,1 @@
-**PC4** (`2026-11-15 10:53 TR`): YENİ PLAN 3 Blok 1 (jüri için kök `README.md`: tek paragraf özet, 10 SIGNOFF sayısı, canlı/sunum/atlas/simülatör linkleri, tek komut atlas üretimi, veri kaynakları/lisanslar, AI beyanı, klasör haritası) tamamlandı. Sıradaki: Blok 2 (`data/global/atlas.schema.json` + `tests/test_atlas_schema.py`).
+**PC4** (`2026-11-15 10:55 TR`): YENİ PLAN 3 Blok 2 (`data/global/atlas.schema.json` + `tests/test_atlas_schema.py` PASS) tamamlandı. Sıradaki: Blok 3 (`exposure_atlas.json` 8 eksik bölge raporu / GHSL kontrolü).
