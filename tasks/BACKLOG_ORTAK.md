@@ -8,9 +8,9 @@ Kullanıcı artık ajanlara prompt girmiyor; **tüm yönetim git üzerinden.** K
 - [ ] Cakarta tam kutu yeniden hesap (PC11 6/9'da kaldı; `pipeline/subset/global_jakarta` varsa `--resume`)
 - [ ] Bulacan / Manila Körfezi (120.90, 14.85)
 - [x PC4] Tek literatür tablosu: `data/global/literature_rates.json` + `docs/story/literature_atlas.md` (tüm 29 atlas bölgesi, DOI)
-- [ ] Oyun ↔ atlas bağlantısı (`tasks/PC6.md` "OYUN ↔ ATLAS" 1–5)
-- [ ] Sunum modu `web/present.html` (Lincoln demosu, ok tuşlarıyla bölüm turu)
-- [ ] "What changed" kutusu + sıralamada hata çubukları (atlas sayfası)
+- [~PC4] Oyun ↔ atlas bağlantısı (`tasks/PC6.md` "OYUN ↔ ATLAS" 1–5)
+- [~PC4] Sunum modu `web/present.html` (Lincoln demosu, ok tuşlarıyla bölüm turu)
+- [~PC4] "What changed" kutusu + sıralamada hata çubukları (atlas sayfası)
 - [x PC4] Teslim paketi `docs/story/submission_package.md` (Space Apps gerekleri, AI beyanı, NASA veri listesi, tüm linkler 200)
 - [x PC4] Jüri SSS 30 soru (`docs/story/judge_faq.md`) — yeni sıralama, QC, OPERA, ortak pencere
 
@@ -52,7 +52,7 @@ Kullanıcı artık ajanlara prompt girmiyor; **tüm yönetim git üzerinden.** K
 ## C. Site ve sunum (PC6, PC8, PC4)
 - [x PC4] Her sayfanın `<title>`/`<meta description>`/`og:image`'ı güncel 29-bölge atlas sonuçlarıyla (`web/*.html`)
 - [x PC4] Atlas sayfasına "How to read this map" 4 adımlık kısa rehber (`web/atlas.html`)
-- [ ] Ana sayfadaki her sayının atlas.json / results_registry ile aynı olduğunu otomatik kontrol eden test (`tests/test_site_numbers.py`)
+- [~PC4] Ana sayfadaki her sayının atlas.json / results_registry ile aynı olduğunu otomatik kontrol eden test (`tests/test_site_numbers.py`)
 - [x PC4] Sunum için 60 sn'lik yedek ekran kaydı senaryosu (gerçek siteden, AI görseli yok) — `docs/story/demo_script_v3.md`
 
 ## D. Kalite (herkes)

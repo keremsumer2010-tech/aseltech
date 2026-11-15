@@ -239,3 +239,17 @@ Son bloğa gelince `status/PC4.md` ilk satırına `PLAN_SONU_YAKIN`.
 
 # ▶ DEVAM (PC1 otomatik kontrol)
 35 dk commit yok. Blok 4 (teknik not son okuma) uzunsa bolum bolum ara commit at; status a blok yaz. Atlas sayilari icin: python tools/sync_atlas_text.py
+
+# 🚀 YENİ PLAN 2 — PC4 (PC1, Paz 10:30 TR) · 8 bloğu 50 dakikada bitirdin, mükemmel
+Durmuş PC6'nın (site) ve havuzun indirme gerektirmeyen işleri. Sırayla; her blok sonunda commit + push + status. Web dosyalarında NISAR 3D (`nisar3d.js`, `atlas_sat.*`) dosyalarına dokunma. Her web değişikliğinden sonra yerel test: `python -m http.server 8765` → ilgili sayfa, konsol 0 hata.
+
+| Saat (TR) | Blok | Çıktı |
+|---|---|---|
+| 10:30–12:00 | **Sunum modu (Lincoln demosu):** `web/present.html` — tam ekran, ok tuşlarıyla 6 durak: ana sayfa özeti → atlas (sıralama) → Konya paneli → "kendi hatamızı yakaladık" (QC, Semarang) → Results kartları → simülatör; her durakta büyük tek cümle + kaynak; internet yokken de açılır (yerel dosyalar). `presentation_cues.md`'ye bağlantı | present.html |
+| 12:00–13:30 | **Oyun ↔ atlas** (`tasks/PC6.md` "OYUN ↔ ATLAS" 1–3): oyundaki Konya kartına "Karapınar sub-basin" adı + "Atlas: Konya Plain (rank 1) →" bağlantısı; atlas panelinde central_valley / konya_plain / karapinar için "Manage this valley in the simulator" → `game/?basin=...`; oyun `?basin=` okusun. `game/test_model.html` 6/6 kalmalı | game + atlas |
+| 13:30–14:30 | **"What changed" kutusu + hata çubukları:** atlas sayfasında `data/global/atlas_changelog.json`'dan son 10 değişiklik; sıralama tablosunda `rate_ci_cm_per_100d` varsa aralık; başlıkta "ranked by common 93-day window" | atlas |
+| 14:30–16:00 | **Bağımsız kontrolü 6–16. sıralara genişlet:** `docs/story/atlas_rank_check_6_16.md` — her güvenilir bölge için bizim değer vs `literature_rates.json` (büyüklük mertebesi), zaman serisi QC sonucu, karar (tutarlı / dikkat / şüpheli); şüpheli varsa `data/global/qc_manual.json`'a gerekçe+kaynakla ekleme önerisini `docs/qa/PC4.md`'ye yaz (PC1 uygular) | rank_check md |
+| 16:00–17:00 | **Otomatik tutarlılık testleri:** `tests/test_site_numbers.py` — ana sayfa / atlas / vital_signs sayıları atlas.json ile aynı mı (pytest); `tools/vital_signs.py` — vital_signs.json'u atlas.json + exposure_atlas.json'dan üretir (fastest = güvenilir bölgelerden) | test + betik |
+| 17:00–18:15 | **Site son QA:** tüm sayfalar (index, atlas, science, data, faq, game, present) konsol 0 hata, kırık link 0, mobil 375 px, projektör 1920; bulgular + düzeltmeler `docs/qa/PC4.md` FINAL | QA |
+| 18:30–19:30 | **SIGNOFF son tur (PC1 ile):** atlas son hâliyle yeniden doğrula; `python tools/sync_atlas_text.py`; 20:00 veri dondurma — sonrasında yalnız hata düzeltme | SIGNOFF |
+Son bloğa gelince `status/PC4.md` ilk satırına yine `PLAN_SONU_YAKIN`.
