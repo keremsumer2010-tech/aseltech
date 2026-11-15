@@ -153,4 +153,37 @@ function emptyInput() {
   assert.strictEqual(res.jumped, false, 'Player should NOT be able to jump after coyote time expires');
 }
 
-console.log('test_engine.js: all 6 engine & player assertions PASSED');
+// 7. Gamepad mapping and edge-triggered actions
+{
+  const prior = Object.getOwnPropertyDescriptor(globalThis, 'navigator');
+  const pressedPad = {
+    axes: [-0.8],
+    buttons: Array.from({ length: 16 }, (_, i) => ({ pressed: [0, 1, 9, 14].includes(i) }))
+  };
+  let pads = [pressedPad];
+  try {
+    Object.defineProperty(globalThis, 'navigator', {
+      configurable: true,
+      value: { getGamepads: () => pads }
+    });
+    const input = Engine.createInput();
+    input.update();
+    assert.strictEqual(input.left, true, 'left axis and D-pad map to left movement');
+    assert.strictEqual(input.jump, true, 'gamepad button 0 maps to jump');
+    assert.strictEqual(input.action, true, 'gamepad button 1 maps to ACTION');
+    assert.strictEqual(input.pausePressed, true, 'gamepad button 9 maps to pause');
+    assert.strictEqual(input.jumpPressed, true, 'first gamepad jump frame is edge-triggered');
+    input.update();
+    assert.strictEqual(input.jumpPressed, false, 'held gamepad jump does not retrigger');
+    pads = [];
+    input.update();
+    pads = [pressedPad];
+    input.update();
+    assert.strictEqual(input.actionPressed, true, 'released then pressed ACTION creates a new edge');
+  } finally {
+    if (prior) Object.defineProperty(globalThis, 'navigator', prior);
+    else delete globalThis.navigator;
+  }
+}
+
+console.log('test_engine.js: all 7 engine & player assertions PASSED');
