@@ -6,27 +6,6 @@
   "regions": [
     {
       "rank": 1,
-      "id": "konya_plain",
-      "name": "Konya Plain",
-      "country": "Türkiye",
-      "quality": "provisional",
-      "confidence": "medium",
-      "indicative_only": false,
-      "rate_cm_per_100d_common": -11.0,
-      "rate_cm_per_100d": -8.9,
-      "max_cm_los": -9.6,
-      "period": [
-        "2026-06-26",
-        "2026-10-12"
-      ],
-      "published_rate": "-1.2 to -5.2 regional GNSS; > -7.0 in agricultural bowls",
-      "published_source": "Ustun, Tusat & Yalvac (2010), NHESS 10:1151-1164",
-      "doi": "",
-      "agreement_note": "108-day summer peak (-9.6 cm LOS, -12.1 cm vertical est., -32.5 cm/yr LOS est.) is 4-5x higher than multi-year InSAR (> -7.0 cm/yr) due to peak summer agricultural pumping, wide bbox (1.5x0.7 deg), low valid pixel fraction (11.6%), and 0.46 reference sensitivity.",
-      "reviewed_by": "pending PC5"
-    },
-    {
-      "rank": 2,
       "id": "eloy",
       "name": "Eloy",
       "country": "USA",
@@ -47,7 +26,7 @@
       "reviewed_by": "pending PC5"
     },
     {
-      "rank": 3,
+      "rank": 2,
       "id": "central_valley",
       "name": "Central Valley (Tulare Basin)",
       "country": "USA",
@@ -68,7 +47,7 @@
       "reviewed_by": "pending PC5"
     },
     {
-      "rank": 4,
+      "rank": 3,
       "id": "kashmar",
       "name": "Kashmar",
       "country": "",
@@ -89,7 +68,7 @@
       "reviewed_by": "pending PC5"
     },
     {
-      "rank": 5,
+      "rank": 4,
       "id": "mashhad",
       "name": "Mashhad",
       "country": "Iran",
@@ -110,7 +89,7 @@
       "reviewed_by": "pending PC5"
     },
     {
-      "rank": 6,
+      "rank": 5,
       "id": "mexico_city",
       "name": "Mexico City",
       "country": "Mexico",
@@ -131,7 +110,7 @@
       "reviewed_by": "pending PC5"
     },
     {
-      "rank": 7,
+      "rank": 6,
       "id": "semarang",
       "name": "Semarang",
       "country": "Indonesia",
@@ -152,7 +131,7 @@
       "reviewed_by": "pending PC5"
     },
     {
-      "rank": 8,
+      "rank": 7,
       "id": "kerman",
       "name": "Kerman",
       "country": "",
@@ -173,7 +152,7 @@
       "reviewed_by": "pending PC5"
     },
     {
-      "rank": 9,
+      "rank": 8,
       "id": "rafsanjan",
       "name": "Rafsanjan",
       "country": "Iran",
@@ -194,7 +173,7 @@
       "reviewed_by": "reliable"
     },
     {
-      "rank": 10,
+      "rank": 9,
       "id": "houston",
       "name": "Houston",
       "country": "",
@@ -215,7 +194,7 @@
       "reviewed_by": "pending PC5"
     },
     {
-      "rank": 11,
+      "rank": 10,
       "id": "can_tho",
       "name": "Can Tho",
       "country": "Vietnam",
@@ -236,7 +215,7 @@
       "reviewed_by": "pending PC5"
     },
     {
-      "rank": 12,
+      "rank": 11,
       "id": "tianjin",
       "name": "Tianjin",
       "country": "",
@@ -257,7 +236,7 @@
       "reviewed_by": "pending PC5"
     },
     {
-      "rank": 13,
+      "rank": 12,
       "id": "cangzhou",
       "name": "Cangzhou",
       "country": "China",
@@ -278,7 +257,7 @@
       "reviewed_by": "pending PC5"
     },
     {
-      "rank": 14,
+      "rank": 13,
       "id": "lagos",
       "name": "Lagos",
       "country": "",
@@ -299,7 +278,7 @@
       "reviewed_by": "pending PC5"
     },
     {
-      "rank": 15,
+      "rank": 14,
       "id": "delta",
       "name": "Sacramento–San Joaquin Delta",
       "country": "USA",
@@ -320,7 +299,7 @@
       "reviewed_by": "pending PC5"
     },
     {
-      "rank": 16,
+      "rank": 15,
       "id": "quetta",
       "name": "Quetta",
       "country": "Pakistan",
@@ -341,7 +320,7 @@
       "reviewed_by": "pending PC5"
     },
     {
-      "rank": 17,
+      "rank": 16,
       "id": "gorgan",
       "name": "Gorgan",
       "country": "",
@@ -362,7 +341,7 @@
       "reviewed_by": "pending PC5"
     },
     {
-      "rank": 18,
+      "rank": 17,
       "id": "delhi",
       "name": "Delhi",
       "country": "India",
@@ -380,6 +359,27 @@
       "published_source": "Garg, S. et al. (2022), Land subsidence in Delhi National Capital Region from Sentinel-1 InSAR",
       "doi": "",
       "agreement_note": "FLAGGED by time-series QC (tools/atlas_qc.py, single_date_outlier): acquisition 2026-09-01 jumps -10.01 cm then rebounds +8.06 cm (one acquisition off); without flagged step headline is -2.37 cm. Very low valid-pixel fraction (5.3%) and wide reference spread [-13.5, -1.5] cm require indicative-only status.",
+      "reviewed_by": "pending PC5"
+    },
+    {
+      "rank": 18,
+      "id": "beijing",
+      "name": "Beijing",
+      "country": "China",
+      "quality": "provisional",
+      "confidence": "low",
+      "indicative_only": true,
+      "rate_cm_per_100d_common": -14.2,
+      "rate_cm_per_100d": -12.5,
+      "max_cm_los": -15.0,
+      "period": [
+        "2026-06-17",
+        "2026-10-15"
+      ],
+      "published_rate": "-1.0 to -4.5 regional plain; -10 to -15 peak in Chaoyang/Tongzhou funnels",
+      "published_source": "Chen et al. / Gong et al. Beijing Plain InSAR studies",
+      "doi": "",
+      "agreement_note": "Coherence is high (73.0% valid), but primary reference (116.708E, 39.934N) sits inside the Tongzhou eastern subsidence funnel, pulling headline down to -1.4 cm LOS. Re-referencing to NW foothills (116.311E, 40.101N) yields -7.6 cm LOS (-11.2 cm vert est. over 120 d), sensitivity ratio 4.43.",
       "reviewed_by": "pending PC5"
     },
     {
@@ -426,23 +426,23 @@
     },
     {
       "rank": 21,
-      "id": "beijing",
-      "name": "Beijing",
-      "country": "China",
+      "id": "konya_plain",
+      "name": "Konya Plain",
+      "country": "Türkiye",
       "quality": "provisional",
       "confidence": "low",
       "indicative_only": true,
-      "rate_cm_per_100d_common": -11.2,
-      "rate_cm_per_100d": -9.2,
-      "max_cm_los": -11.1,
+      "rate_cm_per_100d_common": -11.0,
+      "rate_cm_per_100d": -8.9,
+      "max_cm_los": -9.6,
       "period": [
-        "2026-06-17",
-        "2026-10-15"
+        "2026-06-26",
+        "2026-10-12"
       ],
-      "published_rate": "-1.0 to -4.5 regional plain; -10 to -15 peak in Chaoyang/Tongzhou funnels",
-      "published_source": "Chen et al. / Gong et al. Beijing Plain InSAR studies",
+      "published_rate": "-1.2 to -5.2 regional GNSS; > -7.0 in agricultural bowls",
+      "published_source": "Ustun, Tusat & Yalvac (2010), NHESS 10:1151-1164",
       "doi": "",
-      "agreement_note": "Coherence is high (73.0% valid), but primary reference (116.708E, 39.934N) sits inside the Tongzhou eastern subsidence funnel, pulling headline down to -1.4 cm LOS. Re-referencing to NW foothills (116.311E, 40.101N) yields -7.6 cm LOS (-11.2 cm vert est. over 120 d), sensitivity ratio 4.43.",
+      "agreement_note": "108-day summer peak (-9.6 cm LOS, -12.1 cm vertical est., -32.5 cm/yr LOS est.) is 4-5x higher than multi-year InSAR (> -7.0 cm/yr) due to peak summer agricultural pumping, wide bbox (1.5x0.7 deg), low valid pixel fraction (11.6%), and 0.46 reference sensitivity.",
       "reviewed_by": "pending PC5"
     },
     {
@@ -474,12 +474,12 @@
       "quality": "provisional",
       "confidence": "low",
       "indicative_only": true,
-      "rate_cm_per_100d_common": -5.6,
-      "rate_cm_per_100d": -6.3,
-      "max_cm_los": -6.8,
+      "rate_cm_per_100d_common": -4.8,
+      "rate_cm_per_100d": -5.5,
+      "max_cm_los": -5.9,
       "period": [
-        "2026-06-27",
-        "2026-10-13"
+        "2026-06-26",
+        "2026-10-12"
       ],
       "published_rate": "-1 to -15 average (-7.3 to -7.7 recent multi-track InSAR; historical hotspots -20 to -28)",
       "published_source": "Abidin et al. (2011), Natural Hazards",

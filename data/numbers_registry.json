@@ -1,6 +1,6 @@
 {
   "quality": "provisional",
-  "generated_at": "2026-11-15T13:09:22Z",
+  "generated_at": "2026-11-15T13:16:55Z",
   "quality_notice": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.",
   "summary": {
     "total": 45,
@@ -37,7 +37,7 @@
         "docs/story/lesson_plan.md:24",
         "docs/story/lesson_plan.md:33",
         "docs/story/lesson_plan.md:43",
-        "docs/story/literature_atlas.md:11",
+        "docs/story/literature_atlas.md:10",
         "docs/story/narration_script.md:38",
         "docs/story/pitch.md:10",
         "docs/story/pitch.md:61",
@@ -101,7 +101,7 @@
         "docs/story/key_findings_public.md:5",
         "docs/story/lesson_plan.md:24",
         "docs/story/lesson_plan.md:43",
-        "docs/story/literature_atlas.md:11",
+        "docs/story/literature_atlas.md:10",
         "docs/story/narration_script.md:38",
         "docs/story/pitch.md:11",
         "docs/story/pitch.md:61",
@@ -239,7 +239,7 @@
         "docs/story/key_findings_public.md:8",
         "docs/story/lesson_plan.md:11",
         "docs/story/lesson_plan.md:24",
-        "docs/story/literature_atlas.md:11",
+        "docs/story/literature_atlas.md:10",
         "docs/story/narration_script.md:39",
         "docs/story/pitch.md:19",
         "docs/story/pitch.md:66",
@@ -421,7 +421,7 @@
         "docs/story/lesson_plan.md:12",
         "docs/story/lesson_plan.md:34",
         "docs/story/lesson_plan.md:44",
-        "docs/story/literature_atlas.md:11",
+        "docs/story/literature_atlas.md:10",
         "docs/story/literature_comparison.md:46",
         "docs/story/pitch.md:72",
         "docs/story/project_page.md:127",
@@ -660,7 +660,7 @@
         "docs/story/atlas_top5_check.md:24",
         "docs/story/key_findings.md:9",
         "docs/story/key_findings_public.md:6",
-        "docs/story/literature_atlas.md:10",
+        "docs/story/literature_atlas.md:9",
         "docs/story/literature_atlas.md:32",
         "docs/story/pitch.md:15",
         "docs/story/pitch.md:147",
@@ -696,7 +696,7 @@
         "docs/story/atlas_feature.md:12",
         "docs/story/game_sensitivity.md:36",
         "docs/story/judge_faq.md:19",
-        "docs/story/literature_atlas.md:15",
+        "docs/story/literature_atlas.md:14",
         "docs/story/presentation_cues.md:51",
         "docs/story/press_summary.md:11",
         "docs/story/project_page.md:74",
@@ -736,8 +736,8 @@
         "docs/story/atlas_top5_check.md:22",
         "docs/story/demo_script_v3.md:15",
         "docs/story/judge_faq.md:22",
-        "docs/story/literature_atlas.md:13",
-        "docs/story/literature_atlas.md:16",
+        "docs/story/literature_atlas.md:12",
+        "docs/story/literature_atlas.md:15",
         "docs/story/presentation_cues.md:43",
         "docs/story/press_summary.md:11",
         "docs/story/project_page.md:74",
@@ -771,9 +771,9 @@
         "docs/story/cross_sensor.md:40",
         "docs/story/fullyear.md:33",
         "docs/story/global_showcase.md:27",
-        "docs/story/literature_atlas.md:9",
-        "docs/story/literature_atlas.md:12",
-        "docs/story/literature_atlas.md:14",
+        "docs/story/literature_atlas.md:11",
+        "docs/story/literature_atlas.md:13",
+        "docs/story/literature_atlas.md:29",
         "docs/story/literature_atlas.md:37",
         "docs/story/literature_comparison.md:15",
         "docs/story/literature_comparison.md:28",
@@ -813,7 +813,7 @@
         "docs/story/atlas_feature.md:12",
         "docs/story/game_sensitivity.md:36",
         "docs/story/judge_faq.md:19",
-        "docs/story/literature_atlas.md:15",
+        "docs/story/literature_atlas.md:14",
         "docs/story/presentation_cues.md:51",
         "docs/story/press_summary.md:11",
         "docs/story/project_page.md:74",
@@ -847,7 +847,7 @@
       "quality": "provisional",
       "verdict": "approved",
       "used_in": [
-        "docs/story/literature_atlas.md:16"
+        "docs/story/literature_atlas.md:15"
       ],
       "note": "Confidence=high; rate_cm_per_100d=-5.1."
     },
@@ -864,7 +864,7 @@
         "docs/story/fullyear.md:16",
         "docs/story/fullyear.md:24",
         "docs/story/global_showcase.md:27",
-        "docs/story/literature_atlas.md:11",
+        "docs/story/literature_atlas.md:10",
         "docs/story/literature_atlas.md:37"
       ],
       "note": "Confidence=medium; rate_cm_per_100d=-4.8."
@@ -880,8 +880,8 @@
       "verdict": "approved",
       "used_in": [
         "docs/story/atlas_rank_check_6_16.md:26",
-        "docs/story/literature_atlas.md:12",
-        "docs/story/literature_atlas.md:18",
+        "docs/story/literature_atlas.md:11",
+        "docs/story/literature_atlas.md:17",
         "docs/story/literature_comparison.md:29",
         "docs/story/sources.md:70",
         "docs/story/team_story.md:19"
@@ -898,7 +898,7 @@
       "quality": "provisional",
       "verdict": "approved",
       "used_in": [
-        "docs/story/literature_atlas.md:19",
+        "docs/story/literature_atlas.md:18",
         "docs/story/literature_atlas.md:33",
         "docs/story/literature_atlas.md:34",
         "docs/story/sinkhole_stats.md:50"
@@ -916,7 +916,7 @@
       "verdict": "approved",
       "used_in": [
         "docs/story/judge_faq.md:25",
-        "docs/story/literature_atlas.md:20",
+        "docs/story/literature_atlas.md:19",
         "docs/story/uncertainty.md:10"
       ],
       "note": "Confidence=medium; rate_cm_per_100d=-2.4."
@@ -932,9 +932,9 @@
       "verdict": "approved",
       "used_in": [
         "docs/story/atlas_feature.md:12",
+        "docs/story/literature_atlas.md:19",
         "docs/story/literature_atlas.md:20",
         "docs/story/literature_atlas.md:21",
-        "docs/story/literature_atlas.md:22",
         "docs/story/pitch.md:22",
         "docs/story/project_page.md:65",
         "docs/story/submission_form.md:104",
@@ -953,9 +953,9 @@
       "verdict": "approved",
       "used_in": [
         "docs/story/atlas_feature.md:12",
+        "docs/story/literature_atlas.md:19",
         "docs/story/literature_atlas.md:20",
         "docs/story/literature_atlas.md:21",
-        "docs/story/literature_atlas.md:22",
         "docs/story/pitch.md:22",
         "docs/story/project_page.md:65",
         "docs/story/submission_form.md:104",
@@ -975,8 +975,8 @@
       "used_in": [
         "docs/story/atlas_top5_check.md:22",
         "docs/story/delta.md:5",
-        "docs/story/literature_atlas.md:13",
-        "docs/story/literature_atlas.md:23",
+        "docs/story/literature_atlas.md:12",
+        "docs/story/literature_atlas.md:22",
         "docs/story/project_page.md:72",
         "docs/story/project_page.md:88",
         "docs/story/slides_notes.md:66",
@@ -1000,7 +1000,7 @@
       "verdict": "approved",
       "used_in": [
         "docs/story/atlas_rank_check_6_16.md:27",
-        "docs/story/literature_atlas.md:24"
+        "docs/story/literature_atlas.md:23"
       ],
       "note": "Confidence=medium; rate_cm_per_100d=-3.2."
     },
@@ -1092,7 +1092,7 @@
         "docs/story/atlas_feature.md:10",
         "docs/story/atlas_top5_check.md:21",
         "docs/story/konya_plain.md:5",
-        "docs/story/literature_atlas.md:9",
+        "docs/story/literature_atlas.md:29",
         "docs/story/literature_atlas.md:30",
         "docs/story/press_summary.md:11",
         "docs/story/project_page.md:73",
@@ -1126,7 +1126,7 @@
         "web/present.html:134",
         "docs/story/atlas_feature.md:12",
         "docs/story/atlas_top5_check.md:33",
-        "docs/story/literature_atlas.md:17",
+        "docs/story/literature_atlas.md:16",
         "docs/story/presentation_cues.md:51",
         "docs/story/press_summary.md:11",
         "docs/story/project_page.md:127",
@@ -1199,8 +1199,8 @@
         "web/js/atlas.js:158",
         "web/js/atlas.js:159",
         "docs/story/engine.md:66",
-        "docs/story/literature_atlas.md:9",
-        "docs/story/literature_atlas.md:17",
+        "docs/story/literature_atlas.md:16",
+        "docs/story/literature_atlas.md:29",
         "docs/story/literature_atlas.md:33",
         "docs/story/literature_atlas.md:34",
         "docs/story/literature_atlas.md:36",
@@ -1264,8 +1264,8 @@
         "web/js/atlas.js:158",
         "web/js/atlas.js:159",
         "docs/story/engine.md:66",
-        "docs/story/literature_atlas.md:9",
-        "docs/story/literature_atlas.md:17",
+        "docs/story/literature_atlas.md:16",
+        "docs/story/literature_atlas.md:29",
         "docs/story/literature_atlas.md:33",
         "docs/story/literature_atlas.md:34",
         "docs/story/literature_atlas.md:36",
