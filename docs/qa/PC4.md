@@ -370,3 +370,11 @@ Kapsam: `web/index.html` (`1–163`). Genel İngilizce tonu akıcı ve tutarlı 
 - **Blok 2 (`0830781`):** `game/index.html`, `game/game.js`, `web/atlas.js` arasında `?basin=` çift yönlü bağlantı kuruldu; Karapınar kartına "Karapınar sub-basin, Konya Closed Basin" ve Konya Plain `rank 1` linki, bitiş ekranına `endAtlasLink` eklendi.
 - **Blok 3 (`6a63e6b`):** `web/atlas.html` ve `web/atlas.js` içine `data/global/atlas_changelog.json` "What changed" (son 10) kutusu, sıralama tablosuna `rate_ci_cm_per_100d` aralıkları ve "ranked by common 93-day window" başlığı eklendi.
 - **Blok 4 (`docs/story/atlas_rank_check_6_16.md`):** Güvenilir 6–16. sıralar (`mexico_city` → `quetta`) `literature_rates.json` ve `p01` adım-adım zaman serisiyle doğrulandı: `9/11` **consistent**, `2/11` **caution** (`houston` yaz pik/`46.1%` geçerli piksel; `quetta` uç-epok zamanlaması/`4.15 cm` adım), `0` **suspect**. `data/global/qc_manual.json` için ekleme önerisi gerekmedi (yalnızca Houston ve Quetta dikkat şerhleri yeterli).
+
+### 38. YENİ PLAN 2 Blok 5–7 (`FINAL`) — Otomatik Testler, Site Son QA & `SIGNOFF` Son Tur (`2026-11-15 10:38 TR`)
+- **Blok 5 (`3f40644`):** `tools/vital_signs.py` (`--check` modu ile `atlas.json` + `exposure_atlas.json` senkronu) ve `tests/test_site_numbers.py` (`2/2 passed`) oluşturuldu.
+- **Blok 6 (Site Son QA):**
+  - `web/{index,atlas,science,data,faq,present}.html` ve `game/index.html` yerel HTTP `8765` üzerinde **`200 OK`** döndürdü; tüm sayfalarda `viewport` meta etiketi ve mobil (`@media`) kuralları doğrulandı; `web/*.js` ve `game/*.js` üzerinde Node sözdizimi **`0` hata**.
+  - `web/science.html` ve `web/faq.html` altbilgilerine eksik zorunlu kalibrasyon uyarısı eklendi (artık `7/7` sayfada mevcut).
+  - `web/index.html` içindeki `docs/story/media/pc9_fullyear_point.png` yolu GitHub Pages kök dağıtımında (`web/` içeriği köke kopyalandığında) çözüldüğü ve yerel depoda `docs/story/media/pc9_fullyear_point.png` (`465,356 B`) olarak mevcut olduğu doğrulandı.
+- **Blok 7 (`SIGNOFF` Son Tur):** `python3 tools/sync_atlas_text.py` (`atlas 29/16/13; updated: nothing`), `python3 tools/vital_signs.py --check` (`OK`), `python3 -m pytest tests/test_site_numbers.py -v` (`2/2 passed`) doğrulandı ve `status/PC4.md` ilk satırına `PLAN_SONU_YAKIN` işlendi.
