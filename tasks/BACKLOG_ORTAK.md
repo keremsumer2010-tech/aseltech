@@ -53,7 +53,7 @@ Kullanıcı artık ajanlara prompt girmiyor; **tüm yönetim git üzerinden.** K
 - [ ] Her sayfanın `<title>`/`<meta description>`/`og:image`'ı güncel atlas sonuçlarıyla
 - [ ] Atlas sayfasına "How to read this map" 4 adımlık kısa rehber (LOS, renk, güven rozeti, indicative)
 - [ ] Ana sayfadaki her sayının atlas.json / results_registry ile aynı olduğunu otomatik kontrol eden test (`tests/test_site_numbers.py`)
-- [ ] Sunum için 60 sn'lik yedek ekran kaydı senaryosu (gerçek siteden, AI görseli yok) — `docs/story/demo_script_v3.md`
+- [x PC4] Sunum için 60 sn'lik yedek ekran kaydı senaryosu (gerçek siteden, AI görseli yok) — `docs/story/demo_script_v3.md`
 
 ## D. Kalite (herkes)
 - [ ] `python -m pytest -q` tüm repo — kırılan testin sahibine `docs/qa/PCx.md`'de bildir

@@ -25,7 +25,7 @@ Open one clean incognito/distraction-free browser window at **`1920×1080`**, **
 
 | Tab # | URL / Local Target | Pre-Pitch Ready State Before `0:00` | Used In |
 |---|---|---|---|
-| **Tab 1** | `https://keremsumer2010-tech.github.io/aseltech/` *(or `http://localhost:8000/web/index.html` if venue Wi-Fi is unstable)* | Scrolled to very top Hero (`#heroMap`); `.stats` rendered; `#cvVideo` pre-buffered muted | `Blocks 1, 2, 3, 4, 6` |
+| **Tab 1** | `https://keremsumer2010-tech.github.io/aseltech/` *(or `http://localhost:8000/web/index.html` if venue Wi-Fi is unstable)* | Scrolled to very top Hero (`#heroMap`); `.stats` rendered; `#cvVideo` pre-buffered muted (also `atlas.html`: `29` regions / `16` reliable ready) | `Blocks 1, 2, 3, 4, 6` |
 | **Tab 2** | `https://keremsumer2010-tech.github.io/aseltech/explorer.html#central_valley_fullyear` | Pre-set to **Central Valley, California — full year (Nov 2025 – Oct 2026)** (`mixed` badge visible), `7 km W of Earlimart` point pre-clicked | `Block 3` (optional `3 s` full-year view) |
 | **Tab 3** | `https://keremsumer2010-tech.github.io/aseltech/game/index.html` | Past intro overlay onto 7-district Tulare Basin map (`Month 0 of 24`), **Classroom Mode** drawer open (`2. Multi-Year Drought` visible) | `Block 5` (`0:15`, or instant fallback if `#gamePlay` iframe lags) |
 | **Tab 4** | `https://keremsumer2010-tech.github.io/aseltech/web3d/index.html` | Three.js `0.160.0` basin mesh loaded (`quality: provisional · CRID P05023`, `2026-10-14` epoch) so orbiting responds immediately | `Block 5` (`5–8 s`) + Q&A |
