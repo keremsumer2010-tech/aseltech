@@ -1,0 +1,73 @@
+{
+  "site": "houston",
+  "bbox": [
+    -96.05,
+    29.55,
+    -95.55,
+    30.05
+  ],
+  "units": "cm",
+  "component": "LOS 1-sigma Cram\u00e9r-Rao formal phase-noise lower bound",
+  "vmin": 0.0,
+  "vmax": 1.0,
+  "colormap": "viridis (dark/purple = lower sigma, bright/yellow = higher sigma; NaN transparent)",
+  "median_sigma_cm": 0.356,
+  "p90_sigma_cm": 0.546,
+  "p10_sigma_cm": 0.229,
+  "p99_sigma_cm": 0.655,
+  "mean_sigma_cm": 0.374,
+  "min_sigma_cm": 0.044,
+  "max_sigma_cm": 0.785,
+  "fraction_above_vmax": 0.0,
+  "n_pairs": 9,
+  "period": [
+    "2026-06-18",
+    "2026-10-16"
+  ],
+  "dates": [
+    "2026-06-18",
+    "2026-06-30",
+    "2026-07-12",
+    "2026-07-24",
+    "2026-08-17",
+    "2026-08-29",
+    "2026-09-10",
+    "2026-09-22",
+    "2026-10-04",
+    "2026-10-16"
+  ],
+  "wavelength_m": 0.241963,
+  "coherence_threshold": 0.3,
+  "effective_looks_L": 208.0,
+  "looks_source": "Nominal 16 azimuth x 13 range = 208 looks from docs/gunw_structure.md (/science/LSAR/GUNW/metadata/processingInformation/parameters/unwrappedInterferogram/frequencyA)",
+  "sensitivity_L100": {
+    "looks": 100.0,
+    "scale_vs_nominal": 1.4422,
+    "median_sigma_cm": 0.513,
+    "p90_sigma_cm": 0.787
+  },
+  "valid_pixels_in_bbox": 198407,
+  "total_pixels_in_bbox": 419039,
+  "valid_pixel_fraction": 0.4735,
+  "granules": [
+    "NISAR_L2_PR_GUNW_023_062_A_016_024_4000_SH_20260618T114331_20260618T114405_20260630T114330_20260630T114405_P05023_N_F_J_001",
+    "NISAR_L2_PR_GUNW_024_062_A_016_025_4000_SH_20260630T114330_20260630T114405_20260712T114330_20260712T114404_P05023_N_F_J_001",
+    "NISAR_L2_PR_GUNW_025_062_A_016_026_4000_SH_20260712T114330_20260712T114404_20260724T114329_20260724T114403_P05023_N_F_J_001",
+    "NISAR_L2_PR_GUNW_026_062_A_016_028_4000_SH_20260724T114329_20260724T114403_20260817T114328_20260817T114402_P05023_N_F_J_001",
+    "NISAR_L2_PR_GUNW_028_062_A_016_029_4000_SH_20260817T114328_20260817T114402_20260829T114324_20260829T114402_P05023_N_F_J_001",
+    "NISAR_L2_PR_GUNW_029_062_A_016_030_4000_SH_20260829T114324_20260829T114402_20260910T114327_20260910T114402_P05023_N_F_J_001",
+    "NISAR_L2_PR_GUNW_030_062_A_016_031_4000_SH_20260910T114327_20260910T114402_20260922T114327_20260922T114402_P05023_N_F_J_001",
+    "NISAR_L2_PR_GUNW_031_062_A_016_032_4000_SH_20260922T114327_20260922T114402_20261004T114324_20261004T114402_P05023_N_F_J_001",
+    "NISAR_L2_PR_GUNW_032_062_A_016_033_4000_SH_20261004T114324_20261004T114402_20261016T114324_20261016T114402_P05023_N_F_J_001"
+  ],
+  "chain_notes": [],
+  "method": "Per-pair phase std via Cram\u00e9r-Rao / Rodriguez & Martin (1992): sigma_phi = sqrt(1 - gamma^2) / (gamma * sqrt(2 * L)), converted to LOS cm via (lambda / (4 * pi)) * sigma_phi * 100, and summed in quadrature across N consecutive provisional pairs: sigma_total = sqrt(sum(sigma_d_i^2)). Pixels masked per cumulative.py (coh >= 0.3, conncomp != 0, finite unwrapped phase in all pairs).",
+  "assumptions": [
+    "Uses nominal multilooking L = 208 (16 azimuth x 13 range looks inspected in docs/gunw_structure.md for CV 4000_SH; parameterizable via --looks).",
+    "If RSLC spectral weighting, oversampling, geocoding bilinear resampling, or 20 MHz mode (2000_SH at Karapinar) lowers effective independent looks to L_eff = 100, all sigma values scale up by sqrt(208/100) = 1.442x (reported in sensitivity_L100).",
+    "Assumes statistically independent interferometric pair noise summed in quadrature (sqrt(N) scaling).",
+    "DOES NOT INCLUDE ATMOSPHERE: captures short-scale thermal/decorrelation phase noise ONLY; excludes spatially correlated tropospheric wet-delay turbulence (~1-3 cm/pair), elevation-ramp residuals, and phase-unwrapping errors."
+  ],
+  "quality": "provisional",
+  "quality_note": "NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team."
+}
