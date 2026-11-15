@@ -38,7 +38,22 @@
     display: none;
     position: fixed; inset: 0; pointer-events: none; z-index: 10;
   }
-  body.has-touch .touch-ui { display: block; }
+  body.has-touch.in-level .touch-ui { display: block; }
+  .t-pause {
+    position: absolute; left: 50%; transform: translateX(-50%); bottom: max(16px, env(safe-area-inset-bottom));
+    width: 48px; height: 48px; border-radius: 50%; pointer-events: auto;
+    border: 2px solid rgba(255,255,255,0.45); background: rgba(15, 23, 34, 0.7);
+    color: #fff; font-weight: 800; font-size: 15px; letter-spacing: 1px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .rotate-hint { display: none; }
+  @media (orientation: portrait) {
+    body.has-touch .rotate-hint {
+      display: block; position: fixed; left: 50%; top: max(18px, env(safe-area-inset-top)); transform: translateX(-50%);
+      width: min(90vw, 360px); padding: 10px 14px; border-radius: 14px; text-align: center; pointer-events: none; z-index: 20;
+      background: rgba(255, 210, 63, 0.95); color: #1c2233; font: 700 15px/1.3 system-ui, -apple-system, sans-serif;
+    }
+  }
   .t-group {
     position: absolute; bottom: max(16px, env(safe-area-inset-bottom));
     display: flex; gap: 12px; pointer-events: auto;
@@ -64,11 +79,8 @@
     }
   }
   @media (orientation: portrait) {
-    .touch-ui {
-      left: 0; right: 0; top: 50%; bottom: auto; width: 100vw;
-      height: min(56.25vw, 100vh);
-      transform: translateY(-50%);
-    }
+    /* upright phone: the game is a thin strip in the middle, so the buttons go in the empty space below it */
+    .touch-ui { left: 0; right: 0; top: 0; bottom: 0; width: auto; height: auto; transform: none; }
     .t-group { bottom: max(8px, env(safe-area-inset-bottom)); gap: 6px; }
     .t-left { left: max(8px, env(safe-area-inset-left)); }
     .t-right { right: max(8px, env(safe-area-inset-right)); }
@@ -88,7 +100,9 @@
 <div id="wrap">
   <canvas id="gameCanvas" width="960" height="540" tabindex="0" aria-label="Aquifer Run game: run, jump, switch off pumps and keep the ground from sinking"></canvas>
 </div>
+<p class="rotate-hint">Turn your phone sideways for a bigger game ↻</p>
 <div class="touch-ui" id="touchUi" role="group" aria-label="Touch controls">
+  <button type="button" class="t-pause t-btn-pause" data-key="pause" aria-label="Pause">II</button>
   <div class="t-group t-left">
     <button type="button" class="t-btn" data-key="left" aria-label="Move left">◀</button>
     <button type="button" class="t-btn" data-key="right" aria-label="Move right">▶</button>
@@ -98,11 +112,11 @@
     <button type="button" class="t-btn t-btn-wide" data-key="jump" aria-label="Jump">JUMP</button>
   </div>
 </div>
-<script src="art.js?v=10"></script>
-<script src="engine.js?v=10"></script>
-<script src="player.js?v=10"></script>
-<script src="systems.js?v=10"></script>
-<script src="main.js?v=10"></script>
+<script src="art.js?v=11"></script>
+<script src="engine.js?v=11"></script>
+<script src="player.js?v=11"></script>
+<script src="systems.js?v=11"></script>
+<script src="main.js?v=11"></script>
 <script>if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js').catch(function () {});</script>
 </body>
 </html>

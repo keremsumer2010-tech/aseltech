@@ -59,7 +59,7 @@
         var r = isDown(['ArrowRight', 'KeyD']) || touch.right || gpRight;
         var j = isDown(['Space', 'ArrowUp', 'KeyW']) || touch.jump || gpJump;
         var a = isDown(['KeyE', 'Enter', 'KeyX']) || touch.action || gpAction;
-        var ps = isDown(['KeyP', 'Escape']) || gpPause;
+        var ps = isDown(['KeyP', 'Escape']) || touch.pause || gpPause;
 
         state.left = l;
         state.right = r;

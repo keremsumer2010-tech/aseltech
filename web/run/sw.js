@@ -1,9 +1,9 @@
 /* Aquifer Run offline support (PC1). Network first, cache as fallback, so updates show at once
  * and the game still opens with no connection after the first visit. */
-var CACHE = 'aquifer-run-v10';
+var CACHE = 'aquifer-run-v11';
 var CORE = [
   './', 'index.html', 'manifest.webmanifest',
-  'art.js?v=10', 'engine.js?v=10', 'player.js?v=10', 'systems.js?v=10', 'main.js?v=10',
+  'art.js?v=11', 'engine.js?v=11', 'player.js?v=11', 'systems.js?v=11', 'main.js?v=11',
   'levels/tulare.json', 'levels/eloy.json', 'levels/konya.json', 'levels/mexico.json',
   '../assets/atlas_world.jpg', '../assets/logo_mark_64.png', '../assets/logo_mark_192.png', '../assets/logo_mark_512.png',
   '../data/central_valley/disp/2026-10-14.png', '../data/global/eloy/disp/2026-10-17.png',

@@ -47,14 +47,60 @@
   var isTouch = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
   if (isTouch) document.body.classList.add('has-touch');
   window.addEventListener('touchstart', function () { isTouch = true; document.body.classList.add('has-touch'); }, { once: true, passive: true });
-  Array.prototype.forEach.call(document.querySelectorAll('.t-btn[data-key]'), function (btn) {
-    var key = btn.getAttribute('data-key');
-    function down(e) { e.preventDefault(); btn.classList.add('active'); input.setTouch(key, true); }
-    function up(e) { e.preventDefault(); btn.classList.remove('active'); input.setTouch(key, false); }
-    btn.addEventListener('touchstart', down, { passive: false }); btn.addEventListener('touchend', up, { passive: false });
-    btn.addEventListener('touchcancel', up, { passive: false }); btn.addEventListener('mousedown', down);
-    btn.addEventListener('mouseup', up); btn.addEventListener('mouseleave', up);
-  });
+  // Touch buttons: each finger is tracked on its own, a finger can slide from one button to another
+  // (e.g. from left to right without lifting), and a press always lasts long enough for the game to see it.
+  var MIN_PRESS_MS = 70, pressStart = {}, releaseTimer = {}, held = {};
+  function btnKey(el) { var b = el && el.closest ? el.closest('#touchUi [data-key]') : null; return b ? b.getAttribute('data-key') : null; }
+  function btnEl(key) { return document.querySelector('#touchUi [data-key="' + key + '"]'); }
+  function press(key) {
+    held[key] = (held[key] || 0) + 1;
+    clearTimeout(releaseTimer[key]);
+    if (held[key] === 1) { pressStart[key] = performance.now(); input.setTouch(key, true); var b = btnEl(key); if (b) b.classList.add('active'); }
+  }
+  function release(key) {
+    if (!held[key]) return;
+    held[key] -= 1; if (held[key] > 0) return;
+    var b = btnEl(key); if (b) b.classList.remove('active');
+    var wait = Math.max(0, MIN_PRESS_MS - (performance.now() - pressStart[key]));
+    releaseTimer[key] = setTimeout(function () { if (!held[key]) input.setTouch(key, false); }, wait);
+  }
+  var fingers = {};   // touch identifier -> key under that finger
+  var touchUi = document.getElementById('touchUi');
+  if (touchUi) {
+    touchUi.addEventListener('touchstart', function (e) {
+      for (var i = 0; i < e.changedTouches.length; i++) {
+        var t = e.changedTouches[i], k = btnKey(t.target);
+        if (k) { e.preventDefault(); fingers[t.identifier] = k; press(k); }
+      }
+    }, { passive: false });
+    touchUi.addEventListener('touchmove', function (e) {
+      for (var i = 0; i < e.changedTouches.length; i++) {
+        var t = e.changedTouches[i]; if (!(t.identifier in fingers)) continue;
+        e.preventDefault();
+        var k = btnKey(document.elementFromPoint(t.clientX, t.clientY));
+        if (k !== fingers[t.identifier]) { if (fingers[t.identifier]) release(fingers[t.identifier]); fingers[t.identifier] = k; if (k) press(k); }
+      }
+    }, { passive: false });
+    var endTouch = function (e) {
+      for (var i = 0; i < e.changedTouches.length; i++) {
+        var t = e.changedTouches[i]; if (!(t.identifier in fingers)) continue;
+        e.preventDefault(); if (fingers[t.identifier]) release(fingers[t.identifier]); delete fingers[t.identifier];
+      }
+    };
+    touchUi.addEventListener('touchend', endTouch, { passive: false });
+    touchUi.addEventListener('touchcancel', endTouch, { passive: false });
+    // mouse fallback (testing on a desktop)
+    Array.prototype.forEach.call(document.querySelectorAll('#touchUi [data-key]'), function (btn) {
+      var key = btn.getAttribute('data-key'), down = false;
+      btn.addEventListener('mousedown', function (e) { e.preventDefault(); if (!down) { down = true; press(key); } });
+      var up = function () { if (down) { down = false; release(key); } };
+      btn.addEventListener('mouseup', up); btn.addEventListener('mouseleave', up);
+    });
+  }
+  // the app losing focus (call, notification) must not leave a button stuck down
+  function releaseAll() { fingers = {}; Object.keys(held).forEach(function (k) { held[k] = 0; input.setTouch(k, false); var b = btnEl(k); if (b) b.classList.remove('active'); }); }
+  window.addEventListener('blur', releaseAll);
+  document.addEventListener('visibilitychange', function () { if (document.hidden) releaseAll(); });
   var tapQueued = null;   // {x,y} in game coordinates, for menus
   canvas.addEventListener('pointerdown', function (e) {
     var r = canvas.getBoundingClientRect(); tapQueued = { x: (e.clientX - r.left) * W / r.width, y: (e.clientY - r.top) * H / r.height };
@@ -684,7 +730,12 @@
   function boot() {
     scenes.go('title');
     LEVELS.forEach(function (lv) { fetchLevel(lv.id).catch(function () { return null; }); });
-    Engine.startLoop(function (dt) { input.update(); scenes.update(dt, input); }, function () { scenes.draw(ctx); });
+    var lastScene = '';
+    Engine.startLoop(function (dt) {
+      input.update(); scenes.update(dt, input);
+      var sn = scenes.name();
+      if (sn !== lastScene) { lastScene = sn; document.body.classList.toggle('in-level', sn === 'level'); if (sn !== 'level') releaseAll(); }
+    }, function () { scenes.draw(ctx); });
   }
   if (Art && Art.ready && typeof Art.ready.then === 'function') Art.ready.then(boot, boot); else boot();
 })();
