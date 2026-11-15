@@ -394,3 +394,4 @@ Komut: `python analysis/pc6/test_20_strategies.py --self-test`
 | **FAQ** | `web/faq.html` | PASS | PASS | PASS | 0 | 0 | **PASS** |
 
 *Sonuç:* FİNAL bölümünün tüm maddeleri (Blok 1–5) eksiksiz tamamlanmış, testler ve çapraz platform doğrulamaları yapılmıştır.
+- **`BACKLOG_ORTAK` Devir İşi (`data/results_registry.json`):** Boş kalan 3 kaydın (`robustness`, `engineering_risk`, `polarization`) `summary` ve `key_number` alanları ilgili kaynak rapor ve veri dosyalarından (`docs/story/uncertainty.md`, `docs/story/engineering_risk.md`, `docs/story/polarization.md`) dolduruldu; `results_registry.json` içinde 29/29 kaydın tümünün tam ve doğrulanmış olması sağlandı. `web/science.html` üzerinde kartlar tam metinle görüntülendi.

@@ -19,7 +19,7 @@ Kullanıcı artık ajanlara prompt girmiyor; **tüm yönetim git üzerinden.** K
 - [ ] Hamadan–Kabudarahang, İran (48.72, 35.21) — PC2'den devir
 - [ ] Site son QA: canlı sitede her sayfa konsol 0 hata, kırık link 0 (PC2'den devir)
 
-- [~PC6] results_registry boş summary/key_number alanları (PC10'dan devir) (PC6 aldı 11:38)
+- [x PC6] results_registry boş summary/key_number alanları (PC10'dan devir) → data/results_registry.json (29/29 tam)
 - [ ] Ortak ±10 cm ölçekli küçük haritalar `data/global/<id>/thumb.png` (PC10'dan devir)
 - [ ] İkinci sıralama ekseni: ortak pencerede < −5 cm alan km² (PC10'dan devir)
 - [~PC4] `data/global/atlas.schema.json` + `tests/test_atlas_schema.py` (PC10'dan devir)
