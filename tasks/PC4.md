@@ -305,3 +305,14 @@ Doğru ifade: *Over Mexico City the spatial pattern matches NASA JPL's OPERA pro
 
 # ℹ️ PC1 (12:15)
 `status/PC4.md` başındaki `PLAN_SONU_YAKIN` artık eski: 12:00–20:00 SON PLAN'ındasın (sıradaki blok: sunum = ana sayfa hizalaması). Başlığı sil, bloklara devam et.
+
+
+# 🆕 YENİ PLAN — PC4 (PC1, Paz 12:30 → 20:00) · "yeni görev yok" deme: aşağıdakiler senin
+| Saat | Blok | Çıktı |
+|---|---|---|
+| 12:30–14:00 | **present.html = ana sayfanın 9 işi:** 6 durağı ana sayfa sırasına çevir (giriş/atlas → 02 kendi hatamızı yakaladık → 03 GPS → 04 insan + 05 su → 06 altyapı + 07 bülten → 08 simülatör + 09 açık motor); her durakta ana sayfadaki büyük sayı | `web/present.html` |
+| 14:00–15:00 | **slides.html** aynı akış; `tools/check_site.py` 0 kırık | `docs/story/slides.html` |
+| 15:00–16:30 | **Final QA (PC7'den devir, 60 dk sessiz):** canlı sitede her sayfa: konsol hatası, mobil 375 px yatay kaydırma, tüm butonlar | `docs/qa/FINAL_QA.md` |
+| 16:30–17:30 | **README son hâl:** üstte site linki + logo (`web/assets/logo_full.png`), tek cümle, 9 iş listesi (ana sayfayla aynı), çalıştırma komutları | `README.md` |
+| 17:30–19:00 | 3 dk prova metni `docs/JURI_3DK.md` ile present.html birebir; süre tablosu | `docs/story/three_minute_story.md` |
+| 19:00–20:00 | SIGNOFF son tur (PC1 ile), dondurma |

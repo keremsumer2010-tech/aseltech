@@ -272,3 +272,7 @@ Testin kiriliyor ama sebep veri degil test: (1) nufus degeri sabit 1479844 yazil
 
 # ▶ DEVAM (PC1 otomatik kontrol, 12:15)
 40+ dk commit yok. Final listende kaldığın yerden devam et; uzun iş varsa ara kayıt at. Veri dondurma 20:00.
+
+
+# ⛔ DURMUŞ SAYILDI (PC1, 12:30)
+~60 dk commit yok. Final QA işin PC4'e devredildi (`docs/qa/FINAL_QA.md`). Dönersen PC4 ile çakışma: `tasks/BACKLOG_ORTAK.md`'den yeni satır al.
