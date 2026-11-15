@@ -42,7 +42,7 @@
 - **Memir Clicks (`web/present.html` Stop 2 or `web/atlas.html#konya_plain`):**
   1. Show the 3D globe preview and Top-5 common-window table (`28 Jun – 29 Sep 2026`), highlighting **#1 Konya Plain (`−11.0 cm/100d`, `11.6%` valid-coverage caution)**, `#2 Eloy (−8.6)`, `#3 Central Valley (−7.3)`.
 - **Kerem Says:**
-  > One open pipeline measures every basin over the shared 28 June to 29 September 2026 window—using a ±0.25-degree box and off-basin rock reference—placing Konya Plain first at minus 11.0 centimetres per 100 days with an explicit 11.6 percent coverage caution.
+  > One open pipeline measures every basin over the shared 28 June to 29 September 2026 window—using a ±0.25-degree box and off-basin rock reference—placing Konya Plain first at minus 11.0 centimetres per 100 days with an explicit coverage caution.
 - **Offline Fallback Cue:** `web/present.html` Stop 2 (`docs/story/three_minute_story.md` §2).
 
 ### Block 3 (`1:00 – 1:30`) · We Caught Our Own Error (Self-Checking QC)
@@ -50,15 +50,15 @@
 - **Memir Clicks (`web/present.html` Stop 3 or `web/atlas.html` QC badge):**
   1. Show **Semarang before/after (`−12.1 cm → −6.2 cm`)** and the `5` QC-flagged basins (`Gorgan`, `Delhi`, `Pekalongan`, `Beijing`, `Bangkok`) separated as `indicative only`, plus Tehran (`−3.5 → −7.4 cm` off-basin ref fix).
 - **Kerem Says:**
-  > Before ranking any city, our automated time-series quality control caught our own pipeline errors—flagging a 12.1-centimetre half-cycle phase jump in Semarang, correcting it to minus 6.2 centimetres (#7 reliable), fixing Tehran and Beijing references, and isolating five flagged basins as indicative only.
+  > Before ranking any city, our automated time-series quality control caught our own pipeline errors—flagging a 12.1-centimetre full L-band phase-cycle jump in Semarang, correcting it to minus 6.2 centimetres (#7 reliable), fixing Tehran and Beijing references, and isolating five flagged basins as indicative only.
 - **Offline Fallback Cue:** `web/present.html` Stop 3 (`docs/story/three_minute_story.md` §3).
 
 ### Block 4 (`1:30 – 2:05`) · Why You Can Trust It (GPS, OPERA, Noise Floor)
 - **Speaker:** **Kerem**
 - **Memir Clicks (`web/present.html` Stop 4 or `web/science.html`):**
-  1. Show **10-station Central Valley GPS (`r = 0.924`, `1.00 cm` median RMSE)**, **Mexico City OPERA (`r = 0.912`)**, formal uncertainty (`σ ≈ 0.3 cm`), and London Clay negative control (`3σ = 3.62 cm`, `below_detection`).
+  1. Show **10-station Central Valley GPS (`r = 0.924`, `1.00 cm` median RMSE)**, formal uncertainty (`σ ≈ 0.3 cm`), London Clay negative control (`3σ = 3.62 cm`, `below_detection`), and **Mexico City OPERA shape check (`r = 0.91`, 10 points, winter vs summer)**.
 - **Kerem Says:**
-  > Provisional NISAR motion—along the satellite's line of sight—tracks 10 continuous GPS stations at r equals 0.92, matches NASA's OPERA product in Mexico City at r equals 0.91, and stays cleanly above our 0.3-centimetre formal uncertainty and 3.6-centimetre London clay noise floor.
+  > Provisional NISAR motion—along the satellite's line of sight—tracks 10 continuous GPS stations at r equals 0.92, stays cleanly above our 0.3-centimetre formal uncertainty and 3.6-centimetre London clay noise floor, and matches the spatial pattern of NASA's OPERA product in Mexico City at 10 points—noting OPERA covers winter while NISAR covers summer.
 - **Offline Fallback Cue:** `web/present.html` Stop 4 (`docs/story/three_minute_story.md` §4).
 
 ### Block 5 (`2:05 – 2:40`) · What It Is Useful For (Exposure, Storage, Tilt, Simulator)
