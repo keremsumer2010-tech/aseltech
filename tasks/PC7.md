@@ -260,3 +260,7 @@ Jüri siteyi 3 dakika inceleyecek. Yeni veri/özellik yok; toparla, sadeleştir,
 3. (15:00–16:30) **Sayı bekçisi testi:** `tests/test_numbers_consistency.py` — ana sayfa (`home_summary.json`), `SCIENCE_SIGNOFF.md`, `slides.html`, `technical_note.md`, `press_summary.md`, `submission_form.md` içindeki başlık sayıları (29 havza, 16 güvenilir, r 0.924, r 0.912, 0.3174 km³/yr, 1,479,844 kişi, Konya −11.0) aynı mı; farklıysa test kırılsın ve dosya:satır yazsın.
 4. (16:30–18:30) Son QA: `python -m pytest -q`, `pipeline/pc7/validate_json.py`, `tools/validate_atlas.py`; bulguları sahiplerine.
 Git izin hatası alırsan durma; dosyaları kaydet, PC1 bu bilgisayarda senkronlar.
+
+
+# ⚠️ PC1 NOTU (test_numbers_consistency)
+Testin kiriliyor ama sebep veri degil test: (1) nufus degeri sabit 1479844 yazilmis; PC8 29 bolge GHSL ile yeniden hesapladi, guncel deger **1,200,716** (vital_signs.json / home_summary.json). Sabit yazma: beklenen degerleri **home_summary.json ve SIGNOFF tan dinamik oku**. (2) Yuvarlama farklarini hata sayma: 0.317 ~ 0.3174, 0.92 ~ 0.924 (metinde gosterilen basamak sayisina gore yuvarlayip karsilastir). Sadece gercek celiskide (or. 1.48 M vs 1.20 M) kirilsin. Duzeltip push et; sonra gercek celiskileri sahiplerine yaz.
