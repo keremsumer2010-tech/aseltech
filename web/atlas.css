@@ -155,3 +155,16 @@
 .atlas-static p{margin:0;max-width:60ch;color:#c3cee0;font-size:.85rem;text-align:center}
 .atlas-mapwrap:has(.atlas-static) .nisar-key,.atlas-mapwrap:has(.atlas-static) #atlasLayers{display:none}
 .atlas-static p{order:-1}
+/* Top 5 card: long names ("Central Valley (Tulare Basin)") pushed the CONF badges outside the card (PC1) */
+.atlas-top5-card{width:340px;max-width:calc(100% - 28px);box-sizing:border-box}
+.atlas-top5-table{table-layout:fixed}
+.atlas-top5-table th:nth-child(1),.atlas-top5-table td:nth-child(1){width:30px}
+.atlas-top5-table th:nth-child(3),.atlas-top5-table td:nth-child(3){width:74px;text-align:right}
+.atlas-top5-table th:nth-child(4),.atlas-top5-table td:nth-child(4){width:66px;text-align:right}
+.atlas-top5-table td:nth-child(2){white-space:normal;line-height:1.25;overflow-wrap:anywhere}
+.atlas-top5-table .cbadge{font-size:.6rem;padding:1px 4px;letter-spacing:.03em}
+/* Ranking tables grew new columns (area, CI, QC) and no longer fit side by side: the page scrolled sideways (PC1) */
+@media screen{
+  .atlas-tgrid{grid-template-columns:minmax(0,1fr)}
+  .atlas-tbox{min-width:0;overflow-x:auto;-webkit-overflow-scrolling:touch}
+}

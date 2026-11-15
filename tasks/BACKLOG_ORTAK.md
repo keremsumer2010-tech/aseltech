@@ -62,3 +62,5 @@ Kullanıcı artık ajanlara prompt girmiyor; **tüm yönetim git üzerinden.** K
 
 ## PC1 KARAR — Querétaro atlasa GİRMİYOR (Paz)
 `data/global/queretaro/validation_note.json`: −22.9 cm / 120 gün, literatürün (INEGI ~1.5 cm/yıl) çok üstünde, %48.6 piksel tek tarih sapması, referans bağımsız doğrulanmadı → `recommended_confidence: low`, "diagnostic". Dondurmaya 4 saat kala atlas 29 bölge kalır; Querétaro sadece teknik notta "denendi, QC geçmedi" örneği olarak anılabilir. build_atlas onu almıyorsa bu doğru davranış — DEĞİŞTİRME.
+
+- [ ] `tests/test_atlas_schema.py`: atlas.json alan/sıra/sayım testi (PC10 durdu, PC1 12:55)

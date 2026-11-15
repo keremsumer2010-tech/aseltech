@@ -169,3 +169,7 @@ Yeni veri YOK; amaç jürinin 3 dakikada gördüğü her ekranın aynı kalitede
 | 16:45–18:15 | **Teslim ekran görüntüleri:** ana sayfa, atlas, bülten, simülatör; 1440×900 ve 375×812 → `docs/story/media/site_{home,atlas,bulletin,game}_{desk,mob}.png` | 8 PNG |
 | 18:15–19:30 | **Tüm bağlantı kontrolü** (GitHub Pages canlı sitede her `href`/`src` 200) → `docs/qa/PC6_links.md`; kırıkları düzelt | rapor |
 | 19:30–20:00 | Son kontrol, dondurma |
+
+
+# ▶ DEVAM (PC1, 12:55)
+46 dk commit yok; 12:15 YENİ PLAN'ının 1. bloğu (atlas tema uyumu). Not: PC1 atlas Top 5 kartındaki taşmayı ve tablo yatay kaymasını düzeltti (`web/atlas.css` sonu) — üstüne yaz, geri alma.

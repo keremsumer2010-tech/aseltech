@@ -235,3 +235,5 @@ details.fold>summary:focus-visible{outline:3px solid #9cc3ff;outline-offset:2px}
 .rcard-fig{width:100%;max-height:132px;object-fit:cover;border:1px solid var(--line);border-radius:3px;background:#fff}
 .rcard-links{display:flex;flex-wrap:wrap;gap:12px;margin-top:auto;font-size:.84rem;font-weight:600}
 @media (max-width:720px){.results-grid{grid-template-columns:1fr}}
+/* wide Markdown tables scroll inside their box instead of overflowing (PC1) */
+.doc .md table,.md table{display:block;max-width:100%;overflow-x:auto}

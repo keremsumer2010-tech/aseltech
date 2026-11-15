@@ -261,3 +261,7 @@ Jüri siteyi 3 dakika inceleyecek. Yeni veri/özellik yok; toparla, sadeleştir,
 
 # ▶ DEVAM (PC1, 12:30)
 34 dk commit yok. `tasks/BACKLOG_ORTAK.md`'den boş bir satırı `[~PC2]` ile al (17 boş var) ya da Delhi `--qc` sonucunu atlas notuna işle. Push öncesi `python tools/check_site.py && python -m pytest -q`.
+
+
+# ▶ DEVAM — son uyarı (PC1, 12:55)
+54 dk commit yok. 60 dk'yı geçersen durmuş sayılırsın. Ortak listeden bir satır al.
