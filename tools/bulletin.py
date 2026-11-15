@@ -461,7 +461,7 @@ def render_region_bulletin(region: dict[str, Any], out_dir: Path = OUT_DIR) -> P
   .conf-medium {{ background:#fef3c7; color:#92400e; border-color:#f59e0b; }}
   .conf-low {{ background:#fee2e2; color:#991b1b; border-color:#ef4444; }}
   .kpi .subval {{ font-size:.76rem; color:var(--muted); margin-top:2px; font-weight:400; }}
-  .actions {{ display:flex; gap:8px; align-items:center; }}
+  .actions {{ display:flex; gap:8px; align-items:center; flex-wrap:wrap; max-width:100%; }}
   .btn {{ font-size:.82rem; padding:6px 12px; border-radius:6px; border:1px solid var(--line); background:var(--panel); color:var(--ink); text-decoration:none; cursor:pointer; }}
   .btn-primary {{ background:var(--accent); color:#fff; border-color:var(--accent); }}
   .grid {{ display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin:12px 0 16px; }}
