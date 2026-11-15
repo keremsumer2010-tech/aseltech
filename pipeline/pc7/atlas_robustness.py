@@ -13,6 +13,7 @@ import json
 import math
 from pathlib import Path
 import sys
+import argparse
 from typing import Any
 import warnings
 
@@ -114,7 +115,19 @@ def block_headline(values: np.ndarray, inside: np.ndarray) -> tuple[float | None
     return headline, p2
 
 
-def load_scene_inputs() -> tuple[list[Scene], dict[str, Any]]:
+def parse_subset_overrides(items: list[str]) -> dict[str, Path]:
+    """Parse repeatable CITY=PATH overrides for freshly cut, non-shared inputs."""
+    result: dict[str, Path] = {}
+    for item in items:
+        city, separator, path = item.partition("=")
+        if not separator or not city.strip() or not path.strip():
+            raise ValueError(f"invalid subset override {item!r}; expected CITY=PATH")
+        result[city.strip()] = Path(path.strip())
+    return result
+
+
+def load_scene_inputs(subset_overrides: dict[str, Path] | None = None) -> tuple[list[Scene], dict[str, Any]]:
+    subset_overrides = subset_overrides or {}
     atlas_path = ROOT / "data/global/atlas.json"
     atlas = json.loads(atlas_path.read_text(encoding="utf-8"))
     atlas_by_id = {r["id"]: r for r in atlas.get("regions", []) if isinstance(r, dict) and r.get("id")}
@@ -126,7 +139,10 @@ def load_scene_inputs() -> tuple[list[Scene], dict[str, Any]]:
         global_dir = ROOT / "data/global" / city_id
         data_dir = global_dir if (global_dir / "summary.json").is_file() else ROOT / "data" / city_id
         meta_path, summary_path = data_dir / "meta.json", data_dir / "summary.json"
-        subset_dir = ROOT / "pipeline/subset" / (f"global_{city_id}" if city_id not in {"central_valley", "karapinar", "konya_plain", "delta"} else city_id)
+        subset_dir = subset_overrides.get(
+            city_id,
+            ROOT / "pipeline/subset" / (f"global_{city_id}" if city_id not in {"central_valley", "karapinar", "konya_plain", "delta"} else city_id),
+        )
         if not meta_path.is_file() or not summary_path.is_file() or not subset_dir.is_dir():
             continue
         meta = json.loads(meta_path.read_text(encoding="utf-8"))
@@ -162,7 +178,9 @@ def load_scene_inputs() -> tuple[list[Scene], dict[str, Any]]:
         if not chain:
             continue
         atlas_row = atlas_by_id.get(city_id, {})
-        rate = atlas_row.get("rate_cm_per_100d")
+        rate = summary.get("rate_cm_per_100d")
+        if not isinstance(rate, (int, float)) or not math.isfinite(float(rate)):
+            rate = atlas_row.get("rate_cm_per_100d")
         if not isinstance(rate, (int, float)) or not math.isfinite(float(rate)):
             period = summary.get("period", [])
             headline = summary.get("max_subsidence_cm")
@@ -363,8 +381,8 @@ def run_variants(scene: Scene, refs: list[dict[str, Any]]) -> list[dict[str, Any
     return results
 
 
-def build_report() -> dict[str, Any]:
-    scenes, atlas = load_scene_inputs()
+def build_report(subset_overrides: dict[str, Path] | None = None) -> dict[str, Any]:
+    scenes, atlas = load_scene_inputs(subset_overrides)
     atlas_rows = {r["id"]: r for r in atlas.get("regions", []) if isinstance(r, dict) and r.get("id")}
     city_data: dict[str, dict[str, Any]] = {}
     variants_by_city: dict[str, list[dict[str, Any]]] = {}
@@ -491,7 +509,7 @@ def write_outputs(report: dict[str, Any]) -> None:
         ax.set_title("Atlas rate range across reference, coherence and box variants")
         ax.grid(axis="x", alpha=0.25)
         ax.plot([], [], color="#2563eb", linewidth=2.2, label="variant min–max")
-        ax.scatter([], [], color="#b91c1c", s=26, label="current atlas rate")
+        ax.scatter([], [], color="#b91c1c", s=26, label="city summary rate")
         ax.legend(loc="best")
     else:
         ax.text(0.5, 0.5, "No city had enough complete local variants", ha="center", va="center")
@@ -501,7 +519,15 @@ def write_outputs(report: dict[str, Any]) -> None:
 
 
 def main() -> int:
-    report = build_report()
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--subset-dir", action="append", default=[], metavar="CITY=PATH",
+                        help="Use fresh local subsets for a city (repeatable), without writing to shared pipeline/subset")
+    args = parser.parse_args()
+    try:
+        overrides = parse_subset_overrides(args.subset_dir)
+    except ValueError as exc:
+        parser.error(str(exc))
+    report = build_report(overrides)
     write_outputs(report)
     print(json.dumps({"cities": report["n_cities"], "common_27": report["n_common_cities_with_27_variants"],
                       "top3_stable": report["top3_all_variants_stable"],

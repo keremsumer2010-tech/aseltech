@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import numpy as np
 
-from pipeline.pc7.atlas_robustness import block_headline, fast_deramp, kendall_tau_b
+from pipeline.pc7.atlas_robustness import block_headline, fast_deramp, kendall_tau_b, parse_subset_overrides
 
 
 def test_fast_deramp_removes_plane_without_network() -> None:
@@ -35,5 +35,11 @@ def test_block_headline_rejects_no_data() -> None:
 
 def test_kendall_tau_detects_reversed_ranking() -> None:
     assert kendall_tau_b([1, 2, 3], [3, 2, 1]) == -1.0
+
+
+def test_subset_override_parses_city_path_without_network() -> None:
+    result = parse_subset_overrides([r"beijing=C:\scratch\global_beijing"])
+
+    assert result["beijing"].as_posix() == "C:/scratch/global_beijing"
 
 
