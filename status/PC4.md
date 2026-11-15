@@ -1,1 +1,1 @@
-**PC4** (`2026-11-15 12:49 TR`): 5-dk kontrol #10 — `docs/story/three_minute_story.md` içine `web/present.html` ↔ `docs/JURI_3DK.md` ↔ `web/index.html` 3 dakikalık süre tablosu eklendi. `check_site.py` (43 sayfa, 0 kırık), 5/5 test PASS, `vital_signs.py --check` OK.
+**PC4** (`2026-11-15 12:53 TR`): 5-dk kontrol #11 — `tasks/PC4.md` ve `docs/qa/PC5.md` §10 tarandı (yeni görev yok), `web/`, `docs/story/`, `README.md` eski ifade/logo taraması temiz. `check_site.py` (43 sayfa, 0 kırık), 5/5 test PASS, `vital_signs.py --check` OK (29 regions, fastest=konya_plain -11.0 cm/100d).
