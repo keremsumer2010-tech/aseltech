@@ -93,3 +93,6 @@
 .links-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
 @media (max-width:1000px){.ha-bottom{grid-template-columns:1fr}.ha-top5{grid-template-columns:repeat(3,1fr)}.steps3{grid-template-columns:1fr}}
 @media (max-width:520px){.hero-atlas{padding:calc(var(--hdr) + 14px) 16px 22px}.ha-top5{grid-template-columns:1fr 1fr}}
+.ha-top5 .nm b{white-space:normal;overflow:visible;text-overflow:clip;line-height:1.2}
+.ha-top5 .rt{font-size:1.05rem}
+@media (max-width:1240px){.ha-bottom{grid-template-columns:1fr}.ha-cta{justify-content:flex-start}}
