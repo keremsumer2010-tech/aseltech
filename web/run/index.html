@@ -49,6 +49,13 @@
   }
   .t-btn.active { background: rgba(77, 163, 255, 0.55); border-color: #4da3ff; }
   .t-btn-wide { width: 82px; }
+  @media (max-width: 480px) {
+    .t-group { gap: 8px; bottom: max(12px, env(safe-area-inset-bottom)); }
+    .t-left { left: max(10px, env(safe-area-inset-left)); }
+    .t-right { right: max(10px, env(safe-area-inset-right)); }
+    .t-btn { width: 56px; height: 56px; font-size: 12px; }
+    .t-btn-wide { width: 68px; }
+  }
 </style>
 </head>
 <body>
