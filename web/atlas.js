@@ -700,6 +700,7 @@ async function selectRegion(id, fly, updateHash){
     <div class="atlas-actions">
       ${hasBul ? `<a href="${ROOT}docs/bulletins/${esc(r.id)}.html" target="_blank" rel="noopener">Open bulletin →</a>` : ''}
       ${hasCard ? `<a href="${ROOT}docs/story/atlas_cities/${esc(r.id)}.md" target="_blank" rel="noopener">City card →</a>` : ''}
+      ${(r.id === 'central_valley' || r.id === 'konya_plain' || r.id === 'karapinar') ? `<a href="${ROOT}game/?basin=${r.id === 'central_valley' ? 'tulare' : 'konya'}">Manage this valley in the simulator →</a>` : ''}
       <a href="explorer.html#${esc(r.id)}">Open in Explorer →</a>
     </div>
   `;

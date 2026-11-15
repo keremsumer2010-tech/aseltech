@@ -45,7 +45,8 @@
     },
   };
 
-  let activeBasinId = 'tulare';
+  const urlBasin = new URLSearchParams(window.location.search).get('basin');
+  let activeBasinId = (urlBasin === 'konya' || urlBasin === 'konya_plain' || urlBasin === 'karapinar') ? 'konya' : 'tulare';
   let simState = null;
   let selectedDistrictId = 'p01';
   let applyAll = true; // sliders set the whole basin; the readout follows the district clicked on the map
@@ -1259,6 +1260,13 @@
   }
 
   function updateBasinCalibrationCard() {
+    document.querySelectorAll('.basin-btn').forEach((b) => {
+      const on = b.dataset.basin === activeBasinId;
+      b.classList.toggle('active', on);
+      if (b.hasAttribute('aria-checked')) b.setAttribute('aria-checked', on ? 'true' : 'false');
+    });
+    const endLink = $('endAtlasLink');
+    if (endLink) endLink.href = activeBasinId === 'konya' ? '../web/atlas.html#konya_plain' : '../web/atlas.html#central_valley';
     const ui = BASIN_UI[activeBasinId] || BASIN_UI.tulare;
     const cal = ValleyModel.runCalibrationCheck(summaryData, activeBasinId);
     const rng = summaryData && (summaryData.range_cm || summaryData.max_subsidence_range_cm);

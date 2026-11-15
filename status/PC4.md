@@ -1,1 +1,1 @@
-**PC4** (`2026-11-15 10:33 TR`): YENİ PLAN 2 Blok 1 (`web/present.html` 6 duraklı çevrimdışı Lincoln sunum modu + `presentation_cues.md` bağlantısı) tamamlandı ve yerel HTTP 8765 ile doğrulandı. Sıradaki: Blok 2 (`game` ↔ `atlas` `?basin=` bağlantısı).
+**PC4** (`2026-11-15 10:34 TR`): YENİ PLAN 2 Blok 2 (`game/` ↔ `web/atlas.html` `?basin=` bağlantısı, Karapınar sub-basin etiketi + Konya Plain rank 1 linki, bitiş ekranı atlas linki) tamamlandı. Sıradaki: Blok 3 (`atlas` "What changed" kutusu + hata çubukları).
