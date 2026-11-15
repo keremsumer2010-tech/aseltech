@@ -4,6 +4,7 @@
   document.querySelectorAll('[data-rsrc]').forEach(el => { el.src = ROOT + el.dataset.rsrc; });
   document.querySelectorAll('[data-rhref]').forEach(el => { el.href = ROOT + el.dataset.rhref; });
 
+  const COUNTRY = {kashmar: 'Iran', kerman: 'Iran', tianjin: 'China', gorgan: 'Iran', pekalongan: 'Indonesia', houston: 'USA', lagos: 'Nigeria', can_tho: 'Vietnam'};
   const minus = v => (v < 0 ? '−' : '') + Math.abs(v).toFixed(1);
   const fmtDate = d => new Date(d + 'T00:00:00Z').toLocaleDateString('en-GB', {day: 'numeric', month: 'short', timeZone: 'UTC'});
   const setAll = (sel, text) => document.querySelectorAll(sel).forEach(el => { el.textContent = text; });
@@ -39,11 +40,11 @@
       const maxAbs = Math.max(...h.top5.map(t => Math.abs(t.rate_cm_per_100d_common || 0)));
       list.innerHTML = h.top5.map(t => `
         <li><span class="rk">${t.rank}</span>
-          <span class="nm"><b>${t.name}</b><span>${t.country} · ${t.confidence} confidence${t.note ? ' · ' + t.note : ''}</span></span>
+          <span class="nm"><b>${t.name}</b><span>${t.country || (COUNTRY[t.id] || '')}${t.note ? ' · caution' : ''}</span></span>
           <span class="rt">${minus(t.rate_cm_per_100d_common)} cm</span>
           <span class="bar"><i style="width:${(100 * Math.abs(t.rate_cm_per_100d_common) / maxAbs).toFixed(0)}%"></i></span></li>`).join('');
       const note = document.getElementById('top5note');
-      if (note) note.textContent = `cm per 100 days, toward/away from the satellite, common window ${w0} to ${w1}. Only reliable basins are ranked here; ${h.qc_story.flagged.length} more are indicative.`;
+      if (note) note.innerHTML = `Fastest reliable basins, cm per 100 days toward or away from the satellite, common window ${w0} to ${w1}; ${h.qc_story.flagged.length} more basins are indicative only. ` + h.calibration_note;
     }
 
     // QC before/after chart
