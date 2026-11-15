@@ -48,8 +48,7 @@ web/
                       atlas_sat.js (NISAR uydu yörüngesi; data/nisar_tle.json + satellite.js),
                       docs.js (science/data/faq ortak yardımcılar), explorer.js (data/catalog.json okur)
   assets/             logo_mark_*.png, atlas_world.{jpg,webp}, simulator.jpg, bluemarble_2k.jpg (atlas.js)
-  vendor/             maplibre-gl, satellite.min.js, three/ (sadece nisar3d.js kullanır)
-  app.js, nisar3d.js, mock/   KULLANILMIYOR (bkz. §7)
+  vendor/             maplibre-gl (atlas haritası), satellite.min.js (atlas uydu yörüngesi)
 ```
 
 ## 3. `game/`: yeraltı suyu simülatörü (canlıda `/game/`)
@@ -94,19 +93,13 @@ web/
 | `docs/bulletins/` | Bölge bültenleri (HTML, `tools/bulletin.py` üretir) |
 | `docs/qa/` | PC başına QA notları |
 
-## 7. Kullanılmayan (fosil) dosyalar
+## 7. Silinen fosil dosyalar (2026-11-15)
 
-Hiçbir sayfa, script, test veya yayın adımı bunları yüklemiyor. Silinmedi, yerinde duruyor.
-
-| Dosya | Boyut | Neden fosil |
-|---|---|---|
-| `web/app.js` | 30 KB | Eski ana hikâye scripti; hiçbir HTML yüklemiyor (yerini `js/home3.js` + `js/atlas.js` aldı) |
-| `web/nisar3d.js` | 42 KB | Tam 3B yörünge görünümü; `js/atlas_sat.js` içindeki not "linklenmiyor" diyor |
-| `web/vendor/three/` | ~600 KB | Sadece `nisar3d.js` kullanıyor |
-| `web/assets/earth_day_3600.jpg`, `earth_lights_4096.jpg` | büyük | Sadece `nisar3d.js` kullanıyor |
-| `web/assets/logo_mark_32.png` | 2 KB | Hiçbir yerden referans yok |
-| `web/mock/` | | Erken dönem sahte veri; artık gerçek `data/` kullanılıyor |
-| `data/central_valley_p114_fullyear/` | | Site, katalog, kayıtlar ve belgelerde referans yok |
+Hiçbir sayfa, script, test veya yayın adımı kullanmadığı için silindi; gerekirse git geçmişinden geri alınabilir:
+`web/app.js` (eski ana hikâye scripti), `web/nisar3d.js` (linksiz 3B yörünge görünümü) ve yalnız onun kullandığı
+`web/vendor/three/`, `web/assets/earth_day_3600.jpg`, `web/assets/earth_lights_4096.jpg`; ayrıca `web/assets/logo_mark_32.png`,
+`web/mock/` (erken sahte veri), `data/central_valley_p114_fullyear/` (hiçbir yerde referansı yoktu).
+`data/numbers_registry.json` içinde bu dosyalara işaret eden eski satırlar, `analysis/pc5/numbers_registry.py` yeniden çalışınca temizlenir.
 
 Yarı-kullanılan (silme, ama bil): `web/panel.html` (iç ekip paneli, sitede linksiz), `web3d/` (yayında ama linksiz),
-`game/test_model.html` (geliştirici test sayfası). `pages.yml` içindeki `nisar3d.js` cache-bust satırı da artık boşa çalışıyor.
+`game/test_model.html` (geliştirici test sayfası). `pages.yml` içindeki `nisar3d.js` cache-bust satırı artık boşa çalışıyor (zararsız).

@@ -29,7 +29,7 @@ DISCLAIMER = (
 
 SCAN_GLOBS = [
     "web/*.html",
-    "web/*.js",
+    "web/js/*.js",
     "docs/story/*.md",
     "docs/story/slides.html",
     "docs/story/technical_note.html",
@@ -43,9 +43,8 @@ FILE_OWNERS = {
     "web/faq.html": "PC9 / PC3",
     "web/explorer.html": "PC9 / PC3",
     "web/panel.html": "PC3",
-    "web/app.js": "PC9 / PC3",
-    "web/explorer.js": "PC9 / PC3",
-    "web/docs.js": "PC9 / PC3",
+    "web/js/explorer.js": "PC9 / PC3",
+    "web/js/docs.js": "PC9 / PC3",
     "docs/story/slides.html": "PC4",
     "docs/story/technical_note.html": "PC4",
     "docs/story/technical_note.md": "PC4",

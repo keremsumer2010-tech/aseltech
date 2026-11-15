@@ -64,7 +64,7 @@ def target_exists(target: Path, dynamic: bool) -> bool:
 
 
 def path_report() -> str:
-    sources = [WEB / name for name in ("index.html", "science.html", "data.html", "faq.html", "app.js", "docs.js")]
+    sources = [WEB / name for name in ("index.html", "science.html", "data.html", "faq.html", "js/docs.js")]
     records: set[tuple[str, int, str, str]] = set()
     for source in sources:
         text = source.read_text(encoding="utf-8")
