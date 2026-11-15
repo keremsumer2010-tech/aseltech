@@ -11,6 +11,12 @@ bir web hikâyesine çeviriyoruz: santim haritası, zaman kaydırıcısı, tıkl
 altyapı riski ve GPS doğrulaması. Bölgeler: California Central Valley (ana), Konya/Karapınar, UK (Fens).
 Ayrıntı: `docs/URUN_TANIMI.md`.
 
+## Dosya haritası: dosya aramadan önce oku
+
+`DOSYA_HARITASI.md` deponun haritasıdır: hangi sayfa hangi CSS/JS'i yüklüyor, hangi klasör ne iş yapıyor,
+hangi dosyalar artık kullanılmıyor. Bir dosyayı bulmak için tüm depoyu taramak yerine önce bunu oku,
+sonra sadece ilgili dosyayı aç. Dosya taşıyan/ekleyen bu haritayı da günceller.
+
 ## Okuma sırası: bu sırayla, eksiksiz oku, sonra işe başla
 
 | # | Dosya | Neden |
