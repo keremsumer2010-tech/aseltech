@@ -44,7 +44,7 @@ Kullanıcı artık ajanlara prompt girmiyor; **tüm yönetim git üzerinden.** K
 - [x PC7] Pekin tam kutu yeniden hesap → `data/global/beijing/` (11 Temmuz aykırısı kaldı)
 
 ## B. Bilim ve doğrulama (PC4, PC5, PC11, boşta kalan herkes)
-- [ ] Her güvenilir bölge için 1 paragraf "neden çöküyor" (yeraltı suyu / kil / tarım), kaynaklı → şehir kartlarına ek (PC4 ile koordineli)
+- [x PC4] Her güvenilir bölge (16/16) için kaynaklı "neden çöküyor" paragrafı → `docs/story/atlas_cities/*.md` (tümü `<= 150` kelime, DOI/kaynaklı)
 - [ ] `docs/story/detectability.md`'yi 21+ bölgeye güncelle (yeni bölgelerin σ haritaları geldikçe)
 - [x PC4] Ortak 93 günlük pencere sıralamasının eski sıralamayla kıyası (hangi bölge yer değiştirdi, neden) → `docs/qa/PC4.md` §32
 - [x PC4] `atlas_top5_check.md` yöntemini 6–15. sıralara uygula (literatür kıyası tablosu → `docs/qa/PC4.md` §33)
