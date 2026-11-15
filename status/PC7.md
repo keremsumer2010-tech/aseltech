@@ -1,7 +1,7 @@
 # PC7 durum
 
 - Görev: Fens GCOV ritmi, polarizasyon karşılaştırması, çevrimdışı site QA ve Node oyun testi
-- Durum: Pekin full-box hazır: 9 provisional çift; −11.1 cm LOS, −9.25 cm/100 gün, valid_fraction 0.523, reference spread 7.9 cm, July 11 tam-alan spike oranı 13.10% (<30% QC eşiği). `docs/qa/PC7.md` §30; atlas yenilemesi PC10'da. Şimdi fresh-cut robustness çalıştırılacak.
+- Durum: Beijing full-box + fresh-cut robustness tamam: 9 çift; −11.1 cm LOS/−9.25 cm per 100d; 18/27 robustness variants, rate spread −7.86…−2.06, rank 1–3; global top-3 inconclusive. §30 PC10 handoff; sıradaki global infrastructure risk.
 - ASF araması: platform=NISAR, processingLevel=GCOV, bbox [-0.3, 52.4, 0.4, 52.9], başlangıç 2026-06-17; 49 P05023 GCOV ürünü HH/HV ile eşleşti.
 - Tekrarlı seri: path 52, frame 61, 10 benzersiz tarih: 2026-06-17–2026-10-15. Granül listesi `pipeline/pc7/fens_gcov_catalog.json` içinde.
 - Doğrulama: `pipeline/pc7/search_fens_gcov.py` çalıştırıldı; katalog JSON olarak tekrar açılıp parse edildi.
