@@ -37,6 +37,8 @@
     setAll('[data-hs="days"]', String(days));
     setAll('[data-hs="window"]', `${fmtDate(w0)} – ${fmtDate(w1)} 2026`);
     setAll('[data-hs="nflag"]', String(h.qc_story.flagged.length));
+    const nrel = /(\d+) reliable/.exec(k.regions.detail || '');
+    if (nrel) setAll('[data-hs="nrel"]', nrel[1]);
     setAll('[data-hs="flagged"]', h.qc_story.flagged.map(s => s.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase())).join(', '));
     setAll('[data-hs="calib"]', h.calibration_note);
 

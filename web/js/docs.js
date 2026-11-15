@@ -37,3 +37,5 @@ function texToHtml(tex){
     .replace(/[{}\\]/g, '').replace(/</g, '&lt;') + '</i>';
 }
 async function J(p){ try{ const r = await fetch(ROOT + p); return r.ok ? await r.json() : null; }catch(e){ return null; } }
+
+document.querySelectorAll('[data-rsrc]').forEach(el => { el.src = ROOT + el.dataset.rsrc; });  // PC1

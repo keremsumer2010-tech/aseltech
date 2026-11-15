@@ -54,6 +54,24 @@
   <div class="kpi"><div class="kpi-num" data-hs="nflag">5</div><div class="kpi-lbl">basins our own error check flagged</div><div class="kpi-det">shown as indicative until re-processed</div></div>
 </section>
 
+<!-- HOW WE KNOW IT'S RIGHT (PC1, Cambridge) -->
+<section class="trust" id="trust" aria-labelledby="h-trust">
+  <div class="trust-head"><p class="chapter">How we know it's right</p>
+    <h2 id="h-trust">A satellite number is only useful if you can trust it. We tested ours three ways.</h2></div>
+  <div class="trust-grid">
+    <a class="tcard" href="#w3"><span class="tnum" data-kpi="gnss">r = 0.92</span>
+      <b>Checked against the ground</b>
+      <p>Ten permanent GPS stations in California measured the same sinking as the satellite. Typical difference: about 1 cm (0.4 in).</p></a>
+    <a class="tcard" href="#w2"><span class="tnum"><span data-hs="nflag">5</span> caught</span>
+      <b>We hunt for our own mistakes</b>
+      <p>Radar can jump by exactly one wave cycle (12.1 cm). An automatic test checks every basin for these jumps and bad dates; flagged basins are not ranked.</p></a>
+    <a class="tcard" href="atlas.html"><span class="tnum"><span data-hs="nrel">15</span> of <span data-kpi="regions">29</span></span>
+      <b>We only rank what passes</b>
+      <p>Basins with thin coverage or failed checks stay "indicative". Even Konya, our strongest signal, stays indicative after our own review.</p></a>
+  </div>
+  <p class="trust-note">NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team. <a href="science.html">How it works, step by step →</a></p>
+</section>
+
 <section class="built-intro" id="built" aria-labelledby="h-built">
   <div class="bi-head"><p class="chapter">What we built · in one look</p><h2 id="h-built">Nine things we made. Each one is a section below.</h2></div>
   <ol class="glance">

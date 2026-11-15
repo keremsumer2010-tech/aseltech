@@ -162,3 +162,29 @@ h1,h2{text-wrap:balance}
 .logo-word b{font-weight:800;letter-spacing:-.005em}
 .logo-full,.logo-img{display:none}
 @media (max-width:620px){.logo-mark2{width:38px;height:38px}.logo-word{font-size:1.1rem}}
+
+/* "How we know it's right" band (PC1, Cambridge) */
+.trust{padding:56px 6vw 52px;background:#f5f7fa;border-top:1px solid #e3e7ee;border-bottom:1px solid #e3e7ee}
+.trust-head{max-width:1180px;margin:0 auto 22px}
+.trust-head h2{font:800 clamp(1.5rem,2.6vw,2.2rem)/1.15 var(--disp);margin:.2em 0 0;max-width:30em}
+.trust-grid{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.tcard{display:block;background:#fff;border:1px solid #dfe4eb;border-top:4px solid var(--acc);padding:22px 22px 18px;color:var(--ink);text-decoration:none;transition:box-shadow .2s,transform .2s}
+.tcard:hover{box-shadow:0 14px 30px -18px rgba(13,21,36,.4);transform:translateY(-2px);text-decoration:none}
+.tnum{display:block;font:800 2.3rem/1 var(--disp);font-stretch:92%;letter-spacing:-.03em;color:var(--acc);margin-bottom:10px}
+.tcard b{display:block;font:800 1.08rem/1.25 var(--disp);margin-bottom:6px}
+.tcard p{margin:0;font-size:.97rem;line-height:1.5;color:#3f4a5a}
+.trust-note{max-width:1180px;margin:18px auto 0;font-size:.85rem;color:#5b6778}
+@media (max-width:900px){.trust-grid{grid-template-columns:1fr}}
+
+/* Science page: four-step "how it works" strip (PC1, Cambridge) */
+.hiw{margin:26px 0 34px}
+.hiw-steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.hiw-steps li{background:#fff;border:1px solid #dfe4eb;border-top:4px solid var(--acc);padding:16px}
+.hiw-n{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--acc);color:#fff;font:800 .95rem var(--disp);margin-bottom:8px}
+.hiw-steps b{display:block;font:800 1.02rem/1.25 var(--disp);margin-bottom:4px}
+.hiw-steps p{margin:0;font-size:.93rem;line-height:1.5;color:#3f4a5a}
+.hiw-figs{display:grid;grid-template-columns:2fr 1fr 1fr;gap:14px;margin-top:14px}
+.hiw-figs figure{margin:0}.hiw-figs img{width:100%;height:auto;border:1px solid #dfe4eb;background:#fff}
+.hiw-figs figcaption{font-size:.78rem;color:#5b6778;margin-top:4px}
+@media (max-width:900px){.hiw-steps{grid-template-columns:1fr 1fr}.hiw-figs{grid-template-columns:1fr}}
+@media (max-width:520px){.hiw-steps{grid-template-columns:1fr}}
