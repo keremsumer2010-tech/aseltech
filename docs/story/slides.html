@@ -241,8 +241,8 @@
           <div class="lbl">16 reliable, 13 indicative on the same 93-day window (28 Jun–29 Sep 2026; <code>atlas.json</code>).</div>
         </div>
         <div class="kpi">
-          <div class="num neg">1.20 M</div>
-          <div class="lbl">1,200,716 people living on 511.65 km² sinking &gt; 5 cm (GHSL 2025, <code>vital_signs.json</code>).</div>
+          <div class="num neg">1.48 M</div>
+          <div class="lbl">1,479,844 people living on 549.45 km² sinking &gt; 5 cm (GHSL 2025, <code>vital_signs.json</code>).</div>
         </div>
         <div class="kpi">
           <div class="num acc">r = 0.92</div>
@@ -254,8 +254,8 @@
           <h3>Mandatory Calibration Notice &amp; Scope</h3>
           <ul>
             <li><em>NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.</em></li>
-            <li>Permanent aquifer storage loss: <strong>0.32 km³/yr</strong> (<code>0.3174 km³/yr</code>, Central Valley, mixed 11-month chain).</li>
-            <li><strong>5 basins</strong> flagged by automated quality control and shown as indicative only.</li>
+            <li>Permanent aquifer storage loss: <strong>0.3174 km³/yr</strong> (Central Valley, mixed 11-month chain).</li>
+            <li><strong>5 flagged areas</strong> isolated by automated quality control as indicative only.</li>
           </ul>
         </div>
         <figure style="margin:0;">
@@ -303,7 +303,7 @@
       <div>
         <div class="eyebrow">Slide 3 / 6 · 2 · Our Own Error, Caught (1:00–1:30) · Time-Series QC</div>
         <h2>A check that catches our own errors</h2>
-        <p class="lead">Automated time-series checks flagged 12.1 cm full L-band phase-cycle jumps; Semarang dropped from −12.1 to −6.2 cm, and 5 basins stay indicative.</p>
+        <p class="lead">Automated time-series checks flagged 12.1 cm full L-band phase-cycle jumps; Semarang dropped from −12.1 to −6.2 cm, and 5 flagged areas stay indicative.</p>
       </div>
       <div class="kpi-row">
         <div class="kpi">
@@ -338,7 +338,7 @@
       <div>
         <div class="eyebrow">Slide 4 / 6 · 3 · Why You Can Trust It (1:30–2:05) · Ground Truth &amp; Uncertainty</div>
         <h2>Proof on the ground and uncertainty</h2>
-        <p class="lead">Provisional NISAR motion tracks 10 Central Valley GPS stations (r = 0.92), beats 0.3 cm noise, and matches Mexico City OPERA patterns (r = 0.91).</p>
+        <p class="lead">Provisional NISAR motion tracks 10 Central Valley GPS stations (r = 0.924), beats 0.3 cm noise, and includes a Mexico City pattern check.</p>
       </div>
       <div class="two-col">
         <div class="card">
@@ -346,7 +346,7 @@
           <ul>
             <li><strong>Primary validation (GNSS):</strong> <strong>r = 0.924</strong> across 10 continuous Central Valley GPS stations (<code>1.00 cm</code> median RMSE, <code>1.37 cm</code> final-epoch RMSE).</li>
             <li><strong>Formal noise &amp; negative control:</strong> Median formal phase noise <strong>≈ 0.3 cm</strong> (<code>0.294 cm</code>); London Clay negative control is <code>below_detection</code> (<code>3σ = 3.62 cm</code>, 97.7% within ±1.5 cm).</li>
-            <li><strong>Secondary OPERA check (seasonal caveat):</strong> Over Mexico City the spatial pattern matches NASA JPL's OPERA product at 10 points (<code>r = 0.91</code>), although OPERA covers winter (2025-12-25 to 2026-03-25) and NISAR summer (2026-06-22 to 2026-10-20); in the Central Valley and at Eloy agreement is weak (<code>r = 0.40</code> and <code>0.09</code>) because seasons and viewing geometry differ.</li>
+            <li><strong>Secondary OPERA check (seasonal caveat):</strong> Over Mexico City the spatial pattern matches NASA JPL's OPERA product at 10 points (<code>r = 0.912</code>), although OPERA covers winter (2025-12-25 to 2026-03-25) and NISAR summer (2026-06-22 to 2026-10-20); in the Central Valley and at Eloy agreement is weak (<code>r = 0.40</code> and <code>0.09</code>) because seasons and viewing geometry differ.</li>
           </ul>
         </div>
         <figure style="margin:0;">
@@ -365,7 +365,7 @@
       <div>
         <div class="eyebrow">Slide 5 / 6 · 4 · What It Is For (2:05–2:40) · People, Water, Infrastructure, Simulator</div>
         <h2>From a radar measurement to a decision</h2>
-        <p class="lead">We turn sinking into 1.20 M exposed people, 0.32 km³/yr lost storage, 81/645 tilting corridors, 29 bulletins, and a 30-second simulator.</p>
+        <p class="lead">We turn sinking into 1.48 M exposed people, 0.3174 km³/yr lost storage, 81/645 tilting corridors, 29 bulletins, and a 30-second simulator.</p>
       </div>
       <div class="img-pair">
         <figure>
@@ -378,7 +378,7 @@
         </figure>
       </div>
       <div class="card">
-        <p style="margin:0;"><strong>Exposure &amp; Tools:</strong> <strong>1,200,716</strong> residents on <strong>511.65 km²</strong> sinking &gt; 5 cm (GHSL 2025, 29 basins) · <strong>29</strong> one-page NASA-style basin bulletins · <strong>Valley Under Pressure</strong> 24-month simulator (<code>web/game/</code>).</p>
+        <p style="margin:0;"><strong>Exposure &amp; Tools:</strong> <strong>1,479,844</strong> residents on <strong>549.45 km²</strong> sinking &gt; 5 cm (GHSL 2025, 29 basins) · <strong>29</strong> one-page NASA-style basin bulletins · <strong>Valley Under Pressure</strong> 24-month simulator (<code>web/game/</code>).</p>
       </div>
       <div class="foot">
         <span>Source: <code>data/global/exposure_atlas.json</code>, <code>data/central_valley_fullyear/storage_loss.json</code>, <code>data/central_valley/assets.json</code>.</span>
@@ -399,7 +399,7 @@
           <ul>
             <li><strong>1. Comparable 29-basin atlas:</strong> One pipeline, one 93-day window, off-basin references.</li>
             <li><strong>2. Self-checking QC:</strong> Automated 12.1 cm phase-cycle &amp; spike flagging.</li>
-            <li><strong>3. Decision metrics:</strong> GHSL exposure, <code>0.32 km³/yr</code> aquifer loss, corridor tilt, 29 bulletins, simulator.</li>
+            <li><strong>3. Decision metrics:</strong> GHSL exposure, <code>0.3174 km³/yr</code> aquifer loss, corridor tilt, 29 bulletins, simulator.</li>
             <li><strong>4. One-command reproduction:</strong> <code>python -m pipeline.nisarpulse run ...</code> &amp; <code>python pipeline/pc10/build_atlas.py</code>.</li>
             <li><strong>AI &amp; Imagery Disclosure:</strong> Zero AI-generated images anywhere; Claude/Gemini assisted code &amp; QA. Live site: <a href="https://keremsumer2010-tech.github.io/aseltech/" target="_blank" rel="noopener">keremsumer2010-tech.github.io/aseltech/</a>.</li>
           </ul>

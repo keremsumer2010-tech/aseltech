@@ -30,7 +30,7 @@ All figures below match [`docs/qa/SCIENCE_SIGNOFF.md`](docs/qa/SCIENCE_SIGNOFF.m
 | 7 | **Karapınar Basin & 29-Sinkhole Contrast** | **`−5.9 cm` LOS** (`−8.0 cm` vert. est.); **`6.4×`** `< 1 km` | `−4.15 cm` `< 1 km` vs. `−0.65 cm` `> 5 km` (`p = 0.0001` block perm) | `provisional` |
 | 8 | **London Clay Negative Control** | **`below_detection`** (`97.7%` within `±1.5 cm`) | `chain_sigma = 1.21 cm`, **`3σ = 3.62 cm`** floor (`9` pairs) | `provisional` |
 | 9 | **2026 Global Subsidence Atlas (#1 Reliable)** | **#1 Konya Plain `−11.0 cm/100d`** (`93 d` common) | **`29` regions (`16` reliable / `13` indicative)**; Konya valid-pixel fraction unrecorded (caution) | `provisional` |
-| 10 | **Global GHSL Exposure (`< −5 cm`, `|disp| ≥ 2σ`)** | **`1,200,716` residents** on **`511.65 km²`** | `GHSL E2025` (`100 m`), all `29` regions excluding nested `karapinar` | `provisional` |
+| 10 | **Global GHSL Exposure (`< −5 cm`, `|disp| ≥ 2σ`)** | **`1,479,844` residents** on **`549.45 km²`** | `GHSL E2025` (`100 m`), all `29` regions excluding nested `karapinar` | `provisional` |
 
 *Secondary OPERA cross-check:* Over Mexico City the spatial pattern matches NASA JPL's OPERA product at 10 points (`r = 0.91`), although OPERA covers winter (`2025-12-25` to `2026-03-25`) and NISAR summer (`2026-06-22` to `2026-10-20`); in the Central Valley and at Eloy the agreement is weak (`r = 0.40` and `0.09`) because seasons and viewing geometry differ. Main validation is GPS (`r = 0.924`).
 

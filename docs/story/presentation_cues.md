@@ -32,7 +32,7 @@
 ### Block 1 (`0:00 – 0:20`) · Hero: A Self-Checking Global Subsidence Atlas
 - **Speaker:** **Kerem**
 - **Memir Clicks (`web/present.html` Stop 1 or `web/index.html` Hero):**
-  1. Show the single-sentence core and 3 headline numbers (**`29` basins · `1.20 M` residents · `r = 0.92` GPS**), then click **`Explore the atlas →`**.
+  1. Show the single-sentence core and 3 headline numbers (**`29` basins · `1.48 M` residents · `r = 0.92` GPS**), then click **`Explore the atlas →`**.
 - **Kerem Says:**
   > We turned the first months of NASA-ISRO NISAR radar data into a self-checking global subsidence atlas: 29 basins measured with one open pipeline on the same 93 days, every number traceable to its file, and every headline checked against GPS, NASA's OPERA product and the literature.
 - **Offline Fallback Cue:** `web/present.html` Stop 1 (`docs/story/three_minute_story.md` §1).
@@ -64,9 +64,9 @@
 ### Block 5 (`2:05 – 2:40`) · What It Is Useful For (Exposure, Storage, Tilt, Simulator)
 - **Speaker:** **Kerem**
 - **Memir Clicks (`web/present.html` Stop 5 → `game/index.html?basin=konya`):**
-  1. Flash **1.20 million residents** (`511.65 km² < −5 cm`), **`0.3174 km³/yr` permanent Central Valley storage loss**, **`81 / 645` canal/rail segments `> 20 mm/km`** (Tulare Canal `57.01 mm/km`), and launch the 24-month simulator (`Valley Under Pressure`).
+  1. Flash **1.48 million residents** (`549.45 km² < −5 cm`), **`0.3174 km³/yr` permanent Central Valley storage loss**, **`81 / 645` canal/rail segments `> 20 mm/km`** (Tulare Canal `57.01 mm/km`), and launch the 24-month simulator (`Valley Under Pressure`).
 - **Kerem Says:**
-  > We turn radar centimetres into decisions: 1.20 million people living on sinking ground, 0.32 cubic kilometres per year of permanent Central Valley aquifer loss, 81 high-tilt canal and rail segments, one-page city bulletins, and a 24-month simulator anyone can play.
+  > We turn radar centimetres into decisions: 1.48 million people living on sinking ground, 0.32 cubic kilometres per year of permanent Central Valley aquifer loss, 81 high-tilt canal and rail segments, one-page city bulletins, and a 24-month simulator anyone can play.
 - **Offline Fallback Cue:** `web/present.html` Stop 5 (`docs/story/three_minute_story.md` §5).
 
 ### Block 6 (`2:40 – 3:00`) · Original, Open & Mandatory Provisional Close
