@@ -592,7 +592,7 @@ function showStaticMap(){
   const el = document.getElementById('atlasMap');
   if (!el || el.dataset.static) return;
   el.dataset.static = '1';
-  el.innerHTML = `<div class="atlas-static"><img src="assets/atlas_world.jpg" alt="World map of the 29 measured basins; filled circles are reliable, rings are indicative">
+  el.innerHTML = `<div class="atlas-static"><img src="assets/atlas_world.jpg" alt="World map of the measured basins; filled circles are reliable, rings are indicative">
     <p><b>Static map.</b> The interactive globe needs WebGL (graphics hardware acceleration), which this browser has turned off. The ranking, region details and all tables below still work.</p></div>`;
 }
 

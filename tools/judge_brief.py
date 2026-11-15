@@ -103,7 +103,7 @@ def build(n: dict) -> str:
         f'<div class="num"><b>{a}</b><span>{b}</span><i>{c}</i></div>' for a, b, c in cards
     )
     contribs = [
-        ("One window, one method, 29 basins", f"A comparable global ranking from the first provisional NISAR data: one {n['window_days']}-day window, one open pipeline."),
+        (f"One window, one method, {n['basins']} basins", f"A comparable global ranking from the first provisional NISAR data: one {n['window_days']}-day window, one open pipeline."),
         ("An atlas that checks itself", "Time-series quality control caught a full phase-cycle error in Semarang (-12.1 to -6.2 cm) and flagged other basins as indicative."),
         ("Independent evidence", "GPS agreement in the Central Valley (r = 0.92, 10 stations); in Mexico City spatial pattern matches NASA JPL OPERA at 10 points (r = 0.91) across seasons."),
         ("From measurement to decision", "People and aquifer loss, canal tilt risk, one-page bulletins, a 24-month simulator, one command to reproduce."),
