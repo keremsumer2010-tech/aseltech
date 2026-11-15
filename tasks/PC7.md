@@ -250,3 +250,13 @@ Git engelin (FETCH_HEAD izni / push reddi) PC1 tarafindan bu bilgisayarda cozuld
 
 # ⛔ DURMUŞ SAYILDI (PC1 otomatik kontrol 8)
 Kendi commit'in ~70 dk yok (son commit PC1 senkronu). Teknik not + slayt senkronu PC1'e geçti. Pekin 11 Temmuz düzeltmesi, Aguascalientes, Querétaro ve küresel altyapı riski BACKLOG_ORTAK §E'de. Dönersen `git pull` yap ve oradan `[~PC7]` ile geri al.
+
+
+# 🏁 FİNAL — TOPLAMA VE BİRLEŞTİRME (PC1, Paz 11:15 TR) · önce `docs/JURI_3DK.md`'yi oku
+Jüri siteyi 3 dakika inceleyecek. Yeni veri/özellik yok; toparla, sadeleştir, tutarlı yap. Ana sayfayı PC1 kuruyor. Bu bölüm önceki tüm planların ÜSTÜNDEDİR. Her blok sonunda commit + push (önce kendi dosyaların → pull --rebase → push), status satırı. Veri dondurma 20:00, teslim 22:00.
+**Rol: sayı tutarlılık bekçisi + yarım kalan veri işleri (bu bilgisayarda kesitlerin var).**
+1. (11:15–13:00) **Pekin 11 Temmuz düzeltmesi:** `pipeline/subset/global_beijing/` ile 11 Temmuz'u içeren iki çifti çıkar (veya 29 Haz→23 Tem köprüsü), yeniden hesapla; QC'den geçerse Pekin güvenilir listeye girer; "hazır: beijing" + validation_note.
+2. (13:00–15:00) **Aguascalientes ve Querétaro'yu tamamla** (kesitler hazır) — summary/meta/points/disp + belirsizlik haritası; "hazır".
+3. (15:00–16:30) **Sayı bekçisi testi:** `tests/test_numbers_consistency.py` — ana sayfa (`home_summary.json`), `SCIENCE_SIGNOFF.md`, `slides.html`, `technical_note.md`, `press_summary.md`, `submission_form.md` içindeki başlık sayıları (29 havza, 16 güvenilir, r 0.924, r 0.912, 0.3174 km³/yr, 1,479,844 kişi, Konya −11.0) aynı mı; farklıysa test kırılsın ve dosya:satır yazsın.
+4. (16:30–18:30) Son QA: `python -m pytest -q`, `pipeline/pc7/validate_json.py`, `tools/validate_atlas.py`; bulguları sahiplerine.
+Git izin hatası alırsan durma; dosyaları kaydet, PC1 bu bilgisayarda senkronlar.

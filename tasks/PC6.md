@@ -147,3 +147,13 @@ Son bloğa geldiğinde `status/PC6.md` ilk satırına `PLAN_SONU_YAKIN` yaz, pus
 
 # ⛔ DURMUŞ SAYILDI (PC1 otomatik kontrol 2)
 60 dk'dan uzun commit yok; kritik işlerin BACKLOG_ORTAK (site işleri) ve PC2 (site QA) tarafına devredildi. Dönersen `tasks/BACKLOG_ORTAK.md`'de `[ ]` kalan kendi işlerini geri al (`[~PC6]`), başkasının aldığına dokunma.
+
+
+# 🏁 FİNAL — TOPLAMA VE BİRLEŞTİRME (PC1, Paz 11:15 TR) · önce `docs/JURI_3DK.md`'yi oku
+Jüri siteyi 3 dakika inceleyecek. Yeni veri/özellik yok; toparla, sadeleştir, tutarlı yap. Ana sayfayı PC1 kuruyor. Bu bölüm önceki tüm planların ÜSTÜNDEDİR. Her blok sonunda commit + push (önce kendi dosyaların → pull --rebase → push), status satırı. Veri dondurma 20:00, teslim 22:00.
+**Rol: site mühendisliği ve simülatör (ana sayfa içeriği PC1'de; sen geri kalan sayfalar ve hız).**
+1. (11:15–12:30) **Menü sadeleştirme (tüm sayfalarda aynı):** Home · Atlas · Simulator · Science · Data · (Present). Kırık/eski menü öğesi kalmasın. Footer'da kalibrasyon cümlesi + kaynak satırı tek tip.
+2. (12:30–14:00) **Atlas sayfası jüri modu:** `atlas.html?jury=1` (veya varsayılan): açılışta güvenilir 1. bölge seçili, panel açık, "How to read" kutusu görünür; ilk ekranda (1920×1080) küre + ilk 5 + panel birlikte. NISAR 3D dosyalarına dokunma.
+3. (14:00–15:30) **Simülatör 30 saniye:** karşılama penceresine "Quick demo (30 s)" düğmesi — Over-Pump senaryosunu 24 ay otomatik oynatır ve sonuçta tek cümle gösterir ("Pumping 50% more → X cm more sinking, Y cm of it permanent"); `test_model.html` 6/6 kalmalı.
+4. (15:30–17:00) **Hız:** her sayfa ilk açılış < 2 sn (lazy görseller, büyük PNG/MP4'leri ilk ekrandan çıkar, video poster); ölçümleri `docs/qa/PC6.md`'ye yaz.
+5. (17:00–18:30) **Son tarama:** 1920×1080 projektör, 1366×768 dizüstü, 375 px telefon; konsol 0 hata, kırık link 0; PC1'e bulgu listesi.

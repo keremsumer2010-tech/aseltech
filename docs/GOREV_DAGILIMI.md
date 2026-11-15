@@ -235,3 +235,5 @@ Evet. PC1 rolleri saat başı kontrolde değiştirebilir; değişiklik önce bu 
 - (otomatik kontrol 8) PC7 durmuş: teknik not + slayt → PC1; Pekin 11 Tem düzeltmesi, Aguascalientes, Querétaro, küresel risk → BACKLOG §E. Çalışan tek ajan: PC9 (Lagos → Konya tam yıl).
 
 - (otomatik kontrol) PC9 durmuş: Mexico City tam yıl + annualization → BACKLOG §E. Çalışan ajan yok; atlas, metin senkronu ve 19:00 SIGNOFF kontrolü PC1'de.
+
+- (Paz 11:15) FİNAL: PC1 ana sayfa (`web/index.html` üst, `web/app.js` ilgili); PC10 `data/global/home_summary.json` + `pipeline/pc10/build_home_summary.py` + thumb; PC4 `docs/story/three_minute_story.md`, README; PC6 menü/atlas jüri modu/simülatör/hız; PC7 Pekin+Aguascalientes+Querétaro + `tests/test_numbers_consistency.py`; PC2 `pipeline/nisarpulse/reproduce`; PC8 `docs/story/judge_brief.*`, submission_form; PC11 Cakarta + mobil test.

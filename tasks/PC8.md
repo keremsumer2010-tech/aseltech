@@ -109,3 +109,13 @@ Son bloğa geldiğinde `status/PC8.md` ilk satırına `PLAN_SONU_YAKIN` yaz, pus
 
 # ⛔ DURMUŞ SAYILDI (PC1 otomatik kontrol 2)
 60 dk'dan uzun commit yok; kritik işlerin PC2 (bültenler, vital_signs) ve BACKLOG_ORTAK (teslim paketi) tarafına devredildi. Dönersen `tasks/BACKLOG_ORTAK.md`'de `[ ]` kalan kendi işlerini geri al (`[~PC8]`), başkasının aldığına dokunma.
+
+
+# 🏁 FİNAL — TOPLAMA VE BİRLEŞTİRME (PC1, Paz 11:15 TR) · önce `docs/JURI_3DK.md`'yi oku
+Jüri siteyi 3 dakika inceleyecek. Yeni veri/özellik yok; toparla, sadeleştir, tutarlı yap. Ana sayfayı PC1 kuruyor. Bu bölüm önceki tüm planların ÜSTÜNDEDİR. Her blok sonunda commit + push (önce kendi dosyaların → pull --rebase → push), status satırı. Veri dondurma 20:00, teslim 22:00.
+**Rol: teslim ve jüri tek sayfası.**
+1. (11:15–12:30) **Jüri tek sayfası (A4, yazdırılabilir):** `docs/story/judge_brief.html` — tek cümlelik öz, 6 bölümün birer satırı, 5 büyük sayı (`home_summary.json`), 4 özgün katkı, QR/link (site, atlas, simülatör, repo), kalibrasyon cümlesi. PDF olarak da (`docs/story/judge_brief.pdf`).
+2. (12:30–14:00) **Space Apps teslim formu son hâl:** `submission_form.md` — proje adı, 1 cümle, kısa açıklama (karakter sınırı), kullanılan NASA verisi (NISAR GUNW provisional, ASF DAAC, OPERA DISP-S1), diğer veriler (GNSS NGL, GHSL, OSM), AI kullanım beyanı, bağlantılar. Sayılar `home_summary.json` ile aynı.
+3. (14:00–15:30) **Bültenler son:** `python tools/bulletin.py` (atlas son hâliyle), indeks sayfası 3 dk kurguya uygun başlık.
+4. (15:30–17:00) **Nüfus etkisi eksik 8 bölge** (GHSL; PC4 plan 3 blok 3 ile aynı iş — PC4 yaptıysa atla) + `python tools/vital_signs.py`.
+5. (17:00–18:30) Teslim kontrol listesi (`docs/story/submission_package.md`): her bağlantı HTTP 200, video/slayt bağlantısı, ekip bilgisi.

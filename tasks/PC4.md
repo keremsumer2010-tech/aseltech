@@ -266,3 +266,14 @@ Son bloğa gelince `status/PC4.md` ilk satırına yine `PLAN_SONU_YAKIN`.
 | 17:30–18:30 | **Sürüm notları ve dondurma listesi:** `docs/RELEASE_NOTES.md` (neler var, bilinen sınırlamalar, değişiklik günlüğü özeti) + 20:00 dondurma kontrol listesi | RELEASE_NOTES.md |
 | 18:30–19:30 | **SIGNOFF son tur (PC1 ile)**; `python tools/sync_atlas_text.py`; 20:00'dan sonra yalnız hata düzeltme | SIGNOFF |
 Son bloğa gelince `status/PC4.md` ilk satırına `PLAN_SONU_YAKIN`.
+
+
+# 🏁 FİNAL — TOPLAMA VE BİRLEŞTİRME (PC1, Paz 11:15 TR) · önce `docs/JURI_3DK.md`'yi oku
+Jüri siteyi 3 dakika inceleyecek. Yeni veri/özellik yok; toparla, sadeleştir, tutarlı yap. Ana sayfayı PC1 kuruyor. Bu bölüm önceki tüm planların ÜSTÜNDEDİR. Her blok sonunda commit + push (önce kendi dosyaların → pull --rebase → push), status satırı. Veri dondurma 20:00, teslim 22:00.
+**Rol: 3 dakikalık metin.** (Önceki Plan 3'ten README ve soru-cevap kartları bloklarını koru, diğerlerini bu listeyle değiştir.)
+1. (11:15–12:30) **`docs/story/three_minute_story.md`:** JURI_3DK'daki 6 bölümün her biri için: başlık (≤8 kelime), tek cümle (≤25 kelime), büyük sayı + birim + kalite etiketi + kaynak dosya:anahtar, görsel önerisi, bağlantı. Dil sade İngilizce; LOS gibi terimleri bir kelimeyle açıkla. PC1 ana sayfayı bundan kuracak — **PC1 için önce bunu bitir.**
+2. (12:30–13:30) **Kök `README.md`** (Plan 3 blok 1) — tek cümlelik özümüzle başlasın.
+3. (13:30–15:00) **Slayt ve konuşma metnini 3 dk akışına hizala:** `slides.html` (6 slayt = 6 bölüm), `presentation_cues.md` süreleriyle; `present.html` duraklarının metinleri aynı cümleler (web dosyasında yalnız metin).
+4. (15:00–16:00) **Soru-cevap kartları** (`qa_cards.md`, 12 soru, 2 cümle cevap).
+5. (16:00–18:00) **Kesip atma:** `docs/story/*.md` içinde ana hikâyeyle çelişen/eski sayı içeren cümleleri bul (`python tools/sync_atlas_text.py` + elle); proje sayfası ve teslim formunun ilk paragrafı tek cümlelik özle aynı.
+6. (18:30–19:30) SIGNOFF son tur (PC1 ile).

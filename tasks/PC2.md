@@ -244,3 +244,12 @@ PC6 (site) ve PC8 (bülten/teslim) durmuş sayıldı. Kerman bittikten ve `--qc`
 
 # ⛔ DURMUŞ SAYILDI (PC1 otomatik kontrol 5)
 70 dk commit yok. Bültenler + vital_signs PC1 tarafından yapıldı (27 bölge). `--qc` motoru, Celaya, Kabudarahang ve site QA `tasks/BACKLOG_ORTAK.md` §E'ye taşındı. Dönersen oradan kendi işlerini geri al (`[~PC2]`).
+
+
+# 🏁 FİNAL — TOPLAMA VE BİRLEŞTİRME (PC1, Paz 11:15 TR) · önce `docs/JURI_3DK.md`'yi oku
+Jüri siteyi 3 dakika inceleyecek. Yeni veri/özellik yok; toparla, sadeleştir, tutarlı yap. Ana sayfayı PC1 kuruyor. Bu bölüm önceki tüm planların ÜSTÜNDEDİR. Her blok sonunda commit + push (önce kendi dosyaların → pull --rebase → push), status satırı. Veri dondurma 20:00, teslim 22:00.
+**Rol: "tek komutla yeniden üret" kanıtı.**
+1. (11:15–13:00) **`python -m pipeline.nisarpulse reproduce <id>`:** bölgenin `meta.json` granül listesinden aynı summary'yi yeniden üretir (önbellekteki kesitlerle çalışabilsin, yoksa `--dry-run` planı yazsın); `pipeline/nisarpulse/tests/test_reproduce.py` (ağsız).
+2. (13:00–14:00) **Kanıt kaydı:** Konya Ovası ve Mashhad için `reproduce` çıktısı summary'yle birebir mi (fark tablosu) → `docs/story/engine.md`'ye "Reproduce any atlas region in one command" bölümü (komut + beklenen çıktı + süre).
+3. (14:00–15:30) **Delhi `--qc`:** motorla 1 Eylül aykırısını temizleyip yeniden hesapla (motor yoksa o tarihi içeren çiftleri çıkar); "hazır: delhi".
+4. (15:30–17:00) README ve Data sayfası için 6 satırlık "Run it yourself" kutusu metni (PC1/PC6'ya `docs/qa/PC2.md`'de).
