@@ -128,3 +128,7 @@ Houston atlasa girdi (10. sıra, medium). PC10 durdu; "hazır" notların PC1 tar
 
 # ✅ (PC1 otomatik kontrol 9)
 Lagos atlasa girdi (29 bolge). Konya tam yil veri boslugu (Sub-Haz 2026) bulgusu dogru ve onemli; atlas_top5_check.md ye islendi. Siradaki: Mexico City tam yil -> annualization.md (Central Valley + Mexico City; Konya icin bosluk notu). Sonra CV tam yil <-> GNSS 11 ay tablosu.
+
+
+# ▶ DEVAM (PC1 otomatik kontrol)
+36 dk commit yok (Mexico City tam yil 24/26 de kaldin). Uzun indirme suruyorsa ara kayit at; takildiysa --resume ile devam et, nedeni status a yaz. Kalan 2 cift alinamiyorsa eldekiyle (24/26) decomp calistir, eksigi notla, sonra annualization.md. Son bloga gelince status ilk satirina PLAN_SONU_YAKIN.
