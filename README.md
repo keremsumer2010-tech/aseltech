@@ -1,156 +1,111 @@
 # NISAR Pulse: Follow the Water
 
-Team Taykut · NASA Space Apps Challenge 2026 · Challenge: **Dancing with the SARs** · Local event: Lincoln (UK)
+**Team Taykut** · NASA Space Apps Challenge 2026 · Challenge: **Dancing with the SARs** · Local event: Lincoln (UK)
 
-Farms are irrigated, groundwater is pumped, and the ground sinks. NASA-ISRO's NISAR radar sees through
-clouds and measures that motion in centimetres. We turn it into maps, human-scale sentences and risk
-layers anyone can read.
+> *NISAR data are provisional. Calibration and validation are carried out by the NISAR project (NASA-JPL and ISRO), not by our team.*
 
-**Study areas:** California Central Valley (USA) · Konya / Karapınar (Türkiye) · The Fens (UK)
+Using provisional 24.2 cm L-band interferograms from the NASA-ISRO **NISAR** mission (`CRID P05023`, June–October 2026), **NISAR Pulse** measures centimeter-scale groundwater-driven land subsidence across **29 agricultural and urban basins** worldwide (`16` reliable, `13` indicative), separates permanent clay compaction from seasonal elastic rebound in California's Central Valley, tests subsidence gradients along canals and railways, and connects those measurements to an interactive 24-month aquifer simulator.
 
-**Data:** NASA-ISRO NISAR (GUNW, GCOV, SME2) via ASF DAAC.
-NISAR data are provisional. Calibration and validation are carried out by the NISAR project
-(NASA-JPL and ISRO), not by our team. We use the products as released.
-
-**Live site:** _link added after first deploy_
+- **Live Site:** https://keremsumer2010-tech.github.io/aseltech/
+- **Global Subsidence Atlas (29 Regions):** [web/atlas.html](web/atlas.html) (`https://keremsumer2010-tech.github.io/aseltech/atlas.html`)
+- **6-Stop Lincoln Presentation Mode (Offline-Ready):** [web/present.html](web/present.html)
+- **Valley Under Pressure Simulator:** [game/index.html](game/index.html) (`https://keremsumer2010-tech.github.io/aseltech/game/`)
+- **Science Sign-Off & Submission Package:** [docs/qa/SCIENCE_SIGNOFF.md](docs/qa/SCIENCE_SIGNOFF.md) · [docs/story/submission_package.md](docs/story/submission_package.md)
 
 ---
 
-## What is in this repository
+## Key Results (Ten Verified Headline Numbers)
+
+All figures below match [`docs/qa/SCIENCE_SIGNOFF.md`](docs/qa/SCIENCE_SIGNOFF.md) and the repository JSON files:
+
+| # | Metric | Headline Value | Uncertainty / Notes | Quality |
+|---:|---|---|---|---|
+| 1 | **Central Valley Peak Subsidence (108 d)** | **`−7.8 cm` LOS** (`−10.1 cm` vert. est. at `39.1°`) | 3-ref spread `[−7.8, −4.7] cm`; formal `σ_med = 0.294 cm` | `provisional` |
+| 2 | **Central Valley Sinking Area (`< −5 cm`)** | **`239.54 km²`** (`1,578.27 km² < −2 cm`) | Common-valid pixels (`62.9%` valid fraction) | `provisional` |
+| 3 | **10-Station GNSS Cross-Check (CV)** | **`r = 0.924`**, **`1.00 cm` median RMSE** | `1.37 cm` final-epoch RMSE (`0.76 cm` on active sites `> 2 cm`) | `provisional` |
+| 4 | **Infrastructure Differential Tilt** | **`81 / 645` segments `> 20 mm/km`** | Tulare Canal **`57.01 mm/km`**; `±25%` top-10 `100%` rank-invariant | `provisional` |
+| 5 | **Full-Year Decomposition (`Earlimart p01`)** | **`−16.8 ± 2.2 cm/yr`** permanent vs. **`11.7 cm`** seasonal | `R² = 0.97` sinusoidal + linear (`25` pairs, `324` days) | `mixed` |
+| 6 | **Permanent Aquifer Storage Loss (CV)** | **`0.3174 km³/yr`** (`317.41 million m³/yr`) | `1 km` block SE `±0.00123 km³/yr`; 3-ref `0.0664–0.3198 km³/yr` | `mixed` |
+| 7 | **Karapınar Basin & 29-Sinkhole Contrast** | **`−5.9 cm` LOS** (`−8.0 cm` vert. est.); **`6.4×`** `< 1 km` | `−4.15 cm` `< 1 km` vs. `−0.65 cm` `> 5 km` (`p = 0.0001` block perm) | `provisional` |
+| 8 | **London Clay Negative Control** | **`below_detection`** (`97.7%` within `±1.5 cm`) | `chain_sigma = 1.21 cm`, **`3σ = 3.62 cm`** floor (`9` pairs) | `provisional` |
+| 9 | **2026 Global Subsidence Atlas (#1 Reliable)** | **#1 Konya Plain `−11.0 cm/100d`** (`93 d` common) | **`29` regions (`16` reliable / `13` indicative)**; Konya `11.6%` cov. caution | `provisional` |
+| 10 | **Global GHSL Exposure (`< −5 cm`, `|disp| ≥ 2σ`)** | **`1,479,844` residents** on **`549.45 km²`** | `GHSL E2025` (`100 m`), excluding nested `karapinar` | `provisional` |
+
+---
+
+## Reproduce the Atlas in One Command Chain
+
+All atlas tables, QC flags, and text summaries are generated deterministically from `data/global/` without hard-coding:
+
+```bash
+python3 pipeline/pc10/build_atlas.py && python3 tools/atlas_qc.py && python3 tools/sync_atlas_text.py && python3 tools/vital_signs.py --check
+```
+
+- `pipeline/pc10/build_atlas.py`: aggregates all regional `summary.json`, `validation_note.json`, and common-window (`2026-06-28 → 2026-09-29`) rates into `data/global/atlas.json`.
+- `tools/atlas_qc.py`: scans `p01` time series for `12.1 cm` half-cycle unwrapping jumps and `> 5 cm` cancelling single-date spikes (`data/global/qc_flags.json`).
+- `tools/sync_atlas_text.py`: updates region counts and tables in `docs/story/technical_note.md` and `technical_note.html` from `atlas.json`.
+- `tools/vital_signs.py --check`: verifies `data/global/vital_signs.json` against `atlas.json` and `exposure_atlas.json`.
+
+---
+
+## Data Sources & Licenses
+
+| Dataset | Provider / License | Use in NISAR Pulse |
+|---|---|---|
+| **NISAR L2 GUNW, GCOV, SME2** (`beta` & `provisional`, `CRID P05023`) | NASA-ISRO / ASF DAAC (NASA Open Data Policy) | Interferometric displacement, backscatter polarization (`HH`/`HV`), soil moisture |
+| **Continuous GNSS (`IGS14`)** | Nevada Geodetic Laboratory, UNR (CC-BY / Open) | 10-station Central Valley & multi-region independent validation (`r = 0.924`) |
+| **GHSL `GHS-POP E2025 R2023A`** (`100 m`) | European Commission JRC (CC-BY 4.0) | Global population exposure on sinking ground (`< −5 cm`, `|disp| ≥ 2σ`) |
+| **WorldPop (2020), USDA CDL (2021), ESA WorldCover** | WorldPop / USDA NASS / ESA (CC-BY / Public Domain) | Central Valley & Karapınar agricultural and population overlays |
+| **Canals, Railways, Highways & Karapınar Sinkholes** | OpenStreetMap (ODbL) & AFAD / peer-reviewed inventories | Longitudinal tilt (`mm/km`) and sinkhole-proximity permutation tests |
+
+Full DOIs and live HTTP-verified references: [`docs/story/sources.md`](docs/story/sources.md).
+
+---
+
+## AI Usage Disclosure
+
+Code, analysis scripts, tests, and prose documentation were written with the assistance of AI coding tools (Anthropic Claude and Google Gemini) and verified by Team Taykut: every reported metric is read directly from repository JSON outputs, every scientific claim carries a peer-reviewed DOI or dataset citation, and automated unit/consistency tests cover core conversions and site numbers. **Zero AI-generated images** appear anywhere on the website, presentation deck, 3D viewer, or simulator — every map, plot, and screenshot reflects real NISAR data or real application captures.
+
+---
+
+## Repository Map
 
 | Folder | What it does |
 |---|---|
-| `pipeline/` | Search ASF for NISAR products, download them, cut each one to a study-area box (`.npz`) |
-| `analysis/` | Phase → centimetres, masks, reference, cumulative maps, web outputs (`analysis/insar.py`, `analysis/cumulative.py`) |
-| `analysis/decomp/` | Permanent vs seasonal (recoverable) subsidence: trend + annual sine per pixel |
-| `validation/` | Comparison with continuous GNSS stations (Nevada Geodetic Laboratory) |
-| `risk/` | Subsidence gradient along canals, railways and highways (OpenStreetMap) |
-| `data/` | Small files the website reads (JSON, PNG, GeoJSON). Format: `rules/VERI_SOZLESMESI.md` §4 |
-| `web/` | The story website (static HTML/JS, MapLibre GL, Chart.js) |
-| `game/` | "Aquifer Manager" browser game (illustrative model, numbers labelled) |
-| `web3d/` | 3D "breathing earth" viewer |
-| `docs/` | Plans, data structure notes, sources (`docs/story/sources.md`), QA notes |
+| `pipeline/` | ASF NISAR product search, subsetting, and `build_atlas.py` (`pipeline/pc10/`) |
+| `analysis/` | Phase → cm conversion, atmospheric plane removal, GNSS validation, and `decomp/` full-year separation |
+| `validation/` | Independent GNSS cross-checks (Nevada Geodetic Laboratory) and `opera_check` diagnostics |
+| `risk/` | Subsidence gradient (`mm/km`) along canals, railways, and highways (OpenStreetMap) |
+| `data/` | Processed JSONs, displacement PNGs, and GeoJSON layers consumed by the website and tests |
+| `web/` | Static NASA-EO-style web application (`index.html`, `atlas.html`, `present.html`, `science.html`, `data.html`, `explorer.html`, `faq.html`) |
+| `game/` | *Valley Under Pressure* 24-month aquifer simulator (`model.js`, `tests.js`, `test_model.html`) |
+| `web3d/` | Interactive 3D Earth subsidence globe |
+| `tools/` | `sync_atlas_text.py`, `atlas_qc.py`, `atlas_completeness.py`, `vital_signs.py`, `bulletin.py` |
+| `tests/` | `pytest` consistency checks (`tests/test_site_numbers.py`, `analysis/`, `pipeline/`) |
+| `docs/` | Scientific notes, city cards (`docs/story/atlas_cities/`), QA logs (`docs/qa/`), and `RELEASE_NOTES.md` |
 
-Raw NISAR files (`.h5`, ~2.3 GB each) are **never** stored in the repository; they go to `raw/` (git-ignored)
-and are deleted after cutting.
+Raw NISAR granules (`.h5`, ~2.3 GB each) are **never** committed; they reside in git-ignored `raw/` and are deleted after subsetting.
 
-## Setup
+---
 
-Python 3.11+:
+## Setup & Pipeline Steps
+
+Python 3.10+:
 
 ```bash
 pip install asf_search h5py numpy scipy matplotlib pyproj rasterio shapely requests pytest
 ```
 
-Downloading `.h5` files needs a free NASA Earthdata account. Put your credentials in `~/.netrc`
-(Windows: `%USERPROFILE%\_netrc`) yourself, exactly in this form (no colons):
+Downloading `.h5` granules requires a free NASA Earthdata account in `~/.netrc`:
 
-```
+```text
 machine urs.earthdata.nasa.gov
 login YOUR_USERNAME
 password YOUR_PASSWORD
 ```
 
-Never commit this file (`.gitignore` already excludes it). Browse PNGs and GNSS / OpenStreetMap data need no login.
-
-## Running the data pipeline, step by step
-
-Study areas and their boxes are fixed in `rules/VERI_SOZLESMESI.md` §1
-(`central_valley`, `karapinar`, `konya`, `fens`). Only **provisional** products (both dates on or after
-2026-06-17, CRID P05023) go into the same sum; earlier "beta" products are kept in separate folders.
-
-**1 · Find products** (writes `pipeline/<site>_gunw.csv`)
-```bash
-python pipeline/search.py central_valley
-```
-
-**2 · Download one pair** (into `raw/`)
-```bash
-python pipeline/download.py pipeline/central_valley_gunw.csv --date1 2026-06-28 --date2 2026-07-10
-```
-
-**3 · Cut it to the study box** (writes `pipeline/subset/<site>/<date1>_<date2>.npz`: phase, coherence,
-connected components, ionosphere screen, coordinates, wavelength, incidence, quality)
-```bash
-python pipeline/subset.py raw/<granule>.h5 central_valley
-```
-Repeat 2–3 for every consecutive pair. Alternative used by the analysis team (search + download + cut +
-delete raw, one pair at a time): `python analysis/fetch_subset.py central_valley 34 020 100`
-(site, track, frame, reference height in metres for the incidence angle).
-
-**4 · Cumulative ground motion** (reads every `.npz` of the site, checks the chain has no gaps)
-```bash
-python analysis/cumulative.py central_valley
-python analysis/cumulative.py karapinar --ref-radius 10
-```
-Per pair: phase → cm with −λ/(4π) (λ from each file's `centerFrequency`; negative = away from the satellite =
-sinking) → subtract the product's ionosphere screen → masks (coherence ≥ 0.3, connected components,
-small islands, unwrapping-cycle jumps) → remove a plane + elevation term (Copernicus DEM GLO-90, downloaded
-to `raw/dem/`) → reference all pairs to the same stable window → add up.
-Writes:
-- `data/<site>/meta.json`, `points.json`, `summary.json`, `disp/<date>.png` (what the website reads)
-- `analysis/out/<site>_cum.npz` and `<site>_cum_stack.npz` (numeric grids for validation and risk)
-
-**5 · Validation and risk**
-```bash
-python validation/fetch_gnss.py
-python validation/compare.py --npz analysis/out/central_valley_cum.npz --out data/central_valley/validation.json
-python risk/fetch_osm_infra.py
-python risk/compute_risk.py
-```
-
-**6 · Website** — open locally from the repository root:
-```bash
-python -m http.server 8000
-```
-then visit `http://localhost:8000/web/`. On every push to `main`, `.github/workflows/pages.yml` publishes
-`web/` + `data/` + `game/` to GitHub Pages.
-
-## Tests
+Running the core test suite:
 
 ```bash
-cd analysis && python -m pytest -q
-python -m pytest analysis/decomp -q
-python validation/compare.py --self-test
-python risk/compute_risk.py --self-test
+python3 -m pytest tests/test_site_numbers.py -v
 ```
-
-## Honest limits
-
-- Values on the maps are **line of sight** (the radar's viewing direction), not purely vertical. Vertical
-  numbers are estimates (LOS / cos(incidence)).
-- One summer of data: yearly rates are linear extrapolations and labelled "estimate".
-- Troposphere model layers and solid-earth tides are not applied; a plane + elevation fit is used instead.
-  A few cm of atmospheric noise per pair remains.
-- The absolute size of the largest value depends on the reference area (Central Valley: −4.7 to −7.8 cm
-  with three reference areas, stored in `summary.json` → `range_cm`).
-
-## Sources
-
-Every number in the story has a source in [`docs/story/sources.md`](docs/story/sources.md). Key method references:
-
-- NISAR GUNW product guide (ASF): https://nisar-docs.asf.alaska.edu/gunw
-- NISAR Solid Earth ATBD: https://github.com/nisar-solid/ATBD
-- MintPy (sign convention, phase-to-range, phase–elevation correction): https://github.com/insarlab/MintPy
-- ISCE3 (interferogram formation): https://github.com/isce-framework/isce3
-- Copernicus DEM GLO-90: https://copernicus-dem-90m.s3.amazonaws.com/ (© DLR e.V. 2010–2014 and © Airbus Defence and Space GmbH 2014–2018, provided under COPERNICUS by the European Union and ESA)
-- GNSS: Nevada Geodetic Laboratory, https://geodesy.unr.edu/
-- Map data © OpenStreetMap contributors, ODbL. Basemap imagery © Esri, Maxar, Earthstar Geographics.
-
-## AI use
-
-Code and texts were written with the help of AI assistants (Claude Code, Antigravity / Gemini). Images and
-video made with AI (Higgsfield) are labelled "AI-generated illustration" on the site and are never shown as
-data. Every measured number comes from NISAR files by code, not from an AI model.
-
-## Team
-
-Team Taykut — Kerem (`keremsumer2010-tech`), Memir (`memir-erdogmus`), Mehmet (`M3hmeT1888`),
-İbrahim (`acikgozibrahim032-hub`).
-
-## License
-
-MIT (see [`LICENSE`](LICENSE)). Map data © OpenStreetMap contributors, ODbL.
-
----
-Contributors and AI agents: start with [`CLAUDE.md`](CLAUDE.md).
