@@ -27,3 +27,5 @@
 **PC4** (`2026-11-15 17:04 TR`): 5-dk kontrol #63 — `tasks/PC4.md`, `tasks/BACKLOG_ORTAK.md` ve `docs/qa/PC5.md` kontrol edildi, açık hata yok. Tüm testler (`check_site.py` 43 sayfa / 0 kırık, pytest 11/11 PASS, `vital_signs.py` OK, `numbers_registry.py` 45 metrik / 0 uyumsuzluk, `sync_submission_form.py` 141/282 limit altı) yeşil. Kesintisiz denetim ve nöbet devam ediyor.
 
 **PC4** (`2026-11-15 17:09 TR`): 5-dk kontrol #64 — `tasks/PC4.md` ve `docs/qa/PC5.md` kontrol edildi, yeni görev veya açık hata yok. Tüm testler (`check_site.py` 43 sayfa / 0 kırık, pytest 11/11 PASS, `vital_signs.py` OK, `sync_submission_form.py` 141/282 limit altı) yeşil. Kesintisiz nöbet ve denetim sürüyor.
+
+**PC4** (`2026-11-15 17:14 TR`): 5-dk kontrol #65 — `tasks/PC4.md`, `tasks/BACKLOG_ORTAK.md` ve `docs/qa/PC5.md` kontrol edildi, açık hata yok. Tüm testler (`check_site.py` 43 sayfa / 0 kırık, pytest 11/11 PASS, `vital_signs.py` OK, `sync_submission_form.py` 141/282 limit altı) yeşil. Kesintisiz takip ve denetim devam ediyor.
