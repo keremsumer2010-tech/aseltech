@@ -6,6 +6,7 @@ import math
 from pathlib import Path
 
 import numpy as np
+import pytest
 
 from analysis.pc5.cross_sensor import (
     NISAR_LAMBDA_CM,
@@ -18,6 +19,9 @@ from analysis.pc5.cross_sensor import (
 )
 
 ROOT = Path(__file__).resolve().parents[2]
+# Raw NISAR subsets (*.npz) live outside the repository since 2026-11-15; skip the tests that read them.
+HAS_RAW = any((ROOT / "pipeline" / "subset" / "central_valley").glob("*.npz"))
+needs_raw = pytest.mark.skipif(not HAS_RAW, reason="raw NISAR .npz subsets are kept outside the repository")
 
 
 def test_regression_metrics_exact() -> None:
@@ -30,6 +34,7 @@ def test_regression_metrics_exact() -> None:
     assert math.isclose(m["intercept_cm"], -1.0, abs_tol=1e-6)
 
 
+@needs_raw
 def test_nisar_vs_gnss_and_coherence_outputs() -> None:
     gps = json.loads((ROOT / "data" / "central_valley" / "validation.json").read_text(encoding="utf-8"))
     gnss_eval = evaluate_nisar_vs_gnss(gps)
@@ -50,6 +55,7 @@ def test_nisar_vs_gnss_and_coherence_outputs() -> None:
     assert amb["cv_108d_top5"][0]["intervals_exceeding_l_band_half_fringe_6_05cm"] == 0
 
 
+@needs_raw
 def test_offline_cross_sensor_pipeline_clean_artifacts(tmp_path: Path) -> None:
     opera_dir = tmp_path / "opera"
     s1_dir = tmp_path / "s1"
